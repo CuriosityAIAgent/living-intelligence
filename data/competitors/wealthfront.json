@@ -1,0 +1,17 @@
+{
+  "id": "wealthfront",
+  "name": "Wealthfront",
+  "segment": "digital_disruptor",
+  "regions": ["us"],
+  "color": "#059669",
+  "ai_strategy_summary": "The established benchmark in algorithmic wealth management. Wealthfront's AI-driven portfolio management, tax-loss harvesting, and automated rebalancing have created the cost leader position in mass affluent wealth management at 0.25% advisory fee.",
+  "head_of_ai": null,
+  "headline_metric": "0.25% fee, $500 minimum — algorithmic wealth at scale",
+  "headline_initiative": "AI-driven robo-advisor — portfolio, tax, and rebalancing automation",
+  "overall_maturity": "scaled",
+  "capabilities": {
+    "investment_portfolio": { "maturity": "scaled", "headline": "Fully automated 11-asset class portfolio management with continuous optimization", "detail": "Wealthfront manages diversified portfolios across 11 asset classes with continuous AI-driven rebalancing, volatility monitoring, and tax-lot optimization. Modern Portfolio Theory algorithms run continuously across the entire client base.", "evidence": ["Best Robo-Advisor for Portfolio Options (NerdWallet 2026)", "11-asset class diversification", "Continuous automated rebalancing"], "jpm_implication": "Wealthfront's cost structure at 0.25% is structurally incompatible with human-advisory models. Mass affluent clients increasingly compare JPM fees to Wealthfront's value proposition.", "jpm_segments_affected": ["Self-Directed", "CWM"], "date_assessed": "2026-03-07" },
+    "operations_compliance": { "maturity": "scaled", "headline": "Automated tax-loss harvesting and Roth conversion optimization", "detail": "Wealthfront's tax-loss harvesting runs automatically across all eligible accounts, identifying and executing tax-saving opportunities without client or advisor action required.", "evidence": ["Automated tax-loss harvesting at scale", "Roth conversion optimization confirmed"], "jpm_implication": "Tax automation at Wealthfront's scale creates a compelling value proposition for self-directed clients. JPM Self-Directed needs comparable tax optimization features.", "jpm_segments_affected": ["Self-Directed"], "date_assessed": "2026-03-07" }
+  },
+  "last_updated": "2026-03-07"
+}

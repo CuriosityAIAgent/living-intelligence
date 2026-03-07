@@ -1,0 +1,17 @@
+{
+  "id": "altruist",
+  "name": "Altruist",
+  "segment": "ria_independent",
+  "regions": ["us"],
+  "color": "#0F172A",
+  "ai_strategy_summary": "Altruist's launch of Hazel — the first AI agent dedicated to tax planning for advisors — triggered a $150 billion wealth management stock sell-off in February 2026. The market's reaction signals investor belief that AI will structurally commoditize high-fee advisory services.",
+  "head_of_ai": null,
+  "headline_metric": "$150B market sell-off on Hazel AI launch",
+  "headline_initiative": "Hazel AI — first dedicated AI tax planning agent for advisors",
+  "overall_maturity": "announced",
+  "capabilities": {
+    "operations_compliance": { "maturity": "announced", "headline": "Hazel AI: first AI agent dedicated to tax planning — caused $150B market sell-off", "detail": "Altruist launched Hazel, described as the first AI agent dedicated to tax planning for financial advisors, in early February 2026. The announcement triggered an immediate market reaction: LPL -8.3%, Raymond James -8.8%, Schwab -7.4%, Stifel down significantly — a combined loss of over $150 billion in market cap across wealth management stocks. Investors interpreted Hazel as evidence that AI will structurally commoditize tax planning, a core high-fee advisor service.", "evidence": ["$150B market cap loss across wealth stocks", "LPL -8.3%, Raymond James -8.8%, Schwab -7.4%", "Largest single-day losses for these stocks since 2020", "Hazel positioned as 'first of future AI agents'"], "jpm_implication": "The market has already priced in AI disruption of wealth management fee structures. Tax planning as a differentiator for JPM advisors is at risk. Proactive response needed.", "jpm_segments_affected": ["JPMWM", "GPB", "CWM"], "date_assessed": "2026-03-07" },
+    "advisor_productivity": { "maturity": "announced", "headline": "Personalized tax strategy generation for advisors and clients", "detail": "Hazel generates personalized tax strategies for clients, produces tax planning documents, and integrates with advisor workflows — automating a function that typically requires specialized expertise.", "evidence": ["Personalized tax strategy generation confirmed", "Document generation capability"], "jpm_implication": "If tax planning is commoditized by AI, the value proposition of human financial advisors narrows further. JPM advisor value articulation must evolve.", "jpm_segments_affected": ["JPMWM", "GPB"], "date_assessed": "2026-03-07" }
+  },
+  "last_updated": "2026-03-07"
+}

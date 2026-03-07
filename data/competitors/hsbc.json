@@ -1,0 +1,17 @@
+{
+  "id": "hsbc",
+  "name": "HSBC Private Banking",
+  "segment": "global_bank",
+  "regions": ["emea", "asia", "us"],
+  "color": "#DB0011",
+  "ai_strategy_summary": "HSBC committed $1.8 billion to AI transformation, launching Wealth Intelligence — a proprietary AI platform for private banking advisors processing 10,000+ news sources. Initial deployment in Hong Kong and Singapore with expansion underway.",
+  "head_of_ai": null,
+  "headline_metric": "$1.8B AI investment, 10,000+ sources in Wealth Intelligence",
+  "headline_initiative": "Wealth Intelligence Platform",
+  "overall_maturity": "deployed",
+  "capabilities": {
+    "advisor_productivity": { "maturity": "deployed", "headline": "Wealth Intelligence deployed to HK and Singapore advisors", "detail": "HSBC launched its Wealth Intelligence AI platform for private banking advisors in Hong Kong and Singapore, processing over 10,000 proprietary and external news sources to deliver synthesized intelligence to advisors in real-time.", "evidence": ["$1.8B AI investment commitment", "10,000+ news sources integrated", "Live in HK and Singapore"], "jpm_implication": "HSBC is deploying research synthesis AI in JPM's key APAC markets. IPB advisor intelligence capabilities need evaluation.", "jpm_segments_affected": ["IPB", "GPB"], "date_assessed": "2026-03-07" },
+    "research_content": { "maturity": "deployed", "headline": "10,000+ source intelligence synthesis for advisors", "detail": "The Wealth Intelligence platform synthesizes proprietary HSBC research with 10,000+ external news sources to generate advisor-ready market intelligence.", "evidence": ["10,000+ external news sources", "Proprietary research integration", "Built in-house using OpenAI LLM"], "jpm_implication": "Real-time research synthesis at HSBC's scale creates advisor quality advantages in APAC. JPM's research distribution speed is a competitive pressure point.", "jpm_segments_affected": ["IPB"], "date_assessed": "2026-03-07" }
+  },
+  "last_updated": "2026-03-07"
+}

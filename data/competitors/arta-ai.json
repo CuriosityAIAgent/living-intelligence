@@ -1,0 +1,18 @@
+{
+  "id": "arta-ai",
+  "name": "Arta.ai",
+  "segment": "ai_native",
+  "regions": ["us", "asia"],
+  "color": "#7C3AED",
+  "ai_strategy_summary": "AI-native private wealth platform built from scratch on AI infrastructure. Three specialized AI agents (Investment Planner, Product Specialist, Research Analyst) with institutional expansion underway across Asia. Team includes PhDs from Google Research and finance veterans from Morgan Stanley and J.P. Morgan.",
+  "head_of_ai": null,
+  "headline_metric": "3 AI agents, Bank of Singapore + multiple institutional partnerships",
+  "headline_initiative": "Arta AI agent suite — institutional and consumer deployment",
+  "overall_maturity": "piloting",
+  "capabilities": {
+    "client_personalization": { "maturity": "piloting", "headline": "Investment Planner and Research Analyst AI agents for personalized wealth planning", "detail": "Arta's Investment Planner agent creates personalized investment strategies using agentic systems, RAG, and convex optimization. The Research Analyst agent provides customized market research. Both agents are deploying to institutional clients and rolling out to consumers in 2026.", "evidence": ["Three specialized AI agents confirmed", "Institutional clients: Bank of Singapore, Hong Leong Bank, Ethivo", "Consumer launch rolling out 2026"], "jpm_implication": "AI-native wealth planning at $20/month creates massive fee compression pressure for traditional private banking at the entry level.", "jpm_segments_affected": ["JPMWM", "CWM"], "date_assessed": "2026-03-07" },
+    "advisor_productivity": { "maturity": "piloting", "headline": "AI Sidekick for institutional advisors — deploying at Bank of Singapore and others", "detail": "Arta's Advisor Sidekick product provides AI-augmented advisory capabilities to institutional partners, enabling smaller wealth managers to deploy sophisticated AI without building in-house.", "evidence": ["Bank of Singapore partnership", "Hong Leong Bank, Ethivo, Wio Invest, Income Advisory partnerships"], "jpm_implication": "Arta is building the AI infrastructure layer that independent advisors and regional banks will use to compete with global players.", "jpm_segments_affected": ["IPB"], "date_assessed": "2026-03-07" },
+    "investment_portfolio": { "maturity": "piloting", "headline": "Convex optimization-based portfolio construction with AI agents", "detail": "Arta uses convex optimization combined with ML and RAG to construct personalized portfolios through the Investment Planner agent.", "evidence": ["Convex optimization confirmed", "RAG and ML architecture", "Google Research and Morgan Stanley alumni team"], "jpm_implication": "PhD-level quantitative AI from a $20/month app is a direct threat to JPM's fee justification for portfolio construction services.", "jpm_segments_affected": ["JPMWM", "Self-Directed"], "date_assessed": "2026-03-07" }
+  },
+  "last_updated": "2026-03-07"
+}

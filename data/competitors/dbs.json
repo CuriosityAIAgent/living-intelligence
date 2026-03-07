@@ -1,0 +1,20 @@
+{
+  "id": "dbs",
+  "name": "DBS Bank",
+  "segment": "regional_champion",
+  "regions": ["asia"],
+  "color": "#E01A22",
+  "ai_strategy_summary": "The global benchmark. DBS has 1,500+ AI models in production across 370+ use cases, projects >SGD 1 billion in economic value from AI in 2025, and was named World's Best AI Bank. Their decade-long data infrastructure investment created an unmatched foundation for GenAI deployment.",
+  "head_of_ai": { "name": "Piyush Gupta", "title": "CEO (AI as core strategy)" },
+  "headline_metric": "1,500+ AI models, SGD 1B economic value",
+  "headline_initiative": "ADA + ALAN — Enterprise AI platform at scale",
+  "overall_maturity": "scaled",
+  "capabilities": {
+    "advisor_productivity": { "maturity": "scaled", "headline": "AI-augmented advisors across all wealth tiers", "detail": "DBS has deployed AI tools across their full advisor base, with AI assisting in client meeting preparation, portfolio reviews, and communication personalization.", "evidence": ["1,500+ models across 370 use cases", "World's Best AI Bank 2025"], "jpm_implication": "DBS has achieved what every wealth manager aspires to. Their model is the reference architecture for AI-at-scale in wealth management.", "jpm_segments_affected": ["IPB", "GPB"], "date_assessed": "2026-03-07" },
+    "client_personalization": { "maturity": "scaled", "headline": "30M+ monthly personalized nudges via AI", "detail": "DBS delivers over 30 million personalized AI-driven insights and nudges to clients monthly, powered by their ADA data platform and ALAN AI protocol.", "evidence": ["30M+ monthly personalized interactions", "Powered by ADA platform"], "jpm_implication": "DBS's personalization volume is 10x+ any competitor. This sets client expectation benchmarks for Asia-Pacific wealth clients.", "jpm_segments_affected": ["IPB"], "date_assessed": "2026-03-07" },
+    "investment_portfolio": { "maturity": "scaled", "headline": "AI-driven portfolio construction and rebalancing at scale", "detail": "DBS uses AI for automated portfolio construction, rebalancing recommendations, and investment product matching across all client segments.", "evidence": ["Part of 370 use cases in production"], "jpm_implication": "AI-driven investment recommendations are standard at DBS. IPB needs to match this capability.", "jpm_segments_affected": ["IPB", "GPB"], "date_assessed": "2026-03-07" },
+    "operations_compliance": { "maturity": "scaled", "headline": "AML, KYC, and regulatory compliance fully AI-automated", "detail": "DBS has automated KYC, AML surveillance, and regulatory reporting using AI, contributing to significant operational cost reduction.", "evidence": ["Part of SGD 1B economic value", "Multiple compliance use cases in 370 use cases"], "jpm_implication": "DBS's compliance automation is a major cost advantage. JPM's compliance costs in Asia should be benchmarked against DBS.", "jpm_segments_affected": ["IPB"], "date_assessed": "2026-03-07" },
+    "new_business_models": { "maturity": "scaled", "headline": "AI enabling entirely new revenue streams and business models", "detail": "DBS has used AI to create new products and revenue streams that did not exist before, including AI-driven wealth advisory services for previously underserved segments.", "evidence": ["Named World's Best AI Bank for innovation", "New service tiers enabled by AI"], "jpm_implication": "DBS is not just automating existing work — they're creating new business models. JPM needs to think beyond efficiency to AI-enabled revenue.", "jpm_segments_affected": ["IPB", "GPB"], "date_assessed": "2026-03-07" }
+  },
+  "last_updated": "2026-03-07"
+}
