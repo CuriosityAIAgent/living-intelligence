@@ -1,0 +1,21 @@
+{
+  "id": "goldman-sachs-gs-ai-platform",
+  "type": "product_launch",
+  "headline": "Goldman Sachs deploys GS AI Platform to 46,000 employees firm-wide",
+  "company": "goldman-sachs",
+  "company_name": "Goldman Sachs",
+  "date": "2026-01-28",
+  "source_name": "Financial Times",
+  "source_url": "https://www.ft.com/content/goldman-sachs-ai-platform",
+  "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Goldman_Sachs.svg/1200px-Goldman_Sachs.svg.png",
+  "summary": "Goldman Sachs has completed the firm-wide rollout of its GS AI Platform to all 46,000 employees, making it one of the most comprehensive enterprise AI deployments in financial services. The platform integrates generative AI into document drafting, code generation, and client analysis workflows. Goldman's chief information officer described it as the most important technology infrastructure investment since electronic trading. The bank has also announced a partnership with Anthropic to develop autonomous compliance agents.",
+  "key_stat": { "number": "46,000", "label": "Employees on GS AI Platform" },
+  "tags": {
+    "capability": "operations_compliance",
+    "region": "us",
+    "segment": "global_bank",
+    "theme": ["enterprise_ai", "compliance_automation", "anthropic"]
+  },
+  "week": "2026-03-07",
+  "featured": false
+}

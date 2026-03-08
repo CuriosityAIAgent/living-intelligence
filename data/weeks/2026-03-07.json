@@ -1,0 +1,20 @@
+{
+  "week": "2026-03-07",
+  "display_date": "Week of March 7, 2026",
+  "lead_story_id": "altruist-hazel-market-signal",
+  "featured_intelligence": [
+    "morgan-stanley-ai-assistant-scaled",
+    "lpl-anthropic-partnership",
+    "goldman-sachs-gs-ai-platform",
+    "ubs-ai-transformation-factory",
+    "dbs-worlds-best-ai-bank"
+  ],
+  "featured_thought_leadership": "mollick-management-ai-superpower",
+  "by_the_numbers": [
+    { "number": "$150B", "label": "Market cap lost when Altruist Hazel launched" },
+    { "number": "1,500+", "label": "AI models running in production at DBS" },
+    { "number": "98%", "label": "Advisor adoption rate at Morgan Stanley" },
+    { "number": "30,000", "label": "LPL advisors getting Claude AI" }
+  ],
+  "editors_note": "This week's defining story is not a product launch — it's a market reaction. The $150B sell-off triggered by Altruist's Hazel is the clearest signal yet that institutional capital now views AI-native platforms as an existential threat to traditional advisory models. The race to scale is no longer optional."
+}

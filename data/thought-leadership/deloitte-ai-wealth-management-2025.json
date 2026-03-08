@@ -1,0 +1,38 @@
+{
+  "id": "deloitte-ai-wealth-management-2025",
+  "type": "report",
+  "title": "The AI-Augmented Advisor: How AI Will Reshape Wealth Management by 2030",
+  "author": {
+    "name": "Deloitte Insights",
+    "title": "Financial Services Research",
+    "organization": "Deloitte",
+    "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Deloitte_Logo.png/1200px-Deloitte_Logo.png"
+  },
+  "publication": "Deloitte Insights",
+  "source_url": "https://www2.deloitte.com/us/en/insights/industry/financial-services/ai-wealth-management-2030.html",
+  "date_published": "2025-12-10",
+  "format": "report",
+  "executive_summary": [
+    "Deloitte projects that by 2030, 60% of wealth management client touchpoints will be AI-driven — up from under 10% today — with human advisors increasingly focused on complex planning, emotional support, and trust-building",
+    "The advisor-to-client ratio will shift dramatically: AI will allow the best advisors to manage 3-5x their current book size without service degradation",
+    "The report introduces the concept of the 'hybrid advisor' — a human advisor whose judgment is continuously augmented by real-time AI insights — as the dominant model by 2028",
+    "Three revenue pools are identified as at-risk: portfolio construction fees (commoditized by AI), plan preparation (automated), and routine client communication (replaced by AI). Trust advisory and complex planning fees are seen as durable",
+    "Deloitte recommends wealth management firms invest in AI training for advisors now — the gap between AI-fluent and AI-naive advisors will translate directly into client outcomes by 2027"
+  ],
+  "the_one_insight": "The hybrid advisor model — human judgment continuously informed by AI — will be the dominant competitive format within five years. The window to build this capability is closing.",
+  "key_quotes": [
+    {
+      "text": "The advisors who will thrive in the next decade are not those who resist AI, nor those who are replaced by it. They are those who learn to direct it — to ask it the right questions and trust the right answers.",
+      "context": "On the evolving advisor skill set"
+    },
+    {
+      "text": "We are not heading toward a world with fewer advisors. We are heading toward a world where fewer advisors serve dramatically more clients, at higher quality, for lower cost. That is a reckoning for the industry's current operating model.",
+      "context": "On the structural change ahead for wealth management"
+    }
+  ],
+  "tags": ["wealth_management", "advisor_model", "future_of_advice", "hybrid_advisor"],
+  "week": "2026-03-07",
+  "featured": false,
+  "has_document": true,
+  "document_url": "https://www2.deloitte.com/us/en/insights/industry/financial-services/ai-wealth-management-2030.pdf"
+}

@@ -1,68 +1,72 @@
 import { getAllCompetitors, SEGMENT_LABELS } from '@/lib/data';
-import { Navigation } from '@/components/Navigation';
-import { MaturityBadge } from '@/components/MaturityBadge';
+import Header from '@/components/Header';
+import SectionLabel from '@/components/SectionLabel';
 import Link from 'next/link';
+
+const MATURITY_COLORS: Record<string, string> = {
+  scaled: 'text-green-700 bg-green-50 border-green-200',
+  deployed: 'text-blue-700 bg-blue-50 border-blue-200',
+  piloting: 'text-orange-700 bg-orange-50 border-orange-200',
+  announced: 'text-yellow-700 bg-yellow-50 border-yellow-200',
+};
 
 export default function CompetitorsPage() {
   const competitors = getAllCompetitors();
-  const segmentOrder = ['global_bank', 'regional_champion', 'digital_disruptor', 'ria_independent', 'ai_native'];
+  const segmentOrder = ['global_bank', 'regional_champion', 'digital_disruptor', 'retail_digital', 'ria_independent', 'uhnw_digital', 'ai_native'];
 
   const grouped = segmentOrder.map(seg => ({
     segment: seg,
-    label: SEGMENT_LABELS[seg],
+    label: SEGMENT_LABELS[seg] || seg,
     competitors: competitors.filter(c => c.segment === seg),
   })).filter(g => g.competitors.length > 0);
 
   return (
-    <div className="min-h-screen bg-[#0A1628]">
-      <Navigation />
-      <main className="max-w-7xl mx-auto px-6 py-8">
-        <div className="mb-8">
-          <div className="text-[#C9A84C] text-xs font-semibold uppercase tracking-widest mb-2">Intelligence Database</div>
-          <h1 className="text-3xl font-bold text-[#F0F4F8] mb-2">Competitor Profiles</h1>
-          <p className="text-[#7A9BB5] text-sm">Deep intelligence on every tracked competitor. Click any card to see their full AI strategy.</p>
+    <div className="min-h-screen bg-white">
+      <Header />
+      <main className="max-w-6xl mx-auto px-6 py-10">
+        <div className="mb-8 pb-6 border-b border-gray-200">
+          <p className="section-label mb-1">Institution Profiles</p>
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">Company Profiles</h1>
+          <p className="text-sm text-gray-500">
+            Deep AI capability profiles for {competitors.length} institutions. Click any card for full detail.
+          </p>
         </div>
 
         {grouped.map(group => (
           <div key={group.segment} className="mb-10">
-            <div className="flex items-center gap-3 mb-4">
-              <h2 className="text-xs font-bold text-[#C9A84C] uppercase tracking-widest">{group.label}</h2>
-              <div className="flex-1 border-t border-[#1E3A5F]"></div>
-              <span className="text-xs text-[#7A9BB5]">{group.competitors.length} tracked</span>
-            </div>
-            <div className="grid grid-cols-3 gap-4">
+            <SectionLabel label={`${group.label} — ${group.competitors.length} tracked`} />
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
               {group.competitors.map(competitor => {
                 const capCount = Object.keys(competitor.capabilities).length;
                 const scaledCaps = Object.values(competitor.capabilities).filter(c => c.maturity === 'scaled').length;
-                const deployedCaps = Object.values(competitor.capabilities).filter(c => c.maturity === 'deployed').length;
+                const mc = MATURITY_COLORS[competitor.overall_maturity] || 'text-gray-600 bg-gray-50 border-gray-200';
                 return (
-                  <Link key={competitor.id} href={`/competitors/${competitor.id}`}>
-                    <div className="card card-hover p-5 h-full group">
-                      <div className="flex items-start justify-between mb-3">
-                        <div className="flex items-center gap-3">
-                          <div
-                            className="w-10 h-10 rounded-xl flex items-center justify-center text-white text-sm font-bold uppercase"
-                            style={{ backgroundColor: competitor.color + '30', border: `1px solid ${competitor.color}50` }}
-                          >
-                            {competitor.name.slice(0, 2)}
-                          </div>
-                          <div>
-                            <div className="text-sm font-bold text-[#F0F4F8] group-hover:text-[#C9A84C] transition-colors">{competitor.name}</div>
-                            <MaturityBadge maturity={competitor.overall_maturity} size="sm" />
-                          </div>
+                  <Link
+                    key={competitor.id}
+                    href={`/competitors/${competitor.id}`}
+                    className="article-card rounded p-5 block group"
+                  >
+                    <div className="flex items-start justify-between mb-3">
+                      <div>
+                        <div className="font-bold text-gray-900 text-sm mb-1 group-hover:text-[#1B2E5E] transition-colors">
+                          {competitor.name}
                         </div>
+                        <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full border uppercase tracking-wide ${mc}`}>
+                          {competitor.overall_maturity}
+                        </span>
                       </div>
-                      <p className="text-xs text-[#7A9BB5] leading-relaxed mb-4 line-clamp-3">{competitor.ai_strategy_summary}</p>
-                      <div className="border-t border-[#1E3A5F] pt-3 flex items-center justify-between">
-                        <div className="text-xs text-[#7A9BB5]">
-                          <span className="font-semibold text-[#C9A84C]">{capCount}</span> capability areas
-                        </div>
-                        <div className="flex gap-2">
-                          {scaledCaps > 0 && <span className="text-[10px] text-[#10B981]">{scaledCaps} scaled</span>}
-                          {deployedCaps > 0 && <span className="text-[10px] text-[#3B82F6]">{deployedCaps} deployed</span>}
-                        </div>
-                      </div>
-                      <div className="mt-2 text-[10px] text-[#7A9BB5] italic">{competitor.headline_metric}</div>
+                    </div>
+                    <p className="text-xs text-gray-500 leading-relaxed mb-3 line-clamp-3">
+                      {competitor.ai_strategy_summary}
+                    </p>
+                    <div className="border-t border-gray-100 pt-3 flex items-center justify-between">
+                      <span className="text-xs text-gray-400">{capCount} capabilities tracked</span>
+                      {scaledCaps > 0 && (
+                        <span className="text-xs text-green-700 font-medium">{scaledCaps} scaled</span>
+                      )}
+                    </div>
+                    <div className="mt-1 text-[10px] text-[#1B2E5E] font-medium italic">
+                      {competitor.headline_metric}
                     </div>
                   </Link>
                 );

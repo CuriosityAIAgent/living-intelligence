@@ -1,29 +1,13 @@
 @import "tailwindcss";
 
 @theme {
-  --color-navy-900: #060E1A;
-  --color-navy-800: #0A1628;
-  --color-navy-700: #0F2040;
-  --color-navy-600: #162B55;
-  --color-navy-500: #1E3A5F;
-  --color-gold: #C9A84C;
-  --color-gold-light: #E8C96A;
-  --color-gold-dark: #A07830;
-  --color-maturity-announced: #F59E0B;
-  --color-maturity-piloting: #F97316;
-  --color-maturity-deployed: #3B82F6;
-  --color-maturity-scaled: #10B981;
-}
-
-:root {
-  --navy-900: #060E1A;
-  --navy-800: #0A1628;
-  --navy-700: #0F2040;
-  --navy-600: #162B55;
-  --navy-500: #1E3A5F;
-  --gold: #C9A84C;
-  --text-primary: #F0F4F8;
-  --text-muted: #7A9BB5;
+  --color-navy: #1B2E5E;
+  --color-navy-light: #2A4080;
+  --color-accent: #1B2E5E;
+  --color-muted: #6B7280;
+  --color-border: #E5E7EB;
+  --color-bg: #FFFFFF;
+  --color-bg-subtle: #F9FAFB;
 }
 
 * {
@@ -31,10 +15,11 @@
 }
 
 body {
-  background-color: #0A1628;
-  color: #F0F4F8;
+  background-color: #FFFFFF;
+  color: #111827;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 ::-webkit-scrollbar {
@@ -42,40 +27,129 @@ body {
   height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #0A1628;
+  background: #F3F4F6;
 }
 ::-webkit-scrollbar-thumb {
-  background: #1E3A5F;
+  background: #D1D5DB;
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #C9A84C;
+  background: #1B2E5E;
 }
 
-.gold-text {
-  color: #C9A84C;
+/* Editorial section labels — Bloomberg/FT style */
+.section-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #1B2E5E;
 }
 
-.maturity-announced { color: #F59E0B; }
-.maturity-piloting { color: #F97316; }
-.maturity-deployed { color: #3B82F6; }
-.maturity-scaled { color: #10B981; }
-.maturity-none { color: #4B6A8A; }
-
-.maturity-bg-announced { background-color: rgba(245, 158, 11, 0.15); border: 1px solid rgba(245, 158, 11, 0.3); }
-.maturity-bg-piloting { background-color: rgba(249, 115, 22, 0.15); border: 1px solid rgba(249, 115, 22, 0.3); }
-.maturity-bg-deployed { background-color: rgba(59, 130, 246, 0.15); border: 1px solid rgba(59, 130, 246, 0.3); }
-.maturity-bg-scaled { background-color: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.3); }
-.maturity-bg-none { background-color: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); }
-
-.card {
-  background: #0F2040;
-  border: 1px solid #1E3A5F;
-  border-radius: 12px;
+.section-rule {
+  border: none;
+  border-top: 2px solid #1B2E5E;
+  margin-bottom: 1.5rem;
 }
 
-.card-hover:hover {
-  border-color: #C9A84C;
-  cursor: pointer;
-  transition: all 0.2s ease;
+.section-rule-light {
+  border: none;
+  border-top: 1px solid #E5E7EB;
+  margin-bottom: 1.5rem;
+}
+
+/* Article card — minimal, editorial */
+.article-card {
+  border: 1px solid #E5E7EB;
+  background: #FFFFFF;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.article-card:hover {
+  border-color: #1B2E5E;
+  box-shadow: 0 2px 8px rgba(27, 46, 94, 0.08);
+}
+
+/* Format badge */
+.format-badge {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 3px;
+}
+
+.badge-essay { background: #EEF2FF; color: #3730A3; }
+.badge-report { background: #F0FDF4; color: #15803D; }
+.badge-speech { background: #FFF7ED; color: #C2410C; }
+.badge-interview { background: #F0F9FF; color: #0369A1; }
+.badge-research { background: #FDF4FF; color: #7E22CE; }
+
+/* Type badges for intelligence */
+.type-badge {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 3px;
+}
+
+.badge-partnership { background: #F0FDF4; color: #15803D; }
+.badge-product_launch { background: #EEF2FF; color: #3730A3; }
+.badge-milestone { background: #FFF7ED; color: #C2410C; }
+.badge-strategy_move { background: #F0F9FF; color: #0369A1; }
+.badge-market_signal { background: #FEF2F2; color: #B91C1C; }
+
+/* Maturity indicators (for landscape view) */
+.maturity-announced { color: #D97706; }
+.maturity-piloting { color: #EA580C; }
+.maturity-deployed { color: #2563EB; }
+.maturity-scaled { color: #16A34A; }
+.maturity-none { color: #9CA3AF; }
+
+.maturity-bg-announced { background: #FEF3C7; border: 1px solid #FDE68A; color: #92400E; }
+.maturity-bg-piloting { background: #FFEDD5; border: 1px solid #FED7AA; color: #9A3412; }
+.maturity-bg-deployed { background: #DBEAFE; border: 1px solid #BFDBFE; color: #1E40AF; }
+.maturity-bg-scaled { background: #DCFCE7; border: 1px solid #BBF7D0; color: #15803D; }
+.maturity-bg-none { background: #F9FAFB; border: 1px solid #E5E7EB; color: #6B7280; }
+
+/* Key stat — big number callout */
+.key-stat-number {
+  font-size: 2.25rem;
+  font-weight: 800;
+  line-height: 1;
+  color: #1B2E5E;
+}
+
+.key-stat-label {
+  font-size: 13px;
+  color: #6B7280;
+  margin-top: 4px;
+}
+
+/* Lead story — prominent */
+.lead-image {
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  width: 100%;
+}
+
+/* Nav link */
+.nav-link {
+  font-size: 14px;
+  font-weight: 500;
+  color: #374151;
+  transition: color 0.15s ease;
+}
+
+.nav-link:hover {
+  color: #1B2E5E;
+}
+
+.nav-link-active {
+  color: #1B2E5E;
+  font-weight: 700;
+  border-bottom: 2px solid #1B2E5E;
 }

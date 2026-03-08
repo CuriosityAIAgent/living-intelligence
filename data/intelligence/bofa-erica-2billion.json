@@ -1,0 +1,21 @@
+{
+  "id": "bofa-erica-2billion",
+  "type": "milestone",
+  "headline": "Bank of America's Erica surpasses 2 billion client interactions",
+  "company": "bofa-merrill",
+  "company_name": "Bank of America / Merrill Lynch",
+  "date": "2026-01-20",
+  "source_name": "Bank of America Press",
+  "source_url": "https://newsroom.bankofamerica.com/erica-2-billion-interactions",
+  "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Bank_of_America_logo.svg/1200px-Bank_of_America_logo.svg.png",
+  "summary": "Bank of America's AI-powered virtual assistant Erica has surpassed 2 billion cumulative client interactions — a milestone that underscores the scale of consumer AI adoption in banking. Erica handles over 1.5 million interactions per day, ranging from account queries and fraud alerts to investment guidance and financial planning. The bank has now integrated Erica's AI capabilities into Merrill Lynch's wealth management platform, where it assists advisors with client insights and portfolio commentary. The 2 billion milestone makes Erica the most-used AI assistant in financial services globally.",
+  "key_stat": { "number": "2B+", "label": "Erica client interactions to date" },
+  "tags": {
+    "capability": "client_experience",
+    "region": "us",
+    "segment": "global_bank",
+    "theme": ["virtual_assistant", "retail_ai", "conversational_ai"]
+  },
+  "week": "2026-03-07",
+  "featured": false
+}

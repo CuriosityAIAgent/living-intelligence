@@ -1,0 +1,38 @@
+{
+  "id": "mollick-management-ai-superpower",
+  "type": "essay",
+  "title": "The Managerial Revolution — How Leaders Can Unlock AI's Real Gains",
+  "author": {
+    "name": "Ethan Mollick",
+    "title": "Associate Professor, Wharton School",
+    "organization": "University of Pennsylvania",
+    "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Ethan_Mollick_2023.jpg/400px-Ethan_Mollick_2023.jpg"
+  },
+  "publication": "One Useful Thing",
+  "source_url": "https://www.oneusefulthing.org/p/management-ai-superpower",
+  "date_published": "2026-02-15",
+  "format": "essay",
+  "executive_summary": [
+    "The biggest AI productivity gains come not from individual employees using AI tools, but from managers who redesign the work itself around AI capabilities",
+    "Organizations treating AI as a tool will fall behind those that treat it as a collaborator — the cognitive overhead of managing AI output requires new management skills",
+    "Middle management is being redefined: less information relay, more AI orchestration and human judgment on edge cases",
+    "The research shows a 40% performance gap between teams with AI-literate managers vs. AI-naive managers, even when both teams have access to the same tools",
+    "The competitive moat isn't having AI — it's knowing which human decisions AI should never replace, and building institutional clarity around that"
+  ],
+  "the_one_insight": "The competitive advantage isn't having AI — it's knowing which human decisions AI should never replace, and building institutional clarity around that.",
+  "key_quotes": [
+    {
+      "text": "We are not in an era of AI tools. We are in an era of AI teammates. The managers who understand the difference will define the next decade.",
+      "context": "On the shift from tool to collaborator framing"
+    },
+    {
+      "text": "Most productivity gains from AI are invisible to the people not making them — which is exactly why organizations that move fast on this will build a durable lead.",
+      "context": "On the compounding nature of AI adoption"
+    }
+  ],
+  "tags": ["management", "org_design", "future_of_work", "leadership"],
+  "week": "2026-03-07",
+  "featured": true,
+  "has_document": false,
+  "document_url": null
+}

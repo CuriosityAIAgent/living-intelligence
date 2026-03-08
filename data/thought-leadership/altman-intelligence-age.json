@@ -1,0 +1,38 @@
+{
+  "id": "altman-intelligence-age",
+  "type": "essay",
+  "title": "The Intelligence Age",
+  "author": {
+    "name": "Sam Altman",
+    "title": "CEO",
+    "organization": "OpenAI",
+    "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Sam_Altman_TechCrunch_SF_2019.jpg/400px-Sam_Altman_TechCrunch_SF_2019.jpg"
+  },
+  "publication": "Sam Altman Personal Blog",
+  "source_url": "https://ia.samaltman.com",
+  "date_published": "2025-09-23",
+  "format": "essay",
+  "executive_summary": [
+    "Altman argues we are entering an 'Intelligence Age' where the cost of intelligence — in the economic sense — approaches zero, fundamentally changing every industry built on information asymmetry",
+    "Financial services, legal, medical, and educational sectors — all built on information asymmetry — face the most dramatic structural changes",
+    "Altman is explicit that the transition will create enormous wealth and also cause significant disruption — the relevant question for leaders is whether they shape the transition or react to it",
+    "The essay positions OpenAI's mission — ensuring AI benefits all of humanity — as both ethical and commercially necessary: broad adoption requires broad trust",
+    "Altman's personal view is that the biggest mistake organizations can make is treating AI as a cost reduction tool rather than a capability expansion tool"
+  ],
+  "the_one_insight": "The organizations that will win the Intelligence Age are those that figure out what they want to do more of — not less — with the intelligence they now have access to.",
+  "key_quotes": [
+    {
+      "text": "We are building the thing that could be the most transformative and potentially dangerous technology in human history. And we are going to keep building it. Because stopping doesn't make the world safer.",
+      "context": "On the strategic imperative to engage rather than abstain"
+    },
+    {
+      "text": "Deep learning worked. It turns out that scaling it is enough to get to incredibly powerful AI. The question was never if — it was always when.",
+      "context": "On the inevitability of the current AI moment"
+    }
+  ],
+  "tags": ["ai_leadership", "future_of_work", "disruption", "openai"],
+  "week": "2026-03-07",
+  "featured": false,
+  "has_document": false,
+  "document_url": null
+}

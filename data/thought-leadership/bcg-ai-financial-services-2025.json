@@ -1,0 +1,38 @@
+{
+  "id": "bcg-ai-financial-services-2025",
+  "type": "report",
+  "title": "AI in Financial Services 2025: From Experimentation to Competitive Differentiation",
+  "author": {
+    "name": "BCG Henderson Institute",
+    "title": "Research Division",
+    "organization": "Boston Consulting Group",
+    "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/BCG_Corporate_Logo.svg/1200px-BCG_Corporate_Logo.svg.png"
+  },
+  "publication": "BCG Henderson Institute",
+  "source_url": "https://www.bcg.com/publications/2025/ai-in-financial-services",
+  "date_published": "2025-11-08",
+  "format": "report",
+  "executive_summary": [
+    "BCG analyzed 147 financial institutions and found that AI leaders — the top 10% — are generating 4x more value per AI initiative than average, primarily because they have moved from use-case thinking to capability thinking",
+    "Wealth management is the highest-ROI sector for AI within financial services, with advisory productivity gains of 25-35% among early movers",
+    "The report identifies three strategic archetypes: AI Integrators (adding AI to existing products), AI Rebuilders (redesigning services around AI), and AI Disruptors (building AI-native alternatives). Only AI Rebuilders and Disruptors are generating competitive separation",
+    "The talent gap is the primary constraint on AI scaling — the demand for AI engineers in financial services is outpacing supply by 3:1, driving firms to build internal academies",
+    "BCG predicts that by 2028, AI will be responsible for more than 50% of wealth management client touchpoints globally"
+  ],
+  "the_one_insight": "The firms adding AI to their existing products are buying time, not competitive advantage. The firms rebuilding their products around AI are building a moat that will be very hard to cross.",
+  "key_quotes": [
+    {
+      "text": "The difference between an AI Integrator and an AI Rebuilder is not the technology. It is the willingness to ask: if we were building this product today, what would it look like?",
+      "context": "On the strategic mindset shift required for AI transformation"
+    },
+    {
+      "text": "Wealth management is in the eye of the AI storm. The combination of high relationship value, information asymmetry, and clear ROI metrics makes it the perfect testing ground — and the most contested battlefield.",
+      "context": "On wealth management as AI's highest-stakes arena"
+    }
+  ],
+  "tags": ["ai_strategy", "wealth_management", "financial_services", "competitive_advantage"],
+  "week": "2026-03-07",
+  "featured": false,
+  "has_document": true,
+  "document_url": "https://www.bcg.com/publications/2025/ai-in-financial-services.pdf"
+}
