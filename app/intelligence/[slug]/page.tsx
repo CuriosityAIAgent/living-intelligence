@@ -78,18 +78,32 @@ export default async function IntelligenceArticlePage({
           <p className="text-base text-gray-700 leading-relaxed">{entry.summary}</p>
         </div>
 
+        {/* Summary disclaimer */}
+        <div className="bg-amber-50 border border-amber-100 rounded px-4 py-2 mb-6 text-xs text-amber-700">
+          AI-generated summary · Internal use only · Verify against original source
+        </div>
+
         {/* Source */}
         <div className="border-t border-gray-100 pt-6 mb-8">
           <p className="text-xs text-gray-400 uppercase tracking-wide mb-2">Source</p>
-          <a
-            href={entry.source_url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-sm font-medium text-[#1B2E5E] hover:underline"
-          >
-            {entry.source_name}
-            <span className="text-gray-400">↗</span>
-          </a>
+          {entry.source_verified && entry.source_url ? (
+            <a
+              href={entry.source_url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-sm font-medium text-[#1B2E5E] hover:underline"
+            >
+              {entry.source_name}
+              <span className="text-gray-400">↗</span>
+            </a>
+          ) : (
+            <div className="flex items-center gap-2">
+              <span className="text-sm text-gray-700">{entry.source_name}</span>
+              <span className="text-xs text-amber-600 bg-amber-50 border border-amber-200 px-2 py-0.5 rounded">
+                Source URL pending verification
+              </span>
+            </div>
+          )}
         </div>
 
         {/* Tags */}

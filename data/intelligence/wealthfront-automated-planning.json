@@ -6,9 +6,10 @@
   "company_name": "Wealthfront",
   "date": "2026-02-05",
   "source_name": "Bloomberg Technology",
-  "source_url": "https://www.bloomberg.com/news/wealthfront-ai-financial-planning",
-  "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Wealthfront_logo.svg/1200px-Wealthfront_logo.svg.png",
-  "summary": "Wealthfront has launched a new AI-driven financial planning layer that detects life events — job changes, income shifts, major purchases — from connected account activity and automatically adjusts the client's financial plan. The system uses natural language to explain every plan change and prompts the client only when a human decision is required. Wealthfront describes the goal as creating a financial plan that is \"always current, never stale.\" The product represents a significant step beyond static annual financial plans and challenges the premise that ongoing advisory relationships require human advisors.",
+  "source_url": "",
+  "source_verified": false,
+  "image_url": "https://logo.clearbit.com/wealthfront.com",
+  "summary": "Wealthfront has launched a new AI-driven financial planning layer that detects life events — job changes, income shifts, major purchases — from connected account activity and automatically adjusts the client's financial plan. The system uses natural language to explain every plan change and prompts the client only when a human decision is required. Wealthfront describes the goal as creating a financial plan that is 'always current, never stale.'",
   "key_stat": { "number": "~$50B", "label": "AUM on Wealthfront's automated platform" },
   "tags": {
     "capability": "investment_analytics",

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Living Intelligence | AI in Wealth Management",
+  title: "AI in Wealth Management",
   description: "Curated intelligence on AI across wealth management and financial services. Market developments, thought leadership, and competitive landscape.",
 };
 

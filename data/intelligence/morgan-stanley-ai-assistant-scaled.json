@@ -6,8 +6,9 @@
   "company_name": "Morgan Stanley",
   "date": "2026-02-10",
   "source_name": "Morgan Stanley Press",
-  "source_url": "https://www.morganstanley.com/ideas/ai-financial-advisor",
-  "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Morgan_Stanley_Logo_1.svg/1200px-Morgan_Stanley_Logo_1.svg.png",
+  "source_url": "",
+  "source_verified": false,
+  "image_url": "https://logo.clearbit.com/morganstanley.com",
   "summary": "Morgan Stanley's AI @ Morgan Stanley Assistant — built on OpenAI — has reached 98% adoption among its 15,000+ wealth management advisors, making it the highest adoption rate of any AI productivity tool in the financial services industry. The AI Debrief tool auto-generates meeting notes and syncs directly to Salesforce CRM, saving advisors up to 15 hours per week. Document retrieval efficiency has jumped from 20% to 80% since deployment.",
   "key_stat": { "number": "98%", "label": "Advisor adoption — 15,000+ advisors" },
   "tags": {

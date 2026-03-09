@@ -6,8 +6,9 @@
   "company_name": "LPL Financial",
   "date": "2026-02-18",
   "source_name": "CNBC",
-  "source_url": "https://www.cnbc.com/lpl-financial-anthropic-claude-ai",
-  "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/LPL_Financial_logo.svg/1200px-LPL_Financial_logo.svg.png",
+  "source_url": "",
+  "source_verified": false,
+  "image_url": "https://logo.clearbit.com/lpl.com",
   "summary": "LPL Financial has announced an expanded partnership with Anthropic to deploy Claude AI across its network of 30,000 independent financial advisors. The integration will embed Claude into LPL's ClientWorks platform — the primary workstation for LPL advisors — enabling AI-assisted client communications, portfolio analysis, and compliance documentation. This is the largest deployment of Anthropic's Claude in the wealth management segment to date. LPL joins a growing list of financial firms choosing Anthropic over OpenAI, citing Claude's performance on complex reasoning tasks and its enterprise safety guarantees.",
   "key_stat": { "number": "30,000", "label": "LPL advisors getting Claude AI" },
   "tags": {

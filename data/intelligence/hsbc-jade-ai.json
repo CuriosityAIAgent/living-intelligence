@@ -6,8 +6,9 @@
   "company_name": "HSBC",
   "date": "2026-02-20",
   "source_name": "Asian Investor",
-  "source_url": "https://www.asianinvestor.net/hsbc-jade-ai-private-banking",
-  "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/HSBC_logo_%282018%29.svg/1200px-HSBC_logo_%282018%29.svg.png",
+  "source_url": "",
+  "source_verified": false,
+  "image_url": "https://logo.clearbit.com/hsbc.com",
   "summary": "HSBC's ultra-premium private banking service Jade — targeting clients with $2M+ in investable assets — has deployed an AI relationship intelligence system that synthesizes a client's full financial profile, behavioral patterns, and life goals into a real-time advisory brief for relationship managers before every client interaction. The system draws on transaction history, stated goals, market conditions, and peer cohort data to suggest tailored conversation topics and product opportunities. HSBC reports the tool has increased meaningful client interactions by 40% and driven a 22% increase in product penetration among Jade clients in Asia.",
   "key_stat": { "number": "40%", "label": "Increase in meaningful client interactions" },
   "tags": {

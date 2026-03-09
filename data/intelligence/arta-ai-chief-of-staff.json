@@ -6,9 +6,10 @@
   "company_name": "Arta Finance",
   "date": "2026-01-30",
   "source_name": "Fortune",
-  "source_url": "https://fortune.com/arta-finance-ai-chief-of-staff",
-  "image_url": "https://storage.googleapis.com/arta_website_prod/logos/arta_logo_dark.svg",
-  "summary": "Arta Finance, the AI-native wealth platform founded by ex-Google executive Caesar Sengupta, has repositioned its core AI product as an AI Chief of Staff for ultra-high-net-worth individuals — a personal AI that manages the full complexity of their financial life, from tax optimization to private equity deal flow to estate planning coordination. The reframe moves Arta away from \"robo-advisor\" comparisons and toward the concierge/family-office model. The product integrates with external custodians, tax advisors, and legal teams, acting as the coordination layer. Arta claims its AI-driven model delivers family-office quality services at 10% of the cost.",
+  "source_url": "",
+  "source_verified": false,
+  "image_url": "https://logo.clearbit.com/artafinance.com",
+  "summary": "Arta Finance, the AI-native wealth platform founded by ex-Google executive Caesar Sengupta, has repositioned its core AI product as an AI Chief of Staff for ultra-high-net-worth individuals — a personal AI that manages the full complexity of their financial life, from tax optimization to private equity deal flow to estate planning coordination. The reframe moves Arta away from 'robo-advisor' comparisons and toward the concierge/family-office model. The product integrates with external custodians, tax advisors, and legal teams, acting as the coordination layer. Arta claims its AI-driven model delivers family-office quality services at 10% of the cost.",
   "key_stat": { "number": "10x", "label": "Cost reduction vs traditional family office" },
   "tags": {
     "capability": "client_experience",

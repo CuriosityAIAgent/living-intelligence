@@ -20,9 +20,6 @@ export default function Header() {
           {/* Wordmark */}
           <Link href="/" className="flex items-center gap-3 no-underline">
             <span className="text-base font-bold tracking-tight text-[#1B2E5E]">
-              Living Intelligence
-            </span>
-            <span className="hidden sm:block text-xs text-gray-400 font-normal">
               AI in Wealth Management
             </span>
           </Link>

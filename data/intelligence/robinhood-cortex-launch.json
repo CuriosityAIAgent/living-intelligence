@@ -6,9 +6,10 @@
   "company_name": "Robinhood",
   "date": "2026-02-12",
   "source_name": "TechCrunch",
-  "source_url": "https://techcrunch.com/robinhood-cortex-ai-launch",
-  "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Robinhood_Financial_Logo.svg/1200px-Robinhood_Financial_Logo.svg.png",
-  "summary": "Robinhood has launched Cortex, an AI system that provides real-time market analysis, earnings summaries, and trade rationale for any equity or options position. Cortex aggregates news, analyst reports, social signals, and options flow to produce plain-English explanations of what is moving a stock and why. The product is aimed at democratizing institutional-grade research for retail investors. Early reviews highlight the quality of options flow interpretation as a genuine differentiator over competitors. Robinhood Gold subscribers get unlimited Cortex access; the feature drives Gold subscription growth.",
+  "source_url": "",
+  "source_verified": false,
+  "image_url": "https://logo.clearbit.com/robinhood.com",
+  "summary": "Robinhood has launched Cortex, an AI system that provides real-time market analysis, earnings summaries, and trade rationale for any equity or options position. Cortex aggregates news, analyst reports, social signals, and options flow to produce plain-English explanations of what is moving a stock and why. The product is aimed at democratizing institutional-grade research for retail investors. Early reviews highlight the quality of options flow interpretation as a genuine differentiator over competitors.",
   "key_stat": { "number": "2M+", "label": "Robinhood Gold subscribers with Cortex access" },
   "tags": {
     "capability": "investment_analytics",
