@@ -1,0 +1,30 @@
+{
+  "id": "savvy-wealth-series-b-72-million-2025-07-02",
+  "type": "milestone",
+  "headline": "Savvy Wealth raises $72M Series B to accelerate AI-augmented advisor platform and RIA expansion",
+  "company": "savvy-wealth",
+  "company_name": "Savvy Wealth",
+  "date": "2025-07-02",
+  "source_name": "Business Wire",
+  "source_url": "https://www.businesswire.com/news/home/20250702795194/en/Savvy-Wealth-Raises-72-Million-to-Drive-the-Shift-Toward-AI-Augmented-Human-Centered-Financial-Advice",
+  "source_verified": true,
+  "image_url": "https://logo.clearbit.com/savvywealth.com",
+  "summary": "Savvy Wealth closed a $72 million Series B funding round led by Industry Ventures, bringing total funding to over $100 million. New investors include Vestigo Ventures — founded by former LPL Financial CEO and Chairman Mark Casady, who also joins Savvy's Board of Directors — and Euclidean Capital, alongside existing investors Canvas Ventures, Thrive Capital, The House Fund, Brewer Lane Ventures, and former Focus Financial executive Vamsi Yadlapati. The company plans to use the capital to accelerate its core technology, hire technical talent, expand recruitment of independent advisors to its affiliate RIA Savvy Advisors, and develop AI solutions that build personalized knowledge bases on individual clients. According to industry data from Carta, Savvy is in the top decile for speed between Series A and B funding rounds, having completed its Series A in August 2024.",
+  "key_stat": {
+    "number": "72",
+    "label": "Series B funding raised in millions (USD)"
+  },
+  "tags": {
+    "capability": "advisor_productivity",
+    "region": "us",
+    "segment": "ria_independent",
+    "theme": [
+      "ai_augmented_advice",
+      "funding_round",
+      "advisor_platform",
+      "personalized_client_intelligence"
+    ]
+  },
+  "week": "2026-03-09",
+  "featured": false
+}

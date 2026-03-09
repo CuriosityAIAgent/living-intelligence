@@ -1,0 +1,30 @@
+{
+  "id": "morgan-stanley-ai-debrief-meeting-notetaker-launch-2024",
+  "type": "product_launch",
+  "headline": "Morgan Stanley Launches AI @ Morgan Stanley Debrief, an OpenAI-Powered Meeting Notetaker for FAs",
+  "company": "morgan-stanley",
+  "company_name": "Morgan Stanley Wealth Management",
+  "date": "2024-06-25",
+  "source_name": "Business Wire",
+  "source_url": "https://www.businesswire.com/news/home/20240625048568/en/Morgan-Stanley-Wealth-Management-Announces-Latest-Game-Changing-Addition-to-Suite-of-GenAI-Tools",
+  "source_verified": true,
+  "image_url": "https://logo.clearbit.com/morganstanley.com",
+  "summary": "Morgan Stanley Wealth Management has launched AI @ Morgan Stanley Debrief, an OpenAI-powered tool that, with client consent, generates meeting notes, surfaces action items, and drafts follow-up emails for Financial Advisors. After a meeting, the tool summarizes key discussion points, creates a draft email for the advisor to review and send, and saves a note directly into Salesforce. The launch follows Morgan Stanley's strategic partnership with OpenAI announced in March 2023 and the full rollout of the AI @ Morgan Stanley Assistant in September 2023. To date, 98% of Financial Advisor teams have adopted the Assistant. Morgan Stanley's Head of Firmwide AI, Jeff McMillan, described the long-term vision as an AI interaction layer sitting between colleagues and applications such as CRMs, order entry, reporting tools, and risk analysis.",
+  "key_stat": {
+    "number": "98%",
+    "label": "Financial Advisor teams that have adopted the AI @ Morgan Stanley Assistant"
+  },
+  "tags": {
+    "capability": "advisor_productivity",
+    "region": "us",
+    "segment": "global_bank",
+    "theme": [
+      "generative_ai",
+      "meeting_automation",
+      "advisor_tools",
+      "openai_partnership"
+    ]
+  },
+  "week": "2026-03-09",
+  "featured": false
+}

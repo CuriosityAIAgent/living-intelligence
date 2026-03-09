@@ -1,0 +1,27 @@
+{
+  "id": "hsbc-launches-ai-powered-wealth-intelligence-platform",
+  "type": "product_launch",
+  "headline": "HSBC Launches AI-Powered Wealth Intelligence Platform",
+  "company": "hsbc",
+  "company_name": "HSBC",
+  "date": "2025-09-18",
+  "source_name": "Fintech Global",
+  "source_url": "https://fintech.global/2025/09/18/hsbc-launches-ai-powered-wealth-intelligence-platform/",
+  "source_verified": true,
+  "image_url": "https://logo.clearbit.com/hsbc.com",
+  "summary": "HSBC has launched an AI-powered Wealth Intelligence platform, as reported by Fintech Global on 18 September 2025. No further details about the platform's features, target clients, or geographic rollout are available in the extracted article content.",
+  "key_stat": null,
+  "tags": {
+    "capability": "investment_analytics",
+    "region": "global",
+    "segment": "global_bank",
+    "theme": [
+      "ai_wealth_platform",
+      "wealthtech",
+      "product_launch",
+      "digital_transformation"
+    ]
+  },
+  "week": "2026-03-09",
+  "featured": false
+}

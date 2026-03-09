@@ -1,0 +1,27 @@
+{
+  "id": "betterment-ai-account-recommender-launch-2026-03-09",
+  "type": "product_launch",
+  "headline": "Betterment Launches AI-Enabled Account Recommender as Part of Enterprise AI Strategy",
+  "company": "betterment",
+  "company_name": "Betterment",
+  "date": "2026-03-09",
+  "source_name": "PR Newswire",
+  "source_url": "https://www.prnewswire.com/news-releases/betterment-launches-ai-enabled-account-recommender-advancing-enterprise-ai-strategy-302707654.html",
+  "source_verified": true,
+  "image_url": "https://logo.clearbit.com/betterment.com",
+  "summary": "Betterment has launched an AI-enabled Account Recommender tool as part of its broader enterprise AI strategy. The product is designed to guide users toward appropriate account types based on their financial needs. The launch represents a step forward in Betterment's ongoing effort to integrate AI capabilities into its platform. The announcement was made on March 9, 2026 via PR Newswire.",
+  "key_stat": null,
+  "tags": {
+    "capability": "client_experience",
+    "region": "us",
+    "segment": "retail_digital",
+    "theme": [
+      "ai_product_launch",
+      "account_recommendations",
+      "enterprise_ai",
+      "robo_advice"
+    ]
+  },
+  "week": "2026-03-09",
+  "featured": false
+}

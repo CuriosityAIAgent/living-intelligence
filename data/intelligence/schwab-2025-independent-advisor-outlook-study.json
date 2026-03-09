@@ -1,0 +1,27 @@
+{
+  "id": "schwab-2025-independent-advisor-outlook-study",
+  "type": "market_signal",
+  "headline": "Schwab's 2025 Independent Advisor Outlook Study: Trust, Talent & Technology Shaping Independent Advice",
+  "company": "charles-schwab",
+  "company_name": "Charles Schwab",
+  "date": "2025-01-01",
+  "source_name": "Charles Schwab",
+  "source_url": "https://pressroom.aboutschwab.com/press-releases/press-release/2025/Schwabs-2025-Independent-Advisor-Outlook-Study-Trust-Talent-and-Technology-Shaping-the-Next-Era-of-Independent-Advice/default.aspx",
+  "source_verified": true,
+  "image_url": "https://logo.clearbit.com/schwab.com",
+  "summary": "Charles Schwab published its 2025 Independent Advisor Outlook Study, examining how trust, talent, and technology are shaping the next era of independent financial advice. The study focuses on trends affecting registered investment advisors (RIAs) and independent advisory firms. Key themes include the evolving role of technology — including AI — in advisor workflows, talent acquisition and retention challenges, and client trust dynamics. The article content provided is limited to navigation and press release metadata, with the full study findings not fully rendered in the supplied markdown.",
+  "key_stat": null,
+  "tags": {
+    "capability": "advisor_productivity",
+    "region": "us",
+    "segment": "ria_independent",
+    "theme": [
+      "independent_advisors",
+      "technology_adoption",
+      "talent_management",
+      "client_trust"
+    ]
+  },
+  "week": "2026-03-09",
+  "featured": false
+}

@@ -1,0 +1,27 @@
+{
+  "id": "vanguard-generative-ai-client-summaries-financial-advisors-2025",
+  "type": "product_launch",
+  "headline": "Vanguard Launches Generative AI Client Summaries Tool for Financial Advisors",
+  "company": "vanguard",
+  "company_name": "Vanguard",
+  "date": "2025-05-05",
+  "source_name": "PR Newswire",
+  "source_url": "https://www.prnewswire.com/news-releases/vanguard-unveils-generative-ai-client-summaries-for-financial-advisors-302445980.html",
+  "source_verified": true,
+  "image_url": "https://logo.clearbit.com/vanguard.com",
+  "summary": "Vanguard has unveiled a generative AI-powered client summaries feature designed for financial advisors. The tool is intended to help advisors more efficiently access and synthesize client information. The announcement was made via PR Newswire on May 5, 2025. Further details about the feature's specific capabilities and rollout were included in the full press release.",
+  "key_stat": null,
+  "tags": {
+    "capability": "advisor_productivity",
+    "region": "us",
+    "segment": "ria_independent",
+    "theme": [
+      "generative_ai",
+      "advisor_tools",
+      "client_summaries",
+      "wealth_management"
+    ]
+  },
+  "week": "2026-03-09",
+  "featured": false
+}
