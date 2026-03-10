@@ -1,0 +1,42 @@
+{
+  "id": "zocks",
+  "name": "Zocks",
+  "segment": "advisor_tools",
+  "regions": ["us"],
+  "color": "#2D6BE4",
+  "ai_strategy_summary": "Zocks is the leading AI meeting intelligence platform for financial advisors with 5,000+ firms, $65M raised (Lightspeed, QED), and deep integrations into Holistiplan, Commonwealth Financial, Ameritas, and Carson Group.",
+  "head_of_ai": null,
+  "headline_metric": "5,000+ advisory firms; 1,000+ RIA firms since Feb 2024; $65M raised",
+  "headline_initiative": "AI meeting notes, CRM automation, and client intelligence with Holistiplan tax integration",
+  "overall_maturity": "scaled",
+  "capabilities": {
+    "advisor_productivity": {
+      "maturity": "scaled",
+      "headline": "Zocks transcribes, summarizes, and automates follow-up for advisor-client meetings across 5,000+ firms",
+      "detail": "Zocks transcribes and summarizes advisor-client meetings, auto-generates CRM notes, follow-up emails, and tasks, integrating with Salesforce, Redtail, and Wealthbox. Partnerships with Commonwealth Financial Network, Ameritas, Carson Group, Kestra, and Osaic. $45M Series B led by Lightspeed and QED (January 2026).",
+      "evidence": [
+        "5,000+ firms using the platform",
+        "1,000+ RIA firms since February 2024",
+        "$65M total raised ($13.8M Series A March 2025 + $45M Series B January 2026)",
+        "Enterprise clients: Ameritas, Carson Group, Kestra, Commonwealth, Osaic"
+      ],
+      "jpm_implication": "Zocks's penetration of major broker-dealer networks (Commonwealth, Osaic) indicates that meeting AI is becoming infrastructure. JPM wealth advisors operating without comparable tools face a productivity disadvantage.",
+      "jpm_segments_affected": ["JPMWM", "CWM"],
+      "date_assessed": "2026-03-10"
+    },
+    "operations_compliance": {
+      "maturity": "deployed",
+      "headline": "Holistiplan tax data integration transforms meeting intelligence into tax planning action",
+      "detail": "Zocks's September 2025 integration with Holistiplan connects meeting notes directly to tax planning data — enabling advisors to act on tax planning opportunities identified during client meetings without manual data transfer.",
+      "evidence": [
+        "Holistiplan integration launched September 2025",
+        "Tax data flows from meetings into planning workflows",
+        "CRM integrations: Salesforce, Redtail, Wealthbox"
+      ],
+      "jpm_implication": "The integration of meeting AI with tax planning data creates a compound productivity gain that point solutions cannot match. JPM's technology stack should enable similar workflow continuity.",
+      "jpm_segments_affected": ["JPMWM", "CWM"],
+      "date_assessed": "2026-03-10"
+    }
+  },
+  "last_updated": "2026-03-10"
+}

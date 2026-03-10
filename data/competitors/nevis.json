@@ -1,0 +1,43 @@
+{
+  "id": "nevis",
+  "name": "Nevis",
+  "segment": "advisor_tools",
+  "regions": ["us"],
+  "color": "#1A1A2E",
+  "ai_strategy_summary": "Nevis emerged from stealth in December 2025 with $40M from Sequoia, ICONIQ, and Ribbit Capital to build a unified AI operating system that completes end-to-end operational work for wealth advisors — from meeting capture to account opening to personalized client communication.",
+  "head_of_ai": null,
+  "headline_metric": "$40M from Sequoia, ICONIQ, Ribbit; customers overseeing $50B+ AUA at launch",
+  "headline_initiative": "Unified AI operating system for end-to-end wealth advisor workflows",
+  "overall_maturity": "piloting",
+  "capabilities": {
+    "advisor_productivity": {
+      "maturity": "piloting",
+      "headline": "Nevis captures meeting summaries, generates pre-meeting client briefs, auto-creates follow-up tasks, and sends personalized client emails",
+      "detail": "Nevis provides AI meeting summaries, pre-meeting client briefs, auto-generated follow-up tasks, unified search across advisor systems, and auto-personalized client emails — all from a single platform. Emerged from stealth December 1, 2025 with $40M from Sequoia, ICONIQ, and Ribbit Capital.",
+      "evidence": [
+        "$40M total funding from Sequoia, ICONIQ Capital, Ribbit Capital",
+        "Customers overseeing $50B+ in client assets at launch",
+        "SOC 2 Type I certified",
+        "Emerged from stealth December 1, 2025",
+        "Built in stealth with $5M seed from Sequoia"
+      ],
+      "jpm_implication": "Nevis's backing from top-tier investors (Sequoia, ICONIQ, Ribbit) signals that unified advisor workflow AI is the highest-conviction bet in wealthtech right now. The race to become the AI operating system for wealth management is accelerating.",
+      "jpm_segments_affected": ["JPMWM"],
+      "date_assessed": "2026-03-10"
+    },
+    "operations_compliance": {
+      "maturity": "piloting",
+      "headline": "AI-powered account opening and operational workflow automation for RIA practices",
+      "detail": "Nevis handles account opening workflows — extracting data from documents, automating onboarding steps, and reducing the manual operational burden of new account setup for advisors.",
+      "evidence": [
+        "Account opening workflow automation confirmed",
+        "Document data extraction deployed",
+        "Operational work automation is core product promise"
+      ],
+      "jpm_implication": "AI-powered account opening is a high-impact automation target. JPM's client onboarding process should be benchmarked against AI-native tools like Nevis.",
+      "jpm_segments_affected": ["JPMWM", "GPB"],
+      "date_assessed": "2026-03-10"
+    }
+  },
+  "last_updated": "2026-03-10"
+}

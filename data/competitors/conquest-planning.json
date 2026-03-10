@@ -1,0 +1,43 @@
+{
+  "id": "conquest-planning",
+  "name": "Conquest Planning",
+  "segment": "advisor_tools",
+  "regions": ["us", "emea"],
+  "color": "#0A7CFF",
+  "ai_strategy_summary": "Conquest Planning serves 70% of Canadian financial advisors and 1.5M+ households, raised $80M Series B in June 2025, and launched four new AI-powered planning capabilities — making it the dominant AI financial planning platform in Canada with rapid US and UK expansion.",
+  "head_of_ai": null,
+  "headline_metric": "70% of Canadian advisors; 1.5M+ households; $80M Series B June 2025",
+  "headline_initiative": "AI-powered financial planning with scenario modeling and BMO partnership",
+  "overall_maturity": "deployed",
+  "capabilities": {
+    "advisor_productivity": {
+      "maturity": "deployed",
+      "headline": "Four new AI-powered planning capabilities launched April 2025; advisors reduce planning time from hours to minutes",
+      "detail": "Conquest launched four new AI-powered capabilities in April 2025 that enable advisors to build comprehensive financial plans in minutes — automating scenario modeling, goal-based planning frameworks, and plan generation. BMO partnership announced July 2025 lets BMO clients build their own financial plans via Conquest.",
+      "evidence": [
+        "4 new AI-powered capabilities launched April 2025",
+        "BMO partnership announced July 2025",
+        "$80M Series B led by investors June 2025",
+        "Advisors reducing planning time from hours to minutes"
+      ],
+      "jpm_implication": "AI-powered financial planning that cuts plan generation from hours to minutes is becoming a standard advisor expectation. JPM's MoneyGuide/planning tools must match this speed and quality.",
+      "jpm_segments_affected": ["JPMWM", "CWM"],
+      "date_assessed": "2026-03-10"
+    },
+    "investment_portfolio": {
+      "maturity": "deployed",
+      "headline": "AI scenario modeling and goal-based planning for 1.5M+ client households across 3 countries",
+      "detail": "Conquest's core platform provides AI-powered scenario modeling — running multiple financial planning scenarios simultaneously to show clients the impact of different decisions — serving 1.5M+ households across Canada, US, and UK.",
+      "evidence": [
+        "1.5M+ households served",
+        "Scenario modeling AI in production",
+        "3-country deployment (Canada, US, UK)",
+        "70% of Canadian advisors on platform"
+      ],
+      "jpm_implication": "Conquest's deep penetration of Canadian advisory (70% share) means it will follow Canadian advisors into US markets. JPM's US advisor planning tools must be competitive with Conquest's AI capabilities.",
+      "jpm_segments_affected": ["JPMWM", "CWM"],
+      "date_assessed": "2026-03-10"
+    }
+  },
+  "last_updated": "2026-03-10"
+}

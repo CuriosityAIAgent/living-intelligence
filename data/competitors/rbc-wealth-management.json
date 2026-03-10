@@ -1,0 +1,42 @@
+{
+  "id": "rbc-wealth-management",
+  "name": "RBC Wealth Management",
+  "segment": "regional_champion",
+  "regions": ["us", "emea"],
+  "color": "#0070CE",
+  "ai_strategy_summary": "RBC Wealth Management rolled out TIFIN AG's AI-Powered Insights to all US advisors in February 2024 — identifying clients with money in motion using behavioral AI trained on billions of transactions — and is developing 3+ additional AI applications on its proprietary ATOM platform.",
+  "head_of_ai": null,
+  "headline_metric": "Full US advisor rollout February 2024; clients managing ~$12T in assets identified via AI",
+  "headline_initiative": "TIFIN AG AI-Powered Insights + Borealis AI lab",
+  "overall_maturity": "deployed",
+  "capabilities": {
+    "advisor_productivity": {
+      "maturity": "deployed",
+      "headline": "AI-Powered Insights deployed to all US advisors — identifies money-in-motion clients from transaction data",
+      "detail": "RBC deployed TIFIN AG's AI-Powered Insights to all US wealth management advisors in February 2024. The system uses behavioral AI trained on billions of client transactions to identify clients likely to consolidate funds due to life events — integrated into advisor Salesforce desktops.",
+      "evidence": [
+        "Deployed to all RBC Wealth Management-US advisors February 2024",
+        "Preceded by 60-advisor pilot August 2023",
+        "3+ additional AI tools in development",
+        "Integrated into Salesforce advisor desktop"
+      ],
+      "jpm_implication": "RBC is using AI to identify wallet share growth opportunities before advisors can spot them manually. JPM wealth advisors need comparable AI-powered client intelligence tools.",
+      "jpm_segments_affected": ["JPMWM", "CWM"],
+      "date_assessed": "2026-03-10"
+    },
+    "client_acquisition": {
+      "maturity": "deployed",
+      "headline": "Behavioral AI identifies high-propensity clients for wallet consolidation",
+      "detail": "TIFIN AG's ATOM model (Asynchronous Temporal Model) trained on billions of transactions identifies clients most likely to consolidate outside assets based on life events, demographics, and portfolio behavior.",
+      "evidence": [
+        "TIFIN AG collaboration announced",
+        "ATOM model trained on billions of transactions",
+        "Life event + demographic + portfolio signals combined"
+      ],
+      "jpm_implication": "AI-powered AUM growth signals represent a structural advantage for firms that deploy them. JPM should develop equivalent behavioral AI for client acquisition.",
+      "jpm_segments_affected": ["JPMWM", "CWM"],
+      "date_assessed": "2026-03-10"
+    }
+  },
+  "last_updated": "2026-03-10"
+}

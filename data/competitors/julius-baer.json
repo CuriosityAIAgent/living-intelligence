@@ -1,0 +1,49 @@
+{
+  "id": "julius-baer",
+  "name": "Julius Baer",
+  "segment": "global_private_bank",
+  "regions": [
+    "emea",
+    "asia"
+  ],
+  "color": "#003865",
+  "ai_strategy_summary": "Julius Baer built a proprietary AI Narrative Generation Engine for advisor-led client portfolio reviews in 10 weeks, earned a Google AI Trailblazers award, and deployed JAI \u2014 its custom GenAI stack \u2014 across relationship manager workflows globally.",
+  "head_of_ai": null,
+  "headline_metric": "Prototype to production in 10 weeks; Google AI Trailblazers Innovation Award 2024",
+  "headline_initiative": "JAI + AI-Agent Narrative Generation Engine for relationship managers",
+  "overall_maturity": "deployed",
+  "capabilities": {
+    "advisor_productivity": {
+      "maturity": "deployed",
+      "headline": "JAI Narrative Generation Engine deployed for RM portfolio reviews globally",
+      "detail": "Julius Baer built JAI on Unique AI platform in 10 weeks \u2014 an AI-Agent Narrative Generation Engine that accelerates portfolio review narratives for relationship managers in Asia and globally. Awarded Google AI Trailblazers Innovation Award 2024.",
+      "evidence": [
+        "JAI prototype to production in 10 weeks",
+        "Google AI Trailblazers Innovation Award 2024",
+        "Deployed across RM workflows in Asia and globally",
+        "Built on Unique AI platform"
+      ],
+      "jpm_implication": "Julius Baer's 10-week build-to-deploy cycle for advisor AI is a benchmark. JPM should match this speed for advisor productivity tooling.",
+      "jpm_segments_affected": [
+        "GPB",
+        "JPMWM"
+      ],
+      "date_assessed": "2026-03-10"
+    },
+    "research_content": {
+      "maturity": "deployed",
+      "headline": "AI-generated portfolio review narratives for advisor-client meetings",
+      "detail": "JAI generates narrative summaries of client portfolios and market context for use in advisor-client review meetings \u2014 cutting preparation time while maintaining personalization.",
+      "evidence": [
+        "AI narrative generation engine in production",
+        "Portfolio review documentation automated"
+      ],
+      "jpm_implication": "Automated portfolio narrative generation is an immediate productivity opportunity for JPM Private Bank relationship managers.",
+      "jpm_segments_affected": [
+        "GPB"
+      ],
+      "date_assessed": "2026-03-10"
+    }
+  },
+  "last_updated": "2026-03-10"
+}

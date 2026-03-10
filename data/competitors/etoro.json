@@ -1,0 +1,53 @@
+{
+  "id": "etoro",
+  "name": "eToro",
+  "segment": "digital_disruptor",
+  "regions": ["us", "emea"],
+  "color": "#6051FF",
+  "ai_strategy_summary": "eToro launched Tori AI in August 2025 as a personalized AI analyst for Club Members, backed by 7 AI-powered Alpha Portfolios and a public API for custom AI trading strategies — positioning itself as the AI-native social investing platform.",
+  "head_of_ai": null,
+  "headline_metric": "1 in 3 Club Members using Tori AI within weeks of launch; 7 AI Alpha Portfolios live",
+  "headline_initiative": "Tori AI personalized analyst + Alpha Portfolio suite",
+  "overall_maturity": "deployed",
+  "capabilities": {
+    "client_personalization": {
+      "maturity": "deployed",
+      "headline": "Tori AI delivers personalized market insights and platform guidance via natural conversation to Club Members",
+      "detail": "Tori is an AI-powered analyst delivering personalized market insights, platform guidance, and educational content to eToro Club Members via natural conversation. More than 1/3 of Club Members used Tori within weeks of launch in August 2025.",
+      "evidence": [
+        "Tori launched August 7, 2025",
+        "1/3+ of Club Members using Tori within weeks",
+        "Natural language personalized insights confirmed"
+      ],
+      "jpm_implication": "eToro is demonstrating that retail investors will engage with AI-powered personalized guidance. JPM's retail digital offerings need comparable conversational AI to remain competitive for mass-affluent clients.",
+      "jpm_segments_affected": ["CWM"],
+      "date_assessed": "2026-03-10"
+    },
+    "investment_portfolio": {
+      "maturity": "deployed",
+      "headline": "7 AI-powered Alpha Portfolios built on eToro's proprietary retail trading data",
+      "detail": "eToro launched 7 AI-powered Smart Portfolio strategies (Alpha Portfolios) using its unique dataset of retail investor trading behavior — giving mass-market users access to quant-level portfolio strategies.",
+      "evidence": [
+        "7 AI Alpha Portfolios launched August 2025",
+        "Built on eToro's proprietary retail trading data",
+        "Public API for custom AI strategies also launched"
+      ],
+      "jpm_implication": "AI-curated portfolio strategies built on behavioral data are becoming a retail differentiator. JPM must consider how AI can enhance its own managed portfolio products.",
+      "jpm_segments_affected": ["CWM"],
+      "date_assessed": "2026-03-10"
+    },
+    "new_business_models": {
+      "maturity": "deployed",
+      "headline": "Public API enables users and firms to build custom AI-powered dashboards and trading strategies on eToro data",
+      "detail": "eToro opened a public API in August 2025, enabling users, developers, and fintech firms to build AI-powered custom trading strategies and dashboards on top of eToro's platform and data.",
+      "evidence": [
+        "Public API launched August 2025",
+        "Enables AI-powered strategy building on eToro data"
+      ],
+      "jpm_implication": "Platform openness and developer ecosystems are creating network effects that closed platforms cannot match. JPM should evaluate a developer/partner API strategy.",
+      "jpm_segments_affected": ["CWM"],
+      "date_assessed": "2026-03-10"
+    }
+  },
+  "last_updated": "2026-03-10"
+}

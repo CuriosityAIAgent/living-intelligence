@@ -22,8 +22,8 @@
                         │
                         ↓
 ┌──────────────────────────────────────────────────────────────────┐
-│                       DATA DIRECTORY                             │
-│              ../data/  (NOT inside the portal repo)              │
+│                  DATA DIRECTORY (inside this repo)               │
+│                    ./data/  — tracked in git                     │
 │                                                                  │
 │  intelligence/    → IntelligenceEntry JSON files                 │
 │  thought-leadership/ → ThoughtLeadershipEntry JSON files         │

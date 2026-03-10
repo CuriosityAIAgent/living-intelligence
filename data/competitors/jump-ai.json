@@ -1,0 +1,44 @@
+{
+  "id": "jump-ai",
+  "name": "Jump",
+  "segment": "advisor_tools",
+  "regions": ["us"],
+  "color": "#FF5C00",
+  "ai_strategy_summary": "Jump is the fastest-scaling AI platform in US financial advisory — reaching 27,000 advisors (~1 in 10 in the US) in under two years, processing 183 continuous years of client meetings, and raising $105M total. It is the de facto standard for AI meeting and workflow automation among independent advisors.",
+  "head_of_ai": null,
+  "headline_metric": "27,000 advisors (1 in 10 US), $105M raised, 183 years of meetings processed",
+  "headline_initiative": "AI operating system for advisor meetings, CRM automation, and client follow-up",
+  "overall_maturity": "scaled",
+  "capabilities": {
+    "advisor_productivity": {
+      "maturity": "scaled",
+      "headline": "Jump processes advisor-client meetings end-to-end: prep, notes, CRM updates, tasks, and compliance docs — at scale across 27,000 advisors",
+      "detail": "Jump is an AI operating system for financial advisors that automates meeting prep, post-meeting follow-up, CRM updates, compliance documentation, client summaries, and task generation. Launched publicly in January 2024, it reached 27,000 advisors by early 2026 — adding 2,000+ advisors/month with 35%+ monthly growth. $105M raised (Series A $20M Battery Ventures Feb 2025; Series B $80M Insight Partners Feb 2026).",
+      "evidence": [
+        "27,000 advisors on platform as of early 2026",
+        "~1 in 10 US financial advisors uses Jump",
+        "183 continuous years of client meetings processed",
+        "2,000+ new advisors per month",
+        "$105M total funding ($20M Series A + $80M Series B)",
+        "Firms managing ~$12 trillion in assets use Jump",
+        "35%+ average monthly growth rate since January 2024"
+      ],
+      "jpm_implication": "Jump is setting the standard for advisor meeting automation. If JPM advisors are not using comparable tools, they are spending significantly more time on admin than competitors. Internal AI meeting tools or Jump integration should be evaluated.",
+      "jpm_segments_affected": ["JPMWM", "CWM"],
+      "date_assessed": "2026-03-10"
+    },
+    "operations_compliance": {
+      "maturity": "deployed",
+      "headline": "Automated compliance documentation generation from advisor-client meetings",
+      "detail": "Jump auto-generates compliance-grade documentation from advisor-client meetings — reducing the manual compliance burden that typically follows each client interaction.",
+      "evidence": [
+        "Compliance documentation generation confirmed",
+        "Post-meeting workflow automation in production"
+      ],
+      "jpm_implication": "AI-automated compliance documentation reduces per-interaction compliance cost significantly. JPM compliance teams should evaluate AI-generated documentation quality against current standards.",
+      "jpm_segments_affected": ["JPMWM", "CWM"],
+      "date_assessed": "2026-03-10"
+    }
+  },
+  "last_updated": "2026-03-10"
+}

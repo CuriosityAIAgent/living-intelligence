@@ -1,0 +1,55 @@
+{
+  "id": "savvy-wealth",
+  "name": "Savvy Wealth",
+  "segment": "ai_native",
+  "regions": ["us"],
+  "color": "#7C3AED",
+  "ai_strategy_summary": "Savvy Wealth is an AI-powered RIA platform that grew AUM more than 500% to $2B since early 2024, with some advisors reclaiming 19 hours/week via AI-automated admin — backed by $72M Series B from Industry Ventures.",
+  "head_of_ai": null,
+  "headline_metric": "$2B+ AUM (up 500% since early 2024); 19 hours/week reclaimed per advisor",
+  "headline_initiative": "AI-powered RIA platform with predictive client intelligence and automated admin",
+  "overall_maturity": "deployed",
+  "capabilities": {
+    "advisor_productivity": {
+      "maturity": "deployed",
+      "headline": "AI automation reclaims 19 hours/week per advisor via automated admin, compliance, and client prep",
+      "detail": "Savvy Wealth's platform automates advisor admin tasks, compliance checks, and client meeting prep using AI — with some advisors reporting 19 hours/week reclaimed. The platform builds AI-personalized knowledge bases on each client for predictive intelligence.",
+      "evidence": [
+        "19 hours/week reclaimed (reported by advisors)",
+        "$2B AUM achieved as of mid-2025",
+        "500%+ AUM growth since early 2024",
+        "$500M in new assets added in 2025 alone"
+      ],
+      "jpm_implication": "AI-powered RIA platforms are dramatically reducing the cost per client served while improving personalization. JPM's advisor compensation model must evolve alongside AI productivity gains.",
+      "jpm_segments_affected": ["JPMWM", "CWM"],
+      "date_assessed": "2026-03-10"
+    },
+    "client_personalization": {
+      "maturity": "deployed",
+      "headline": "Predictive real-time client intelligence with AI-personalized knowledge bases",
+      "detail": "Savvy builds a continuously updated AI knowledge base on each client — combining financial data, life events, and behavioral signals to generate predictive real-time intelligence for advisors before every client touchpoint.",
+      "evidence": [
+        "AI-personalized client knowledge bases confirmed",
+        "Predictive real-time client intelligence deployed",
+        "$72M Series B led by Industry Ventures (July 2025)"
+      ],
+      "jpm_implication": "Client-specific AI knowledge bases represent a step-change in advisor preparation quality. JPM's advisor support tools should aspire to this level of pre-meeting intelligence.",
+      "jpm_segments_affected": ["JPMWM", "GPB"],
+      "date_assessed": "2026-03-10"
+    },
+    "new_business_models": {
+      "maturity": "deployed",
+      "headline": "AI-powered RIA rollup model — acquiring advisors and converting them to AI-augmented practices",
+      "detail": "Savvy is executing an AI-powered advisor acquisition strategy — recruiting independent advisors and migrating them onto its AI platform, effectively running an AI-enabled RIA rollup.",
+      "evidence": [
+        "AI rollup strategy confirmed",
+        "AUM grown 500%+ via advisor acquisition + AI model",
+        "July 2025 $72M Series B to continue expansion"
+      ],
+      "jpm_implication": "AI-enabled RIA rollup models are growing AUM at rates that traditional wirehouse models cannot match. This is a structural threat to JPM's advisor recruitment pipeline.",
+      "jpm_segments_affected": ["JPMWM", "CWM"],
+      "date_assessed": "2026-03-10"
+    }
+  },
+  "last_updated": "2026-03-10"
+}

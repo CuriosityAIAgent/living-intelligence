@@ -1,0 +1,41 @@
+{
+  "id": "bbva",
+  "name": "BBVA",
+  "segment": "regional_champion",
+  "regions": ["emea", "latam"],
+  "color": "#1B4FBB",
+  "ai_strategy_summary": "BBVA sealed a strategic alliance with OpenAI in 2025 to roll out AI across all 120,000 employees and is building a proactive, conversational advisory assistant for wealth clients — making it the most aggressive AI adopter among European universal banks.",
+  "head_of_ai": null,
+  "headline_metric": "120,000 employees on AI; employees saving 3 hours/week on routine tasks",
+  "headline_initiative": "OpenAI strategic alliance + Blue AI advisory assistant",
+  "overall_maturity": "deployed",
+  "capabilities": {
+    "advisor_productivity": {
+      "maturity": "deployed",
+      "headline": "Blue AI assistant deployed to 120,000 employees across 25 countries",
+      "detail": "BBVA's Blue virtual assistant uses natural language for finance interaction; 11,000 employees were using ChatGPT Enterprise by late 2024, scaled to all 120,000 by 2025 via OpenAI strategic alliance. Named best digital solutions private bank in Spain (Euromoney 2025).",
+      "evidence": [
+        "120,000 employees on AI platform",
+        "3 hours/week saved on routine tasks",
+        "OpenAI strategic alliance sealed 2025",
+        "Best Digital Solutions Private Bank Spain — Euromoney 2025"
+      ],
+      "jpm_implication": "BBVA's full-enterprise AI deployment sets the standard for speed-to-scale. JPM must match this level of internal AI adoption breadth across advisory teams.",
+      "jpm_segments_affected": ["JPMWM", "GPB"],
+      "date_assessed": "2026-03-10"
+    },
+    "client_personalization": {
+      "maturity": "piloting",
+      "headline": "Proactive conversational advisory AI for wealth clients in development",
+      "detail": "BBVA is building a proactive advisory assistant that delivers personalized financial guidance to private banking clients via natural conversation — moving beyond reactive chatbots to anticipatory AI.",
+      "evidence": [
+        "Proactive advisory AI in development",
+        "AI Factory unit dedicated to wealth advisory tools"
+      ],
+      "jpm_implication": "If BBVA ships a proactive personalized advisory AI for private banking clients, it will become a differentiator in Spain and Latin America — key JPM Private Bank geographies.",
+      "jpm_segments_affected": ["GPB"],
+      "date_assessed": "2026-03-10"
+    }
+  },
+  "last_updated": "2026-03-10"
+}

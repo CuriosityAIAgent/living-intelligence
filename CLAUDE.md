@@ -28,7 +28,7 @@ node --env-file=.env server.js   # localhost:3003
 
 ## Critical Rules
 
-- **Data lives outside this repo.** All JSON content is in `../data/` (sibling directory, not checked into the portal). Never move it inside `app/` or `lib/`.
+- **Data lives in `data/` inside this repo** and is tracked in git. Never move it into `app/` or `lib/`.
 - **No database.** Everything is flat JSON files read at build time via `lib/data.ts`.
 - **`max-w-6xl mx-auto px-6`** on every page `<main>` — must match header width or content misaligns visually.
 - **All page footers** must read: `AI in Wealth Management. All sources linked. Updated regularly.`
