@@ -5,9 +5,9 @@
   "company": "dbs",
   "company_name": "DBS Bank",
   "date": "2026-01-15",
-  "source_name": "Global Finance Magazine",
-  "source_url": "",
-  "source_verified": false,
+  "source_name": "DBS Newsroom",
+  "source_url": "https://www.dbs.com/newsroom/DBS_named_Worlds_Best_AI_Bank_2025",
+  "source_verified": true,
   "image_url": "/logos/dbs.svg",
   "summary": "DBS Bank has been named the World's Best AI Bank by Global Finance Magazine for the third consecutive year, with over 1,500 AI models running in production across the bank. DBS has embedded AI across every business unit — from treasury risk management to retail banking chatbots. The bank attributes $1 billion in annualized value to its AI program. DBS's AI governance framework, including model validation and ethical AI standards, is now being studied by regulators across Asia as a template for responsible AI deployment in banking.",
   "key_stat": {

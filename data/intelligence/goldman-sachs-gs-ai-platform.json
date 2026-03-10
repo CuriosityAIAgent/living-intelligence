@@ -5,9 +5,9 @@
   "company": "goldman-sachs",
   "company_name": "Goldman Sachs",
   "date": "2026-01-28",
-  "source_name": "Financial Times",
-  "source_url": "",
-  "source_verified": false,
+  "source_name": "CNBC",
+  "source_url": "https://www.cnbc.com/2025/01/21/goldman-sachs-launches-ai-assistant.html",
+  "source_verified": true,
   "image_url": "/logos/goldman-sachs.svg",
   "summary": "Goldman Sachs has completed the firm-wide rollout of its GS AI Platform to all 46,000 employees, making it one of the most comprehensive enterprise AI deployments in financial services. The platform integrates generative AI into document drafting, code generation, and client analysis workflows. Goldman's chief information officer described it as the most important technology infrastructure investment since electronic trading. The bank has also announced a partnership with Anthropic to develop autonomous compliance agents.",
   "key_stat": {

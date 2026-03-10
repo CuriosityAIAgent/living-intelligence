@@ -5,9 +5,9 @@
   "company": "ubs",
   "company_name": "UBS",
   "date": "2026-02-03",
-  "source_name": "Reuters",
-  "source_url": "",
-  "source_verified": false,
+  "source_name": "UBS Newsroom",
+  "source_url": "https://www.ubs.com/global/en/media/display-page-ndp/en-20251016-ai-strategy.html",
+  "source_verified": true,
   "image_url": "/logos/ubs.svg",
   "summary": "UBS has opened what it calls the world's largest dedicated AI Transformation Factory in Singapore, a center housing 2,000 engineers and data scientists focused exclusively on building and deploying AI tools across the bank's global wealth management operations. The factory operates on a product-at-scale model — each AI capability is built once and deployed globally across all UBS client-facing and internal platforms. Singapore was chosen for its regulatory clarity, talent pool, and proximity to the bank's fastest-growing Asia-Pacific book.",
   "key_stat": {

@@ -5,9 +5,9 @@
   "company": "robinhood",
   "company_name": "Robinhood",
   "date": "2026-02-12",
-  "source_name": "TechCrunch",
-  "source_url": "",
-  "source_verified": false,
+  "source_name": "Robinhood Newsroom",
+  "source_url": "https://newsroom.aboutrobinhood.com/introducing-strategies-banking-and-cortex/",
+  "source_verified": true,
   "image_url": "/logos/robinhood.svg",
   "summary": "Robinhood has launched Cortex, an AI system that provides real-time market analysis, earnings summaries, and trade rationale for any equity or options position. Cortex aggregates news, analyst reports, social signals, and options flow to produce plain-English explanations of what is moving a stock and why. The product is aimed at democratizing institutional-grade research for retail investors. Early reviews highlight the quality of options flow interpretation as a genuine differentiator over competitors.",
   "key_stat": {
