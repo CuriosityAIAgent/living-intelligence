@@ -1,3 +1,4 @@
+import React from 'react';
 import { getAllCompetitors, getCapabilities, SEGMENT_LABELS } from '@/lib/data';
 import Header from '@/components/Header';
 import SectionLabel from '@/components/SectionLabel';
@@ -77,8 +78,8 @@ export default function LandscapePage() {
             </thead>
             <tbody>
               {grouped.map(group => (
-                <>
-                  <tr key={`group-${group.segment}`}>
+                <React.Fragment key={group.segment}>
+                  <tr>
                     <td colSpan={capabilities.length + 1} className="px-3 pt-6 pb-1">
                       <p className="section-label">{group.label}</p>
                     </td>
@@ -123,7 +124,7 @@ export default function LandscapePage() {
                       })}
                     </tr>
                   ))}
-                </>
+                </React.Fragment>
               ))}
             </tbody>
           </table>
@@ -153,7 +154,7 @@ export default function LandscapePage() {
       <footer className="border-t border-gray-200 mt-16 py-8">
         <div className="max-w-6xl mx-auto px-6">
           <p className="text-xs text-gray-400">
-            Living Intelligence — Landscape data last updated March 2026.
+            AI in Wealth Management — Landscape data last updated March 2026.
           </p>
         </div>
       </footer>

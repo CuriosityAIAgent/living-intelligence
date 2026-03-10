@@ -25,7 +25,12 @@ export default function HomePage() {
   const keyStats = allEntries
     .filter(e => e.key_stat)
     .slice(0, 4)
-    .map(e => ({ number: e.key_stat!.number, label: e.key_stat!.label }));
+    .map(e => ({
+      number: e.key_stat!.number,
+      label: e.key_stat!.label,
+      entryId: e.id,
+      sourceUrl: e.source_url,
+    }));
 
   return (
     <div className="min-h-screen bg-white">
@@ -56,11 +61,18 @@ export default function HomePage() {
           <section className="mt-14 mb-14">
             <SectionLabel label="By the Numbers" />
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              {keyStats.map((stat, i) => (
-                <div key={i} className="bg-gray-50 border border-gray-100 rounded p-4">
-                  <div className="key-stat-number">{stat.number}</div>
+              {keyStats.map((stat) => (
+                <Link
+                  key={stat.entryId}
+                  href={`/intelligence/${stat.entryId}`}
+                  className="group bg-gray-50 border border-gray-100 rounded p-4 hover:border-[#1B2E5E] transition-colors no-underline block"
+                >
+                  <div className="key-stat-number group-hover:text-[#1B2E5E] transition-colors">{stat.number}</div>
                   <div className="key-stat-label">{stat.label}</div>
-                </div>
+                  <div className="mt-2 text-[10px] text-gray-400 group-hover:text-[#1B2E5E] transition-colors">
+                    Read source →
+                  </div>
+                </Link>
               ))}
             </div>
           </section>

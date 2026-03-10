@@ -8,7 +8,7 @@
   "source_name": "Bloomberg",
   "source_url": "",
   "source_verified": false,
-  "image_url": "https://logo.clearbit.com/altruist.com",
+  "image_url": "https://unavatar.io/altruist.com",
   "summary": "When Altruist announced its Hazel AI platform — a fully autonomous financial planning assistant capable of replacing certain advisor functions — publicly traded wealth management companies collectively lost $150 billion in market capitalization over three trading days. The market reaction signals that institutional investors view AI-native RIA platforms as a genuine structural threat to traditional advisory models. Hazel can generate comprehensive financial plans, rebalance portfolios, and handle client onboarding autonomously at a fraction of the cost of human advisors. The event is being called the 'Napster moment' for wealth management.",
   "key_stat": { "number": "$150B", "label": "Market cap lost on Altruist Hazel launch" },
   "tags": {
