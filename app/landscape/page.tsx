@@ -16,7 +16,7 @@ export default function LandscapePage() {
   const competitors = getAllCompetitors();
   const capabilities = getCapabilities();
 
-  const segmentOrder = ['global_bank', 'regional_champion', 'digital_disruptor', 'retail_digital', 'ria_independent', 'uhnw_digital', 'ai_native'];
+  const segmentOrder = ['global_bank', 'global_private_bank', 'regional_champion', 'digital_disruptor', 'ai_native', 'ria_independent', 'advisor_tools'];
   const grouped = segmentOrder.map(seg => ({
     segment: seg,
     label: SEGMENT_LABELS[seg] || seg,
@@ -27,7 +27,7 @@ export default function LandscapePage() {
     <div className="min-h-screen bg-white">
       <Header />
 
-      <main className="max-w-[1400px] mx-auto px-6 py-10">
+      <main className="max-w-6xl mx-auto px-6 py-10">
 
         {/* Page header */}
         <div className="mb-8 pb-6 border-b border-gray-200">
