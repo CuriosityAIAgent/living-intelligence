@@ -16,7 +16,7 @@ export default function LandscapePage() {
   const competitors = getAllCompetitors();
   const capabilities = getCapabilities();
 
-  const segmentOrder = ['global_bank', 'global_private_bank', 'regional_champion', 'digital_disruptor', 'ai_native', 'ria_independent', 'advisor_tools'];
+  const segmentOrder = ['wirehouse', 'global_private_bank', 'regional_champion', 'digital_disruptor', 'ai_native', 'ria_independent', 'advisor_tools'];
   const grouped = segmentOrder.map(seg => ({
     segment: seg,
     label: SEGMENT_LABELS[seg] || seg,

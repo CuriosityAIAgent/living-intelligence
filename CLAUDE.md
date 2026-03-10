@@ -80,7 +80,8 @@ To add a new landscape company: create a JSON file in `../data/competitors/` wit
 `global_bank` · `global_private_bank` · `regional_champion` · `digital_disruptor` · `ai_native` · `ria_independent` · `advisor_tools`
 
 **Classification rules:**
-- Pure-play wealth managers with global reach (Julius Baer, BNP Paribas Wealth) → `global_private_bank`, NOT `regional_champion`
-- US wirehouses + HSBC → `global_bank`
+- Large advisor-network wealth managers (Morgan Stanley, Merrill) → `wirehouse` ("Full-Service Wealth")
+- HNW/UHNW focused institutions globally, whether standalone or bank division → `global_private_bank` (UBS, Goldman, Citi PB, HSBC PB, Julius Baer, BNP Paribas)
+- Dominant in their home region, full-service banking + wealth → `regional_champion` (DBS, BBVA, StanChart, RBC)
 - AI tools used BY advisors (Jump, Nevis, Zocks, Holistiplan) → `advisor_tools`, NOT `ai_native`
-- AI-native wealth platforms (Arta, Savvy) → `ai_native`
+- AI-native wealth platforms built from scratch (Arta, Savvy) → `ai_native`

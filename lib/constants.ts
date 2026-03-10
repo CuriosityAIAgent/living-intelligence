@@ -17,15 +17,12 @@ export const FORMAT_LABELS: Record<string, string> = {
 };
 
 export const SEGMENT_LABELS: Record<string, string> = {
-  global_bank: 'Global Bank',
+  wirehouse: 'Full-Service Wealth',
   global_private_bank: 'Global Private Bank',
   regional_champion: 'Regional Champion',
   digital_disruptor: 'Digital Disruptor',
-  ria_independent: 'RIA / Independent',
-  retail_digital: 'Retail Digital',
-  uhnw_digital: 'UHNW Digital',
-  boutique: 'Boutique',
   ai_native: 'AI-Native Wealth',
+  ria_independent: 'RIA / Independent',
   advisor_tools: 'Advisor Tools',
 };
 

@@ -1,40 +1,70 @@
 {
   "id": "goldman-sachs",
   "name": "Goldman Sachs",
-  "segment": "global_bank",
-  "regions": ["us", "emea", "asia"],
+  "segment": "global_private_bank",
+  "regions": [
+    "us",
+    "emea",
+    "asia"
+  ],
   "color": "#1A3A5C",
   "ai_strategy_summary": "Platform-agnostic multi-model AI deployed to 46,000 employees. Goldman's GS AI Assistant runs on OpenAI, Google, and Anthropic models simultaneously, with CEO targeting 100% firm adoption by end of 2026. Expanding into autonomous agents for compliance and onboarding.",
-  "head_of_ai": { "name": "Marco Argenti", "title": "Chief Information Officer" },
+  "head_of_ai": {
+    "name": "Marco Argenti",
+    "title": "Chief Information Officer"
+  },
   "headline_metric": "46,000 employees, 50%+ adoption",
-  "headline_initiative": "GS AI Assistant — multi-model firmwide platform",
+  "headline_initiative": "GS AI Assistant \u2014 multi-model firmwide platform",
   "overall_maturity": "deployed",
   "capabilities": {
     "advisor_productivity": {
       "maturity": "deployed",
       "headline": "GS AI Assistant deployed to 46,000 employees, targeting 100% by end of 2026",
       "detail": "Goldman Sachs built a model-agnostic AI assistant running on GPT-4o, Gemini, Claude 3.7 Sonnet, and open-source models. Over 50% of 46,000 employees are active users as of early 2026. The multi-model approach gives Goldman flexibility to use the best model for each task and reduces vendor lock-in.",
-      "evidence": ["46,000 employees on platform", ">50% adoption as of early 2026", "CEO targeting 100% by end of 2026", "Supports: OpenAI GPT-4o/o3-mini, Google Gemini, Anthropic Claude 3.7 Sonnet"],
+      "evidence": [
+        "46,000 employees on platform",
+        ">50% adoption as of early 2026",
+        "CEO targeting 100% by end of 2026",
+        "Supports: OpenAI GPT-4o/o3-mini, Google Gemini, Anthropic Claude 3.7 Sonnet"
+      ],
       "jpm_implication": "Goldman's model-agnostic strategy is architecturally sophisticated. JPM's AI strategy should consider similar flexibility rather than single-vendor lock-in.",
-      "jpm_segments_affected": ["GPB", "JPMWM", "IPB"],
+      "jpm_segments_affected": [
+        "GPB",
+        "JPMWM",
+        "IPB"
+      ],
       "date_assessed": "2026-03-07"
     },
     "operations_compliance": {
       "maturity": "piloting",
       "headline": "6-month Anthropic partnership for autonomous agents in accounting, KYC, and onboarding",
       "detail": "Goldman Sachs announced a 6-month partnership with Anthropic to develop autonomous AI agents for accounting automation, client KYC processes, and onboarding. This represents a shift from AI-assisted workflows to AI-executed workflows in compliance-sensitive areas.",
-      "evidence": ["6-month Anthropic partnership announced Feb 2026", "Focus areas: accounting automation, client vetting, onboarding", "Autonomous agent architecture (not just copilot)"],
+      "evidence": [
+        "6-month Anthropic partnership announced Feb 2026",
+        "Focus areas: accounting automation, client vetting, onboarding",
+        "Autonomous agent architecture (not just copilot)"
+      ],
       "jpm_implication": "Autonomous compliance agents at Goldman will pressure all banks to automate KYC/onboarding or face cost disadvantage. JPM should monitor this pilot closely.",
-      "jpm_segments_affected": ["GPB", "IPB", "CWM"],
+      "jpm_segments_affected": [
+        "GPB",
+        "IPB",
+        "CWM"
+      ],
       "date_assessed": "2026-03-07"
     },
     "research_content": {
       "maturity": "deployed",
       "headline": "AI-powered research summarization and market intelligence across platform",
       "detail": "The GS AI Assistant includes research summarization, market commentary generation, and multilingual content capabilities built into the firmwide platform.",
-      "evidence": ["Integrated into GS AI Assistant platform", "Available to all 46,000 users"],
+      "evidence": [
+        "Integrated into GS AI Assistant platform",
+        "Available to all 46,000 users"
+      ],
       "jpm_implication": "Goldman's research AI gives advisors faster access to insights. JPM research distribution speed is a competitive differentiator.",
-      "jpm_segments_affected": ["GPB", "IPB"],
+      "jpm_segments_affected": [
+        "GPB",
+        "IPB"
+      ],
       "date_assessed": "2026-03-07"
     }
   },
