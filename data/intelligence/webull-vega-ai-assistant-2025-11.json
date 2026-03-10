@@ -1,0 +1,30 @@
+{
+  "id": "webull-vega-ai-assistant-2025-11",
+  "type": "product_launch",
+  "headline": "Webull unveils Vega — AI decision partner with voice-activated trade execution and real-time portfolio analysis",
+  "company": "webull",
+  "company_name": "Webull",
+  "date": "2025-11-10",
+  "source_name": "PRNewswire",
+  "source_url": "https://www.prnewswire.com/news-releases/webull-unveils-vega-the-next-evolution-of-its-ai-powered-decision-partner-302605998.html",
+  "source_verified": true,
+  "image_url": "/logos/webull.png",
+  "summary": "Webull launched Vega, the next evolution of its AI-powered decision partner for active retail traders. Vega supports voice-activated order placement, real-time portfolio risk analysis, and natural language queries about market conditions and individual positions. The assistant can execute complex multi-leg options strategies via voice command and provide plain-English explanations of why positions are moving. Vega is designed for self-directed traders who want AI augmentation without surrendering control of their investment decisions.",
+  "key_stat": {
+    "number": "Voice",
+    "label": "activated trade execution via Vega AI"
+  },
+  "tags": {
+    "capability": "investment_analytics",
+    "region": "us",
+    "segment": "retail_digital",
+    "theme": [
+      "voice_ai",
+      "retail_ai",
+      "active_trading",
+      "market_analysis"
+    ]
+  },
+  "week": "2025-11-10",
+  "featured": false
+}

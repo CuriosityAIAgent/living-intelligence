@@ -1,0 +1,30 @@
+{
+  "id": "citigroup-askwealth-ai-advisors-2025-08",
+  "type": "product_launch",
+  "headline": "Citi Wealth launches AskWealth — generative AI cuts advisor meeting prep from 30 minutes to 10",
+  "company": "citigroup",
+  "company_name": "Citigroup",
+  "date": "2025-08-27",
+  "source_name": "Citigroup Newsroom",
+  "source_url": "https://www.citigroup.com/global/news/press-release/2025/citi-wealth-launches-advisor-insights-askwealth",
+  "source_verified": true,
+  "image_url": "/logos/citigroup.svg",
+  "summary": "Citi Wealth launched AskWealth, a generative AI tool that allows private banking advisors to query client portfolios, market data, and CRM history in natural language. The platform initially ran on Meta's Llama model before migrating to Google Gemini for improved accuracy on financial queries. AskWealth reduces client meeting preparation time from approximately 30 minutes to under 10 minutes by auto-surfacing relevant portfolio changes, upcoming events, and personalized talking points. Alongside AskWealth, Citi launched the Advisor Insights pilot for automated client communication drafting.",
+  "key_stat": {
+    "number": "3x",
+    "label": "faster meeting prep — 30 min reduced to 10 min"
+  },
+  "tags": {
+    "capability": "advisor_productivity",
+    "region": "us",
+    "segment": "wealth_management",
+    "theme": [
+      "advisor_tools",
+      "generative_ai",
+      "meeting_prep",
+      "private_banking"
+    ]
+  },
+  "week": "2025-08-25",
+  "featured": false
+}

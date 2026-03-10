@@ -1,0 +1,30 @@
+{
+  "id": "fidelity-trader-plus-launch-2025-09",
+  "type": "product_launch",
+  "headline": "Fidelity introduces Trader+ — advanced AI-powered trading platform for active investors",
+  "company": "fidelity",
+  "company_name": "Fidelity Investments",
+  "date": "2025-09-25",
+  "source_name": "BusinessWire",
+  "source_url": "https://www.businesswire.com/news/home/20250925431422/en/Fidelity-Investments-Introduces-Fidelity-TraderTM-Powerful-Advanced-Trading-Platform",
+  "source_verified": true,
+  "image_url": "/logos/fidelity.svg",
+  "summary": "Fidelity Investments launched Fidelity Trader+, a professional-grade trading platform designed for active retail and semi-professional investors. The platform integrates AI-powered market analysis, customizable screeners, advanced charting with pattern recognition, and real-time risk monitoring across multi-asset portfolios. Trader+ targets the growing segment of self-directed investors who demand institutional-quality tools without the cost of a Bloomberg terminal. The launch signals Fidelity's intent to compete directly with platforms like Interactive Brokers and Webull for the sophisticated retail trader segment.",
+  "key_stat": {
+    "number": "40M+",
+    "label": "Fidelity customers eligible for Trader+ access"
+  },
+  "tags": {
+    "capability": "investment_analytics",
+    "region": "us",
+    "segment": "retail_digital",
+    "theme": [
+      "active_trading",
+      "retail_ai",
+      "market_analysis",
+      "platform_launch"
+    ]
+  },
+  "week": "2025-09-22",
+  "featured": false
+}

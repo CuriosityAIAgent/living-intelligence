@@ -1,0 +1,30 @@
+{
+  "id": "public-com-agentic-brokerage-2025-11",
+  "type": "product_launch",
+  "headline": "Public.com unveils Agentic Brokerage — AI executes trades, builds portfolios, and generates research autonomously",
+  "company": "public",
+  "company_name": "Public.com",
+  "date": "2025-11-17",
+  "source_name": "Axios",
+  "source_url": "https://www.axios.com/2025/11/17/ai-stock-market-public",
+  "source_verified": true,
+  "image_url": "/logos/public-com.svg",
+  "summary": "Public.com launched its Agentic Brokerage Suite — a three-layer architecture where AI agents handle Research (market analysis, SEC filings), Creation (portfolio construction, strategy design), and Action (autonomous trade execution) layers. The platform processes over 2,500 AI-generated assets in its first month of operation and achieves sub-500ms execution latency. With $12B in assets under management, Public is positioning itself as the first retail brokerage where investors delegate the full investment workflow to AI agents rather than just receiving recommendations.",
+  "key_stat": {
+    "number": "2,500+",
+    "label": "AI-generated assets created in first month"
+  },
+  "tags": {
+    "capability": "new_business_models",
+    "region": "us",
+    "segment": "retail_digital",
+    "theme": [
+      "agentic_ai",
+      "autonomous_trading",
+      "retail_ai",
+      "democratization"
+    ]
+  },
+  "week": "2025-11-17",
+  "featured": false
+}

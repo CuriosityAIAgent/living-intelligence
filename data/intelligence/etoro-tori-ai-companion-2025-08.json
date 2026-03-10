@@ -1,0 +1,30 @@
+{
+  "id": "etoro-tori-ai-companion-2025-08",
+  "type": "product_launch",
+  "headline": "eToro launches Tori AI companion and Alpha Portfolios — AI-driven social investing goes mainstream",
+  "company": "etoro",
+  "company_name": "eToro",
+  "date": "2025-08-07",
+  "source_name": "GlobeNewswire",
+  "source_url": "https://www.globenewswire.com/news-release/2025/08/07/3129203/0/en/eToro-Leverages-AI-to-Redefine-Social-Investing.html",
+  "source_verified": true,
+  "image_url": "/logos/etoro.svg",
+  "summary": "eToro introduced Tori, an AI-powered companion that guides users through market volatility, explains portfolio performance in plain language, and surfaces relevant community insights from eToro's social trading network. Alongside Tori, eToro launched Alpha Portfolios — seven AI-driven investment strategies that continuously rebalance based on market signals and user risk preferences. With $31B in assets under management, eToro is merging social trading with AI-driven portfolio management to retain retail investors who might otherwise migrate to robo-advisors.",
+  "key_stat": {
+    "number": "$31B",
+    "label": "eToro assets under management"
+  },
+  "tags": {
+    "capability": "client_experience",
+    "region": "emea",
+    "segment": "retail_digital",
+    "theme": [
+      "social_investing",
+      "retail_ai",
+      "portfolio_management",
+      "democratization"
+    ]
+  },
+  "week": "2025-08-04",
+  "featured": false
+}
