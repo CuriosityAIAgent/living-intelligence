@@ -25,7 +25,7 @@ export default async function ThoughtLeadershipPiecePage({
 
         {/* Breadcrumb */}
         <nav className="flex items-center gap-2 text-xs text-gray-400 mb-8">
-          <Link href="/" className="hover:text-[#1B2E5E]">This Week</Link>
+          <Link href="/" className="hover:text-[#1B2E5E]">Latest</Link>
           <span>›</span>
           <Link href="/thought-leadership" className="hover:text-[#1B2E5E]">Thought Leadership</Link>
           <span>›</span>
@@ -162,7 +162,7 @@ export default async function ThoughtLeadershipPiecePage({
             href="/"
             className="text-sm text-gray-400 hover:text-[#1B2E5E] hover:underline"
           >
-            ← This Week
+            ← Latest
           </Link>
         </div>
 

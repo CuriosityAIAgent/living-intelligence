@@ -39,17 +39,21 @@ export default function HomePage() {
       <main className="max-w-6xl mx-auto px-6 py-10">
 
         {/* Masthead */}
-        <div className="mb-10 pb-6 border-b border-gray-200">
-          <h1 className="text-2xl font-bold text-gray-900 mb-1">
-            AI in Wealth Management &amp; Financial Services
-          </h1>
-          <p className="text-sm text-gray-500">
-            {allEntries.length} developments tracked · Last updated March 2026
-          </p>
+        <div className="mb-10 pb-8 border-b border-gray-200">
+          <div className="flex items-center gap-3 mb-6">
+            <span className="text-[11px] font-semibold uppercase tracking-widest text-[#1B2E5E]">March 2026</span>
+            <span className="text-gray-300">·</span>
+            <span className="text-[11px] text-gray-400">{allEntries.length} developments tracked</span>
+          </div>
           {week?.editors_note && (
-            <p className="mt-4 text-sm text-gray-600 max-w-3xl leading-relaxed border-l-4 border-[#1B2E5E] pl-4 italic">
-              {week.editors_note}
-            </p>
+            <div className="bg-[#F5F7FF] border-l-4 border-[#1B2E5E] rounded-r-lg px-6 py-5 max-w-3xl">
+              <p className="text-[10px] font-bold uppercase tracking-widest text-[#1B2E5E] mb-2">
+                Editor&rsquo;s Take
+              </p>
+              <p className="text-[15px] text-gray-800 leading-relaxed">
+                {week.editors_note}
+              </p>
+            </div>
           )}
         </div>
 
