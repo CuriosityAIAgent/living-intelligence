@@ -73,8 +73,18 @@ export default function IntelligenceFeed({ entries, leadStoryId }: {
           </div>
           <Link href={`/intelligence/${leadStory.id}`} className="group block">
             <div className="grid md:grid-cols-5 gap-6 items-start">
-              <div className="md:col-span-2 rounded h-52 overflow-hidden">
-                <CompanyLogo name={leadStory.company_name} size="lg" />
+              <div className="md:col-span-2 bg-gray-50 border border-gray-100 rounded h-52 flex items-center justify-center overflow-hidden p-8">
+                {leadStory.image_url ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    src={leadStory.image_url}
+                    alt={leadStory.company_name}
+                    className="max-h-24 max-w-[70%] object-contain"
+                    onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
+                  />
+                ) : (
+                  <CompanyLogo name={leadStory.company_name} size="lg" />
+                )}
               </div>
               <div className="md:col-span-3">
                 <div className="flex items-center gap-2 mb-2">
@@ -181,9 +191,18 @@ export default function IntelligenceFeed({ entries, leadStoryId }: {
               className="article-card rounded p-4 block group flex flex-col"
             >
               {/* Logo */}
-              <div className="h-8 mb-3 flex items-center gap-2">
-                <CompanyLogo name={entry.company_name} size="sm" />
-                <span className="text-xs text-gray-500 font-medium truncate">{entry.company_name}</span>
+              <div className="h-7 mb-3 flex items-center gap-2">
+                {entry.image_url ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    src={entry.image_url}
+                    alt={entry.company_name}
+                    className="max-h-7 max-w-[100px] object-contain"
+                    onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
+                  />
+                ) : (
+                  <CompanyLogo name={entry.company_name} size="sm" />
+                )}
               </div>
 
               <div className="flex items-center gap-2 mb-1.5 flex-wrap">

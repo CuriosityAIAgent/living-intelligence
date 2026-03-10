@@ -8,14 +8,21 @@
   "source_name": "Bloomberg Technology",
   "source_url": "",
   "source_verified": false,
-  "image_url": "https://unavatar.io/wealthfront.com",
+  "image_url": "/logos/wealthfront.svg",
   "summary": "Wealthfront has launched a new AI-driven financial planning layer that detects life events — job changes, income shifts, major purchases — from connected account activity and automatically adjusts the client's financial plan. The system uses natural language to explain every plan change and prompts the client only when a human decision is required. Wealthfront describes the goal as creating a financial plan that is 'always current, never stale.'",
-  "key_stat": { "number": "~$50B", "label": "AUM on Wealthfront's automated platform" },
+  "key_stat": {
+    "number": "~$50B",
+    "label": "AUM on Wealthfront's automated platform"
+  },
   "tags": {
     "capability": "investment_analytics",
     "region": "us",
     "segment": "retail_digital",
-    "theme": ["automated_planning", "life_event_ai", "robo_advisor"]
+    "theme": [
+      "automated_planning",
+      "life_event_ai",
+      "robo_advisor"
+    ]
   },
   "week": "2026-03-07",
   "featured": false
