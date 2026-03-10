@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { TYPE_LABELS } from '@/lib/constants';
+import CompanyLogo from '@/components/CompanyLogo';
 
 type IntelligenceEntry = {
   id: string;
@@ -72,18 +73,8 @@ export default function IntelligenceFeed({ entries, leadStoryId }: {
           </div>
           <Link href={`/intelligence/${leadStory.id}`} className="group block">
             <div className="grid md:grid-cols-5 gap-6 items-start">
-              <div className="md:col-span-2 bg-gray-50 border border-gray-100 rounded h-52 flex items-center justify-center overflow-hidden">
-                {leadStory.image_url ? (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img
-                    src={leadStory.image_url}
-                    alt={leadStory.company_name}
-                    className="max-h-24 max-w-[60%] object-contain"
-                    onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
-                  />
-                ) : (
-                  <span className="text-gray-300 text-sm font-medium">{leadStory.company_name}</span>
-                )}
+              <div className="md:col-span-2 rounded h-52 overflow-hidden">
+                <CompanyLogo name={leadStory.company_name} size="lg" />
               </div>
               <div className="md:col-span-3">
                 <div className="flex items-center gap-2 mb-2">
@@ -190,25 +181,9 @@ export default function IntelligenceFeed({ entries, leadStoryId }: {
               className="article-card rounded p-4 block group flex flex-col"
             >
               {/* Logo */}
-              <div className="h-8 mb-3 flex items-center">
-                {entry.image_url ? (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img
-                    src={entry.image_url}
-                    alt={entry.company_name}
-                    className="max-h-7 max-w-[90px] object-contain"
-                    onError={(e) => {
-                      (e.target as HTMLImageElement).replaceWith(
-                        Object.assign(document.createElement('span'), {
-                          className: 'text-xs text-gray-400 font-medium',
-                          textContent: entry.company_name,
-                        })
-                      );
-                    }}
-                  />
-                ) : (
-                  <span className="text-xs text-gray-400 font-medium">{entry.company_name}</span>
-                )}
+              <div className="h-8 mb-3 flex items-center gap-2">
+                <CompanyLogo name={entry.company_name} size="sm" />
+                <span className="text-xs text-gray-500 font-medium truncate">{entry.company_name}</span>
               </div>
 
               <div className="flex items-center gap-2 mb-1.5 flex-wrap">
