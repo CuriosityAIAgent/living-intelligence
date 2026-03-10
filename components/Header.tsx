@@ -15,38 +15,38 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-50 bg-white border-b border-gray-200">
-      <div className="max-w-6xl mx-auto px-6">
-        <div className="flex items-center justify-between h-14">
-          {/* Wordmark */}
-          <Link href="/" className="flex items-center gap-3 no-underline">
-            <span className="text-base font-bold tracking-tight text-[#1B2E5E]">
-              AI in Wealth Management
-            </span>
-          </Link>
+      <div className="max-w-6xl mx-auto px-6 flex items-stretch justify-between h-14">
 
-          {/* Nav */}
-          <nav className="flex items-center gap-1">
-            {navItems.map((item) => {
-              const isActive =
-                item.href === '/'
-                  ? pathname === '/'
-                  : pathname.startsWith(item.href);
-              return (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className={`px-3 py-1.5 text-sm font-medium rounded transition-colors ${
-                    isActive
-                      ? 'text-[#1B2E5E] bg-blue-50'
-                      : 'text-gray-600 hover:text-[#1B2E5E] hover:bg-gray-50'
-                  }`}
-                >
-                  {item.label}
-                </Link>
-              );
-            })}
-          </nav>
-        </div>
+        {/* Wordmark */}
+        <Link href="/" className="flex items-center no-underline flex-shrink-0 mr-10">
+          <span className="text-[13px] font-bold tracking-widest uppercase text-[#1B2E5E] letter-spacing-wide">
+            AI in Wealth Management
+          </span>
+        </Link>
+
+        {/* Nav */}
+        <nav className="flex items-stretch">
+          {navItems.map((item) => {
+            const isActive =
+              item.href === '/'
+                ? pathname === '/'
+                : pathname.startsWith(item.href);
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={`flex items-center px-4 text-sm border-b-2 transition-colors ${
+                  isActive
+                    ? 'text-[#1B2E5E] font-semibold border-[#1B2E5E]'
+                    : 'text-gray-500 font-medium border-transparent hover:text-gray-900 hover:border-gray-300'
+                }`}
+              >
+                {item.label}
+              </Link>
+            );
+          })}
+        </nav>
+
       </div>
     </header>
   );

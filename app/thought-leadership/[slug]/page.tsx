@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import Header from '@/components/Header';
+import AuthorAvatar from '@/components/AuthorAvatar';
 import { getThoughtLeadershipEntry, getAllThoughtLeadership, formatDate, FORMAT_LABELS } from '@/lib/data';
 
 export async function generateStaticParams() {
@@ -34,20 +35,7 @@ export default async function ThoughtLeadershipPiecePage({
 
         {/* Author block */}
         <div className="flex items-start gap-4 mb-8 pb-8 border-b border-gray-100">
-          <div className="w-16 h-16 rounded-full overflow-hidden bg-gray-100 border border-gray-200 flex-shrink-0">
-            {entry.author.photo_url ? (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img
-                src={entry.author.photo_url}
-                alt={entry.author.name}
-                className="w-full h-full object-cover"
-              />
-            ) : (
-              <span className="flex items-center justify-center h-full text-2xl text-gray-400 font-bold">
-                {entry.author.name[0]}
-              </span>
-            )}
-          </div>
+          <AuthorAvatar name={entry.author.name} size="lg" />
           <div>
             <h2 className="font-bold text-gray-900">{entry.author.name}</h2>
             <p className="text-sm text-gray-500">{entry.author.title}</p>
