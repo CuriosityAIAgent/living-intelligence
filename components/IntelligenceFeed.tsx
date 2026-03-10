@@ -108,9 +108,15 @@ export default function IntelligenceFeed({ entries, leadStoryId }: {
                 <div className="mt-3 flex items-center gap-2">
                   <span className="text-xs text-gray-400">Source:</span>
                   {leadStory.source_verified && leadStory.source_url ? (
-                    <a href={leadStory.source_url} target="_blank" rel="noopener noreferrer" className="text-xs text-[#1B2E5E] hover:underline font-medium">
+                    <span
+                      role="link"
+                      tabIndex={0}
+                      onClick={(e) => { e.preventDefault(); e.stopPropagation(); window.open(leadStory.source_url, '_blank', 'noopener,noreferrer'); }}
+                      onKeyDown={(e) => { if (e.key === 'Enter') { e.preventDefault(); e.stopPropagation(); window.open(leadStory.source_url, '_blank', 'noopener,noreferrer'); } }}
+                      className="text-xs text-[#1B2E5E] hover:underline font-medium cursor-pointer"
+                    >
                       {leadStory.source_name} ↗
-                    </a>
+                    </span>
                   ) : (
                     <span className="text-xs text-gray-400">{leadStory.source_name}</span>
                   )}
