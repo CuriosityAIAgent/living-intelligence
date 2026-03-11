@@ -1,29 +1,57 @@
 {
   "id": "ubs-ai-transformation-factory",
   "type": "strategy_move",
-  "headline": "UBS opens world's largest AI Transformation Factory in Singapore",
+  "headline": "UBS Appoints Daniele Magazzeni as Chief AI Officer to Lead Firm-Wide AI Strategy",
   "company": "ubs",
-  "company_name": "UBS",
-  "date": "2026-02-03",
-  "source_name": "UBS Newsroom",
+  "company_name": "UBS Group AG",
+  "date": "2025-10-16",
+  "source_name": "UBS Global Media",
   "source_url": "https://www.ubs.com/global/en/media/display-page-ndp/en-20251016-ai-strategy.html",
-  "source_verified": true,
-  "image_url": "/logos/ubs.svg",
-  "summary": "UBS has opened what it calls the world's largest dedicated AI Transformation Factory in Singapore, a center housing 2,000 engineers and data scientists focused exclusively on building and deploying AI tools across the bank's global wealth management operations. The factory operates on a product-at-scale model — each AI capability is built once and deployed globally across all UBS client-facing and internal platforms. Singapore was chosen for its regulatory clarity, talent pool, and proximity to the bank's fastest-growing Asia-Pacific book.",
+  "source_verified": false,
+  "image_url": "https://unavatar.io/ubs.com",
+  "summary": "UBS has appointed Daniele Magazzeni as Chief Artificial Intelligence Officer, effective 1 January 2026, to advance the firm's AI strategy and increase adoption of new technologies. Magazzeni joins from J.P. Morgan, where he served as Chief Analytics Officer for the EMEA region and the Commercial and Investment Bank, and previously was Associate Professor of Artificial Intelligence at King's College London. He will lead the Chief Artificial Intelligence Office, overseeing deployment of AI-powered tools at scale, maintaining standards, and building technological foundations across the organization. Magazzeni will report to Mike Dargan, Group Chief Operations and Technology Officer, and be based in London. UBS currently has over 300 live AI use cases and is rolling out AI-powered tools to all employees, including M365 Copilot and its in-house AI Assistant Red.",
   "key_stat": {
-    "number": "2,000",
-    "label": "Engineers in UBS's Singapore AI Factory"
+    "number": "300+",
+    "label": "live AI use cases at UBS"
   },
   "tags": {
     "capability": "advisor_productivity",
-    "region": "asia",
+    "region": "global",
     "segment": "global_bank",
     "theme": [
-      "ai_infrastructure",
-      "asia_pacific",
-      "enterprise_ai"
+      "chief_ai_officer",
+      "ai_governance",
+      "generative_ai",
+      "agentic_ai"
     ]
   },
-  "week": "2026-03-07",
-  "featured": false
+  "week": "2026-03-09",
+  "featured": false,
+  "_governance": {
+    "verdict": "REVIEW",
+    "confidence": 78,
+    "verified_claims": [
+      "UBS has appointed Daniele Magazzeni as Chief Artificial Intelligence Officer",
+      "Appointment is effective 1 January 2026",
+      "Magazzeni joins from J.P. Morgan",
+      "At J.P. Morgan, he served as Chief Analytics Officer for the EMEA region and the Commercial and Investment Bank",
+      "He was previously Associate Professor of Artificial Intelligence at King's College London",
+      "He will lead the Chief Artificial Intelligence Office",
+      "Responsibilities include overseeing deployment of AI-powered tools at scale, maintaining standards, and building technological foundations",
+      "Magazzeni will report to Mike Dargan, Group Chief Operations and Technology Officer",
+      "He will be based in London",
+      "AI is described as a top priority for UBS"
+    ],
+    "unverified_claims": [
+      "UBS currently has over 300 live AI use cases — source text is cut off before this statistic appears; cannot confirm from available source",
+      "Rolling out M365 Copilot and in-house AI Assistant 'Red' to all employees — source text is truncated and does not explicitly confirm these named tools in the available excerpt"
+    ],
+    "fabricated_claims": [],
+    "notes": "The core appointment details are fully verified against the source. However, the source text is truncated (ends mid-sentence about 'Big Rocks' initiatives), preventing verification of the '300+ live AI use cases' statistic and the specific AI tools mentioned (M365 Copilot, 'Red' AI Assistant). These claims may exist further in the article but cannot be confirmed from the available excerpt. No claims directly contradict the source.",
+    "paywall_caveat": true,
+    "verified_at": "2026-03-11T11:03:17.079Z",
+    "human_approved": false,
+    "approved_at": null,
+    "reprocessed": true
+  }
 }

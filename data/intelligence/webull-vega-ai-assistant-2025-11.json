@@ -7,7 +7,7 @@
   "date": "2025-11-10",
   "source_name": "PRNewswire",
   "source_url": "https://www.prnewswire.com/news-releases/webull-unveils-vega-the-next-evolution-of-its-ai-powered-decision-partner-302605998.html",
-  "source_verified": true,
+  "source_verified": false,
   "image_url": "/logos/webull.png",
   "summary": "Webull launched Vega, the next evolution of its AI-powered decision partner for active retail traders. Vega supports voice-activated order placement, real-time portfolio risk analysis, and natural language queries about market conditions and individual positions. The assistant can execute complex multi-leg options strategies via voice command and provide plain-English explanations of why positions are moving. Vega is designed for self-directed traders who want AI augmentation without surrendering control of their investment decisions.",
   "key_stat": {
@@ -26,5 +26,29 @@
     ]
   },
   "week": "2025-11-10",
-  "featured": false
+  "featured": false,
+  "_governance": {
+    "verdict": "REVIEW",
+    "confidence": 35,
+    "verified_claims": [
+      "Webull launched a product named Vega",
+      "Vega is described as the next evolution of its AI-powered decision partner"
+    ],
+    "unverified_claims": [
+      "Vega supports voice-activated order placement",
+      "Vega supports real-time portfolio risk analysis",
+      "Vega supports natural language queries about market conditions and individual positions",
+      "Vega can execute complex multi-leg options strategies via voice command",
+      "Vega provides plain-English explanations of why positions are moving",
+      "Vega is designed for self-directed traders who want AI augmentation without surrendering control of their investment decisions",
+      "Voice-activated trade execution via Vega AI (key stat)"
+    ],
+    "fabricated_claims": [],
+    "notes": "The source article is severely truncated — it only contains navigation menus and the headline, with no actual article body content visible. While the headline confirms that Webull did unveil a product called Vega described as 'the next evolution of its AI-powered decision partner,' none of the specific feature claims (voice-activated trading, multi-leg options execution, real-time portfolio risk analysis, natural language queries, plain-English explanations) can be verified against the source. The paywall or content truncation prevents full verification.",
+    "paywall_caveat": true,
+    "verified_at": "2026-03-11T05:44:09.651Z",
+    "human_approved": false,
+    "approved_at": null,
+    "backfill": true
+  }
 }

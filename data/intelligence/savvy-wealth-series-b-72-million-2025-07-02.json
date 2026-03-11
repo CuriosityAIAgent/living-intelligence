@@ -7,7 +7,7 @@
   "date": "2025-07-02",
   "source_name": "Business Wire",
   "source_url": "https://www.businesswire.com/news/home/20250702795194/en/Savvy-Wealth-Raises-72-Million-to-Drive-the-Shift-Toward-AI-Augmented-Human-Centered-Financial-Advice",
-  "source_verified": true,
+  "source_verified": false,
   "image_url": "/logos/savvy-wealth.svg",
   "summary": "Savvy Wealth closed a $72 million Series B funding round led by Industry Ventures, bringing total funding to over $100 million. New investors include Vestigo Ventures — founded by former LPL Financial CEO and Chairman Mark Casady, who also joins Savvy's Board of Directors — and Euclidean Capital, alongside existing investors Canvas Ventures, Thrive Capital, The House Fund, Brewer Lane Ventures, and former Focus Financial executive Vamsi Yadlapati. The company plans to use the capital to accelerate its core technology, hire technical talent, expand recruitment of independent advisors to its affiliate RIA Savvy Advisors, and develop AI solutions that build personalized knowledge bases on individual clients. According to industry data from Carta, Savvy is in the top decile for speed between Series A and B funding rounds, having completed its Series A in August 2024.",
   "key_stat": {
@@ -26,5 +26,33 @@
     ]
   },
   "week": "2026-03-09",
-  "featured": false
+  "featured": false,
+  "_governance": {
+    "verdict": "REVIEW",
+    "confidence": 72,
+    "verified_claims": [
+      "Savvy Wealth closed a $72 million Series B funding round",
+      "The round was led by Industry Ventures",
+      "Total funding brought to over $100 million",
+      "New investor Vestigo Ventures was founded by former LPL Financial CEO and Chairman Mark Casady",
+      "Mark Casady joins Savvy's Board of Directors",
+      "New investor Euclidean Capital participated",
+      "Existing investors Canvas Ventures, Thrive Capital, The House Fund, and Brewer Lane Ventures participated",
+      "Former Focus Financial executive Vamsi Yadlapati participated"
+    ],
+    "unverified_claims": [
+      "Plans to use capital to accelerate core technology and hire technical talent",
+      "Plans to expand recruitment of independent advisors to affiliate RIA Savvy Advisors",
+      "Plans to develop AI solutions that build personalized knowledge bases on individual clients",
+      "Carta industry data showing Savvy is in the top decile for speed between Series A and B funding rounds",
+      "Series A was completed in August 2024"
+    ],
+    "fabricated_claims": [],
+    "notes": "The source article is truncated — it ends mid-sentence ('Having completed') — meaning the full article content is not available for verification. All claims present in the visible source are accurately reflected in the generated entry. However, several claims about use of capital, the affiliate RIA name 'Savvy Advisors', AI knowledge base functionality, the Carta benchmark statistic, and the Series A completion date in August 2024 appear in the generated entry but cannot be verified against the truncated source. No claims contradict the source, but paywall or truncation prevents full verification.",
+    "paywall_caveat": true,
+    "verified_at": "2026-03-11T05:42:43.434Z",
+    "human_approved": false,
+    "approved_at": null,
+    "backfill": true
+  }
 }

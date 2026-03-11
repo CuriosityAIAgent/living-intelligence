@@ -7,7 +7,7 @@
   "date": "2025-05-05",
   "source_name": "PR Newswire",
   "source_url": "https://www.prnewswire.com/news-releases/vanguard-unveils-generative-ai-client-summaries-for-financial-advisors-302445980.html",
-  "source_verified": true,
+  "source_verified": false,
   "image_url": "/logos/vanguard.png",
   "summary": "Vanguard has unveiled a generative AI-powered client summaries feature designed for financial advisors. The tool is intended to help advisors more efficiently access and synthesize client information. The announcement was made via PR Newswire on May 5, 2025. Further details about the feature's specific capabilities and rollout were included in the full press release.",
   "key_stat": null,
@@ -23,5 +23,25 @@
     ]
   },
   "week": "2026-03-09",
-  "featured": false
+  "featured": false,
+  "_governance": {
+    "verdict": "REVIEW",
+    "confidence": 62,
+    "verified_claims": [
+      "Vanguard unveiled a generative AI client summaries feature for financial advisors",
+      "The announcement was made via PR Newswire",
+      "The announcement was made on May 5, 2025 (source timestamp: 2025-05-05T09:30:00-04:00)"
+    ],
+    "unverified_claims": [
+      "The tool is intended to help advisors more efficiently access and synthesize client information",
+      "Further details about the feature's specific capabilities and rollout were included in the full press release"
+    ],
+    "fabricated_claims": [],
+    "notes": "The source article confirms the headline, the publisher (PR Newswire), and the date. However, the source content provided is heavily truncated — it is mostly navigation/menu HTML and does not include the body of the press release. As a result, claims about the tool's purpose (helping advisors 'more efficiently access and synthesize client information') and references to 'further details about specific capabilities and rollout' cannot be verified from the available source text. No claims appear to contradict the source, but the paywall/truncation caveat applies.",
+    "paywall_caveat": true,
+    "verified_at": "2026-03-11T05:43:40.139Z",
+    "human_approved": false,
+    "approved_at": null,
+    "backfill": true
+  }
 }

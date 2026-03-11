@@ -1,29 +1,48 @@
 {
   "id": "lpl-anthropic-partnership",
   "type": "partnership",
-  "headline": "LPL Financial partners with Anthropic to bring Claude AI to 30,000 advisors",
+  "headline": "LPL Financial Expands Partnership With Anthropic to Advance AI Capabilities",
   "company": "lpl-financial",
   "company_name": "LPL Financial",
-  "date": "2026-02-18",
+  "date": "2026-02-24",
   "source_name": "ThinkAdvisor",
   "source_url": "https://www.thinkadvisor.com/2026/02/24/lpl-expands-partnership-with-anthropic/",
-  "source_verified": true,
-  "image_url": "/logos/lpl-financial.png",
-  "summary": "LPL Financial has announced an expanded partnership with Anthropic to deploy Claude AI across its network of 30,000 independent financial advisors. The integration will embed Claude into LPL's ClientWorks platform — the primary workstation for LPL advisors — enabling AI-assisted client communications, portfolio analysis, and compliance documentation. This is the largest deployment of Anthropic's Claude in the wealth management segment to date. LPL joins a growing list of financial firms choosing Anthropic over OpenAI, citing Claude's performance on complex reasoning tasks and its enterprise safety guarantees.",
-  "key_stat": {
-    "number": "30,000",
-    "label": "LPL advisors getting Claude AI"
-  },
+  "source_verified": false,
+  "image_url": "https://unavatar.io/lpl.com",
+  "summary": "LPL Financial has expanded its partnership with Anthropic, according to a report published on February 24, 2026. The article is categorized under ThinkAdvisor's Technology and Artificial Intelligence sections, indicating a focus on AI-driven capabilities within the wealth management space. No further details about the specific terms, scope, or financial aspects of the expanded partnership are available from the article content provided.",
+  "key_stat": null,
   "tags": {
     "capability": "advisor_productivity",
     "region": "us",
     "segment": "ria_independent",
     "theme": [
-      "anthropic",
-      "advisor_ai",
-      "independent_advisors"
+      "artificial_intelligence",
+      "ai_partnership",
+      "wealth_management_tech",
+      "large_language_models"
     ]
   },
-  "week": "2026-03-07",
-  "featured": true
+  "week": "2026-03-09",
+  "featured": false,
+  "_governance": {
+    "verdict": "REVIEW",
+    "confidence": 72,
+    "verified_claims": [
+      "LPL Financial expanded its partnership with Anthropic",
+      "The article was published on February 24, 2026",
+      "The article is categorized under ThinkAdvisor's Technology section",
+      "The topic relates to AI-driven capabilities within the wealth management space"
+    ],
+    "unverified_claims": [
+      "The article is categorized under an 'Artificial Intelligence' section — the source shows a 'Technology' category but no explicit standalone 'Artificial Intelligence' section is confirmed from the available source content",
+      "No further details about specific terms, scope, or financial aspects of the expanded partnership are available — this cannot be verified or denied due to the paywall restricting full article access"
+    ],
+    "fabricated_claims": [],
+    "notes": "The core claims (LPL expanding partnership with Anthropic, publication date, ThinkAdvisor source, Technology categorization) are supported by the source. The generated entry's reference to an 'Artificial Intelligence' section as a separate category is slightly embellished — only 'Technology' is clearly visible in the navigation. The absence of further detail about partnership terms may simply reflect the paywall, not the actual article content. No key stats were claimed, so no stat fabrication risk.",
+    "paywall_caveat": true,
+    "verified_at": "2026-03-11T11:02:02.460Z",
+    "human_approved": false,
+    "approved_at": null,
+    "reprocessed": true
+  }
 }

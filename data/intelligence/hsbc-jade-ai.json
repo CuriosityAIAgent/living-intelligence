@@ -1,29 +1,53 @@
 {
   "id": "hsbc-jade-ai",
   "type": "product_launch",
-  "headline": "HSBC Jade deploys AI-powered relationship intelligence for private banking clients",
-  "company": "hsbc",
-  "company_name": "HSBC",
-  "date": "2026-02-20",
-  "source_name": "Fintech Global",
-  "source_url": "https://fintech.global/2025/09/18/hsbc-launches-ai-powered-wealth-intelligence-platform/",
+  "headline": "HSBC Private Bank deploys Wealth Intelligence gen AI platform for wealth management staff",
+  "company": "hsbc-private-bank",
+  "company_name": "HSBC Private Bank",
+  "date": "2026-03-11",
+  "source_name": "HSBC Private Bank",
+  "source_url": "https://www.privatebanking.hsbc.com/media-releases-and-news/hsbc-deploys-wealth-intelligence/",
   "source_verified": false,
-  "image_url": "/logos/hsbc.svg",
-  "summary": "HSBC's ultra-premium private banking service Jade — targeting clients with $2M+ in investable assets — has deployed an AI relationship intelligence system that synthesizes a client's full financial profile, behavioral patterns, and life goals into a real-time advisory brief for relationship managers before every client interaction. The system draws on transaction history, stated goals, market conditions, and peer cohort data to suggest tailored conversation topics and product opportunities. HSBC reports the tool has increased meaningful client interactions by 40% and driven a 22% increase in product penetration among Jade clients in Asia.",
-  "key_stat": {
-    "number": "40%",
-    "label": "Increase in meaningful client interactions"
-  },
+  "image_url": "https://unavatar.io/privatebanking.hsbc.com",
+  "summary": "HSBC Private Bank has deployed a generative AI platform called Wealth Intelligence designed for use by its wealth management staff. The platform was initially reported by Asian Banking & Finance in September 2025 and has now been formally announced by HSBC Private Bank. Wealth Intelligence is intended to support relationship managers and advisors in their day-to-day workflows. The rollout reflects HSBC's broader push to embed AI-driven tools across its private banking operations globally.",
+  "key_stat": null,
   "tags": {
-    "capability": "client_experience",
-    "region": "asia",
+    "capability": "advisor_productivity",
+    "region": "global",
     "segment": "global_bank",
     "theme": [
-      "relationship_intelligence",
-      "private_banking",
-      "asia_pacific"
+      "generative-ai",
+      "wealth-intelligence",
+      "private-banking",
+      "advisor-tools"
     ]
   },
-  "week": "2026-03-07",
-  "featured": false
+  "week": "2026-03-09",
+  "featured": false,
+  "_governance": {
+    "verdict": "REVIEW",
+    "confidence": 72,
+    "verified_claims": [
+      "HSBC Private Bank deployed a generative AI platform called Wealth Intelligence",
+      "The platform is intended for wealth management staff",
+      "Asian Banking & Finance reported on it in September 2025 (specifically 2025-09-17)",
+      "HSBC Private Bank formally announced it (source published March 11, 2026)",
+      "The platform is intended to support relationship managers and advisors in day-to-day workflows (consistent with ABF framing)"
+    ],
+    "unverified_claims": [
+      "The platform was 'initially reported by Asian Banking & Finance in September 2025 and has now been formally announced by HSBC Private Bank' — the entry frames this as a sequence (ABF first, then HSBC formal announcement), which is plausible given dates but cannot be fully confirmed from the truncated HSBC source page content",
+      "The rollout reflects HSBC's 'broader push to embed AI-driven tools across its private banking operations globally' — reasonable inference but not explicitly stated in the visible source text",
+      "Specific mention of 'relationship managers and advisors' — consistent with ABF headline framing but not confirmed in visible HSBC source body text"
+    ],
+    "fabricated_claims": [],
+    "notes": "The core facts — platform name (Wealth Intelligence), deploying entity (HSBC Private Bank), purpose (wealth management staff), ABF reporting date (September 2025), and HSBC formal announcement (March 2026) — are all supported by the sources. However, the HSBC Private Bank source page content is heavily truncated (mostly navigation), so claims about the platform's specific intended users and HSBC's broader AI strategy cannot be fully verified from visible text. No clearly fabricated claims are present. The entry's framing of the chronology (ABF first, then HSBC formal announcement) is accurate based on the published timestamps. Flagging for REVIEW due to limited visible body text in the primary HSBC source.",
+    "paywall_caveat": false,
+    "verified_at": "2026-03-11T22:45:16.619Z",
+    "human_approved": false,
+    "approved_at": null,
+    "fallback_sources": [
+      "https://asianbankingandfinance.net/wealth-management/news/hsbc-private-bank-rolls-out-gen-ai-platform-wealth-management-staff"
+    ],
+    "reprocessed": true
+  }
 }

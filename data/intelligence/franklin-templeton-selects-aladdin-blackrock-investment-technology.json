@@ -26,5 +26,28 @@
     ]
   },
   "week": "2026-03-09",
-  "featured": false
+  "featured": false,
+  "_governance": {
+    "verdict": "PASS",
+    "confidence": 97,
+    "verified_claims": [
+      "Franklin Templeton has selected Aladdin by BlackRock to unify its investment management technology platform across public market asset classes",
+      "Aladdin will provide a single investment book of record",
+      "Aladdin will support business transformation",
+      "Aladdin will help simplify operations while reducing long-term capital expenses",
+      "The platform will preserve the autonomous investment processes of Franklin Templeton's specialist investment managers",
+      "The transition is set to begin in fiscal 2025",
+      "The transition will be phased over multiple years",
+      "The transition is described as seamless to clients",
+      "$1.6 trillion — Franklin Templeton assets under management as of June 30, 2024"
+    ],
+    "unverified_claims": [],
+    "fabricated_claims": [],
+    "notes": "All factual claims in the generated entry are directly and explicitly supported by the source article. The headline, summary points, and key statistic are all accurate representations of the source content. Minor paraphrasing is present but does not distort meaning.",
+    "paywall_caveat": false,
+    "verified_at": "2026-03-11T05:39:14.838Z",
+    "human_approved": false,
+    "approved_at": null,
+    "backfill": true
+  }
 }

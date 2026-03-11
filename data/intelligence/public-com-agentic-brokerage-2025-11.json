@@ -1,30 +1,56 @@
 {
   "id": "public-com-agentic-brokerage-2025-11",
   "type": "product_launch",
-  "headline": "Public.com unveils Agentic Brokerage — AI executes trades, builds portfolios, and generates research autonomously",
+  "headline": "Public launches AI-powered brokerage letting users build custom indexes and automate portfolio actions",
   "company": "public",
-  "company_name": "Public.com",
+  "company_name": "Public",
   "date": "2025-11-17",
   "source_name": "Axios",
   "source_url": "https://www.axios.com/2025/11/17/ai-stock-market-public",
   "source_verified": true,
-  "image_url": "/logos/public-com.svg",
-  "summary": "Public.com launched its Agentic Brokerage Suite — a three-layer architecture where AI agents handle Research (market analysis, SEC filings), Creation (portfolio construction, strategy design), and Action (autonomous trade execution) layers. The platform processes over 2,500 AI-generated assets in its first month of operation and achieves sub-500ms execution latency. With $12B in assets under management, Public is positioning itself as the first retail brokerage where investors delegate the full investment workflow to AI agents rather than just receiving recommendations.",
+  "image_url": "https://unavatar.io/public.com",
+  "summary": "Investing platform Public is launching an AI-powered brokerage that allows users to research, build, and manage portfolios using artificial intelligence. Starting Monday, users can create custom investable indexes by prompting AI with criteria such as P/E ratio thresholds and tariff resistance, with these self-directed ETF-like products carrying a fee of 49 basis points. Public also plans to launch an AI-powered wealth and portfolio manager in early 2026, enabling automated actions such as auto-investing cash, auto-buying dips or selling rallies, and tax-loss harvesting advice. The company noted that when it previously launched an AI research assistant, nearly half of conversations led to a transaction within 24 hours. Public says investment decisions remain self-directed to stay within regulatory guardrails, and the platform is increasingly drawing account transfers from Charles Schwab and Fidelity rather than Robinhood.",
   "key_stat": {
-    "number": "2,500+",
-    "label": "AI-generated assets created in first month"
+    "number": "49",
+    "label": "basis points fee for AI-created custom investable indexes"
   },
   "tags": {
     "capability": "new_business_models",
     "region": "us",
     "segment": "retail_digital",
     "theme": [
-      "agentic_ai",
-      "autonomous_trading",
-      "retail_ai",
-      "democratization"
+      "ai_brokerage",
+      "portfolio_automation",
+      "custom_indexing",
+      "retail_investing"
     ]
   },
   "week": "2025-11-17",
-  "featured": false
+  "featured": false,
+  "_governance": {
+    "verdict": "PASS",
+    "confidence": 97,
+    "verified_claims": [
+      "Public is launching an AI-powered brokerage designed to research, build, and manage portfolios",
+      "Starting Monday, users can create custom investable indexes using AI",
+      "Users can prompt AI with criteria such as P/E ratio thresholds and tariff resistance",
+      "Users can remix indexes combining stocks from S&P 500 and Nasdaq",
+      "Custom investable indexes carry a fee of 49 basis points",
+      "Public plans to launch an AI-powered wealth and portfolio manager in early 2026",
+      "Features include auto-investing cash once balance hits a certain threshold",
+      "Features include auto-buying stock dips or auto-selling rallies in specific securities",
+      "Features include advising on tax-loss harvesting opportunities",
+      "When Public launched an AI-powered research assistant, almost half of conversations led to a transaction within 24 hours",
+      "Public says investment decisions remain self-directed to stay within regulatory guardrails",
+      "Public now draws the majority of account transfers from Charles Schwab and Fidelity rather than Robinhood"
+    ],
+    "unverified_claims": [],
+    "fabricated_claims": [],
+    "notes": "All material claims in the generated entry are accurately supported by the source article. The summary is a faithful and accurate paraphrase of the Axios source. The key stat of 49 basis points is explicitly confirmed. The characterization of the product as 'self-directed ETF-like' is a reasonable paraphrase of 'self-directed ETFs of sorts' from the source. No fabrications or contradictions detected.",
+    "paywall_caveat": false,
+    "verified_at": "2026-03-11T11:02:53.562Z",
+    "human_approved": false,
+    "approved_at": null,
+    "reprocessed": true
+  }
 }
