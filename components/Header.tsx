@@ -25,7 +25,7 @@ export default function Header() {
             </span>
           </Link>
           <span className="hidden md:block text-[11px] font-medium uppercase tracking-widest text-[#888899]">
-            Intelligence Platform
+            Living Intelligence
           </span>
         </div>
       </div>
