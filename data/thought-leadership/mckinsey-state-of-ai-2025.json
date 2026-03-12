@@ -6,7 +6,7 @@
     "name": "McKinsey Global Institute",
     "title": "Research Division",
     "organization": "McKinsey & Company",
-    "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/McKinsey_and_company_logo.svg/1200px-McKinsey_and_company_logo.svg.png"
+    "photo_url": null
   },
   "publication": "McKinsey Global Institute",
   "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai",
@@ -30,9 +30,14 @@
       "context": "On financial services AI leadership"
     }
   ],
-  "tags": ["enterprise_ai", "financial_services", "scale", "change_management"],
+  "tags": [
+    "enterprise_ai",
+    "financial_services",
+    "scale",
+    "change_management"
+  ],
   "week": "2026-03-07",
   "featured": false,
-  "has_document": true,
-  "document_url": "https://www.mckinsey.com/~/media/mckinsey/state-of-ai-2025.pdf"
+  "has_document": false,
+  "document_url": null
 }

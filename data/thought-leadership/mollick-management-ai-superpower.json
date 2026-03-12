@@ -6,7 +6,7 @@
     "name": "Ethan Mollick",
     "title": "Associate Professor, Wharton School",
     "organization": "University of Pennsylvania",
-    "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Ethan_Mollick_2023.jpg/400px-Ethan_Mollick_2023.jpg"
+    "photo_url": null
   },
   "publication": "One Useful Thing",
   "source_url": "https://www.oneusefulthing.org/p/management-ai-superpower",
@@ -30,7 +30,12 @@
       "context": "On the compounding nature of AI adoption"
     }
   ],
-  "tags": ["management", "org_design", "future_of_work", "leadership"],
+  "tags": [
+    "management",
+    "org_design",
+    "future_of_work",
+    "leadership"
+  ],
   "week": "2026-03-07",
   "featured": true,
   "has_document": false,

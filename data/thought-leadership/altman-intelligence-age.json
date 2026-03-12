@@ -6,7 +6,7 @@
     "name": "Sam Altman",
     "title": "CEO",
     "organization": "OpenAI",
-    "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Sam_Altman_TechCrunch_SF_2019.jpg/400px-Sam_Altman_TechCrunch_SF_2019.jpg"
+    "photo_url": null
   },
   "publication": "Sam Altman Personal Blog",
   "source_url": "https://ia.samaltman.com",
@@ -30,7 +30,12 @@
       "context": "On the inevitability of the current AI moment"
     }
   ],
-  "tags": ["ai_leadership", "future_of_work", "disruption", "openai"],
+  "tags": [
+    "ai_leadership",
+    "future_of_work",
+    "disruption",
+    "openai"
+  ],
   "week": "2026-03-07",
   "featured": false,
   "has_document": false,

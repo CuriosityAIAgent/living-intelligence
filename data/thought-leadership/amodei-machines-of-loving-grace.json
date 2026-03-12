@@ -6,7 +6,7 @@
     "name": "Dario Amodei",
     "title": "CEO",
     "organization": "Anthropic",
-    "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Dario_Amodei_2024.jpg/400px-Dario_Amodei_2024.jpg"
+    "photo_url": null
   },
   "publication": "Dario Amodei Personal Blog",
   "source_url": "https://darioamodei.com/machines-of-loving-grace",
@@ -30,7 +30,12 @@
       "context": "On structural change in professional services"
     }
   ],
-  "tags": ["ai_leadership", "future_of_finance", "disruption", "anthropic"],
+  "tags": [
+    "ai_leadership",
+    "future_of_finance",
+    "disruption",
+    "anthropic"
+  ],
   "week": "2026-03-07",
   "featured": false,
   "has_document": false,

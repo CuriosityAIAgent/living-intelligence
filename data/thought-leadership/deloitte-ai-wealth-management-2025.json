@@ -6,7 +6,7 @@
     "name": "Deloitte Insights",
     "title": "Financial Services Research",
     "organization": "Deloitte",
-    "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Deloitte_Logo.png/1200px-Deloitte_Logo.png"
+    "photo_url": null
   },
   "publication": "Deloitte Insights",
   "source_url": "https://www2.deloitte.com/us/en/insights/industry/financial-services/ai-wealth-management-2030.html",
@@ -30,9 +30,14 @@
       "context": "On the structural change ahead for wealth management"
     }
   ],
-  "tags": ["wealth_management", "advisor_model", "future_of_advice", "hybrid_advisor"],
+  "tags": [
+    "wealth_management",
+    "advisor_model",
+    "future_of_advice",
+    "hybrid_advisor"
+  ],
   "week": "2026-03-07",
   "featured": false,
-  "has_document": true,
-  "document_url": "https://www2.deloitte.com/us/en/insights/industry/financial-services/ai-wealth-management-2030.pdf"
+  "has_document": false,
+  "document_url": null
 }

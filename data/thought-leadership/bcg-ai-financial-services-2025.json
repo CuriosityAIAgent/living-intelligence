@@ -6,7 +6,7 @@
     "name": "BCG Henderson Institute",
     "title": "Research Division",
     "organization": "Boston Consulting Group",
-    "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/BCG_Corporate_Logo.svg/1200px-BCG_Corporate_Logo.svg.png"
+    "photo_url": null
   },
   "publication": "BCG Henderson Institute",
   "source_url": "https://www.bcg.com/publications/2025/ai-in-financial-services",
@@ -30,9 +30,14 @@
       "context": "On wealth management as AI's highest-stakes arena"
     }
   ],
-  "tags": ["ai_strategy", "wealth_management", "financial_services", "competitive_advantage"],
+  "tags": [
+    "ai_strategy",
+    "wealth_management",
+    "financial_services",
+    "competitive_advantage"
+  ],
   "week": "2026-03-07",
   "featured": false,
-  "has_document": true,
-  "document_url": "https://www.bcg.com/publications/2025/ai-in-financial-services.pdf"
+  "has_document": false,
+  "document_url": null
 }

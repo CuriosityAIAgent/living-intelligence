@@ -6,7 +6,7 @@
     "name": "Jensen Huang",
     "title": "CEO",
     "organization": "NVIDIA",
-    "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Jensen_Huang_2019_%28cropped%29.jpg/400px-Jensen_Huang_2019_%28cropped%29.jpg"
+    "photo_url": null
   },
   "publication": "World Economic Forum — Davos 2026",
   "source_url": "https://www.weforum.org/events/world-economic-forum-annual-meeting-2026/sessions/jensen-huang-ai-infrastructure",
@@ -30,7 +30,12 @@
       "context": "On the pace and inevitability of AI adoption"
     }
   ],
-  "tags": ["ai_infrastructure", "nvidia", "enterprise_strategy", "compute"],
+  "tags": [
+    "ai_infrastructure",
+    "nvidia",
+    "enterprise_strategy",
+    "compute"
+  ],
   "week": "2026-03-07",
   "featured": false,
   "has_document": false,
