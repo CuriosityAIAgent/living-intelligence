@@ -67,13 +67,13 @@ const results = await response.text(); // markdown with multiple sources
 **Why Jina over raw fetch:** Handles paywalls better, cleans content for LLM consumption, no need to parse HTML.
 
 **Standing auto-discovery queries (7):**
-- `"AI wealth management product launch 2025"`
-- `"financial advisor AI tool announcement 2025"`
-- `"Goldman Sachs Morgan Stanley UBS AI 2025"`
-- `"Anthropic Claude OpenAI financial services partnership 2025"`
-- `"robo-advisor wealthtech AI platform launch 2025"`
-- `"private banking generative AI wealth platform 2025"`
-- `"RIA custodian AI fintech funding announcement 2025"`
+- `"AI wealth management product launch 2026"`
+- `"financial advisor AI tool announcement 2026"`
+- `"Goldman Sachs Morgan Stanley UBS AI 2026"`
+- `"Anthropic Claude OpenAI financial services partnership 2026"`
+- `"robo-advisor wealthtech AI platform launch 2026"`
+- `"private banking generative AI wealth platform 2026"`
+- `"RIA custodian AI fintech funding announcement 2026"`
 
 **Env var:** `JINA_API_KEY`
 
@@ -103,7 +103,7 @@ const response = await fetch('https://api.dataforseo.com/v3/serp/google/news/liv
 **Standing auto-discovery queries (5):**
 - `"AI wealth management news"`
 - `"financial advisor AI product launch"`
-- `"wealthtech artificial intelligence platform 2025"`
+- `"wealthtech artificial intelligence platform 2026"`
 - `"Goldman Sachs UBS Morgan Stanley AI advisor"`
 - `"Anthropic OpenAI wealth management financial services"`
 

@@ -1,36 +1,59 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# AI in Wealth Management — Intelligence Portal
 
-## Getting Started
+Executive intelligence platform tracking AI adoption across wealth management firms globally.
+Internal use only — built by AI of the Tiger.
 
-First, run the development server:
+## What It Is
+
+A living intelligence portal that tracks AI developments, thought leadership, and capability maturity across 26 wealth management firms. Bloomberg/FT editorial style. No database — all content is flat JSON tracked in git.
+
+## Quick Start
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# Requires Node 20+ (via fnm)
+export PATH="$HOME/.fnm/node-versions/v20.20.0/installation/bin:$PATH"
+
+# Portal
+npx next dev --turbopack -p 3002     # → localhost:3002
+
+# Intake server (content pipeline)
+cd ../intake-server
+node --env-file=.env server.js       # → localhost:3003
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Structure
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+living-intelligence/      ← this repo (Next.js portal)
+  app/                    ← Next.js pages
+  components/             ← shared React components
+  lib/                    ← data loading + constants
+  data/                   ← all content (tracked in git)
+    intelligence/         ← 33 news entries
+    thought-leadership/   ← 7 curated essays/reports
+    competitors/          ← 26 landscape companies
+    capabilities/         ← 7 capability dimensions
+    logos/                ← local company logos (SVG/PNG)
+  docs/                   ← architecture + integration notes
+  public/logos/           ← logo files served at runtime
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+../intake-server/         ← content discovery pipeline
+```
 
-## Learn More
+## Pages
 
-To learn more about Next.js, take a look at the following resources:
+| Route | Description |
+|-------|-------------|
+| `/` | Latest intelligence feed — lead story + grid |
+| `/intelligence` | All 33 intelligence entries with filters |
+| `/intelligence/[slug]` | Article detail — formatted summary, source, tags |
+| `/thought-leadership` | All 7 thought leadership pieces |
+| `/thought-leadership/[slug]` | Piece detail — insight, summary, quotes |
+| `/landscape` | AI capabilities matrix — 26 companies × 7 dimensions |
+| `/competitors/[slug]` | Company detail page |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Deployment
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Railway — auto-deploys on push to `main`. Work on `dev` branch, merge to `main` to publish.
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+See `CLAUDE.md` for full development instructions and `docs/` for architecture notes.
