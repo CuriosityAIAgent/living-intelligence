@@ -8,7 +8,7 @@
   "source_name": "Bank of America Newsroom",
   "source_url": "https://newsroom.bankofamerica.com/content/newsroom/press-releases/2024/04/bofa-s-erica-surpasses-2-billion-interactions--helping-42-millio.html",
   "source_verified": true,
-  "image_url": "https://unavatar.io/bankofamerica.com",
+  "image_url": "/logos/bofa-merrill.png",
   "summary": "Bank of America's AI-powered virtual assistant Erica has surpassed 2 billion total interactions since its launch, serving 42 million clients. The milestone underscores the scale at which BofA has deployed conversational AI across its consumer banking platform. Erica is accessible through the Bank of America mobile app and provides clients with financial guidance, account information, and transaction support.",
   "key_stat": {
     "number": "2,000,000,000",
