@@ -1,32 +1,53 @@
+import React from 'react';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import Header from '@/components/Header';
 import { getIntelligenceEntry, getAllIntelligence, formatDate, TYPE_LABELS } from '@/lib/data';
 
-// Split summary into sentences and bold key figures
+// Bold financial figures + multi-word proper nouns (company/product names)
+function boldKey(text: string): React.ReactNode {
+  const parts = text.split(
+    /(\$[\d,.]+\s*(?:billion|million|trillion|[BMTKbmtk])?\+?|[\d,.]+\+?\s*%|[\d,]+\+?\s*(?:advisors?|clients?|firms?|employees?|institutions?|hours?|models?)|[A-Z][a-zA-Z&.]+(?:\s+[A-Z][a-zA-Z&.]+){1,4})/g
+  );
+  return (
+    <>
+      {parts.map((p, i) =>
+        i % 2 === 1
+          ? <strong key={i} className="font-semibold text-gray-900">{p}</strong>
+          : p
+      )}
+    </>
+  );
+}
+
+// Split into sentences; bold opening clause (lede) + key figures + proper nouns
 function FormattedSummary({ text }: { text: string }) {
   const sentences = (text.match(/[^.!?]+[.!?]+(?:\s|$)/g) || [text])
     .map(s => s.trim())
     .filter(s => s.length > 10);
 
-  function boldFigures(sentence: string) {
-    const pattern = /(\$[\d,.]+\s*(?:[BMTKbmtk]|billion|million|trillion|thousand)?(?:\+)?|[\d,.]+\+?\s*%|[\d,]+\+?\s*(?:advisors?|clients?|firms?|users?|employees?|institutions?|companies|models?|use cases?|markets?|hours?|weeks?|months?))/gi;
-    const parts = sentence.split(pattern);
-    return parts.map((part, i) =>
-      pattern.test(part)
-        ? <strong key={i} className="font-semibold text-gray-900">{part}</strong>
-        : part
-    );
-  }
-
   return (
     <ul className="space-y-4">
-      {sentences.map((sentence, i) => (
-        <li key={i} className="flex gap-3 text-[15px] text-gray-700 leading-relaxed">
-          <span className="text-[#990F3D] font-bold mt-[3px] flex-shrink-0 text-xs">→</span>
-          <span>{boldFigures(sentence)}</span>
-        </li>
-      ))}
+      {sentences.map((s, i) => {
+        // Bold the opening clause — text before first comma/semicolon/colon (chars 15–85)
+        const candidates = [s.indexOf(',', 15), s.indexOf(';', 15), s.indexOf(':', 15)]
+          .filter(p => p > 0 && p < 85);
+        const cut = candidates.length ? Math.min(...candidates) : -1;
+
+        return (
+          <li key={i} className="flex gap-3 text-[15px] text-gray-700 leading-relaxed">
+            <span className="text-[#990F3D] font-bold mt-[3px] flex-shrink-0 text-xs">→</span>
+            <span>
+              {cut > 0 ? (
+                <>
+                  <strong className="font-semibold text-gray-900">{s.slice(0, cut + 1)}</strong>
+                  {boldKey(s.slice(cut + 1))}
+                </>
+              ) : boldKey(s)}
+            </span>
+          </li>
+        );
+      })}
     </ul>
   );
 }
