@@ -19,9 +19,12 @@ export default function Header() {
       {/* Masthead — dark slate */}
       <div className="bg-[#1C1C2E]">
         <div className="max-w-6xl mx-auto px-6 h-[56px] flex items-center justify-between">
-          <Link href="/" className="no-underline flex items-baseline gap-3">
+          <Link href="/" className="no-underline flex flex-col gap-0.5">
             <span className="text-white text-[22px] font-bold tracking-tight leading-none">
               AI in Wealth Management
+            </span>
+            <span className="text-[9px] font-medium uppercase tracking-[0.2em] text-[#555570]">
+              AI of the Tiger
             </span>
           </Link>
           <span className="hidden md:block text-[11px] font-medium uppercase tracking-widest text-[#888899]">
