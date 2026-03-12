@@ -77,11 +77,50 @@ To add a new landscape company: create a JSON file in `../data/competitors/` wit
 
 ## Segments (landscape)
 
-`global_bank` · `global_private_bank` · `regional_champion` · `digital_disruptor` · `ai_native` · `ria_independent` · `advisor_tools`
+`wirehouse` · `global_private_bank` · `regional_champion` · `digital_disruptor` · `ai_native` · `ria_independent` · `advisor_tools`
 
 **Classification rules:**
-- Large advisor-network wealth managers (Morgan Stanley, Merrill) → `wirehouse` ("Full-Service Wealth")
+- Large US advisor-network broker-dealers (Morgan Stanley, Merrill, Wells Fargo) → `wirehouse`
 - HNW/UHNW focused institutions globally, whether standalone or bank division → `global_private_bank` (UBS, Goldman, Citi PB, HSBC PB, Julius Baer, BNP Paribas)
 - Dominant in their home region, full-service banking + wealth → `regional_champion` (DBS, BBVA, StanChart, RBC)
 - AI tools used BY advisors (Jump, Nevis, Zocks, Holistiplan) → `advisor_tools`, NOT `ai_native`
 - AI-native wealth platforms built from scratch (Arta, Savvy) → `ai_native`
+
+---
+
+## Governance (intake server)
+
+Every intelligence entry that goes through the intake pipeline receives a `_governance` audit block:
+
+```json
+"_governance": {
+  "verdict": "PASS | REVIEW | FAIL",
+  "confidence": 0-100,
+  "verified_claims": [...],
+  "unverified_claims": [...],
+  "fabricated_claims": [...],
+  "notes": "...",
+  "paywall_caveat": false,
+  "verified_at": "ISO timestamp",
+  "human_approved": false,
+  "approved_at": null
+}
+```
+
+- **PASS** → `source_verified: true`, publish immediately
+- **REVIEW** → held in pending queue at `/api/pending`, requires human approval at `localhost:3003`
+- **FAIL** → URL permanently blocked in `.governance-blocked.json`, cannot be resubmitted
+
+`source_verified` on every entry always reflects the actual governance outcome — never hardcoded.
+
+---
+
+## Scripts (intake-server/scripts/)
+
+| Script | Purpose | Usage |
+|--------|---------|-------|
+| `backfill-governance.js` | Run governance check on all existing entries that lack `_governance` | `node --env-file=.env scripts/backfill-governance.js` |
+| `reprocess-failed.js` | Re-fetch + re-structure + re-verify all FAIL entries | `node --env-file=.env scripts/reprocess-failed.js` |
+| `test-portal.js` | Health check all URLs + portal pages, auto-fix broken links | `node scripts/test-portal.js --fast` |
+
+Run `test-portal.js` after any batch data change to catch broken `document_url`, `image_url`, or `author.photo_url` fields before they reach production.

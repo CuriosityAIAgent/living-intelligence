@@ -46,6 +46,15 @@ const response = await fetch(`https://r.jina.ai/${encodeURIComponent(url)}`, {
 const markdown = await response.text();
 ```
 
+**Paywall fallback** (implemented in `agents/intake.js`): When Jina detects paywall signals (`"Subscribe to continue"` etc.), the system automatically:
+1. Extracts keywords from the URL slug + teaser content
+2. Searches `s.jina.ai` for alternative coverage of the same story
+3. Filters results to open-source domains (businesswire, prnewswire, thinkadvisor, etc.) — skips bloomberg/ft/wsj
+4. Fetches up to 2 usable alternatives and combines with original teaser
+5. Claude summarises from the combined open content — fully grounded, no fabrication
+
+If no alternatives are found, proceeds with partial paywall content and sets `paywall_caveat: true` in the governance audit.
+
 ### 2. Web Search + Extract (`s.jina.ai`)
 One call returns web search results + extracted article content simultaneously.
 ```javascript
@@ -167,12 +176,37 @@ Goldman Sachs, Morgan Stanley, JPMorgan, UBS, Merrill Lynch, Citi, HSBC, Vanguar
 
 ---
 
+## Anthropic Claude — Governance Verification
+
+A second Claude call runs after structuring to verify every claim in the generated entry against the source article. This is separate from the structuring call.
+
+```javascript
+// agents/governance.js
+const prompt = `Verify that every factual claim in the GENERATED ENTRY
+is supported by the SOURCE ARTICLE.
+...
+Return JSON: { verdict, confidence, verified_claims, unverified_claims,
+               fabricated_claims, notes, paywall_caveat }`;
+```
+
+Verdict rules:
+- **PASS**: All claims verifiable. Minor paraphrasing fine.
+- **REVIEW**: 1-2 claims unverified (implied not explicit). No fabrications.
+- **FAIL**: Any claim contradicts source, or any stat/name appears fabricated.
+
+This two-call pattern (structure → verify) is the primary anti-hallucination mechanism.
+
+---
+
 ## What Each Integration Solves
 
 | Problem | Solution |
 |---------|----------|
 | Finding new stories automatically | RSS + Jina Search + DataForSEO News in parallel |
 | Extracting clean article content | Jina r.jina.ai (handles paywalls, strips noise) |
-| Reliable company logos | DataForSEO Google Images → downloaded to disk |
-| Structuring articles into typed JSON | Anthropic Claude (claude-sonnet-4-6) |
-| Deduplication across 33+ existing entries | URL normalization against all `source_url` fields |
+| Paywalled articles | Jina fallback: search for open-source alternatives automatically |
+| Structuring articles into typed JSON | Anthropic Claude — strict grounding rules, no inference |
+| Verifying claims aren't fabricated | Anthropic Claude governance check (second call) |
+| Reliable company logos | DataForSEO Google Images → downloaded to disk as local files |
+| Deduplication against existing entries | URL normalization against all `source_url` fields |
+| Broken URLs and missing assets | `scripts/test-portal.js` health checker — auto-fixes on detect |

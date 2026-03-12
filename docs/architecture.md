@@ -15,9 +15,16 @@
 │       └──────────────┴───────────────┘                │        │
 │                      ↓ auto-discover                  │        │
 │              scored + deduplicated candidates         │        │
-│                      ↓ human review                   │        │
-│              structured JSON entry                    │        │
-│                      ↓ saved to                       │        │
+│                      ↓ human selects                  │        │
+│              Jina fetches full article                │        │
+│              (paywall fallback: search alternatives)  │        │
+│                      ↓ Claude structures              │        │
+│              Claude verifies all claims               │        │
+│                      ↓ governance gate                │        │
+│         PASS → ready to publish                       │        │
+│         REVIEW → pending queue (human sign-off)       │        │
+│         FAIL → permanently blocked URL                │        │
+│                      ↓ published                      │        │
 └──────────────────────────────────────────────────────────────── ┘
                         │
                         ↓
@@ -25,11 +32,13 @@
 │                  DATA DIRECTORY (inside this repo)               │
 │                    ./data/  — tracked in git                     │
 │                                                                  │
-│  intelligence/    → IntelligenceEntry JSON files                 │
-│  thought-leadership/ → ThoughtLeadershipEntry JSON files         │
-│  competitors/     → Competitor JSON files (25 companies)         │
+│  intelligence/    → IntelligenceEntry JSON files (32 entries)   │
+│  thought-leadership/ → ThoughtLeadershipEntry JSON files (7)    │
+│  competitors/     → Competitor JSON files (26 companies)         │
 │  capabilities/    → index.json (7 capability dimensions)         │
-│  logos/           → downloaded SVG/PNG logos                     │
+│  logos/           → SVG/PNG logos (24 companies)                 │
+│  .governance-pending.json  → REVIEW entries awaiting approval   │
+│  .governance-blocked.json  → FAIL URLs permanently blocked      │
 └───────────────────────────────┬──────────────────────────────────┘
                                 │ read at build time
                                 ↓
@@ -40,11 +49,9 @@
 │                                                                  │
 │  /                  → Latest (IntelligenceFeed)                  │
 │  /intelligence      → All intelligence entries                   │
-│  /intelligence/[slug] → Entry detail page                        │
 │  /thought-leadership  → All thought leadership                   │
 │  /thought-leadership/[slug] → Piece detail page                  │
-│  /landscape         → AI capabilities matrix (25 companies)      │
-│  /competitors/[slug] → Company deep-dive page                    │
+│  /landscape         → AI capabilities matrix (26 companies)      │
 └──────────────────────────────────────────────────────────────────┘
 ```
 
@@ -54,7 +61,7 @@
 
 | Path | Purpose |
 |------|---------|
-| `lib/data.ts` | All data-loading functions — reads from `../data/` |
+| `lib/data.ts` | All data-loading functions — reads from `data/` |
 | `lib/constants.ts` | SEGMENT_LABELS, FORMAT_LABELS, TYPE_LABELS, brand constants |
 | `components/Header.tsx` | Sticky nav — `'use client'`, uses `usePathname()` |
 | `components/AuthorAvatar.tsx` | Deterministic letter-initial avatar (no external URLs) |
@@ -71,10 +78,15 @@
 |------|---------|
 | `server.js` | Express server, all API routes |
 | `agents/auto-discover.js` | Parallel RSS + Jina + DataForSEO pipeline |
-| `agents/` | One file per intake function |
-| `scripts/fetch-logos.js` | Downloads company logos via DataForSEO Google Images |
+| `agents/intake.js` | Fetch article (with paywall fallback) + Claude structuring |
+| `agents/governance.js` | Verify all claims against source → PASS/REVIEW/FAIL |
+| `agents/gov-store.js` | File-backed pending queue + blocked URL list |
+| `agents/publisher.js` | Write entry JSON + `_governance` audit, git commit + push |
+| `scripts/backfill-governance.js` | One-time: add `_governance` to all existing entries |
+| `scripts/reprocess-failed.js` | Re-run FAIL entries through corrected pipeline |
+| `scripts/test-portal.js` | Health check all URLs + portal pages, auto-fix broken links |
 | `rss-feeds.json` | 11 RSS feeds for auto-discovery |
-| `public/index.html` | Intake UI (single-file vanilla JS) |
+| `public/index.html` | Intake UI (single-file vanilla JS, includes Review tab) |
 
 ### Intake Server API Routes
 
@@ -82,30 +94,68 @@
 |-------|--------|-------------|
 | `/api/auto-discover` | POST | Full parallel pipeline: RSS + Jina + DataForSEO |
 | `/api/search` | POST | Jina s.jina.ai search (body: `{query}`) |
-| `/api/extract` | POST | Jina r.jina.ai extract from URL |
-| `/api/logos` | POST | DataForSEO Google Images logo fetch |
-| `/api/entry` | POST | Save new intelligence entry to `../data/intelligence/` |
+| `/api/discover` | POST | RSS-only discovery |
+| `/api/process-url` | POST | Fetch + structure + governance for one URL |
+| `/api/publish` | POST | Publish entries (enforces governance gate server-side) |
+| `/api/pending` | GET | List REVIEW entries awaiting human approval |
+| `/api/pending/:id/approve` | POST | Approve a REVIEW entry → moves to publishable |
+| `/api/pending/:id/reject` | POST | Reject a REVIEW entry → permanently blocks URL |
+| `/api/blocked` | GET | View all permanently blocked URLs |
+| `/api/health` | GET | Server health + governance queue counts |
 
 ---
 
 ## Data Flow: New Intelligence Entry
 
 ```
-1. Auto-Discover runs (RSS + Jina + DataForSEO)
+1. Auto-Discover runs (RSS + Jina + DataForSEO in parallel)
 2. Stories scored by: recency + source quality + tracked company mentions + AI keyword density
 3. Top 20 candidates surfaced in intake UI with via badges (RSS/Jina/DFS)
 4. Human reviews and selects a story
-5. Jina extracts full article text from URL
-6. Anthropic Claude structures it into IntelligenceEntry JSON
-7. Saved to ../data/intelligence/{slug}.json
-8. Portal picks it up on next build (Railway re-deploys automatically)
+5. Jina fetches full article from URL
+   └── If paywall detected → searches for open-source alternatives automatically
+       └── Fetches up to 2 open-source alternatives and combines content
+6. Claude structures into IntelligenceEntry JSON (strict grounding rules — no inference)
+7. Claude verifies every claim in the entry against the source (governance check)
+   ├── PASS  → entry ready to publish
+   ├── REVIEW → entry held in pending queue (localhost:3003 Review tab)
+   │           Human approves/rejects before publish allowed
+   └── FAIL  → URL permanently blocked, entry discarded
+8. Human clicks Publish → entry written to data/intelligence/{slug}.json
+   └── _governance audit block written inline to every JSON file
+   └── source_verified = true only if PASS or human_approved
+9. git add + commit + push origin dev → Railway auto-deploys on merge to main
 ```
+
+---
+
+## Governance Audit Block
+
+Every published entry contains a `_governance` block:
+
+```json
+"_governance": {
+  "verdict": "PASS | REVIEW | FAIL",
+  "confidence": 0-100,
+  "verified_claims": ["claims confirmed in source"],
+  "unverified_claims": ["claims implied but not explicit"],
+  "fabricated_claims": ["claims contradicting or absent from source"],
+  "notes": "brief explanation",
+  "paywall_caveat": false,
+  "verified_at": "2026-03-11T00:00:00.000Z",
+  "human_approved": false,
+  "approved_at": null,
+  "fallback_sources": ["alternative URLs used if original was paywalled"]
+}
+```
+
+`source_verified` on the entry always reflects the actual governance outcome — never hardcoded.
 
 ---
 
 ## Landscape Data Model
 
-Every company file in `../data/competitors/{id}.json` has this shape:
+Every company file in `data/competitors/{id}.json`:
 
 ```json
 {
@@ -135,20 +185,36 @@ Every company file in `../data/competitors/{id}.json` has this shape:
 
 Capability IDs: `advisor_productivity` · `client_personalization` · `investment_portfolio` · `research_content` · `client_acquisition` · `operations_compliance` · `new_business_models`
 
-Maturity levels: `scaled` (production at scale) → `deployed` (live, limited) → `piloting` (testing) → `announced` (not yet live)
+Maturity levels: `scaled` → `deployed` → `piloting` → `announced`
 
 ---
 
 ## Landscape Coverage (as of March 2026)
 
-**25 companies across 7 segments:**
+**26 companies across 7 segments:**
 
 | Segment | Companies |
 |---------|-----------|
-| Global Bank (6) | BofA/Merrill, Citi, Goldman Sachs, HSBC, Morgan Stanley, UBS |
-| Global Private Bank (2) | Julius Baer, BNP Paribas Wealth |
+| Wirehouse (3) | Morgan Stanley, BofA/Merrill, Wells Fargo |
+| Global Private Bank (6) | UBS, Goldman Sachs, Citi PB, HSBC PB, Julius Baer, BNP Paribas Wealth |
 | Regional Champion (4) | DBS, BBVA, Standard Chartered, RBC Wealth Management |
 | Digital Disruptor (4) | Robinhood, Wealthfront, eToro, Public.com |
-| AI-Native Wealth (2) | Arta.ai, Savvy Wealth |
+| AI-Native Wealth (2) | Arta Finance, Savvy Wealth |
 | RIA / Independent (2) | Altruist, LPL Financial |
 | Advisor Tools (5) | Jump, Nevis, Zocks, Holistiplan, Conquest Planning |
+
+---
+
+## Testing
+
+Run after any batch data change:
+
+```bash
+cd intake-server
+node scripts/test-portal.js --fast    # skip slow source_url checks
+node scripts/test-portal.js           # full check including all source URLs
+node scripts/test-portal.js --dry-run # report only, no auto-fixes
+```
+
+Checks: `document_url` (thought-leadership PDFs), `image_url`, `author.photo_url`, `source_verified` consistency, all portal pages at localhost:3002.
+Auto-fixes: clears broken remote URLs, corrects `source_verified` mismatches.
