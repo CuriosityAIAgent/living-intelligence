@@ -20,7 +20,7 @@ function boldKey(text: string): React.ReactNode {
   );
 }
 
-// Split summary into sentences; bold opening clause + key figures + proper nouns
+// Split into sentences; bold opening clause (lede) + key figures + proper nouns
 function FormattedSummary({ text }: { text: string }) {
   const sentences = (text.match(/[^.!?]+[.!?]+(?:\s|$)/g) || [text])
     .map(s => s.trim())
@@ -29,7 +29,7 @@ function FormattedSummary({ text }: { text: string }) {
   return (
     <ul className="space-y-4">
       {sentences.map((s, i) => {
-        // Find first natural break (comma/semicolon/colon) between chars 15–85
+        // Bold the opening clause — text before first comma/semicolon/colon (chars 15–85)
         const candidates = [s.indexOf(',', 15), s.indexOf(';', 15), s.indexOf(':', 15)]
           .filter(p => p > 0 && p < 85);
         const cut = candidates.length ? Math.min(...candidates) : -1;
@@ -70,8 +70,7 @@ export default async function IntelligenceArticlePage({
     <div className="min-h-screen">
       <Header />
 
-      <main className="max-w-6xl mx-auto px-6 py-10">
-      <div className="max-w-3xl">
+      <main className="max-w-3xl mx-auto px-6 py-10">
 
         {/* Breadcrumb */}
         <nav className="flex items-center gap-2 text-xs text-gray-400 mb-8">
@@ -191,7 +190,6 @@ export default async function IntelligenceArticlePage({
           </Link>
         </div>
 
-      </div>
       </main>
     </div>
   );

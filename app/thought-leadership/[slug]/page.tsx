@@ -22,8 +22,7 @@ export default async function ThoughtLeadershipPiecePage({
     <div className="min-h-screen">
       <Header />
 
-      <main className="max-w-6xl mx-auto px-6 py-10">
-      <div className="max-w-3xl">
+      <main className="max-w-3xl mx-auto px-6 py-10">
 
         {/* Breadcrumb */}
         <nav className="flex items-center gap-2 text-xs text-gray-400 mb-8">
@@ -155,7 +154,6 @@ export default async function ThoughtLeadershipPiecePage({
           </Link>
         </div>
 
-      </div>
       </main>
     </div>
   );
