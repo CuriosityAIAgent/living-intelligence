@@ -17,7 +17,7 @@ export const FORMAT_LABELS: Record<string, string> = {
 };
 
 export const SEGMENT_LABELS: Record<string, string> = {
-  wirehouse: 'Full-Service Wealth',
+  wirehouse: 'Wirehouse',
   global_private_bank: 'Global Private Bank',
   regional_champion: 'Regional Champion',
   digital_disruptor: 'Digital Disruptor',
