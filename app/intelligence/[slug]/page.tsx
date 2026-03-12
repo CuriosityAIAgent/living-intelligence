@@ -3,6 +3,34 @@ import Link from 'next/link';
 import Header from '@/components/Header';
 import { getIntelligenceEntry, getAllIntelligence, formatDate, TYPE_LABELS } from '@/lib/data';
 
+// Split summary into sentences and bold key figures
+function FormattedSummary({ text }: { text: string }) {
+  const sentences = (text.match(/[^.!?]+[.!?]+(?:\s|$)/g) || [text])
+    .map(s => s.trim())
+    .filter(s => s.length > 10);
+
+  function boldFigures(sentence: string) {
+    const pattern = /(\$[\d,.]+\s*(?:[BMTKbmtk]|billion|million|trillion|thousand)?(?:\+)?|[\d,.]+\+?\s*%|[\d,]+\+?\s*(?:advisors?|clients?|firms?|users?|employees?|institutions?|companies|models?|use cases?|markets?|hours?|weeks?|months?))/gi;
+    const parts = sentence.split(pattern);
+    return parts.map((part, i) =>
+      pattern.test(part)
+        ? <strong key={i} className="font-semibold text-gray-900">{part}</strong>
+        : part
+    );
+  }
+
+  return (
+    <ul className="space-y-4">
+      {sentences.map((sentence, i) => (
+        <li key={i} className="flex gap-3 text-[15px] text-gray-700 leading-relaxed">
+          <span className="text-[#990F3D] font-bold mt-[3px] flex-shrink-0 text-xs">→</span>
+          <span>{boldFigures(sentence)}</span>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
 export async function generateStaticParams() {
   const entries = getAllIntelligence();
   return entries.map(e => ({ slug: e.id }));
@@ -74,8 +102,9 @@ export default async function IntelligenceArticlePage({
         )}
 
         {/* Summary */}
-        <div className="prose prose-gray max-w-none mb-10">
-          <p className="text-base text-gray-700 leading-relaxed">{entry.summary}</p>
+        <div className="mb-10">
+          <p className="text-[11px] font-bold uppercase tracking-widest text-gray-400 mb-4">AI Summary</p>
+          <FormattedSummary text={entry.summary} />
         </div>
 
         {/* Summary disclaimer */}
