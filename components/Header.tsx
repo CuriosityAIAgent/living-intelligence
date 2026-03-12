@@ -14,18 +14,25 @@ export default function Header() {
   const pathname = usePathname();
 
   return (
-    <header className="sticky top-0 z-50 bg-white border-b border-gray-200">
-      <div className="max-w-6xl mx-auto px-6 flex items-stretch justify-between h-14">
+    <header className="sticky top-0 z-50">
 
-        {/* Wordmark */}
-        <Link href="/" className="flex items-center no-underline flex-shrink-0 mr-10">
-          <span className="text-[13px] font-bold tracking-widest uppercase text-[#1B2E5E] letter-spacing-wide">
-            AI in Wealth Management
+      {/* Masthead — dark slate */}
+      <div className="bg-[#1C1C2E]">
+        <div className="max-w-6xl mx-auto px-6 h-[56px] flex items-center justify-between">
+          <Link href="/" className="no-underline flex items-baseline gap-3">
+            <span className="text-white text-[22px] font-bold tracking-tight leading-none">
+              AI in Wealth Management
+            </span>
+          </Link>
+          <span className="hidden md:block text-[11px] font-medium uppercase tracking-widest text-[#888899]">
+            Intelligence Platform
           </span>
-        </Link>
+        </div>
+      </div>
 
-        {/* Nav */}
-        <nav className="flex items-stretch">
+      {/* Nav bar — slightly darker */}
+      <div className="bg-[#141420] border-b border-[#2A2A3E]">
+        <div className="max-w-6xl mx-auto px-6 flex items-stretch h-10">
           {navItems.map((item) => {
             const isActive =
               item.href === '/'
@@ -35,19 +42,19 @@ export default function Header() {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`flex items-center px-4 text-sm border-b-2 transition-colors ${
+                className={`flex items-center px-4 text-[13px] font-medium border-b-2 transition-colors ${
                   isActive
-                    ? 'text-[#1B2E5E] font-semibold border-[#1B2E5E]'
-                    : 'text-gray-500 font-medium border-transparent hover:text-gray-900 hover:border-gray-300'
+                    ? 'text-white border-[#990F3D]'
+                    : 'text-[#9999BB] border-transparent hover:text-white hover:border-[#9999BB]'
                 }`}
               >
                 {item.label}
               </Link>
             );
           })}
-        </nav>
-
+        </div>
       </div>
+
     </header>
   );
 }

@@ -33,19 +33,19 @@ export default function HomePage() {
     }));
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen">
       <Header />
 
-      <main className="max-w-6xl mx-auto px-6 py-10">
-
-        {/* Masthead */}
-        <div className="mb-10 pb-6 border-b border-gray-200">
-          <div className="flex items-center gap-3">
-            <span className="text-[11px] font-semibold uppercase tracking-widest text-[#1B2E5E]">March 2026</span>
-            <span className="text-gray-300">·</span>
-            <span className="text-[11px] text-gray-400">{allEntries.length} developments tracked</span>
-          </div>
+      {/* Date bar — below header, full-width editorial strip */}
+      <div className="border-b border-gray-200 bg-gray-50">
+        <div className="max-w-6xl mx-auto px-6 h-9 flex items-center gap-4">
+          <span className="text-[11px] font-bold uppercase tracking-widest text-[#990F3D]">March 2026</span>
+          <span className="text-gray-300">|</span>
+          <span className="text-[11px] text-gray-500">{allEntries.length} developments tracked</span>
         </div>
+      </div>
+
+      <main className="max-w-6xl mx-auto px-6 py-8">
 
         {/* Intelligence Feed — client component with filters */}
         <IntelligenceFeed entries={allEntries} leadStoryId={leadStoryId} />
@@ -59,11 +59,11 @@ export default function HomePage() {
                 <Link
                   key={stat.entryId}
                   href={`/intelligence/${stat.entryId}`}
-                  className="group bg-gray-50 border border-gray-100 rounded p-4 hover:border-[#1B2E5E] transition-colors no-underline block"
+                  className="group bg-gray-50 border border-gray-100 rounded p-4 hover:border-[#990F3D] transition-colors no-underline block"
                 >
-                  <div className="key-stat-number group-hover:text-[#1B2E5E] transition-colors">{stat.number}</div>
+                  <div className="key-stat-number group-hover:text-[#990F3D] transition-colors">{stat.number}</div>
                   <div className="key-stat-label">{stat.label}</div>
-                  <div className="mt-2 text-[10px] text-gray-400 group-hover:text-[#1B2E5E] transition-colors">
+                  <div className="mt-2 text-[10px] text-gray-400 group-hover:text-[#990F3D] transition-colors">
                     Read source →
                   </div>
                 </Link>
@@ -77,7 +77,7 @@ export default function HomePage() {
           <section className="mb-14">
             <SectionLabel label="Featured Thought Leadership" />
             <Link href={`/thought-leadership/${featuredThought.id}`} className="group block">
-              <div className="border border-gray-200 rounded p-6 hover:border-[#1B2E5E] transition-colors">
+              <div className="border border-gray-200 rounded p-6 hover:border-[#990F3D] transition-colors">
                 <div className="flex items-start gap-4">
                   <div className="w-14 h-14 rounded-full overflow-hidden bg-gray-100 flex-shrink-0 border border-gray-200">
                     {featuredThought.author.photo_url ? (
@@ -100,22 +100,22 @@ export default function HomePage() {
                       </span>
                       <span className="text-xs text-gray-400">{featuredThought.author.organization}</span>
                     </div>
-                    <h3 className="text-lg font-bold text-gray-900 leading-snug mb-1 group-hover:text-[#1B2E5E] transition-colors">
+                    <h3 className="text-lg font-bold text-gray-900 leading-snug mb-1 group-hover:text-[#990F3D] transition-colors">
                       {featuredThought.title}
                     </h3>
                     <p className="text-sm text-gray-500 mb-2">
                       {featuredThought.author.name} · {featuredThought.publication} · {formatDateShort(featuredThought.date_published)}
                     </p>
-                    <blockquote className="text-sm text-gray-700 italic border-l-2 border-[#1B2E5E] pl-3">
+                    <blockquote className="text-sm text-gray-700 italic border-l-2 border-[#990F3D] pl-3">
                       &ldquo;{featuredThought.the_one_insight}&rdquo;
                     </blockquote>
                   </div>
-                  <span className="flex-shrink-0 text-[#1B2E5E] font-bold text-sm hidden md:block">Read →</span>
+                  <span className="flex-shrink-0 text-[#990F3D] font-bold text-sm hidden md:block">Read →</span>
                 </div>
               </div>
             </Link>
             <div className="mt-4">
-              <Link href="/thought-leadership" className="text-sm font-medium text-[#1B2E5E] hover:underline">
+              <Link href="/thought-leadership" className="text-sm font-medium text-[#990F3D] hover:underline">
                 View all thought leadership →
               </Link>
             </div>
@@ -132,7 +132,7 @@ export default function HomePage() {
                 12 institutions · 7 capability dimensions · Updated March 2026
               </p>
             </div>
-            <Link href="/landscape" className="text-sm font-bold text-[#1B2E5E] hover:underline flex-shrink-0">
+            <Link href="/landscape" className="text-sm font-bold text-[#990F3D] hover:underline flex-shrink-0">
               View full landscape →
             </Link>
           </div>

@@ -21,7 +21,7 @@ export default function CompetitorsPage() {
   })).filter(g => g.competitors.length > 0);
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen">
       <Header />
       <main className="max-w-6xl mx-auto px-6 py-10">
         <div className="mb-8 pb-6 border-b border-gray-200">
@@ -48,7 +48,7 @@ export default function CompetitorsPage() {
                   >
                     <div className="flex items-start justify-between mb-3">
                       <div>
-                        <div className="font-bold text-gray-900 text-sm mb-1 group-hover:text-[#1B2E5E] transition-colors">
+                        <div className="font-bold text-gray-900 text-sm mb-1 group-hover:text-[#990F3D] transition-colors">
                           {competitor.name}
                         </div>
                         <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full border uppercase tracking-wide ${mc}`}>
@@ -65,7 +65,7 @@ export default function CompetitorsPage() {
                         <span className="text-xs text-green-700 font-medium">{scaledCaps} scaled</span>
                       )}
                     </div>
-                    <div className="mt-1 text-[10px] text-[#1B2E5E] font-medium italic">
+                    <div className="mt-1 text-[10px] text-[#990F3D] font-medium italic">
                       {competitor.headline_metric}
                     </div>
                   </Link>

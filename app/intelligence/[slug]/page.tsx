@@ -18,16 +18,16 @@ export default async function IntelligenceArticlePage({
   if (!entry) notFound();
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen">
       <Header />
 
       <main className="max-w-3xl mx-auto px-6 py-10">
 
         {/* Breadcrumb */}
         <nav className="flex items-center gap-2 text-xs text-gray-400 mb-8">
-          <Link href="/" className="hover:text-[#1B2E5E]">Latest</Link>
+          <Link href="/" className="hover:text-[#990F3D]">Latest</Link>
           <span>›</span>
-          <Link href="/intelligence" className="hover:text-[#1B2E5E]">Intelligence</Link>
+          <Link href="/intelligence" className="hover:text-[#990F3D]">Intelligence</Link>
           <span>›</span>
           <span className="text-gray-600">{entry.company_name}</span>
         </nav>
@@ -91,7 +91,7 @@ export default async function IntelligenceArticlePage({
               href={entry.source_url}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-sm font-medium text-[#1B2E5E] hover:underline"
+              className="inline-flex items-center gap-2 text-sm font-medium text-[#990F3D] hover:underline"
             >
               {entry.source_name}
               <span className="text-gray-400">↗</span>
@@ -128,13 +128,13 @@ export default async function IntelligenceArticlePage({
         <div className="flex items-center gap-4">
           <Link
             href="/intelligence"
-            className="text-sm text-[#1B2E5E] font-medium hover:underline"
+            className="text-sm text-[#990F3D] font-medium hover:underline"
           >
             ← Back to Intelligence
           </Link>
           <Link
             href="/"
-            className="text-sm text-gray-400 hover:text-[#1B2E5E] hover:underline"
+            className="text-sm text-gray-400 hover:text-[#990F3D] hover:underline"
           >
             ← Latest
           </Link>

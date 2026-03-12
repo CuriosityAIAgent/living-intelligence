@@ -19,16 +19,16 @@ export default async function ThoughtLeadershipPiecePage({
   if (!entry) notFound();
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen">
       <Header />
 
       <main className="max-w-3xl mx-auto px-6 py-10">
 
         {/* Breadcrumb */}
         <nav className="flex items-center gap-2 text-xs text-gray-400 mb-8">
-          <Link href="/" className="hover:text-[#1B2E5E]">Latest</Link>
+          <Link href="/" className="hover:text-[#990F3D]">Latest</Link>
           <span>›</span>
-          <Link href="/thought-leadership" className="hover:text-[#1B2E5E]">Thought Leadership</Link>
+          <Link href="/thought-leadership" className="hover:text-[#990F3D]">Thought Leadership</Link>
           <span>›</span>
           <span className="text-gray-600">{entry.author.name}</span>
         </nav>
@@ -65,10 +65,10 @@ export default async function ThoughtLeadershipPiecePage({
 
         {/* The One Insight — callout */}
         <div className="bg-[#F0F4FF] border border-[#C7D2FE] rounded p-5 mb-10">
-          <p className="text-[10px] font-bold uppercase tracking-widest text-[#1B2E5E] mb-2">
+          <p className="text-[10px] font-bold uppercase tracking-widest text-[#990F3D] mb-2">
             The One Insight
           </p>
-          <p className="text-base font-medium text-[#1B2E5E] leading-relaxed italic">
+          <p className="text-base font-medium text-[#990F3D] leading-relaxed italic">
             &ldquo;{entry.the_one_insight}&rdquo;
           </p>
         </div>
@@ -81,7 +81,7 @@ export default async function ThoughtLeadershipPiecePage({
           <ul className="space-y-3">
             {entry.executive_summary.map((point, i) => (
               <li key={i} className="flex gap-3 text-sm text-gray-700 leading-relaxed">
-                <span className="text-[#1B2E5E] font-bold mt-0.5 flex-shrink-0">→</span>
+                <span className="text-[#990F3D] font-bold mt-0.5 flex-shrink-0">→</span>
                 <span>{point}</span>
               </li>
             ))}
@@ -96,7 +96,7 @@ export default async function ThoughtLeadershipPiecePage({
             </h2>
             <div className="space-y-5">
               {entry.key_quotes.map((quote, i) => (
-                <div key={i} className="border-l-2 border-[#1B2E5E] pl-4">
+                <div key={i} className="border-l-2 border-[#990F3D] pl-4">
                   <blockquote className="text-base text-gray-800 italic mb-2 leading-relaxed">
                     &ldquo;{quote.text}&rdquo;
                   </blockquote>
@@ -122,7 +122,7 @@ export default async function ThoughtLeadershipPiecePage({
             href={entry.source_url}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-[#1B2E5E] text-white text-sm font-medium px-5 py-2.5 rounded hover:bg-[#2A4080] transition-colors"
+            className="inline-flex items-center gap-2 bg-[#990F3D] text-white text-sm font-medium px-5 py-2.5 rounded hover:bg-[#7A0B2E] transition-colors"
           >
             Read the Original ↗
           </a>
@@ -131,7 +131,7 @@ export default async function ThoughtLeadershipPiecePage({
               href={entry.document_url}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 border border-gray-200 text-sm font-medium px-5 py-2.5 rounded hover:border-[#1B2E5E] hover:text-[#1B2E5E] transition-colors ml-3"
+              className="inline-flex items-center gap-2 border border-gray-200 text-sm font-medium px-5 py-2.5 rounded hover:border-[#990F3D] hover:text-[#990F3D] transition-colors ml-3"
             >
               Download PDF ↓
             </a>
@@ -142,13 +142,13 @@ export default async function ThoughtLeadershipPiecePage({
         <div className="flex items-center gap-4">
           <Link
             href="/thought-leadership"
-            className="text-sm text-[#1B2E5E] font-medium hover:underline"
+            className="text-sm text-[#990F3D] font-medium hover:underline"
           >
             ← Back to Thought Leadership
           </Link>
           <Link
             href="/"
-            className="text-sm text-gray-400 hover:text-[#1B2E5E] hover:underline"
+            className="text-sm text-gray-400 hover:text-[#990F3D] hover:underline"
           >
             ← Latest
           </Link>

@@ -4,7 +4,7 @@
  */
 
 const PALETTE = [
-  '#1B2E5E', '#0F5E8A', '#1A5C3A', '#5E1B2E',
+  '#990F3D', '#0F5E8A', '#1A5C3A', '#5E1B2E',
   '#3D1B5E', '#0A4D5E', '#5E3D1B', '#1B4A5E',
 ];
 

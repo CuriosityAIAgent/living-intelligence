@@ -67,64 +67,71 @@ export default function IntelligenceFeed({ entries, leadStoryId }: {
       {/* Lead Story */}
       {leadStory && (
         <section className="mb-12">
-          <div className="mb-3">
+          <div className="mb-4">
             <p className="section-label">Lead Story</p>
             <hr className="section-rule" />
           </div>
           <Link href={`/intelligence/${leadStory.id}`} className="group block">
-            <div className="grid md:grid-cols-5 gap-6 items-start">
-              <div className="md:col-span-2 bg-gray-50 border border-gray-100 rounded h-52 flex items-center justify-center overflow-hidden p-8">
+            <div className="grid md:grid-cols-5 gap-8 items-stretch">
+              {/* Logo panel — dark editorial background */}
+              <div className="md:col-span-2 bg-[#1C1C2E] rounded flex items-center justify-center overflow-hidden p-10 min-h-[220px]">
                 {leadStory.image_url ? (
                   // eslint-disable-next-line @next/next/no-img-element
                   <img
                     src={leadStory.image_url}
                     alt={leadStory.company_name}
-                    className="max-h-24 max-w-[70%] object-contain"
+                    className="max-h-20 max-w-[65%] object-contain brightness-0 invert"
                     onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
                   />
                 ) : (
-                  <CompanyLogo name={leadStory.company_name} size="lg" />
+                  <span className="text-white text-2xl font-bold opacity-80">
+                    {leadStory.company_name}
+                  </span>
                 )}
               </div>
-              <div className="md:col-span-3">
-                <div className="flex items-center gap-2 mb-2">
-                  <span className={`type-badge badge-${leadStory.type}`}>
-                    {TYPE_LABELS[leadStory.type]}
-                  </span>
-                  <span className="text-xs text-gray-400">{leadStory.company_name}</span>
-                  <span className="text-xs text-gray-300">·</span>
-                  <span className="text-xs text-gray-400">{formatDateShort(leadStory.date)}</span>
-                </div>
-                <h2 className="text-2xl font-bold text-gray-900 leading-snug mb-3 group-hover:text-[#1B2E5E] transition-colors">
-                  {leadStory.headline}
-                </h2>
-                <p className="text-sm text-gray-600 leading-relaxed line-clamp-3">{leadStory.summary}</p>
-                {leadStory.key_stat && (
-                  <div className="mt-4">
-                    <span className="text-2xl font-extrabold text-[#1B2E5E]">{leadStory.key_stat.number}</span>
-                    <span className="text-xs text-gray-400 ml-2">{leadStory.key_stat.label}</span>
+              {/* Content */}
+              <div className="md:col-span-3 flex flex-col justify-between py-1">
+                <div>
+                  <div className="flex items-center gap-2 mb-3">
+                    <span className={`type-badge badge-${leadStory.type}`}>
+                      {TYPE_LABELS[leadStory.type]}
+                    </span>
+                    <span className="text-xs text-gray-500 font-medium">{leadStory.company_name}</span>
+                    <span className="text-gray-300">·</span>
+                    <span className="text-xs text-gray-400">{formatDateShort(leadStory.date)}</span>
                   </div>
-                )}
-                <div className="mt-3 flex items-center gap-2">
-                  <span className="text-xs text-gray-400">Source:</span>
-                  {leadStory.source_verified && leadStory.source_url ? (
-                    <span
-                      role="link"
-                      tabIndex={0}
-                      onClick={(e) => { e.preventDefault(); e.stopPropagation(); window.open(leadStory.source_url, '_blank', 'noopener,noreferrer'); }}
-                      onKeyDown={(e) => { if (e.key === 'Enter') { e.preventDefault(); e.stopPropagation(); window.open(leadStory.source_url, '_blank', 'noopener,noreferrer'); } }}
-                      className="text-xs text-[#1B2E5E] hover:underline font-medium cursor-pointer"
-                    >
-                      {leadStory.source_name} ↗
-                    </span>
-                  ) : (
-                    <span className="text-xs text-gray-400">{leadStory.source_name}</span>
+                  <h2 className="text-[28px] font-bold text-gray-900 leading-tight mb-4 group-hover:text-[#990F3D] transition-colors">
+                    {leadStory.headline}
+                  </h2>
+                  <p className="text-[15px] text-gray-600 leading-relaxed line-clamp-3">{leadStory.summary}</p>
+                </div>
+                <div>
+                  {leadStory.key_stat && (
+                    <div className="mt-5 pt-4 border-t border-gray-100 flex items-baseline gap-3">
+                      <span className="text-3xl font-extrabold text-[#990F3D]">{leadStory.key_stat.number}</span>
+                      <span className="text-xs text-gray-500 leading-snug max-w-xs">{leadStory.key_stat.label}</span>
+                    </div>
                   )}
-                  {!leadStory.source_verified && (
-                    <span className="text-[9px] text-amber-600 bg-amber-50 border border-amber-200 px-1.5 py-0.5 rounded">
-                      Pending verification
-                    </span>
-                  )}
+                  <div className="mt-4 flex items-center gap-2">
+                    {leadStory.source_verified && leadStory.source_url ? (
+                      <span
+                        role="link"
+                        tabIndex={0}
+                        onClick={(e) => { e.preventDefault(); e.stopPropagation(); window.open(leadStory.source_url, '_blank', 'noopener,noreferrer'); }}
+                        onKeyDown={(e) => { if (e.key === 'Enter') { e.preventDefault(); e.stopPropagation(); window.open(leadStory.source_url, '_blank', 'noopener,noreferrer'); } }}
+                        className="text-xs text-[#990F3D] hover:underline font-medium cursor-pointer"
+                      >
+                        {leadStory.source_name} ↗
+                      </span>
+                    ) : (
+                      <span className="text-xs text-gray-400">{leadStory.source_name}</span>
+                    )}
+                    {!leadStory.source_verified && (
+                      <span className="text-[9px] text-amber-600 bg-amber-50 border border-amber-200 px-1.5 py-0.5 rounded">
+                        Pending verification
+                      </span>
+                    )}
+                  </div>
                 </div>
               </div>
             </div>
@@ -134,54 +141,58 @@ export default function IntelligenceFeed({ entries, leadStoryId }: {
 
       {/* Filters */}
       <section className="mb-8">
-        <div className="mb-4">
-          <p className="section-label">Intelligence Feed</p>
+        <div className="mb-5">
+          <div className="flex items-center justify-between mb-3">
+            <p className="section-label">Intelligence Feed</p>
+            <span className="text-[11px] text-gray-400">
+              {filtered.length} {filtered.length === 1 ? 'story' : 'stories'}
+              {region !== 'all' && ` · ${REGIONS.find(r => r.value === region)?.label}`}
+              {capability !== 'all' && ` · ${CAPABILITIES.find(c => c.value === capability)?.label}`}
+            </span>
+          </div>
           <hr className="section-rule" />
         </div>
 
-        {/* Region filter */}
-        <div className="flex items-center gap-2 mb-3 flex-wrap">
-          <span className="text-xs text-gray-400 font-medium uppercase tracking-wide">Region:</span>
-          {REGIONS.map(r => (
-            <button
-              key={r.value}
-              onClick={() => setRegion(r.value)}
-              className={`text-xs px-3 py-1.5 rounded-full border transition-colors font-medium ${
-                region === r.value
-                  ? 'bg-[#1B2E5E] text-white border-[#1B2E5E]'
-                  : 'bg-white text-gray-600 border-gray-200 hover:border-[#1B2E5E] hover:text-[#1B2E5E]'
-              }`}
-            >
-              {r.label}
-            </button>
-          ))}
-        </div>
+        <div className="flex flex-wrap gap-y-2 gap-x-4 items-center">
+          {/* Region filter */}
+          <div className="flex items-center gap-1.5 flex-wrap">
+            <span className="text-[10px] text-gray-400 font-semibold uppercase tracking-wider mr-1">Region</span>
+            {REGIONS.map(r => (
+              <button
+                key={r.value}
+                onClick={() => setRegion(r.value)}
+                className={`text-[11px] px-2.5 py-1 border transition-colors font-medium rounded ${
+                  region === r.value
+                    ? 'bg-[#990F3D] text-white border-[#990F3D]'
+                    : 'bg-white text-gray-500 border-gray-200 hover:border-[#990F3D] hover:text-[#990F3D]'
+                }`}
+              >
+                {r.label}
+              </button>
+            ))}
+          </div>
 
-        {/* Capability filter */}
-        <div className="flex items-center gap-2 flex-wrap">
-          <span className="text-xs text-gray-400 font-medium uppercase tracking-wide">Topic:</span>
-          {CAPABILITIES.map(c => (
-            <button
-              key={c.value}
-              onClick={() => setCapability(c.value)}
-              className={`text-xs px-3 py-1.5 rounded-full border transition-colors font-medium ${
-                capability === c.value
-                  ? 'bg-[#1B2E5E] text-white border-[#1B2E5E]'
-                  : 'bg-white text-gray-600 border-gray-200 hover:border-[#1B2E5E] hover:text-[#1B2E5E]'
-              }`}
-            >
-              {c.label}
-            </button>
-          ))}
+          <span className="text-gray-200 hidden md:block">|</span>
+
+          {/* Capability filter */}
+          <div className="flex items-center gap-1.5 flex-wrap">
+            <span className="text-[10px] text-gray-400 font-semibold uppercase tracking-wider mr-1">Topic</span>
+            {CAPABILITIES.map(c => (
+              <button
+                key={c.value}
+                onClick={() => setCapability(c.value)}
+                className={`text-[11px] px-2.5 py-1 border transition-colors font-medium rounded ${
+                  capability === c.value
+                    ? 'bg-[#990F3D] text-white border-[#990F3D]'
+                    : 'bg-white text-gray-500 border-gray-200 hover:border-[#990F3D] hover:text-[#990F3D]'
+                }`}
+              >
+                {c.label}
+              </button>
+            ))}
+          </div>
         </div>
       </section>
-
-      {/* Results count */}
-      <div className="mb-4 text-xs text-gray-400">
-        {filtered.length} {filtered.length === 1 ? 'story' : 'stories'}
-        {region !== 'all' && ` in ${REGIONS.find(r => r.value === region)?.label}`}
-        {capability !== 'all' && ` · ${CAPABILITIES.find(c => c.value === capability)?.label}`}
-      </div>
 
       {/* Story grid */}
       {filtered.length === 0 ? (
@@ -219,13 +230,13 @@ export default function IntelligenceFeed({ entries, leadStoryId }: {
                 <span className="text-[10px] text-gray-400 uppercase">{entry.tags.region}</span>
               </div>
 
-              <h3 className="text-sm font-bold text-gray-900 leading-snug mb-2 group-hover:text-[#1B2E5E] transition-colors flex-1">
+              <h3 className="text-sm font-bold text-gray-900 leading-snug mb-2 group-hover:text-[#990F3D] transition-colors flex-1">
                 {entry.headline}
               </h3>
 
               {entry.key_stat && (
                 <div className="mb-2">
-                  <span className="text-base font-extrabold text-[#1B2E5E]">{entry.key_stat.number}</span>
+                  <span className="text-base font-extrabold text-[#990F3D]">{entry.key_stat.number}</span>
                   <span className="text-[10px] text-gray-400 ml-1.5">{entry.key_stat.label}</span>
                 </div>
               )}

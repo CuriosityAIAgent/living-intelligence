@@ -24,7 +24,7 @@ export default function LandscapePage() {
   })).filter(g => g.competitors.length > 0);
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen">
       <Header />
 
       <main className="max-w-6xl mx-auto px-6 py-10">
@@ -128,6 +128,61 @@ export default function LandscapePage() {
               ))}
             </tbody>
           </table>
+        </div>
+
+        {/* Maturity Definitions */}
+        <div className="mt-12 mb-10">
+          <SectionLabel label="How to Read the Matrix" />
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-0 border border-gray-200 rounded overflow-hidden">
+            <div className="p-4 border-r border-gray-200">
+              <div className="flex items-center gap-2 mb-2">
+                <div className="w-2.5 h-2.5 rounded-full bg-green-500 flex-shrink-0" />
+                <span className="text-[11px] font-bold uppercase tracking-wider text-gray-800">Scaled</span>
+              </div>
+              <p className="text-[11px] text-gray-500 leading-relaxed">
+                AI is core to operations at full institutional scale — measurable adoption across the firm, advisor network, or client base (tens of thousands of users, billions of interactions, or embedded in all client workflows). Efficiency or revenue impact is documented.
+              </p>
+            </div>
+            <div className="p-4 border-r border-gray-200">
+              <div className="flex items-center gap-2 mb-2">
+                <div className="w-2.5 h-2.5 rounded-full bg-blue-500 flex-shrink-0" />
+                <span className="text-[11px] font-bold uppercase tracking-wider text-gray-800">Deployed</span>
+              </div>
+              <p className="text-[11px] text-gray-500 leading-relaxed">
+                AI capability is live in production with real clients or advisors, but not yet at full organizational scale. Rollout is underway or limited to specific regions, divisions, or user groups.
+              </p>
+            </div>
+            <div className="p-4 border-r border-gray-200">
+              <div className="flex items-center gap-2 mb-2">
+                <div className="w-2.5 h-2.5 rounded-full bg-orange-400 flex-shrink-0" />
+                <span className="text-[11px] font-bold uppercase tracking-wider text-gray-800">Piloting</span>
+              </div>
+              <p className="text-[11px] text-gray-500 leading-relaxed">
+                A formal internal pilot or limited external trial is confirmed and underway. The capability is not yet generally available — a defined group of users is actively testing it in a controlled environment.
+              </p>
+            </div>
+            <div className="p-4 border-r border-gray-200">
+              <div className="flex items-center gap-2 mb-2">
+                <div className="w-2.5 h-2.5 rounded-full bg-yellow-400 flex-shrink-0" />
+                <span className="text-[11px] font-bold uppercase tracking-wider text-gray-800">Announced</span>
+              </div>
+              <p className="text-[11px] text-gray-500 leading-relaxed">
+                A public statement, press release, partnership signing, or product preview has confirmed intent. No live client or advisor access confirmed yet. Subject to revision as rollout evidence emerges.
+              </p>
+            </div>
+            <div className="p-4">
+              <div className="flex items-center gap-2 mb-2">
+                <div className="w-2.5 h-2.5 rounded-full bg-gray-200 flex-shrink-0" />
+                <span className="text-[11px] font-bold uppercase tracking-wider text-gray-500">No Activity</span>
+              </div>
+              <p className="text-[11px] text-gray-400 leading-relaxed">
+                No public evidence of activity in this capability area as of the assessment date. Absence of evidence is not evidence of absence — some initiatives may be unannounced.
+              </p>
+            </div>
+          </div>
+          <p className="text-[10px] text-gray-400 mt-2">
+            Ratings based on publicly available evidence as of March 2026. All assessments are directional — not investment advice.
+          </p>
         </div>
 
         {/* Summary */}

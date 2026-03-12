@@ -36,15 +36,15 @@ export default async function CompetitorPage({ params }: { params: Promise<{ slu
   const noActivityCaps = capabilities.filter(cap => !competitor.capabilities[cap.id]);
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen">
       <Header />
       <main className="max-w-4xl mx-auto px-6 py-10">
 
         {/* Breadcrumb */}
         <nav className="flex items-center gap-2 text-xs text-gray-400 mb-8">
-          <Link href="/landscape" className="hover:text-[#1B2E5E]">Landscape</Link>
+          <Link href="/landscape" className="hover:text-[#990F3D]">Landscape</Link>
           <span>›</span>
-          <Link href="/competitors" className="hover:text-[#1B2E5E]">Profiles</Link>
+          <Link href="/competitors" className="hover:text-[#990F3D]">Profiles</Link>
           <span>›</span>
           <span className="text-gray-600">{competitor.name}</span>
         </nav>
@@ -67,7 +67,7 @@ export default async function CompetitorPage({ params }: { params: Promise<{ slu
               </div>
             </div>
             <div className="text-right">
-              <div className="text-xl font-extrabold text-[#1B2E5E]">{competitor.headline_metric}</div>
+              <div className="text-xl font-extrabold text-[#990F3D]">{competitor.headline_metric}</div>
               <div className="text-xs text-gray-400 mt-0.5">headline metric</div>
             </div>
           </div>
@@ -150,7 +150,7 @@ export default async function CompetitorPage({ params }: { params: Promise<{ slu
         )}
 
         <div className="flex items-center justify-between text-xs text-gray-400">
-          <Link href="/competitors" className="hover:text-[#1B2E5E] transition-colors">← All Profiles</Link>
+          <Link href="/competitors" className="hover:text-[#990F3D] transition-colors">← All Profiles</Link>
           <span>Last updated: {competitor.last_updated}</span>
         </div>
 

@@ -8,7 +8,7 @@ export default function ThoughtLeadershipPage() {
   const entries = getAllThoughtLeadership();
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen">
       <Header />
 
       <main className="max-w-6xl mx-auto px-6 py-10">
@@ -53,7 +53,7 @@ export default function ThoughtLeadershipPage() {
                       </>
                     )}
                   </div>
-                  <h3 className="text-[15px] font-bold text-gray-900 leading-snug mb-1 group-hover:text-[#1B2E5E] transition-colors">
+                  <h3 className="text-[15px] font-bold text-gray-900 leading-snug mb-1 group-hover:text-[#990F3D] transition-colors">
                     {entry.title}
                   </h3>
                   <p className="text-xs text-gray-400 mb-2">
@@ -64,7 +64,7 @@ export default function ThoughtLeadershipPage() {
                   </p>
                 </div>
 
-                <div className="flex-shrink-0 text-[#1B2E5E] text-sm font-semibold hidden md:flex items-center self-center">
+                <div className="flex-shrink-0 text-[#990F3D] text-sm font-semibold hidden md:flex items-center self-center">
                   Read →
                 </div>
               </Link>

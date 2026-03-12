@@ -2,7 +2,7 @@
 
 // Deterministic color from company name — cycles through a professional palette
 const PALETTE = [
-  '#1B2E5E', // navy
+  '#990F3D', // navy
   '#0F6B8A', // teal
   '#2E5E3B', // forest
   '#5E2E4A', // plum
