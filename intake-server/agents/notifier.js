@@ -5,10 +5,10 @@
  *
  * Required env vars:
  *   DIGEST_EMAIL    — recipient address
- *   SMTP_HOST       — e.g. smtp.gmail.com
- *   SMTP_PORT       — e.g. 587
- *   SMTP_USER       — SMTP username / email
- *   SMTP_PASS       — Gmail App Password or SMTP password
+ *   MAIL_HOST       — e.g. smtp.gmail.com
+ *   MAIL_PORT       — e.g. 587
+ *   MAIL_USER       — SMTP username / email
+ *   MAIL_PASS       — Gmail App Password or SMTP password
  *   REVIEW_SECRET   — 32-char secret for HMAC-SHA256 token signing
  *   INTAKE_BASE_URL — public URL of this server, e.g. https://intake.railway.app
  */
@@ -34,12 +34,12 @@ export function verifyToken(entryId, token) {
 
 function createTransport() {
   return nodemailer.createTransport({
-    host:   process.env.SMTP_HOST  || 'smtp.gmail.com',
-    port:   parseInt(process.env.SMTP_PORT || '587', 10),
+    host:   process.env.MAIL_HOST  || 'smtp.gmail.com',
+    port:   parseInt(process.env.MAIL_PORT || '587', 10),
     secure: false,  // STARTTLS
     auth: {
-      user: process.env.SMTP_USER,
-      pass: process.env.SMTP_PASS,
+      user: process.env.MAIL_USER,
+      pass: process.env.MAIL_PASS,
     },
   });
 }
@@ -163,8 +163,8 @@ export async function sendDigest({ published = [], pending = [], blocked = [], e
     return;
   }
 
-  if (!process.env.SMTP_USER || !process.env.SMTP_PASS) {
-    console.warn('[notifier] SMTP_USER / SMTP_PASS not set — skipping digest email');
+  if (!process.env.MAIL_USER || !process.env.MAIL_PASS) {
+    console.warn('[notifier] MAIL_USER / MAIL_PASS not set — skipping digest email');
     return;
   }
 
@@ -187,7 +187,7 @@ export async function sendDigest({ published = [], pending = [], blocked = [], e
 
   const transport = createTransport();
   await transport.sendMail({
-    from:    `"AI Portal" <${process.env.SMTP_USER}>`,
+    from:    `"AI Portal" <${process.env.MAIL_USER}>`,
     to,
     subject,
     text,
