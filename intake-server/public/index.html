@@ -1,0 +1,1124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI in Wealth Management — Content Intake</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #F9FAFB;
+      color: #111827;
+      font-size: 14px;
+      min-height: 100vh;
+    }
+
+    /* Header */
+    header {
+      background: #fff;
+      border-bottom: 1px solid #E5E7EB;
+      padding: 0 24px;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .header-title { font-size: 14px; font-weight: 700; color: #1B2E5E; }
+    .header-sub { font-size: 12px; color: #9CA3AF; margin-left: 12px; }
+    .header-badge {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.08em;
+      text-transform: uppercase; padding: 3px 8px; border-radius: 3px;
+      background: #EEF2FF; color: #3730A3;
+    }
+
+    /* Layout */
+    .layout {
+      display: grid;
+      grid-template-columns: 340px 1fr;
+      gap: 0;
+      min-height: calc(100vh - 52px);
+    }
+
+    /* Left panel */
+    .left-panel {
+      background: #fff;
+      border-right: 1px solid #E5E7EB;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .panel-header {
+      padding: 16px;
+      border-bottom: 1px solid #E5E7EB;
+      background: #F9FAFB;
+    }
+    .panel-title {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: #1B2E5E; margin-bottom: 12px;
+    }
+    .action-btn {
+      display: inline-flex; align-items: center; gap-6px;
+      background: #1B2E5E; color: #fff;
+      border: none; border-radius: 5px;
+      padding: 8px 14px; font-size: 13px; font-weight: 600;
+      cursor: pointer; transition: background 0.15s;
+      width: 100%;
+      justify-content: center;
+    }
+    .action-btn:hover { background: #2A4080; }
+    .action-btn:disabled { background: #9CA3AF; cursor: not-allowed; }
+    .action-btn.secondary {
+      background: #fff; color: #1B2E5E;
+      border: 1px solid #1B2E5E;
+    }
+    .action-btn.secondary:hover { background: #EEF2FF; }
+    .action-btn.danger { background: #DC2626; }
+    .action-btn.danger:hover { background: #B91C1C; }
+    .action-btn.success { background: #15803D; }
+    .action-btn.success:hover { background: #166534; }
+
+    /* Candidates list */
+    .candidates-scroll {
+      flex: 1;
+      overflow-y: auto;
+      padding: 8px;
+    }
+    .candidate-item {
+      border: 1px solid #E5E7EB;
+      border-radius: 6px;
+      padding: 10px 12px;
+      margin-bottom: 6px;
+      background: #fff;
+      cursor: pointer;
+      transition: border-color 0.15s;
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+    .candidate-item:hover { border-color: #1B2E5E; }
+    .candidate-item.selected { border-color: #1B2E5E; background: #F8FAFF; }
+    .candidate-item.active { border-color: #7C3AED; background: #FAF5FF; }
+    .candidate-checkbox {
+      width: 16px; height: 16px; margin-top: 1px; flex-shrink: 0;
+      accent-color: #1B2E5E;
+    }
+    .candidate-info { flex: 1; min-width: 0; }
+    .candidate-title {
+      font-size: 12px; font-weight: 600; color: #111827;
+      line-height: 1.4; margin-bottom: 4px;
+      display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .candidate-meta {
+      font-size: 10px; color: #9CA3AF;
+    }
+    .verdict-dot {
+      width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; margin-top: 4px;
+    }
+    .verdict-pass { background: #22C55E; }
+    .verdict-review { background: #F59E0B; }
+    .verdict-fail { background: #EF4444; }
+    .verdict-pending { background: #D1D5DB; }
+    .verdict-processing { background: #6366F1; animation: pulse 1s infinite; }
+
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+    /* Status log */
+    .status-bar {
+      border-top: 1px solid #E5E7EB;
+      padding: 8px 12px;
+      font-size: 11px;
+      color: #6B7280;
+      background: #F9FAFB;
+      min-height: 36px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .status-dot { width: 6px; height: 6px; border-radius: 50%; background: #22C55E; flex-shrink: 0; }
+
+    /* Right panel */
+    .right-panel {
+      padding: 24px;
+      overflow-y: auto;
+    }
+    .empty-state {
+      display: flex; flex-direction: column; align-items: center;
+      justify-content: center; height: 60vh;
+      color: #9CA3AF; text-align: center;
+    }
+    .empty-icon { font-size: 40px; margin-bottom: 12px; }
+    .empty-title { font-size: 15px; font-weight: 600; margin-bottom: 6px; color: #6B7280; }
+
+    /* Entry preview */
+    .entry-preview {
+      background: #fff;
+      border: 1px solid #E5E7EB;
+      border-radius: 8px;
+      overflow: hidden;
+      max-width: 800px;
+    }
+    .entry-preview-header {
+      padding: 16px 20px;
+      border-bottom: 1px solid #E5E7EB;
+      background: #F9FAFB;
+      display: flex; align-items: flex-start; justify-content: space-between; gap: 12px;
+    }
+    .entry-headline {
+      font-size: 16px; font-weight: 700; color: #111827; line-height: 1.4;
+    }
+    .governance-badge {
+      flex-shrink: 0;
+      font-size: 10px; font-weight: 700; letter-spacing: 0.08em;
+      text-transform: uppercase; padding: 4px 10px; border-radius: 4px;
+    }
+    .gov-pass { background: #DCFCE7; color: #15803D; border: 1px solid #BBF7D0; }
+    .gov-review { background: #FEF3C7; color: #B45309; border: 1px solid #FDE68A; }
+    .gov-fail { background: #FEE2E2; color: #B91C1C; border: 1px solid #FECACA; }
+    .gov-pending { background: #F3F4F6; color: #6B7280; border: 1px solid #E5E7EB; }
+
+    .entry-preview-body { padding: 20px; }
+    .field-label {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: #9CA3AF; margin-bottom: 4px;
+    }
+    .field-value {
+      font-size: 13px; color: #374151; margin-bottom: 14px; line-height: 1.6;
+    }
+    .field-value.mono {
+      font-family: monospace; font-size: 12px; background: #F9FAFB;
+      padding: 6px 8px; border-radius: 4px; border: 1px solid #E5E7EB;
+    }
+    .tag-list { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 14px; }
+    .tag {
+      font-size: 10px; padding: 2px 8px; border-radius: 10px;
+      background: #EEF2FF; color: #3730A3; border: 1px solid #C7D2FE;
+    }
+
+    /* Governance result */
+    .gov-section {
+      margin-top: 16px; padding: 14px; border-radius: 6px;
+      border: 1px solid #E5E7EB; background: #F9FAFB;
+    }
+    .gov-claim { font-size: 12px; color: #374151; padding: 4px 0; display: flex; gap: 6px; }
+    .gov-check { color: #15803D; }
+    .gov-warn { color: #B45309; }
+    .gov-x { color: #B91C1C; }
+
+    /* Bottom actions */
+    .entry-actions {
+      padding: 14px 20px;
+      border-top: 1px solid #E5E7EB;
+      background: #F9FAFB;
+      display: flex; gap: 8px;
+    }
+
+    /* Publish bar */
+    .publish-bar {
+      position: fixed; bottom: 0; left: 340px; right: 0;
+      background: #1B2E5E; color: #fff;
+      padding: 12px 24px;
+      display: none; align-items: center; justify-content: space-between;
+      border-top: 2px solid #2A4080;
+      z-index: 50;
+    }
+    .publish-bar.visible { display: flex; }
+    .publish-count { font-size: 13px; font-weight: 600; }
+    .publish-sub { font-size: 11px; opacity: 0.7; }
+
+    /* Log overlay */
+    .log-overlay {
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 200; align-items: center; justify-content: center;
+    }
+    .log-overlay.visible { display: flex; }
+    .log-box {
+      background: #111827; color: #D1FAE5;
+      border-radius: 8px; padding: 20px;
+      width: 560px; max-height: 70vh;
+      overflow-y: auto; font-family: monospace; font-size: 12px;
+    }
+    .log-line { margin-bottom: 4px; line-height: 1.5; }
+    .log-line.error { color: #FCA5A5; }
+    .log-line.success { color: #86EFAC; }
+    .log-line.warn { color: #FDE68A; }
+
+    input[type="text"] {
+      width: 100%; border: 1px solid #D1D5DB; border-radius: 5px;
+      padding: 7px 10px; font-size: 13px; color: #111827;
+      outline: none; transition: border-color 0.15s;
+    }
+    input[type="text"]:focus { border-color: #1B2E5E; }
+
+    .spinner { display: inline-block; }
+    .spinner::after {
+      content: ''; display: inline-block; width: 10px; height: 10px;
+      border: 2px solid #fff; border-top-color: transparent;
+      border-radius: 50%; animation: spin 0.6s linear infinite;
+      margin-left: 6px; vertical-align: middle;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .divider { height: 1px; background: #E5E7EB; margin: 12px 0; }
+    .section-label {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; color: #1B2E5E; margin-bottom: 8px;
+    }
+
+    /* Mode tabs */
+    .mode-tabs {
+      display: flex; gap: 0; margin-bottom: 12px;
+      border: 1px solid #E5E7EB; border-radius: 5px; overflow: hidden;
+    }
+    .mode-tab {
+      flex: 1; padding: 6px 0; font-size: 11px; font-weight: 600;
+      text-align: center; cursor: pointer; border: none; background: #fff;
+      color: #6B7280; transition: background 0.15s, color 0.15s;
+    }
+    .mode-tab.active { background: #1B2E5E; color: #fff; }
+    .mode-tab:not(:last-child) { border-right: 1px solid #E5E7EB; }
+
+    /* Search chips */
+    .query-chips {
+      display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 8px;
+    }
+    .query-chip {
+      font-size: 10px; padding: 3px 8px; border-radius: 10px;
+      background: #EEF2FF; color: #3730A3; border: 1px solid #C7D2FE;
+      cursor: pointer; transition: background 0.12s;
+      white-space: nowrap;
+    }
+    .query-chip:hover { background: #C7D2FE; }
+
+    /* Pending queue */
+    .pending-badge {
+      display: inline-block; background: #F59E0B; color: #fff;
+      font-size: 9px; font-weight: 700; border-radius: 8px;
+      padding: 1px 5px; margin-left: 4px; vertical-align: middle;
+    }
+    .pending-item {
+      border: 1px solid #FDE68A; border-radius: 6px;
+      padding: 10px 12px; margin-bottom: 8px; background: #FFFBEB;
+    }
+    .pending-item-headline { font-size: 12px; font-weight: 700; color: #111827; margin-bottom: 4px; }
+    .pending-item-meta { font-size: 10px; color: #9CA3AF; margin-bottom: 6px; }
+    .pending-claim { font-size: 11px; color: #B45309; padding: 2px 0; }
+    .pending-actions { display: flex; gap: 6px; margin-top: 8px; }
+    .pending-approve { background: #15803D; color: #fff; border: none; border-radius: 4px; padding: 5px 12px; font-size: 11px; font-weight: 700; cursor: pointer; }
+    .pending-approve:hover { background: #166534; }
+    .pending-reject { background: #fff; color: #B91C1C; border: 1px solid #FECACA; border-radius: 4px; padding: 5px 12px; font-size: 11px; font-weight: 700; cursor: pointer; }
+    .pending-reject:hover { background: #FEE2E2; }
+
+    /* Blocked notice */
+    .blocked-notice {
+      background: #FEE2E2; border: 1px solid #FECACA; border-radius: 6px;
+      padding: 12px; color: #B91C1C; font-size: 12px; line-height: 1.5;
+    }
+
+    /* Source progress */
+    .source-progress {
+      display: grid; grid-template-columns: 1fr 1fr 1fr;
+      gap: 4px; margin-top: 10px;
+    }
+    .source-pill {
+      text-align: center; padding: 4px 6px; border-radius: 4px;
+      font-size: 9px; font-weight: 700; letter-spacing: 0.05em;
+      border: 1px solid #E5E7EB; background: #F9FAFB; color: #9CA3AF;
+      transition: all 0.2s;
+    }
+    .source-pill.running { background: #EEF2FF; color: #3730A3; border-color: #C7D2FE; animation: pulse 1s infinite; }
+    .source-pill.done { background: #DCFCE7; color: #15803D; border-color: #BBF7D0; animation: none; }
+    .source-pill-label { font-size: 8px; opacity: 0.7; display: block; margin-bottom: 1px; }
+
+    /* Via badge on candidates */
+    .via-badge {
+      font-size: 8px; font-weight: 700; letter-spacing: 0.05em;
+      padding: 1px 5px; border-radius: 3px; flex-shrink: 0;
+    }
+    .via-rss { background: #DBEAFE; color: #1D4ED8; }
+    .via-jina { background: #EDE9FE; color: #6D28D9; }
+    .via-dfs  { background: #D1FAE5; color: #065F46; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div style="display:flex;align-items:center;">
+    <span class="header-title">AI in Wealth Management</span>
+    <span class="header-sub">Content Intake</span>
+  </div>
+  <span class="header-badge">Internal Tool</span>
+</header>
+
+<div class="layout">
+
+  <!-- Left panel: candidates + controls -->
+  <div class="left-panel">
+    <div class="panel-header">
+      <div class="panel-title">Discovery</div>
+
+      <!-- Mode tabs -->
+      <div class="mode-tabs">
+        <button class="mode-tab active" id="tabAuto" onclick="switchMode('auto')">Auto-Discover</button>
+        <button class="mode-tab" id="tabSearch" onclick="switchMode('search')">Search</button>
+        <button class="mode-tab" id="tabUrl" onclick="switchMode('url')">URL</button>
+        <button class="mode-tab" id="tabPending" onclick="switchMode('pending')">Review<span class="pending-badge" id="pendingBadge" style="display:none;">0</span></button>
+      </div>
+
+      <!-- Auto-Discover mode (default) -->
+      <div id="modeAuto">
+        <button class="action-btn" id="btnAutoDiscover" onclick="runAutoDiscover()">
+          Find New Stories
+        </button>
+        <div class="source-progress" id="sourceProgress" style="display:none;">
+          <div class="source-pill" id="pillRss">
+            <span class="source-pill-label">RSS</span>
+            <span id="pillRssVal">—</span>
+          </div>
+          <div class="source-pill" id="pillJina">
+            <span class="source-pill-label">Jina</span>
+            <span id="pillJinaVal">—</span>
+          </div>
+          <div class="source-pill" id="pillDfs">
+            <span class="source-pill-label">DataForSEO</span>
+            <span id="pillDfsVal">—</span>
+          </div>
+        </div>
+        <div style="margin-top:8px;font-size:10px;color:#9CA3AF;line-height:1.5;">
+          Scans 11 RSS feeds + 7 Jina searches + 5 DataForSEO news queries.
+          Filters out stories already in the portal.
+        </div>
+      </div>
+
+      <!-- Manual Search mode (Jina) -->
+      <div id="modeSearch" style="display:none;">
+        <div class="query-chips">
+          <span class="query-chip" onclick="setQuery('AI wealth management news 2025')">AI wealth management</span>
+          <span class="query-chip" onclick="setQuery('financial advisor AI product launch 2025')">advisor AI launch</span>
+          <span class="query-chip" onclick="setQuery('Goldman Sachs AI 2025')">Goldman Sachs AI</span>
+          <span class="query-chip" onclick="setQuery('Morgan Stanley AI advisor 2025')">Morgan Stanley AI</span>
+          <span class="query-chip" onclick="setQuery('Anthropic wealth management partnership')">Anthropic + wealth</span>
+          <span class="query-chip" onclick="setQuery('wealthtech AI funding 2025')">wealthtech funding</span>
+        </div>
+        <div style="display:flex;gap:6px;">
+          <input type="text" id="searchQuery" placeholder="e.g. AI wealth management news 2025" />
+          <button class="action-btn" id="btnSearch" style="width:auto;flex-shrink:0;padding:7px 14px;" onclick="runSearch()">Search</button>
+        </div>
+        <div style="margin-top:6px;font-size:10px;color:#9CA3AF;">
+          Powered by Jina AI — full article text from top results
+        </div>
+      </div>
+
+      <!-- Paste URL mode -->
+      <div id="modeUrl" style="display:none;">
+        <div style="display:flex;gap:6px;">
+          <input type="text" id="manualUrl" placeholder="https://..." />
+          <button class="action-btn secondary" style="width:auto;flex-shrink:0;padding:7px 12px;" onclick="addManualUrl()">Add</button>
+        </div>
+      </div>
+
+      <!-- Pending queue mode -->
+      <div id="modePending" style="display:none;">
+        <div style="font-size:10px;color:#B45309;font-weight:700;margin-bottom:8px;">
+          REVIEW ENTRIES — require human sign-off before publishing
+        </div>
+        <button class="action-btn secondary" style="margin-bottom:8px;" onclick="loadPendingQueue()">Refresh Queue</button>
+        <div id="pendingList">
+          <div style="font-size:12px;color:#9CA3AF;text-align:center;padding:16px;">Loading...</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Candidate list -->
+    <div class="candidates-scroll" id="candidateList">
+      <div style="padding:16px;color:#9CA3AF;text-align:center;font-size:12px;">
+        Click "Find New Stories" to auto-discover,<br/>or use Search / URL tabs above.
+      </div>
+    </div>
+
+    <div class="status-bar" id="statusBar">
+      <div class="status-dot" id="statusDot"></div>
+      <span id="statusText">Ready</span>
+    </div>
+  </div>
+
+  <!-- Right panel: entry preview + governance -->
+  <div class="right-panel" id="rightPanel">
+    <div class="empty-state">
+      <div class="empty-icon">📰</div>
+      <div class="empty-title">No story selected</div>
+      <div style="font-size:13px;">Select a story from the left to process and review it</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Publish bar -->
+<div class="publish-bar" id="publishBar">
+  <div>
+    <div class="publish-count" id="publishCount">0 stories approved</div>
+    <div class="publish-sub">Ready to publish to the portal</div>
+  </div>
+  <div style="display:flex;gap:8px;">
+    <button class="action-btn secondary" style="background:transparent;color:#fff;border-color:#fff;width:auto;" onclick="clearApproved()">Clear</button>
+    <button class="action-btn success" style="width:auto;" onclick="publishApproved()">Publish to Portal →</button>
+  </div>
+</div>
+
+<!-- Log overlay -->
+<div class="log-overlay" id="logOverlay" onclick="closeLog()">
+  <div class="log-box" id="logBox" onclick="event.stopPropagation()">
+    <div style="display:flex;justify-content:space-between;margin-bottom:12px;">
+      <span style="font-weight:700;color:#F9FAFB;">Publish Log</span>
+      <button onclick="closeLog()" style="background:none;border:none;color:#9CA3AF;cursor:pointer;font-size:14px;">✕</button>
+    </div>
+    <div id="logLines"></div>
+  </div>
+</div>
+
+<script>
+// ── State ─────────────────────────────────────────────────────────────────────
+const candidates = new Map(); // id → candidate obj
+const processedEntries = new Map(); // id → { entry, governance }
+const approvedIds = new Set();
+let activeId = null;
+
+// ── Helpers ───────────────────────────────────────────────────────────────────
+
+function setStatus(text, type = 'default') {
+  const dot = document.getElementById('statusDot');
+  const el = document.getElementById('statusText');
+  el.textContent = text;
+  dot.style.background = type === 'error' ? '#EF4444' : type === 'loading' ? '#6366F1' : '#22C55E';
+  if (type === 'loading') dot.style.animation = 'pulse 1s infinite';
+  else dot.style.animation = '';
+}
+
+function sseStream(url, body, handlers) {
+  return new Promise((resolve, reject) => {
+    fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body),
+    }).then(res => {
+      const reader = res.body.getReader();
+      const decoder = new TextDecoder();
+      let buffer = '';
+
+      function pump() {
+        reader.read().then(({ done, value }) => {
+          if (done) { resolve(); return; }
+          buffer += decoder.decode(value, { stream: true });
+          const parts = buffer.split('\n\n');
+          buffer = parts.pop();
+          parts.forEach(chunk => {
+            const lines = chunk.split('\n');
+            let event = 'message', data = '';
+            lines.forEach(l => {
+              if (l.startsWith('event: ')) event = l.slice(7).trim();
+              if (l.startsWith('data: ')) data = l.slice(6).trim();
+            });
+            if (data) {
+              try {
+                const parsed = JSON.parse(data);
+                if (handlers[event]) handlers[event](parsed);
+              } catch(e) {}
+            }
+          });
+          pump();
+        }).catch(reject);
+      }
+      pump();
+    }).catch(reject);
+  });
+}
+
+function renderCandidateList() {
+  const list = document.getElementById('candidateList');
+  if (candidates.size === 0) {
+    list.innerHTML = '<div style="padding:16px;color:#9CA3AF;text-align:center;font-size:12px;">No stories found. Try scanning again.</div>';
+    return;
+  }
+
+  list.innerHTML = '';
+  candidates.forEach((c, id) => {
+    const processed = processedEntries.get(id);
+    const approved = approvedIds.has(id);
+    const isActive = id === activeId;
+
+    let verdictClass = 'verdict-pending';
+    if (processed) {
+      const v = processed.governance?.verdict;
+      if (v === 'PASS') verdictClass = 'verdict-pass';
+      else if (v === 'REVIEW') verdictClass = 'verdict-review';
+      else if (v === 'FAIL') verdictClass = 'verdict-fail';
+      else verdictClass = 'verdict-processing';
+    }
+
+    const viaLabel = c.via === 'dataforseo' ? 'DFS' : c.via === 'jina_search' ? 'Jina' : 'RSS';
+    const viaClass = c.via === 'dataforseo' ? 'via-dfs' : c.via === 'jina_search' ? 'via-jina' : 'via-rss';
+    const scoreStr = c.score != null ? `· ★${c.score}` : '';
+
+    const div = document.createElement('div');
+    div.className = `candidate-item${c.selected ? ' selected' : ''}${isActive ? ' active' : ''}`;
+    div.innerHTML = `
+      <input type="checkbox" class="candidate-checkbox" ${c.selected ? 'checked' : ''}
+        onchange="toggleCandidate('${id}', this.checked)" />
+      <div class="candidate-info" onclick="selectCandidate('${id}')">
+        <div class="candidate-title">${c.title}</div>
+        <div class="candidate-meta" style="display:flex;align-items:center;gap:4px;flex-wrap:wrap;">
+          <span class="via-badge ${viaClass}">${viaLabel}</span>
+          <span>${c.source_name}</span>
+          <span>· ${c.pub_date ? new Date(c.pub_date).toLocaleDateString() : 'Unknown'}</span>
+          ${c.score != null ? `<span style="color:#9CA3AF;">${scoreStr}</span>` : ''}
+        </div>
+        ${approved ? '<div style="font-size:10px;color:#15803D;font-weight:700;margin-top:3px;">✓ APPROVED</div>' : ''}
+      </div>
+      <div class="verdict-dot ${verdictClass}" style="margin-top:3px;"></div>
+    `;
+    list.appendChild(div);
+  });
+}
+
+function renderEntryPreview(id) {
+  const c = candidates.get(id);
+  const processed = processedEntries.get(id);
+  const approved = approvedIds.has(id);
+  const panel = document.getElementById('rightPanel');
+
+  if (!processed) {
+    panel.innerHTML = `
+      <div style="max-width:800px;">
+        <div class="section-label" style="margin-bottom:12px;">Story</div>
+        <div style="font-size:16px;font-weight:700;color:#111827;margin-bottom:8px;">${c.title}</div>
+        <div style="font-size:13px;color:#6B7280;margin-bottom:4px;">${c.source_name}</div>
+        ${c.url ? `<a href="${c.url}" target="_blank" style="font-size:12px;color:#1B2E5E;">${c.url} ↗</a>` : ''}
+        ${c.snippet ? `<div style="margin-top:12px;font-size:13px;color:#374151;line-height:1.6;border-left:3px solid #E5E7EB;padding-left:12px;">${c.snippet}</div>` : ''}
+        <div style="margin-top:20px;">
+          <button class="action-btn" onclick="processStory('${id}')">
+            Process this Story →
+          </button>
+        </div>
+      </div>
+    `;
+    return;
+  }
+
+  const { entry, governance } = processed;
+  const govClass = governance ? `gov-${governance.verdict.toLowerCase()}` : 'gov-pending';
+  const govLabel = governance ? governance.verdict : 'Pending';
+  const canPublish = governance?.verdict !== 'FAIL';
+
+  panel.innerHTML = `
+    <div class="entry-preview" style="max-width:800px;">
+      <div class="entry-preview-header">
+        <div class="entry-headline">${entry.headline}</div>
+        <div class="governance-badge ${govClass}">${govLabel}</div>
+      </div>
+      <div class="entry-preview-body">
+        <div class="field-label">Company</div>
+        <div class="field-value">
+          <img src="${entry.image_url}" onerror="this.style.display='none'" style="height:24px;object-fit:contain;vertical-align:middle;margin-right:8px;" />
+          ${entry.company_name}
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:14px;">
+          <div>
+            <div class="field-label">Type</div>
+            <div class="field-value">${entry.type}</div>
+          </div>
+          <div>
+            <div class="field-label">Date</div>
+            <div class="field-value">${entry.date}</div>
+          </div>
+          <div>
+            <div class="field-label">Region</div>
+            <div class="field-value">${entry.tags?.region || '—'}</div>
+          </div>
+        </div>
+
+        <div class="field-label">Summary</div>
+        <div class="field-value">${entry.summary}</div>
+
+        ${entry.key_stat ? `
+        <div class="field-label">Key Stat</div>
+        <div class="field-value"><strong>${entry.key_stat.number}</strong> — ${entry.key_stat.label}</div>
+        ` : ''}
+
+        <div class="field-label">Tags</div>
+        <div class="tag-list">
+          ${[entry.tags?.capability, entry.tags?.segment, ...(entry.tags?.theme || [])]
+            .filter(Boolean).map(t => `<span class="tag">${t.replace(/_/g,' ')}</span>`).join('')}
+        </div>
+
+        <div class="field-label">Entry ID</div>
+        <div class="field-value mono">${entry.id}</div>
+
+        ${governance ? `
+        <div class="gov-section">
+          <div class="section-label">Governance Check — ${governance.verdict}</div>
+          <div style="font-size:12px;color:#374151;margin-bottom:8px;">${governance.notes}</div>
+          ${governance.verified_claims?.length ? `
+            <div style="margin-bottom:6px;">
+              ${governance.verified_claims.map(c => `<div class="gov-claim"><span class="gov-check">✓</span> <span>${c}</span></div>`).join('')}
+            </div>` : ''}
+          ${governance.unverified_claims?.length ? `
+            <div style="margin-bottom:6px;">
+              ${governance.unverified_claims.map(c => `<div class="gov-claim"><span class="gov-warn">⚠</span> <span>${c}</span></div>`).join('')}
+            </div>` : ''}
+          ${governance.fabricated_claims?.length ? `
+            <div>
+              ${governance.fabricated_claims.map(c => `<div class="gov-claim"><span class="gov-x">✕</span> <span>${c}</span></div>`).join('')}
+            </div>` : ''}
+          ${governance.paywall_caveat ? '<div style="font-size:11px;color:#B45309;margin-top:6px;">⚠ Limited source content — possible paywall</div>' : ''}
+        </div>
+        ` : ''}
+      </div>
+
+      <div class="entry-actions">
+        ${canPublish && !approved ? `
+          <button class="action-btn success" style="width:auto;" onclick="approveEntry('${id}')">✓ Approve</button>
+        ` : ''}
+        ${approved ? `
+          <button class="action-btn danger" style="width:auto;" onclick="unapproveEntry('${id}')">Remove from queue</button>
+          <span style="font-size:13px;color:#15803D;font-weight:600;padding:8px 4px;">✓ Approved</span>
+        ` : ''}
+        ${!canPublish ? `
+          <span style="font-size:13px;color:#B91C1C;font-weight:600;padding:8px 4px;">✕ Blocked — governance FAIL</span>
+        ` : ''}
+        <button class="action-btn secondary" style="width:auto;margin-left:auto;" onclick="processStory('${id}')">Re-process</button>
+      </div>
+    </div>
+    <div style="margin-top:12px;font-size:11px;color:#9CA3AF;">
+      Source: <a href="${entry.source_url}" target="_blank" style="color:#1B2E5E;">${entry.source_name} ↗</a>
+    </div>
+  `;
+}
+
+// ── Actions ───────────────────────────────────────────────────────────────────
+
+async function runDiscovery() {
+  const btn = document.getElementById('btnDiscover');
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner">Scanning</span>';
+  candidates.clear();
+  processedEntries.clear();
+  approvedIds.clear();
+  updatePublishBar();
+  renderCandidateList();
+  setStatus('Scanning news feeds...', 'loading');
+
+  let total = 0;
+
+  await sseStream('/api/discover', {}, {
+    status: (d) => setStatus(d.message, 'loading'),
+    feed_done: (d) => {
+      if (d.count > 0) setStatus(`${d.feed}: ${d.count} relevant stories`, 'loading');
+    },
+    feed_error: (d) => setStatus(`${d.feed}: failed (${d.error})`, 'error'),
+    done: (d) => {
+      d.candidates.forEach(c => candidates.set(c.id, c));
+      total = d.total;
+      setStatus(`Found ${total} relevant stories from ${d.feeds_scanned} feeds`);
+      renderCandidateList();
+    },
+  });
+
+  btn.disabled = false;
+  btn.textContent = 'Scan News Feeds';
+}
+
+function addManualUrl() {
+  const input = document.getElementById('manualUrl');
+  const url = input.value.trim();
+  if (!url) return;
+
+  const id = btoa(url).slice(0, 12);
+  candidates.set(id, {
+    id,
+    title: url.replace(/https?:\/\//, '').slice(0, 80),
+    url,
+    source_name: 'Manual',
+    pub_date: new Date().toISOString(),
+    snippet: '',
+    selected: true,
+  });
+
+  input.value = '';
+  renderCandidateList();
+  selectCandidate(id);
+}
+
+function toggleCandidate(id, checked) {
+  const c = candidates.get(id);
+  if (c) { c.selected = checked; candidates.set(id, c); }
+}
+
+function selectCandidate(id) {
+  activeId = id;
+  renderCandidateList();
+  renderEntryPreview(id);
+}
+
+async function processStory(id) {
+  const c = candidates.get(id);
+  if (!c || !c.url) return;
+
+  setStatus(`Processing: ${c.title.slice(0, 50)}...`, 'loading');
+
+  // Mark as processing
+  processedEntries.set(id, null);
+  renderCandidateList();
+
+  let entry = null, governance = null;
+
+  await sseStream('/api/process-url', { url: c.url, source_name: c.source_name }, {
+    status: (d) => {
+      setStatus(d.message, 'loading');
+      if (d.paywall_suspected) setStatus('⚠ Possible paywall — content may be limited', 'error');
+    },
+    structured: (d) => {
+      entry = d.entry;
+    },
+    result: (d) => {
+      governance = d;
+    },
+    complete: (d) => {
+      entry = d.entry;
+      governance = d.governance;
+    },
+    // Fix 4: URL permanently blocked by previous FAIL
+    blocked: (d) => {
+      setStatus(`✕ Permanently blocked: ${d.message}`, 'error');
+      const panel = document.getElementById('rightPanel');
+      panel.innerHTML = `<div class="blocked-notice" style="max-width:700px;">
+        <strong>✕ URL Permanently Blocked</strong><br/>${d.message}
+        ${d.blocked_at ? `<br/><span style="font-size:10px;opacity:0.7;">Blocked: ${new Date(d.blocked_at).toLocaleString()}</span>` : ''}
+      </div>`;
+      processedEntries.delete(id);
+      renderCandidateList();
+    },
+    // Fix 1: Sent to pending queue for human approval
+    review_queued: (d) => {
+      setStatus(`⚠ Sent to Review Queue: ${d.entry_id}`, 'loading');
+      const panel = document.getElementById('rightPanel');
+      panel.innerHTML = `<div style="max-width:700px;">
+        <div class="governance-badge gov-review" style="margin-bottom:12px;">REVIEW — Pending Approval</div>
+        <div style="font-size:14px;font-weight:700;margin-bottom:8px;">Entry held for human review</div>
+        <div style="font-size:13px;color:#374151;margin-bottom:12px;">${d.message}</div>
+        ${d.unverified_claims?.length ? `<div style="margin-bottom:8px;">
+          <div class="field-label">Unverified claims</div>
+          ${d.unverified_claims.map(claim => `<div class="pending-claim">⚠ ${claim}</div>`).join('')}
+        </div>` : ''}
+        <div style="margin-top:12px;font-size:12px;color:#9CA3AF;">
+          Go to the <strong>Review</strong> tab to approve or reject this entry.
+        </div>
+      </div>`;
+      processedEntries.delete(id);
+      renderCandidateList();
+      loadPendingQueue(); // refresh badge count
+    },
+    skipped: (d) => {
+      setStatus('Article not relevant — skipped', 'error');
+      processedEntries.delete(id);
+      renderCandidateList();
+    },
+    error: (d) => {
+      setStatus(`Error: ${d.message}`, 'error');
+      processedEntries.delete(id);
+      renderCandidateList();
+    },
+  });
+
+  if (entry) {
+    processedEntries.set(id, { entry, governance });
+    renderCandidateList();
+    if (id === activeId) renderEntryPreview(id);
+    setStatus(`${governance?.verdict || 'Done'}: ${entry.headline.slice(0, 60)}...`);
+  }
+}
+
+function approveEntry(id) {
+  const p = processedEntries.get(id);
+  if (!p) return;
+  approvedIds.add(id);
+  updatePublishBar();
+  renderCandidateList();
+  if (id === activeId) renderEntryPreview(id);
+}
+
+function unapproveEntry(id) {
+  approvedIds.delete(id);
+  updatePublishBar();
+  renderCandidateList();
+  if (id === activeId) renderEntryPreview(id);
+}
+
+function clearApproved() {
+  approvedIds.clear();
+  updatePublishBar();
+  renderCandidateList();
+}
+
+function updatePublishBar() {
+  const bar = document.getElementById('publishBar');
+  const count = document.getElementById('publishCount');
+  count.textContent = `${approvedIds.size} ${approvedIds.size === 1 ? 'story' : 'stories'} approved`;
+  if (approvedIds.size > 0) bar.classList.add('visible');
+  else bar.classList.remove('visible');
+}
+
+async function publishApproved() {
+  if (approvedIds.size === 0) return;
+
+  const entries = Array.from(approvedIds)
+    .map(id => processedEntries.get(id)?.entry)
+    .filter(Boolean);
+
+  const logBox = document.getElementById('logLines');
+  logBox.innerHTML = '';
+  document.getElementById('logOverlay').classList.add('visible');
+
+  const addLog = (text, type = 'default') => {
+    const div = document.createElement('div');
+    div.className = `log-line ${type}`;
+    div.textContent = text;
+    logBox.appendChild(div);
+    logBox.scrollTop = logBox.scrollHeight;
+  };
+
+  addLog(`Publishing ${entries.length} entries...`);
+
+  await sseStream('/api/publish', { entries }, {
+    published: (d) => addLog(`✓ Published: ${d.id} [${d.governance_verdict}]`, 'success'),
+    pushed: (d) => addLog(`✓ ${d.message}`, 'success'),
+    status: (d) => addLog(d.message),
+    // Fix 3: server rejected entries that didn't pass the governance gate
+    rejected: (d) => {
+      d.items.forEach(item => addLog(`✕ Blocked: ${item.id} — ${item.reason}`, 'error'));
+    },
+    error: (d) => addLog(`✕ ${d.message}`, 'error'),
+  });
+
+  addLog('Done. Portal will rebuild from the dev branch.', 'success');
+  approvedIds.clear();
+  updatePublishBar();
+  renderCandidateList();
+}
+
+function closeLog() {
+  document.getElementById('logOverlay').classList.remove('visible');
+}
+
+// ── Mode switching ─────────────────────────────────────────────────────────────
+
+function switchMode(mode) {
+  ['auto', 'search', 'url', 'pending'].forEach(m => {
+    document.getElementById(`mode${m.charAt(0).toUpperCase() + m.slice(1)}`).style.display = m === mode ? '' : 'none';
+    document.getElementById(`tab${m.charAt(0).toUpperCase() + m.slice(1)}`).classList.toggle('active', m === mode);
+  });
+  if (mode === 'pending') loadPendingQueue();
+}
+
+// ── Auto-Discover (RSS + Jina + DataForSEO) ───────────────────────────────────
+
+function setSourcePill(id, valId, state, text) {
+  const pill = document.getElementById(id);
+  const val  = document.getElementById(valId);
+  pill.className = 'source-pill' + (state === 'running' ? ' running' : state === 'done' ? ' done' : '');
+  val.textContent = text;
+}
+
+async function runAutoDiscover() {
+  const btn = document.getElementById('btnAutoDiscover');
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner">Discovering</span>';
+
+  const prog = document.getElementById('sourceProgress');
+  prog.style.display = 'grid';
+  setSourcePill('pillRss',  'pillRssVal',  'running', 'scanning…');
+  setSourcePill('pillJina', 'pillJinaVal', 'running', 'searching…');
+  setSourcePill('pillDfs',  'pillDfsVal',  'running', 'querying…');
+
+  candidates.clear();
+  processedEntries.clear();
+  approvedIds.clear();
+  updatePublishBar();
+  renderCandidateList();
+  setStatus('Running auto-discovery across all sources...', 'loading');
+
+  await sseStream('/api/auto-discover', {}, {
+    status: (d) => setStatus(d.message, 'loading'),
+    progress: (d) => {
+      if (d.rss)  { const done = !d.rss.includes('scanning');  setSourcePill('pillRss',  'pillRssVal',  done ? 'done' : 'running', d.rss); }
+      if (d.jina) { const done = !d.jina.includes('searching'); setSourcePill('pillJina', 'pillJinaVal', done ? 'done' : 'running', d.jina); }
+      if (d.dfs)  { const done = !d.dfs.includes('querying');  setSourcePill('pillDfs',  'pillDfsVal',  done ? 'done' : 'running', d.dfs); }
+    },
+    done: (d) => {
+      setSourcePill('pillRss',  'pillRssVal',  'done', d.sources.rss + ' RSS');
+      setSourcePill('pillJina', 'pillJinaVal', 'done', d.sources.jina + ' Jina');
+      setSourcePill('pillDfs',  'pillDfsVal',  'done', d.sources.dataforseo + ' DFS');
+      d.candidates.forEach(c => candidates.set(c.id, c));
+      setStatus(`${d.total} new stories found — ranked by relevance`);
+      renderCandidateList();
+    },
+    error: (d) => setStatus(`Error: ${d.message}`, 'error'),
+  });
+
+  btn.disabled = false;
+  btn.textContent = 'Find New Stories';
+}
+
+function setQuery(q) {
+  document.getElementById('searchQuery').value = q;
+  document.getElementById('searchQuery').focus();
+}
+
+// ── Pending queue ──────────────────────────────────────────────────────────────
+
+async function loadPendingQueue() {
+  try {
+    const res = await fetch('/api/pending');
+    const data = await res.json();
+
+    // Update badge
+    const badge = document.getElementById('pendingBadge');
+    if (data.count > 0) {
+      badge.textContent = data.count;
+      badge.style.display = 'inline-block';
+    } else {
+      badge.style.display = 'none';
+    }
+
+    const list = document.getElementById('pendingList');
+    if (!list) return;
+
+    if (data.count === 0) {
+      list.innerHTML = '<div style="font-size:12px;color:#9CA3AF;text-align:center;padding:16px;">No entries awaiting review</div>';
+      return;
+    }
+
+    list.innerHTML = data.items.map(item => `
+      <div class="pending-item" id="pending-${item.id}">
+        <div class="pending-item-headline">${item.headline}</div>
+        <div class="pending-item-meta">
+          ${item.company_name} · Queued ${new Date(item.queued_at).toLocaleString()}
+          · Confidence: ${item.confidence}%
+        </div>
+        ${item.unverified_claims?.length ? `
+          <div style="margin-bottom:4px;">
+            ${item.unverified_claims.map(c => `<div class="pending-claim">⚠ ${c}</div>`).join('')}
+          </div>` : ''}
+        ${item.notes ? `<div style="font-size:11px;color:#6B7280;margin-bottom:4px;">${item.notes}</div>` : ''}
+        <div style="font-size:11px;margin-bottom:6px;">
+          <a href="${item.source_url}" target="_blank" style="color:#1B2E5E;">${item.source_url.slice(0,70)}... ↗</a>
+        </div>
+        <div class="pending-actions">
+          <button class="pending-approve" onclick="approvePendingEntry('${item.id}')">✓ Approve & Publish</button>
+          <button class="pending-reject" onclick="rejectPendingEntry('${item.id}')">✕ Reject</button>
+        </div>
+      </div>
+    `).join('');
+  } catch (err) {
+    console.error('Failed to load pending queue:', err);
+  }
+}
+
+async function approvePendingEntry(id) {
+  const btn = document.querySelector(`#pending-${id} .pending-approve`);
+  if (btn) { btn.disabled = true; btn.textContent = 'Approving...'; }
+
+  try {
+    const res = await fetch(`/api/pending/${id}/approve`, { method: 'POST' });
+    const data = await res.json();
+    if (!data.ok) throw new Error(data.error);
+
+    // Immediately publish the approved entry
+    const logBox = document.getElementById('logLines');
+    logBox.innerHTML = '';
+    document.getElementById('logOverlay').classList.add('visible');
+    const addLog = (text, type = 'default') => {
+      const div = document.createElement('div');
+      div.className = `log-line ${type}`;
+      div.textContent = text;
+      logBox.appendChild(div);
+      logBox.scrollTop = logBox.scrollHeight;
+    };
+
+    addLog(`Publishing approved entry: ${data.entry.id}...`);
+    await sseStream('/api/publish', { entries: [data.entry] }, {
+      published: (d) => addLog(`✓ Published: ${d.id}`, 'success'),
+      pushed: (d) => addLog(`✓ ${d.message}`, 'success'),
+      status: (d) => addLog(d.message),
+      rejected: (d) => d.items.forEach(i => addLog(`✕ ${i.reason}`, 'error')),
+      error: (d) => addLog(`✕ ${d.message}`, 'error'),
+    });
+    addLog('Done.', 'success');
+
+    loadPendingQueue();
+    setStatus(`✓ Approved and published: ${id}`);
+  } catch (err) {
+    setStatus(`Error: ${err.message}`, 'error');
+    if (btn) { btn.disabled = false; btn.textContent = '✓ Approve & Publish'; }
+  }
+}
+
+async function rejectPendingEntry(id) {
+  if (!confirm('Reject this entry? The source URL will be permanently blocked.')) return;
+
+  try {
+    const res = await fetch(`/api/pending/${id}/reject`, { method: 'POST' });
+    const data = await res.json();
+    if (!data.ok) throw new Error(data.error);
+    setStatus(`✕ Rejected and blocked: ${id}`);
+    loadPendingQueue();
+  } catch (err) {
+    setStatus(`Error: ${err.message}`, 'error');
+  }
+}
+
+// ── Jina Web Search ────────────────────────────────────────────────────────────
+
+async function runSearch() {
+  const input = document.getElementById('searchQuery');
+  const query = input.value.trim();
+  if (!query) return;
+
+  const btn = document.getElementById('btnSearch');
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner">Searching</span>';
+  setStatus(`Searching: "${query}"...`, 'loading');
+
+  await sseStream('/api/search', { query }, {
+    status: (d) => setStatus(d.message, 'loading'),
+    done: (d) => {
+      if (d.candidates.length === 0) {
+        setStatus('No results found — try a different query', 'error');
+      } else {
+        // Add to existing candidates (don't clear — user may have RSS results too)
+        let added = 0;
+        d.candidates.forEach(c => {
+          if (!candidates.has(c.id)) { candidates.set(c.id, c); added++; }
+        });
+        setStatus(`Found ${d.total} results for "${d.query}" — ${added} new`);
+        renderCandidateList();
+      }
+    },
+    error: (d) => setStatus(`Search error: ${d.message}`, 'error'),
+  });
+
+  btn.disabled = false;
+  btn.textContent = 'Search';
+}
+
+// Initialise pending badge on page load
+document.addEventListener('DOMContentLoaded', () => { loadPendingQueue(); });
+</script>
+
+</body>
+</html>

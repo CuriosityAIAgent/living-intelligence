@@ -1,0 +1,308 @@
+/**
+ * auto-discover.js
+ * Runs all discovery sources in parallel:
+ *   - 11 RSS feeds (wealth management publications)
+ *   - 7 Jina s.jina.ai web searches (pre-built queries)
+ *   - 5 DataForSEO Google News searches (pre-built queries)
+ * Deduplicates against existing portal entries.
+ * Scores and returns ranked top 20 candidates.
+ */
+
+import { readFileSync, readdirSync } from 'fs';
+import { join, dirname } from 'path';
+import { fileURLToPath } from 'url';
+import fetch from 'node-fetch';
+import Parser from 'rss-parser';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const DATA_DIR = join(process.env.DATA_DIR || join(__dirname, '..', '..'), 'data', 'intelligence');
+const FEEDS_PATH = join(__dirname, '..', 'rss-feeds.json');
+const rssParser = new Parser({ timeout: 12000 });
+
+// ── Existing portal URLs for deduplication ────────────────────────────────────
+function getExistingUrls() {
+  const urls = new Set();
+  try {
+    const files = readdirSync(DATA_DIR).filter(f => f.endsWith('.json'));
+    for (const f of files) {
+      const entry = JSON.parse(readFileSync(join(DATA_DIR, f), 'utf8'));
+      if (entry.source_url) urls.add(normalizeUrl(entry.source_url));
+    }
+  } catch (_) {}
+  return urls;
+}
+
+function normalizeUrl(url) {
+  try { return new URL(url).href.toLowerCase().replace(/\/$/, ''); } catch (_) { return url.toLowerCase(); }
+}
+
+// ── Two-gate relevance filter ─────────────────────────────────────────────────
+const AI_KWS = [
+  'ai', 'artificial intelligence', 'machine learning', 'generative ai', 'genai',
+  'llm', 'large language model', 'chatbot', 'openai', 'anthropic', 'claude', 'gpt',
+  'copilot', 'automation', 'agentic', 'autonomous', 'robo-advisor', 'wealthtech',
+  'algorithm', 'predictive analytics', 'neural network',
+];
+const WEALTH_KWS = [
+  'wealth management', 'financial advisor', 'financial adviser', 'ria', 'asset management',
+  'private banking', 'family office', 'fintech', 'investment management', 'portfolio',
+  'advisor', 'adviser', 'brokerage', 'retirement', 'financial planning',
+  'morgan stanley', 'goldman sachs', 'ubs', 'merrill lynch', 'merrill',
+  'charles schwab', 'schwab', 'fidelity', 'blackrock', 'vanguard', 'lpl financial', 'lpl',
+  'jpmorgan', 'wells fargo', 'citigroup', 'citi', 'hsbc', 'dbs',
+  'altruist', 'wealthfront', 'betterment', 'robinhood', 'arta finance', 'arta',
+  'envestnet', 'orion', 'addepar', 'broadridge', 'fnz', 'raymond james', 'edward jones',
+];
+
+function isRelevant(text) {
+  const t = text.toLowerCase();
+  return AI_KWS.some(k => t.includes(k)) && WEALTH_KWS.some(k => t.includes(k));
+}
+
+// ── Scoring ───────────────────────────────────────────────────────────────────
+const PRIMARY_OUTLETS = new Set([
+  'investmentnews.com', 'thinkadvisor.com', 'wealthmanagement.com',
+  'financial-planning.com', 'riabiz.com', 'advisorhub.com', 'citywire.com',
+  'fintech.global', 'wealthbriefing.com', 'wealthprofessional.ca',
+]);
+const TIER1_OUTLETS = new Set([
+  'bloomberg.com', 'ft.com', 'wsj.com', 'cnbc.com', 'reuters.com',
+  'axios.com', 'businesswire.com', 'prnewswire.com', 'globenewswire.com',
+  'fortune.com', 'businessinsider.com', 'techcrunch.com',
+]);
+const TRACKED_COMPANIES = [
+  'morgan stanley', 'goldman sachs', 'ubs', 'merrill', 'schwab', 'fidelity',
+  'blackrock', 'vanguard', 'lpl', 'jpmorgan', 'citi', 'hsbc', 'dbs',
+  'altruist', 'wealthfront', 'betterment', 'robinhood', 'arta',
+  'envestnet', 'orion', 'addepar', 'broadridge', 'fnz', 'farther',
+  'public.com', 'etoro', 'webull', 'savvy wealth', 'betterment',
+];
+
+function scoreCandidate(c) {
+  let score = 0;
+  const text = `${c.title} ${c.snippet}`.toLowerCase();
+
+  // Recency
+  if (c.pub_date) {
+    const ageDays = (Date.now() - new Date(c.pub_date).getTime()) / 86400000;
+    if (ageDays < 2)  score += 10;
+    else if (ageDays < 5)  score += 6;
+    else if (ageDays < 14) score += 3;
+  }
+
+  // Source quality
+  let hostname = '';
+  try { hostname = new URL(c.url).hostname.replace(/^www\./, ''); } catch (_) {}
+  if (PRIMARY_OUTLETS.has(hostname)) score += 6;
+  else if (TIER1_OUTLETS.has(hostname)) score += 4;
+
+  // Tracked company mention (+2 each, max 6)
+  let coScore = 0;
+  for (const co of TRACKED_COMPANIES) {
+    if (text.includes(co)) { coScore += 2; if (coScore >= 6) break; }
+  }
+  score += coScore;
+
+  // AI keyword density (max 4)
+  let aiScore = 0;
+  for (const k of AI_KWS) {
+    if (text.includes(k)) { aiScore += 1; if (aiScore >= 4) break; }
+  }
+  score += aiScore;
+
+  // Source type bonus (DataForSEO and Jina are more targeted)
+  if (c.via === 'dataforseo') score += 3;
+  else if (c.via === 'jina_search') score += 2;
+
+  return score;
+}
+
+// ── RSS Discovery ─────────────────────────────────────────────────────────────
+async function discoverFromRSS(existingUrls) {
+  const feeds = JSON.parse(readFileSync(FEEDS_PATH, 'utf8'));
+  const candidates = [];
+
+  await Promise.allSettled(feeds.map(async (feed) => {
+    try {
+      const parsed = await rssParser.parseURL(feed.url);
+      const relevant = parsed.items
+        .filter(item => {
+          if (!item.link) return false;
+          if (existingUrls.has(normalizeUrl(item.link))) return false;
+          const ageDays = item.pubDate
+            ? (Date.now() - new Date(item.pubDate).getTime()) / 86400000 : 999;
+          if (ageDays > 14) return false;
+          return isRelevant(`${item.title || ''} ${item.contentSnippet || ''}`);
+        })
+        .slice(0, 3)
+        .map(item => ({
+          id: Buffer.from(item.link).toString('base64').slice(0, 12),
+          title: item.title || 'Untitled',
+          url: item.link,
+          source_name: feed.name,
+          pub_date: item.pubDate || null,
+          snippet: (item.contentSnippet || '').slice(0, 300),
+          selected: true,
+          via: 'rss',
+        }));
+      candidates.push(...relevant);
+    } catch (_) {}
+  }));
+
+  return candidates;
+}
+
+// ── Jina Search Discovery ─────────────────────────────────────────────────────
+const JINA_QUERIES = [
+  'AI wealth management product launch 2025',
+  'financial advisor AI tool announcement 2025',
+  'Goldman Sachs Morgan Stanley UBS AI 2025',
+  'Anthropic Claude OpenAI financial services partnership 2025',
+  'robo-advisor wealthtech AI platform launch 2025',
+  'private banking generative AI wealth platform 2025',
+  'RIA custodian AI fintech funding announcement 2025',
+];
+
+async function discoverFromJina(existingUrls) {
+  if (!process.env.JINA_API_KEY) return [];
+  const candidates = [];
+
+  const results = await Promise.allSettled(
+    JINA_QUERIES.map(async (query) => {
+      const res = await fetch(`https://s.jina.ai/${encodeURIComponent(query)}`, {
+        headers: {
+          'Accept': 'application/json',
+          'Authorization': `Bearer ${process.env.JINA_API_KEY}`,
+        },
+        signal: AbortSignal.timeout(25000),
+      });
+      if (!res.ok) return [];
+      const data = await res.json();
+      return (data.data || [])
+        .filter(r => r.url && !existingUrls.has(normalizeUrl(r.url)))
+        .map(r => {
+          let hostname = '';
+          try { hostname = new URL(r.url).hostname.replace(/^www\./, ''); } catch (_) {}
+          return {
+            id: Buffer.from(r.url).toString('base64').slice(0, 12),
+            title: r.title || r.url,
+            url: r.url,
+            source_name: hostname || 'Web',
+            pub_date: r.date || null,
+            snippet: (r.description || r.content || '').slice(0, 300),
+            selected: true,
+            via: 'jina_search',
+          };
+        })
+        .filter(c => isRelevant(`${c.title} ${c.snippet}`));
+    })
+  );
+
+  results.forEach(r => { if (r.status === 'fulfilled') candidates.push(...r.value); });
+  return candidates;
+}
+
+// ── DataForSEO Google News Discovery ─────────────────────────────────────────
+const DFS_QUERIES = [
+  'AI wealth management news',
+  'financial advisor AI product launch',
+  'wealthtech artificial intelligence platform 2025',
+  'Goldman Sachs UBS Morgan Stanley AI advisor',
+  'Anthropic OpenAI wealth management financial services',
+];
+
+async function discoverFromDataForSEO(existingUrls) {
+  if (!process.env.DATAFORSEO_LOGIN || !process.env.DATAFORSEO_PASSWORD) return [];
+  const AUTH = Buffer.from(
+    `${process.env.DATAFORSEO_LOGIN}:${process.env.DATAFORSEO_PASSWORD}`
+  ).toString('base64');
+  const candidates = [];
+
+  const results = await Promise.allSettled(
+    DFS_QUERIES.map(async (keyword) => {
+      const res = await fetch(
+        'https://api.dataforseo.com/v3/serp/google/news/live/advanced',
+        {
+          method: 'POST',
+          headers: { 'Authorization': `Basic ${AUTH}`, 'Content-Type': 'application/json' },
+          body: JSON.stringify([{ keyword, language_code: 'en', location_code: 2840, depth: 10 }]),
+          signal: AbortSignal.timeout(25000),
+        }
+      );
+      if (!res.ok) return [];
+      const data = await res.json();
+      const items = (data?.tasks?.[0]?.result?.[0]?.items || [])
+        .filter(i => i.url && !existingUrls.has(normalizeUrl(i.url)))
+        .slice(0, 8);
+
+      return items.map(i => {
+        let hostname = '';
+        try { hostname = new URL(i.url).hostname.replace(/^www\./, ''); } catch (_) {}
+        return {
+          id: Buffer.from(i.url).toString('base64').slice(0, 12),
+          title: i.title || i.url,
+          url: i.url,
+          source_name: i.source || hostname || 'News',
+          pub_date: i.date_published || i.timestamp || null,
+          snippet: (i.snippet || i.description || '').slice(0, 300),
+          selected: true,
+          via: 'dataforseo',
+        };
+      }).filter(c => isRelevant(`${c.title} ${c.snippet}`));
+    })
+  );
+
+  results.forEach(r => { if (r.status === 'fulfilled') candidates.push(...r.value); });
+  return candidates;
+}
+
+// ── Main export ───────────────────────────────────────────────────────────────
+export async function autoDiscover({ send }) {
+  send('status', { message: 'Loading existing portal entries...' });
+  const existingUrls = getExistingUrls();
+
+  send('status', { message: `Running discovery — RSS feeds, Jina searches, DataForSEO news...` });
+  send('progress', { rss: 'scanning', jina: 'searching', dfs: 'querying' });
+
+  const [rssResult, jinaResult, dfsResult] = await Promise.allSettled([
+    discoverFromRSS(existingUrls),
+    discoverFromJina(existingUrls),
+    discoverFromDataForSEO(existingUrls),
+  ]);
+
+  const rss  = rssResult.status  === 'fulfilled' ? rssResult.value  : [];
+  const jina = jinaResult.status === 'fulfilled' ? jinaResult.value : [];
+  const dfs  = dfsResult.status  === 'fulfilled' ? dfsResult.value  : [];
+
+  send('progress', {
+    rss:  `${rss.length} found`,
+    jina: `${jina.length} found`,
+    dfs:  `${dfs.length} found`,
+  });
+
+  // Merge + deduplicate by URL
+  const seenUrls = new Set();
+  const all = [...rss, ...jina, ...dfs].filter(c => {
+    const norm = normalizeUrl(c.url || '');
+    if (!norm || seenUrls.has(norm)) return false;
+    seenUrls.add(norm);
+    return true;
+  });
+
+  // Score, sort, take top 20
+  const ranked = all
+    .map(c => ({ ...c, score: scoreCandidate(c) }))
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 20);
+
+  send('done', {
+    candidates: ranked,
+    total: ranked.length,
+    sources: {
+      rss: rss.length,
+      jina: jina.length,
+      dataforseo: dfs.length,
+      raw_total: all.length,
+    },
+  });
+}

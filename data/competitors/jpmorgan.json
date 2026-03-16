@@ -1,0 +1,117 @@
+{
+  "id": "jpmorgan",
+  "name": "JPMorgan Chase",
+  "segment": "wirehouse",
+  "regions": [
+    "us",
+    "emea",
+    "asia",
+    "latam"
+  ],
+  "color": "#003087",
+  "ai_strategy_summary": "JPMorgan runs an 'AI Factory' strategy — building network effects across 200,000+ employees and 450+ production use cases to compound operational advantage. In wealth management, Coach AI compresses advisor prep time so each advisor can serve 50% more clients, directly driving a 20% year-over-year sales increase. The $19.8 billion 2026 technology budget positions AI as the central competitive battleground.",
+  "head_of_ai": {
+    "name": "Teresa Heitsenrether",
+    "title": "Chief Data & Analytics Officer"
+  },
+  "headline_metric": "$5.9T client assets, +18% YoY — driven in part by Coach AI enabling a 20% gross sales increase",
+  "headline_initiative": "Coach AI ecosystem (Connect Coach for Private Bank) — real-time research, recommendations, and client prep via NLP, deployed to all wealth management and private banking advisors",
+  "overall_maturity": "scaled",
+  "key_metrics": {
+    "client_assets_trillions": 5.9,
+    "client_assets_yoy_pct": 18,
+    "aum_trillions": 4.0,
+    "aum_yoy_pct": 18,
+    "advisors_total": 9530,
+    "advisors_wm": 5755,
+    "advisors_pb": 3775,
+    "ai_use_cases_production": 450,
+    "ai_use_cases_target_2026": 1000,
+    "tech_budget_2026_billions": 19.8,
+    "employees_on_llm_suite": 200000
+  },
+  "capabilities": {
+    "advisor_productivity": {
+      "maturity": "scaled",
+      "headline": "Coach AI / Connect Coach: 95% faster info retrieval, 20% YoY gross sales growth across all WM + PB advisors",
+      "detail": "JPMorgan's Coach AI (Wealth Management) and Connect Coach (Private Bank) deploy NLP to surface real-time client intelligence, next-best-action recommendations, and research digests before every client interaction. Deployed to all 5,755 WM advisors and 3,775 PB advisors. The result: 95% reduction in time to retrieve client information and a 20% year-over-year increase in gross sales — with a stated goal of enabling each advisor to serve 50% more clients over 3–5 years.",
+      "evidence": [
+        "95% faster client information retrieval (Coach AI internal benchmark)",
+        "20% YoY gross sales growth attributed to Coach AI deployment",
+        "Deployed to all Wealth Management and Private Bank advisors",
+        "50% more clients per advisor capacity target (3–5 year horizon)",
+        "Connect Coach: same architecture extended to Private Bank advisors"
+      ],
+      "date_assessed": "2026-03-16"
+    },
+    "client_personalization": {
+      "maturity": "scaled",
+      "headline": "Connect Coach delivers real-time personalized recommendations; IndexGPT generates thematic investment ideas live",
+      "detail": "Connect Coach surfaces personalized investment recommendations and portfolio insights in real time during advisor-client interactions. IndexGPT — JPMorgan's proprietary thematic ETF generation tool — uses NLP to construct thematic investment baskets from market signals, giving advisors a differentiated product to offer clients. Both tools are in production across the advisor network.",
+      "evidence": [
+        "Connect Coach: real-time personalized recommendations to all PB advisors",
+        "IndexGPT: live thematic ETF/index construction using NLP (trademark filed)",
+        "Personalization layer integrated into coach workflow, not a separate app"
+      ],
+      "date_assessed": "2026-03-16"
+    },
+    "investment_portfolio": {
+      "maturity": "deployed",
+      "headline": "AI-powered model portfolios with public/private market access; IndexGPT for thematic ETF construction",
+      "detail": "JPMorgan's wealth management platform offers AI-informed model portfolios spanning public and private markets. IndexGPT enables construction of thematic investment indices using large language models, a first-of-its-kind capability at scale. These tools are deployed to advisors but not yet fully autonomous — human oversight remains in the investment decision loop.",
+      "evidence": [
+        "Model portfolios span public + alternative/private market asset classes",
+        "IndexGPT trademark filed; thematic index generation in production",
+        "AI-assisted but human-approved portfolio construction process"
+      ],
+      "date_assessed": "2026-03-16"
+    },
+    "research_content": {
+      "maturity": "scaled",
+      "headline": "LLM Suite (GPT-4 foundation) deployed to 200,000+ employees; 40% of research tasks automatable",
+      "detail": "JPMorgan deployed LLM Suite — built on GPT-4 — to over 200,000 employees firm-wide, making it one of the largest enterprise LLM deployments in financial services. Internal analysis estimates 40% of research and content tasks can be automated using AI. In wealth management, advisors use LLM Suite for research summarization, market commentary, and client report generation.",
+      "evidence": [
+        "LLM Suite deployed to 200,000+ JPMorgan employees",
+        "Built on GPT-4 with internal customization",
+        "40% of research tasks identified as automatable (internal study)",
+        "Research summarization live for wealth advisors"
+      ],
+      "date_assessed": "2026-03-16"
+    },
+    "client_acquisition": {
+      "maturity": "piloting",
+      "headline": "Advisor capacity expansion (50% more clients per advisor) is primary acquisition lever — no direct digital-only acquisition play yet",
+      "detail": "JPMorgan's client acquisition strategy in wealth management is advisor-led: by making each advisor more productive with AI, the firm grows AUM without proportionally growing headcount. A separate direct-to-consumer digital wealth play exists (Self-Directed Investing) but AI-native acquisition tools are not yet in production.",
+      "evidence": [
+        "50% more clients per advisor capacity target cited by management (3–5 year horizon)",
+        "Self-Directed Investing platform exists but without AI-native acquisition tools in production",
+        "No announced AI-powered prospecting or lead scoring product for advisors"
+      ],
+      "date_assessed": "2026-03-16"
+    },
+    "operations_compliance": {
+      "maturity": "scaled",
+      "headline": "COiN platform: 360,000 work hours saved/year; 95% AML false positive reduction",
+      "detail": "JPMorgan's Contract Intelligence (COiN) platform was one of the first large-scale enterprise AI deployments in banking. It automates commercial loan agreement review, saving 360,000 hours of manual work per year. In compliance, AI-powered AML transaction monitoring has reduced false positives by 95%, materially lowering the cost of regulatory compliance. These systems are mature and in production at scale.",
+      "evidence": [
+        "COiN: 360,000 work hours saved annually on loan document review",
+        "AML AI: 95% reduction in false positive rate",
+        "Both systems in production at scale; not pilots",
+        "Operations AI is a cost-centre-to-profit-centre transformation story at JPM"
+      ],
+      "date_assessed": "2026-03-16"
+    },
+    "new_business_models": {
+      "maturity": "piloting",
+      "headline": "IndexGPT as AI-native thematic product; considering client-facing version of Connect Coach",
+      "detail": "IndexGPT represents JPMorgan's clearest attempt to create a net-new AI-native product — not just AI applied to existing workflows. The firm is reportedly evaluating a client-facing version of the Connect Coach ecosystem that would allow high-net-worth clients to interact directly with AI-generated recommendations. These are early-stage explorations, not yet in production.",
+      "evidence": [
+        "IndexGPT: USPTO trademark filed; product live for advisor use",
+        "Client-facing AI wealth interface under evaluation (not yet announced)",
+        "AI Factory strategy explicitly targets new revenue lines, not just cost savings"
+      ],
+      "date_assessed": "2026-03-16"
+    }
+  },
+  "last_updated": "2026-03-16"
+}
