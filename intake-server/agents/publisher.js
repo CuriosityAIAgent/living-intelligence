@@ -85,10 +85,11 @@ export function commitAndPush({ ids, send, branch = 'dev' }) {
       { stdio: 'pipe' }
     );
 
-    // On Railway, configure remote with GITHUB_TOKEN for push access
-    if (process.env.GITHUB_TOKEN) {
+    // On Railway, configure remote with GIT_TOKEN for push access
+    const gitToken = process.env.GIT_TOKEN;
+    if (gitToken) {
       const repo = process.env.GITHUB_REPO || 'CuriosityAIAgent/living-intelligence';
-      const remoteUrl = `https://${process.env.GITHUB_TOKEN}@github.com/${repo}.git`;
+      const remoteUrl = `https://${gitToken}@github.com/${repo}.git`;
       execSync(`git -C "${portalDir}" remote set-url origin "${remoteUrl}"`, { stdio: 'pipe' });
     }
 
