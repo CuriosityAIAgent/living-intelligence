@@ -43,5 +43,11 @@
     "human_approved": false,
     "approved_at": null,
     "backfill": true
-  }
+  },
+  "additional_sources": [
+    {
+      "name": "Arta Finance — official blog post",
+      "url": "https://artafinance.com/insights/arta-finance-launches-arta-ai-private-wealth-guided-by-ai"
+    }
+  ]
 }

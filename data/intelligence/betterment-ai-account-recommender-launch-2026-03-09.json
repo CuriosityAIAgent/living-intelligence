@@ -44,5 +44,11 @@
     "human_approved": false,
     "approved_at": null,
     "backfill": true
-  }
+  },
+  "additional_sources": [
+    {
+      "name": "Betterment — AI Account Recommender feature page",
+      "url": "https://www.betterment.com/help/account-recommender-artificial-intelligence"
+    }
+  ]
 }

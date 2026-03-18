@@ -42,5 +42,11 @@
     "human_approved": false,
     "approved_at": null,
     "backfill": true
-  }
+  },
+  "additional_sources": [
+    {
+      "name": "HSBC Private Bank — official press release",
+      "url": "https://www.privatebanking.hsbc.com/media-releases-and-news/hsbc-deploys-wealth-intelligence/"
+    }
+  ]
 }

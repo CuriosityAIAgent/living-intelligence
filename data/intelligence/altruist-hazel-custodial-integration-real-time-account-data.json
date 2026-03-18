@@ -54,5 +54,11 @@
     "human_approved": false,
     "approved_at": null,
     "backfill": true
-  }
+  },
+  "additional_sources": [
+    {
+      "name": "Altruist — Hazel custodial integration announcement",
+      "url": "https://altruist.com/news/altruist-debuts-industry-first-custodial-integration/"
+    }
+  ]
 }

@@ -56,5 +56,11 @@
     "human_approved": false,
     "approved_at": null,
     "backfill": true
-  }
+  },
+  "additional_sources": [
+    {
+      "name": "Altruist — Series F announcement",
+      "url": "https://altruist.com/news/series-f/"
+    }
+  ]
 }
