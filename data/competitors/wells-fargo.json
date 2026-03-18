@@ -26,7 +26,13 @@
         "JPMWM",
         "CWM"
       ],
-      "date_assessed": "2026-03-10"
+      "date_assessed": "2026-03-10",
+      "sources": [
+        {
+          "name": "Wells Fargo — Investor Relations",
+          "url": "https://www.wellsfargo.com/about/investor-relations/"
+        }
+      ]
     }
   },
   "last_updated": "2026-03-18"

@@ -51,7 +51,17 @@
         "CWM",
         "GPB"
       ],
-      "date_assessed": "2026-03-10"
+      "date_assessed": "2026-03-10",
+      "sources": [
+        {
+          "name": "Holistiplan — official site confirming integrations and modules",
+          "url": "https://holistiplan.com"
+        },
+        {
+          "name": "Zocks — AI meeting platform confirming Holistiplan integration",
+          "url": "https://www.zocks.ai"
+        }
+      ]
     }
   },
   "last_updated": "2026-03-18"

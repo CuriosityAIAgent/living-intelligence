@@ -26,7 +26,13 @@
         "JPMWM",
         "GPB"
       ],
-      "date_assessed": "2026-03-07"
+      "date_assessed": "2026-03-07",
+      "sources": [
+        {
+          "name": "ThinkAdvisor — LPL expands partnership with Anthropic to deploy Claude",
+          "url": "https://www.thinkadvisor.com/2026/02/24/lpl-expands-partnership-with-anthropic/"
+        }
+      ]
     }
   },
   "last_updated": "2026-03-18"

@@ -27,7 +27,13 @@
         "CWM",
         "Self-Directed"
       ],
-      "date_assessed": "2026-03-07"
+      "date_assessed": "2026-03-07",
+      "sources": [
+        {
+          "name": "Bank of America — Erica surpasses 2 billion interactions (Apr 2024)",
+          "url": "https://newsroom.bankofamerica.com/content/newsroom/press-releases/2024/04/bofa-s-erica-surpasses-2-billion-interactions--helping-42-millio.html"
+        }
+      ]
     },
     "advisor_productivity": {
       "maturity": "scaled",
@@ -43,7 +49,13 @@
         "JPMWM",
         "GPB"
       ],
-      "date_assessed": "2026-03-07"
+      "date_assessed": "2026-03-07",
+      "sources": [
+        {
+          "name": "Bank of America Q3 2025 Earnings — AI tools cited across wealth management",
+          "url": "https://investor.bankofamerica.com/press-releases/detail/701/bank-of-america-reports-third-quarter-2025-financial"
+        }
+      ]
     },
     "client_acquisition": {
       "maturity": "piloting",
@@ -59,7 +71,13 @@
         "CWM",
         "JPMWM"
       ],
-      "date_assessed": "2026-03-07"
+      "date_assessed": "2026-03-07",
+      "sources": [
+        {
+          "name": "Bank of America Q3 2025 Earnings — technology investment and AI strategy",
+          "url": "https://investor.bankofamerica.com/press-releases/detail/701/bank-of-america-reports-third-quarter-2025-financial"
+        }
+      ]
     }
   },
   "last_updated": "2026-03-18"

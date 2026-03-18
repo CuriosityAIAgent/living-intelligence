@@ -21,7 +21,8 @@
       ],
       "jpm_implication": "Public.com is making bespoke index construction — previously a high-fee institutional product — available to retail investors at no extra cost. JPM Direct Indexing strategy must account for this.",
       "jpm_segments_affected": ["CWM", "JPMWM"],
-      "date_assessed": "2026-03-10"
+      "date_assessed": "2026-03-10",
+      "sources": [{ "name": "Public.com — Generated Assets product page", "url": "https://public.com/generated-assets" }]
     },
     "new_business_models": {
       "maturity": "announced",
@@ -34,7 +35,8 @@
       ],
       "jpm_implication": "Agentic brokerage represents the next frontier of retail competition. If JPM does not offer AI-driven conditional portfolio management, next-gen investors will shift AUM to platforms that do.",
       "jpm_segments_affected": ["CWM"],
-      "date_assessed": "2026-03-10"
+      "date_assessed": "2026-03-10",
+      "sources": [{ "name": "Public.com — Agentic portfolio roadmap", "url": "https://public.com/agentic" }]
     }
   },
   "last_updated": "2026-03-10"

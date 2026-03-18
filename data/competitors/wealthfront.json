@@ -46,7 +46,13 @@
       "jpm_segments_affected": [
         "Self-Directed"
       ],
-      "date_assessed": "2026-03-07"
+      "date_assessed": "2026-03-07",
+      "sources": [
+        {
+          "name": "Wealthfront — Automated Tax-Loss Harvesting product page",
+          "url": "https://www.wealthfront.com/tax-loss-harvesting"
+        }
+      ]
     }
   },
   "last_updated": "2026-03-18"

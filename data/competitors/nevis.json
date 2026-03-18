@@ -23,7 +23,13 @@
       ],
       "jpm_implication": "Nevis's backing from top-tier investors (Sequoia, ICONIQ, Ribbit) signals that unified advisor workflow AI is the highest-conviction bet in wealthtech right now. The race to become the AI operating system for wealth management is accelerating.",
       "jpm_segments_affected": ["JPMWM"],
-      "date_assessed": "2026-03-10"
+      "date_assessed": "2026-03-10",
+      "sources": [
+        {
+          "name": "Nevis — official site (AI operating system for wealth advisors)",
+          "url": "https://trynevis.com"
+        }
+      ]
     },
     "operations_compliance": {
       "maturity": "piloting",
@@ -36,7 +42,13 @@
       ],
       "jpm_implication": "AI-powered account opening is a high-impact automation target. JPM's client onboarding process should be benchmarked against AI-native tools like Nevis.",
       "jpm_segments_affected": ["JPMWM", "GPB"],
-      "date_assessed": "2026-03-10"
+      "date_assessed": "2026-03-10",
+      "sources": [
+        {
+          "name": "Nevis — official site (AI operating system for wealth advisors)",
+          "url": "https://trynevis.com"
+        }
+      ]
     }
   },
   "last_updated": "2026-03-10"

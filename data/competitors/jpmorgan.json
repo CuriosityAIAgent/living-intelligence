@@ -80,7 +80,13 @@
         "AI-assisted allocation described in investor presentations — specific product not separately announced",
         "Human advisor approval required; AI role in portfolio construction not independently confirmed"
       ],
-      "date_assessed": "2026-03-18"
+      "date_assessed": "2026-03-18",
+      "sources": [
+        {
+          "name": "J.P. Morgan 2025 Investor Day — Asset & Wealth Management (PDF)",
+          "url": "https://www.jpmorganchase.com/content/dam/jpmc/jpmorgan-chase-and-co/investor-relations/documents/events/2025/jpmc-2025-investor-day/asset-wealth-management.pdf"
+        }
+      ]
     },
     "research_content": {
       "maturity": "deployed",
