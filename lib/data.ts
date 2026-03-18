@@ -68,6 +68,7 @@ export interface CapabilityEntry {
   headline: string;
   detail: string;
   evidence: string[];
+  sources?: { name: string; url: string }[];
   date_assessed: string;
   jpm_implication?: string;
   jpm_segments_affected?: string[];

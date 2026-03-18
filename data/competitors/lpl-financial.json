@@ -2,7 +2,9 @@
   "id": "lpl-financial",
   "name": "LPL Financial",
   "segment": "ria_independent",
-  "regions": ["us"],
+  "regions": [
+    "us"
+  ],
   "color": "#003087",
   "ai_strategy_summary": "LPL expanded its Anthropic partnership in February 2026 to deploy Claude AI plugins to its 30,000+ financial advisors. The compliance-governed, data-controlled plugin architecture is designed specifically for regulated wealth management — a notable contrast to general-purpose AI tools.",
   "head_of_ai": null,
@@ -10,8 +12,22 @@
   "headline_initiative": "Claude AI plugins for advisor workflows",
   "overall_maturity": "announced",
   "capabilities": {
-    "advisor_productivity": { "maturity": "announced", "headline": "Claude AI plugins deploying to 30,000+ LPL advisors", "detail": "LPL expanded its Anthropic partnership in late February 2026 to deploy Claude AI plugins across its advisor network. The plugins are customizable, data-controlled, and compliance-governed — allowing advisors to build custom AI workflows with their own client data.", "evidence": ["Expanded Anthropic partnership announced Feb 24, 2026", "30,000+ financial advisors in network", "Compliance-first architecture"], "jpm_implication": "LPL deploying compliance-grade AI to 30K advisors creates competitive pressure on wirehouse advisor productivity. Independent advisors are no longer AI-disadvantaged.", "jpm_segments_affected": ["JPMWM", "GPB"], "date_assessed": "2026-03-07" },
-    "operations_compliance": { "maturity": "announced", "headline": "Compliance-governed AI plugin architecture for regulated environments", "detail": "LPL's Anthropic plugin framework is specifically designed for compliance-sensitive wealth management, with data controls and regulatory guardrails built in.", "evidence": ["Compliance-governed architecture per announcement", "Advisor data control mechanisms"], "jpm_implication": "Compliance-native AI tools will accelerate adoption at regulated firms. JPM should monitor LPL's architecture as a potential model.", "jpm_segments_affected": ["JPMWM"], "date_assessed": "2026-03-07" }
+    "advisor_productivity": {
+      "maturity": "announced",
+      "headline": "Claude AI plugins deploying to 30,000+ LPL advisors",
+      "detail": "LPL expanded its Anthropic partnership in late February 2026 to deploy Claude AI plugins across its advisor network. The plugins are customizable, data-controlled, and compliance-governed — allowing advisors to build custom AI workflows with their own client data.",
+      "evidence": [
+        "Expanded Anthropic partnership announced Feb 24, 2026",
+        "30,000+ financial advisors in network",
+        "Compliance-first architecture"
+      ],
+      "jpm_implication": "LPL deploying compliance-grade AI to 30K advisors creates competitive pressure on wirehouse advisor productivity. Independent advisors are no longer AI-disadvantaged.",
+      "jpm_segments_affected": [
+        "JPMWM",
+        "GPB"
+      ],
+      "date_assessed": "2026-03-07"
+    }
   },
-  "last_updated": "2026-03-07"
+  "last_updated": "2026-03-18"
 }

@@ -2,40 +2,32 @@
   "id": "wells-fargo",
   "name": "Wells Fargo Advisors",
   "segment": "wirehouse",
-  "regions": ["us"],
+  "regions": [
+    "us"
+  ],
   "color": "#C0392B",
   "ai_strategy_summary": "Wells Fargo is deploying AI across its advisor workforce through its Fargo virtual assistant and advisor productivity tools, while piloting AI-powered client intelligence and compliance automation across its ~12,000-advisor wealth network.",
   "head_of_ai": null,
   "headline_metric": "~12,000 financial advisors; ~$2T in client assets under management",
   "headline_initiative": "Fargo AI assistant + advisor productivity AI rollout",
-  "overall_maturity": "piloting",
+  "overall_maturity": "announced",
   "capabilities": {
     "advisor_productivity": {
-      "maturity": "piloting",
+      "maturity": "announced",
       "headline": "AI tools for advisor prep, client intelligence, and meeting workflows in pilot across WFA advisor network",
-      "detail": "Wells Fargo Advisors is piloting AI-powered productivity tools across its financial advisor network — including meeting preparation, client briefing, and CRM automation — as part of a broader enterprise AI strategy that includes the Fargo virtual assistant deployed across retail banking. The wealth management division is in earlier stages than Morgan Stanley or Merrill but has committed to advisor AI tooling as a strategic priority.",
+      "detail": "Wells Fargo has announced an enterprise AI strategy that includes wealth management advisor productivity as a pillar. The Fargo virtual assistant is deployed in retail banking (since 2022) but WM-specific AI advisor tools have not been publicly demonstrated or confirmed in production. The firm's ~12,000 WFA advisors and $2T wealth platform represent a significant opportunity but disclosed AI deployments remain at the announcement stage.",
       "evidence": [
-        "~12,000 financial advisors in the WFA network",
-        "Fargo virtual assistant deployed across retail banking since 2022",
-        "Enterprise AI strategy announced with advisor productivity as a pillar",
-        "~$2T in client assets across the wealth platform"
+        "Enterprise AI strategy announced with advisor productivity as a stated pillar",
+        "Fargo virtual assistant live in retail banking — WM equivalent not separately confirmed",
+        "~12,000 WFA advisors and ~$2T client assets — scale exists but WM AI tool not disclosed"
       ],
       "jpm_implication": "Wells Fargo's slower pace of advisor AI deployment relative to Morgan Stanley and Merrill represents a competitive window for JPM to widen its advantage in advisor productivity tooling.",
-      "jpm_segments_affected": ["JPMWM", "CWM"],
-      "date_assessed": "2026-03-10"
-    },
-    "client_personalization": {
-      "maturity": "piloting",
-      "headline": "AI-powered client segmentation and next-best-action tools being piloted within wealth division",
-      "detail": "Wells Fargo is piloting AI-driven client segmentation and next-best-action recommendations for advisors — leveraging its large retail banking data asset to identify wealth consolidation opportunities within its existing client base.",
-      "evidence": [
-        "Cross-sell AI from retail banking base being explored for wealth",
-        "Fargo assistant providing personalized banking insights to retail clients"
+      "jpm_segments_affected": [
+        "JPMWM",
+        "CWM"
       ],
-      "jpm_implication": "Wells Fargo's ability to leverage its massive retail banking dataset for wealth cross-sell is a structural advantage JPM also possesses — the race is to build the AI layer that activates it.",
-      "jpm_segments_affected": ["CWM", "JPMWM"],
       "date_assessed": "2026-03-10"
     }
   },
-  "last_updated": "2026-03-10"
+  "last_updated": "2026-03-18"
 }

@@ -33,7 +33,7 @@
     "operations_compliance": {
       "maturity": "piloting",
       "headline": "Multi-agentic system piloting KYC reviews and source-of-wealth verification",
-      "detail": "UBS is piloting a multi-agentic AI system for periodic KYC reviews and source-of-wealth corroboration \u2014 automating one of the most labor-intensive compliance processes in private banking.",
+      "detail": "UBS is piloting a multi-agentic AI system for periodic KYC reviews and source-of-wealth corroboration — automating one of the most labor-intensive compliance processes in private banking.",
       "evidence": [
         "Multi-agentic KYC pilot confirmed",
         "Source-of-wealth verification use case",
@@ -62,12 +62,13 @@
       "date_assessed": "2026-03-07"
     },
     "client_personalization": {
-      "maturity": "deployed",
-      "headline": "AI-powered personalized client communications and next-best-action",
+      "maturity": "piloting",
+      "headline": "AI-personalised client communications piloting as part of Red AI rollout",
       "detail": "UBS's AI platform supports personalized client communication generation and next-best-action recommendations for wealth advisors.",
       "evidence": [
-        "Part of Red AI platform capabilities",
-        "Deployed alongside advisor productivity tools"
+        "Red AI platform deployed to 30,000 employees includes personalisation capabilities",
+        "Not separately confirmed as a distinct WM client personalisation product",
+        "Client-facing personalisation features in early rollout alongside advisor tools"
       ],
       "jpm_implication": "Personalization at scale is becoming standard. JPM's client communication personalization capabilities need evaluation.",
       "jpm_segments_affected": [
@@ -77,5 +78,5 @@
       "date_assessed": "2026-03-07"
     }
   },
-  "last_updated": "2026-03-07"
+  "last_updated": "2026-03-18"
 }

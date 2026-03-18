@@ -45,29 +45,14 @@
       ],
       "date_assessed": "2026-03-07"
     },
-    "operations_compliance": {
-      "maturity": "scaled",
-      "headline": "Erica handles transactions, wire tracking, and compliance documentation at scale",
-      "detail": "Erica manages a full range of operational client requests including wire tracking, transaction disputes, account management, and compliance documentation \u2014 at 1.5M interactions per day.",
-      "evidence": [
-        "Operational capability confirmed",
-        "1.5M daily interactions include operational tasks"
-      ],
-      "jpm_implication": "BofA's operational AI scale creates structural cost advantages. JPM operational efficiency through AI is a board-level priority.",
-      "jpm_segments_affected": [
-        "CWM",
-        "Self-Directed"
-      ],
-      "date_assessed": "2026-03-07"
-    },
     "client_acquisition": {
-      "maturity": "deployed",
+      "maturity": "piloting",
       "headline": "AI-powered segment migration and next-best-action across 67M clients",
-      "detail": "BofA uses AI to identify segment migration opportunities across its 67 million consumer clients, using behavioral and transaction data to predict life events and recommend wealth management conversations.",
+      "detail": "Bank of America is applying AI to segment migration and next-best-action across its 67M client base, but the WM-specific AI acquisition tooling for Merrill advisors is not separately disclosed with the same specificity as the core consumer AI stack. The $13B 2026 technology investment signals intent; WM-specific AI acquisition capabilities are assumed to be in pilot.",
       "evidence": [
-        "$13B 2026 technology investment",
-        "67M client base",
-        "AI-driven segment migration confirmed"
+        "$13B 2026 technology investment includes AI across all client segments",
+        "67M client base — AI-driven segment migration from consumer to Merrill Edge/Merrill Lynch in development",
+        "WM-specific AI acquisition product not separately disclosed"
       ],
       "jpm_implication": "BofA's AI-driven migration from banking to wealth management is a direct competitive threat to CWM and JPMWM acquisition pipeline.",
       "jpm_segments_affected": [
@@ -77,5 +62,5 @@
       "date_assessed": "2026-03-07"
     }
   },
-  "last_updated": "2026-03-07"
+  "last_updated": "2026-03-18"
 }

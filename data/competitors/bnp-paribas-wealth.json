@@ -7,9 +7,9 @@
     "asia"
   ],
   "color": "#009640",
-  "ai_strategy_summary": "BNP Paribas Wealth Management has 750+ AI use cases in production targeting \u20ac500M in value, opened a dedicated AI Centre of Excellence in Singapore in 2025, and launched an LLM-as-a-Service platform \u2014 making it the most AI-mature major European private bank by use case volume.",
+  "ai_strategy_summary": "BNP Paribas Wealth Management has 750+ AI use cases in production targeting €500M in value, opened a dedicated AI Centre of Excellence in Singapore in 2025, and launched an LLM-as-a-Service platform — making it the most AI-mature major European private bank by use case volume.",
   "head_of_ai": null,
-  "headline_metric": "750+ AI use cases in production; \u20ac469B AUM; \u20ac500M value target 2025",
+  "headline_metric": "750+ AI use cases in production; €469B AUM; €500M value target 2025",
   "headline_initiative": "AI Centre of Excellence Singapore + LLM-as-a-Service platform",
   "overall_maturity": "deployed",
   "capabilities": {
@@ -32,7 +32,7 @@
     "research_content": {
       "maturity": "deployed",
       "headline": "AI-powered investment research and portfolio analytics for private banking advisors",
-      "detail": "BNP Paribas advisors use AI for investment research synthesis, portfolio analytics, and the generation of client advisory materials \u2014 supported by the AI Centre of Excellence in Singapore.",
+      "detail": "BNP Paribas advisors use AI for investment research synthesis, portfolio analytics, and the generation of client advisory materials — supported by the AI Centre of Excellence in Singapore.",
       "evidence": [
         "Portfolio analytics AI in production",
         "Advisory material generation confirmed",
@@ -46,12 +46,13 @@
       "date_assessed": "2026-03-10"
     },
     "operations_compliance": {
-      "maturity": "piloting",
-      "headline": "AI-powered client onboarding automation across private banking workflows",
-      "detail": "BNP is piloting AI for client onboarding automation \u2014 KYC document extraction, account opening, and compliance workflows \u2014 as part of its Asia-focused AI Centre of Excellence mandate.",
+      "maturity": "announced",
+      "headline": "Client onboarding automation and KYC use cases in development at Singapore AI Centre of Excellence",
+      "detail": "BNP is piloting AI for client onboarding automation — KYC document extraction, account opening, and compliance workflows — as part of its Asia-focused AI Centre of Excellence mandate.",
       "evidence": [
-        "Onboarding AI in development at Singapore CoE",
-        "KYC automation use cases included in 750+ count"
+        "AI Centre of Excellence Singapore explicitly tasked with onboarding and KYC automation (announced 2025)",
+        "Part of 750+ group-wide AI use cases — WM-specific onboarding automation not separately disclosed",
+        "Not in production; described as in development"
       ],
       "jpm_implication": "Onboarding AI reduces cost-to-serve and improves client experience. JPM Private Bank onboarding timelines should be benchmarked against AI-accelerated peers.",
       "jpm_segments_affected": [
@@ -60,5 +61,5 @@
       "date_assessed": "2026-03-10"
     }
   },
-  "last_updated": "2026-03-10"
+  "last_updated": "2026-03-18"
 }
