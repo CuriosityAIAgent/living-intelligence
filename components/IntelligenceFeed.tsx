@@ -113,7 +113,7 @@ export default function IntelligenceFeed({ entries, leadStoryId }: {
                     </div>
                   )}
                   <div className="mt-4 flex items-center gap-2">
-                    {leadStory.source_verified && leadStory.source_url ? (
+                    {leadStory.source_url ? (
                       <span
                         role="link"
                         tabIndex={0}
@@ -125,11 +125,6 @@ export default function IntelligenceFeed({ entries, leadStoryId }: {
                       </span>
                     ) : (
                       <span className="text-xs text-gray-400">{leadStory.source_name}</span>
-                    )}
-                    {!leadStory.source_verified && (
-                      <span className="text-[9px] text-amber-600 bg-amber-50 border border-amber-200 px-1.5 py-0.5 rounded">
-                        Pending verification
-                      </span>
                     )}
                   </div>
                 </div>
@@ -245,9 +240,6 @@ export default function IntelligenceFeed({ entries, leadStoryId }: {
                 <span className="text-[10px] text-gray-400">{formatDateShort(entry.date)}</span>
                 <div className="flex items-center gap-1">
                   <span className="text-[10px] text-gray-400">{entry.source_name}</span>
-                  {!entry.source_verified && (
-                    <span className="text-[8px] text-amber-500" title="Source pending verification">⚠</span>
-                  )}
                 </div>
               </div>
             </Link>
