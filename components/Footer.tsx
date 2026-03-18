@@ -46,7 +46,7 @@ export default function Footer() {
           </div>
           <div className="flex items-center gap-4">
             <span className="text-xs text-gray-400">
-              Content updated continuously · Ratings as of March 2026
+              Content updated continuously · Ratings dated per entry
             </span>
             <span className="text-xs text-gray-300">|</span>
             <span className="text-xs text-gray-400">© {year} Tiger AI</span>

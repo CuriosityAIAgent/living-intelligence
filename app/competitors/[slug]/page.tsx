@@ -96,7 +96,7 @@ export default async function CompetitorPage({ params }: { params: Promise<{ slu
         <div className="mb-4">
           <h2 className="text-base font-bold text-gray-900 mb-1">AI Capability Breakdown</h2>
           <p className="text-xs text-gray-400">
-            {capEntries.length} of {capabilities.length} capability areas active · Assessed March 2026
+            {capEntries.length} of {capabilities.length} capability areas active · Last updated {competitor.last_updated}
           </p>
         </div>
 

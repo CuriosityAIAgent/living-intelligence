@@ -34,7 +34,7 @@ export default function IntelligencePage() {
             What Companies Are Doing with AI
           </h1>
           <p className="text-sm text-gray-500">
-            {entries.length} developments tracked · Wealth management &amp; financial services · Updated March 2026
+            {entries.length} developments tracked · Wealth management &amp; financial services
           </p>
         </div>
 

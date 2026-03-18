@@ -181,7 +181,7 @@ export default function LandscapePage() {
             </div>
           </div>
           <p className="text-[10px] text-gray-400 mt-2">
-            Ratings based on publicly available evidence as of March 2026. All assessments are directional — not investment advice.
+            Ratings based on publicly available evidence as of the date shown per entry. All assessments are directional — not investment advice.
           </p>
         </div>
 
