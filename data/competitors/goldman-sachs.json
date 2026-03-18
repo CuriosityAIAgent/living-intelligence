@@ -14,7 +14,7 @@
     "title": "Chief Information Officer"
   },
   "headline_metric": "46,000 employees, 50%+ adoption",
-  "headline_initiative": "GS AI Assistant \u2014 multi-model firmwide platform",
+  "headline_initiative": "GS AI Assistant — multi-model firmwide platform",
   "overall_maturity": "deployed",
   "capabilities": {
     "advisor_productivity": {
@@ -22,10 +22,10 @@
       "headline": "GS AI Assistant deployed to 46,000 employees, targeting 100% by end of 2026",
       "detail": "Goldman Sachs built a model-agnostic AI assistant running on GPT-4o, Gemini, Claude 3.7 Sonnet, and open-source models. Over 50% of 46,000 employees are active users as of early 2026. The multi-model approach gives Goldman flexibility to use the best model for each task and reduces vendor lock-in.",
       "evidence": [
-        "46,000 employees on platform",
-        ">50% adoption as of early 2026",
-        "CEO targeting 100% by end of 2026",
-        "Supports: OpenAI GPT-4o/o3-mini, Google Gemini, Anthropic Claude 3.7 Sonnet"
+        "GS AI Assistant deployed across the firm — \"46,000 employees\" reported by CNBC (Jan 2025); not confirmed in Goldman official materials",
+        ">50% adoption reported by CNBC; Goldman has not published this figure officially",
+        "CEO targeting 100% deployment by end of 2026 (earnings call)",
+        "Supports OpenAI GPT-4o/o3-mini, Google Gemini, Anthropic Claude 3.7 Sonnet — multi-model architecture confirmed"
       ],
       "jpm_implication": "Goldman's model-agnostic strategy is architecturally sophisticated. JPM's AI strategy should consider similar flexibility rather than single-vendor lock-in.",
       "jpm_segments_affected": [
@@ -33,7 +33,13 @@
         "JPMWM",
         "IPB"
       ],
-      "date_assessed": "2026-03-07"
+      "date_assessed": "2026-03-07",
+      "sources": [
+        {
+          "name": "CNBC — Goldman Sachs AI assistant launch (Jan 2025)",
+          "url": "https://www.cnbc.com/2025/01/21/goldman-sachs-launches-ai-assistant.html"
+        }
+      ]
     },
     "operations_compliance": {
       "maturity": "piloting",
@@ -50,7 +56,13 @@
         "IPB",
         "CWM"
       ],
-      "date_assessed": "2026-03-07"
+      "date_assessed": "2026-03-07",
+      "sources": [
+        {
+          "name": "CNBC — Goldman Sachs × Anthropic autonomous agents (Feb 2026)",
+          "url": "https://www.cnbc.com/2026/02/06/anthropic-goldman-sachs-ai-model-accounting.html"
+        }
+      ]
     },
     "research_content": {
       "maturity": "deployed",
@@ -65,8 +77,14 @@
         "GPB",
         "IPB"
       ],
-      "date_assessed": "2026-03-07"
+      "date_assessed": "2026-03-07",
+      "sources": [
+        {
+          "name": "CNBC — Goldman Sachs AI assistant launch (Jan 2025)",
+          "url": "https://www.cnbc.com/2025/01/21/goldman-sachs-launches-ai-assistant.html"
+        }
+      ]
     }
   },
-  "last_updated": "2026-03-07"
+  "last_updated": "2026-03-18"
 }

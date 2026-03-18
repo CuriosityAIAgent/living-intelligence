@@ -28,7 +28,17 @@
         "GPB",
         "IPB"
       ],
-      "date_assessed": "2026-03-07"
+      "date_assessed": "2026-03-07",
+      "sources": [
+        {
+          "name": "UBS — Chief AI Officer appointed, AI strategy announcement",
+          "url": "https://www.ubs.com/global/en/media/display-page-ndp/en-20251016-ai-strategy.html"
+        },
+        {
+          "name": "Microsoft × UBS — Azure AI deployment case study",
+          "url": "https://www.microsoft.com/en/customers/story/19796-ubs-azure"
+        }
+      ]
     },
     "operations_compliance": {
       "maturity": "piloting",
@@ -44,7 +54,17 @@
         "GPB",
         "IPB"
       ],
-      "date_assessed": "2026-03-07"
+      "date_assessed": "2026-03-07",
+      "sources": [
+        {
+          "name": "UBS — Chief AI Officer appointed, AI strategy announcement",
+          "url": "https://www.ubs.com/global/en/media/display-page-ndp/en-20251016-ai-strategy.html"
+        },
+        {
+          "name": "Microsoft × UBS — Azure AI deployment case study",
+          "url": "https://www.microsoft.com/en/customers/story/19796-ubs-azure"
+        }
+      ]
     },
     "research_content": {
       "maturity": "deployed",
@@ -59,7 +79,17 @@
         "GPB",
         "IPB"
       ],
-      "date_assessed": "2026-03-07"
+      "date_assessed": "2026-03-07",
+      "sources": [
+        {
+          "name": "UBS — Chief AI Officer appointed, AI strategy announcement",
+          "url": "https://www.ubs.com/global/en/media/display-page-ndp/en-20251016-ai-strategy.html"
+        },
+        {
+          "name": "Microsoft × UBS — Azure AI deployment case study",
+          "url": "https://www.microsoft.com/en/customers/story/19796-ubs-azure"
+        }
+      ]
     },
     "client_personalization": {
       "maturity": "piloting",
@@ -75,7 +105,17 @@
         "GPB",
         "JPMWM"
       ],
-      "date_assessed": "2026-03-07"
+      "date_assessed": "2026-03-07",
+      "sources": [
+        {
+          "name": "UBS — Chief AI Officer appointed, AI strategy announcement",
+          "url": "https://www.ubs.com/global/en/media/display-page-ndp/en-20251016-ai-strategy.html"
+        },
+        {
+          "name": "Microsoft × UBS — Azure AI deployment case study",
+          "url": "https://www.microsoft.com/en/customers/story/19796-ubs-azure"
+        }
+      ]
     }
   },
   "last_updated": "2026-03-18"

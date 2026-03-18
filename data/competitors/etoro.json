@@ -2,7 +2,10 @@
   "id": "etoro",
   "name": "eToro",
   "segment": "digital_disruptor",
-  "regions": ["us", "emea"],
+  "regions": [
+    "us",
+    "emea"
+  ],
   "color": "#6051FF",
   "ai_strategy_summary": "eToro launched Tori AI in August 2025 as a personalized AI analyst for Club Members, backed by 7 AI-powered Alpha Portfolios and a public API for custom AI trading strategies — positioning itself as the AI-native social investing platform.",
   "head_of_ai": null,
@@ -16,12 +19,23 @@
       "detail": "Tori is an AI-powered analyst delivering personalized market insights, platform guidance, and educational content to eToro Club Members via natural conversation. More than 1/3 of Club Members used Tori within weeks of launch in August 2025.",
       "evidence": [
         "Tori launched August 7, 2025",
-        "1/3+ of Club Members using Tori within weeks",
         "Natural language personalized insights confirmed"
       ],
       "jpm_implication": "eToro is demonstrating that retail investors will engage with AI-powered personalized guidance. JPM's retail digital offerings need comparable conversational AI to remain competitive for mass-affluent clients.",
-      "jpm_segments_affected": ["CWM"],
-      "date_assessed": "2026-03-10"
+      "jpm_segments_affected": [
+        "CWM"
+      ],
+      "date_assessed": "2026-03-10",
+      "sources": [
+        {
+          "name": "eToro — AI launch press release (Aug 2025)",
+          "url": "https://investors.etoro.com/news-releases/news-release-details/etoro-leverages-ai-redefine-social-investing"
+        },
+        {
+          "name": "eToro — GlobeNewswire (Aug 2025)",
+          "url": "https://www.globenewswire.com/news-release/2025/08/07/3129203/0/en/eToro-Leverages-AI-to-Redefine-Social-Investing.html"
+        }
+      ]
     },
     "investment_portfolio": {
       "maturity": "deployed",
@@ -33,8 +47,20 @@
         "Public API for custom AI strategies also launched"
       ],
       "jpm_implication": "AI-curated portfolio strategies built on behavioral data are becoming a retail differentiator. JPM must consider how AI can enhance its own managed portfolio products.",
-      "jpm_segments_affected": ["CWM"],
-      "date_assessed": "2026-03-10"
+      "jpm_segments_affected": [
+        "CWM"
+      ],
+      "date_assessed": "2026-03-10",
+      "sources": [
+        {
+          "name": "eToro — AI launch press release (Aug 2025)",
+          "url": "https://investors.etoro.com/news-releases/news-release-details/etoro-leverages-ai-redefine-social-investing"
+        },
+        {
+          "name": "eToro — GlobeNewswire (Aug 2025)",
+          "url": "https://www.globenewswire.com/news-release/2025/08/07/3129203/0/en/eToro-Leverages-AI-to-Redefine-Social-Investing.html"
+        }
+      ]
     },
     "new_business_models": {
       "maturity": "deployed",
@@ -45,9 +71,21 @@
         "Enables AI-powered strategy building on eToro data"
       ],
       "jpm_implication": "Platform openness and developer ecosystems are creating network effects that closed platforms cannot match. JPM should evaluate a developer/partner API strategy.",
-      "jpm_segments_affected": ["CWM"],
-      "date_assessed": "2026-03-10"
+      "jpm_segments_affected": [
+        "CWM"
+      ],
+      "date_assessed": "2026-03-10",
+      "sources": [
+        {
+          "name": "eToro — AI launch press release (Aug 2025)",
+          "url": "https://investors.etoro.com/news-releases/news-release-details/etoro-leverages-ai-redefine-social-investing"
+        },
+        {
+          "name": "eToro — GlobeNewswire (Aug 2025)",
+          "url": "https://www.globenewswire.com/news-release/2025/08/07/3129203/0/en/eToro-Leverages-AI-to-Redefine-Social-Investing.html"
+        }
+      ]
     }
   },
-  "last_updated": "2026-03-10"
+  "last_updated": "2026-03-18"
 }

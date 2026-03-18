@@ -2,7 +2,9 @@
   "id": "jump-ai",
   "name": "Jump",
   "segment": "advisor_tools",
-  "regions": ["us"],
+  "regions": [
+    "us"
+  ],
   "color": "#FF5C00",
   "ai_strategy_summary": "Jump is the fastest-scaling AI platform in US financial advisory — reaching 27,000 advisors (~1 in 10 in the US) in under two years, processing 183 continuous years of client meetings, and raising $105M total. It is the de facto standard for AI meeting and workflow automation among independent advisors.",
   "head_of_ai": null,
@@ -24,8 +26,17 @@
         "35%+ average monthly growth rate since January 2024"
       ],
       "jpm_implication": "Jump is setting the standard for advisor meeting automation. If JPM advisors are not using comparable tools, they are spending significantly more time on admin than competitors. Internal AI meeting tools or Jump integration should be evaluated.",
-      "jpm_segments_affected": ["JPMWM", "CWM"],
-      "date_assessed": "2026-03-10"
+      "jpm_segments_affected": [
+        "JPMWM",
+        "CWM"
+      ],
+      "date_assessed": "2026-03-10",
+      "sources": [
+        {
+          "name": "Jump — $80M Series B announcement",
+          "url": "https://jump.ai/press/series-b-announcement"
+        }
+      ]
     },
     "operations_compliance": {
       "maturity": "deployed",
@@ -36,9 +47,18 @@
         "Post-meeting workflow automation in production"
       ],
       "jpm_implication": "AI-automated compliance documentation reduces per-interaction compliance cost significantly. JPM compliance teams should evaluate AI-generated documentation quality against current standards.",
-      "jpm_segments_affected": ["JPMWM", "CWM"],
-      "date_assessed": "2026-03-10"
+      "jpm_segments_affected": [
+        "JPMWM",
+        "CWM"
+      ],
+      "date_assessed": "2026-03-10",
+      "sources": [
+        {
+          "name": "Jump — $80M Series B announcement",
+          "url": "https://jump.ai/press/series-b-announcement"
+        }
+      ]
     }
   },
-  "last_updated": "2026-03-10"
+  "last_updated": "2026-03-18"
 }

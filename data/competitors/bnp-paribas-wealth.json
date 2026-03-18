@@ -20,14 +20,20 @@
       "evidence": [
         "AI Centre of Excellence Singapore launched 2025",
         "LLM-as-a-Service platform launched June 2025",
-        "750+ AI use cases in production across the group"
+        "750+ AI use cases cited group-wide — WM-specific count not separately disclosed"
       ],
       "jpm_implication": "BNP's shared LLM infrastructure model is a mature enterprise pattern. JPM should review its own internal AI platform architecture against this benchmark.",
       "jpm_segments_affected": [
         "GPB",
         "JPMWM"
       ],
-      "date_assessed": "2026-03-10"
+      "date_assessed": "2026-03-10",
+      "sources": [
+        {
+          "name": "BNP Paribas Wealth Management — Singapore AI CoE launch (Hubbis)",
+          "url": "https://www.hubbis.com/news/bnp-paribas-wealth-management-launches-ai-centre-of-excellence-in-singapore"
+        }
+      ]
     },
     "research_content": {
       "maturity": "deployed",
@@ -43,7 +49,13 @@
         "GPB",
         "JPMWM"
       ],
-      "date_assessed": "2026-03-10"
+      "date_assessed": "2026-03-10",
+      "sources": [
+        {
+          "name": "BNP Paribas Wealth Management — Singapore AI CoE launch (Hubbis)",
+          "url": "https://www.hubbis.com/news/bnp-paribas-wealth-management-launches-ai-centre-of-excellence-in-singapore"
+        }
+      ]
     },
     "operations_compliance": {
       "maturity": "announced",
@@ -58,7 +70,13 @@
       "jpm_segments_affected": [
         "GPB"
       ],
-      "date_assessed": "2026-03-10"
+      "date_assessed": "2026-03-10",
+      "sources": [
+        {
+          "name": "BNP Paribas Wealth Management — Singapore AI CoE launch (Hubbis)",
+          "url": "https://www.hubbis.com/news/bnp-paribas-wealth-management-launches-ai-centre-of-excellence-in-singapore"
+        }
+      ]
     }
   },
   "last_updated": "2026-03-18"

@@ -21,11 +21,11 @@
     "advisor_productivity": {
       "maturity": "scaled",
       "headline": "AI Assistant + Debrief: 98% advisor adoption, 15 hrs/week saved",
-      "detail": "Morgan Stanley deployed AI @ Morgan Stanley Assistant (OpenAI-powered) for internal knowledge retrieval, boosting document retrieval from 20% to 80% efficiency. AI Debrief auto-generates meeting notes and syncs to Salesforce CRM. Both tools have achieved 98% adoption among Wealth Management advisors \u2014 the highest in the industry.",
+      "detail": "Morgan Stanley deployed AI @ Morgan Stanley Assistant (OpenAI-powered) for internal knowledge retrieval, boosting document retrieval from 20% to 80% efficiency. AI Debrief auto-generates meeting notes and syncs to Salesforce CRM. Both tools have achieved 98% adoption among Wealth Management advisors — the highest in the industry.",
       "evidence": [
-        "98% advisor adoption rate confirmed by CAO",
-        "Document retrieval efficiency: 20% \u2192 80%",
-        "Time savings: up to 15 hours/week per advisor",
+        "98% advisor adoption rate confirmed by Chief Administrative Officer (Morgan Stanley)",
+        "Document retrieval efficiency improved from 20% to 80% of queries resolved by AI",
+        "Up to 15 hours/week per advisor estimated from pilot data (~30 min per meeting saved)",
         "Rolled out to mobile and Salesforce platforms"
       ],
       "jpm_implication": "Sets the benchmark for advisor AI adoption. JPM must match this productivity baseline or risk advisor attrition to MS.",
@@ -33,7 +33,13 @@
         "JPMWM",
         "GPB"
       ],
-      "date_assessed": "2026-03-07"
+      "date_assessed": "2026-03-07",
+      "sources": [
+        {
+          "name": "Morgan Stanley — AI @ Morgan Stanley Debrief launch",
+          "url": "https://www.morganstanley.com/press-releases/ai-at-morgan-stanley-debrief-launch"
+        }
+      ]
     },
     "research_content": {
       "maturity": "piloting",
@@ -43,12 +49,18 @@
         "Pilot in Institutional Securities division",
         "Extension of AI Assistant architecture"
       ],
-      "jpm_implication": "MS is cross-pollinating AI tools across divisions \u2014 JPM should consider similar expansion of any successful internal AI tools.",
+      "jpm_implication": "MS is cross-pollinating AI tools across divisions — JPM should consider similar expansion of any successful internal AI tools.",
       "jpm_segments_affected": [
         "GPB",
         "IPB"
       ],
-      "date_assessed": "2026-03-07"
+      "date_assessed": "2026-03-07",
+      "sources": [
+        {
+          "name": "Morgan Stanley — AI @ Morgan Stanley Debrief launch",
+          "url": "https://www.morganstanley.com/press-releases/ai-at-morgan-stanley-debrief-launch"
+        }
+      ]
     },
     "operations_compliance": {
       "maturity": "deployed",
@@ -66,5 +78,5 @@
       "date_assessed": "2026-03-07"
     }
   },
-  "last_updated": "2026-03-07"
+  "last_updated": "2026-03-18"
 }

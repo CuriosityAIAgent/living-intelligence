@@ -2,7 +2,10 @@
   "id": "conquest-planning",
   "name": "Conquest Planning",
   "segment": "advisor_tools",
-  "regions": ["us", "emea"],
+  "regions": [
+    "us",
+    "emea"
+  ],
   "color": "#0A7CFF",
   "ai_strategy_summary": "Conquest Planning serves 70% of Canadian financial advisors and 1.5M+ households, raised $80M Series B in June 2025, and launched four new AI-powered planning capabilities — making it the dominant AI financial planning platform in Canada with rapid US and UK expansion.",
   "head_of_ai": null,
@@ -21,8 +24,17 @@
         "Advisors reducing planning time from hours to minutes"
       ],
       "jpm_implication": "AI-powered financial planning that cuts plan generation from hours to minutes is becoming a standard advisor expectation. JPM's MoneyGuide/planning tools must match this speed and quality.",
-      "jpm_segments_affected": ["JPMWM", "CWM"],
-      "date_assessed": "2026-03-10"
+      "jpm_segments_affected": [
+        "JPMWM",
+        "CWM"
+      ],
+      "date_assessed": "2026-03-10",
+      "sources": [
+        {
+          "name": "Conquest Planning — $80M Series B announcement",
+          "url": "https://conquestplanning.com/media/conquest-planning-raises-80-million-series-b-led-by-growth-equity-at-goldman-sachs-alternatives-to-bring-personalized-ai-powered-financial-plans-to-more-families/"
+        }
+      ]
     },
     "investment_portfolio": {
       "maturity": "deployed",
@@ -35,9 +47,18 @@
         "70% of Canadian advisors on platform"
       ],
       "jpm_implication": "Conquest's deep penetration of Canadian advisory (70% share) means it will follow Canadian advisors into US markets. JPM's US advisor planning tools must be competitive with Conquest's AI capabilities.",
-      "jpm_segments_affected": ["JPMWM", "CWM"],
-      "date_assessed": "2026-03-10"
+      "jpm_segments_affected": [
+        "JPMWM",
+        "CWM"
+      ],
+      "date_assessed": "2026-03-10",
+      "sources": [
+        {
+          "name": "Conquest Planning — $80M Series B announcement",
+          "url": "https://conquestplanning.com/media/conquest-planning-raises-80-million-series-b-led-by-growth-equity-at-goldman-sachs-alternatives-to-bring-personalized-ai-powered-financial-plans-to-more-families/"
+        }
+      ]
     }
   },
-  "last_updated": "2026-03-10"
+  "last_updated": "2026-03-18"
 }

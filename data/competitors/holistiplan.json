@@ -2,7 +2,9 @@
   "id": "holistiplan",
   "name": "Holistiplan",
   "segment": "advisor_tools",
-  "regions": ["us"],
+  "regions": [
+    "us"
+  ],
   "color": "#1E4D8C",
   "ai_strategy_summary": "Holistiplan holds 42% advisor adoption after 5 years — #1 tax planning software for advisors 5 consecutive years — using AI and OCR to analyze client tax returns in minutes and identify planning opportunities that previously required a specialist.",
   "head_of_ai": null,
@@ -16,14 +18,23 @@
       "detail": "Holistiplan uses AI and OCR to analyze client tax returns in minutes, identifying tax-saving opportunities (Roth conversions, loss harvesting, charitable giving, etc.) and generating advisor-ready planning summaries. Used by 8,000+ firms and 42% of US financial advisors. Rated #1 tax planning software in T3/Inside Information survey for 5 consecutive years.",
       "evidence": [
         "8,000+ advisory firms using Holistiplan",
-        "42% advisor adoption rate (2024 survey)",
+        "~39% advisor adoption rate (2024 survey)",
         "#1 tax planning software — T3/Inside Information Survey, 5 consecutive years",
         "Tax return analysis in minutes vs. hours manually",
         "Zocks integration (September 2025) extends meeting AI into tax planning"
       ],
       "jpm_implication": "Tax planning is one of the highest-value advisor services and also one of the most time-intensive. Holistiplan's 42% adoption proves advisors will pay for AI that makes tax planning faster. JPM advisors need comparable AI-assisted tax planning tools.",
-      "jpm_segments_affected": ["JPMWM", "CWM"],
-      "date_assessed": "2026-03-10"
+      "jpm_segments_affected": [
+        "JPMWM",
+        "CWM"
+      ],
+      "date_assessed": "2026-03-10",
+      "sources": [
+        {
+          "name": "Holistiplan — #1 tax planning software 5th consecutive year",
+          "url": "https://www.holistiplan.com/news/holistiplan-ranked-1-tax-planning-software-for-the-5th-year-in-a-row/"
+        }
+      ]
     },
     "operations_compliance": {
       "maturity": "scaled",
@@ -35,9 +46,13 @@
         "Estate and insurance analysis modules added"
       ],
       "jpm_implication": "The integration of tax planning AI into CRM and meeting workflows is setting a new standard for compliance-grade advisor operations. JPM's internal tools should benchmark against this.",
-      "jpm_segments_affected": ["JPMWM", "CWM", "GPB"],
+      "jpm_segments_affected": [
+        "JPMWM",
+        "CWM",
+        "GPB"
+      ],
       "date_assessed": "2026-03-10"
     }
   },
-  "last_updated": "2026-03-10"
+  "last_updated": "2026-03-18"
 }

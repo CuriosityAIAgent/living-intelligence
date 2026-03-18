@@ -27,7 +27,13 @@
         "GPB",
         "JPMWM"
       ],
-      "date_assessed": "2026-03-10"
+      "date_assessed": "2026-03-10",
+      "sources": [
+        {
+          "name": "Standard Chartered — SC GPT rollout across 41 markets",
+          "url": "https://www.sc.com/en/press-release/standard-chartered-rolls-out-sc-gpt-advancing-ai-driven-innovation-in-banking/"
+        }
+      ]
     },
     "research_content": {
       "maturity": "deployed",
@@ -42,7 +48,13 @@
       "jpm_segments_affected": [
         "GPB"
       ],
-      "date_assessed": "2026-03-10"
+      "date_assessed": "2026-03-10",
+      "sources": [
+        {
+          "name": "Standard Chartered — SC GPT rollout across 41 markets",
+          "url": "https://www.sc.com/en/press-release/standard-chartered-rolls-out-sc-gpt-advancing-ai-driven-innovation-in-banking/"
+        }
+      ]
     }
   },
   "last_updated": "2026-03-18"

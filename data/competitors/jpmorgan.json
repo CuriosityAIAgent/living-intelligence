@@ -1,6 +1,6 @@
 {
   "id": "jpmorgan",
-  "name": "J.P. Morgan Wealth Management",
+  "name": "J.P. Morgan Wealth Management and Private Bank",
   "segment": "wirehouse",
   "scope_note": "Covers J.P. Morgan Wealth Management (branch-based advisors, mass affluent to HNW) and J.P. Morgan Private Bank (UHNW, $10M+ clients) only. Excludes JPMorgan Chase consumer banking, commercial banking, investment banking, and J.P. Morgan Asset Management divisions.",
   "regions": [
@@ -10,7 +10,7 @@
     "latam"
   ],
   "color": "#003087",
-  "ai_strategy_summary": "J.P. Morgan's AI strategy in wealth management centers on the Coach AI ecosystem — compressing advisor prep time, surfacing real-time client intelligence, and enabling each advisor to serve 50% more clients over time. Coach AI (Wealth Management) and Connect Coach (Private Bank) are deployed to all 9,530 advisors and have driven a 20% year-over-year gross sales increase — the clearest documented AI-to-revenue link of any wealth manager tracked.",
+  "ai_strategy_summary": "J.P. Morgan's AI strategy in wealth management and private banking centres on the Coach AI ecosystem — compressing advisor prep time, surfacing real-time client intelligence, and enabling each advisor to serve 50% more clients over time. Coach AI (Wealth Management) and Connect Coach (Private Bank) are broadly deployed across ~9,600 advisors and have driven a 20% year-over-year gross sales increase — the clearest documented AI-to-revenue link of any wealth manager tracked.",
   "head_of_ai": {
     "name": "Wealth Management Division Leadership",
     "title": "No dedicated WM AI head publicly named"
@@ -37,10 +37,24 @@
         "Coach AI broadly deployed across Wealth Management advisor network",
         "Connect Coach: Private Bank equivalent, confirmed live (2024 launch)"
       ],
-      "date_assessed": "2026-03-18"
+      "date_assessed": "2026-03-18",
+      "sources": [
+        {
+          "name": "J.P. Morgan 2025 Investor Day — Asset & Wealth Management (PDF)",
+          "url": "https://www.jpmorganchase.com/content/dam/jpmc/jpmorgan-chase-and-co/investor-relations/documents/events/2025/jpmc-2025-investor-day/asset-wealth-management.pdf"
+        },
+        {
+          "name": "J.P. Morgan Q4 2024 Earnings Release",
+          "url": "https://jpmorganchaseco.gcs-web.com/news-releases/news-release-details/jpmorganchase-reports-fourth-quarter-and-full-year-2024"
+        },
+        {
+          "name": "J.P. Morgan Investor Day portal",
+          "url": "https://www.jpmorganchase.com/ir/investor-day"
+        }
+      ]
     },
     "client_personalization": {
-      "maturity": "scaled",
+      "maturity": "deployed",
       "headline": "Connect Coach surfaces real-time personalised recommendations at point of client interaction — all PB advisors",
       "detail": "Connect Coach surfaces personalised investment recommendations, portfolio insights, and next-best-action prompts in real time during advisor-client interactions at J.P. Morgan Private Bank. The personalisation layer is embedded in the advisor workflow — not a separate app — and draws on live client holdings, risk profile, and relationship history. Deployed to all Private Bank advisors serving UHNW clients.",
       "evidence": [
@@ -49,17 +63,22 @@
         "Draws on live client holdings, risk profile, and relationship history",
         "Coach AI equivalent capabilities rolled out across WM advisor network"
       ],
-      "date_assessed": "2026-03-18"
+      "date_assessed": "2026-03-18",
+      "sources": [
+        {
+          "name": "J.P. Morgan 2025 Investor Day — Asset & Wealth Management",
+          "url": "https://www.jpmorganchase.com/content/dam/jpmc/jpmorgan-chase-and-co/investor-relations/documents/events/2025/jpmc-2025-investor-day/asset-wealth-management.pdf"
+        }
+      ]
     },
     "investment_portfolio": {
-      "maturity": "deployed",
-      "headline": "AI-informed model portfolios spanning public and private markets — available across WM advisor network",
+      "maturity": "announced",
+      "headline": "AI-informed model portfolios announced — spanning public and private markets across the WM advisor network",
       "detail": "J.P. Morgan Wealth Management offers AI-informed model portfolios spanning public equities, fixed income, and alternative/private market asset classes. Advisors use these as a starting framework, with AI surfacing allocation suggestions aligned to client risk profiles and market conditions. Investment decisions remain human-approved — AI informs the recommendation, not the final decision.",
       "evidence": [
-        "Model portfolios span public equities, fixed income, and alternatives/private markets",
-        "AI-assisted allocation recommendations aligned to client risk profile",
-        "Human advisor approval required before implementation",
-        "Available across the WM advisor network"
+        "Model portfolios spanning public equities, fixed income, and alternatives referenced in WM platform materials",
+        "AI-assisted allocation described in investor presentations — specific product not separately announced",
+        "Human advisor approval required; AI role in portfolio construction not independently confirmed"
       ],
       "date_assessed": "2026-03-18"
     },
@@ -73,40 +92,13 @@
         "Integrated into Coach AI advisor workflow",
         "Reduces advisor content production time, increasing client-facing capacity"
       ],
-      "date_assessed": "2026-03-18"
-    },
-    "client_acquisition": {
-      "maturity": "piloting",
-      "headline": "Acquisition strategy is advisor-led capacity expansion — no AI-native digital acquisition play in production",
-      "detail": "J.P. Morgan's client acquisition strategy in wealth management is advisor-led: by making each advisor more productive with AI, the firm grows AUM without proportionally growing headcount. The Self-Directed Investing platform serves a lower-AUM digital segment, but AI-native acquisition tools (prospecting, lead scoring) are not yet in production for the advisor network.",
-      "evidence": [
-        "50% more clients per advisor capacity target cited by management (3–5 year horizon)",
-        "Self-Directed Investing platform exists for mass-market segment",
-        "No announced AI-powered prospecting or lead scoring tool for WM advisors"
-      ],
-      "date_assessed": "2026-03-18"
-    },
-    "operations_compliance": {
-      "maturity": "piloting",
-      "headline": "AI-assisted advisor compliance and client onboarding workflows in early stages within WM",
-      "detail": "AI-assisted operations within J.P. Morgan's wealth management and private banking divisions are in early stages. The focus is on advisor workflow compliance — meeting documentation, follow-up tracking, and suitability flagging integrated into the Coach AI ecosystem. WM-specific operations AI is nascent; enterprise-wide tools (COiN, AML monitoring) serve commercial banking and are out of scope for this profile.",
-      "evidence": [
-        "Compliance and documentation elements embedded in Coach AI advisor workflow",
-        "Suitability and follow-up tracking features in development within WM",
-        "No publicly announced standalone WM compliance AI product yet"
-      ],
-      "date_assessed": "2026-03-18"
-    },
-    "new_business_models": {
-      "maturity": "piloting",
-      "headline": "Client-facing version of Connect Coach under evaluation — would give HNW clients direct AI access",
-      "detail": "J.P. Morgan is evaluating a client-facing version of the Connect Coach ecosystem that would allow high-net-worth and UHNW clients to interact directly with AI-generated portfolio recommendations and market intelligence — bypassing or augmenting the advisor layer. This is an early-stage exploration, not yet announced as a product. If launched, it would represent a meaningful shift in the private banking model.",
-      "evidence": [
-        "Client-facing AI wealth interface under internal evaluation (not yet publicly announced)",
-        "Would allow HNW/UHNW clients direct access to AI-generated recommendations",
-        "Builds on existing Connect Coach architecture already deployed to PB advisors"
-      ],
-      "date_assessed": "2026-03-18"
+      "date_assessed": "2026-03-18",
+      "sources": [
+        {
+          "name": "J.P. Morgan 2025 Investor Day — Asset & Wealth Management (PDF)",
+          "url": "https://www.jpmorganchase.com/content/dam/jpmc/jpmorgan-chase-and-co/investor-relations/documents/events/2025/jpmc-2025-investor-day/asset-wealth-management.pdf"
+        }
+      ]
     }
   },
   "last_updated": "2026-03-18"

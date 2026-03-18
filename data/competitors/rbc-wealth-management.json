@@ -2,7 +2,10 @@
   "id": "rbc-wealth-management",
   "name": "RBC Wealth Management",
   "segment": "regional_champion",
-  "regions": ["us", "emea"],
+  "regions": [
+    "us",
+    "emea"
+  ],
   "color": "#0070CE",
   "ai_strategy_summary": "RBC Wealth Management rolled out TIFIN AG's AI-Powered Insights to all US advisors in February 2024 — identifying clients with money in motion using behavioral AI trained on billions of transactions — and is developing 3+ additional AI applications on its proprietary ATOM platform.",
   "head_of_ai": null,
@@ -21,8 +24,17 @@
         "Integrated into Salesforce advisor desktop"
       ],
       "jpm_implication": "RBC is using AI to identify wallet share growth opportunities before advisors can spot them manually. JPM wealth advisors need comparable AI-powered client intelligence tools.",
-      "jpm_segments_affected": ["JPMWM", "CWM"],
-      "date_assessed": "2026-03-10"
+      "jpm_segments_affected": [
+        "JPMWM",
+        "CWM"
+      ],
+      "date_assessed": "2026-03-10",
+      "sources": [
+        {
+          "name": "TIFIN AG × RBC Wealth Management — official announcement",
+          "url": "https://www.prnewswire.com/news-releases/tifin-ag-announces-collaboration-with-rbc-wealth-management-us-to-deepen-advisor-client-relationships-302073511.html"
+        }
+      ]
     },
     "client_acquisition": {
       "maturity": "deployed",
@@ -34,9 +46,18 @@
         "Life event + demographic + portfolio signals combined"
       ],
       "jpm_implication": "AI-powered AUM growth signals represent a structural advantage for firms that deploy them. JPM should develop equivalent behavioral AI for client acquisition.",
-      "jpm_segments_affected": ["JPMWM", "CWM"],
-      "date_assessed": "2026-03-10"
+      "jpm_segments_affected": [
+        "JPMWM",
+        "CWM"
+      ],
+      "date_assessed": "2026-03-10",
+      "sources": [
+        {
+          "name": "TIFIN AG × RBC Wealth Management — official announcement",
+          "url": "https://www.prnewswire.com/news-releases/tifin-ag-announces-collaboration-with-rbc-wealth-management-us-to-deepen-advisor-client-relationships-302073511.html"
+        }
+      ]
     }
   },
-  "last_updated": "2026-03-10"
+  "last_updated": "2026-03-18"
 }

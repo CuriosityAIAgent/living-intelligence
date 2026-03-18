@@ -2,7 +2,10 @@
   "id": "bbva",
   "name": "BBVA",
   "segment": "regional_champion",
-  "regions": ["emea", "latam"],
+  "regions": [
+    "emea",
+    "latam"
+  ],
   "color": "#1B4FBB",
   "ai_strategy_summary": "BBVA sealed a strategic alliance with OpenAI in 2025 to roll out AI across all 120,000 employees and is building a proactive, conversational advisory assistant for wealth clients — making it the most aggressive AI adopter among European universal banks.",
   "head_of_ai": null,
@@ -21,8 +24,17 @@
         "Best Digital Solutions Private Bank Spain — Euromoney 2025"
       ],
       "jpm_implication": "BBVA's full-enterprise AI deployment sets the standard for speed-to-scale. JPM must match this level of internal AI adoption breadth across advisory teams.",
-      "jpm_segments_affected": ["JPMWM", "GPB"],
-      "date_assessed": "2026-03-10"
+      "jpm_segments_affected": [
+        "JPMWM",
+        "GPB"
+      ],
+      "date_assessed": "2026-03-10",
+      "sources": [
+        {
+          "name": "BBVA × OpenAI — strategic alliance announcement",
+          "url": "https://www.bbva.com/en/innovation/bbva-and-openai-seal-a-strategic-alliance-to-redefine-banking-with-artificial-intelligence/"
+        }
+      ]
     },
     "client_personalization": {
       "maturity": "piloting",
@@ -33,9 +45,17 @@
         "AI Factory unit dedicated to wealth advisory tools"
       ],
       "jpm_implication": "If BBVA ships a proactive personalized advisory AI for private banking clients, it will become a differentiator in Spain and Latin America — key JPM Private Bank geographies.",
-      "jpm_segments_affected": ["GPB"],
-      "date_assessed": "2026-03-10"
+      "jpm_segments_affected": [
+        "GPB"
+      ],
+      "date_assessed": "2026-03-10",
+      "sources": [
+        {
+          "name": "BBVA × OpenAI — strategic alliance announcement",
+          "url": "https://www.bbva.com/en/innovation/bbva-and-openai-seal-a-strategic-alliance-to-redefine-banking-with-artificial-intelligence/"
+        }
+      ]
     }
   },
-  "last_updated": "2026-03-10"
+  "last_updated": "2026-03-18"
 }

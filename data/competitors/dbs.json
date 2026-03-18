@@ -28,7 +28,13 @@
         "IPB",
         "GPB"
       ],
-      "date_assessed": "2026-03-07"
+      "date_assessed": "2026-03-07",
+      "sources": [
+        {
+          "name": "DBS — Named World's Best AI Bank 2025",
+          "url": "https://www.dbs.com/newsroom/DBS_named_Worlds_Best_AI_Bank_2025"
+        }
+      ]
     },
     "client_personalization": {
       "maturity": "scaled",
@@ -42,7 +48,13 @@
       "jpm_segments_affected": [
         "IPB"
       ],
-      "date_assessed": "2026-03-07"
+      "date_assessed": "2026-03-07",
+      "sources": [
+        {
+          "name": "DBS — Named World's Best AI Bank 2025",
+          "url": "https://www.dbs.com/newsroom/DBS_named_Worlds_Best_AI_Bank_2025"
+        }
+      ]
     },
     "investment_portfolio": {
       "maturity": "deployed",
@@ -58,7 +70,13 @@
         "IPB",
         "GPB"
       ],
-      "date_assessed": "2026-03-07"
+      "date_assessed": "2026-03-07",
+      "sources": [
+        {
+          "name": "DBS — Named World's Best AI Bank 2025",
+          "url": "https://www.dbs.com/newsroom/DBS_named_Worlds_Best_AI_Bank_2025"
+        }
+      ]
     },
     "operations_compliance": {
       "maturity": "scaled",
@@ -73,7 +91,13 @@
       "jpm_segments_affected": [
         "IPB"
       ],
-      "date_assessed": "2026-03-07"
+      "date_assessed": "2026-03-07",
+      "sources": [
+        {
+          "name": "DBS — Named World's Best AI Bank 2025",
+          "url": "https://www.dbs.com/newsroom/DBS_named_Worlds_Best_AI_Bank_2025"
+        }
+      ]
     }
   },
   "last_updated": "2026-03-18"
