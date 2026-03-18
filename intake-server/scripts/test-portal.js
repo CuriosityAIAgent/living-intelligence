@@ -24,7 +24,7 @@ import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const PORTAL_DIR = join(__dirname, '..', '..', 'living-intelligence');
+const PORTAL_DIR = join(__dirname, '..', '..');
 const INTEL_DIR = join(PORTAL_DIR, 'data', 'intelligence');
 const TL_DIR = join(PORTAL_DIR, 'data', 'thought-leadership');
 
@@ -186,7 +186,7 @@ async function checkThoughtLeadership() {
 // ── Portal page checker ───────────────────────────────────────────────────────
 
 async function checkPortalPages() {
-  const BASE = 'http://localhost:3002';
+  const BASE = process.env.PORTAL_URL || 'http://localhost:3002';
   console.log(`\n── Portal pages (${BASE}) ────────────────────────────────────────`);
 
   // Read IDs from data files to build expected routes
@@ -198,29 +198,47 @@ async function checkPortalPages() {
     .filter(f => f.endsWith('.json'))
     .map(f => f.replace('.json', ''));
 
+  const competitorIds = readdirSync(join(PORTAL_DIR, 'data', 'competitors'))
+    .filter(f => f.endsWith('.json'))
+    .map(f => f.replace('.json', ''));
+
   const pages = [
-    '/',
-    '/intelligence',
-    '/thought-leadership',
-    '/landscape',
-    ...tlIds.map(id => `/thought-leadership/${id}`),
+    // Core nav pages
+    { path: '/',                      label: 'Home' },
+    { path: '/intelligence',          label: 'Intelligence feed' },
+    { path: '/thought-leadership',    label: 'Thought leadership' },
+    { path: '/landscape',             label: 'Landscape' },
+    // All intelligence article pages
+    ...intelligenceIds.map(id => ({ path: `/intelligence/${id}`, label: `Article: ${id}` })),
+    // All thought-leadership pages
+    ...tlIds.map(id => ({ path: `/thought-leadership/${id}`, label: `TL: ${id}` })),
+    // All competitor profile pages
+    ...competitorIds.map(id => ({ path: `/competitors/${id}`, label: `Competitor: ${id}` })),
   ];
 
   let ok = 0, broken = 0;
-  for (const page of pages) {
-    const result = await checkUrl(`${BASE}${page}`);
-    if (result.ok) {
-      process.stdout.write(`  ✅ ${page}\n`);
-      ok++;
-    } else {
-      process.stdout.write(`  ❌ ${page} → ${result.reason}\n`);
-      issue('error', page, 'page', `${BASE}${page}`, result.reason);
-      broken++;
+
+  // Run checks in batches of 8 for speed
+  const BATCH = 8;
+  for (let i = 0; i < pages.length; i += BATCH) {
+    const batch = pages.slice(i, i + BATCH);
+    const results = await Promise.all(
+      batch.map(async p => ({ ...p, result: await checkUrl(`${BASE}${p.path}`) }))
+    );
+    for (const { path, label, result } of results) {
+      if (result.ok) {
+        process.stdout.write(`  ✅ ${path}\n`);
+        ok++;
+      } else {
+        process.stdout.write(`  ❌ ${path} (${label}) → ${result.reason}\n`);
+        issue('error', path, 'page', `${BASE}${path}`, result.reason);
+        broken++;
+      }
     }
-    await sleep(100);
+    await sleep(50);
   }
 
-  process.stdout.write(`  ${ok} ok, ${broken} broken\n`);
+  process.stdout.write(`\n  ${ok} ok, ${broken} broken (${pages.length} total pages checked)\n`);
 }
 
 // ── Main ──────────────────────────────────────────────────────────────────────

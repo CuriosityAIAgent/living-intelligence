@@ -1,7 +1,8 @@
 {
   "id": "jpmorgan",
-  "name": "JPMorgan Chase",
+  "name": "J.P. Morgan Wealth Management",
   "segment": "wirehouse",
+  "scope_note": "Covers J.P. Morgan Wealth Management (branch-based advisors, mass affluent to HNW) and J.P. Morgan Private Bank (UHNW, $10M+ clients) only. Excludes JPMorgan Chase consumer banking, commercial banking, and investment banking divisions.",
   "regions": [
     "us",
     "emea",
