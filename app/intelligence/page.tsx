@@ -96,13 +96,6 @@ export default function IntelligencePage() {
 
       </main>
 
-      <footer className="border-t border-gray-200 mt-16 py-8">
-        <div className="max-w-6xl mx-auto px-6">
-          <p className="text-xs text-gray-400">
-            AI in Wealth Management. All sources linked. Updated regularly.
-          </p>
-        </div>
-      </footer>
     </div>
   );
 }

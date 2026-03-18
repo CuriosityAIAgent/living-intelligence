@@ -74,14 +74,6 @@ export default function ThoughtLeadershipPage() {
 
       </main>
 
-      <footer className="border-t border-gray-200 mt-16 py-8">
-        <div className="max-w-6xl mx-auto px-6 flex items-center justify-between">
-          <p className="text-xs text-gray-400">
-            AI in Wealth Management. All sources linked. Updated regularly.
-          </p>
-          <p className="text-xs text-gray-300">Internal use only</p>
-        </div>
-      </footer>
     </div>
   );
 }

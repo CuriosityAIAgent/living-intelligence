@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: "AI in Wealth Management",
@@ -16,8 +17,9 @@ export default function RootLayout({
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
       </head>
-      <body className="bg-white text-gray-900 min-h-screen">
-        {children}
+      <body className="bg-white text-gray-900 min-h-screen flex flex-col">
+        <div className="flex-1">{children}</div>
+        <Footer />
       </body>
     </html>
   );

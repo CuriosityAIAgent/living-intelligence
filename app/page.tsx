@@ -140,15 +140,6 @@ export default function HomePage() {
 
       </main>
 
-      <footer className="border-t border-gray-200 mt-16 py-8">
-        <div className="max-w-6xl mx-auto px-6 flex items-center justify-between">
-          <p className="text-xs text-gray-400">
-            AI in Wealth Management &amp; Financial Services.
-            All summaries are AI-generated from source material. Internal use only.
-          </p>
-          <p className="text-xs text-gray-300">Updated March 2026</p>
-        </div>
-      </footer>
     </div>
   );
 }
