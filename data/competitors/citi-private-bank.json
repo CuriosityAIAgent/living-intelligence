@@ -29,7 +29,13 @@
         "IPB",
         "GPB"
       ],
-      "date_assessed": "2026-03-07"
+      "date_assessed": "2026-03-07",
+      "sources": [
+        {
+          "name": "Citigroup — AskWealth + Advisor Insights launch press release",
+          "url": "https://www.citigroup.com/global/news/press-release/2025/citi-wealth-launches-advisor-insights-askwealth"
+        }
+      ]
     },
     "research_content": {
       "maturity": "deployed",
@@ -44,7 +50,13 @@
         "IPB",
         "GPB"
       ],
-      "date_assessed": "2026-03-07"
+      "date_assessed": "2026-03-07",
+      "sources": [
+        {
+          "name": "Citigroup — AskWealth + Advisor Insights launch press release",
+          "url": "https://www.citigroup.com/global/news/press-release/2025/citi-wealth-launches-advisor-insights-askwealth"
+        }
+      ]
     }
   },
   "last_updated": "2026-03-18"
