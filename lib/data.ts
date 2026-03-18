@@ -15,6 +15,7 @@ export interface IntelligenceEntry {
   source_name: string;
   source_url: string;
   source_verified: boolean;
+  additional_sources?: { name: string; url: string }[];
   image_url: string;
   summary: string;
   key_stat: { number: string; label: string } | null;
