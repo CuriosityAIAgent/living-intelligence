@@ -1,7 +1,7 @@
 {
   "id": "mollick-management-ai-superpower",
   "type": "essay",
-  "title": "The Managerial Revolution — How Leaders Can Unlock AI's Real Gains",
+  "title": "Management as AI Superpower",
   "author": {
     "name": "Ethan Mollick",
     "title": "Associate Professor, Wharton School",
@@ -9,34 +9,35 @@
     "photo_url": null
   },
   "publication": "One Useful Thing",
-  "source_url": "https://www.oneusefulthing.org/p/management-ai-superpower",
-  "date_published": "2026-02-15",
+  "source_url": "https://www.oneusefulthing.org/p/management-as-ai-superpower",
+  "date_published": "2026-01-27",
   "format": "essay",
   "executive_summary": [
-    "The biggest AI productivity gains come not from individual employees using AI tools, but from managers who redesign the work itself around AI capabilities",
-    "Organizations treating AI as a tool will fall behind those that treat it as a collaborator — the cognitive overhead of managing AI output requires new management skills",
-    "Middle management is being redefined: less information relay, more AI orchestration and human judgment on edge cases",
-    "The research shows a 40% performance gap between teams with AI-literate managers vs. AI-naive managers, even when both teams have access to the same tools",
-    "The competitive moat isn't having AI — it's knowing which human decisions AI should never replace, and building institutional clarity around that"
+    "As AI agents become capable of completing professional tasks in hours, the scarce skill is no longer technical AI expertise — it is knowing what to ask for and how to evaluate the output",
+    "A GDPval study (OpenAI) found GPT-5.2 models tied or beat human experts on 72% of diverse professional tasks, with humans averaging 7 hours per task — making delegation economics transformative",
+    "Effective AI delegation follows the same principles as effective human management: clear goals, specific deliverables, success criteria, and structured feedback",
+    "Expertise creates compounding advantage — domain experts recognize quality, give better instructions, and catch failures faster, making them disproportionately effective at directing AI agents",
+    "The so-called 'soft skills' of management — communication, evaluation, judgment — are now the hard competitive differentiators in an AI-augmented organisation"
   ],
-  "the_one_insight": "The competitive advantage isn't having AI — it's knowing which human decisions AI should never replace, and building institutional clarity around that.",
+  "the_one_insight": "What's scarce is knowing what to ask for. The skills that are so often dismissed as 'soft' turned out to be the hard ones.",
   "key_quotes": [
     {
-      "text": "We are not in an era of AI tools. We are in an era of AI teammates. The managers who understand the difference will define the next decade.",
-      "context": "On the shift from tool to collaborator framing"
+      "text": "What's scarce is knowing what to ask for.",
+      "context": "On why management judgment — not technical AI skill — becomes the competitive moat"
     },
     {
-      "text": "Most productivity gains from AI are invisible to the people not making them — which is exactly why organizations that move fast on this will build a durable lead.",
-      "context": "On the compounding nature of AI adoption"
+      "text": "The skills that are so often dismissed as 'soft' turned out to be the hard ones.",
+      "context": "On the revaluation of communication, delegation, and evaluation capabilities in the agentic era"
     }
   ],
   "tags": [
     "management",
     "org_design",
     "future_of_work",
-    "leadership"
+    "leadership",
+    "agentic_ai"
   ],
-  "week": "2026-03-07",
+  "week": "2026-01-26",
   "featured": true,
   "has_document": false,
   "document_url": null
