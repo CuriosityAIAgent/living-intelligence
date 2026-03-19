@@ -3,6 +3,7 @@ import 'dotenv/config';
 // Sanitise env vars at process start — strips Railway's " =" prefix quirk
 if (process.env.MAIL_HOST) process.env.MAIL_HOST = process.env.MAIL_HOST.replace(/^[\s=]+/, '').trim();
 if (process.env.MAIL_USER) process.env.MAIL_USER = process.env.MAIL_USER.replace(/^[\s=]+/, '').trim();
+if (process.env.MAIL_PASS) process.env.MAIL_PASS = process.env.MAIL_PASS.replace(/^[\s=]+/, '').trim();
 
 import express from 'express';
 import { fileURLToPath } from 'url';

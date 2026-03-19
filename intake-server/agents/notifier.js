@@ -34,11 +34,12 @@ export function verifyToken(entryId, token) {
 
 function createTransport() {
   const rawHost = process.env.MAIL_HOST || 'smtp.gmail.com';
-  const host = rawHost.replace(/^[\s=]+/, '').trim(); // strip leading spaces/= (Railway quirk)
+  const host = rawHost.replace(/^[\s=]+/, '').trim();
+  const port = parseInt(process.env.MAIL_PORT || '465', 10);
   return nodemailer.createTransport({
     host,
-    port:   parseInt(process.env.MAIL_PORT || '587', 10),
-    secure: false,  // STARTTLS
+    port,
+    secure: port === 465,  // SSL on 465, STARTTLS on 587
     auth: {
       user: process.env.MAIL_USER,
       pass: process.env.MAIL_PASS,
