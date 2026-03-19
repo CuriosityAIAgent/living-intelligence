@@ -490,11 +490,43 @@ app.post('/review/:token/reject', (req, res) => {
 // ─── Cron: daily pipeline at 6:00 AM ─────────────────────────────────────────
 
 cron.schedule('0 6 * * *', () => {
-  console.log('[cron] 6:00 AM — starting daily pipeline');
+  console.log('[cron] 6:00 AM Europe/London — starting daily pipeline');
   runDailyPipeline().catch(err => {
     console.error('[cron] Daily pipeline failed:', err.message);
   });
-}, { timezone: 'UTC' });
+}, { timezone: 'Europe/London' });
+
+// ─── POST /api/run-pipeline — manually trigger full pipeline + digest ─────────
+
+app.post('/api/run-pipeline', async (req, res) => {
+  console.log('[manual] Pipeline triggered via API');
+  res.json({ ok: true, message: 'Pipeline started — check server logs' });
+  runDailyPipeline().catch(err => {
+    console.error('[manual] Pipeline failed:', err.message);
+  });
+});
+
+// ─── POST /api/test-digest — send a sample digest email immediately ───────────
+
+app.post('/api/test-digest', async (req, res) => {
+  try {
+    const { sendDigest } = await import('./agents/notifier.js');
+    await sendDigest({
+      published: [
+        { id: 'test-1', title: 'Goldman Sachs deploys autonomous compliance agents with Anthropic', company_name: 'Goldman Sachs', confidence: 94 },
+        { id: 'test-2', title: 'Morgan Stanley AskResearchGPT now live for all 16,000 advisors', company_name: 'Morgan Stanley', confidence: 91 },
+      ],
+      pending: [
+        { id: 'test-3', title: 'UBS opens AI Transformation Factory in Singapore', company_name: 'UBS', confidence: 0.78, unverified_claims: ['headcount figure unverified'], notes: 'One stat needs checking' },
+      ],
+      blocked: [],
+      errors: [],
+    });
+    res.json({ ok: true, message: `Test digest sent to ${process.env.DIGEST_EMAIL}` });
+  } catch (err) {
+    res.status(500).json({ ok: false, error: err.message });
+  }
+});
 
 // ─── Helper ───────────────────────────────────────────────────────────────────
 
@@ -511,5 +543,5 @@ app.listen(PORT, () => {
   console.log(`  Running at: http://localhost:${PORT}`);
   console.log(`  Portal data: data/intelligence/`);
   console.log(`  Governance: PASS-only publish gate active`);
-  console.log(`  Cron: daily pipeline at 06:00 UTC\n`);
+  console.log(`  Cron: daily pipeline at 06:00 Europe/London\n`);
 });
