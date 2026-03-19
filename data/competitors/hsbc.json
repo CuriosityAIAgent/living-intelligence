@@ -64,6 +64,27 @@
           "url": "https://fintech.global/2025/09/18/hsbc-launches-ai-powered-wealth-intelligence-platform/"
         }
       ]
+    },
+    "client_personalization": {
+      "maturity": "announced",
+      "headline": "Personalized AI-driven investment recommendations planned as next phase of Wealth Intelligence",
+      "detail": "HSBC has indicated that personalized client recommendations — using the Wealth Intelligence platform's live data feeds to generate individualized portfolio insights for private banking clients — form a key part of the platform's roadmap following the initial HK and Singapore deployment.",
+      "evidence": [
+        "$1.8B AI investment commitment includes personalization roadmap",
+        "Wealth Intelligence platform architecture built to support client-level personalization",
+        "Initial deployment focuses on advisor tools; client-facing personalization is next phase"
+      ],
+      "jpm_implication": "When HSBC extends Wealth Intelligence to direct client-level personalized output, it will create differentiation in APAC private banking — a JPM stronghold.",
+      "jpm_segments_affected": [
+        "IPB"
+      ],
+      "date_assessed": "2026-03-19",
+      "sources": [
+        {
+          "name": "HSBC Private Bank — Wealth Intelligence official press release",
+          "url": "https://www.privatebanking.hsbc.com/media-releases-and-news/hsbc-deploys-wealth-intelligence/"
+        }
+      ]
     }
   },
   "last_updated": "2026-03-18"

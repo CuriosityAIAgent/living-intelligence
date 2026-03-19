@@ -7,7 +7,7 @@
     "asia"
   ],
   "color": "#003865",
-  "ai_strategy_summary": "Julius Baer built a proprietary AI Narrative Generation Engine for advisor-led client portfolio reviews in 10 weeks, earned a Google AI Trailblazers award, and deployed JAI — its custom GenAI stack — across relationship manager workflows globally.",
+  "ai_strategy_summary": "Julius Baer built a proprietary AI Narrative Generation Engine for advisor-led client portfolio reviews in 10 weeks, earned a Google AI Trailblazers award, and deployed JAI \u2014 its custom GenAI stack \u2014 across relationship manager workflows globally.",
   "head_of_ai": null,
   "headline_metric": "Prototype to production in 10 weeks; Google AI Trailblazers Innovation Award 2024",
   "headline_initiative": "JAI + AI-Agent Narrative Generation Engine for relationship managers",
@@ -16,7 +16,7 @@
     "advisor_productivity": {
       "maturity": "deployed",
       "headline": "JAI Narrative Generation Engine deployed for RM portfolio reviews globally",
-      "detail": "Julius Baer built JAI on Unique AI platform in 10 weeks — an AI-Agent Narrative Generation Engine that accelerates portfolio review narratives for relationship managers in Asia and globally. Awarded Google AI Trailblazers Innovation Award 2024.",
+      "detail": "Julius Baer built JAI on Unique AI platform in 10 weeks \u2014 an AI-Agent Narrative Generation Engine that accelerates portfolio review narratives for relationship managers in Asia and globally. Awarded Google AI Trailblazers Innovation Award 2024.",
       "evidence": [
         "JAI prototype to production in 10 weeks",
         "Google AI Trailblazers Innovation Award 2024",
@@ -31,19 +31,19 @@
       "date_assessed": "2026-03-10",
       "sources": [
         {
-          "name": "Asian Private Banker — Julius Baer COO confirms JAI Narrative Generation Engine + Google AI Trailblazers Award 2024",
+          "name": "Asian Private Banker \u2014 Julius Baer COO confirms JAI Narrative Generation Engine + Google AI Trailblazers Award 2024",
           "url": "https://asianprivatebanker.com/coo-focus-2025/andreas-zingg-julius-baer/"
         },
         {
-          "name": "Unique AI — Julius Baer GPT-4 + on-premises integration",
+          "name": "Unique AI \u2014 Julius Baer GPT-4 + on-premises integration",
           "url": "https://www.unique.ai/en/blog/uniques-holds-thier-third-baking-event-together-with-julius-b%C3%A4r"
         }
       ]
     },
     "research_content": {
-      "maturity": "deployed",
-      "headline": "AI-generated portfolio review narratives for advisor-client meetings",
-      "detail": "JAI generates narrative summaries of client portfolios and market context for use in advisor-client review meetings — cutting preparation time while maintaining personalization.",
+      "maturity": "piloting",
+      "headline": "Launchpad Singapore content creation tools (trend analytics, advisory concierge) being tested \u2014 not broadly deployed as of 2025",
+      "detail": "JAI generates narrative summaries of client portfolios and market context for use in advisor-client review meetings \u2014 cutting preparation time while maintaining personalization.",
       "evidence": [
         "AI narrative generation engine in production",
         "Portfolio review documentation automated"
@@ -52,18 +52,18 @@
       "jpm_segments_affected": [
         "GPB"
       ],
-      "date_assessed": "2026-03-10",
+      "date_assessed": "2026-03-19",
       "sources": [
         {
-          "name": "Asian Private Banker — Julius Baer COO confirms JAI Narrative Generation Engine + Google AI Trailblazers Award 2024",
+          "name": "Asian Private Banker \u2014 Julius Baer COO confirms JAI Narrative Generation Engine + Google AI Trailblazers Award 2024",
           "url": "https://asianprivatebanker.com/coo-focus-2025/andreas-zingg-julius-baer/"
         },
         {
-          "name": "Unique AI — Julius Baer GPT-4 + on-premises integration",
+          "name": "Unique AI \u2014 Julius Baer GPT-4 + on-premises integration",
           "url": "https://www.unique.ai/en/blog/uniques-holds-thier-third-baking-event-together-with-julius-b%C3%A4r"
         }
       ]
     }
   },
-  "last_updated": "2026-03-18"
+  "last_updated": "2026-03-19"
 }

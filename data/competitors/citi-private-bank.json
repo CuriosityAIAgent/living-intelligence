@@ -57,6 +57,27 @@
           "url": "https://www.citigroup.com/global/news/press-release/2025/citi-wealth-launches-advisor-insights-askwealth"
         }
       ]
+    },
+    "operations_compliance": {
+      "maturity": "piloting",
+      "headline": "AI-assisted compliance workflows and audit trail in AskWealth pilot",
+      "detail": "As part of the AskWealth rollout, Citi's dedicated AI infrastructure group is piloting compliance-aware query logging and advisor interaction audit trails — providing a structured record of AI-assisted advice interactions to support regulatory oversight.",
+      "evidence": [
+        "Dedicated AI infrastructure group confirmed (Citigroup press release)",
+        "AskWealth includes logging and audit trail capability (Citigroup)"
+      ],
+      "jpm_implication": "Compliance infrastructure for AI-assisted advice is an emerging regulatory requirement. Citi's early investment here creates an advantage as regulators scrutinize AI in advisory workflows.",
+      "jpm_segments_affected": [
+        "IPB",
+        "GPB"
+      ],
+      "date_assessed": "2026-03-19",
+      "sources": [
+        {
+          "name": "Citigroup — AskWealth + Advisor Insights launch press release",
+          "url": "https://www.citigroup.com/global/news/press-release/2025/citi-wealth-launches-advisor-insights-askwealth"
+        }
+      ]
     }
   },
   "last_updated": "2026-03-18"

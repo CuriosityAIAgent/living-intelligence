@@ -55,6 +55,28 @@
           "url": "https://www.bbva.com/en/innovation/bbva-and-openai-seal-a-strategic-alliance-to-redefine-banking-with-artificial-intelligence/"
         }
       ]
+    },
+    "operations_compliance": {
+      "maturity": "piloting",
+      "headline": "AI-powered compliance and risk monitoring across 120,000-employee deployment",
+      "detail": "BBVA's enterprise-wide AI deployment with OpenAI includes compliance workflow automation — the Blue AI assistant handles regulatory documentation drafting, policy query resolution, and risk flag monitoring as part of the full-firm rollout across 25 countries.",
+      "evidence": [
+        "120,000 employees on OpenAI-powered Blue AI across 25 countries",
+        "3 hours/week saved on routine tasks includes compliance documentation",
+        "AI Factory unit working on risk and compliance automation"
+      ],
+      "jpm_implication": "BBVA's AI-assisted compliance at enterprise scale reduces cost-per-interaction for regulated advisory activities. This is a significant structural cost advantage if scaled.",
+      "jpm_segments_affected": [
+        "JPMWM",
+        "GPB"
+      ],
+      "date_assessed": "2026-03-19",
+      "sources": [
+        {
+          "name": "BBVA × OpenAI — strategic alliance announcement",
+          "url": "https://www.bbva.com/en/innovation/bbva-and-openai-seal-a-strategic-alliance-to-redefine-banking-with-artificial-intelligence/"
+        }
+      ]
     }
   },
   "last_updated": "2026-03-18"

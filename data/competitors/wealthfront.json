@@ -53,6 +53,27 @@
           "url": "https://www.wealthfront.com/tax-loss-harvesting"
         }
       ]
+    },
+    "new_business_models": {
+      "maturity": "announced",
+      "headline": "UBS ownership driving expansion into new product lines including lending and cash management",
+      "detail": "Under UBS ownership, Wealthfront has been expanding its product set beyond core robo-advisory — launching a high-yield cash account and a Portfolio Line of Credit (automated lending against invested assets). These adjacent products represent new monetisation streams beyond the 0.25% management fee, positioning Wealthfront as a broader automated wealth platform.",
+      "evidence": [
+        "Portfolio Line of Credit live — automated lending at competitive rates vs. brokerages",
+        "High-yield cash account launched — competing with bank savings products",
+        "UBS acquisition (2022) provided product expansion capital"
+      ],
+      "jpm_implication": "Wealthfront's expansion from pure robo-advisor into cash, lending, and planning narrows the product gap with full-service wealth management — at a fraction of the fee. JPM's self-directed offering needs a credible response.",
+      "jpm_segments_affected": [
+        "Self-Directed"
+      ],
+      "date_assessed": "2026-03-19",
+      "sources": [
+        {
+          "name": "Wealthfront — Portfolio Line of Credit product page",
+          "url": "https://www.wealthfront.com/portfolio-line-of-credit"
+        }
+      ]
     }
   },
   "last_updated": "2026-03-18"
