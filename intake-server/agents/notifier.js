@@ -33,8 +33,10 @@ export function verifyToken(entryId, token) {
 // ── Email transport ───────────────────────────────────────────────────────────
 
 function createTransport() {
+  const rawHost = process.env.MAIL_HOST || 'smtp.gmail.com';
+  const host = rawHost.replace(/^[\s=]+/, '').trim(); // strip leading spaces/= (Railway quirk)
   return nodemailer.createTransport({
-    host:   process.env.MAIL_HOST  || 'smtp.gmail.com',
+    host,
     port:   parseInt(process.env.MAIL_PORT || '587', 10),
     secure: false,  // STARTTLS
     auth: {
