@@ -528,6 +528,20 @@ app.post('/api/test-digest', async (req, res) => {
   }
 });
 
+// ─── GET /api/debug-mail — inspect actual MAIL_* env var values (safe) ───────
+
+app.get('/api/debug-mail', (req, res) => {
+  const host = process.env.MAIL_HOST || '';
+  res.json({
+    MAIL_HOST_value:  host,
+    MAIL_HOST_length: host.length,
+    MAIL_HOST_codes:  [...host].slice(0, 6).map(c => c.charCodeAt(0)),
+    MAIL_USER_set:    !!process.env.MAIL_USER,
+    MAIL_PASS_set:    !!process.env.MAIL_PASS,
+    MAIL_PORT:        process.env.MAIL_PORT || '(not set)',
+  });
+});
+
 // ─── Helper ───────────────────────────────────────────────────────────────────
 
 function escHtml(str) {
