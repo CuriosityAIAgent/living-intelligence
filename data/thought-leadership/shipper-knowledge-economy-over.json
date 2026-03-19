@@ -1,0 +1,47 @@
+{
+  "id": "shipper-knowledge-economy-over",
+  "type": "essay",
+  "title": "The Knowledge Economy Is Over. Welcome to the Allocation Economy.",
+  "author": {
+    "name": "Dan Shipper",
+    "title": "CEO & Co-founder",
+    "organization": "Every",
+    "photo_url": null
+  },
+  "publication": "Every — Chain of Thought",
+  "source_url": "https://every.to/chain-of-thought/the-knowledge-economy-is-over-welcome-to-the-allocation-economy",
+  "date_published": "2024-01-18",
+  "format": "essay",
+  "executive_summary": [
+    "Shipper argues that AI is ending the knowledge economy — the era where professionals are paid for what they know — and replacing it with the allocation economy, where professionals are paid for how well they direct, evaluate, and manage AI systems that do the knowing",
+    "The structural shift is universal: even junior employees will need to develop skills previously reserved for the 12% of the workforce in formal management roles — directing work, evaluating quality, and allocating resources",
+    "AI acts as an abstraction layer over lower-level thinking — the same way cloud computing abstracted server management, AI is now abstracting the execution of knowledge work itself",
+    "For wealth management, the implication is direct: advisors whose value is rooted in holding information will be disintermediated; advisors whose value is rooted in judgment, relationships, and directing AI will compound their advantage",
+    "The essay was published in January 2024 and updated in March 2026 — the original thesis has only been accelerated by the pace of AI capability development since"
+  ],
+  "the_one_insight": "You will not be judged on how much you know, but on how well you can allocate and manage resources to get work done. Every knowledge worker is becoming a manager of AI. The question is whether they are ready.",
+  "key_quotes": [
+    {
+      "text": "In the age of AI, every maker becomes a manager.",
+      "context": "On the universal shift in how professional value is created and measured"
+    },
+    {
+      "text": "You won't be judged on how much you know, but instead on how well you can allocate and manage the resources to get work done.",
+      "context": "On the core competency of the allocation economy"
+    },
+    {
+      "text": "AI is an abstraction layer over lower-level thinking.",
+      "context": "On the structural mechanism by which AI changes the nature of knowledge work"
+    }
+  ],
+  "tags": [
+    "future_of_work",
+    "knowledge_economy",
+    "management",
+    "ai_strategy"
+  ],
+  "week": "2024-01-15",
+  "featured": false,
+  "has_document": false,
+  "document_url": null
+}

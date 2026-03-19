@@ -1,0 +1,48 @@
+{
+  "id": "mollick-shape-of-the-thing",
+  "type": "essay",
+  "title": "The Shape of the Thing",
+  "author": {
+    "name": "Ethan Mollick",
+    "title": "Associate Professor, Wharton School",
+    "organization": "University of Pennsylvania",
+    "photo_url": null
+  },
+  "publication": "One Useful Thing",
+  "source_url": "https://www.oneusefulthing.org/p/the-shape-of-the-thing",
+  "date_published": "2026-03-12",
+  "format": "essay",
+  "executive_summary": [
+    "Mollick argues we have crossed a threshold: the work dynamic has shifted from humans using AI as a tool to humans managing AI as an autonomous worker — systems now complete hours of complex professional work in minutes without step-by-step human direction",
+    "Benchmark data shows no plateau in AI capability growth: Google-Proof Q&A scores have reached 94% (vs a 34–70% human baseline), and the GDPval study now shows AI reaching or exceeding top human performance 82% of the time across professional tasks",
+    "The essay documents the emergence of 'Software Factories' — organisations like StrongDM where AI writes, tests, and ships production code without human involvement, each engineer allocated $1,000/day in AI token costs — as early evidence of radical organisational restructuring",
+    "Recursive self-improvement is no longer theoretical: Anthropic and OpenAI are already implementing feedback loops where AI systems help improve the next generation of AI, potentially steepening the capability curve further",
+    "Mollick's conclusion is not paralysis but urgency: uncertainty is not helplessness, and the choices organisations make right now — about structure, talent, and AI integration — will compound in ways that are very hard to reverse"
+  ],
+  "the_one_insight": "We have moved from the era of AI as tool to the era of AI as autonomous worker. The management question is no longer how to use AI — it is how to run an organisation where AI does the work and humans decide what work is worth doing.",
+  "key_quotes": [
+    {
+      "text": "This is an era of managing AIs, rather than working with them.",
+      "context": "On the fundamental shift in how AI is integrated into professional work"
+    },
+    {
+      "text": "uncertainty is not the same as helplessness",
+      "context": "On how organisations should respond to rapid, unpredictable AI capability growth"
+    },
+    {
+      "text": "the choices that individuals and organizations make right now matter more",
+      "context": "On why the current moment — not some future inflection point — is the one that determines competitive position"
+    }
+  ],
+  "tags": [
+    "management",
+    "agentic_ai",
+    "future_of_work",
+    "org_design",
+    "ai_leadership"
+  ],
+  "week": "2026-03-09",
+  "featured": true,
+  "has_document": false,
+  "document_url": null
+}

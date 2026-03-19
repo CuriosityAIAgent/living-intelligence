@@ -1,0 +1,48 @@
+{
+  "id": "beim-week-altruist-shook-markets",
+  "type": "essay",
+  "title": "The Week Altruist Shook the Markets",
+  "author": {
+    "name": "Nick Beim",
+    "title": "Partner",
+    "organization": "Venrock",
+    "photo_url": null
+  },
+  "publication": "nickbeim.com",
+  "source_url": "https://www.nickbeim.com/blog/2026/02/17/the-week-altruist-shook-the-markets/",
+  "date_published": "2026-02-17",
+  "format": "essay",
+  "executive_summary": [
+    "Beim argues the Altruist/Hazel announcement triggered a $130 billion market sell-off not because AI is new to wealth management, but because Hazel is integrated directly into the custodial system — giving it live access to account data that legacy platforms cannot replicate without rebuilding from scratch",
+    "The core mechanism is the conversion of high-skill, low-scale labour into software leverage: tax planning that previously required a specialist and several hours now runs in minutes across an entire advisor book",
+    "Legacy custodians face a structural disadvantage — they cannot bolt AI onto decades-old infrastructure and achieve the same depth of integration that native platforms have by design",
+    "The market's reaction was rational: even modest AI-driven productivity gains compound across a trillion-dollar industry measured in basis points, justifying large valuation shifts",
+    "Beim concludes that AI's value in wealth management will not come from replacing advisors but from radically increasing their leverage — the question for incumbents is whether they can build that leverage before their clients move to those who already have it"
+  ],
+  "the_one_insight": "The competitive moat in AI wealth management is not the AI model — it is the data layer. Hazel is different because it sits inside the custodial system. That is an architectural advantage legacy platforms cannot close by adding a chatbot.",
+  "key_quotes": [
+    {
+      "text": "Hazel is different for one reason that matters enormously: it is integrated directly into the custodial system and has access to custodial data.",
+      "context": "On why Altruist's architecture creates a structural advantage that legacy competitors cannot easily replicate"
+    },
+    {
+      "text": "It converts high-skill, low-scale labor into software leverage.",
+      "context": "On the economic mechanism behind AI-powered tax planning"
+    },
+    {
+      "text": "AI's value in wealth management will not come from replacing advisors, but from radically increasing their leverage.",
+      "context": "On how the wealth management industry should frame the AI opportunity"
+    }
+  ],
+  "tags": [
+    "wealth_management",
+    "ai_disruption",
+    "custodian",
+    "fintech",
+    "hazel"
+  ],
+  "week": "2026-02-16",
+  "featured": false,
+  "has_document": false,
+  "document_url": null
+}
