@@ -343,6 +343,141 @@
     .via-rss { background: #DBEAFE; color: #1D4ED8; }
     .via-jina { background: #EDE9FE; color: #6D28D9; }
     .via-dfs  { background: #D1FAE5; color: #065F46; }
+
+    /* ── Audit panel ── */
+    .audit-panel {
+      display: none;
+      padding: 24px;
+      overflow-y: auto;
+      height: calc(100vh - 52px);
+    }
+    .audit-panel.visible { display: block; }
+
+    .audit-score-block {
+      display: flex; align-items: center; gap: 20px;
+      background: #fff; border: 1px solid #E5E7EB; border-radius: 8px;
+      padding: 20px 24px; margin-bottom: 20px;
+    }
+    .audit-score-number {
+      font-size: 48px; font-weight: 800; color: #1B2E5E; line-height: 1;
+    }
+    .audit-score-label { font-size: 11px; color: #9CA3AF; text-transform: uppercase; letter-spacing: 0.1em; }
+    .audit-score-meta { font-size: 13px; color: #374151; margin-top: 4px; }
+
+    .audit-summary-bar {
+      display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap;
+    }
+    .audit-summary-pill {
+      display: flex; align-items: center; gap: 6px;
+      padding: 8px 14px; border-radius: 6px;
+      font-size: 13px; font-weight: 600;
+    }
+    .audit-summary-pill.pass { background: #DCFCE7; color: #15803D; border: 1px solid #BBF7D0; }
+    .audit-summary-pill.warn { background: #FEF3C7; color: #B45309; border: 1px solid #FDE68A; }
+    .audit-summary-pill.fail { background: #FEE2E2; color: #B91C1C; border: 1px solid #FECACA; }
+    .audit-summary-pill.info { background: #EEF2FF; color: #3730A3; border: 1px solid #C7D2FE; }
+
+    .audit-section-header {
+      font-size: 11px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.1em; color: #1B2E5E; margin: 20px 0 10px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .audit-section-count {
+      font-size: 10px; background: #E5E7EB; color: #374151;
+      padding: 1px 6px; border-radius: 8px; font-weight: 600;
+    }
+
+    .audit-file-row {
+      border: 1px solid #E5E7EB; border-radius: 6px;
+      margin-bottom: 6px; background: #fff; overflow: hidden;
+    }
+    .audit-file-row.fail { border-color: #FECACA; background: #FFF8F8; }
+    .audit-file-row.warn { border-color: #FDE68A; background: #FFFDF0; }
+    .audit-file-row.pass { border-color: #BBF7D0; }
+
+    .audit-file-header {
+      display: flex; align-items: center; gap: 10px;
+      padding: 10px 14px; cursor: pointer; user-select: none;
+    }
+    .audit-file-header:hover { background: rgba(0,0,0,0.02); }
+
+    .audit-status-dot {
+      width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0;
+    }
+    .audit-status-dot.pass { background: #22C55E; }
+    .audit-status-dot.warn { background: #F59E0B; }
+    .audit-status-dot.fail { background: #EF4444; }
+
+    .audit-file-name { font-size: 12px; font-weight: 600; color: #111827; flex: 1; }
+    .audit-file-meta { font-size: 10px; color: #9CA3AF; }
+
+    .audit-status-badge {
+      font-size: 9px; font-weight: 800; letter-spacing: 0.08em;
+      text-transform: uppercase; padding: 2px 8px; border-radius: 3px;
+    }
+    .audit-status-badge.pass { background: #DCFCE7; color: #15803D; }
+    .audit-status-badge.warn { background: #FEF3C7; color: #B45309; }
+    .audit-status-badge.fail { background: #FEE2E2; color: #B91C1C; }
+
+    .audit-issues-list {
+      display: none; padding: 0 14px 12px; border-top: 1px solid #F3F4F6;
+    }
+    .audit-issues-list.open { display: block; }
+
+    .audit-issue-row {
+      display: flex; gap: 8px; align-items: flex-start;
+      padding: 5px 0; font-size: 12px; border-bottom: 1px solid #F9FAFB;
+    }
+    .audit-issue-row:last-child { border-bottom: none; }
+    .audit-issue-icon { flex-shrink: 0; margin-top: 1px; font-size: 11px; }
+    .audit-issue-check {
+      font-family: monospace; font-size: 10px; color: #6B7280;
+      background: #F3F4F6; padding: 1px 5px; border-radius: 3px;
+      flex-shrink: 0; white-space: nowrap;
+    }
+    .audit-issue-detail { color: #374151; line-height: 1.5; }
+
+    .audit-progress-bar {
+      height: 4px; background: #E5E7EB; border-radius: 2px;
+      margin-bottom: 16px; overflow: hidden; display: none;
+    }
+    .audit-progress-fill {
+      height: 100%; background: #1B2E5E; border-radius: 2px;
+      transition: width 0.3s ease; width: 0%;
+    }
+
+    .audit-controls {
+      display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px;
+    }
+    .audit-btn {
+      padding: 8px 16px; border-radius: 5px; font-size: 13px;
+      font-weight: 600; cursor: pointer; border: none; transition: background 0.15s;
+    }
+    .audit-btn.primary { background: #1B2E5E; color: #fff; }
+    .audit-btn.primary:hover { background: #2A4080; }
+    .audit-btn.primary:disabled { background: #9CA3AF; cursor: not-allowed; }
+    .audit-btn.secondary { background: #fff; color: #1B2E5E; border: 1px solid #1B2E5E; }
+    .audit-btn.secondary:hover { background: #EEF2FF; }
+    .audit-btn.deep { background: #7C3AED; color: #fff; }
+    .audit-btn.deep:hover { background: #6D28D9; }
+    .audit-btn.deep:disabled { background: #9CA3AF; cursor: not-allowed; }
+
+    .audit-log-line {
+      font-size: 11px; color: #6B7280; padding: 2px 0;
+      font-family: monospace; line-height: 1.5;
+    }
+    .audit-log-line.error { color: #EF4444; }
+    .audit-log-wrap {
+      background: #F9FAFB; border: 1px solid #E5E7EB; border-radius: 5px;
+      padding: 10px 12px; max-height: 120px; overflow-y: auto;
+      margin-bottom: 16px; display: none;
+    }
+    .audit-log-wrap.visible { display: block; }
+    .audit-empty-state {
+      text-align: center; padding: 48px 24px; color: #9CA3AF;
+    }
+    .audit-empty-state .icon { font-size: 36px; margin-bottom: 12px; }
+    .audit-empty-state .title { font-size: 15px; font-weight: 600; color: #6B7280; margin-bottom: 6px; }
   </style>
 </head>
 <body>
@@ -368,6 +503,7 @@
         <button class="mode-tab" id="tabSearch" onclick="switchMode('search')">Search</button>
         <button class="mode-tab" id="tabUrl" onclick="switchMode('url')">URL</button>
         <button class="mode-tab" id="tabPending" onclick="switchMode('pending')">Review<span class="pending-badge" id="pendingBadge" style="display:none;">0</span></button>
+        <button class="mode-tab" id="tabAudit" onclick="switchMode('audit')">Audit</button>
       </div>
 
       <!-- Auto-Discover mode (default) -->
@@ -456,6 +592,77 @@
     </div>
   </div>
 
+</div>
+
+<!-- ── Audit Panel (full-width overlay, shown when Audit tab is active) ──── -->
+<div class="audit-panel" id="auditPanel">
+  <div style="max-width:960px;margin:0 auto;">
+
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;">
+      <div>
+        <div style="font-size:18px;font-weight:700;color:#1B2E5E;">Data Quality Audit</div>
+        <div style="font-size:12px;color:#9CA3AF;margin-top:2px;">Rule-based checks + AI verification across all intelligence and landscape data</div>
+      </div>
+    </div>
+
+    <!-- Controls -->
+    <div class="audit-controls">
+      <button class="audit-btn primary" id="btnFastAudit" onclick="runAudit('fast')">Run Fast Audit</button>
+      <button class="audit-btn deep" id="btnDeepAudit" onclick="runAudit('deep')">Run Deep Audit (AI)</button>
+      <button class="audit-btn secondary" onclick="loadAuditReport()">Load Last Report</button>
+    </div>
+
+    <!-- Progress bar -->
+    <div class="audit-progress-bar" id="auditProgressBar">
+      <div class="audit-progress-fill" id="auditProgressFill"></div>
+    </div>
+
+    <!-- Log output (visible during run) -->
+    <div class="audit-log-wrap" id="auditLog"></div>
+
+    <!-- Score + summary (hidden until report loaded) -->
+    <div id="auditReportArea" style="display:none;">
+
+      <!-- Score block -->
+      <div class="audit-score-block">
+        <div>
+          <div class="audit-score-number" id="auditScoreNumber">—</div>
+          <div style="font-size:13px;color:#9CA3AF;margin-top:2px;">/100</div>
+        </div>
+        <div>
+          <div class="audit-score-label">Quality Score</div>
+          <div class="audit-score-meta" id="auditScoreMeta"></div>
+          <div style="font-size:11px;color:#9CA3AF;margin-top:4px;" id="auditRunAt"></div>
+        </div>
+      </div>
+
+      <!-- Summary pills -->
+      <div class="audit-summary-bar" id="auditSummaryBar"></div>
+
+      <!-- Intelligence results -->
+      <div class="audit-section-header">
+        Intelligence Entries
+        <span class="audit-section-count" id="auditIntelCount">0</span>
+      </div>
+      <div id="auditIntelResults"></div>
+
+      <!-- Landscape results -->
+      <div class="audit-section-header" style="margin-top:24px;">
+        Landscape / Competitors
+        <span class="audit-section-count" id="auditLandscapeCount">0</span>
+      </div>
+      <div id="auditLandscapeResults"></div>
+
+    </div>
+
+    <!-- Empty state (shown before first run) -->
+    <div class="audit-empty-state" id="auditEmptyState">
+      <div class="icon">🔍</div>
+      <div class="title">No audit report loaded</div>
+      <div style="font-size:13px;">Click "Run Fast Audit" to check all data files, or "Load Last Report" to view a saved report.</div>
+    </div>
+
+  </div>
 </div>
 
 <!-- Publish bar -->
@@ -918,11 +1125,33 @@ function closeLog() {
 // ── Mode switching ─────────────────────────────────────────────────────────────
 
 function switchMode(mode) {
-  ['auto', 'search', 'url', 'pending'].forEach(m => {
-    document.getElementById(`mode${m.charAt(0).toUpperCase() + m.slice(1)}`).style.display = m === mode ? '' : 'none';
-    document.getElementById(`tab${m.charAt(0).toUpperCase() + m.slice(1)}`).classList.toggle('active', m === mode);
+  const intakeModes = ['auto', 'search', 'url', 'pending'];
+
+  // Show/hide intake left-panel sections
+  intakeModes.forEach(m => {
+    const el = document.getElementById(`mode${m.charAt(0).toUpperCase() + m.slice(1)}`);
+    if (el) el.style.display = m === mode ? '' : 'none';
+    const tab = document.getElementById(`tab${m.charAt(0).toUpperCase() + m.slice(1)}`);
+    if (tab) tab.classList.toggle('active', m === mode);
   });
-  if (mode === 'pending') loadPendingQueue();
+
+  // Handle Audit tab
+  const tabAudit = document.getElementById('tabAudit');
+  if (tabAudit) tabAudit.classList.toggle('active', mode === 'audit');
+
+  const auditPanel = document.getElementById('auditPanel');
+  const layout = document.querySelector('.layout');
+  const publishBar = document.getElementById('publishBar');
+
+  if (mode === 'audit') {
+    if (layout) layout.style.display = 'none';
+    if (publishBar) publishBar.style.display = 'none';
+    if (auditPanel) auditPanel.classList.add('visible');
+  } else {
+    if (layout) layout.style.display = '';
+    if (auditPanel) auditPanel.classList.remove('visible');
+    if (mode === 'pending') loadPendingQueue();
+  }
 }
 
 // ── Auto-Discover (RSS + Jina + DataForSEO) ───────────────────────────────────
@@ -1114,6 +1343,252 @@ async function runSearch() {
 
   btn.disabled = false;
   btn.textContent = 'Search';
+}
+
+// ── Audit panel ────────────────────────────────────────────────────────────────
+
+// In-memory last report for tab switching persistence
+let lastAuditReport = null;
+
+function auditLog(message, isError = false) {
+  const wrap = document.getElementById('auditLog');
+  wrap.classList.add('visible');
+  const div = document.createElement('div');
+  div.className = 'audit-log-line' + (isError ? ' error' : '');
+  div.textContent = message;
+  wrap.appendChild(div);
+  wrap.scrollTop = wrap.scrollHeight;
+}
+
+function clearAuditLog() {
+  const wrap = document.getElementById('auditLog');
+  wrap.innerHTML = '';
+  wrap.classList.remove('visible');
+}
+
+function setAuditProgress(pct) {
+  const bar = document.getElementById('auditProgressBar');
+  const fill = document.getElementById('auditProgressFill');
+  if (pct < 0) {
+    bar.style.display = 'none';
+  } else {
+    bar.style.display = 'block';
+    fill.style.width = Math.min(100, pct) + '%';
+  }
+}
+
+async function runAudit(mode) {
+  const fastBtn = document.getElementById('btnFastAudit');
+  const deepBtn = document.getElementById('btnDeepAudit');
+  fastBtn.disabled = true;
+  deepBtn.disabled = true;
+
+  clearAuditLog();
+  setAuditProgress(0);
+  document.getElementById('auditEmptyState').style.display = 'none';
+  document.getElementById('auditReportArea').style.display = 'none';
+
+  const url = mode === 'deep' ? '/api/audit/deep' : '/api/audit';
+  auditLog(`Starting ${mode} audit...`);
+
+  // Use EventSource for GET endpoints
+  await new Promise((resolve) => {
+    const es = new EventSource(url);
+
+    let totalInPhase = null;
+
+    es.addEventListener('status', (e) => {
+      const d = JSON.parse(e.data);
+      auditLog(d.message);
+    });
+
+    es.addEventListener('progress', (e) => {
+      const d = JSON.parse(e.data);
+      if (d.total) totalInPhase = d.total;
+      if (totalInPhase) {
+        setAuditProgress((d.checked / totalInPhase) * 90);
+      }
+    });
+
+    es.addEventListener('file_result', (e) => {
+      const d = JSON.parse(e.data);
+      // Stream results into the UI in real-time
+      renderSingleResult(d.type, d.result);
+    });
+
+    es.addEventListener('complete', (e) => {
+      const d = JSON.parse(e.data);
+      lastAuditReport = d.report;
+      setAuditProgress(100);
+      renderAuditReport(d.report);
+      es.close();
+      resolve();
+    });
+
+    es.addEventListener('error', (e) => {
+      let msg = 'Connection error';
+      try { msg = JSON.parse(e.data).message; } catch(_) {}
+      auditLog('Error: ' + msg, true);
+      es.close();
+      resolve();
+    });
+  });
+
+  setAuditProgress(-1);
+  fastBtn.disabled = false;
+  deepBtn.disabled = false;
+  auditLog('Audit complete.');
+}
+
+async function loadAuditReport() {
+  clearAuditLog();
+  document.getElementById('auditEmptyState').style.display = 'none';
+  document.getElementById('auditReportArea').style.display = 'none';
+
+  try {
+    const res = await fetch('/api/audit/report');
+    if (!res.ok) {
+      const data = await res.json();
+      auditLog('No saved report found: ' + (data.error || res.statusText), true);
+      document.getElementById('auditEmptyState').style.display = '';
+      return;
+    }
+    const report = await res.json();
+    lastAuditReport = report;
+    renderAuditReport(report);
+  } catch (err) {
+    auditLog('Failed to load report: ' + err.message, true);
+    document.getElementById('auditEmptyState').style.display = '';
+  }
+}
+
+function renderAuditReport(report) {
+  if (!report) return;
+
+  document.getElementById('auditEmptyState').style.display = 'none';
+  document.getElementById('auditReportArea').style.display = '';
+
+  const s = report.summary;
+
+  // Score
+  document.getElementById('auditScoreNumber').textContent = s.score;
+  document.getElementById('auditScoreNumber').style.color =
+    s.score >= 90 ? '#15803D' : s.score >= 70 ? '#B45309' : '#B91C1C';
+  document.getElementById('auditScoreMeta').textContent =
+    `${s.pass_count} PASS · ${s.warn_count} WARN · ${s.fail_count} FAIL` +
+    `   ·   ${s.issues_critical} critical · ${s.issues_warning} warnings`;
+  document.getElementById('auditRunAt').textContent =
+    `Mode: ${report.mode} · Run at: ${new Date(report.run_at).toLocaleString()}`;
+
+  // Summary bar
+  const bar = document.getElementById('auditSummaryBar');
+  bar.innerHTML = [
+    { cls: 'pass', label: `${s.pass_count} PASS` },
+    { cls: 'warn', label: `${s.warn_count} WARN` },
+    { cls: 'fail', label: `${s.fail_count} FAIL` },
+    { cls: 'info', label: `${s.total_intelligence} intelligence` },
+    { cls: 'info', label: `${s.total_competitors} landscape` },
+  ].map(p => `<div class="audit-summary-pill ${p.cls}">${p.label}</div>`).join('');
+
+  // Intelligence results
+  document.getElementById('auditIntelCount').textContent = report.intelligence.length;
+  const intelContainer = document.getElementById('auditIntelResults');
+  intelContainer.innerHTML = '';
+  report.intelligence.forEach(r => {
+    intelContainer.appendChild(buildResultRow(r));
+  });
+
+  // Landscape results
+  document.getElementById('auditLandscapeCount').textContent = report.landscape.length;
+  const landscapeContainer = document.getElementById('auditLandscapeResults');
+  landscapeContainer.innerHTML = '';
+  report.landscape.forEach(r => {
+    landscapeContainer.appendChild(buildResultRow(r));
+  });
+}
+
+// Stream a single result into the appropriate container while audit is running
+function renderSingleResult(type, result) {
+  const containerId = type === 'intelligence' ? 'auditIntelResults' : 'auditLandscapeResults';
+  let container = document.getElementById(containerId);
+  if (!container) return;
+
+  // Show the report area while streaming
+  document.getElementById('auditReportArea').style.display = '';
+  document.getElementById('auditEmptyState').style.display = 'none';
+
+  // Update count
+  const countId = type === 'intelligence' ? 'auditIntelCount' : 'auditLandscapeCount';
+  const countEl = document.getElementById(countId);
+  countEl.textContent = parseInt(countEl.textContent || '0', 10) + 1;
+
+  // Check if row already exists (update) or needs to be appended
+  const existing = container.querySelector(`[data-file="${CSS.escape(result.file)}"]`);
+  const row = buildResultRow(result);
+  if (existing) {
+    existing.replaceWith(row);
+  } else {
+    container.appendChild(row);
+  }
+}
+
+function buildResultRow(result) {
+  const statusCls = result.status.toLowerCase();
+  const hasIssues = result.issues && result.issues.length > 0;
+
+  const wrap = document.createElement('div');
+  wrap.className = `audit-file-row ${statusCls}`;
+  wrap.dataset.file = result.file;
+
+  const header = document.createElement('div');
+  header.className = 'audit-file-header';
+  header.innerHTML = `
+    <div class="audit-status-dot ${statusCls}"></div>
+    <div style="flex:1;min-width:0;">
+      <div class="audit-file-name">${escAuditHtml(result.name)}</div>
+      <div class="audit-file-meta">${escAuditHtml(result.file)}</div>
+    </div>
+    <div class="audit-status-badge ${statusCls}">${result.status}</div>
+    ${hasIssues ? `<div style="font-size:10px;color:#9CA3AF;margin-left:8px;">${result.issues.length} issue${result.issues.length !== 1 ? 's' : ''} ▾</div>` : ''}
+  `;
+
+  const issuesList = document.createElement('div');
+  issuesList.className = 'audit-issues-list';
+
+  if (hasIssues) {
+    issuesList.innerHTML = result.issues.map(issue => {
+      const icon = issue.severity === 'critical' ? '✕' : '⚠';
+      const iconColor = issue.severity === 'critical' ? '#EF4444' : '#F59E0B';
+      return `
+        <div class="audit-issue-row">
+          <span class="audit-issue-icon" style="color:${iconColor}">${icon}</span>
+          <span class="audit-issue-check">${escAuditHtml(issue.check)}</span>
+          <span class="audit-issue-detail">${escAuditHtml(issue.detail)}</span>
+        </div>
+      `;
+    }).join('');
+
+    header.addEventListener('click', () => {
+      issuesList.classList.toggle('open');
+    });
+
+    // Auto-expand FAIL rows
+    if (result.status === 'FAIL') {
+      issuesList.classList.add('open');
+    }
+  }
+
+  wrap.appendChild(header);
+  wrap.appendChild(issuesList);
+  return wrap;
+}
+
+function escAuditHtml(str) {
+  return String(str || '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
 }
 
 // Initialise pending badge on page load

@@ -185,24 +185,6 @@ export default function LandscapePage() {
           </p>
         </div>
 
-        {/* Summary */}
-        <div className="mt-10">
-          <SectionLabel label="At a Glance" />
-          <div className="grid grid-cols-4 gap-4">
-            {['scaled', 'deployed', 'piloting', 'announced'].map(maturity => {
-              const count = competitors.filter(c => c.overall_maturity === maturity).length;
-              const s = MATURITY_STYLES[maturity];
-              return (
-                <div key={maturity} className={`${s.cell} rounded p-5`}>
-                  <div className={`text-3xl font-bold mb-1 maturity-${maturity}`}>{count}</div>
-                  <div className="text-xs text-gray-500 capitalize">
-                    at <span className="font-semibold">{maturity}</span>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
 
       </main>
 

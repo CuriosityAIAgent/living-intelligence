@@ -6,6 +6,7 @@ if (process.env.MAIL_USER) process.env.MAIL_USER = process.env.MAIL_USER.replace
 if (process.env.MAIL_PASS) process.env.MAIL_PASS = process.env.MAIL_PASS.replace(/^[\s=]+/, '').trim();
 
 import express from 'express';
+import fs from 'fs';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 import cron from 'node-cron';
@@ -20,8 +21,10 @@ import {
 } from './agents/gov-store.js';
 import { runDailyPipeline } from './agents/scheduler.js';
 import { signToken, verifyToken } from './agents/notifier.js';
+import { runFastAudit, runDeepAudit } from './agents/auditor.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
+const DATA_DIR = join(__dirname, '..', 'data');
 const app = express();
 app.use(express.json());
 app.use(express.static(join(__dirname, 'public')));
@@ -534,18 +537,39 @@ app.post('/api/test-digest', async (req, res) => {
   }
 });
 
-// ─── GET /api/debug-mail — inspect actual MAIL_* env var values (safe) ───────
+// ─── Audit endpoints ──────────────────────────────────────────────────────────
 
-app.get('/api/debug-mail', (req, res) => {
-  const host = process.env.MAIL_HOST || '';
-  res.json({
-    MAIL_HOST_value:  host,
-    MAIL_HOST_length: host.length,
-    MAIL_HOST_codes:  [...host].slice(0, 6).map(c => c.charCodeAt(0)),
-    MAIL_USER_set:    !!process.env.MAIL_USER,
-    MAIL_PASS_set:    !!process.env.MAIL_PASS,
-    MAIL_PORT:        process.env.MAIL_PORT || '(not set)',
-  });
+// GET /api/audit — run fast audit (rule-based, no API cost)
+app.get('/api/audit', async (req, res) => {
+  const { send, done } = createSSE(res);
+  try {
+    await runFastAudit({ send });
+  } catch (err) {
+    send('error', { message: err.message });
+  }
+  done();
+});
+
+// GET /api/audit/deep — run deep audit (rule-based + Claude AI verification)
+app.get('/api/audit/deep', async (req, res) => {
+  const { send, done } = createSSE(res);
+  try {
+    await runDeepAudit({ send });
+  } catch (err) {
+    send('error', { message: err.message });
+  }
+  done();
+});
+
+// GET /api/audit/report — return the last saved audit report
+app.get('/api/audit/report', (req, res) => {
+  const reportPath = join(DATA_DIR, 'audit-report.json');
+  try {
+    const report = JSON.parse(fs.readFileSync(reportPath, 'utf8'));
+    res.json(report);
+  } catch {
+    res.status(404).json({ error: 'No audit report found — run /api/audit first' });
+  }
 });
 
 // ─── Helper ───────────────────────────────────────────────────────────────────

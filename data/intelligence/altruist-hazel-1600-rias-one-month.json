@@ -30,7 +30,7 @@
     ]
   },
   "week": "2026-03-16",
-  "featured": false,
+  "featured": true,
   "_governance": {
     "verdict": "PASS",
     "confidence": 93,

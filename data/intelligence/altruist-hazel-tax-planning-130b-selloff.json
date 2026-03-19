@@ -1,6 +1,6 @@
 {
   "id": "altruist-hazel-tax-planning-130b-selloff",
-  "type": "market_signal",
+  "type": "product_launch",
   "headline": "Altruist launches AI tax planning in Hazel, triggering $130B sell-off across wealth management stocks",
   "company": "altruist",
   "company_name": "Altruist",
@@ -34,7 +34,7 @@
     ]
   },
   "week": "2026-02-09",
-  "featured": true,
+  "featured": false,
   "_governance": {
     "verdict": "PASS",
     "confidence": 95,
