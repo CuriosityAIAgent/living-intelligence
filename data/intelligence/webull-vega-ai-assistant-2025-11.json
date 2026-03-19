@@ -15,7 +15,7 @@
     "label": "activated trade execution via Vega AI"
   },
   "tags": {
-    "capability": "investment_analytics",
+    "capability": "investment_portfolio",
     "region": "us",
     "segment": "retail_digital",
     "theme": [

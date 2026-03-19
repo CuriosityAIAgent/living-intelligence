@@ -33,11 +33,12 @@ const REGIONS = [
 const CAPABILITIES = [
   { value: 'all', label: 'All Topics' },
   { value: 'advisor_productivity', label: 'Advisor Productivity' },
-  { value: 'client_experience', label: 'Client Experience' },
-  { value: 'investment_analytics', label: 'Investment & Research' },
+  { value: 'client_personalization', label: 'Client Personalization' },
+  { value: 'investment_portfolio', label: 'Investment & Portfolio' },
+  { value: 'research_content', label: 'Research & Content' },
+  { value: 'client_acquisition', label: 'Client Acquisition' },
   { value: 'operations_compliance', label: 'Operations & Compliance' },
   { value: 'new_business_models', label: 'New Business Models' },
-  { value: 'client_acquisition', label: 'Client Acquisition' },
 ];
 
 function formatDateShort(dateStr: string): string {
