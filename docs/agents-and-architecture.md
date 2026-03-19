@@ -279,3 +279,46 @@ data/
 4. **HMAC-signed review links** — one-tap approve/reject from Telegram without login. Signed with `REVIEW_SECRET`.
 5. **Git as publish mechanism** — publisher.js commits and pushes directly. Railway redeploys on push. No separate deploy step.
 6. **Audit as a script** — audit-all.js runs before any CEO presentation. Exit code 1 if critical issues found. Can be wired to CI/CD.
+7. **Search, don't guess** — when finding source URLs, use Jina search or WebFetch with a query term. Never guess URL patterns more than twice.
+
+---
+
+## Content Standards & Governance Rules
+
+These rules are enforced by the audit pipeline and must be followed manually when creating entries.
+
+### Intelligence Entries
+| Rule | Standard |
+|---|---|
+| Date | 2025 or later. Nothing older unless no newer equivalent exists. |
+| Source URL | Must be fetched and confirmed working before entry is written. |
+| Key stat | Must appear verbatim in `verified_claims`. Must be the most current available figure — check for newer press releases. |
+| Duplicates | One entry per story. If same headline and source URL appear twice, delete the REVIEW one. |
+| Featured | Exactly one entry with `featured: true` — the most recent significant story. |
+| `source_verified` | Must match governance: `true` only if `verdict === 'PASS'` or `human_approved === true`. |
+
+### Thought Leadership
+| Rule | Standard |
+|---|---|
+| Date | 2025 preferred. 2024 acceptable for canonical foundational essays only (Altman, Amodei, Mollick). Nothing from 2022–2023. |
+| Source URL | Must be verified working before entry is written. |
+| `key_quotes` | Verbatim only. If WebFetch does not return the exact text, do not include it. |
+| `the_one_insight` | Editorial synthesis — not a direct quote. Must not render in quotation marks in the UI. |
+
+### Landscape / Competitor Entries
+| Rule | Standard |
+|---|---|
+| Segment | Must be one of 7 valid values (see CLAUDE.md). |
+| Maturity | `overall_maturity` cannot exceed the highest capability maturity by more than one level. |
+| Evidence | Every capability must have at least one named source with a working URL. |
+| Numbers | All metrics (interaction counts, AUM, user numbers) must cite the most recent available press release. Never extrapolate from growth rates. |
+| `date_assessed` | Flag as stale if > 90 days old. Re-verify before CEO presentations. |
+
+### Verified Data Points (as of 2026-03-19)
+| Company | Metric | Source | Date |
+|---|---|---|---|
+| BofA / Merrill | 3.2B Erica interactions total; 20.6M users; 700M interactions in 2025; 30B total digital | BofA Newsroom press release | 2026-03-10 |
+| Altruist / Hazel | 1,600 new RIA firms in first month; 1,500/month projected | RIABiz | 2026-03-18 |
+| Altruist / Hazel | $130B market cap wiped from Schwab/LPL/Raymond James/Ameriprise | Nick Beim/Venrock; CNBC | 2026-02-10 |
+| Holistiplan | 38.92% market share; 50,000+ users | Verified source | 2026-03 |
+| RBC WM | 2,000+ US advisors on AI platform | Verified source | 2026-03 |
