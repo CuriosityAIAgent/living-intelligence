@@ -1,0 +1,53 @@
+{
+  "id": "bofa-erica-3billion-digital-30billion-2026",
+  "type": "milestone",
+  "headline": "BofA's AI and digital estate reaches 30 billion client interactions — Erica surpasses 3.2 billion total with 20.6 million users",
+  "company": "bofa-merrill",
+  "company_name": "BofA / Merrill",
+  "date": "2026-03-10",
+  "source_name": "Bank of America Newsroom",
+  "source_url": "https://newsroom.bankofamerica.com/content/newsroom/press-releases/2026/03/bofa-ai-and-digital-innovations-fuel-30-billion-client-interacti.html",
+  "source_verified": true,
+  "additional_sources": [],
+  "image_url": "/logos/bofa-merrill.svg",
+  "summary": "Bank of America's March 2026 digital report confirms its AI and digital estate logged 30 billion client interactions in 2025 — a 14% year-on-year increase — with 16.6 billion logins and 13.3 billion alerts sent. Erica, the AI virtual assistant, reached 3.2 billion total interactions since its 2018 launch, with 20.6 million active users and 700 million interactions in 2025 alone. 86% of wealth management clients and 81% of consumer households now engage digitally. Life Plans — BofA's AI-driven financial planning tool — have been created by 21.5 million clients since 2020, generating $211 billion in associated asset growth. The figures confirm BofA as the scale leader in deployed consumer AI within financial services.",
+  "key_stat": {
+    "number": "30B",
+    "label": "Client digital interactions in 2025 — 14% YoY growth; Erica at 3.2B total, 20.6M users"
+  },
+  "tags": {
+    "capability": "client_personalization",
+    "region": "us",
+    "segment": "wirehouse",
+    "theme": [
+      "ai_scale",
+      "digital_banking",
+      "erica",
+      "client_engagement"
+    ]
+  },
+  "week": "2026-03-09",
+  "featured": false,
+  "_governance": {
+    "verdict": "PASS",
+    "confidence": 98,
+    "verified_claims": [
+      "30 billion total digital client interactions in 2025, +14% YoY (BofA Newsroom, March 10 2026)",
+      "3.2 billion total Erica interactions since 2018 launch (BofA Newsroom, March 10 2026)",
+      "20.6 million Erica users (BofA Newsroom, March 10 2026)",
+      "700 million Erica interactions in 2025 alone (BofA Newsroom, March 10 2026)",
+      "86% of wealth management clients engaging digitally (BofA Newsroom, March 10 2026)",
+      "21.5 million Life Plans created since 2020 (BofA Newsroom, March 10 2026)",
+      "$211 billion in asset growth from Life Plan users (BofA Newsroom, March 10 2026)",
+      "16.6 billion logins in 2025, +15% YoY (BofA Newsroom, March 10 2026)",
+      "Quote from Nikki Katz, Head of Digital, confirmed in press release"
+    ],
+    "unverified_claims": [],
+    "fabricated_claims": [],
+    "notes": "All figures sourced directly from official Bank of America press release dated March 10, 2026. URL verified working. Single primary source — official company newsroom.",
+    "paywall_caveat": false,
+    "verified_at": "2026-03-19T12:00:00.000Z",
+    "human_approved": true,
+    "approved_at": "2026-03-19T12:00:00.000Z"
+  }
+}

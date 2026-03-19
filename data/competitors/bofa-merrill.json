@@ -7,31 +7,33 @@
     "emea"
   ],
   "color": "#E31837",
-  "ai_strategy_summary": "The longest-running AI program in wealth management. Erica has surpassed 3 billion client interactions. Ask Merrill serves 23,000 advisors monthly with 10,000+ Q&A answers. BofA is investing $13B in technology in 2026, extending the most mature AI moat in the industry.",
+  "ai_strategy_summary": "The longest-running AI program in wealth management. Erica has surpassed 3.2 billion total interactions with 20.6 million active users and 700 million interactions in 2025 alone. BofA's 30 billion total digital interactions in 2025 grew 14% YoY — 86% of wealth management clients now engage digitally.",
   "head_of_ai": null,
-  "headline_metric": "3 billion Erica interactions, $13B tech investment 2026",
+  "headline_metric": "3.2B Erica interactions total; 20.6M users; 30B digital interactions in 2025",
   "headline_initiative": "Erica + Ask Merrill + Ask Private Bank",
   "overall_maturity": "scaled",
   "capabilities": {
     "client_personalization": {
       "maturity": "scaled",
-      "headline": "Erica: 3 billion interactions, equivalent to 11,000 employees",
-      "detail": "Bank of America's Erica virtual assistant has surpassed 3 billion client interactions as of August 2025, handling an estimated 1.5 million interactions per day. The system is equivalent to the work of 11,000 employees and handles everything from transaction queries to investment guidance.",
+      "headline": "Erica: 3.2 billion total interactions, 20.6 million users, 700M interactions in 2025",
+      "detail": "Bank of America's Erica virtual assistant has reached 3.2 billion total interactions since its 2018 launch, with 20.6 million active users and 700 million interactions in 2025 alone. 86% of wealth management clients engage digitally. BofA's total digital estate logged 30 billion client interactions in 2025 — a 14% year-on-year increase.",
       "evidence": [
-        "3B+ interactions as of Aug 2025",
-        "~1.5M interactions/day",
-        "Equivalent to 11,000 FTE"
+        "3.2 billion total Erica interactions since 2018 (BofA, March 2026)",
+        "20.6 million Erica users (BofA, March 2026)",
+        "700 million Erica interactions in 2025 alone",
+        "30 billion total digital client interactions in 2025 (+14% YoY)",
+        "86% of wealth management clients engaging digitally"
       ],
       "jpm_implication": "Erica's scale is unmatched in consumer banking AI. Chase's digital AI capabilities are directly competing with Erica for the same mass affluent clients.",
       "jpm_segments_affected": [
         "CWM",
         "Self-Directed"
       ],
-      "date_assessed": "2026-03-07",
+      "date_assessed": "2026-03-19",
       "sources": [
         {
-          "name": "Bank of America \u2014 Erica surpasses 2 billion interactions (Apr 2024)",
-          "url": "https://newsroom.bankofamerica.com/content/newsroom/press-releases/2024/04/bofa-s-erica-surpasses-2-billion-interactions--helping-42-millio.html"
+          "name": "Bank of America — BofA AI and Digital Innovations Fuel 30 Billion Client Interactions (March 10, 2026)",
+          "url": "https://newsroom.bankofamerica.com/content/newsroom/press-releases/2026/03/bofa-ai-and-digital-innovations-fuel-30-billion-client-interacti.html"
         }
       ]
     },
