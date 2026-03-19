@@ -1,19 +1,19 @@
 /**
  * notifier.js — Daily digest email sender
  *
- * Uses nodemailer with SMTP (works with Gmail App Password or any SMTP provider).
+ * Uses Resend (resend.com) HTTP API — works on Railway (SMTP ports are blocked).
+ * Falls back to nodemailer/SMTP if RESEND_API_KEY is not set (local dev).
  *
  * Required env vars:
  *   DIGEST_EMAIL    — recipient address
- *   MAIL_HOST       — e.g. smtp.gmail.com
- *   MAIL_PORT       — e.g. 587
- *   MAIL_USER       — SMTP username / email
- *   MAIL_PASS       — Gmail App Password or SMTP password
+ *   RESEND_API_KEY  — from resend.com (free tier: 3,000 emails/month)
  *   REVIEW_SECRET   — 32-char secret for HMAC-SHA256 token signing
- *   INTAKE_BASE_URL — public URL of this server, e.g. https://intake.railway.app
+ *   INTAKE_BASE_URL — public URL of this server
+ *
+ * Optional (local dev fallback only):
+ *   MAIL_HOST / MAIL_PORT / MAIL_USER / MAIL_PASS
  */
 
-import nodemailer from 'nodemailer';
 import crypto from 'crypto';
 
 // ── Token signing ─────────────────────────────────────────────────────────────
@@ -28,23 +28,6 @@ export function signToken(entryId) {
 
 export function verifyToken(entryId, token) {
   return signToken(entryId) === token;
-}
-
-// ── Email transport ───────────────────────────────────────────────────────────
-
-function createTransport() {
-  const rawHost = process.env.MAIL_HOST || 'smtp.gmail.com';
-  const host = rawHost.replace(/^[\s=]+/, '').trim();
-  const port = parseInt(process.env.MAIL_PORT || '465', 10);
-  return nodemailer.createTransport({
-    host,
-    port,
-    secure: port === 465,  // SSL on 465, STARTTLS on 587
-    auth: {
-      user: process.env.MAIL_USER,
-      pass: process.env.MAIL_PASS,
-    },
-  });
 }
 
 // ── HTML email builder ────────────────────────────────────────────────────────
@@ -75,7 +58,6 @@ function buildHtml({ published, pending, date }) {
     </td></tr>
     ${pending.map(p => {
       const token       = signToken(p.id);
-      const approveUrl  = `${baseUrl}/review/${token}?id=${encodeURIComponent(p.id)}&action=approve`;
       const rejectUrl   = `${baseUrl}/review/${token}?id=${encodeURIComponent(p.id)}&action=reject`;
       const reviewUrl   = `${baseUrl}/review/${token}?id=${encodeURIComponent(p.id)}`;
       const confidence  = p.confidence ? `${Math.round(p.confidence * 100)}%` : 'n/a';
@@ -94,7 +76,7 @@ function buildHtml({ published, pending, date }) {
     }).join('')}
   ` : '';
 
-  const portalUrl = process.env.PORTAL_URL || 'https://your-portal.railway.app';
+  const portalUrl = process.env.PORTAL_URL || 'https://wealth.tigerai.tech';
 
   return `<!DOCTYPE html>
 <html>
@@ -119,42 +101,34 @@ function buildHtml({ published, pending, date }) {
 </html>`;
 }
 
-function buildText({ published, pending, date }) {
-  const baseUrl = (process.env.INTAKE_BASE_URL || 'http://localhost:3003').replace(/\/$/, '');
-  let text = `AI Portal Update — ${date}\n${'─'.repeat(40)}\n\n`;
-
-  if (published.length > 0) {
-    text += `✅ AUTO-PUBLISHED (${published.length})\n${'─'.repeat(40)}\n`;
-    published.forEach(p => { text += `→ ${p.title}\n`; });
-    text += '\n';
-  }
-
-  if (pending.length > 0) {
-    text += `⚠️ NEEDS YOUR REVIEW (${pending.length})\n${'─'.repeat(40)}\n`;
-    pending.forEach(p => {
-      const token      = signToken(p.id);
-      const reviewUrl  = `${baseUrl}/review/${token}?id=${encodeURIComponent(p.id)}`;
-      const confidence = p.confidence ? `${Math.round(p.confidence * 100)}%` : 'n/a';
-      text += `→ ${p.title}\n`;
-      text += `  Confidence: ${confidence}`;
-      if (p.unverified_claims?.length) text += ` · ${p.unverified_claims.length} unverified claims`;
-      text += `\n  ${reviewUrl}\n\n`;
-    });
-  }
-
-  if (published.length === 0 && pending.length === 0) {
-    text += 'No new stories today.\n';
-  }
-
-  return text;
-}
-
 function escapeHtml(str) {
   return String(str)
     .replace(/&/g, '&amp;')
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;');
+}
+
+// ── Send via Resend HTTP API ───────────────────────────────────────────────────
+
+async function sendViaResend({ to, subject, html }) {
+  const res = await fetch('https://api.resend.com/emails', {
+    method: 'POST',
+    headers: {
+      'Authorization': `Bearer ${process.env.RESEND_API_KEY}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      from:    'Living Intelligence <digest@tigerai.tech>',
+      to:      [to],
+      subject,
+      html,
+    }),
+  });
+
+  const body = await res.json();
+  if (!res.ok) throw new Error(`Resend API error: ${JSON.stringify(body)}`);
+  return body;
 }
 
 // ── Main export ───────────────────────────────────────────────────────────────
@@ -166,8 +140,8 @@ export async function sendDigest({ published = [], pending = [], blocked = [], e
     return;
   }
 
-  if (!process.env.MAIL_USER || !process.env.MAIL_PASS) {
-    console.warn('[notifier] MAIL_USER / MAIL_PASS not set — skipping digest email');
+  if (!process.env.RESEND_API_KEY) {
+    console.warn('[notifier] RESEND_API_KEY not set — skipping digest email');
     return;
   }
 
@@ -186,14 +160,6 @@ export async function sendDigest({ published = [], pending = [], blocked = [], e
   }
 
   const html = buildHtml({ published, pending, date: today });
-  const text = buildText({ published, pending, date: today });
-
-  const transport = createTransport();
-  await transport.sendMail({
-    from:    `"AI Portal" <${process.env.MAIL_USER}>`,
-    to,
-    subject,
-    text,
-    html,
-  });
+  await sendViaResend({ to, subject, html });
+  console.log(`[notifier] Digest sent to ${to} via Resend`);
 }
