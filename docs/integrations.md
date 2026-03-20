@@ -174,6 +174,44 @@ const res = await fetch('https://api.dataforseo.com/v3/backlinks/summary/live', 
 
 ---
 
+### 3. Jina Embeddings (`jina-embeddings-v3`) — semantic deduplication
+
+**Used in:** `auto-discover.js` Stage 2b — drops candidates that semantically duplicate a published entry.
+
+```javascript
+// POST https://api.jina.ai/v1/embeddings
+{
+  model: 'jina-embeddings-v3',
+  task: 'text-matching',   // symmetric similarity (not retrieval)
+  dimensions: 512,
+  input: ['headline + summary', ...],
+}
+// Returns: data[].embedding (float32 arrays)
+```
+
+**Flow:** Embed all published entry texts + all top-40 candidates in parallel → cosine similarity matrix → filter candidates with similarity ≥ 0.90 to any published entry. Catches same-story re-runs that URL dedup misses (different article URL, same underlying story).
+
+### 4. Jina Reranker (`jina-reranker-v3`) — two uses
+
+**Use 1 — Discovery ranking** (`auto-discover.js` Stage 3): After semantic dedup, reranks the surviving candidates by relevance to a fixed query: _"significant AI product launch or milestone in wealth management financial services"_. Returns top 20 in relevance order.
+
+**Use 2 — Paywall alternative selection** (`intake.js` Stage 4 paywall path): After DataForSEO News + Organic finds up to 8 open alternative URLs, reranks them by similarity to the original article's teaser. Picks the alternative that most closely covers the same story — not just any open-source article.
+
+```javascript
+// POST https://api.jina.ai/v1/rerank
+{
+  model: 'jina-reranker-v3',
+  query: 'significant AI product launch ...',   // or: original teaser (paywall path)
+  documents: ['title + snippet', ...],
+  top_n: 20,
+}
+// Returns: results[].index (pointer to input doc), results[].relevance_score
+```
+
+**Why Jina for both:** Same API key, same service — no extra credentials. Embeddings give exact similarity scores for dedup thresholding; Reranker gives cross-attention quality for ranking.
+
+---
+
 ## RSS Feeds (11 feeds, no API key needed)
 
 Monitored continuously in auto-discovery. Configured in `rss-feeds.json`:
@@ -202,10 +240,9 @@ All **four sources** run in parallel via `Promise.allSettled`:
 RSS (11 feeds)    Jina Search (7q)    DFS News (5q)    DFS Content Analysis (7q)
      │                  │                  │                       │
      └──────────────────┴──────────────────┴───────────────────────┘
-                               ↓
-                    Deduplicate against existing
-                    source_url fields in ../data/intelligence/
-                               ↓
+                               ↓ Stage 1: URL dedup vs existing entries
+                    Deduplicate against source_url fields in ../data/intelligence/
+                               ↓ Stage 2: Rule-based scoring → top 40
                     Score each candidate:
                       +10 max  recency (last 72h = 10, week = 5, older = 2)
                       +4–6     source quality (primary vs tier-1 outlet)
@@ -213,8 +250,14 @@ RSS (11 feeds)    Jina Search (7q)    DFS News (5q)    DFS Content Analysis (7q)
                       +1 each  AI keyword density
                       +4–6     Content Analysis bonus (base +4, +quality score up to +2)
                       +3/2     DFS News = +3, Jina = +2
+                               ↓ Stage 2b: Semantic dedup (Jina Embeddings)
+                    Embed top-40 candidates + published entries (jina-embeddings-v3)
+                    Drop candidates with cosine similarity ≥ 0.90 to any published entry
+                               ↓ Stage 3: Rerank (Jina Reranker)
+                    Rerank surviving candidates by semantic relevance to
+                    "significant AI product launch in wealth management"
                                ↓
-                    Return top 20 candidates with `via` badge
+                    Return top 20 candidates with `via` badge + rerank_score
                     (RSS=blue, Jina=purple, DFS=green, Content Analysis=orange)
 ```
 
@@ -259,5 +302,8 @@ This two-call pattern (structure → verify) is the primary anti-hallucination m
 | Source authority verification | DataForSEO Backlinks API — live domain_rank per source domain |
 | Detecting spam/low-quality sources | Backlinks API spam_score ≥ 40 → auto-flag regardless of domain rank |
 | Reliable company logos | DataForSEO Google Images → downloaded to disk as local files |
-| Deduplication against existing entries | URL normalization against all `source_url` fields |
+| Deduplication against existing entries | URL normalization against all `source_url` fields + Jina Embeddings semantic dedup (≥0.90 cosine = duplicate) |
+| Same story, different URL (re-runs) | Jina Embeddings `jina-embeddings-v3` — catches semantic duplicates URL dedup misses |
+| Ranking discovery candidates by relevance | Jina Reranker `jina-reranker-v3` — cross-attention quality ranking after rule scoring |
+| Picking best paywall alternative | Jina Reranker — reranks DataForSEO alternatives by similarity to original teaser |
 | Broken URLs and missing assets | `scripts/test-portal.js` health checker — auto-fixes on detect |

@@ -2,6 +2,37 @@ import fetch from 'node-fetch';
 import Anthropic from '@anthropic-ai/sdk';
 import slugify from 'slugify';
 
+// ── Jina Reranker — pick best paywall alternative ──────────────────────────
+// Given a list of alternative URLs with title+snippet, reranks them by
+// similarity to the original teaser and returns URLs in relevance order.
+async function rerankAlternatives(teaser, alternatives) {
+  if (!process.env.JINA_API_KEY || alternatives.length <= 1) {
+    return alternatives.map(a => a.url);
+  }
+  try {
+    const documents = alternatives.map(a => `${a.title || ''} ${a.snippet || ''}`.trim() || a.url);
+    const res = await fetch('https://api.jina.ai/v1/rerank', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${process.env.JINA_API_KEY}`,
+      },
+      body: JSON.stringify({
+        model: 'jina-reranker-v3',
+        query: teaser.slice(0, 500),
+        documents,
+        top_n: alternatives.length,
+      }),
+      signal: AbortSignal.timeout(20000),
+    });
+    if (!res.ok) return alternatives.map(a => a.url);
+    const data = await res.json();
+    return (data.results || []).map(r => alternatives[r.index].url);
+  } catch (_) {
+    return alternatives.map(a => a.url);
+  }
+}
+
 const client = new Anthropic();
 
 const INTAKE_SCHEMA = `{
@@ -120,11 +151,12 @@ function buildKeywordQuery(url, teaserMarkdown) {
 
 // Search DataForSEO (Google News + Google Organic in parallel) for the story headline.
 // Used when paywall detected — finds the same story on open sources.
-async function findEnrichmentViaDataForSEO(headline, originalUrl) {
+// Returns URLs reranked by Jina Reranker using the original teaser as query.
+async function findEnrichmentViaDataForSEO(headline, originalUrl, teaser) {
   if (!process.env.DATAFORSEO_LOGIN || !process.env.DATAFORSEO_PASSWORD) return [];
 
   const originalHostname = (() => {
-    try { return new URL(originalUrl).hostname.replace(/^www\.', ''); } catch (_) { return ''; }
+    try { return new URL(originalUrl).hostname.replace(/^www\./, ''); } catch (_) { return ''; }
   })();
 
   const AUTH = Buffer.from(
@@ -152,7 +184,8 @@ async function findEnrichmentViaDataForSEO(headline, originalUrl) {
   const PRESS_RELEASE_DOMAINS = ['businesswire.com', 'prnewswire.com', 'globenewswire.com', 'accesswire.com'];
   const seen = new Set();
 
-  return allItems
+  // Collect alternatives with title + snippet for reranking
+  const alternatives = allItems
     .filter(i => {
       const url = i.url || i.relative_url;
       if (!url) return false;
@@ -170,11 +203,23 @@ async function findEnrichmentViaDataForSEO(headline, originalUrl) {
       try { hostname = new URL(url).hostname.replace(/^www\./, ''); } catch (_) {}
       const isPressRelease = PRESS_RELEASE_DOMAINS.includes(hostname);
       const isOpenTrade = OPEN_DOMAINS.has(hostname);
-      return { url, hostname, score: isPressRelease ? 3 : isOpenTrade ? 2 : 1 };
+      return {
+        url,
+        hostname,
+        title: i.title || '',
+        snippet: i.snippet || i.description || '',
+        domain_score: isPressRelease ? 3 : isOpenTrade ? 2 : 1,
+      };
     })
-    .sort((a, b) => b.score - a.score)
-    .slice(0, 5)
-    .map(r => r.url);
+    // Pre-sort by domain quality to give reranker a clean input pool
+    .sort((a, b) => b.domain_score - a.domain_score)
+    .slice(0, 8);
+
+  if (alternatives.length === 0) return [];
+
+  // Rerank by semantic similarity to original teaser — picks the alternative
+  // that most closely covers the same story, not just any open-source article
+  return rerankAlternatives(teaser || headline, alternatives);
 }
 
 // Search Jina for enrichment sources — used for non-paywalled articles to get
@@ -226,12 +271,12 @@ async function findEnrichmentViaJina(url, teaserMarkdown) {
 }
 
 // Route to the right enrichment strategy:
-// - Paywall/thin content → DataForSEO headline search (more accurate, finds same story)
+// - Paywall/thin content → DataForSEO headline search → Jina Reranker picks best match
 // - Full content → Jina keyword search (fast, good for supplementary context)
 async function findEnrichmentSources(url, teaserMarkdown, isPaywalled) {
   if (isPaywalled) {
     const headline = extractHeadlineFromTeaser(teaserMarkdown);
-    if (headline) return findEnrichmentViaDataForSEO(headline, url);
+    if (headline) return findEnrichmentViaDataForSEO(headline, url, teaserMarkdown);
     // Fallback to Jina if headline extraction failed
     return findEnrichmentViaJina(url, teaserMarkdown);
   }

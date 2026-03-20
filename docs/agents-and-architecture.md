@@ -99,19 +99,23 @@ Runs **four sources in parallel** via `Promise.allSettled`:
 
 Deduplicates against all existing `source_url` fields in `data/intelligence/`.
 
-Scores each candidate:
+Scores each candidate (rule-based, top 40):
 - +10 recency (last 72h), +5 (last week), +2 (older)
 - +4–6 source quality (primary outlet vs tier-1 outlet)
 - +2 per tracked company mention (Goldman, JPM, UBS, etc.)
 - +1 per AI keyword
 - +4–6 Content Analysis (base +4, up to +2 for quality score) / +3 DataForSEO News / +2 Jina
 
-Returns top 20 candidates with `via` badge (RSS / Jina / DFS / Content Analysis).
+**Stage 2b — Semantic dedup (Jina Embeddings `jina-embeddings-v3`):** Embeds all top-40 candidates and all published intelligence entries (`headline + summary`). Drops any candidate with cosine similarity ≥ 0.90 to a published entry — catches same-story re-runs that URL dedup misses.
+
+**Stage 3 — Jina Reranker (`jina-reranker-v3`):** Reranks surviving candidates by cross-attention relevance to "significant AI product launch or milestone in wealth management financial services". Returns top 20 in relevance order with `rerank_score` attached.
+
+Returns top 20 candidates with `via` badge (RSS / Jina / DFS / Content Analysis) + `rerank_score`.
 
 ### `intake.js` — Article Fetch + Structuring
 
 1. Fetches article via `r.jina.ai` (cleans HTML → markdown)
-2. **Paywall bypass:** If paywall/thin content detected → extracts headline from teaser → runs **DataForSEO Google News + Google Organic in parallel** → filters for open sources (press release wires first, then trade press) → fetches best alternative via Jina → combines content. Non-paywalled articles use Jina keyword search for supplementary context.
+2. **Paywall bypass:** If paywall/thin content detected → extracts headline from teaser → runs **DataForSEO Google News + Google Organic in parallel** (up to 8 candidates) → **Jina Reranker** picks the alternative closest to the original teaser → fetches top alternatives via Jina → combines content. Non-paywalled articles use Jina keyword search for supplementary context.
 3. Calls **Claude `claude-sonnet-4-6`** with strict grounding prompt → structured `IntelligenceEntry` JSON
 4. No inference allowed — Claude only extracts what is in the source
 

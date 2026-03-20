@@ -14,6 +14,112 @@ import { fileURLToPath } from 'url';
 import fetch from 'node-fetch';
 import Parser from 'rss-parser';
 
+// ── Jina Embeddings + Reranker ─────────────────────────────────────────────
+
+async function getEmbeddings(texts) {
+  if (!process.env.JINA_API_KEY || texts.length === 0) return null;
+  try {
+    const res = await fetch('https://api.jina.ai/v1/embeddings', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${process.env.JINA_API_KEY}`,
+      },
+      body: JSON.stringify({
+        model: 'jina-embeddings-v3',
+        task: 'text-matching',
+        dimensions: 512,
+        input: texts,
+      }),
+      signal: AbortSignal.timeout(30000),
+    });
+    if (!res.ok) return null;
+    const data = await res.json();
+    return data.data?.map(d => d.embedding) ?? null;
+  } catch (_) {
+    return null;
+  }
+}
+
+function cosineSimilarity(a, b) {
+  let dot = 0, normA = 0, normB = 0;
+  for (let i = 0; i < a.length; i++) {
+    dot += a[i] * b[i];
+    normA += a[i] * a[i];
+    normB += b[i] * b[i];
+  }
+  const denom = Math.sqrt(normA) * Math.sqrt(normB);
+  return denom > 0 ? dot / denom : 0;
+}
+
+// Load headline + summary text from each published intelligence entry
+function getPublishedEntryTexts() {
+  try {
+    const files = readdirSync(DATA_DIR).filter(f => f.endsWith('.json'));
+    return files.map(f => {
+      const e = JSON.parse(readFileSync(join(DATA_DIR, f), 'utf8'));
+      return `${e.headline || ''} ${e.summary || ''}`.trim();
+    }).filter(Boolean);
+  } catch (_) {
+    return [];
+  }
+}
+
+// Semantic deduplication: drop candidates whose story is already covered in a published entry
+async function semanticDedup(candidates) {
+  if (!process.env.JINA_API_KEY || candidates.length === 0) return candidates;
+
+  const publishedTexts = getPublishedEntryTexts();
+  if (publishedTexts.length === 0) return candidates;
+
+  const candidateTexts = candidates.map(c => `${c.title} ${c.snippet}`);
+
+  const [pubEmbeddings, candEmbeddings] = await Promise.all([
+    getEmbeddings(publishedTexts),
+    getEmbeddings(candidateTexts),
+  ]);
+
+  if (!pubEmbeddings || !candEmbeddings) return candidates;
+
+  const SIMILARITY_THRESHOLD = 0.90;
+
+  return candidates.filter((_, i) => {
+    const candEmb = candEmbeddings[i];
+    return !pubEmbeddings.some(pubEmb => cosineSimilarity(candEmb, pubEmb) >= SIMILARITY_THRESHOLD);
+  });
+}
+
+// Rerank discovery candidates by semantic relevance to AI developments in wealth management
+async function rerankCandidates(candidates) {
+  if (!process.env.JINA_API_KEY || candidates.length === 0) return candidates;
+
+  try {
+    const documents = candidates.map(c => `${c.title} ${c.snippet}`);
+    const res = await fetch('https://api.jina.ai/v1/rerank', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${process.env.JINA_API_KEY}`,
+      },
+      body: JSON.stringify({
+        model: 'jina-reranker-v3',
+        query: 'significant AI product launch or milestone in wealth management financial services',
+        documents,
+        top_n: Math.min(candidates.length, 20),
+      }),
+      signal: AbortSignal.timeout(30000),
+    });
+    if (!res.ok) return candidates.slice(0, 20);
+    const data = await res.json();
+    return (data.results || []).map(r => ({
+      ...candidates[r.index],
+      rerank_score: r.relevance_score,
+    }));
+  } catch (_) {
+    return candidates.slice(0, 20);
+  }
+}
+
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const DATA_DIR = join(process.env.DATA_DIR || join(__dirname, '..', '..'), 'data', 'intelligence');
 const FEEDS_PATH = join(__dirname, '..', 'rss-feeds.json');
@@ -372,11 +478,20 @@ export async function autoDiscover({ send }) {
     return true;
   });
 
-  // Score, sort, take top 20
-  const ranked = all
+  // Rule-based scoring → top 40 (business rules: recency, tracked company, source quality)
+  const top40 = all
     .map(c => ({ ...c, score: scoreCandidate(c) }))
     .sort((a, b) => b.score - a.score)
-    .slice(0, 20);
+    .slice(0, 40);
+
+  // Stage 2b: Semantic dedup — drop candidates whose story is already in the portal
+  send('status', { message: `Semantic dedup — checking ${top40.length} candidates against published entries...` });
+  const deduplicated = await semanticDedup(top40);
+  send('status', { message: `Semantic dedup: ${top40.length - deduplicated.length} near-duplicate(s) removed, ${deduplicated.length} remain` });
+
+  // Stage 3: Jina Reranker — refine by semantic relevance within deduplicated pool
+  send('status', { message: `Reranking ${deduplicated.length} candidates by semantic relevance...` });
+  const ranked = await rerankCandidates(deduplicated);
 
   send('done', {
     candidates: ranked,
