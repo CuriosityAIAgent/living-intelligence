@@ -340,9 +340,12 @@
       font-size: 8px; font-weight: 700; letter-spacing: 0.05em;
       padding: 1px 5px; border-radius: 3px; flex-shrink: 0;
     }
-    .via-rss { background: #DBEAFE; color: #1D4ED8; }
-    .via-jina { background: #EDE9FE; color: #6D28D9; }
-    .via-dfs  { background: #D1FAE5; color: #065F46; }
+    .via-layer1_news     { background: #DBEAFE; color: #1D4ED8; }
+    .via-layer2_companies { background: #D1FAE5; color: #065F46; }
+    .via-layer1_tl       { background: #EDE9FE; color: #6D28D9; }
+    .via-layer2_authors  { background: #FEF3C7; color: #92400E; }
+    /* Legacy badge classes kept for manual search results */
+    .via-jina_search { background: #EDE9FE; color: #6D28D9; }
 
     /* ── Audit panel ── */
     .audit-panel {
@@ -512,22 +515,22 @@
           Find New Stories
         </button>
         <div class="source-progress" id="sourceProgress" style="display:none;">
-          <div class="source-pill" id="pillRss">
-            <span class="source-pill-label">RSS</span>
-            <span id="pillRssVal">—</span>
+          <div class="source-pill" id="pillL1News">
+            <span class="source-pill-label">L1 News</span>
+            <span id="pillL1NewsVal">—</span>
           </div>
-          <div class="source-pill" id="pillJina">
-            <span class="source-pill-label">Jina</span>
-            <span id="pillJinaVal">—</span>
+          <div class="source-pill" id="pillL2Cos">
+            <span class="source-pill-label">L2 Companies</span>
+            <span id="pillL2CosVal">—</span>
           </div>
-          <div class="source-pill" id="pillDfs">
-            <span class="source-pill-label">DataForSEO</span>
-            <span id="pillDfsVal">—</span>
+          <div class="source-pill" id="pillTL">
+            <span class="source-pill-label">TL Candidates</span>
+            <span id="pillTLVal">—</span>
           </div>
         </div>
         <div style="margin-top:8px;font-size:10px;color:#9CA3AF;line-height:1.5;">
-          Scans 11 RSS feeds + 7 Jina searches + 5 DataForSEO news queries.
-          Filters out stories already in the portal.
+          Layer 1: 8 broad news queries. Layer 2: one query per company in the landscape (auto-expands).
+          TL candidates surfaced in Telegram for manual review.
         </div>
       </div>
 
@@ -768,8 +771,9 @@ function renderCandidateList() {
       else verdictClass = 'verdict-processing';
     }
 
-    const viaLabel = c.via === 'dataforseo' ? 'DFS' : c.via === 'jina_search' ? 'Jina' : 'RSS';
-    const viaClass = c.via === 'dataforseo' ? 'via-dfs' : c.via === 'jina_search' ? 'via-jina' : 'via-rss';
+    const viaLabels = { layer1_news: 'L1 News', layer2_companies: 'L2 Co', layer1_tl: 'L1 TL', layer2_authors: 'L2 Auth', jina_search: 'Jina' };
+    const viaLabel = viaLabels[c.via] || c.via || 'Web';
+    const viaClass = `via-${c.via || 'jina_search'}`;
     const scoreStr = c.score != null ? `· ★${c.score}` : '';
 
     const div = document.createElement('div');
@@ -1155,11 +1159,12 @@ function switchMode(mode) {
   }
 }
 
-// ── Auto-Discover (RSS + Jina + DataForSEO) ───────────────────────────────────
+// ── Auto-Discover (Two-layer: L1 News + L2 Companies) ─────────────────────────
 
 function setSourcePill(id, valId, state, text) {
   const pill = document.getElementById(id);
   const val  = document.getElementById(valId);
+  if (!pill || !val) return;
   pill.className = 'source-pill' + (state === 'running' ? ' running' : state === 'done' ? ' done' : '');
   val.textContent = text;
 }
@@ -1171,30 +1176,35 @@ async function runAutoDiscover() {
 
   const prog = document.getElementById('sourceProgress');
   prog.style.display = 'grid';
-  setSourcePill('pillRss',  'pillRssVal',  'running', 'scanning…');
-  setSourcePill('pillJina', 'pillJinaVal', 'running', 'searching…');
-  setSourcePill('pillDfs',  'pillDfsVal',  'running', 'querying…');
+  setSourcePill('pillL1News', 'pillL1NewsVal', 'running', 'scanning…');
+  setSourcePill('pillL2Cos',  'pillL2CosVal',  'running', 'querying…');
+  setSourcePill('pillTL',     'pillTLVal',     'running', 'searching…');
 
   candidates.clear();
   processedEntries.clear();
   approvedIds.clear();
   updatePublishBar();
   renderCandidateList();
-  setStatus('Running auto-discovery across all sources...', 'loading');
+  setStatus('Running two-layer discovery…', 'loading');
 
   await sseStream('/api/auto-discover', {}, {
     status: (d) => setStatus(d.message, 'loading'),
     progress: (d) => {
-      if (d.rss)  { const done = !d.rss.includes('scanning');  setSourcePill('pillRss',  'pillRssVal',  done ? 'done' : 'running', d.rss); }
-      if (d.jina) { const done = !d.jina.includes('searching'); setSourcePill('pillJina', 'pillJinaVal', done ? 'done' : 'running', d.jina); }
-      if (d.dfs)  { const done = !d.dfs.includes('querying');  setSourcePill('pillDfs',  'pillDfsVal',  done ? 'done' : 'running', d.dfs); }
+      if (d.layer1_news)      setSourcePill('pillL1News', 'pillL1NewsVal', 'done', d.layer1_news);
+      if (d.layer2_companies) setSourcePill('pillL2Cos',  'pillL2CosVal',  'done', d.layer2_companies);
+      if (d.layer1_tl || d.layer2_authors) {
+        const tlText = [d.layer1_tl, d.layer2_authors].filter(Boolean).join(' + ');
+        setSourcePill('pillTL', 'pillTLVal', 'done', tlText);
+      }
     },
     done: (d) => {
-      setSourcePill('pillRss',  'pillRssVal',  'done', d.sources.rss + ' RSS');
-      setSourcePill('pillJina', 'pillJinaVal', 'done', d.sources.jina + ' Jina');
-      setSourcePill('pillDfs',  'pillDfsVal',  'done', d.sources.dataforseo + ' DFS');
-      d.candidates.forEach(c => candidates.set(c.id, c));
-      setStatus(`${d.total} new stories found — ranked by relevance`);
+      const s = d.sources || {};
+      setSourcePill('pillL1News', 'pillL1NewsVal', 'done', `${s.layer1_news ?? '?'} found`);
+      setSourcePill('pillL2Cos',  'pillL2CosVal',  'done', `${s.layer2_companies ?? '?'} found (${s.companies_queried ?? '?'} cos)`);
+      setSourcePill('pillTL',     'pillTLVal',     'done', `${(s.layer1_tl ?? 0) + (s.layer2_authors ?? 0)} TL`);
+      const intelList = d.intelCandidates || d.candidates || [];
+      intelList.forEach(c => candidates.set(c.id, c));
+      setStatus(`${intelList.length} intel stories found — ranked by relevance`);
       renderCandidateList();
     },
     error: (d) => setStatus(`Error: ${d.message}`, 'error'),

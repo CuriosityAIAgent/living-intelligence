@@ -1,17 +1,14 @@
 /**
  * scheduler.js — Daily pipeline orchestrator
  *
- * Runs the full lights-out discovery → intake → governance → publish cycle.
- * Called by the 6 AM cron job in server.js, or directly for testing:
- *   node -e "import('./agents/scheduler.js').then(m => m.runDailyPipeline())"
- *
  * Flow:
- *   autoDiscover() → top 10 candidates (deduped, scored)
- *   → processUrl() each → PASS / REVIEW / FAIL
- *   → PASS: publish directly to main, collect for digest
- *   → REVIEW: add to pending queue, collect for digest with approve links
- *   → FAIL: block URL, log only
- *   → sendDigest(results)
+ *   autoDiscover() → intelCandidates + tlCandidates + knownCompanyIds
+ *   → process top 10 intelligence candidates through intake → governance → scorer
+ *   → PUBLISH (score ≥ 75): auto-publish + git push
+ *   → REVIEW  (score 65–74): pending queue + Telegram link
+ *   → BLOCK   (score < 65 or fabricated): permanently block URL
+ *   → detect new companies (entry.company not in knownCompanyIds)
+ *   → sendDigest(published, pending, blocked, errors, newCompanies, tlCandidates)
  */
 
 import { autoDiscover } from './auto-discover.js';
@@ -22,6 +19,11 @@ import { publish, commitAndPush } from './publisher.js';
 import { addPending, addBlocked, isBlocked } from './gov-store.js';
 import { sendDigest } from './notifier.js';
 
+// ── Review threshold ──────────────────────────────────────────────────────────
+// PUBLISH ≥ 75  |  REVIEW 65–74  |  BLOCK < 65
+// Raised from 50 to 65 to reduce low-confidence items reaching the review queue.
+const REVIEW_THRESHOLD = 65;
+
 // No-op send for internal pipeline (we collect results ourselves)
 function makeSink() {
   const logs = [];
@@ -31,41 +33,47 @@ function makeSink() {
 
 /**
  * Run the full daily pipeline.
- * Returns a summary object: { published, pending, blocked, errors }
+ * Returns a summary object: { published, pending, blocked, errors, newCompanies, tlCandidates }
  */
 export async function runDailyPipeline() {
   console.log(`[scheduler] Daily pipeline started at ${new Date().toISOString()}`);
 
-  const published = [];
-  const pending   = [];
-  const blocked   = [];
-  const errors    = [];
+  const published    = [];
+  const pending      = [];
+  const blocked      = [];
+  const errors       = [];
+  const newCompanies = []; // companies discovered but not in the landscape
 
   // ── 1. Discover candidates ─────────────────────────────────────────────────
-  let candidates = [];
+  let intelCandidates = [];
+  let tlCandidates    = [];
+  let knownCompanyIds = new Set();
+
   try {
     const { send, logs } = makeSink();
     await autoDiscover({ send });
 
-    // autoDiscover emits a 'done' event with { candidates }
     const doneEvent = logs.find(l => l.event === 'done');
-    candidates = doneEvent?.data?.candidates || [];
+    intelCandidates = doneEvent?.data?.intelCandidates || [];
+    tlCandidates    = doneEvent?.data?.tlCandidates    || [];
+    knownCompanyIds = doneEvent?.data?.knownCompanyIds || new Set();
+
+    const sources = doneEvent?.data?.sources || {};
+    console.log(`[scheduler] Discovery: L1 news=${sources.layer1_news} L2 cos=${sources.layer2_companies} (${sources.companies_queried} cos) L1 TL=${sources.layer1_tl} L2 auth=${sources.layer2_authors}`);
   } catch (err) {
     console.error('[scheduler] autoDiscover failed:', err.message);
     errors.push({ stage: 'discover', message: err.message });
   }
 
-  // Take top 10 (already ranked by score from autoDiscover)
-  const top10 = candidates.slice(0, 10);
-  console.log(`[scheduler] ${top10.length} candidates to process`);
+  const top10 = intelCandidates.slice(0, 10);
+  console.log(`[scheduler] ${top10.length} intel candidates to process, ${tlCandidates.length} TL candidates`);
 
-  // ── 2. Process each candidate ──────────────────────────────────────────────
+  // ── 2. Process each intelligence candidate ─────────────────────────────────
   const publishedIds = [];
 
   for (const candidate of top10) {
     const url = candidate.url;
 
-    // Skip permanently blocked URLs
     if (isBlocked(url)) {
       console.log(`[scheduler] Skipping blocked URL: ${url}`);
       continue;
@@ -110,18 +118,44 @@ export async function runDailyPipeline() {
 
       intakeResult.entry._governance = govAudit;
 
-      // ── Scorer: 4-dimension auto-judgment (async — Backlinks API lookup) ───
+      // Step 3: score
       const scored = await scoreEntry({
         entry:      intakeResult.entry,
         governance: govAudit,
         sourceUrl:  url,
       });
 
+      // Override action with raised REVIEW threshold (65 instead of default 50)
+      if (scored.action !== 'BLOCK') {
+        scored.action = scored.score >= 75 ? 'PUBLISH' : scored.score >= REVIEW_THRESHOLD ? 'REVIEW' : 'BLOCK';
+        // Re-apply paywall caveat downgrade
+        if (scored.action === 'PUBLISH' && govAudit.paywall_caveat) scored.action = 'REVIEW';
+      }
+
       console.log(`[scheduler] Score ${scored.score}/100 → ${scored.action}: ${intakeResult.entry.headline}`);
 
-      // ── BLOCK (score < 50 or fabricated claims) ───────────────────────────
+      // ── New company detection ──────────────────────────────────────────────
+      // If the entry references a company not in our landscape, flag it.
+      const entryCompanyId = (intakeResult.entry.company || '').toLowerCase().replace(/[^a-z0-9-]/g, '-');
+      if (entryCompanyId && !knownCompanyIds.has(entryCompanyId)) {
+        const companyName = intakeResult.entry.company_name || intakeResult.entry.company || entryCompanyId;
+        // Only flag if it's not a generic catch-all ID
+        if (entryCompanyId.length > 2 && !['unknown', 'other', 'various'].includes(entryCompanyId)) {
+          const alreadyFlagged = newCompanies.some(c => c.id === entryCompanyId);
+          if (!alreadyFlagged) {
+            newCompanies.push({
+              id:   entryCompanyId,
+              name: companyName,
+              url,
+              headline: intakeResult.entry.headline,
+            });
+          }
+        }
+      }
+
+      // ── BLOCK ──────────────────────────────────────────────────────────────
       if (scored.action === 'BLOCK') {
-        const reason = scored.reason || `Score ${scored.score}/100 — below publish threshold`;
+        const reason = scored.reason || `Score ${scored.score}/100 — below ${REVIEW_THRESHOLD} review threshold`;
         addBlocked(url, intakeResult.entry.id, reason);
         blocked.push({
           url,
@@ -129,11 +163,11 @@ export async function runDailyPipeline() {
           reason,
           score:  scored.score,
         });
-        console.log(`[scheduler] BLOCK → blocked: ${url}`);
+        console.log(`[scheduler] BLOCK: ${url}`);
         continue;
       }
 
-      // ── REVIEW (score 50–74 or paywall caveat downgrade) ──────────────────
+      // ── REVIEW ─────────────────────────────────────────────────────────────
       if (scored.action === 'REVIEW') {
         addPending(intakeResult.entry, govAudit);
         pending.push({
@@ -146,11 +180,11 @@ export async function runDailyPipeline() {
           paywall_caveat:    govAudit.paywall_caveat,
           notes:             govResult.notes || '',
         });
-        console.log(`[scheduler] REVIEW → pending queue: ${intakeResult.entry.id}`);
+        console.log(`[scheduler] REVIEW → pending: ${intakeResult.entry.id}`);
         continue;
       }
 
-      // ── PUBLISH (score >= 75, all claims verified, no paywall caveat) ─────
+      // ── PUBLISH ────────────────────────────────────────────────────────────
       const { send: pubSend } = makeSink();
       const entryId = publish({ entry: intakeResult.entry, send: pubSend });
       publishedIds.push(entryId);
@@ -168,7 +202,7 @@ export async function runDailyPipeline() {
     }
   }
 
-  // ── 3. Commit + push published entries to main ────────────────────────────
+  // ── 3. Commit + push published entries to main ─────────────────────────────
   if (publishedIds.length > 0) {
     let gitError = null;
     const gitSend = (type, data) => {
@@ -180,13 +214,15 @@ export async function runDailyPipeline() {
       console.log(`[scheduler] Pushed ${publishedIds.length} entries to main`);
     } catch (err) {
       console.error('[scheduler] Git push failed:', err.message);
-      // Surface in digest so it's visible in Telegram — entries exist but aren't deployed
-      errors.push({ stage: 'git_push', message: `⚠️ Git push FAILED — ${publishedIds.length} entries written but NOT deployed to portal. Check GIT_TOKEN env var. IDs: ${publishedIds.join(', ')}. Error: ${err.message}` });
+      errors.push({
+        stage:   'git_push',
+        message: `⚠️ Git push FAILED — ${publishedIds.length} entries written but NOT deployed. Check GIT_TOKEN. IDs: ${publishedIds.join(', ')}. Error: ${err.message}`,
+      });
     }
   }
 
   // ── 4. Send daily digest ───────────────────────────────────────────────────
-  const results = { published, pending, blocked, errors };
+  const results = { published, pending, blocked, errors, newCompanies, tlCandidates };
 
   try {
     await sendDigest(results);
@@ -196,6 +232,6 @@ export async function runDailyPipeline() {
     errors.push({ stage: 'email', message: err.message });
   }
 
-  console.log(`[scheduler] Done. published=${published.length} pending=${pending.length} blocked=${blocked.length} errors=${errors.length}`);
+  console.log(`[scheduler] Done. published=${published.length} pending=${pending.length} blocked=${blocked.length} new_cos=${newCompanies.length} tl_candidates=${tlCandidates.length} errors=${errors.length}`);
   return results;
 }

@@ -50,7 +50,7 @@ async function sendTelegram(text) {
 
 // ── Message builder ───────────────────────────────────────────────────────────
 
-function buildMessage({ published, pending, blocked, errors, date }) {
+function buildMessage({ published, pending, blocked, errors, newCompanies, tlCandidates, date }) {
   const baseUrl   = (process.env.INTAKE_BASE_URL || 'http://localhost:3003').replace(/\/$/, '');
   const portalUrl = process.env.PORTAL_URL || 'https://wealth.tigerai.tech';
   const lines     = [];
@@ -58,6 +58,7 @@ function buildMessage({ published, pending, blocked, errors, date }) {
   lines.push(`<b>Living Intelligence</b> · ${date}`);
   lines.push('');
 
+  // ── Auto-published ────────────────────────────────────────────────────────
   if (published.length > 0) {
     lines.push(`<b>✅ Auto-published (${published.length})</b>`);
     published.forEach(p => {
@@ -67,6 +68,7 @@ function buildMessage({ published, pending, blocked, errors, date }) {
     lines.push('');
   }
 
+  // ── Needs review ──────────────────────────────────────────────────────────
   if (pending.length > 0) {
     lines.push(`<b>⚠️ Needs Your Review (${pending.length})</b>`);
     pending.forEach(p => {
@@ -75,19 +77,16 @@ function buildMessage({ published, pending, blocked, errors, date }) {
 
       lines.push(`  → <b>${p.title}</b>${p.company_name ? ` <i>${p.company_name}</i>` : ''}`);
 
-      // Score breakdown on one line
       if (p.score_breakdown) {
         lines.push(`    <code>${p.score_breakdown}</code>`);
       }
 
-      // Specific unverified claims — the reason it needs review
       if (p.unverified_claims && p.unverified_claims.length > 0) {
         p.unverified_claims.forEach(claim => {
           lines.push(`    ⚠ <i>${claim}</i>`);
         });
       }
 
-      // Paywall caveat flag
       if (p.paywall_caveat) {
         lines.push(`    ℹ Paywall caveat — limited source content`);
       }
@@ -97,6 +96,7 @@ function buildMessage({ published, pending, blocked, errors, date }) {
     });
   }
 
+  // ── Auto-blocked ──────────────────────────────────────────────────────────
   if (blocked.length > 0) {
     lines.push(`<b>🚫 Auto-blocked (${blocked.length})</b>`);
     blocked.forEach(b => {
@@ -106,6 +106,32 @@ function buildMessage({ published, pending, blocked, errors, date }) {
     lines.push('');
   }
 
+  // ── New companies detected ────────────────────────────────────────────────
+  // Companies that appeared in discovered articles but aren't in data/competitors/
+  if (newCompanies && newCompanies.length > 0) {
+    lines.push(`<b>🆕 New companies — not in landscape (${newCompanies.length})</b>`);
+    lines.push(`  <i>Consider adding to data/competitors/ to track these firms</i>`);
+    newCompanies.forEach(c => {
+      lines.push(`  → <b>${c.name}</b>`);
+      if (c.headline) lines.push(`    ${c.headline}`);
+    });
+    lines.push('');
+  }
+
+  // ── Thought leadership candidates ─────────────────────────────────────────
+  // Raw candidates for manual review — not put through intake pipeline
+  if (tlCandidates && tlCandidates.length > 0) {
+    const showTL = tlCandidates.slice(0, 5); // top 5 only to keep message concise
+    lines.push(`<b>📚 Thought Leadership candidates (${tlCandidates.length} found, showing ${showTL.length})</b>`);
+    showTL.forEach(c => {
+      const badge = c.via === 'layer2_authors' ? ' · known author' : '';
+      lines.push(`  → <a href="${c.url}">${c.title}</a>${badge}`);
+      if (c.snippet) lines.push(`    <i>${c.snippet.slice(0, 120)}...</i>`);
+    });
+    lines.push('');
+  }
+
+  // ── Errors ────────────────────────────────────────────────────────────────
   if (errors.length > 0) {
     lines.push(`<b>❌ Errors (${errors.length})</b>`);
     errors.forEach(e => lines.push(`  · ${e.stage}: ${e.message}`));
@@ -124,14 +150,21 @@ function buildMessage({ published, pending, blocked, errors, date }) {
 
 // ── Main export ───────────────────────────────────────────────────────────────
 
-export async function sendDigest({ published = [], pending = [], blocked = [], errors = [] }) {
+export async function sendDigest({
+  published    = [],
+  pending      = [],
+  blocked      = [],
+  errors       = [],
+  newCompanies = [],
+  tlCandidates = [],
+}) {
   if (!process.env.TELEGRAM_BOT_TOKEN || !process.env.TELEGRAM_CHAT_ID) {
     console.warn('[notifier] TELEGRAM_BOT_TOKEN / TELEGRAM_CHAT_ID not set — skipping digest');
     return;
   }
 
   const today = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
-  const text  = buildMessage({ published, pending, blocked, errors, date: today });
+  const text  = buildMessage({ published, pending, blocked, errors, newCompanies, tlCandidates, date: today });
 
   await sendTelegram(text);
   console.log(`[notifier] Digest sent to Telegram chat ${process.env.TELEGRAM_CHAT_ID}`);

@@ -18,7 +18,6 @@
     "node-cron": "^3.0.3",
     "node-fetch": "^3.3.2",
     "nodemailer": "^6.9.9",
-    "rss-parser": "^3.13.0",
     "slugify": "^1.6.6"
   }
 }

@@ -1,20 +1,98 @@
 /**
- * auto-discover.js
- * Runs all discovery sources in parallel:
- *   - 11 RSS feeds (wealth management publications)
- *   - 7 Jina s.jina.ai web searches (pre-built queries)
- *   - 5 DataForSEO Google News searches (pre-built queries)
- * Deduplicates against existing portal entries.
- * Scores and returns ranked top 20 candidates.
+ * auto-discover.js — Two-layer discovery pipeline
+ *
+ * Layer 1 News  : 8 broad thematic DFS Google News queries
+ *                 (catches any new entrant / unknown company)
+ * Layer 2 Cos   : Dynamic DFS Content Analysis queries, one per company in
+ *                 data/competitors/*.json — auto-expands as landscape grows
+ * Layer 1 TL    : 5 broad Jina Search queries for thought leadership
+ * Layer 2 Authors: Dynamic Jina Search queries from data/thought-leadership/*.json
+ *
+ * Output: done event { intelCandidates, tlCandidates, knownCompanyIds }
+ *   - intelCandidates : scored + reranked intelligence candidates
+ *   - tlCandidates    : raw TL candidates (no intake pipeline — surfaced in Telegram)
+ *   - knownCompanyIds : Set of company IDs loaded from data/competitors/ (for new-company detection)
  */
 
 import { readFileSync, readdirSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import fetch from 'node-fetch';
-import Parser from 'rss-parser';
 
-// ── Jina Embeddings + Reranker ─────────────────────────────────────────────
+// ── Path resolution ────────────────────────────────────────────────────────────
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const DATA_ROOT       = join(process.env.DATA_DIR || join(__dirname, '..', '..'), 'data');
+const INTEL_DIR       = join(DATA_ROOT, 'intelligence');
+const COMPETITORS_DIR = join(DATA_ROOT, 'competitors');
+const TL_DIR          = join(DATA_ROOT, 'thought-leadership');
+
+// ── Load landscape data (dynamic — grows as competitor files are added) ────────
+
+function loadCompetitors() {
+  try {
+    return readdirSync(COMPETITORS_DIR)
+      .filter(f => f.endsWith('.json'))
+      .map(f => {
+        try { return JSON.parse(readFileSync(join(COMPETITORS_DIR, f), 'utf8')); }
+        catch (_) { return null; }
+      })
+      .filter(Boolean);
+  } catch (_) {
+    return [];
+  }
+}
+
+function loadTLEntries() {
+  try {
+    return readdirSync(TL_DIR)
+      .filter(f => f.endsWith('.json'))
+      .map(f => {
+        try { return JSON.parse(readFileSync(join(TL_DIR, f), 'utf8')); }
+        catch (_) { return null; }
+      })
+      .filter(Boolean);
+  } catch (_) {
+    return [];
+  }
+}
+
+// ── Dynamic query builders ─────────────────────────────────────────────────────
+
+const SEGMENT_FOCUS = {
+  wirehouse:           'wealth management AI advisor',
+  global_private_bank: 'private banking AI platform',
+  regional_champion:   'wealth management AI platform',
+  digital_disruptor:   'AI investing platform launch',
+  ai_native:           'AI wealth platform',
+  ria_independent:     'RIA AI advisor platform',
+  advisor_tools:       'AI advisor tools technology',
+};
+
+// One DFS Content Analysis query per company in the landscape.
+// New company added to data/competitors/ → automatically included next run.
+function buildCompanyQueries(competitors) {
+  return competitors.map(c => {
+    const focus = SEGMENT_FOCUS[c.segment] || 'AI wealth management';
+    return { company_id: c.id, company_name: c.name, keyword: `${c.name} ${focus}` };
+  });
+}
+
+// One Jina Search query per known author in thought-leadership entries.
+function buildAuthorQueries(tlEntries) {
+  const seen = new Set();
+  return tlEntries
+    .map(e => {
+      const name = e.author?.name;
+      const org  = e.author?.organization;
+      if (!name || seen.has(name)) return null;
+      seen.add(name);
+      return { author: name, query: org ? `${name} ${org} AI essay 2026` : `${name} AI thought leadership 2026` };
+    })
+    .filter(Boolean);
+}
+
+// ── Jina Embeddings + Reranker ─────────────────────────────────────────────────
 
 async function getEmbeddings(texts) {
   if (!process.env.JINA_API_KEY || texts.length === 0) return null;
@@ -44,7 +122,7 @@ async function getEmbeddings(texts) {
 function cosineSimilarity(a, b) {
   let dot = 0, normA = 0, normB = 0;
   for (let i = 0; i < a.length; i++) {
-    dot += a[i] * b[i];
+    dot   += a[i] * b[i];
     normA += a[i] * a[i];
     normB += b[i] * b[i];
   }
@@ -52,47 +130,40 @@ function cosineSimilarity(a, b) {
   return denom > 0 ? dot / denom : 0;
 }
 
-// Load headline + summary text from each published intelligence entry
 function getPublishedEntryTexts() {
   try {
-    const files = readdirSync(DATA_DIR).filter(f => f.endsWith('.json'));
-    return files.map(f => {
-      const e = JSON.parse(readFileSync(join(DATA_DIR, f), 'utf8'));
-      return `${e.headline || ''} ${e.summary || ''}`.trim();
-    }).filter(Boolean);
+    return readdirSync(INTEL_DIR)
+      .filter(f => f.endsWith('.json'))
+      .map(f => {
+        const e = JSON.parse(readFileSync(join(INTEL_DIR, f), 'utf8'));
+        return `${e.headline || ''} ${e.summary || ''}`.trim();
+      })
+      .filter(Boolean);
   } catch (_) {
     return [];
   }
 }
 
-// Semantic deduplication: drop candidates whose story is already covered in a published entry
 async function semanticDedup(candidates) {
   if (!process.env.JINA_API_KEY || candidates.length === 0) return candidates;
-
   const publishedTexts = getPublishedEntryTexts();
   if (publishedTexts.length === 0) return candidates;
 
   const candidateTexts = candidates.map(c => `${c.title} ${c.snippet}`);
-
   const [pubEmbeddings, candEmbeddings] = await Promise.all([
     getEmbeddings(publishedTexts),
     getEmbeddings(candidateTexts),
   ]);
-
   if (!pubEmbeddings || !candEmbeddings) return candidates;
-
-  const SIMILARITY_THRESHOLD = 0.90;
 
   return candidates.filter((_, i) => {
     const candEmb = candEmbeddings[i];
-    return !pubEmbeddings.some(pubEmb => cosineSimilarity(candEmb, pubEmb) >= SIMILARITY_THRESHOLD);
+    return !pubEmbeddings.some(pubEmb => cosineSimilarity(candEmb, pubEmb) >= 0.90);
   });
 }
 
-// Rerank discovery candidates by semantic relevance to AI developments in wealth management
 async function rerankCandidates(candidates) {
   if (!process.env.JINA_API_KEY || candidates.length === 0) return candidates;
-
   try {
     const documents = candidates.map(c => `${c.title} ${c.snippet}`);
     const res = await fetch('https://api.jina.ai/v1/rerank', {
@@ -120,29 +191,25 @@ async function rerankCandidates(candidates) {
   }
 }
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
-const DATA_DIR = join(process.env.DATA_DIR || join(__dirname, '..', '..'), 'data', 'intelligence');
-const FEEDS_PATH = join(__dirname, '..', 'rss-feeds.json');
-const rssParser = new Parser({ timeout: 12000 });
+// ── URL utilities ─────────────────────────────────────────────────────────────
 
-// ── Existing portal URLs for deduplication ────────────────────────────────────
+function normalizeUrl(url) {
+  try { return new URL(url).href.toLowerCase().replace(/\/$/, ''); } catch (_) { return url.toLowerCase(); }
+}
+
 function getExistingUrls() {
   const urls = new Set();
   try {
-    const files = readdirSync(DATA_DIR).filter(f => f.endsWith('.json'));
-    for (const f of files) {
-      const entry = JSON.parse(readFileSync(join(DATA_DIR, f), 'utf8'));
+    for (const f of readdirSync(INTEL_DIR).filter(f => f.endsWith('.json'))) {
+      const entry = JSON.parse(readFileSync(join(INTEL_DIR, f), 'utf8'));
       if (entry.source_url) urls.add(normalizeUrl(entry.source_url));
     }
   } catch (_) {}
   return urls;
 }
 
-function normalizeUrl(url) {
-  try { return new URL(url).href.toLowerCase().replace(/\/$/, ''); } catch (_) { return url.toLowerCase(); }
-}
+// ── Relevance filter ──────────────────────────────────────────────────────────
 
-// ── Two-gate relevance filter ─────────────────────────────────────────────────
 const AI_KWS = [
   'ai', 'artificial intelligence', 'machine learning', 'generative ai', 'genai',
   'llm', 'large language model', 'chatbot', 'openai', 'anthropic', 'claude', 'gpt',
@@ -165,7 +232,8 @@ function isRelevant(text) {
   return AI_KWS.some(k => t.includes(k)) && WEALTH_KWS.some(k => t.includes(k));
 }
 
-// ── Scoring ───────────────────────────────────────────────────────────────────
+// ── Candidate scoring ─────────────────────────────────────────────────────────
+
 const PRIMARY_OUTLETS = new Set([
   'investmentnews.com', 'thinkadvisor.com', 'wealthmanagement.com',
   'financial-planning.com', 'riabiz.com', 'advisorhub.com', 'citywire.com',
@@ -176,13 +244,9 @@ const TIER1_OUTLETS = new Set([
   'axios.com', 'businesswire.com', 'prnewswire.com', 'globenewswire.com',
   'fortune.com', 'businessinsider.com', 'techcrunch.com',
 ]);
-const TRACKED_COMPANIES = [
-  'morgan stanley', 'goldman sachs', 'ubs', 'merrill', 'schwab', 'fidelity',
-  'blackrock', 'vanguard', 'lpl', 'jpmorgan', 'citi', 'hsbc', 'dbs',
-  'altruist', 'wealthfront', 'betterment', 'robinhood', 'arta',
-  'envestnet', 'orion', 'addepar', 'broadridge', 'fnz', 'farther',
-  'public.com', 'etoro', 'webull', 'savvy wealth', 'betterment',
-];
+
+// Dynamic from loaded competitors — built once per run in autoDiscover()
+let TRACKED_COMPANY_NAMES = [];
 
 function scoreCandidate(c) {
   let score = 0;
@@ -202,80 +266,192 @@ function scoreCandidate(c) {
   if (PRIMARY_OUTLETS.has(hostname)) score += 6;
   else if (TIER1_OUTLETS.has(hostname)) score += 4;
 
-  // Tracked company mention (+2 each, max 6)
+  // Tracked company mention (dynamic from landscape, +2 each, max 6)
   let coScore = 0;
-  for (const co of TRACKED_COMPANIES) {
-    if (text.includes(co)) { coScore += 2; if (coScore >= 6) break; }
+  for (const name of TRACKED_COMPANY_NAMES) {
+    if (text.includes(name.toLowerCase())) { coScore += 2; if (coScore >= 6) break; }
   }
   score += coScore;
 
   // AI keyword density (max 4)
   let aiScore = 0;
   for (const k of AI_KWS) {
-    if (text.includes(k)) { aiScore += 1; if (aiScore >= 4) break; }
+    if (text.includes(k)) { aiScore++; if (aiScore >= 4) break; }
   }
   score += aiScore;
 
   // Source type bonus
-  if (c.via === 'content_analysis') score += 4 + Math.min(Math.floor((c.quality_score || 0)), 2); // quality score bonus up to +6 total
-  else if (c.via === 'dataforseo') score += 3;
-  else if (c.via === 'jina_search') score += 2;
+  if (c.via === 'layer2_companies') score += 5 + Math.min(Math.floor(c.quality_score || 0), 2);
+  else if (c.via === 'layer1_news') score += 3;
 
   return score;
 }
 
-// ── RSS Discovery ─────────────────────────────────────────────────────────────
-async function discoverFromRSS(existingUrls) {
-  const feeds = JSON.parse(readFileSync(FEEDS_PATH, 'utf8'));
-  const candidates = [];
+// ── Layer 1 News — broad thematic DFS Google News queries ─────────────────────
+// These catch new entrants, unknown companies, and market-wide developments.
+// They do NOT require knowing the company name in advance.
 
-  await Promise.allSettled(feeds.map(async (feed) => {
-    try {
-      const parsed = await rssParser.parseURL(feed.url);
-      const relevant = parsed.items
-        .filter(item => {
-          if (!item.link) return false;
-          if (existingUrls.has(normalizeUrl(item.link))) return false;
-          const ageDays = item.pubDate
-            ? (Date.now() - new Date(item.pubDate).getTime()) / 86400000 : 999;
-          if (ageDays > 14) return false;
-          return isRelevant(`${item.title || ''} ${item.contentSnippet || ''}`);
+const LAYER1_NEWS_QUERIES = [
+  'AI wealth management news 2026',
+  'wealthtech artificial intelligence platform launch 2026',
+  'financial advisor AI tool product announcement',
+  'private banking generative AI deployment 2026',
+  'robo-advisor AI fintech funding raises 2026',
+  'wealth management AI agent agentic 2026',
+  'Anthropic OpenAI wealth management financial services partnership',
+  'AI financial planning advisor technology news',
+];
+
+async function discoverFromLayer1News(existingUrls) {
+  if (!process.env.DATAFORSEO_LOGIN || !process.env.DATAFORSEO_PASSWORD) return [];
+  const AUTH = Buffer.from(
+    `${process.env.DATAFORSEO_LOGIN}:${process.env.DATAFORSEO_PASSWORD}`
+  ).toString('base64');
+
+  const results = await Promise.allSettled(
+    LAYER1_NEWS_QUERIES.map(async (keyword) => {
+      const res = await fetch(
+        'https://api.dataforseo.com/v3/serp/google/news/live/advanced',
+        {
+          method: 'POST',
+          headers: { 'Authorization': `Basic ${AUTH}`, 'Content-Type': 'application/json' },
+          body: JSON.stringify([{ keyword, language_code: 'en', location_code: 2840, depth: 10 }]),
+          signal: AbortSignal.timeout(25000),
+        }
+      );
+      if (!res.ok) return [];
+      const data = await res.json();
+      return (data?.tasks?.[0]?.result?.[0]?.items || [])
+        .filter(i => {
+          if (!i.url || existingUrls.has(normalizeUrl(i.url))) return false;
+          if (i.date_published) {
+            const age = (Date.now() - new Date(i.date_published).getTime()) / 86400000;
+            if (age > 90) return false;
+          }
+          return true;
         })
-        .slice(0, 3)
-        .map(item => ({
-          id: Buffer.from(item.link).toString('base64').slice(0, 12),
-          title: item.title || 'Untitled',
-          url: item.link,
-          source_name: feed.name,
-          pub_date: item.pubDate || null,
-          snippet: (item.contentSnippet || '').slice(0, 300),
-          selected: true,
-          via: 'rss',
-        }));
-      candidates.push(...relevant);
-    } catch (_) {}
-  }));
+        .slice(0, 8)
+        .map(i => {
+          let hostname = '';
+          try { hostname = new URL(i.url).hostname.replace(/^www\./, ''); } catch (_) {}
+          return {
+            id: Buffer.from(i.url).toString('base64').slice(0, 12),
+            title: i.title || i.url,
+            url: i.url,
+            source_name: i.source || hostname || 'News',
+            pub_date: i.date_published || i.timestamp || null,
+            snippet: (i.snippet || i.description || '').slice(0, 300),
+            selected: true,
+            via: 'layer1_news',
+          };
+        })
+        .filter(c => isRelevant(`${c.title} ${c.snippet}`));
+    })
+  );
 
+  const candidates = [];
+  results.forEach(r => { if (r.status === 'fulfilled') candidates.push(...r.value); });
   return candidates;
 }
 
-// ── Jina Search Discovery ─────────────────────────────────────────────────────
-const JINA_QUERIES = [
-  'AI wealth management product launch 2025',
-  'financial advisor AI tool announcement 2025',
-  'Goldman Sachs Morgan Stanley UBS AI 2025',
-  'Anthropic Claude OpenAI financial services partnership 2025',
-  'robo-advisor wealthtech AI platform launch 2025',
-  'private banking generative AI wealth platform 2025',
-  'RIA custodian AI fintech funding announcement 2025',
+// ── Layer 2 Companies — deep DFS Content Analysis per company ─────────────────
+// Dynamically generated from data/competitors/*.json.
+// New company file added → automatically queried on next run. No code changes.
+// Content Analysis is higher quality than News: quality-filtered, includes blogs,
+// reports, and trade press that don't appear in Google News.
+
+async function discoverFromLayer2Companies(existingUrls, competitors) {
+  if (!process.env.DATAFORSEO_LOGIN || !process.env.DATAFORSEO_PASSWORD) return [];
+  const AUTH = Buffer.from(
+    `${process.env.DATAFORSEO_LOGIN}:${process.env.DATAFORSEO_PASSWORD}`
+  ).toString('base64');
+
+  const queries = buildCompanyQueries(competitors);
+
+  // Batch all company queries into a single API call (DFS supports array payloads)
+  // Max 100 tasks per call — split if landscape grows past 100 companies
+  const batchSize = 50;
+  const allItems = [];
+
+  for (let i = 0; i < queries.length; i += batchSize) {
+    const batch = queries.slice(i, i + batchSize);
+    try {
+      const res = await fetch(
+        'https://api.dataforseo.com/v3/content_analysis/search/live',
+        {
+          method: 'POST',
+          headers: { 'Authorization': `Basic ${AUTH}`, 'Content-Type': 'application/json' },
+          body: JSON.stringify(
+            batch.map(q => ({
+              keyword: q.keyword,
+              filters: [
+                ['content_quality_score', '>', 2],
+                'and',
+                ['page_types', 'has', 'news'],
+              ],
+              order_by: ['date_published,desc'],
+              limit: 6,
+            }))
+          ),
+          signal: AbortSignal.timeout(45000),
+        }
+      );
+      if (!res.ok) continue;
+      const data = await res.json();
+
+      (data?.tasks || []).forEach((task, taskIdx) => {
+        const companyQuery = batch[taskIdx];
+        const items = task?.result?.[0]?.items || [];
+        items.forEach(item => {
+          allItems.push({ item, companyQuery });
+        });
+      });
+    } catch (_) {}
+  }
+
+  return allItems
+    .filter(({ item: i }) => {
+      if (!i.url || existingUrls.has(normalizeUrl(i.url))) return false;
+      if (i.date_published) {
+        const age = (Date.now() - new Date(i.date_published).getTime()) / 86400000;
+        if (age > 90) return false;
+      }
+      return true;
+    })
+    .map(({ item: i }) => {
+      let hostname = '';
+      try { hostname = new URL(i.url).hostname.replace(/^www\./, ''); } catch (_) {}
+      return {
+        id: Buffer.from(i.url).toString('base64').slice(0, 12),
+        title: i.title || i.url,
+        url: i.url,
+        source_name: hostname || 'Content Analysis',
+        pub_date: i.date_published || null,
+        snippet: (i.snippet || i.description || '').slice(0, 300),
+        selected: true,
+        via: 'layer2_companies',
+        quality_score: i.content_quality_score || 0,
+      };
+    })
+    .filter(c => isRelevant(`${c.title} ${c.snippet}`));
+}
+
+// ── Layer 1 TL — broad Jina Search for thought leadership ─────────────────────
+// Catches new voices, new essays, new research — not tied to known authors.
+
+const LAYER1_TL_QUERIES = [
+  'AI wealth management thought leadership essay 2026',
+  'AI financial advisor future implications essay',
+  'generative AI investment management strategy 2026',
+  'AI fintech industry report white paper 2026',
+  'artificial intelligence finance executive perspective 2026',
 ];
 
-async function discoverFromJina(existingUrls) {
+async function discoverFromLayer1TL(existingUrls) {
   if (!process.env.JINA_API_KEY) return [];
-  const candidates = [];
 
   const results = await Promise.allSettled(
-    JINA_QUERIES.map(async (query) => {
+    LAYER1_TL_QUERIES.map(async (query) => {
       const res = await fetch(`https://s.jina.ai/${encodeURIComponent(query)}`, {
         headers: {
           'Accept': 'application/json',
@@ -289,8 +465,8 @@ async function discoverFromJina(existingUrls) {
         .filter(r => {
           if (!r.url || existingUrls.has(normalizeUrl(r.url))) return false;
           if (r.date) {
-            const ageDays = (Date.now() - new Date(r.date).getTime()) / (1000 * 60 * 60 * 24);
-            if (ageDays > 90) return false;
+            const age = (Date.now() - new Date(r.date).getTime()) / 86400000;
+            if (age > 90) return false;
           }
           return true;
         })
@@ -304,218 +480,152 @@ async function discoverFromJina(existingUrls) {
             source_name: hostname || 'Web',
             pub_date: r.date || null,
             snippet: (r.description || r.content || '').slice(0, 300),
-            selected: true,
-            via: 'jina_search',
+            via: 'layer1_tl',
           };
-        })
-        .filter(c => isRelevant(`${c.title} ${c.snippet}`));
+        });
     })
   );
 
+  const candidates = [];
   results.forEach(r => { if (r.status === 'fulfilled') candidates.push(...r.value); });
   return candidates;
 }
 
-// ── DataForSEO Content Analysis Search — 4th discovery source ────────────────
-// Finds web mentions of company + AI keywords with quality score + date filtering.
-// Complements Google News (which only returns recent news) by surfacing high-quality
-// articles from blogs, reports, and trade press that Google News may miss.
+// ── Layer 2 Authors — Jina Search per known TL author ────────────────────────
+// Dynamically generated from data/thought-leadership/*.json.
+// New author entry → automatically queried. No code changes.
 
-const CONTENT_ANALYSIS_QUERIES = [
-  'Goldman Sachs artificial intelligence wealth',
-  'Morgan Stanley AI advisor platform',
-  'JPMorgan wealth management AI',
-  'Altruist Hazel AI advisor',
-  'LPL Financial AI tools advisors',
-  'UBS AI private banking',
-  'wealthtech AI platform launch 2026',
-];
-
-async function discoverFromContentAnalysis(existingUrls) {
-  if (!process.env.DATAFORSEO_LOGIN || !process.env.DATAFORSEO_PASSWORD) return [];
-  const AUTH = Buffer.from(
-    `${process.env.DATAFORSEO_LOGIN}:${process.env.DATAFORSEO_PASSWORD}`
-  ).toString('base64');
-  const candidates = [];
+async function discoverFromLayer2Authors(existingUrls, tlEntries) {
+  if (!process.env.JINA_API_KEY) return [];
+  const authorQueries = buildAuthorQueries(tlEntries);
+  if (authorQueries.length === 0) return [];
 
   const results = await Promise.allSettled(
-    CONTENT_ANALYSIS_QUERIES.map(async (keyword) => {
-      const res = await fetch(
-        'https://api.dataforseo.com/v3/content_analysis/search/live',
-        {
-          method: 'POST',
-          headers: { 'Authorization': `Basic ${AUTH}`, 'Content-Type': 'application/json' },
-          body: JSON.stringify([{
-            keyword,
-            filters: [
-              ['content_quality_score', '>', 2],
-              'and',
-              ['page_types', 'has', 'news'],
-            ],
-            order_by: ['date_published,desc'],
-            limit: 8,
-          }]),
-          signal: AbortSignal.timeout(25000),
-        }
-      );
+    authorQueries.map(async ({ query }) => {
+      const res = await fetch(`https://s.jina.ai/${encodeURIComponent(query)}`, {
+        headers: {
+          'Accept': 'application/json',
+          'Authorization': `Bearer ${process.env.JINA_API_KEY}`,
+        },
+        signal: AbortSignal.timeout(25000),
+      });
       if (!res.ok) return [];
       const data = await res.json();
-      const items = data?.tasks?.[0]?.result?.[0]?.items || [];
-
-      return items
-        .filter(i => {
-          if (!i.url) return false;
-          // Only include articles from last 90 days
-          if (i.date_published) {
-            const age = (Date.now() - new Date(i.date_published).getTime()) / (1000 * 60 * 60 * 24);
+      return (data.data || [])
+        .filter(r => {
+          if (!r.url || existingUrls.has(normalizeUrl(r.url))) return false;
+          if (r.date) {
+            const age = (Date.now() - new Date(r.date).getTime()) / 86400000;
             if (age > 90) return false;
-          }
-          return !existingUrls.has(normalizeUrl(i.url));
-        })
-        .map(i => {
-          let hostname = '';
-          try { hostname = new URL(i.url).hostname.replace(/^www\./, ''); } catch (_) {}
-          return {
-            id: Buffer.from(i.url).toString('base64').slice(0, 12),
-            title: i.title || i.url,
-            url: i.url,
-            source_name: hostname || 'Content Analysis',
-            pub_date: i.date_published || null,
-            snippet: (i.snippet || i.description || '').slice(0, 300),
-            selected: true,
-            via: 'content_analysis',
-            quality_score: i.content_quality_score || 0,
-          };
-        })
-        .filter(c => isRelevant(`${c.title} ${c.snippet}`));
-    })
-  );
-
-  results.forEach(r => { if (r.status === 'fulfilled') candidates.push(...r.value); });
-  return candidates;
-}
-
-// ── DataForSEO Google News Discovery ─────────────────────────────────────────
-const DFS_QUERIES = [
-  'AI wealth management news',
-  'financial advisor AI product launch',
-  'wealthtech artificial intelligence platform 2026',
-  'Goldman Sachs UBS Morgan Stanley AI advisor',
-  'Anthropic OpenAI wealth management financial services',
-];
-
-async function discoverFromDataForSEO(existingUrls) {
-  if (!process.env.DATAFORSEO_LOGIN || !process.env.DATAFORSEO_PASSWORD) return [];
-  const AUTH = Buffer.from(
-    `${process.env.DATAFORSEO_LOGIN}:${process.env.DATAFORSEO_PASSWORD}`
-  ).toString('base64');
-  const candidates = [];
-
-  const results = await Promise.allSettled(
-    DFS_QUERIES.map(async (keyword) => {
-      const res = await fetch(
-        'https://api.dataforseo.com/v3/serp/google/news/live/advanced',
-        {
-          method: 'POST',
-          headers: { 'Authorization': `Basic ${AUTH}`, 'Content-Type': 'application/json' },
-          body: JSON.stringify([{ keyword, language_code: 'en', location_code: 2840, depth: 10 }]),
-          signal: AbortSignal.timeout(25000),
-        }
-      );
-      if (!res.ok) return [];
-      const data = await res.json();
-      const items = (data?.tasks?.[0]?.result?.[0]?.items || [])
-        .filter(i => {
-          if (!i.url || existingUrls.has(normalizeUrl(i.url))) return false;
-          if (i.date_published) {
-            const ageDays = (Date.now() - new Date(i.date_published).getTime()) / (1000 * 60 * 60 * 24);
-            if (ageDays > 90) return false;
           }
           return true;
         })
-        .slice(0, 8);
-
-      return items.map(i => {
-        let hostname = '';
-        try { hostname = new URL(i.url).hostname.replace(/^www\./, ''); } catch (_) {}
-        return {
-          id: Buffer.from(i.url).toString('base64').slice(0, 12),
-          title: i.title || i.url,
-          url: i.url,
-          source_name: i.source || hostname || 'News',
-          pub_date: i.date_published || i.timestamp || null,
-          snippet: (i.snippet || i.description || '').slice(0, 300),
-          selected: true,
-          via: 'dataforseo',
-        };
-      }).filter(c => isRelevant(`${c.title} ${c.snippet}`));
+        .map(r => {
+          let hostname = '';
+          try { hostname = new URL(r.url).hostname.replace(/^www\./, ''); } catch (_) {}
+          return {
+            id: Buffer.from(r.url).toString('base64').slice(0, 12),
+            title: r.title || r.url,
+            url: r.url,
+            source_name: hostname || 'Web',
+            pub_date: r.date || null,
+            snippet: (r.description || r.content || '').slice(0, 300),
+            via: 'layer2_authors',
+          };
+        });
     })
   );
 
+  const candidates = [];
   results.forEach(r => { if (r.status === 'fulfilled') candidates.push(...r.value); });
   return candidates;
 }
 
 // ── Main export ───────────────────────────────────────────────────────────────
+
 export async function autoDiscover({ send }) {
-  send('status', { message: 'Loading existing portal entries...' });
+  // Load landscape and TL data — this is what makes the system self-expanding
+  const competitors = loadCompetitors();
+  const tlEntries   = loadTLEntries();
+
+  // Build the dynamic tracked company names list for scoring
+  TRACKED_COMPANY_NAMES = competitors.map(c => c.name);
+
+  // The set of known company IDs — used by scheduler to detect new entrants
+  const knownCompanyIds = new Set(competitors.map(c => c.id));
+
+  send('status', { message: `Loaded ${competitors.length} companies + ${tlEntries.length} TL entries from landscape` });
+  send('status', { message: `Running two-layer discovery — Layer 1: 8 broad news queries; Layer 2: ${competitors.length} company queries...` });
+
   const existingUrls = getExistingUrls();
 
-  send('status', { message: `Running discovery — RSS feeds, Jina searches, DataForSEO News + Content Analysis...` });
-  send('progress', { rss: 'scanning', jina: 'searching', dfs: 'querying', ca: 'querying' });
-
-  const [rssResult, jinaResult, dfsResult, caResult] = await Promise.allSettled([
-    discoverFromRSS(existingUrls),
-    discoverFromJina(existingUrls),
-    discoverFromDataForSEO(existingUrls),
-    discoverFromContentAnalysis(existingUrls),
+  // Run all four layers in parallel
+  const [l1NewsResult, l2CosResult, l1TlResult, l2AuthResult] = await Promise.allSettled([
+    discoverFromLayer1News(existingUrls),
+    discoverFromLayer2Companies(existingUrls, competitors),
+    discoverFromLayer1TL(existingUrls),
+    discoverFromLayer2Authors(existingUrls, tlEntries),
   ]);
 
-  const rss  = rssResult.status  === 'fulfilled' ? rssResult.value  : [];
-  const jina = jinaResult.status === 'fulfilled' ? jinaResult.value : [];
-  const dfs  = dfsResult.status  === 'fulfilled' ? dfsResult.value  : [];
-  const ca   = caResult.status   === 'fulfilled' ? caResult.value   : [];
+  const l1News  = l1NewsResult.status  === 'fulfilled' ? l1NewsResult.value  : [];
+  const l2Cos   = l2CosResult.status   === 'fulfilled' ? l2CosResult.value   : [];
+  const l1TL    = l1TlResult.status    === 'fulfilled' ? l1TlResult.value    : [];
+  const l2Auth  = l2AuthResult.status  === 'fulfilled' ? l2AuthResult.value  : [];
 
   send('progress', {
-    rss:  `${rss.length} found`,
-    jina: `${jina.length} found`,
-    dfs:  `${dfs.length} found`,
-    ca:   `${ca.length} found`,
+    layer1_news:      `${l1News.length} found`,
+    layer2_companies: `${l2Cos.length} found (${competitors.length} companies queried)`,
+    layer1_tl:        `${l1TL.length} found`,
+    layer2_authors:   `${l2Auth.length} found (${buildAuthorQueries(tlEntries).length} authors queried)`,
   });
 
-  // Merge + deduplicate by URL
-  const seenUrls = new Set();
-  const all = [...rss, ...jina, ...dfs, ...ca].filter(c => {
+  // ── Intelligence candidates pipeline ─────────────────────────────────────────
+
+  // Merge Layer 1 + Layer 2 intelligence, URL-dedup
+  const seenIntelUrls = new Set();
+  const allIntel = [...l1News, ...l2Cos].filter(c => {
     const norm = normalizeUrl(c.url || '');
-    if (!norm || seenUrls.has(norm)) return false;
-    seenUrls.add(norm);
+    if (!norm || seenIntelUrls.has(norm)) return false;
+    seenIntelUrls.add(norm);
     return true;
   });
 
-  // Rule-based scoring → top 40 (business rules: recency, tracked company, source quality)
-  const top40 = all
+  // Rule-based scoring → top 40
+  const top40 = allIntel
     .map(c => ({ ...c, score: scoreCandidate(c) }))
     .sort((a, b) => b.score - a.score)
     .slice(0, 40);
 
-  // Stage 2b: Semantic dedup — drop candidates whose story is already in the portal
-  send('status', { message: `Semantic dedup — checking ${top40.length} candidates against published entries...` });
+  // Semantic dedup vs published entries
+  send('status', { message: `Semantic dedup — checking ${top40.length} intel candidates vs published entries...` });
   const deduplicated = await semanticDedup(top40);
   send('status', { message: `Semantic dedup: ${top40.length - deduplicated.length} near-duplicate(s) removed, ${deduplicated.length} remain` });
 
-  // Stage 3: Jina Reranker — refine by semantic relevance within deduplicated pool
-  send('status', { message: `Reranking ${deduplicated.length} candidates by semantic relevance...` });
-  const ranked = await rerankCandidates(deduplicated);
+  // Rerank by semantic relevance
+  send('status', { message: `Reranking ${deduplicated.length} candidates...` });
+  const intelCandidates = await rerankCandidates(deduplicated);
+
+  // ── Thought leadership candidates (raw — for Telegram surfacing only) ─────────
+
+  const seenTLUrls = new Set();
+  const tlCandidates = [...l1TL, ...l2Auth].filter(c => {
+    const norm = normalizeUrl(c.url || '');
+    if (!norm || seenTLUrls.has(norm)) return false;
+    seenTLUrls.add(norm);
+    return true;
+  });
 
   send('done', {
-    candidates: ranked,
-    total: ranked.length,
+    intelCandidates,
+    tlCandidates,
+    knownCompanyIds,
     sources: {
-      rss: rss.length,
-      jina: jina.length,
-      dataforseo: dfs.length,
-      content_analysis: ca.length,
-      raw_total: all.length,
+      layer1_news:      l1News.length,
+      layer2_companies: l2Cos.length,
+      layer1_tl:        l1TL.length,
+      layer2_authors:   l2Auth.length,
+      companies_queried: competitors.length,
+      raw_intel_total:  allIntel.length,
     },
   });
 }

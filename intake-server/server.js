@@ -10,7 +10,6 @@ import fs from 'fs';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 import cron from 'node-cron';
-import { discover } from './agents/discovery.js';
 import { autoDiscover } from './agents/auto-discover.js';
 import { processUrl } from './agents/intake.js';
 import { verify } from './agents/governance.js';
@@ -50,7 +49,7 @@ function createSSE(res) {
 
 // ─── Routes ───────────────────────────────────────────────────────────────────
 
-// Auto-discover: RSS + Jina + DataForSEO in parallel, deduped and ranked
+// Auto-discover: two-layer discovery (Layer 1 broad + Layer 2 per-company), deduped and ranked
 app.post('/api/auto-discover', async (req, res) => {
   const { send, done } = createSSE(res);
   try {
@@ -115,11 +114,11 @@ app.post('/api/search', async (req, res) => {
   done();
 });
 
-// Discover stories from RSS feeds
+// Legacy discover route — now an alias for /api/auto-discover
 app.post('/api/discover', async (req, res) => {
   const { send, done } = createSSE(res);
   try {
-    await discover({ send });
+    await autoDiscover({ send });
   } catch (err) {
     send('error', { message: err.message });
   }
@@ -541,6 +540,12 @@ app.post('/api/test-digest', async (req, res) => {
         { title: 'AI Startup Claims 10x Advisor Productivity with No Evidence', score: 28 },
       ],
       errors: [],
+      newCompanies: [
+        { id: 'farther-finance', name: 'Farther Finance', headline: 'Farther launches AI-driven estate planning feature for RIAs' },
+      ],
+      tlCandidates: [
+        { title: 'The Coming AI Wave in Wealth Management', url: 'https://example.com/ai-wave', snippet: 'A new essay by Andreessen Horowitz on how AI agents will reshape the advisor industry...', via: 'layer1_tl' },
+      ],
     });
     res.json({ ok: true, message: 'Test digest sent to Telegram' });
   } catch (err) {
