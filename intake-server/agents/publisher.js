@@ -79,6 +79,8 @@ export function commitAndPush({ ids, send, branch = 'dev' }) {
   if (hasGitRepo) {
     // Standard local git workflow (also runs on Railway — .git dir is present in deployed container)
     try {
+      // safe.directory: newer git (2.35.2+) rejects repos owned by a different user (common in Docker)
+      execSync(`git config --global --add safe.directory "${portalDir}"`, { stdio: 'pipe' });
       // Configure identity — required on Railway where no global git user is set
       execSync(`git -C "${portalDir}" config user.email "intake-bot@portal.ai"`, { stdio: 'pipe' });
       execSync(`git -C "${portalDir}" config user.name "AI Portal Intake"`, { stdio: 'pipe' });

@@ -398,7 +398,7 @@ h2{color:#c0392b}</style></head>
 
   // Full review page
   const gov = item.governance;
-  const confidence = gov?.confidence ? `${Math.round(gov.confidence * 100)}%` : 'n/a';
+  const confidence = gov?.confidence ? `${Math.round(gov.confidence)}%` : 'n/a';
   const unverified = (gov?.unverified_claims || []).map(c => `<li>${escHtml(c)}</li>`).join('');
   const baseUrl = (process.env.INTAKE_BASE_URL || `http://localhost:${PORT}`).replace(/\/$/, '');
   const approveUrl = `${baseUrl}/review/${token}?id=${encodeURIComponent(entryId)}&action=approve`;
