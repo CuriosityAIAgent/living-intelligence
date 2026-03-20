@@ -522,16 +522,27 @@ app.post('/api/test-digest', async (req, res) => {
     const { sendDigest } = await import('./agents/notifier.js');
     await sendDigest({
       published: [
-        { id: 'test-1', title: 'Goldman Sachs deploys autonomous compliance agents with Anthropic', company_name: 'Goldman Sachs', confidence: 94 },
-        { id: 'test-2', title: 'Morgan Stanley AskResearchGPT now live for all 16,000 advisors', company_name: 'Morgan Stanley', confidence: 91 },
+        { id: 'test-1', title: "Goldman Sachs deploys autonomous compliance agents with Anthropic", company_name: 'Goldman Sachs', score: 95 },
+        { id: 'test-2', title: "Morgan Stanley's AskResearchGPT goes live for all 16,000 advisors", company_name: 'Morgan Stanley', score: 88 },
       ],
       pending: [
-        { id: 'test-3', title: 'UBS opens AI Transformation Factory in Singapore', company_name: 'UBS', confidence: 0.78, unverified_claims: ['headcount figure unverified'], notes: 'One stat needs checking' },
+        {
+          id: 'test-3',
+          title: 'UBS opens AI Transformation Factory in Singapore',
+          company_name: 'UBS',
+          score: 62,
+          score_breakdown: 'Score: 62/100 · Source: Reuters (25) · Claims: 1 unverified (18) · Fresh: 3d old (20) · Relevance: Tracked company (13)',
+          unverified_claims: ['Headcount figure of 200 engineers not confirmed in source'],
+          paywall_caveat: false,
+          notes: '',
+        },
       ],
-      blocked: [],
+      blocked: [
+        { title: 'AI Startup Claims 10x Advisor Productivity with No Evidence', score: 28 },
+      ],
       errors: [],
     });
-    res.json({ ok: true, message: `Test digest sent to ${process.env.DIGEST_EMAIL}` });
+    res.json({ ok: true, message: 'Test digest sent to Telegram' });
   } catch (err) {
     res.status(500).json({ ok: false, error: err.message });
   }
