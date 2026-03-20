@@ -4,10 +4,10 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 const navItems = [
-  { label: 'Latest', href: '/' },
-  { label: 'Intelligence', href: '/intelligence' },
-  { label: 'Thought Leadership', href: '/thought-leadership' },
-  { label: 'Landscape', href: '/landscape' },
+  { label: 'Latest', shortLabel: 'Latest', href: '/' },
+  { label: 'Intelligence', shortLabel: 'Intelligence', href: '/intelligence' },
+  { label: 'Thought Leadership', shortLabel: 'Thought', href: '/thought-leadership' },
+  { label: 'Landscape', shortLabel: 'Landscape', href: '/landscape' },
 ];
 
 export default function Header() {
@@ -37,7 +37,7 @@ export default function Header() {
 
       {/* Nav bar — slightly darker */}
       <div className="bg-[#141420] border-b border-[#2A2A3E]">
-        <div className="max-w-6xl mx-auto px-6 flex items-stretch h-10">
+        <div className="max-w-6xl mx-auto px-6 flex items-stretch h-10 overflow-x-auto scrollbar-none">
           {navItems.map((item) => {
             const isActive =
               item.href === '/'
@@ -47,13 +47,14 @@ export default function Header() {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`flex items-center pl-0 pr-6 text-[13px] font-medium border-b-2 transition-colors ${
+                className={`flex items-center whitespace-nowrap flex-shrink-0 pl-0 pr-6 text-[13px] font-medium border-b-2 transition-colors ${
                   isActive
                     ? 'text-white border-[#990F3D]'
                     : 'text-[#9999BB] border-transparent hover:text-white hover:border-[#9999BB]'
                 }`}
               >
-                {item.label}
+                <span className="hidden sm:inline">{item.label}</span>
+                <span className="sm:hidden">{item.shortLabel}</span>
               </Link>
             );
           })}
