@@ -15,8 +15,8 @@
   "image_url": "/logos/altruist.svg",
   "summary": "Altruist's launch of Hazel, an AI-based tax planning capability built via its 2025 acquisition of startup Thyme, triggered an estimated $130 billion market value wipeout across Raymond James, Charles Schwab, and LPL Financial within two days, while bank wealth divisions were largely spared due to structural insulation. Hazel combines meeting intelligence, live custodial data, and tax planning into a single advisor environment, enabling productivity expansion and proactive next-best-action engagement for advisors managing large, heterogeneous books. Avantos, a recently launched AI-native platform for institutional wealth management, layers a knowledge graph across core systems to enable advisors, servicing teams, and AI agents to operate with shared context, with Mercer Advisors reporting active deployment across tens of thousands of clients. Bank wealth units face three key investment areas to capture this opportunity: data completeness, supervisory workflow with compliance architecture, and change management for captive advisor adoption. Datos Insights positions Hazel as a competitive reference point for bank wealth leaders and Avantos as the more actionable institutional-scale opportunity.",
   "key_stat": {
-    "number": "$130B",
-    "label": "Market cap wiped out across Schwab, LPL & Raymond James within 2 days of Hazel's launch"
+    "number": "3",
+    "label": "Investment areas bank wealth units must address: data completeness, compliance architecture, and advisor change management"
   },
   "tags": {
     "capability": "advisor_productivity",
