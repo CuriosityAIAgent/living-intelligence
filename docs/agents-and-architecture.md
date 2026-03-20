@@ -143,8 +143,8 @@ Sits between governance output and publish/review/block routing. Scores each ent
 
 **Routing thresholds:**
 - Score ≥ 75 → **PUBLISH** (auto-publish, no Telegram)
-- Score 50–74 → **REVIEW** (Telegram with score breakdown + each unverified claim)
-- Score < 50 or any fabricated claim → **BLOCK** (URL permanently blocked)
+- Score 65–74 → **REVIEW** (Telegram with score breakdown + each unverified claim)
+- Score < 65 or any fabricated claim → **BLOCK** (URL permanently blocked)
 - Paywall caveat → PUBLISH downgraded to REVIEW
 
 Domain authority results cached in-process — one Backlinks API call per domain per pipeline run.
@@ -167,7 +167,7 @@ Operations: `getPending`, `addPending`, `approvePending`, `rejectPending`, `getB
 
 Sends daily digest via **Telegram Bot API** (HTTPS — no SMTP needed, Railway-compatible).
 
-Message format: Published (✅) / Needs Review (⚠️) / Blocked (🚫) / Errors (❌)
+Message sections: Published (✅) / Needs Review (⚠️) / Blocked (🚫) / New companies — not in landscape (🆕) / Thought Leadership candidates (📚) / Errors (❌)
 
 Review links use HMAC-SHA256 token signing (`REVIEW_SECRET`) — one-tap approve/reject from Telegram.
 
@@ -198,6 +198,19 @@ Accessible via:
 - CLI: `node --env-file=.env scripts/audit-all.js [--deep]`
 - API: `GET /api/audit` (fast) / `GET /api/audit/deep` (deep)
 - UI: Intake server Audit tab
+
+### `scripts/run-tests.js` — Unit Test Agent
+
+Scenario-based test suite for all pipeline logic. No live API calls — all external dependencies mocked.
+
+**37 tests across 5 suites:**
+1. **scorer.js** (25 tests) — source quality tiers, claim verification scoring, freshness buckets (including hard 90-day gate), relevance signal, routing thresholds
+2. **notifier.js** (5 tests) — HMAC token signing for review links
+3. **publisher.js** (6 tests) — file writing with unique run-ID prefixed IDs + cleanup
+4. **auto-discover.js pure functions** (15 tests) — `isRelevant`, `normalizeUrl`, `buildCompanyQueries`, `buildAuthorQueries`
+5. **scheduler routing** (9 tests) — threshold boundary testing inline
+
+Run: `node --env-file=.env scripts/run-tests.js`
 
 ---
 
