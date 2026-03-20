@@ -110,8 +110,9 @@ function scoreCandidate(c) {
   }
   score += aiScore;
 
-  // Source type bonus (DataForSEO and Jina are more targeted)
-  if (c.via === 'dataforseo') score += 3;
+  // Source type bonus
+  if (c.via === 'content_analysis') score += 4 + Math.min(Math.floor((c.quality_score || 0)), 2); // quality score bonus up to +6 total
+  else if (c.via === 'dataforseo') score += 3;
   else if (c.via === 'jina_search') score += 2;
 
   return score;
@@ -202,11 +203,90 @@ async function discoverFromJina(existingUrls) {
   return candidates;
 }
 
+// ── DataForSEO Content Analysis Search — 4th discovery source ────────────────
+// Finds web mentions of company + AI keywords with quality score + date filtering.
+// Complements Google News (which only returns recent news) by surfacing high-quality
+// articles from blogs, reports, and trade press that Google News may miss.
+
+const CONTENT_ANALYSIS_QUERIES = [
+  'Goldman Sachs artificial intelligence wealth',
+  'Morgan Stanley AI advisor platform',
+  'JPMorgan wealth management AI',
+  'Altruist Hazel AI advisor',
+  'LPL Financial AI tools advisors',
+  'UBS AI private banking',
+  'wealthtech AI platform launch 2026',
+];
+
+async function discoverFromContentAnalysis(existingUrls) {
+  if (!process.env.DATAFORSEO_LOGIN || !process.env.DATAFORSEO_PASSWORD) return [];
+  const AUTH = Buffer.from(
+    `${process.env.DATAFORSEO_LOGIN}:${process.env.DATAFORSEO_PASSWORD}`
+  ).toString('base64');
+  const candidates = [];
+
+  const results = await Promise.allSettled(
+    CONTENT_ANALYSIS_QUERIES.map(async (keyword) => {
+      const res = await fetch(
+        'https://api.dataforseo.com/v3/content_analysis/search/live',
+        {
+          method: 'POST',
+          headers: { 'Authorization': `Basic ${AUTH}`, 'Content-Type': 'application/json' },
+          body: JSON.stringify([{
+            keyword,
+            filters: [
+              ['content_quality_score', '>', 2],
+              'and',
+              ['page_types', 'has', 'news'],
+            ],
+            order_by: ['date_published,desc'],
+            limit: 8,
+          }]),
+          signal: AbortSignal.timeout(25000),
+        }
+      );
+      if (!res.ok) return [];
+      const data = await res.json();
+      const items = data?.tasks?.[0]?.result?.[0]?.items || [];
+
+      return items
+        .filter(i => {
+          if (!i.url) return false;
+          // Only include articles from last 90 days
+          if (i.date_published) {
+            const age = (Date.now() - new Date(i.date_published).getTime()) / (1000 * 60 * 60 * 24);
+            if (age > 90) return false;
+          }
+          return !existingUrls.has(normalizeUrl(i.url));
+        })
+        .map(i => {
+          let hostname = '';
+          try { hostname = new URL(i.url).hostname.replace(/^www\./, ''); } catch (_) {}
+          return {
+            id: Buffer.from(i.url).toString('base64').slice(0, 12),
+            title: i.title || i.url,
+            url: i.url,
+            source_name: hostname || 'Content Analysis',
+            pub_date: i.date_published || null,
+            snippet: (i.snippet || i.description || '').slice(0, 300),
+            selected: true,
+            via: 'content_analysis',
+            quality_score: i.content_quality_score || 0,
+          };
+        })
+        .filter(c => isRelevant(`${c.title} ${c.snippet}`));
+    })
+  );
+
+  results.forEach(r => { if (r.status === 'fulfilled') candidates.push(...r.value); });
+  return candidates;
+}
+
 // ── DataForSEO Google News Discovery ─────────────────────────────────────────
 const DFS_QUERIES = [
   'AI wealth management news',
   'financial advisor AI product launch',
-  'wealthtech artificial intelligence platform 2025',
+  'wealthtech artificial intelligence platform 2026',
   'Goldman Sachs UBS Morgan Stanley AI advisor',
   'Anthropic OpenAI wealth management financial services',
 ];
@@ -261,28 +341,31 @@ export async function autoDiscover({ send }) {
   send('status', { message: 'Loading existing portal entries...' });
   const existingUrls = getExistingUrls();
 
-  send('status', { message: `Running discovery — RSS feeds, Jina searches, DataForSEO news...` });
-  send('progress', { rss: 'scanning', jina: 'searching', dfs: 'querying' });
+  send('status', { message: `Running discovery — RSS feeds, Jina searches, DataForSEO News + Content Analysis...` });
+  send('progress', { rss: 'scanning', jina: 'searching', dfs: 'querying', ca: 'querying' });
 
-  const [rssResult, jinaResult, dfsResult] = await Promise.allSettled([
+  const [rssResult, jinaResult, dfsResult, caResult] = await Promise.allSettled([
     discoverFromRSS(existingUrls),
     discoverFromJina(existingUrls),
     discoverFromDataForSEO(existingUrls),
+    discoverFromContentAnalysis(existingUrls),
   ]);
 
   const rss  = rssResult.status  === 'fulfilled' ? rssResult.value  : [];
   const jina = jinaResult.status === 'fulfilled' ? jinaResult.value : [];
   const dfs  = dfsResult.status  === 'fulfilled' ? dfsResult.value  : [];
+  const ca   = caResult.status   === 'fulfilled' ? caResult.value   : [];
 
   send('progress', {
     rss:  `${rss.length} found`,
     jina: `${jina.length} found`,
     dfs:  `${dfs.length} found`,
+    ca:   `${ca.length} found`,
   });
 
   // Merge + deduplicate by URL
   const seenUrls = new Set();
-  const all = [...rss, ...jina, ...dfs].filter(c => {
+  const all = [...rss, ...jina, ...dfs, ...ca].filter(c => {
     const norm = normalizeUrl(c.url || '');
     if (!norm || seenUrls.has(norm)) return false;
     seenUrls.add(norm);
@@ -302,6 +385,7 @@ export async function autoDiscover({ send }) {
       rss: rss.length,
       jina: jina.length,
       dataforseo: dfs.length,
+      content_analysis: ca.length,
       raw_total: all.length,
     },
   });

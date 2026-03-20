@@ -118,54 +118,59 @@ function buildKeywordQuery(url, teaserMarkdown) {
   return combined.split(/\s+/).filter(w => w.length > 3 && !stopWords.has(w)).slice(0, 10).join(' ');
 }
 
-// Search DataForSEO Google News for the story headline.
+// Search DataForSEO (Google News + Google Organic in parallel) for the story headline.
 // Used when paywall detected — finds the same story on open sources.
 async function findEnrichmentViaDataForSEO(headline, originalUrl) {
   if (!process.env.DATAFORSEO_LOGIN || !process.env.DATAFORSEO_PASSWORD) return [];
 
   const originalHostname = (() => {
-    try { return new URL(originalUrl).hostname.replace(/^www\./, ''); } catch (_) { return ''; }
+    try { return new URL(originalUrl).hostname.replace(/^www\.', ''); } catch (_) { return ''; }
   })();
 
   const AUTH = Buffer.from(
     `${process.env.DATAFORSEO_LOGIN}:${process.env.DATAFORSEO_PASSWORD}`
   ).toString('base64');
 
-  let items = [];
-  try {
-    const res = await fetch(
-      'https://api.dataforseo.com/v3/serp/google/news/live/advanced',
-      {
-        method: 'POST',
-        headers: { 'Authorization': `Basic ${AUTH}`, 'Content-Type': 'application/json' },
-        body: JSON.stringify([{ keyword: headline, language_code: 'en', location_code: 2840, depth: 10 }]),
-        signal: AbortSignal.timeout(20000),
-      }
-    );
-    if (!res.ok) return [];
-    const data = await res.json();
-    items = data?.tasks?.[0]?.result?.[0]?.items || [];
-  } catch (_) {
-    return [];
-  }
+  const dfsCall = (endpoint, body) =>
+    fetch(`https://api.dataforseo.com/v3/serp/google/${endpoint}/live/advanced`, {
+      method: 'POST',
+      headers: { 'Authorization': `Basic ${AUTH}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify([{ keyword: headline, language_code: 'en', location_code: 2840, depth: 10, ...body }]),
+      signal: AbortSignal.timeout(20000),
+    }).then(r => r.ok ? r.json() : null).catch(() => null);
+
+  // Run Google News + Google Organic in parallel — News finds recent coverage,
+  // Organic finds authoritative pages (press releases, company blogs) that may rank higher
+  const [newsData, organicData] = await Promise.all([
+    dfsCall('news', {}),
+    dfsCall('organic', {}),
+  ]);
+
+  const extractItems = (data) => data?.tasks?.[0]?.result?.[0]?.items || [];
+  const allItems = [...extractItems(newsData), ...extractItems(organicData)];
 
   const PRESS_RELEASE_DOMAINS = ['businesswire.com', 'prnewswire.com', 'globenewswire.com', 'accesswire.com'];
+  const seen = new Set();
 
-  return items
+  return allItems
     .filter(i => {
-      if (!i.url) return false;
+      const url = i.url || i.relative_url;
+      if (!url) return false;
       let hostname = '';
-      try { hostname = new URL(i.url).hostname.replace(/^www\./, ''); } catch (_) { return false; }
+      try { hostname = new URL(url).hostname.replace(/^www\./, ''); } catch (_) { return false; }
       if (hostname === originalHostname) return false;
       if (PAYWALLED_DOMAINS.has(hostname)) return false;
+      if (seen.has(url)) return false;
+      seen.add(url);
       return true;
     })
     .map(i => {
+      const url = i.url || i.relative_url;
       let hostname = '';
-      try { hostname = new URL(i.url).hostname.replace(/^www\./, ''); } catch (_) {}
+      try { hostname = new URL(url).hostname.replace(/^www\./, ''); } catch (_) {}
       const isPressRelease = PRESS_RELEASE_DOMAINS.includes(hostname);
       const isOpenTrade = OPEN_DOMAINS.has(hostname);
-      return { url: i.url, hostname, score: isPressRelease ? 3 : isOpenTrade ? 2 : 1 };
+      return { url, hostname, score: isPressRelease ? 3 : isOpenTrade ? 2 : 1 };
     })
     .sort((a, b) => b.score - a.score)
     .slice(0, 5)

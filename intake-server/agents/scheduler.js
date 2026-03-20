@@ -110,8 +110,8 @@ export async function runDailyPipeline() {
 
       intakeResult.entry._governance = govAudit;
 
-      // ── Scorer: 4-dimension auto-judgment ────────────────────────────────
-      const scored = scoreEntry({
+      // ── Scorer: 4-dimension auto-judgment (async — Backlinks API lookup) ───
+      const scored = await scoreEntry({
         entry:      intakeResult.entry,
         governance: govAudit,
         sourceUrl:  url,
