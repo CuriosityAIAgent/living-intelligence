@@ -170,13 +170,18 @@ export async function runDailyPipeline() {
 
   // ── 3. Commit + push published entries to main ────────────────────────────
   if (publishedIds.length > 0) {
+    let gitError = null;
+    const gitSend = (type, data) => {
+      if (type === 'error') gitError = data.message;
+    };
     try {
-      const { send } = makeSink();
-      commitAndPush({ ids: publishedIds, send, branch: 'main' });
+      commitAndPush({ ids: publishedIds, send: gitSend, branch: 'main' });
+      if (gitError) throw new Error(gitError);
       console.log(`[scheduler] Pushed ${publishedIds.length} entries to main`);
     } catch (err) {
       console.error('[scheduler] Git push failed:', err.message);
-      errors.push({ stage: 'git', message: err.message });
+      // Surface in digest so it's visible in Telegram — entries exist but aren't deployed
+      errors.push({ stage: 'git_push', message: `⚠️ Git push FAILED — ${publishedIds.length} entries written but NOT deployed to portal. Check GIT_TOKEN env var. IDs: ${publishedIds.join(', ')}. Error: ${err.message}` });
     }
   }
 
