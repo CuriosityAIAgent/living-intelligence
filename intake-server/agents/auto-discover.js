@@ -286,7 +286,14 @@ async function discoverFromJina(existingUrls) {
       if (!res.ok) return [];
       const data = await res.json();
       return (data.data || [])
-        .filter(r => r.url && !existingUrls.has(normalizeUrl(r.url)))
+        .filter(r => {
+          if (!r.url || existingUrls.has(normalizeUrl(r.url))) return false;
+          if (r.date) {
+            const ageDays = (Date.now() - new Date(r.date).getTime()) / (1000 * 60 * 60 * 24);
+            if (ageDays > 90) return false;
+          }
+          return true;
+        })
         .map(r => {
           let hostname = '';
           try { hostname = new URL(r.url).hostname.replace(/^www\./, ''); } catch (_) {}
@@ -418,7 +425,14 @@ async function discoverFromDataForSEO(existingUrls) {
       if (!res.ok) return [];
       const data = await res.json();
       const items = (data?.tasks?.[0]?.result?.[0]?.items || [])
-        .filter(i => i.url && !existingUrls.has(normalizeUrl(i.url)))
+        .filter(i => {
+          if (!i.url || existingUrls.has(normalizeUrl(i.url))) return false;
+          if (i.date_published) {
+            const ageDays = (Date.now() - new Date(i.date_published).getTime()) / (1000 * 60 * 60 * 24);
+            if (ageDays > 90) return false;
+          }
+          return true;
+        })
         .slice(0, 8);
 
       return items.map(i => {

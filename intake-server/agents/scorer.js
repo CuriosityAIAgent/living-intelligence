@@ -195,6 +195,24 @@ function scoreRelevance(entry) {
 // ── Main scorer ───────────────────────────────────────────────────────────────
 
 export async function scoreEntry({ entry, governance, sourceUrl }) {
+  // Hard date gate — nothing older than 90 days enters the portal, ever
+  if (entry.date) {
+    const ageDays = (Date.now() - new Date(entry.date).getTime()) / (1000 * 60 * 60 * 24);
+    if (ageDays > 90) {
+      return {
+        action: 'BLOCK',
+        score: 0,
+        breakdown: {
+          source:    { points: 0, label: 'n/a' },
+          claims:    { points: 0, label: 'n/a' },
+          freshness: { points: 0, label: `${Math.round(ageDays)}d old — exceeds 90-day limit` },
+          relevance: { points: 0, label: 'n/a' },
+        },
+        reason: `Article is ${Math.round(ageDays)} days old — exceeds 90-day freshness limit`,
+      };
+    }
+  }
+
   const [dimA, dimB, dimC, dimD] = await Promise.all([
     scoreSourceQuality(sourceUrl || entry.source_url || ''),
     Promise.resolve(scoreClaimVerification(governance)),
