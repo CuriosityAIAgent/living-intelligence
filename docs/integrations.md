@@ -124,6 +124,52 @@ const response = await fetch('https://api.dataforseo.com/v3/serp/google/images/l
 
 **Why DataForSEO over Clearbit/unavatar:** Clearbit shut down free tier; unavatar returns HTTP 200 with placeholder images that look correct but aren't. DataForSEO returns real Google Image Search results — actual logos downloadable to disk permanently.
 
+### 3. Google Organic SERP (paywall bypass — runs in parallel with Google News)
+
+When a paywall is detected, the intake pipeline runs Google News + Google Organic simultaneously. Organic search finds press releases and company blog posts that rank permanently (not just in the news tab), catching open sources that News misses.
+
+```javascript
+// agents/intake.js — called when paywall_suspected or thin_content
+const [newsData, organicData] = await Promise.all([
+  dfsCall('news', {}),
+  dfsCall('organic', {}),
+]);
+// Results merged, deduped, ranked: press release wires first, then open trade press
+```
+
+### 4. Content Analysis Search (4th discovery source — runs in auto-discover.js)
+
+Searches for company-specific keyword mentions across the web with quality scoring. Finds high-quality articles from blogs, reports, and trade press that Google News may miss.
+
+```javascript
+// agents/auto-discover.js — 7 company-specific queries
+body: JSON.stringify([{
+  keyword: 'Goldman Sachs artificial intelligence wealth',
+  filters: [['content_quality_score', '>', 2], 'and', ['page_types', 'has', 'news']],
+  order_by: ['date_published,desc'],
+  limit: 8,
+}])
+// Returns: url, title, date_published, content_quality_score, snippet, sentiment
+```
+
+**Queries:** Goldman Sachs AI, Morgan Stanley AI advisor, JPMorgan wealth AI, Altruist Hazel AI, LPL Financial AI, UBS AI private banking, wealthtech AI platform 2026.
+**Score bonus:** Content Analysis results get +4–6 in candidate scoring (base +4, +up to 2 for quality score).
+
+### 5. Backlinks Summary (source authority — used in scorer.js)
+
+Called once per unique source domain per pipeline run to get real domain authority. Replaces the static manual tier list with live data.
+
+```javascript
+// agents/scorer.js — Dimension A: Source Quality
+const res = await fetch('https://api.dataforseo.com/v3/backlinks/summary/live', {
+  body: JSON.stringify([{ target: hostname, limit: 1 }]),
+});
+// Returns: rank (0-100), spam_score (0-100), referring_domains
+```
+
+**Scoring map:** `rank ≥ 70` → 28 pts · `≥ 50` → 22 pts · `≥ 30` → 14 pts · `< 30` → 7 pts · `spam_score ≥ 40` → 3 pts (flagged regardless of rank).
+**Cache:** Results stored in `domainAuthorityCache` (Map) for duration of pipeline run — one API call per domain.
+
 **Env vars:** `DATAFORSEO_LOGIN`, `DATAFORSEO_PASSWORD`
 
 ---
@@ -150,12 +196,12 @@ Wealthtechtoday — wealthtechtoday.com/feed
 
 ## Auto-Discovery Pipeline (the full flow)
 
-All three sources run in **parallel** via `Promise.allSettled`:
+All **four sources** run in parallel via `Promise.allSettled`:
 
 ```
-RSS (11 feeds)          Jina Search (7 queries)     DataForSEO News (5 queries)
-     │                         │                              │
-     └─────────────────────────┴──────────────────────────────┘
+RSS (11 feeds)    Jina Search (7q)    DFS News (5q)    DFS Content Analysis (7q)
+     │                  │                  │                       │
+     └──────────────────┴──────────────────┴───────────────────────┘
                                ↓
                     Deduplicate against existing
                     source_url fields in ../data/intelligence/
@@ -165,10 +211,11 @@ RSS (11 feeds)          Jina Search (7 queries)     DataForSEO News (5 queries)
                       +4–6     source quality (primary vs tier-1 outlet)
                       +2 each  tracked company mentions (Goldman, JPMorgan, etc.)
                       +1 each  AI keyword density
-                      +3/2     source bonus (DataForSEO = +3, Jina = +2)
+                      +4–6     Content Analysis bonus (base +4, +quality score up to +2)
+                      +3/2     DFS News = +3, Jina = +2
                                ↓
                     Return top 20 candidates with `via` badge
-                    (RSS=blue, Jina=purple, DFS=green)
+                    (RSS=blue, Jina=purple, DFS=green, Content Analysis=orange)
 ```
 
 **Tracked companies (for scoring boost):**
@@ -202,11 +249,15 @@ This two-call pattern (structure → verify) is the primary anti-hallucination m
 
 | Problem | Solution |
 |---------|----------|
-| Finding new stories automatically | RSS + Jina Search + DataForSEO News in parallel |
+| Finding new stories automatically | RSS + Jina + DFS News + DFS Content Analysis — 4 sources in parallel |
+| Finding company-specific high-quality articles | DataForSEO Content Analysis (7 targeted company queries, quality-filtered) |
 | Extracting clean article content | Jina r.jina.ai (handles paywalls, strips noise) |
-| Paywalled articles | Jina fallback: search for open-source alternatives automatically |
+| Paywalled articles | DataForSEO Google News + Organic in parallel → finds open alternative sources |
 | Structuring articles into typed JSON | Anthropic Claude — strict grounding rules, no inference |
 | Verifying claims aren't fabricated | Anthropic Claude governance check (second call) |
+| Auto-publishing vs human review | scorer.js — 4-dimension scoring, PUBLISH ≥75 / REVIEW 50–74 / BLOCK <50 |
+| Source authority verification | DataForSEO Backlinks API — live domain_rank per source domain |
+| Detecting spam/low-quality sources | Backlinks API spam_score ≥ 40 → auto-flag regardless of domain rank |
 | Reliable company logos | DataForSEO Google Images → downloaded to disk as local files |
 | Deduplication against existing entries | URL normalization against all `source_url` fields |
 | Broken URLs and missing assets | `scripts/test-portal.js` health checker — auto-fixes on detect |

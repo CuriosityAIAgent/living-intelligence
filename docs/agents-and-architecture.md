@@ -71,45 +71,48 @@ Eight agents in `intake-server/agents/`, each with a single responsibility:
 
 ```
 auto-discover.js  ──┐
-                    ├──► scored candidates
+                    ├──► scored candidates (RSS + Jina + DFS News + DFS Content Analysis)
 intake.js  ─────────┤
-                    ├──► structured entry
+                    ├──► structured entry (paywall → DataForSEO News + Organic in parallel)
 governance.js  ─────┤
-                    ├──► PASS / REVIEW / FAIL
+                    ├──► verified claims
+scorer.js  ─────────┤
+                    ├──► PUBLISH / REVIEW / BLOCK + score breakdown
 gov-store.js  ──────┤
                     ├──► pending queue / blocked list
 publisher.js  ──────┤
                     ├──► JSON file + git commit + push
 notifier.js  ───────┤
-                    └──► Telegram digest
+                    └──► Telegram digest (score + unverified claims per item)
 scheduler.js  ──────── orchestrates daily pipeline
 auditor.js  ────────── standalone audit engine (fast + deep modes)
 ```
 
 ### `auto-discover.js` — Content Discovery
 
-Runs three sources **in parallel** via `Promise.allSettled`:
+Runs **four sources in parallel** via `Promise.allSettled`:
 
 1. **RSS (11 feeds):** FT, Bloomberg, Reuters, WSJ, Fintech Nexus, WealthManagement.com, ThinkAdvisor, InvestmentNews, RIABiz, Advisor Perspectives, Wealthtechtoday
-2. **Jina Search (7 queries):** `s.jina.ai` — searches for AI wealth management news
-3. **DataForSEO News (5 queries):** Google News results via DataForSEO API
+2. **Jina Search (7 queries):** `s.jina.ai` — general AI wealth management queries
+3. **DataForSEO Google News (5 queries):** Recent news results via DataForSEO SERP API
+4. **DataForSEO Content Analysis (7 queries):** Company-specific queries (Goldman, Morgan Stanley, JPMorgan, Altruist, LPL, UBS, wealthtech 2026) — filtered to `content_quality_score > 2`, news pages only, last 90 days
 
 Deduplicates against all existing `source_url` fields in `data/intelligence/`.
 
 Scores each candidate:
 - +10 recency (last 72h), +5 (last week), +2 (older)
-- +4–6 source quality (primary outlet vs tier-1)
+- +4–6 source quality (primary outlet vs tier-1 outlet)
 - +2 per tracked company mention (Goldman, JPM, UBS, etc.)
 - +1 per AI keyword
-- +3 DataForSEO / +2 Jina source bonus
+- +4–6 Content Analysis (base +4, up to +2 for quality score) / +3 DataForSEO News / +2 Jina
 
-Returns top 20 candidates with `via` badge (RSS/Jina/DFS).
+Returns top 20 candidates with `via` badge (RSS / Jina / DFS / Content Analysis).
 
 ### `intake.js` — Article Fetch + Structuring
 
 1. Fetches article via `r.jina.ai` (cleans HTML → markdown)
-2. **Paywall fallback:** If paywall detected → search for open-source alternatives → fetch up to 2 alternatives → combine content
-3. Calls **Claude `claude-sonnet-4-6`** (SSE streaming) with strict grounding prompt → structured `IntelligenceEntry` JSON
+2. **Paywall bypass:** If paywall/thin content detected → extracts headline from teaser → runs **DataForSEO Google News + Google Organic in parallel** → filters for open sources (press release wires first, then trade press) → fetches best alternative via Jina → combines content. Non-paywalled articles use Jina keyword search for supplementary context.
+3. Calls **Claude `claude-sonnet-4-6`** with strict grounding prompt → structured `IntelligenceEntry` JSON
 4. No inference allowed — Claude only extracts what is in the source
 
 ### `governance.js` — Claim Verification
@@ -122,6 +125,25 @@ Verdict rules:
 - **FAIL** → any claim contradicts source or appears fabricated → URL permanently blocked
 
 Returns: `{ verdict, confidence, verified_claims, unverified_claims, fabricated_claims, notes, paywall_caveat }`
+
+### `scorer.js` — Auto-Judgment Layer
+
+Sits between governance output and publish/review/block routing. Scores each entry across 4 dimensions (total 0–100):
+
+| Dimension | Max | Method |
+|---|---|---|
+| **Source Quality** | 30 | DataForSEO Backlinks API — live `domain_rank` (0–100). `spam_score ≥ 40` → 3pts regardless. Falls back to manual tier list if API unavailable. Press releases / newsrooms always = 30. |
+| **Claim Verification** | 30 | From governance output: 0 unverified = 30, 1 = 18, 2 = 8, any fabricated = −100 (auto-block) |
+| **Content Freshness** | 20 | ≤7 days = 20, ≤30 days = 14, ≤90 days = 6, older = 0 |
+| **Relevance Signal** | 20 | Tracked company + specific AI product/metric = 20, tracked + general = 13, untracked + specific = 8, tangential = 3 |
+
+**Routing thresholds:**
+- Score ≥ 75 → **PUBLISH** (auto-publish, no Telegram)
+- Score 50–74 → **REVIEW** (Telegram with score breakdown + each unverified claim)
+- Score < 50 or any fabricated claim → **BLOCK** (URL permanently blocked)
+- Paywall caveat → PUBLISH downgraded to REVIEW
+
+Domain authority results cached in-process — one Backlinks API call per domain per pipeline run.
 
 ### `gov-store.js` — Governance State
 
@@ -263,8 +285,12 @@ data/
 |---|---|---|
 | Anthropic Claude (`claude-sonnet-4-6`) | Structuring + governance verification | `ANTHROPIC_API_KEY` |
 | Jina AI `r.jina.ai` | Article extraction (HTML → markdown) | `JINA_API_KEY` |
-| Jina AI `s.jina.ai` | Web search + extract | `JINA_API_KEY` |
-| DataForSEO | Google News + Google Images | Login + password |
+| Jina AI `s.jina.ai` | Web search — non-paywalled enrichment | `JINA_API_KEY` |
+| DataForSEO — Google News SERP | Discovery (5 queries) + paywall bypass | `DATAFORSEO_LOGIN/PASSWORD` |
+| DataForSEO — Google Organic SERP | Paywall bypass in parallel with News | `DATAFORSEO_LOGIN/PASSWORD` |
+| DataForSEO — Google Images SERP | Logo fetching for landscape companies | `DATAFORSEO_LOGIN/PASSWORD` |
+| DataForSEO — Content Analysis Search | 4th discovery source (7 company queries) | `DATAFORSEO_LOGIN/PASSWORD` |
+| DataForSEO — Backlinks Summary | Live domain authority for scorer Dim A | `DATAFORSEO_LOGIN/PASSWORD` |
 | Telegram Bot API | Daily digest (no SMTP needed) | `TELEGRAM_BOT_TOKEN` |
 | Railway | Hosting (portal + intake server) | Dashboard |
 | GitHub | Git remote, auto-deploy trigger | SSH / HTTPS |
