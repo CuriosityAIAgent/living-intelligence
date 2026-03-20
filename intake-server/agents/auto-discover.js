@@ -541,6 +541,10 @@ async function discoverFromLayer2Authors(existingUrls, tlEntries) {
   return candidates;
 }
 
+// ── Test exports — pure functions, no side effects ────────────────────────────
+// Exported so run-tests.js can test them without calling external APIs.
+export { isRelevant, normalizeUrl, buildCompanyQueries, buildAuthorQueries };
+
 // ── Main export ───────────────────────────────────────────────────────────────
 
 export async function autoDiscover({ send }) {
