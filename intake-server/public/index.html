@@ -610,6 +610,7 @@
       <button class="audit-btn primary" id="btnFastAudit" onclick="runAudit('fast')">Run Fast Audit</button>
       <button class="audit-btn deep" id="btnDeepAudit" onclick="runAudit('deep')">Run Deep Audit (AI)</button>
       <button class="audit-btn secondary" onclick="loadAuditReport()">Load Last Report</button>
+      <button class="audit-btn secondary" onclick="sendTestDigest()" id="btnTestDigest">Send Test Digest</button>
     </div>
 
     <!-- Progress bar -->
@@ -1438,6 +1439,21 @@ async function runAudit(mode) {
   fastBtn.disabled = false;
   deepBtn.disabled = false;
   auditLog('Audit complete.');
+}
+
+async function sendTestDigest() {
+  const btn = document.getElementById('btnTestDigest');
+  btn.disabled = true;
+  btn.textContent = 'Sending...';
+  try {
+    const res = await fetch('/api/test-digest', { method: 'POST' });
+    const data = await res.json();
+    btn.textContent = data.ok ? 'Sent ✓' : 'Failed ✗';
+    setTimeout(() => { btn.disabled = false; btn.textContent = 'Send Test Digest'; }, 3000);
+  } catch (err) {
+    btn.textContent = 'Error ✗';
+    setTimeout(() => { btn.disabled = false; btn.textContent = 'Send Test Digest'; }, 3000);
+  }
 }
 
 async function loadAuditReport() {
