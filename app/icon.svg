@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <!-- Dark navy background -->
+  <rect width="32" height="32" rx="6" fill="#1C1C2E"/>
+  <!-- Claret accent bar — left edge, like FT's vertical rule -->
+  <rect x="5" y="7" width="2.5" height="18" rx="1" fill="#990F3D"/>
+  <!-- "L" stroke — horizontal base -->
+  <rect x="5" y="22.5" width="9" height="2.5" rx="1" fill="#990F3D"/>
+  <!-- "I" vertical bar -->
+  <rect x="19" y="7" width="2.5" height="18" rx="1" fill="#E8E0D5"/>
+  <!-- "I" top serif -->
+  <rect x="16.5" y="7" width="7.5" height="2" rx="1" fill="#E8E0D5"/>
+  <!-- "I" bottom serif -->
+  <rect x="16.5" y="23" width="7.5" height="2" rx="1" fill="#E8E0D5"/>
+</svg>
