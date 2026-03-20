@@ -2,9 +2,9 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import NotificationBell from './NotificationBell';
 
 const navItems = [
-  { label: 'Latest', shortLabel: 'Latest', href: '/' },
   { label: 'Intelligence', shortLabel: 'Intelligence', href: '/intelligence' },
   { label: 'Thought Leadership', shortLabel: 'Thought', href: '/thought-leadership' },
   { label: 'Landscape', shortLabel: 'Landscape', href: '/landscape' },
@@ -24,13 +24,16 @@ export default function Header() {
               AI in Wealth Management
             </span>
           </Link>
-          <div className="hidden md:flex flex-col items-end gap-0.5">
-            <span className="text-[11px] font-medium uppercase tracking-widest text-[#888899]">
-              Living Intelligence
-            </span>
-            <span className="text-[8px] font-medium uppercase tracking-[0.2em] text-[#444458]">
-              AI of the Tiger
-            </span>
+          <div className="flex items-center gap-3">
+            <NotificationBell />
+            <div className="hidden md:flex flex-col items-end gap-0.5">
+              <span className="text-[11px] font-medium uppercase tracking-widest text-[#888899]">
+                Living Intelligence
+              </span>
+              <span className="text-[8px] font-medium uppercase tracking-[0.2em] text-[#444458]">
+                AI of the Tiger
+              </span>
+            </div>
           </div>
         </div>
       </div>
@@ -39,10 +42,9 @@ export default function Header() {
       <div className="bg-[#141420] border-b border-[#2A2A3E]">
         <div className="max-w-6xl mx-auto px-6 flex items-stretch h-10 overflow-x-auto scrollbar-none">
           {navItems.map((item) => {
-            const isActive =
-              item.href === '/'
-                ? pathname === '/'
-                : pathname.startsWith(item.href);
+            const isActive = pathname === '/'
+              ? false
+              : pathname.startsWith(item.href);
             return (
               <Link
                 key={item.href}
