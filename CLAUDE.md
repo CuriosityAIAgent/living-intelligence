@@ -7,6 +7,45 @@ See @docs/architecture.md for full system design and @docs/integrations.md for a
 
 ---
 
+## Documentation Maintenance — MANDATORY
+
+**Every time you change code, data, or configuration in this project, you MUST update all affected documentation before committing.** No exceptions. This is a CEO-facing product — stale docs cause mistakes in presentations and future sessions.
+
+### What to update and when
+
+| You changed | Update these |
+|---|---|
+| Any file in `intake-server/agents/` | `docs/agents-and-architecture.md` (relevant agent section) + `docs/integrations.md` (if external API changed) |
+| External API calls (new API, new endpoint, new use) | `docs/integrations.md` — add/update the relevant section + "What Each Integration Solves" table |
+| Data counts (entries, companies, capabilities) | `docs/architecture.md` (Landscape Coverage + data directory counts) + `docs/agents-and-architecture.md` (Data Model section) + memory file `project_living_intelligence.md` |
+| Brand tokens, UI rules, nav behavior | `CLAUDE.md` Brand section + memory file |
+| New API route in `server.js` | `docs/agents-and-architecture.md` API Endpoints table + `docs/architecture.md` API Routes table |
+| Scoring/governance logic | `docs/agents-and-architecture.md` scorer.js section |
+| Thought leadership entries added/removed/verified | Memory file `project_living_intelligence.md` verified entries list |
+| Landscape segment classifications, maturity levels | `docs/architecture.md` Landscape Coverage table |
+| Any verified data point (user counts, AUM, metrics) | Memory file `project_living_intelligence.md` verified data points section |
+| Pipeline flow (new stage, new source, new routing) | `docs/integrations.md` pipeline diagram + `docs/agents-and-architecture.md` agent description |
+
+### Memory file updates
+
+After any significant session, update `/Users/haresh/.claude/projects/-Users-haresh/memory/project_living_intelligence.md` to reflect:
+- New data counts
+- New verified data points
+- New integrations or APIs in use
+- Any new critical UI rules
+
+### The check before committing
+
+Before every `git commit`, mentally verify:
+1. Does `docs/agents-and-architecture.md` describe the current state of all 8 agents?
+2. Does `docs/integrations.md` list every external API currently in use?
+3. Does `docs/architecture.md` show the correct company/entry counts?
+4. Does the memory file reflect what was built this session?
+
+If any answer is no — update before committing.
+
+---
+
 ## Environment
 
 ```bash
