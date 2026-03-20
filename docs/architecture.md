@@ -7,13 +7,13 @@
 │                    INTAKE SERVER (port 3003)                     │
 │                   ../intake-server/server.js                     │
 │                                                                  │
-│  ┌──────────┐   ┌──────────┐   ┌────────────┐   ┌──────────┐  │
-│  │   RSS    │   │   Jina   │   │ DataForSEO │   │ Anthropic│  │
-│  │ 11 feeds │   │ Search + │   │ Google News│   │ Claude   │  │
-│  │          │   │  Extract │   │ + Images   │   │ Sonnet   │  │
-│  └────┬─────┘   └────┬─────┘   └─────┬──────┘   └────┬─────┘  │
-│       └──────────────┴───────────────┘                │        │
-│                      ↓ auto-discover                  │        │
+│  ┌───────────────┐   ┌──────────┐   ┌────────────────────┐  │
+│  │  DataForSEO   │   │   Jina   │   │ Anthropic Claude   │  │
+│  │ L1: 8 broad   │   │ Search + │   │ Sonnet             │  │
+│  │ L2: N per-co  │   │  Extract │   │ (structure+verify) │  │
+│  └───────┬───────┘   └────┬─────┘   └─────────┬──────────┘  │
+│          └────────────────┴──────────────────  │             │
+│                      ↓ auto-discover            │             │
 │              scored + deduplicated candidates         │        │
 │                      ↓ human selects                  │        │
 │              Jina fetches full article                │        │
@@ -81,7 +81,7 @@
 | Path | Purpose |
 |------|---------|
 | `server.js` | Express server, all API routes |
-| `agents/auto-discover.js` | Parallel RSS + Jina + DataForSEO pipeline |
+| `agents/auto-discover.js` | Two-layer discovery: L1 broad DFS News + L2 per-company DFS Content Analysis + TL via Jina |
 | `agents/intake.js` | Fetch article (with paywall fallback) + Claude structuring |
 | `agents/governance.js` | Verify all claims against source → PASS/REVIEW/FAIL |
 | `agents/gov-store.js` | File-backed pending queue + blocked URL list |
@@ -89,7 +89,7 @@
 | `scripts/backfill-governance.js` | One-time: add `_governance` to all existing entries |
 | `scripts/reprocess-failed.js` | Re-run FAIL entries through corrected pipeline |
 | `scripts/test-portal.js` | Health check all URLs + portal pages, auto-fix broken links |
-| `rss-feeds.json` | 11 RSS feeds for auto-discovery |
+| `rss-feeds.json` | Archived — RSS removed; DataForSEO two-layer replaces it |
 | `public/index.html` | Intake UI (single-file vanilla JS, includes Review tab) |
 
 ### Intake Server API Routes
@@ -112,7 +112,7 @@
 ## Data Flow: New Intelligence Entry
 
 ```
-1. Auto-Discover runs (RSS + Jina + DataForSEO in parallel)
+1. Auto-Discover runs (two-layer: L1 broad DFS News + L2 per-company DFS Content Analysis)
 2. Stories scored by: recency + source quality + tracked company mentions + AI keyword density
 3. Top 20 candidates surfaced in intake UI with via badges (RSS/Jina/DFS)
 4. Human reviews and selects a story

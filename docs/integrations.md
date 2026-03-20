@@ -212,57 +212,79 @@ const res = await fetch('https://api.dataforseo.com/v3/backlinks/summary/live', 
 
 ---
 
-## RSS Feeds (11 feeds, no API key needed)
+## Auto-Discovery Pipeline — Two-Layer Architecture
 
-Monitored continuously in auto-discovery. Configured in `rss-feeds.json`:
+RSS feeds were removed. All 11 feeds were paywalled publications already covered by DataForSEO at higher quality. The replacement is a two-layer architecture that self-expands as the landscape grows.
 
+### Layer 1 — Broad thematic discovery (catches new entrants and unknown companies)
+
+**Layer 1 News** — 8 broad DFS Google News queries, hardcoded:
 ```
-Financial Times — ft.com/rss/home/technology
-Bloomberg Technology — feeds.bloomberg.com/technology/news.rss
-Reuters Financial Services — feeds.reuters.com/reuters/businessNews
-WSJ Markets — feeds.content.dowjones.io/public/rss/2_DJ_ARTICLETYPE_FinancialServices
-Fintech Nexus — fintechnexus.com/feed
-WealthManagement.com — wealthmanagement.com/rss.xml
-ThinkAdvisor — thinkadvisor.com/rss
-InvestmentNews — investmentnews.com/feed
-RIABiz — riabiz.com/feed
-Advisor Perspectives — advisorperspectives.com/feed
-Wealthtechtoday — wealthtechtoday.com/feed
-```
-
----
-
-## Auto-Discovery Pipeline (the full flow)
-
-All **four sources** run in parallel via `Promise.allSettled`:
-
-```
-RSS (11 feeds)    Jina Search (7q)    DFS News (5q)    DFS Content Analysis (7q)
-     │                  │                  │                       │
-     └──────────────────┴──────────────────┴───────────────────────┘
-                               ↓ Stage 1: URL dedup vs existing entries
-                    Deduplicate against source_url fields in ../data/intelligence/
-                               ↓ Stage 2: Rule-based scoring → top 40
-                    Score each candidate:
-                      +10 max  recency (last 72h = 10, week = 5, older = 2)
-                      +4–6     source quality (primary vs tier-1 outlet)
-                      +2 each  tracked company mentions (Goldman, JPMorgan, etc.)
-                      +1 each  AI keyword density
-                      +4–6     Content Analysis bonus (base +4, +quality score up to +2)
-                      +3/2     DFS News = +3, Jina = +2
-                               ↓ Stage 2b: Semantic dedup (Jina Embeddings)
-                    Embed top-40 candidates + published entries (jina-embeddings-v3)
-                    Drop candidates with cosine similarity ≥ 0.90 to any published entry
-                               ↓ Stage 3: Rerank (Jina Reranker)
-                    Rerank surviving candidates by semantic relevance to
-                    "significant AI product launch in wealth management"
-                               ↓
-                    Return top 20 candidates with `via` badge + rerank_score
-                    (RSS=blue, Jina=purple, DFS=green, Content Analysis=orange)
+'AI wealth management news 2026'
+'wealthtech artificial intelligence platform launch 2026'
+'financial advisor AI tool product announcement'
+'private banking generative AI deployment 2026'
+'robo-advisor AI fintech funding raises 2026'
+'wealth management AI agent agentic 2026'
+'Anthropic OpenAI wealth management financial services partnership'
+'AI financial planning advisor technology news'
 ```
 
-**Tracked companies (for scoring boost):**
-Goldman Sachs, Morgan Stanley, JPMorgan, UBS, Merrill Lynch, Citi, HSBC, Vanguard, Fidelity, Schwab, BlackRock, LPL Financial, Raymond James, Edward Jones, Betterment, Wealthfront, Robinhood, Altruist, Orion, Envestnet
+**Layer 1 TL** — 5 broad Jina Search queries for thought leadership:
+```
+'AI wealth management thought leadership essay 2026'
+'AI financial advisor future implications essay'
+'generative AI investment management strategy 2026'
+'AI fintech industry report white paper 2026'
+'artificial intelligence finance executive perspective 2026'
+```
+
+### Layer 2 — Deep per-company discovery (auto-expands with landscape)
+
+**Layer 2 Companies** — one DFS Content Analysis query per company in `data/competitors/*.json`. Generated at runtime by `buildCompanyQueries()`. As you add companies to the landscape, they are automatically queried on the next pipeline run.
+
+Each query: `{company.name} {SEGMENT_FOCUS[company.segment]}`
+
+Segment focus strings: `wirehouse → 'wealth management AI advisor'`, `ai_native → 'AI wealth platform'`, etc.
+
+All company queries are batched into a single API call (50 per batch) for efficiency.
+
+**Layer 2 Authors** — one Jina Search query per known author in `data/thought-leadership/*.json`. Generated at runtime by `buildAuthorQueries()`.
+
+### Full pipeline flow
+
+```
+Layer 1 News (8 DFS News)    Layer 2 Companies (N DFS Content Analysis)
+         │                             │
+         └──────────────┬──────────────┘
+                        ↓ URL dedup vs existing entries
+               Deduplicate against source_url fields
+                        ↓ Rule-based scoring → top 40
+               +10 max  recency (last 72h = 10, week = 6, fortnight = 3)
+               +4–6     source quality (primary vs tier-1 outlet)
+               +2 each  tracked company mentions (dynamic from landscape)
+               +1 each  AI keyword density (max 4)
+               +5–7     Layer 2 Companies bonus (base +5, +quality_score up to +2)
+               +3       Layer 1 News
+                        ↓ Stage 2b: Semantic dedup (Jina Embeddings)
+               Embed top-40 + published entries → drop cosine ≥ 0.90
+                        ↓ Stage 3: Rerank (Jina Reranker)
+               Rerank by "significant AI product launch in wealth management"
+                        ↓
+               Return intelCandidates (top 20) + tlCandidates (raw, for Telegram)
+               intelCandidates → intake pipeline (structure → verify → score)
+               tlCandidates → surfaced in Telegram digest for manual review
+
+Layer 1 TL (5 Jina Search)   Layer 2 Authors (M Jina Search)
+         │                             │
+         └──────────────┬──────────────┘
+                        ↓ URL dedup
+               tlCandidates → Telegram digest (not put through intake)
+```
+
+**Tracked companies:** dynamically loaded from `data/competitors/*.json` at runtime. Adding a new company file automatically adds it to both the discovery queries AND the relevance scoring.
+
+**New company detection:** after structuring, `scheduler.js` checks `entry.company` against `knownCompanyIds`. If not found → flagged in Telegram with `🆕 New companies — not in landscape`.
 
 ---
 
@@ -292,8 +314,8 @@ This two-call pattern (structure → verify) is the primary anti-hallucination m
 
 | Problem | Solution |
 |---------|----------|
-| Finding new stories automatically | RSS + Jina + DFS News + DFS Content Analysis — 4 sources in parallel |
-| Finding company-specific high-quality articles | DataForSEO Content Analysis (7 targeted company queries, quality-filtered) |
+| Finding new stories + new entrants | Layer 1: 8 broad DFS News queries — catches any company, not just tracked ones |
+| Deep per-company coverage | Layer 2: DFS Content Analysis query per company in landscape — auto-expands as landscape grows |
 | Extracting clean article content | Jina r.jina.ai (handles paywalls, strips noise) |
 | Paywalled articles | DataForSEO Google News + Organic in parallel → finds open alternative sources |
 | Structuring articles into typed JSON | Anthropic Claude — strict grounding rules, no inference |
