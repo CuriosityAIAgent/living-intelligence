@@ -77,8 +77,17 @@ export function commitAndPush({ ids, send, branch = 'dev' }) {
   const hasGitRepo = existsSync(join(portalDir, '.git'));
 
   if (hasGitRepo) {
-    // Standard local git workflow
+    // Standard local git workflow (also runs on Railway — .git dir is present in deployed container)
     try {
+      // Configure identity — required on Railway where no global git user is set
+      execSync(`git -C "${portalDir}" config user.email "intake-bot@portal.ai"`, { stdio: 'pipe' });
+      execSync(`git -C "${portalDir}" config user.name "AI Portal Intake"`, { stdio: 'pipe' });
+
+      if (gitToken) {
+        const remoteUrl = `https://${gitToken}@github.com/${repo}.git`;
+        execSync(`git -C "${portalDir}" remote set-url origin "${remoteUrl}"`, { stdio: 'pipe' });
+      }
+
       send('status', { message: 'Staging files...' });
       execSync(`git -C "${portalDir}" add data/intelligence/`, { stdio: 'pipe' });
 
@@ -91,11 +100,6 @@ export function commitAndPush({ ids, send, branch = 'dev' }) {
         `git -C "${portalDir}" commit -m "${msg}\n\nCo-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>"`,
         { stdio: 'pipe' }
       );
-
-      if (gitToken) {
-        const remoteUrl = `https://${gitToken}@github.com/${repo}.git`;
-        execSync(`git -C "${portalDir}" remote set-url origin "${remoteUrl}"`, { stdio: 'pipe' });
-      }
 
       send('status', { message: `Pushing to GitHub (${branch})...` });
       execSync(`git -C "${portalDir}" push origin ${branch}`, { stdio: 'pipe' });
