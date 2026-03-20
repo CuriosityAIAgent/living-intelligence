@@ -18,9 +18,9 @@ const INTAKE_SCHEMA = `{
   "summary": "3-5 sentence summary. Only what is in the source article. No inference.",
   "key_stat": { "number": "X", "label": "what it measures" },
   "tags": {
-    "capability": "advisor_productivity | client_experience | investment_analytics | operations_compliance | new_business_models | client_acquisition",
+    "capability": "advisor_productivity | client_personalization | investment_portfolio | research_content | client_acquisition | operations_compliance | new_business_models",
     "region": "us | emea | asia | latam | global",
-    "segment": "global_bank | regional_champion | retail_digital | ria_independent | uhnw_digital | ai_native",
+    "segment": "wirehouse | global_private_bank | regional_champion | digital_disruptor | ai_native | ria_independent | advisor_tools",
     "theme": ["2-4 lowercase_underscore tags"]
   },
   "week": "YYYY-MM-DD (monday of current week)",
@@ -88,49 +88,106 @@ async function fetchPageMarkdown(url) {
   };
 }
 
-// Build a targeted search query from URL + teaser content
-function buildEnrichmentQuery(url, teaserMarkdown) {
-  // Extract company hint from hostname
-  let companyHint = '';
-  try {
-    const hostname = new URL(url).hostname.replace(/^www\./, '');
-    // e.g. "investmentnews.com" → not useful; but slug might have company names
-    const slug = new URL(url).pathname.replace(/[^a-z0-9\s-]/gi, ' ').replace(/-/g, ' ').trim();
-    companyHint = slug;
-  } catch (_) {}
+// Extract the most likely headline from Jina teaser markdown.
+// Used as the DataForSEO search query when a paywall is hit.
+function extractHeadlineFromTeaser(teaserMarkdown) {
+  // Try to find an H1/H2 markdown heading first
+  const headingMatch = teaserMarkdown.match(/^#{1,2}\s+(.+)$/m);
+  if (headingMatch) return headingMatch[1].trim().slice(0, 120);
 
-  // Grab first 400 chars of teaser
-  const teaser = teaserMarkdown.slice(0, 400).replace(/[#*`[\]()]/g, '');
+  // Fall back to first non-empty sentence (up to 120 chars)
+  const firstSentence = teaserMarkdown
+    .replace(/[#*`[\]()>]/g, '')
+    .split(/[.\n]/)
+    .map(s => s.trim())
+    .find(s => s.length > 20);
+  return firstSentence ? firstSentence.slice(0, 120) : '';
+}
 
-  const combined = `${companyHint} ${teaser}`.toLowerCase();
+// Build keyword query from URL slug + teaser — used for non-paywalled enrichment.
+function buildKeywordQuery(url, teaserMarkdown) {
+  let slug = '';
+  try { slug = new URL(url).pathname.replace(/[^a-z0-9\s-]/gi, ' ').replace(/-/g, ' ').trim(); } catch (_) {}
+
+  const teaser = teaserMarkdown.slice(0, 300).replace(/[#*`[\]()]/g, '');
+  const combined = `${slug} ${teaser}`.toLowerCase();
   const stopWords = new Set(['the', 'a', 'an', 'and', 'or', 'in', 'of', 'to', 'for',
     'with', 'on', 'at', 'by', 'from', 'is', 'are', 'was', 'be', 'its', 'this', 'that',
     'as', 'it', 'has', 'have', 'how', 'what', 'why', 'when', 'html', 'www', 'com',
-    'will', 'its', 'their', 'they', 'which', 'also', 'more', 'said', 'than', 'been']);
-
-  const words = combined
-    .split(/\s+/)
-    .filter(w => w.length > 3 && !stopWords.has(w))
-    .slice(0, 12);
-
-  return words.join(' ');
+    'will', 'their', 'they', 'which', 'also', 'more', 'said', 'than', 'been']);
+  return combined.split(/\s+/).filter(w => w.length > 3 && !stopWords.has(w)).slice(0, 10).join(' ');
 }
 
-// Always search for enrichment sources — press releases, company blogs, open trade press.
-// Runs in parallel with the initial page fetch so it doesn't add latency.
-async function findEnrichmentSources(url, teaserMarkdown) {
+// Search DataForSEO Google News for the story headline.
+// Used when paywall detected — finds the same story on open sources.
+async function findEnrichmentViaDataForSEO(headline, originalUrl) {
+  if (!process.env.DATAFORSEO_LOGIN || !process.env.DATAFORSEO_PASSWORD) return [];
+
+  const originalHostname = (() => {
+    try { return new URL(originalUrl).hostname.replace(/^www\./, ''); } catch (_) { return ''; }
+  })();
+
+  const AUTH = Buffer.from(
+    `${process.env.DATAFORSEO_LOGIN}:${process.env.DATAFORSEO_PASSWORD}`
+  ).toString('base64');
+
+  let items = [];
+  try {
+    const res = await fetch(
+      'https://api.dataforseo.com/v3/serp/google/news/live/advanced',
+      {
+        method: 'POST',
+        headers: { 'Authorization': `Basic ${AUTH}`, 'Content-Type': 'application/json' },
+        body: JSON.stringify([{ keyword: headline, language_code: 'en', location_code: 2840, depth: 10 }]),
+        signal: AbortSignal.timeout(20000),
+      }
+    );
+    if (!res.ok) return [];
+    const data = await res.json();
+    items = data?.tasks?.[0]?.result?.[0]?.items || [];
+  } catch (_) {
+    return [];
+  }
+
+  const PRESS_RELEASE_DOMAINS = ['businesswire.com', 'prnewswire.com', 'globenewswire.com', 'accesswire.com'];
+
+  return items
+    .filter(i => {
+      if (!i.url) return false;
+      let hostname = '';
+      try { hostname = new URL(i.url).hostname.replace(/^www\./, ''); } catch (_) { return false; }
+      if (hostname === originalHostname) return false;
+      if (PAYWALLED_DOMAINS.has(hostname)) return false;
+      return true;
+    })
+    .map(i => {
+      let hostname = '';
+      try { hostname = new URL(i.url).hostname.replace(/^www\./, ''); } catch (_) {}
+      const isPressRelease = PRESS_RELEASE_DOMAINS.includes(hostname);
+      const isOpenTrade = OPEN_DOMAINS.has(hostname);
+      return { url: i.url, hostname, score: isPressRelease ? 3 : isOpenTrade ? 2 : 1 };
+    })
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 5)
+    .map(r => r.url);
+}
+
+// Search Jina for enrichment sources — used for non-paywalled articles to get
+// supplementary press releases and open trade coverage.
+async function findEnrichmentViaJina(url, teaserMarkdown) {
   if (!process.env.JINA_API_KEY) return [];
 
-  const query = buildEnrichmentQuery(url, teaserMarkdown);
+  const query = buildKeywordQuery(url, teaserMarkdown);
   if (!query) return [];
+
+  const originalHostname = (() => {
+    try { return new URL(url).hostname.replace(/^www\./, ''); } catch (_) { return ''; }
+  })();
 
   let searchResults = [];
   try {
     const res = await fetch(`https://s.jina.ai/${encodeURIComponent(query)}`, {
-      headers: {
-        'Accept': 'application/json',
-        'Authorization': `Bearer ${process.env.JINA_API_KEY}`,
-      },
+      headers: { 'Accept': 'application/json', 'Authorization': `Bearer ${process.env.JINA_API_KEY}` },
       signal: AbortSignal.timeout(20000),
     });
     if (!res.ok) return [];
@@ -140,34 +197,40 @@ async function findEnrichmentSources(url, teaserMarkdown) {
     return [];
   }
 
-  const originalHostname = (() => {
-    try { return new URL(url).hostname.replace(/^www\./, ''); } catch (_) { return ''; }
-  })();
+  const PRESS_RELEASE_DOMAINS = ['businesswire.com', 'prnewswire.com', 'globenewswire.com', 'accesswire.com'];
 
-  // Score each result: prefer press releases and open domains
-  const scored = searchResults
+  return searchResults
     .filter(r => {
       if (!r.url) return false;
       let hostname = '';
       try { hostname = new URL(r.url).hostname.replace(/^www\./, ''); } catch (_) { return false; }
-      if (hostname === originalHostname) return false;  // don't re-fetch original
-      if (PAYWALLED_DOMAINS.has(hostname)) return false; // skip known paywalls
+      if (hostname === originalHostname) return false;
+      if (PAYWALLED_DOMAINS.has(hostname)) return false;
       return true;
     })
     .map(r => {
       let hostname = '';
       try { hostname = new URL(r.url).hostname.replace(/^www\./, ''); } catch (_) {}
-      // Highest priority: official press release wires
-      const isPressRelease = ['businesswire.com', 'prnewswire.com', 'globenewswire.com', 'accesswire.com'].includes(hostname);
-      // Second priority: known open trade press
+      const isPressRelease = PRESS_RELEASE_DOMAINS.includes(hostname);
       const isOpenTrade = OPEN_DOMAINS.has(hostname);
-      const score = isPressRelease ? 3 : isOpenTrade ? 2 : 1;
-      return { ...r, hostname, score };
+      return { url: r.url, hostname, score: isPressRelease ? 3 : isOpenTrade ? 2 : 1 };
     })
     .sort((a, b) => b.score - a.score)
-    .slice(0, 5); // fetch up to 5, use best 3
+    .slice(0, 5)
+    .map(r => r.url);
+}
 
-  return scored.map(r => r.url);
+// Route to the right enrichment strategy:
+// - Paywall/thin content → DataForSEO headline search (more accurate, finds same story)
+// - Full content → Jina keyword search (fast, good for supplementary context)
+async function findEnrichmentSources(url, teaserMarkdown, isPaywalled) {
+  if (isPaywalled) {
+    const headline = extractHeadlineFromTeaser(teaserMarkdown);
+    if (headline) return findEnrichmentViaDataForSEO(headline, url);
+    // Fallback to Jina if headline extraction failed
+    return findEnrichmentViaJina(url, teaserMarkdown);
+  }
+  return findEnrichmentViaJina(url, teaserMarkdown);
 }
 
 // Fetch markdown from an enrichment URL, silently skip on failure
@@ -274,13 +337,17 @@ export async function processUrl({ url, source_name, send }) {
   }
 
   // ── Always search for enrichment sources ─────────────────────────────────────
-  // Runs regardless of paywall — ensures we always have press releases,
-  // company blog posts, and open trade coverage to supplement the original.
+  // Paywall/thin → DataForSEO headline search (finds same story on open sources)
+  // Full content → Jina keyword search (supplementary press releases + context)
   const needsEnrichment = pageData.paywall_suspected || pageData.thin_content;
 
-  send('status', { message: 'Searching for enrichment sources (press releases, company pages, open coverage)...' });
+  send('status', {
+    message: needsEnrichment
+      ? 'Paywall/thin content — searching DataForSEO for same story on open sources...'
+      : 'Searching for supplementary sources (press releases, open coverage)...',
+  });
 
-  const enrichmentUrls = await findEnrichmentSources(url, pageData.markdown);
+  const enrichmentUrls = await findEnrichmentSources(url, pageData.markdown, needsEnrichment);
   const fetched = await Promise.all(enrichmentUrls.map(u => fetchEnrichmentMarkdown(u)));
   const usable = fetched.filter(Boolean).slice(0, 3);
 

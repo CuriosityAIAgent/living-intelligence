@@ -59,28 +59,50 @@ function buildMessage({ published, pending, blocked, errors, date }) {
   lines.push('');
 
   if (published.length > 0) {
-    lines.push(`<b>✅ Published (${published.length})</b>`);
+    lines.push(`<b>✅ Auto-published (${published.length})</b>`);
     published.forEach(p => {
-      lines.push(`  → ${p.title}${p.company_name ? ` <i>${p.company_name}</i>` : ''}`);
+      const score = p.score ? ` · ${p.score}/100` : '';
+      lines.push(`  → ${p.title}${p.company_name ? ` <i>${p.company_name}</i>` : ''}${score}`);
     });
     lines.push('');
   }
 
   if (pending.length > 0) {
-    lines.push(`<b>⚠️ Needs Review (${pending.length})</b>`);
+    lines.push(`<b>⚠️ Needs Your Review (${pending.length})</b>`);
     pending.forEach(p => {
-      const token      = signToken(p.id);
-      const reviewUrl  = `${baseUrl}/review/${token}?id=${encodeURIComponent(p.id)}`;
-      const confidence = p.confidence ? ` · ${Math.round(p.confidence)}% confidence` : '';
-      lines.push(`  → ${p.title}${confidence}`);
+      const token     = signToken(p.id);
+      const reviewUrl = `${baseUrl}/review/${token}?id=${encodeURIComponent(p.id)}`;
+
+      lines.push(`  → <b>${p.title}</b>${p.company_name ? ` <i>${p.company_name}</i>` : ''}`);
+
+      // Score breakdown on one line
+      if (p.score_breakdown) {
+        lines.push(`    <code>${p.score_breakdown}</code>`);
+      }
+
+      // Specific unverified claims — the reason it needs review
+      if (p.unverified_claims && p.unverified_claims.length > 0) {
+        p.unverified_claims.forEach(claim => {
+          lines.push(`    ⚠ <i>${claim}</i>`);
+        });
+      }
+
+      // Paywall caveat flag
+      if (p.paywall_caveat) {
+        lines.push(`    ℹ Paywall caveat — limited source content`);
+      }
+
       lines.push(`    <a href="${reviewUrl}">Review →</a>`);
+      lines.push('');
     });
-    lines.push('');
   }
 
   if (blocked.length > 0) {
-    lines.push(`<b>🚫 Blocked (${blocked.length})</b>`);
-    blocked.forEach(b => lines.push(`  → ${b.title}`));
+    lines.push(`<b>🚫 Auto-blocked (${blocked.length})</b>`);
+    blocked.forEach(b => {
+      const score = b.score !== undefined ? ` · score ${b.score}/100` : '';
+      lines.push(`  → ${b.title}${score}`);
+    });
     lines.push('');
   }
 

@@ -17,6 +17,7 @@
 import { autoDiscover } from './auto-discover.js';
 import { processUrl } from './intake.js';
 import { verify } from './governance.js';
+import { scoreEntry, formatScoreBreakdown } from './scorer.js';
 import { publish, commitAndPush } from './publisher.js';
 import { addPending, addBlocked, isBlocked } from './gov-store.js';
 import { sendDigest } from './notifier.js';
@@ -109,34 +110,47 @@ export async function runDailyPipeline() {
 
       intakeResult.entry._governance = govAudit;
 
-      // ── FAIL ──────────────────────────────────────────────────────────────
-      if (govResult.verdict === 'FAIL') {
-        addBlocked(url, intakeResult.entry.id, govResult.notes || 'Governance FAIL — scheduler');
+      // ── Scorer: 4-dimension auto-judgment ────────────────────────────────
+      const scored = scoreEntry({
+        entry:      intakeResult.entry,
+        governance: govAudit,
+        sourceUrl:  url,
+      });
+
+      console.log(`[scheduler] Score ${scored.score}/100 → ${scored.action}: ${intakeResult.entry.headline}`);
+
+      // ── BLOCK (score < 50 or fabricated claims) ───────────────────────────
+      if (scored.action === 'BLOCK') {
+        const reason = scored.reason || `Score ${scored.score}/100 — below publish threshold`;
+        addBlocked(url, intakeResult.entry.id, reason);
         blocked.push({
           url,
           title:  intakeResult.entry.headline || candidate.title,
-          reason: govResult.notes || 'Fabricated or contradicted claims',
+          reason,
+          score:  scored.score,
         });
-        console.log(`[scheduler] FAIL → blocked: ${url}`);
+        console.log(`[scheduler] BLOCK → blocked: ${url}`);
         continue;
       }
 
-      // ── REVIEW ────────────────────────────────────────────────────────────
-      if (govResult.verdict === 'REVIEW') {
+      // ── REVIEW (score 50–74 or paywall caveat downgrade) ──────────────────
+      if (scored.action === 'REVIEW') {
         addPending(intakeResult.entry, govAudit);
         pending.push({
           id:                intakeResult.entry.id,
           title:             intakeResult.entry.headline || candidate.title,
           company_name:      intakeResult.entry.company_name,
-          confidence:        govResult.confidence,
+          score:             scored.score,
+          score_breakdown:   formatScoreBreakdown(scored),
           unverified_claims: govResult.unverified_claims || [],
+          paywall_caveat:    govAudit.paywall_caveat,
           notes:             govResult.notes || '',
         });
         console.log(`[scheduler] REVIEW → pending queue: ${intakeResult.entry.id}`);
         continue;
       }
 
-      // ── PASS ──────────────────────────────────────────────────────────────
+      // ── PUBLISH (score >= 75, all claims verified, no paywall caveat) ─────
       const { send: pubSend } = makeSink();
       const entryId = publish({ entry: intakeResult.entry, send: pubSend });
       publishedIds.push(entryId);
@@ -144,9 +158,9 @@ export async function runDailyPipeline() {
         id:           entryId,
         title:        intakeResult.entry.headline || candidate.title,
         company_name: intakeResult.entry.company_name,
-        confidence:   govResult.confidence,
+        score:        scored.score,
       });
-      console.log(`[scheduler] PASS → published: ${entryId}`);
+      console.log(`[scheduler] PUBLISH → auto-published: ${entryId}`);
 
     } catch (err) {
       console.error(`[scheduler] Error processing ${url}:`, err.message);
