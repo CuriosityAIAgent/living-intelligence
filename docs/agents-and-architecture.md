@@ -202,9 +202,9 @@ Accessible via:
 
 ```
 data/
-├── intelligence/       ← ~35 IntelligenceEntry JSON files
-├── thought-leadership/ ← 7 ThoughtLeadershipEntry JSON files (all URLs verified)
-├── competitors/        ← 26 Competitor JSON files (7 segments)
+├── intelligence/       ← ~32 IntelligenceEntry JSON files
+├── thought-leadership/ ← 6 ThoughtLeadershipEntry JSON files (all URLs verified)
+├── competitors/        ← 27 Competitor JSON files (7 segments)
 ├── capabilities/       ← index.json (7 capability dimensions)
 ├── logos/              ← Local SVG/PNG logos (never use external URLs)
 ├── audit-report.json   ← Latest audit output (auto-generated)

@@ -71,7 +71,7 @@ function buildMessage({ published, pending, blocked, errors, date }) {
     pending.forEach(p => {
       const token      = signToken(p.id);
       const reviewUrl  = `${baseUrl}/review/${token}?id=${encodeURIComponent(p.id)}`;
-      const confidence = p.confidence ? ` · ${Math.round(p.confidence * 100)}% confidence` : '';
+      const confidence = p.confidence ? ` · ${Math.round(p.confidence)}% confidence` : '';
       lines.push(`  → ${p.title}${confidence}`);
       lines.push(`    <a href="${reviewUrl}">Review →</a>`);
     });
