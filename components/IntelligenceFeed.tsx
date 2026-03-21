@@ -58,8 +58,8 @@ export default function IntelligenceFeed({ entries, leadStoryId }: {
 
   const filtered = entries.filter(e => {
     if (e.id === leadStory?.id) return false; // lead story shown separately
-    const regionMatch = region === 'all' || e.tags.region === region;
-    const capMatch = capability === 'all' || e.tags.capability === capability;
+    const regionMatch = region === 'all' || e.tags?.region === region;
+    const capMatch = capability === 'all' || e.tags?.capability === capability;
     return regionMatch && capMatch;
   });
 
@@ -223,7 +223,7 @@ export default function IntelligenceFeed({ entries, leadStoryId }: {
                   {TYPE_LABELS[entry.type]}
                 </span>
                 <span className="text-[10px] text-gray-300">·</span>
-                <span className="text-[10px] text-gray-400 uppercase">{entry.tags.region}</span>
+                <span className="text-[10px] text-gray-400 uppercase">{entry.tags?.region}</span>
               </div>
 
               <h3 className="text-sm font-bold text-gray-900 leading-snug mb-2 group-hover:text-[#990F3D] transition-colors flex-1">
