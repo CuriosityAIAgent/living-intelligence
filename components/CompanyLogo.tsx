@@ -24,11 +24,12 @@ export default function CompanyLogo({
   name,
   size = 'sm',
 }: {
-  name: string;
+  name?: string;
   size?: 'sm' | 'lg';
 }) {
-  const initial = name.trim()[0]?.toUpperCase() || '?';
-  const bg = getColor(name);
+  const safeName = name || '';
+  const initial = safeName.trim()[0]?.toUpperCase() || '?';
+  const bg = getColor(safeName);
 
   if (size === 'lg') {
     return (
