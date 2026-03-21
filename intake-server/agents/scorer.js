@@ -162,34 +162,69 @@ function scoreFreshness(dateStr) {
 
 // ── Dimension D: Relevance Signal (0–20) ─────────────────────────────────────
 
-const TRACKED_COMPANIES = new Set([
+// Hardcoded fallback IDs — used when file loading fails
+const TRACKED_IDS_FALLBACK = new Set([
   'goldman-sachs', 'morgan-stanley', 'jpmorgan', 'bofa-merrill', 'ubs',
   'wells-fargo', 'citi-private-bank', 'hsbc', 'julius-baer', 'bnp-paribas-wealth',
   'dbs', 'bbva', 'rbc-wealth-management', 'standard-chartered',
   'altruist', 'lpl-financial', 'robinhood', 'wealthfront', 'etoro', 'public-com',
   'arta-ai', 'savvy-wealth', 'jump-ai', 'nevis', 'zocks', 'holistiplan',
-  'conquest-planning', 'betterment', 'webull', 'orion', 'envestnet',
+  'conquest-planning',
 ]);
+
+// Loaded at startup from data/competitors/*.json — includes display names
+// e.g. "jump" (from jump-ai.json name field) so "jump" matches correctly
+let TRACKED_IDS   = new Set(TRACKED_IDS_FALLBACK);
+let TRACKED_NAMES = new Set(); // lowercased display names: "jump", "lpl financial", etc.
+
+try {
+  const fs   = await import('fs');
+  const path = await import('path');
+  const dataDir = process.env.PORTAL_DATA_DIR
+    || path.default.join(path.default.dirname(new URL(import.meta.url).pathname), '../../data');
+  const dir   = path.default.join(dataDir, 'competitors');
+  const files = fs.default.readdirSync(dir).filter(f => f.endsWith('.json'));
+  TRACKED_IDS   = new Set();
+  TRACKED_NAMES = new Set();
+  for (const f of files) {
+    const c = JSON.parse(fs.default.readFileSync(path.default.join(dir, f), 'utf8'));
+    if (c.id)   TRACKED_IDS.add(c.id.toLowerCase());
+    if (c.name) TRACKED_NAMES.add(c.name.toLowerCase());
+  }
+} catch (_) {
+  // File loading failed — use hardcoded fallback, TRACKED_NAMES stays empty
+}
+
+function isTrackedCompany(entry) {
+  const id   = (entry.company      || '').toLowerCase().replace(/[^a-z0-9-]/g, '-');
+  const name = (entry.company_name || '').toLowerCase();
+  if (TRACKED_IDS.has(id))     return true;
+  if (TRACKED_NAMES.has(name)) return true;
+  // Partial ID match: "jump" matches "jump-ai", "bofa" matches "bofa-merrill"
+  for (const tid of TRACKED_IDS) {
+    if (id.length >= 3 && (tid.startsWith(id) || id.startsWith(tid))) return true;
+  }
+  return false;
+}
 
 const SPECIFIC_AI_SIGNALS = [
   'launch', 'launches', 'launched', 'deploy', 'deployed', 'announces', 'announced',
   'million users', 'billion interactions', 'billion', 'million', '$',
   'platform', 'product', 'assistant', 'agent', 'integration', 'partnership',
   'acquisition', 'funding', 'raises', 'advisors', 'clients', 'firms',
-  '%', 'milestone', 'first', 'new',
+  '%', 'milestone', 'first',
 ];
 
 function scoreRelevance(entry) {
-  const company  = (entry.company  || '').toLowerCase();
   const headline = (entry.headline || '').toLowerCase();
   const summary  = (entry.summary  || '').toLowerCase();
   const combined = `${headline} ${summary}`;
-  const isTracked     = TRACKED_COMPANIES.has(company);
+  const tracked       = isTrackedCompany(entry);
   const hasSpecificAI = SPECIFIC_AI_SIGNALS.some(s => combined.includes(s));
-  if (isTracked && hasSpecificAI) return { points: 20, label: 'Tracked company + specific AI signal' };
-  if (isTracked)                  return { points: 13, label: 'Tracked company, general mention' };
-  if (hasSpecificAI)              return { points: 8,  label: 'Untracked company, specific AI signal' };
-  return { points: 3, label: 'Tangential relevance' };
+  if (tracked && hasSpecificAI) return { points: 20, label: 'Tracked company + specific AI signal', tracked };
+  if (tracked)                  return { points: 13, label: 'Tracked company, general mention', tracked };
+  if (hasSpecificAI)            return { points: 8,  label: 'Untracked company, specific AI signal', tracked };
+  return { points: 3, label: 'Tangential relevance', tracked };
 }
 
 // ── Main scorer ───────────────────────────────────────────────────────────────
@@ -220,7 +255,17 @@ export async function scoreEntry({ entry, governance, sourceUrl }) {
     Promise.resolve(scoreRelevance(entry)),
   ]);
 
+  // Fabricated claims: block unless source was paywalled (can't verify = not the same as fabricated)
   if (dimB.fabricated) {
+    if (governance.paywall_caveat) {
+      // Paywalled source — claims couldn't be verified, not truly fabricated → send to REVIEW
+      return {
+        action: 'REVIEW',
+        score: 40,
+        breakdown: { source: dimA, claims: { ...dimB, points: 0, label: 'Unverifiable — paywalled source' }, freshness: dimC, relevance: dimD },
+        reason: 'Paywalled source — claims unverifiable, not fabricated. Human review required.',
+      };
+    }
     return {
       action: 'BLOCK',
       score: 0,
@@ -229,8 +274,17 @@ export async function scoreEntry({ entry, governance, sourceUrl }) {
     };
   }
 
-  const score  = Math.max(0, Math.min(100, dimA.points + dimB.points + dimC.points + dimD.points));
-  let action   = score >= 75 ? 'PUBLISH' : score >= 50 ? 'REVIEW' : 'BLOCK';
+  let score = Math.max(0, Math.min(100, dimA.points + dimB.points + dimC.points + dimD.points));
+
+  // Tracked company floor: if we explicitly track this company and the article is fresh,
+  // always send to REVIEW — never silently block a story about a company we monitor.
+  const ageDaysNow = entry.date
+    ? (Date.now() - new Date(entry.date).getTime()) / (1000 * 60 * 60 * 24) : 999;
+  if (dimD.tracked && ageDaysNow <= 30 && score < 65) {
+    score = 65;
+  }
+
+  let action = score >= 75 ? 'PUBLISH' : score >= 65 ? 'REVIEW' : 'BLOCK';
 
   // Paywall caveat: can't fully verify → downgrade PUBLISH to REVIEW
   if (action === 'PUBLISH' && governance.paywall_caveat) action = 'REVIEW';
