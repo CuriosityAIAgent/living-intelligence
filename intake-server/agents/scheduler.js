@@ -47,7 +47,8 @@ export async function runDailyPipeline() {
   // ── 1. Discover candidates ─────────────────────────────────────────────────
   let intelCandidates = [];
   let tlCandidates    = [];
-  let knownCompanyIds = new Set();
+  let knownCompanyIds   = new Set(); // landscape IDs e.g. "jump-ai"
+  let knownCompanyNames = new Set(); // landscape display names lowercased e.g. "jump", "lpl financial"
 
   try {
     const { send, logs } = makeSink();
@@ -56,7 +57,8 @@ export async function runDailyPipeline() {
     const doneEvent = logs.find(l => l.event === 'done');
     intelCandidates = doneEvent?.data?.intelCandidates || [];
     tlCandidates    = doneEvent?.data?.tlCandidates    || [];
-    knownCompanyIds = doneEvent?.data?.knownCompanyIds || new Set();
+    knownCompanyIds   = doneEvent?.data?.knownCompanyIds   || new Set();
+    knownCompanyNames = doneEvent?.data?.knownCompanyNames || new Set();
 
     const sources = doneEvent?.data?.sources || {};
     console.log(`[scheduler] Discovery: L1 news=${sources.layer1_news} L2 cos=${sources.layer2_companies} (${sources.companies_queried} cos) L1 TL=${sources.layer1_tl} L2 auth=${sources.layer2_authors}`);
@@ -136,8 +138,13 @@ export async function runDailyPipeline() {
 
       // ── New company detection ──────────────────────────────────────────────
       // If the entry references a company not in our landscape, flag it.
-      const entryCompanyId = (intakeResult.entry.company || '').toLowerCase().replace(/[^a-z0-9-]/g, '-');
-      if (entryCompanyId && !knownCompanyIds.has(entryCompanyId)) {
+      const entryCompanyId   = (intakeResult.entry.company      || '').toLowerCase().replace(/[^a-z0-9-]/g, '-');
+      const entryCompanyName = (intakeResult.entry.company_name || '').toLowerCase();
+      // Match by ID, by name, or by partial ID (e.g. "jump" matches "jump-ai")
+      const isKnown = knownCompanyIds.has(entryCompanyId)
+        || knownCompanyNames.has(entryCompanyName)
+        || [...knownCompanyIds].some(id => id.length >= 3 && (id.startsWith(entryCompanyId) || entryCompanyId.startsWith(id)));
+      if (entryCompanyId && !isKnown) {
         const companyName = intakeResult.entry.company_name || intakeResult.entry.company || entryCompanyId;
         // Only flag if it's not a generic catch-all ID
         if (entryCompanyId.length > 2 && !['unknown', 'other', 'various'].includes(entryCompanyId)) {

@@ -555,8 +555,9 @@ export async function autoDiscover({ send }) {
   // Build the dynamic tracked company names list for scoring
   TRACKED_COMPANY_NAMES = competitors.map(c => c.name);
 
-  // The set of known company IDs — used by scheduler to detect new entrants
-  const knownCompanyIds = new Set(competitors.map(c => c.id));
+  // Known company sets — used by scheduler to detect new entrants
+  const knownCompanyIds   = new Set(competitors.map(c => c.id));
+  const knownCompanyNames = new Set(competitors.map(c => (c.name || '').toLowerCase()));
 
   send('status', { message: `Loaded ${competitors.length} companies + ${tlEntries.length} TL entries from landscape` });
   send('status', { message: `Running two-layer discovery — Layer 1: 8 broad news queries; Layer 2: ${competitors.length} company queries...` });
@@ -623,6 +624,7 @@ export async function autoDiscover({ send }) {
     intelCandidates,
     tlCandidates,
     knownCompanyIds,
+    knownCompanyNames,
     sources: {
       layer1_news:      l1News.length,
       layer2_companies: l2Cos.length,

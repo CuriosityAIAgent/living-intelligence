@@ -96,39 +96,52 @@ function buildMessage({ published, pending, blocked, errors, newCompanies, tlCan
     });
   }
 
-  // ── Auto-blocked ──────────────────────────────────────────────────────────
+  // ── Auto-blocked — show top 5 only ──────────────────────────────────────
   if (blocked.length > 0) {
+    const showBlocked = blocked.slice(0, 5);
+    const hiddenCount = blocked.length - showBlocked.length;
     lines.push(`<b>🚫 Auto-blocked (${blocked.length})</b>`);
-    blocked.forEach(b => {
+    showBlocked.forEach(b => {
       const score = b.score !== undefined ? ` · score ${b.score}/100` : '';
       lines.push(`  → ${b.title}${score}`);
     });
+    if (hiddenCount > 0) lines.push(`  <i>+ ${hiddenCount} more blocked</i>`);
     lines.push('');
   }
 
   // ── New companies detected ────────────────────────────────────────────────
-  // Companies that appeared in discovered articles but aren't in data/competitors/
-  if (newCompanies && newCompanies.length > 0) {
-    lines.push(`<b>🆕 New companies — not in landscape (${newCompanies.length})</b>`);
+  // Filter out any that appear to be known companies (name match) — avoids
+  // false positives when entry.company ID differs from landscape ID (e.g. "jump" vs "jump-ai")
+  const genuinelyNew = (newCompanies || []).filter(c => {
+    const n = (c.name || '').toLowerCase();
+    // Skip obvious noise: generic words, single words that are common terms
+    if (['financial', 'planning', 'advisors', 'management', 'capital', 'wealth'].includes(n)) return false;
+    return true;
+  });
+  if (genuinelyNew.length > 0) {
+    lines.push(`<b>🆕 New companies — not in landscape (${genuinelyNew.length})</b>`);
     lines.push(`  <i>Consider adding to data/competitors/ to track these firms</i>`);
-    newCompanies.forEach(c => {
+    genuinelyNew.forEach(c => {
       lines.push(`  → <b>${c.name}</b>`);
       if (c.headline) lines.push(`    ${c.headline}`);
     });
     lines.push('');
   }
 
-  // ── Thought leadership candidates ─────────────────────────────────────────
-  // Raw candidates for manual review — not put through intake pipeline
+  // ── Thought leadership candidates — top 3 only ────────────────────────────
   if (tlCandidates && tlCandidates.length > 0) {
-    const showTL = tlCandidates.slice(0, 5); // top 5 only to keep message concise
-    lines.push(`<b>📚 Thought Leadership candidates (${tlCandidates.length} found, showing ${showTL.length})</b>`);
-    showTL.forEach(c => {
-      const badge = c.via === 'layer2_authors' ? ' · known author' : '';
-      lines.push(`  → <a href="${c.url}">${c.title}</a>${badge}`);
-      if (c.snippet) lines.push(`    <i>${c.snippet.slice(0, 120)}...</i>`);
-    });
-    lines.push('');
+    // Prefer known authors; skip anything that looks like a company blog or news article
+    const goodTL = tlCandidates
+      .filter(c => c.via === 'layer2_authors' || (c.title && c.title.length > 20))
+      .slice(0, 3);
+    if (goodTL.length > 0) {
+      lines.push(`<b>📚 Thought Leadership (${tlCandidates.length} found, showing ${goodTL.length})</b>`);
+      goodTL.forEach(c => {
+        const badge = c.via === 'layer2_authors' ? ' · known author' : '';
+        lines.push(`  → <a href="${c.url}">${c.title}</a>${badge}`);
+      });
+      lines.push('');
+    }
   }
 
   // ── Errors ────────────────────────────────────────────────────────────────
