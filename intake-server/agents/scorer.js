@@ -61,11 +61,15 @@ const PRESS_RELEASE_DOMAINS = new Set([
   'businesswire.com', 'prnewswire.com', 'globenewswire.com', 'accesswire.com',
 ]);
 
-const NEWSROOM_PATTERNS = [
+// Strong newsroom signals — subdomain or explicit path (low false-positive risk)
+const NEWSROOM_PATTERNS_STRONG = [
   'newsroom.', '.newsroom.', '/newsroom', '/news-releases', '/press-releases',
   '/press-release', '/investor-relations', '/media-centre', '/media-center',
   'investor.', 'press.', 'ir.',
 ];
+
+// Weaker newsroom signals — only applied AFTER checking the domain is not a known outlet
+const NEWSROOM_PATTERNS_WEAK = ['/news/', '/announcements/', '/blog/'];
 
 const TIER1_MEDIA = new Set([
   'bloomberg.com', 'reuters.com', 'ft.com', 'wsj.com', 'cnbc.com',
@@ -82,9 +86,11 @@ const TIER2_MEDIA = new Set([
 
 function fallbackSourceScore(hostname, fullUrl) {
   if (PRESS_RELEASE_DOMAINS.has(hostname)) return { points: 25, label: `Press release wire (${hostname})`, tier: 'press_release' };
-  if (NEWSROOM_PATTERNS.some(p => fullUrl.includes(p))) return { points: 25, label: `Company newsroom (${hostname})`, tier: 'newsroom' };
+  if (NEWSROOM_PATTERNS_STRONG.some(p => fullUrl.includes(p))) return { points: 25, label: `Company newsroom (${hostname})`, tier: 'newsroom' };
   if (TIER1_MEDIA.has(hostname)) return { points: 22, label: `Tier 1 media (${hostname})`, tier: 'tier1' };
   if (TIER2_MEDIA.has(hostname)) return { points: 17, label: `Industry press (${hostname})`, tier: 'tier2' };
+  // Weak newsroom signals checked AFTER known outlets — prevents thinkadvisor.com/news/ from scoring as newsroom
+  if (NEWSROOM_PATTERNS_WEAK.some(p => fullUrl.includes(p))) return { points: 20, label: `Company news page (${hostname})`, tier: 'newsroom_weak' };
   return { points: 9, label: `General press (${hostname})`, tier: 'general' };
 }
 
@@ -104,7 +110,7 @@ async function scoreSourceQuality(sourceUrl) {
   if (PRESS_RELEASE_DOMAINS.has(hostname)) {
     return { points: 25, label: `Press release wire (${hostname})`, tier: 'press_release' };
   }
-  if (NEWSROOM_PATTERNS.some(p => fullUrl.includes(p))) {
+  if (NEWSROOM_PATTERNS_STRONG.some(p => fullUrl.includes(p))) {
     return { points: 25, label: `Company newsroom (${hostname})`, tier: 'newsroom' };
   }
 

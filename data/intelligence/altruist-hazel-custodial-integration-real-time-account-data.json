@@ -9,7 +9,7 @@
   "source_url": "https://www.businesswire.com/news/home/20251118149396/en/Altruist-Debuts-Industry-First-Custodial-Integration-for-its-Transformative-AI-Platform-Hazel-Bringing-Real-Time-Account-Data-Into-Every-Advisor-Conversation",
   "source_verified": false,
   "image_url": "/logos/altruist.svg",
-  "summary": "Altruist has integrated real-time custodial data \u2014 including account, beneficiary, household, holdings, and balance information \u2014 into Hazel, its AI platform for independent RIAs, marking what it claims is an industry first. Hazel can now perform household-level concentration analysis, surface asset-class or sector exposure, and run beneficiary summaries in seconds using live custodial records. The platform also unifies CRM, email, and meeting notes alongside this custodial data. Altruist CEO Jason Wenk stated plans to extend Hazel with additional custodian integrations and the ability to initiate actions directly on Altruist from within Hazel. Hazel is available as a standalone platform with a free trial and is designed to serve advisors regardless of where they custody assets.",
+  "summary": "Altruist has integrated real-time custodial data — including account, beneficiary, household, holdings, and balance information — into Hazel, its AI platform for independent RIAs, marking what it claims is an industry first. Hazel can now perform household-level concentration analysis, surface asset-class or sector exposure, and run beneficiary summaries in seconds using live custodial records. The platform also unifies CRM, email, and meeting notes alongside this custodial data. Altruist CEO Jason Wenk stated plans to extend Hazel with additional custodian integrations and the ability to initiate actions directly on Altruist from within Hazel. Hazel is available as a standalone platform with a free trial and is designed to serve advisors regardless of where they custody assets.",
   "key_stat": null,
   "tags": {
     "capability": "advisor_productivity",
@@ -42,11 +42,11 @@
       "Hazel is designed to serve advisors regardless of where they custody assets"
     ],
     "unverified_claims": [
-      "Hazel launched in September 2025 \u2014 the source does not mention a September 2025 launch date",
-      "Hazel is used by more than 1,000 wealth managers \u2014 this statistic does not appear anywhere in the source article"
+      "Hazel launched in September 2025 — the source does not mention a September 2025 launch date",
+      "Hazel is used by more than 1,000 wealth managers — this statistic does not appear anywhere in the source article"
     ],
     "fabricated_claims": [
-      "1,000+ wealth managers using Hazel since its September 2025 launch \u2014 this specific statistic and the September 2025 launch date are not present in the source and appear to be fabricated or sourced from outside the provided article"
+      "1,000+ wealth managers using Hazel since its September 2025 launch — this specific statistic and the September 2025 launch date are not present in the source and appear to be fabricated or sourced from outside the provided article"
     ],
     "notes": "The generated entry introduces two specific claims not found in the source: (1) that Hazel launched in 'September 2025' and (2) that it is used by 'more than 1,000 wealth managers.' The source article does not mention a launch date for Hazel or any user count statistic. These appear fabricated or drawn from an external source not provided. The '1,000+' figure in the Key Stat is especially concerning as a specific number with no grounding in the source. All other claims are well-supported by the source. Verdict is FAIL due to at least one specific statistic that cannot be verified and appears fabricated.",
     "paywall_caveat": false,
@@ -57,8 +57,9 @@
   },
   "additional_sources": [
     {
-      "name": "Altruist \u2014 Hazel custodial integration announcement",
+      "name": "Altruist — Hazel custodial integration announcement",
       "url": "https://altruist.com/news/altruist-debuts-industry-first-custodial-integration/"
     }
-  ]
+  ],
+  "published_at": "2026-03-19T12:54:21.727Z"
 }

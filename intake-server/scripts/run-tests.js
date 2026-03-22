@@ -174,6 +174,26 @@ await test('thinkadvisor.com → 17pts (tier-2 industry press, fallback)', async
   eq(result.breakdown.source.points, 17, 'source points');
 });
 
+await test('thinkadvisor.com/news/ → 17pts (TIER2 wins over weak newsroom)', async () => {
+  const result = await scoreEntry({
+    entry: entry(),
+    governance: gov(),
+    sourceUrl: 'https://thinkadvisor.com/news/article-title',
+  });
+  eq(result.breakdown.source.points, 17, 'source points');
+  eq(result.breakdown.source.tier, 'tier2', 'tier');
+});
+
+await test('altruist.com/news/ → 20pts (company news page, newsroom_weak)', async () => {
+  const result = await scoreEntry({
+    entry: entry(),
+    governance: gov(),
+    sourceUrl: 'https://altruist.com/news/hazel-ai-tax-planning/',
+  });
+  eq(result.breakdown.source.points, 20, 'source points');
+  eq(result.breakdown.source.tier, 'newsroom_weak', 'tier');
+});
+
 await test('unknown domain → 9pts (general press, fallback)', async () => {
   const result = await scoreEntry({
     entry: entry(),
