@@ -81,7 +81,7 @@
 | Path | Purpose |
 |------|---------|
 | `server.js` | Express server, all API routes |
-| `agents/auto-discover.js` | Two-layer discovery: L1 broad DFS News + L2 per-company DFS Content Analysis + TL via Jina |
+| `agents/auto-discover.js` | Three-layer discovery: L1 News (8 broad DFS News) + L1 Caps (7 capability-dimension DFS News, dynamic from index.json) + L2 per-company DFS Content Analysis + TL via Jina |
 | `agents/intake.js` | Fetch article (with paywall fallback) + Claude structuring |
 | `agents/governance.js` | Verify all claims against source → PASS/REVIEW/FAIL |
 | `agents/gov-store.js` | File-backed pending queue + blocked URL list |
@@ -114,7 +114,7 @@
 ```
 1. Auto-Discover runs (two-layer: L1 broad DFS News + L2 per-company DFS Content Analysis)
 2. Stories scored by: recency + source quality + tracked company mentions + AI keyword density
-3. Top 20 candidates surfaced in intake UI with via badges (RSS/Jina/DFS)
+3. Top 20 candidates surfaced in intake UI with via badges (L1 News/L1 Caps/L2 Companies)
 4. Human reviews and selects a story
 5. Jina fetches full article from URL
    └── If paywall detected → searches for open-source alternatives automatically

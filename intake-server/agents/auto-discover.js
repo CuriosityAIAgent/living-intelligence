@@ -1,8 +1,11 @@
 /**
- * auto-discover.js — Two-layer discovery pipeline
+ * auto-discover.js — Three-layer discovery pipeline
  *
  * Layer 1 News  : 8 broad thematic DFS Google News queries
  *                 (catches any new entrant / unknown company)
+ * Layer 1 Caps  : 7 capability-dimension DFS Google News queries — dynamically
+ *                 built from data/capabilities/index.json search_term field.
+ *                 Year injected at runtime (Q1-aware: includes prior year too).
  * Layer 2 Cos   : Dynamic DFS Content Analysis queries, one per company in
  *                 data/competitors/*.json — auto-expands as landscape grows
  * Layer 1 TL    : 5 broad Jina Search queries for thought leadership
@@ -22,10 +25,11 @@ import fetch from 'node-fetch';
 // ── Path resolution ────────────────────────────────────────────────────────────
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const DATA_ROOT       = join(process.env.DATA_DIR || join(__dirname, '..', '..'), 'data');
-const INTEL_DIR       = join(DATA_ROOT, 'intelligence');
-const COMPETITORS_DIR = join(DATA_ROOT, 'competitors');
-const TL_DIR          = join(DATA_ROOT, 'thought-leadership');
+const DATA_ROOT        = join(process.env.DATA_DIR || join(__dirname, '..', '..'), 'data');
+const INTEL_DIR        = join(DATA_ROOT, 'intelligence');
+const COMPETITORS_DIR  = join(DATA_ROOT, 'competitors');
+const TL_DIR           = join(DATA_ROOT, 'thought-leadership');
+const CAPABILITIES_DIR = join(DATA_ROOT, 'capabilities');
 
 // ── Load landscape data (dynamic — grows as competitor files are added) ────────
 
@@ -38,6 +42,16 @@ function loadCompetitors() {
         catch (_) { return null; }
       })
       .filter(Boolean);
+  } catch (_) {
+    return [];
+  }
+}
+
+function loadCapabilities() {
+  try {
+    const raw = readFileSync(join(CAPABILITIES_DIR, 'index.json'), 'utf8');
+    const parsed = JSON.parse(raw);
+    return (parsed.capabilities || parsed).filter(c => c.search_term);
   } catch (_) {
     return [];
   }
@@ -76,6 +90,24 @@ function buildCompanyQueries(competitors) {
     const focus = SEGMENT_FOCUS[c.segment] || 'AI wealth management';
     return { company_id: c.id, company_name: c.name, keyword: `${c.name} ${focus}` };
   });
+}
+
+// One DFS Google News query per capability dimension — dynamically loaded from index.json.
+// Year is injected at runtime (self-updating). In Q1, includes prior year too since
+// Dec–Feb content is < 90 days old and may not surface with current year alone.
+function buildCapabilityQueries(capabilities) {
+  const now = new Date();
+  const currentYear = now.getFullYear();
+  // Jan, Feb, Mar → include prior year too
+  const yearTerms = now.getMonth() < 3
+    ? `${currentYear - 1} ${currentYear}`
+    : `${currentYear}`;
+
+  return capabilities.map(c => ({
+    capability_id:   c.id,
+    capability_label: c.label,
+    keyword: `${c.search_term} ${yearTerms}`,
+  }));
 }
 
 // One Jina Search query per known author in thought-leadership entries.
@@ -174,7 +206,7 @@ async function rerankCandidates(candidates) {
       },
       body: JSON.stringify({
         model: 'jina-reranker-v3',
-        query: 'significant AI product launch or milestone in wealth management financial services',
+        query: 'significant AI announcement, product launch, funding round, acquisition, regulatory development, or strategic partnership affecting wealth management advisors or private banking clients',
         documents,
         top_n: Math.min(candidates.length, 20),
       }),
@@ -249,42 +281,44 @@ const TIER1_OUTLETS = new Set([
 let TRACKED_COMPANY_NAMES = [];
 
 function scoreCandidate(c) {
-  let score = 0;
+  let baseScore = 0;
   const text = `${c.title} ${c.snippet}`.toLowerCase();
-
-  // Recency
-  if (c.pub_date) {
-    const ageDays = (Date.now() - new Date(c.pub_date).getTime()) / 86400000;
-    if (ageDays < 2)  score += 10;
-    else if (ageDays < 5)  score += 6;
-    else if (ageDays < 14) score += 3;
-  }
 
   // Source quality
   let hostname = '';
   try { hostname = new URL(c.url).hostname.replace(/^www\./, ''); } catch (_) {}
-  if (PRIMARY_OUTLETS.has(hostname)) score += 6;
-  else if (TIER1_OUTLETS.has(hostname)) score += 4;
+  if (PRIMARY_OUTLETS.has(hostname))   baseScore += 6;
+  else if (TIER1_OUTLETS.has(hostname)) baseScore += 4;
 
-  // Tracked company mention (dynamic from landscape, +2 each, max 6)
+  // Tracked company mention — increased from +2 to +4, max +10 (core discovery signal)
   let coScore = 0;
   for (const name of TRACKED_COMPANY_NAMES) {
-    if (text.includes(name.toLowerCase())) { coScore += 2; if (coScore >= 6) break; }
+    if (name.length >= 3 && text.includes(name.toLowerCase())) {
+      coScore += 4;
+      if (coScore >= 10) break;
+    }
   }
-  score += coScore;
+  baseScore += coScore;
 
   // AI keyword density (max 4)
   let aiScore = 0;
   for (const k of AI_KWS) {
     if (text.includes(k)) { aiScore++; if (aiScore >= 4) break; }
   }
-  score += aiScore;
+  baseScore += aiScore;
 
   // Source type bonus
-  if (c.via === 'layer2_companies') score += 5 + Math.min(Math.floor(c.quality_score || 0), 2);
-  else if (c.via === 'layer1_news') score += 3;
+  if (c.via === 'layer2_companies')       baseScore += 5 + Math.min(Math.floor(c.quality_score || 0), 2);
+  else if (c.via === 'layer1_capabilities') baseScore += 4;
+  else if (c.via === 'layer1_news')         baseScore += 3;
 
-  return score;
+  // HN gravity decay — breaks recency ties continuously.
+  // Stories from 2 hours ago float above equally-scored stories from 2 days ago.
+  // gravity=2.0 suits a daily B2B pipeline (punishes age faster than HN's 1.8).
+  const hoursAgo = c.pub_date
+    ? Math.max((Date.now() - new Date(c.pub_date).getTime()) / 3600000, 0.1)
+    : 999;
+  return Math.pow(Math.max(baseScore, 1), 0.8) / Math.pow(hoursAgo + 2, 2.0);
 }
 
 // ── Layer 1 News — broad thematic DFS Google News queries ─────────────────────
@@ -436,6 +470,69 @@ async function discoverFromLayer2Companies(existingUrls, competitors) {
     .filter(c => isRelevant(`${c.title} ${c.snippet}`));
 }
 
+// ── Layer 1 Capabilities — DFS Google News, one query per capability ──────────
+// Dynamically built from data/capabilities/index.json (search_term field).
+// Year injected at runtime — self-updates across years, Q1-aware.
+// This layer ensures capability-specific stories surface even when broad
+// Layer 1 News queries miss them due to keyword competition.
+
+async function discoverFromLayer1Capabilities(existingUrls, capabilities) {
+  if (!process.env.DATAFORSEO_LOGIN || !process.env.DATAFORSEO_PASSWORD) return [];
+  if (capabilities.length === 0) return [];
+
+  const AUTH = Buffer.from(
+    `${process.env.DATAFORSEO_LOGIN}:${process.env.DATAFORSEO_PASSWORD}`
+  ).toString('base64');
+
+  const queries = buildCapabilityQueries(capabilities);
+
+  const results = await Promise.allSettled(
+    queries.map(async ({ keyword, capability_id }) => {
+      const res = await fetch(
+        'https://api.dataforseo.com/v3/serp/google/news/live/advanced',
+        {
+          method: 'POST',
+          headers: { 'Authorization': `Basic ${AUTH}`, 'Content-Type': 'application/json' },
+          body: JSON.stringify([{ keyword, language_code: 'en', location_code: 2840, depth: 8 }]),
+          signal: AbortSignal.timeout(25000),
+        }
+      );
+      if (!res.ok) return [];
+      const data = await res.json();
+      return (data?.tasks?.[0]?.result?.[0]?.items || [])
+        .filter(i => {
+          if (!i.url || existingUrls.has(normalizeUrl(i.url))) return false;
+          if (i.date_published) {
+            const age = (Date.now() - new Date(i.date_published).getTime()) / 86400000;
+            if (age > 90) return false;
+          }
+          return true;
+        })
+        .slice(0, 6)
+        .map(i => {
+          let hostname = '';
+          try { hostname = new URL(i.url).hostname.replace(/^www\./, ''); } catch (_) {}
+          return {
+            id: Buffer.from(i.url).toString('base64').slice(0, 12),
+            title: i.title || i.url,
+            url: i.url,
+            source_name: i.source || hostname || 'News',
+            pub_date: i.date_published || i.timestamp || null,
+            snippet: (i.snippet || i.description || '').slice(0, 300),
+            selected: true,
+            via: 'layer1_capabilities',
+            capability_hint: capability_id,
+          };
+        })
+        .filter(c => isRelevant(`${c.title} ${c.snippet}`));
+    })
+  );
+
+  const candidates = [];
+  results.forEach(r => { if (r.status === 'fulfilled') candidates.push(...r.value); });
+  return candidates;
+}
+
 // ── Layer 1 TL — broad Jina Search for thought leadership ─────────────────────
 // Catches new voices, new essays, new research — not tied to known authors.
 
@@ -543,14 +640,15 @@ async function discoverFromLayer2Authors(existingUrls, tlEntries) {
 
 // ── Test exports — pure functions, no side effects ────────────────────────────
 // Exported so run-tests.js can test them without calling external APIs.
-export { isRelevant, normalizeUrl, buildCompanyQueries, buildAuthorQueries };
+export { isRelevant, normalizeUrl, buildCompanyQueries, buildCapabilityQueries, buildAuthorQueries };
 
 // ── Main export ───────────────────────────────────────────────────────────────
 
 export async function autoDiscover({ send }) {
-  // Load landscape and TL data — this is what makes the system self-expanding
-  const competitors = loadCompetitors();
-  const tlEntries   = loadTLEntries();
+  // Load landscape, capabilities, and TL data — this is what makes the system self-expanding
+  const competitors    = loadCompetitors();
+  const capabilities   = loadCapabilities();
+  const tlEntries      = loadTLEntries();
 
   // Build the dynamic tracked company names list for scoring
   TRACKED_COMPANY_NAMES = competitors.map(c => c.name);
@@ -559,36 +657,39 @@ export async function autoDiscover({ send }) {
   const knownCompanyIds   = new Set(competitors.map(c => c.id));
   const knownCompanyNames = new Set(competitors.map(c => (c.name || '').toLowerCase()));
 
-  send('status', { message: `Loaded ${competitors.length} companies + ${tlEntries.length} TL entries from landscape` });
-  send('status', { message: `Running two-layer discovery — Layer 1: 8 broad news queries; Layer 2: ${competitors.length} company queries...` });
+  send('status', { message: `Loaded ${competitors.length} companies, ${capabilities.length} capability dimensions + ${tlEntries.length} TL entries` });
+  send('status', { message: `Running three-layer discovery — L1 News: 8 queries; L1 Capabilities: ${capabilities.length} queries; L2 Companies: ${competitors.length} queries...` });
 
   const existingUrls = getExistingUrls();
 
-  // Run all four layers in parallel
-  const [l1NewsResult, l2CosResult, l1TlResult, l2AuthResult] = await Promise.allSettled([
+  // Run all five layers in parallel
+  const [l1NewsResult, l1CapsResult, l2CosResult, l1TlResult, l2AuthResult] = await Promise.allSettled([
     discoverFromLayer1News(existingUrls),
+    discoverFromLayer1Capabilities(existingUrls, capabilities),
     discoverFromLayer2Companies(existingUrls, competitors),
     discoverFromLayer1TL(existingUrls),
     discoverFromLayer2Authors(existingUrls, tlEntries),
   ]);
 
   const l1News  = l1NewsResult.status  === 'fulfilled' ? l1NewsResult.value  : [];
+  const l1Caps  = l1CapsResult.status  === 'fulfilled' ? l1CapsResult.value  : [];
   const l2Cos   = l2CosResult.status   === 'fulfilled' ? l2CosResult.value   : [];
   const l1TL    = l1TlResult.status    === 'fulfilled' ? l1TlResult.value    : [];
   const l2Auth  = l2AuthResult.status  === 'fulfilled' ? l2AuthResult.value  : [];
 
   send('progress', {
-    layer1_news:      `${l1News.length} found`,
-    layer2_companies: `${l2Cos.length} found (${competitors.length} companies queried)`,
-    layer1_tl:        `${l1TL.length} found`,
-    layer2_authors:   `${l2Auth.length} found (${buildAuthorQueries(tlEntries).length} authors queried)`,
+    layer1_news:          `${l1News.length} found`,
+    layer1_capabilities:  `${l1Caps.length} found (${capabilities.length} capability dimensions queried)`,
+    layer2_companies:     `${l2Cos.length} found (${competitors.length} companies queried)`,
+    layer1_tl:            `${l1TL.length} found`,
+    layer2_authors:       `${l2Auth.length} found (${buildAuthorQueries(tlEntries).length} authors queried)`,
   });
 
   // ── Intelligence candidates pipeline ─────────────────────────────────────────
 
-  // Merge Layer 1 + Layer 2 intelligence, URL-dedup
+  // Merge L1 News + L1 Capabilities + L2 Companies, URL-dedup
   const seenIntelUrls = new Set();
-  const allIntel = [...l1News, ...l2Cos].filter(c => {
+  const allIntel = [...l1News, ...l1Caps, ...l2Cos].filter(c => {
     const norm = normalizeUrl(c.url || '');
     if (!norm || seenIntelUrls.has(norm)) return false;
     seenIntelUrls.add(norm);
@@ -626,12 +727,14 @@ export async function autoDiscover({ send }) {
     knownCompanyIds,
     knownCompanyNames,
     sources: {
-      layer1_news:      l1News.length,
-      layer2_companies: l2Cos.length,
-      layer1_tl:        l1TL.length,
-      layer2_authors:   l2Auth.length,
-      companies_queried: competitors.length,
-      raw_intel_total:  allIntel.length,
+      layer1_news:           l1News.length,
+      layer1_capabilities:   l1Caps.length,
+      layer2_companies:      l2Cos.length,
+      layer1_tl:             l1TL.length,
+      layer2_authors:        l2Auth.length,
+      companies_queried:     competitors.length,
+      capabilities_queried:  capabilities.length,
+      raw_intel_total:       allIntel.length,
     },
   });
 }

@@ -3,14 +3,18 @@
  *
  * Flow:
  *   autoDiscover() → intelCandidates + tlCandidates + knownCompanyIds
- *   → process top 10 intelligence candidates through intake → governance → scorer
+ *   → process top 15 intelligence candidates through intake → governance → scorer
  *   → PUBLISH (score ≥ 75): auto-publish + git push
- *   → REVIEW  (score 65–74): pending queue + Telegram link
- *   → BLOCK   (score < 65 or fabricated): permanently block URL
+ *   → REVIEW  (score 60–74): pending queue + Telegram link
+ *   → BLOCK   (score < 60 or fabricated): permanently block URL
+ *   → entity+event dedup: same company + same type within 14 days → REVIEW with duplicate note
  *   → detect new companies (entry.company not in knownCompanyIds)
  *   → sendDigest(published, pending, blocked, errors, newCompanies, tlCandidates)
  */
 
+import { readFileSync, readdirSync } from 'fs';
+import { join, dirname } from 'path';
+import { fileURLToPath } from 'url';
 import { autoDiscover } from './auto-discover.js';
 import { processUrl } from './intake.js';
 import { verify } from './governance.js';
@@ -19,10 +23,45 @@ import { publish, commitAndPush } from './publisher.js';
 import { addPending, addBlocked, isBlocked } from './gov-store.js';
 import { sendDigest } from './notifier.js';
 
-// ── Review threshold ──────────────────────────────────────────────────────────
-// PUBLISH ≥ 75  |  REVIEW 65–74  |  BLOCK < 65
-// Raised from 50 to 65 to reduce low-confidence items reaching the review queue.
-const REVIEW_THRESHOLD = 65;
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const DATA_ROOT = join(process.env.DATA_DIR || join(__dirname, '..', '..'), 'data');
+const INTEL_DIR = join(DATA_ROOT, 'intelligence');
+
+// ── Review threshold ───────────────────────────────────────────────────────────
+// PUBLISH ≥ 75  |  REVIEW 60–74  |  BLOCK < 60
+// Full score breakdown: A: Source (0-25) + B: Claims (0-25) + C: Fresh (0-10) + D: Impact (0-40)
+const REVIEW_THRESHOLD = 60;
+
+// ── Entity+event dedup ────────────────────────────────────────────────────────
+// Prevents the same funding round / acquisition / event type from re-surfacing
+// within 14 days. Builds a map of company:type → most recent published_at date
+// from the existing data/intelligence/*.json files.
+
+function buildEntityEventMap() {
+  const map = new Map(); // key: "company_id:type" → latest published_at millis
+  try {
+    for (const f of readdirSync(INTEL_DIR).filter(f => f.endsWith('.json'))) {
+      try {
+        const e = JSON.parse(readFileSync(join(INTEL_DIR, f), 'utf8'));
+        const key = `${(e.company || '').toLowerCase()}:${e.type}`;
+        const ts  = new Date(e.published_at || e.date || 0).getTime();
+        if (!map.has(key) || ts > map.get(key)) map.set(key, ts);
+      } catch (_) {}
+    }
+  } catch (_) {}
+  return map;
+}
+
+function isDuplicateEvent(entry, entityEventMap) {
+  const company = (entry.company || '').toLowerCase();
+  const type    = entry.type;
+  if (!company || !type) return false;
+  const key = `${company}:${type}`;
+  const lastTs = entityEventMap.get(key);
+  if (!lastTs) return false;
+  const ageDays = (Date.now() - lastTs) / 86400000;
+  return ageDays <= 14;
+}
 
 // No-op send for internal pipeline (we collect results ourselves)
 function makeSink() {
@@ -61,19 +100,22 @@ export async function runDailyPipeline() {
     knownCompanyNames = doneEvent?.data?.knownCompanyNames || new Set();
 
     const sources = doneEvent?.data?.sources || {};
-    console.log(`[scheduler] Discovery: L1 news=${sources.layer1_news} L2 cos=${sources.layer2_companies} (${sources.companies_queried} cos) L1 TL=${sources.layer1_tl} L2 auth=${sources.layer2_authors}`);
+    console.log(`[scheduler] Discovery: L1 news=${sources.layer1_news} L1 caps=${sources.layer1_capabilities} (${sources.capabilities_queried} dims) L2 cos=${sources.layer2_companies} (${sources.companies_queried} cos) L1 TL=${sources.layer1_tl} L2 auth=${sources.layer2_authors}`);
   } catch (err) {
     console.error('[scheduler] autoDiscover failed:', err.message);
     errors.push({ stage: 'discover', message: err.message });
   }
 
-  const top10 = intelCandidates.slice(0, 10);
-  console.log(`[scheduler] ${top10.length} intel candidates to process, ${tlCandidates.length} TL candidates`);
+  // Build entity+event dedup map from existing entries
+  const entityEventMap = buildEntityEventMap();
+
+  const top15 = intelCandidates.slice(0, 15);
+  console.log(`[scheduler] ${top15.length} intel candidates to process, ${tlCandidates.length} TL candidates`);
 
   // ── 2. Process each intelligence candidate ─────────────────────────────────
   const publishedIds = [];
 
-  for (const candidate of top10) {
+  for (const candidate of top15) {
     const url = candidate.url;
 
     if (isBlocked(url)) {
@@ -95,6 +137,36 @@ export async function runDailyPipeline() {
 
       if (!intakeResult) {
         errors.push({ url, stage: 'intake', message: 'processUrl returned null' });
+        continue;
+      }
+
+      // Entity+event dedup — same company + same event type within 14 days → REVIEW
+      if (isDuplicateEvent(intakeResult.entry, entityEventMap)) {
+        const dupNote = `Possible duplicate: ${intakeResult.entry.company_name || intakeResult.entry.company} already has a ${intakeResult.entry.type} entry within the last 14 days`;
+        console.log(`[scheduler] Entity+event dup → REVIEW: ${dupNote}`);
+        const govAuditDup = {
+          verdict:           'REVIEW',
+          confidence:        50,
+          verified_claims:   [],
+          unverified_claims: [dupNote],
+          fabricated_claims: [],
+          notes:             dupNote,
+          paywall_caveat:    false,
+          verified_at:       new Date().toISOString(),
+          human_approved:    false,
+        };
+        intakeResult.entry._governance = govAuditDup;
+        addPending(intakeResult.entry, govAuditDup);
+        pending.push({
+          id:                intakeResult.entry.id,
+          title:             intakeResult.entry.headline || candidate.title,
+          company_name:      intakeResult.entry.company_name,
+          score:             0,
+          score_breakdown:   'Duplicate check',
+          unverified_claims: [dupNote],
+          paywall_caveat:    false,
+          notes:             dupNote,
+        });
         continue;
       }
 
@@ -193,13 +265,15 @@ export async function runDailyPipeline() {
 
       // ── PUBLISH ────────────────────────────────────────────────────────────
       const { send: pubSend } = makeSink();
-      const entryId = publish({ entry: intakeResult.entry, send: pubSend });
+      const entryId = publish({ entry: intakeResult.entry, candidatePubDate: candidate.pub_date, send: pubSend });
       publishedIds.push(entryId);
       published.push({
-        id:           entryId,
-        title:        intakeResult.entry.headline || candidate.title,
-        company_name: intakeResult.entry.company_name,
-        score:        scored.score,
+        id:                entryId,
+        title:             intakeResult.entry.headline || candidate.title,
+        company_name:      intakeResult.entry.company_name,
+        score:             scored.score,
+        capability:        intakeResult.entry.capability_evidence?.capability || intakeResult.entry.tags?.capability || null,
+        capability_stage:  intakeResult.entry.capability_evidence?.stage || null,
       });
       console.log(`[scheduler] PUBLISH → auto-published: ${entryId}`);
 
@@ -239,6 +313,6 @@ export async function runDailyPipeline() {
     errors.push({ stage: 'email', message: err.message });
   }
 
-  console.log(`[scheduler] Done. published=${published.length} pending=${pending.length} blocked=${blocked.length} new_cos=${newCompanies.length} tl_candidates=${tlCandidates.length} errors=${errors.length}`);
+  console.log(`[scheduler] Done. published=${published.length} pending=${pending.length} blocked=${blocked.length} new_cos=${newCompanies.length} tl=${tlCandidates.length} errors=${errors.length}`);
   return results;
 }
