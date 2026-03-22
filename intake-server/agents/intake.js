@@ -37,8 +37,8 @@ const client = new Anthropic();
 
 const INTAKE_SCHEMA = `{
   "id": "url-slug-style-id",
-  "type": "partnership | product_launch | milestone | strategy_move | market_signal",
-  "headline": "Concise, factual headline under 120 chars",
+  "type": "funding | acquisition | regulatory | partnership | product_launch | milestone | strategy_move | market_signal",
+  "headline": "Concise, factual headline under 120 chars — lead with capability/impact, not the event trigger",
   "company": "company-slug",
   "company_name": "Full Company Name",
   "date": "YYYY-MM-DD",
@@ -46,8 +46,14 @@ const INTAKE_SCHEMA = `{
   "source_url": "the actual URL",
   "source_verified": true,
   "image_url": "https://unavatar.io/[company-domain]",
-  "summary": "3-5 sentence summary. Only what is in the source article. No inference.",
-  "key_stat": { "number": "X", "label": "what it measures" },
+  "summary": "3-5 sentences. Lead with the capability being advanced and its evidence. Then explain the event (funding/launch/etc). Only facts from the source — no inference.",
+  "key_stat": { "number": "X", "label": "what it measures — advisors reached, AUM affected, time saved, etc." },
+  "capability_evidence": {
+    "capability": "advisor_productivity | client_personalization | investment_portfolio | research_content | client_acquisition | operations_compliance | new_business_models",
+    "stage": "deployed | piloting | announced",
+    "evidence": "One sentence: the specific proof this capability is real/in-use, from the source",
+    "metric": "Quantified impact if stated: '6 hours saved per week' or '15,000 advisors' or null"
+  },
   "tags": {
     "capability": "advisor_productivity | client_personalization | investment_portfolio | research_content | client_acquisition | operations_compliance | new_business_models",
     "region": "us | emea | asia | latam | global",
@@ -314,9 +320,9 @@ async function fetchEnrichmentMarkdown(altUrl) {
 async function structureEntry(url, markdown, sourceInfo) {
   const hasEnrichment = sourceInfo.enrichment_sources && sourceInfo.enrichment_sources.length > 0;
 
-  const prompt = `You are a structured content extractor for an AI in wealth management intelligence publication.
+  const prompt = `You are an editorial analyst for a wealth management intelligence publication read by CXOs and senior executives.
 
-A journalist has found this article and wants to add it to the publication. Your job is to extract and structure it.
+Your job is NOT to summarise what happened. Your job is to explain which AI capability is advancing, what the evidence is, and what the business impact is for wealth management firms and advisors. The event (funding round, product launch, partnership) is context — not the story.
 
 SOURCE ARTICLE URL: ${url}
 SOURCE NAME: ${sourceInfo.source_name}
@@ -328,14 +334,32 @@ ARTICLE CONTENT (markdown):
 ${markdown.slice(0, 10000)}
 ---
 
-Extract and structure this into the following JSON schema.
+Structure this into the following JSON schema.
+
 CRITICAL RULES:
-1. The summary must ONLY contain information present in the content above. Do not infer or add context from your training data.
-2. key_stat must be a specific number actually mentioned in the content. If no specific number exists, set to null.
-3. The headline must be factual and specific — not generic.
-4. If the article is not about AI in wealth management or financial services, set type to null.
-5. For image_url, use: https://unavatar.io/[company-main-domain] — pick the primary company's website domain.
-6. If multiple sources cover the same story, synthesize the most complete and accurate version. Prefer primary sources (press releases, company announcements) over secondary coverage.
+1. summary: Lead with the CAPABILITY and its EVIDENCE. Then explain the event trigger. Example:
+   BAD: "Jump raises $80M Series B to expand its AI platform for financial advisors."
+   GOOD: "Jump's AI assistant automates meeting notes and CRM updates, saving advisors 6 hours per week. Used by 3,000 advisors today, the company raised $80M to scale to 15,000. Lead investor Insight Partners cited advisor time savings as primary thesis."
+2. headline: Lead with the capability impact or scale, not the dollar amount or event type.
+   BAD: "Jump Raises $80M Series B"
+   GOOD: "Jump Scales AI Meeting Assistant to 15,000 Advisors After $80M Series B"
+3. key_stat: The single most significant number for a CXO — advisors reached, AUM affected, time saved, cost reduced. Must be explicitly stated in the source. If no meaningful number exists, set to null.
+4. capability_evidence: Populate ALL fields if any evidence exists. stage = "deployed" only if the capability is live with real users. "piloting" = being tested. "announced" = committed but not yet live. Set metric to null if no quantified impact is stated.
+5. If the article has no identifiable AI capability dimension for wealth management, set type to "market_signal".
+6. If the article is not about AI in wealth management or financial services at all, set type to null.
+7. All summary content must come ONLY from the source article above. No inference from training data.
+8. For image_url: https://unavatar.io/[company-main-domain]
+9. If multiple sources cover the same story, synthesize the most complete version. Prefer primary sources.
+
+Event type definitions:
+- funding: capital raise (seed, Series A/B/C, debt, IPO)
+- acquisition: M&A — company acquiring or being acquired
+- regulatory: regulatory guidance, compliance requirements, enforcement, government AI policy for financial services
+- partnership: strategic partnership, integration, or distribution agreement between named institutions
+- product_launch: new AI product, feature, or platform going live or announced
+- milestone: user count, AUM, deployment scale achievement
+- strategy_move: strategic direction, firm-wide AI policy, executive statement of intent
+- market_signal: survey data, industry report, analyst opinion, general trend — no specific company action
 
 Today's date: ${new Date().toISOString().split('T')[0]}
 

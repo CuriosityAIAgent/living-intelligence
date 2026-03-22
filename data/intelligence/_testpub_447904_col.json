@@ -1,0 +1,17 @@
+{
+  "id": "_testpub_447904_col",
+  "headline": "First",
+  "published_at": "2026-03-22T20:30:47.906Z",
+  "source_verified": true,
+  "_governance": {
+    "verdict": "PASS",
+    "confidence": 90,
+    "verified_claims": [],
+    "unverified_claims": [],
+    "notes": "",
+    "paywall_caveat": false,
+    "verified_at": "2026-03-22T20:30:47.906Z",
+    "human_approved": false,
+    "approved_at": null
+  }
+}

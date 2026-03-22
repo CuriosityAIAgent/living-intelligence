@@ -9,8 +9,14 @@
   "source_url": "https://datos-insights.com/blog/hazel-avantos-and-the-bank-wealth-management-opportunity/",
   "source_verified": true,
   "additional_sources": [
-    { "name": "Altruist — Hazel AI tax planning launch (Feb 2026)", "url": "https://altruist.com/news/hazel-ai-tax-planning/" },
-    { "name": "Altruist — Hazel platform unveil (Sep 2025)", "url": "https://altruist.com/news/altruist-unveils-hazel/" }
+    {
+      "name": "Altruist — Hazel AI tax planning launch (Feb 2026)",
+      "url": "https://altruist.com/news/hazel-ai-tax-planning/"
+    },
+    {
+      "name": "Altruist — Hazel platform unveil (Sep 2025)",
+      "url": "https://altruist.com/news/altruist-unveils-hazel/"
+    }
   ],
   "image_url": "/logos/altruist.svg",
   "summary": "Altruist's launch of Hazel, an AI-based tax planning capability built via its 2025 acquisition of startup Thyme, triggered an estimated $130 billion market value wipeout across Raymond James, Charles Schwab, and LPL Financial within two days, while bank wealth divisions were largely spared due to structural insulation. Hazel combines meeting intelligence, live custodial data, and tax planning into a single advisor environment, enabling productivity expansion and proactive next-best-action engagement for advisors managing large, heterogeneous books. Avantos, a recently launched AI-native platform for institutional wealth management, layers a knowledge graph across core systems to enable advisors, servicing teams, and AI agents to operate with shared context, with Mercer Advisors reporting active deployment across tens of thousands of clients. Bank wealth units face three key investment areas to capture this opportunity: data completeness, supervisory workflow with compliance architecture, and change management for captive advisor adoption. Datos Insights positions Hazel as a competitive reference point for bank wealth leaders and Avantos as the more actionable institutional-scale opportunity.",
@@ -63,5 +69,6 @@
     "human_approved": true,
     "approved_at": "2026-03-12T07:01:22.364Z",
     "note": "Full article text provided by user; Jina reader missed opening section"
-  }
+  },
+  "published_at": "2026-03-20T15:42:59.878Z"
 }

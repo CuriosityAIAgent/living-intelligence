@@ -127,90 +127,110 @@ suite('1 · scorer.js — Source Quality (Dimension A)');
 delete process.env.DATAFORSEO_LOGIN;
 delete process.env.DATAFORSEO_PASSWORD;
 
-await test('businesswire.com → 30pts (press release wire, no API call)', async () => {
+await test('businesswire.com → 25pts (press release wire, no API call)', async () => {
   const result = await scoreEntry({
     entry: entry(),
     governance: gov(),
     sourceUrl: 'https://businesswire.com/news/article/goldman-ai',
   });
-  gte(result.breakdown.source.points, 30, 'source points');
+  eq(result.breakdown.source.points, 25, 'source points');
   eq(result.breakdown.source.tier, 'press_release', 'tier');
 });
 
-await test('prnewswire.com → 30pts (press release wire)', async () => {
+await test('prnewswire.com → 25pts (press release wire)', async () => {
   const result = await scoreEntry({
     entry: entry(),
     governance: gov(),
     sourceUrl: 'https://prnewswire.com/news/release.html',
   });
-  eq(result.breakdown.source.points, 30, 'source points');
+  eq(result.breakdown.source.points, 25, 'source points');
 });
 
-await test('newsroom URL pattern → 30pts (company newsroom, no API call)', async () => {
+await test('newsroom URL pattern → 25pts (company newsroom, no API call)', async () => {
   const result = await scoreEntry({
     entry: entry(),
     governance: gov(),
     sourceUrl: 'https://newsroom.bankofamerica.com/press-releases/2026/03/bofa-ai.html',
   });
-  eq(result.breakdown.source.points, 30, 'source points');
+  eq(result.breakdown.source.points, 25, 'source points');
   eq(result.breakdown.source.tier, 'newsroom', 'tier');
 });
 
-await test('ft.com → 25pts (tier-1 media, fallback when no API)', async () => {
+await test('ft.com → 22pts (tier-1 media, fallback when no API)', async () => {
   const result = await scoreEntry({
     entry: entry(),
     governance: gov(),
     sourceUrl: 'https://ft.com/content/some-article',
   });
-  eq(result.breakdown.source.points, 25, 'source points');
+  eq(result.breakdown.source.points, 22, 'source points');
 });
 
-await test('thinkadvisor.com → 20pts (tier-2 industry press, fallback)', async () => {
+await test('thinkadvisor.com → 17pts (tier-2 industry press, fallback)', async () => {
   const result = await scoreEntry({
     entry: entry(),
     governance: gov(),
     sourceUrl: 'https://thinkadvisor.com/article',
   });
-  eq(result.breakdown.source.points, 20, 'source points');
+  eq(result.breakdown.source.points, 17, 'source points');
 });
 
-await test('unknown domain → 12pts (general press, fallback)', async () => {
+await test('thinkadvisor.com/news/ → 17pts (TIER2 wins over weak newsroom)', async () => {
+  const result = await scoreEntry({
+    entry: entry(),
+    governance: gov(),
+    sourceUrl: 'https://thinkadvisor.com/news/article-title',
+  });
+  eq(result.breakdown.source.points, 17, 'source points');
+  eq(result.breakdown.source.tier, 'tier2', 'tier');
+});
+
+await test('altruist.com/news/ → 20pts (company news page, newsroom_weak)', async () => {
+  const result = await scoreEntry({
+    entry: entry(),
+    governance: gov(),
+    sourceUrl: 'https://altruist.com/news/hazel-ai-tax-planning/',
+  });
+  eq(result.breakdown.source.points, 20, 'source points');
+  eq(result.breakdown.source.tier, 'newsroom_weak', 'tier');
+});
+
+await test('unknown domain → 9pts (general press, fallback)', async () => {
   const result = await scoreEntry({
     entry: entry(),
     governance: gov(),
     sourceUrl: 'https://some-obscure-blog.com/article',
   });
-  eq(result.breakdown.source.points, 12, 'source points');
+  eq(result.breakdown.source.points, 9, 'source points');
 });
 
 suite('1 · scorer.js — Claim Verification (Dimension B)');
 
-await test('0 unverified + 0 fabricated → 30pts', async () => {
+await test('0 unverified + 0 fabricated → 25pts', async () => {
   const result = await scoreEntry({
     entry: entry(),
     governance: gov({ fabricated: [], unverified: [] }),
     sourceUrl: 'https://businesswire.com/article',
   });
-  eq(result.breakdown.claims.points, 30, 'claim points');
+  eq(result.breakdown.claims.points, 25, 'claim points');
   eq(result.breakdown.claims.fabricated, false, 'fabricated flag');
 });
 
-await test('1 unverified claim → 18pts', async () => {
+await test('1 unverified claim → 15pts', async () => {
   const result = await scoreEntry({
     entry: entry(),
     governance: gov({ unverified: ['Headcount figure not in source'] }),
     sourceUrl: 'https://businesswire.com/article',
   });
-  eq(result.breakdown.claims.points, 18, 'claim points');
+  eq(result.breakdown.claims.points, 15, 'claim points');
 });
 
-await test('2 unverified claims → 8pts', async () => {
+await test('2 unverified claims → 6pts', async () => {
   const result = await scoreEntry({
     entry: entry(),
     governance: gov({ unverified: ['Claim A not verified', 'Claim B not verified'] }),
     sourceUrl: 'https://businesswire.com/article',
   });
-  eq(result.breakdown.claims.points, 8, 'claim points');
+  eq(result.breakdown.claims.points, 6, 'claim points');
 });
 
 await test('3+ unverified claims → 0pts', async () => {
@@ -234,40 +254,40 @@ await test('1 fabricated claim → action=BLOCK regardless of other scores', asy
 
 suite('1 · scorer.js — Freshness (Dimension C)');
 
-await test('1 day old → 20pts', async () => {
+await test('same day (0d old) → 10pts (≤1 day bucket)', async () => {
   const result = await scoreEntry({
-    entry: entry({ date: daysAgo(1) }),
+    entry: entry({ date: daysAgo(0) }),
     governance: gov(),
     sourceUrl: 'https://businesswire.com/article',
   });
-  eq(result.breakdown.freshness.points, 20, 'freshness points');
+  eq(result.breakdown.freshness.points, 10, 'freshness points');
 });
 
-await test('5 days old → 20pts (≤7 days)', async () => {
+await test('5 days old → 6pts (≤7 days)', async () => {
   const result = await scoreEntry({
     entry: entry({ date: daysAgo(5) }),
     governance: gov(),
     sourceUrl: 'https://businesswire.com/article',
   });
-  eq(result.breakdown.freshness.points, 20, 'freshness points');
+  eq(result.breakdown.freshness.points, 6, 'freshness points');
 });
 
-await test('14 days old → 14pts (≤30 days)', async () => {
+await test('10 days old → 4pts (≤14 days bucket)', async () => {
   const result = await scoreEntry({
-    entry: entry({ date: daysAgo(14) }),
+    entry: entry({ date: daysAgo(10) }),
     governance: gov(),
     sourceUrl: 'https://businesswire.com/article',
   });
-  eq(result.breakdown.freshness.points, 14, 'freshness points');
+  eq(result.breakdown.freshness.points, 4, 'freshness points');
 });
 
-await test('60 days old → 6pts (≤90 days)', async () => {
+await test('60 days old → 1pt (≤90 days)', async () => {
   const result = await scoreEntry({
     entry: entry({ date: daysAgo(60) }),
     governance: gov(),
     sourceUrl: 'https://businesswire.com/article',
   });
-  eq(result.breakdown.freshness.points, 6, 'freshness points');
+  eq(result.breakdown.freshness.points, 1, 'freshness points');
 });
 
 await test('91 days old → BLOCK (hard 90-day gate)', async () => {
@@ -289,65 +309,89 @@ await test('180 days old → BLOCK (well beyond gate)', async () => {
   eq(result.action, 'BLOCK', 'action');
 });
 
-suite('1 · scorer.js — Relevance (Dimension D)');
+suite('1 · scorer.js — Capability Impact (Dimension D)');
 
-await test('tracked company + specific AI signal → 20pts', async () => {
+await test('capability_evidence + deployed stage + quantified metric → high impact score', async () => {
   const result = await scoreEntry({
-    entry: entry({
-      company:  'goldman-sachs',
-      headline: 'Goldman Sachs launches AI advisor platform',
-      summary:  'Goldman Sachs announced a new AI agent for wealth management clients reaching 1 million advisors.',
-    }),
+    entry: {
+      ...entry({ company: 'goldman-sachs', headline: 'Goldman Sachs advisor AI platform live for 15,000 advisors' }),
+      tags: { capability: 'advisor_productivity', region: 'us', segment: 'wirehouse', theme: [] },
+      capability_evidence: {
+        capability: 'advisor_productivity',
+        stage: 'deployed',
+        evidence: 'Platform live for all advisors',
+        metric: '15,000 advisors',
+      },
+    },
     governance: gov(),
     sourceUrl: 'https://businesswire.com/article',
   });
-  eq(result.breakdown.relevance.points, 20, 'relevance points');
+  gte(result.breakdown.impact.points, 30, 'impact points (should be high with capability+evidence+scale)');
 });
 
-await test('tracked company + no AI signal → 13pts', async () => {
+await test('tracked company + no capability_evidence → low-mid impact (floor applied)', async () => {
   const result = await scoreEntry({
-    entry: entry({
-      company:  'ubs',
-      headline: 'UBS opens additional office in Zurich',
-      summary:  'UBS has broadened its geographic presence in Switzerland.',
-    }),
+    entry: entry({ company: 'goldman-sachs', headline: 'Goldman Sachs opens new wealth office' }),
     governance: gov(),
     sourceUrl: 'https://businesswire.com/article',
   });
-  eq(result.breakdown.relevance.points, 13, 'relevance points');
+  // tracked company central to headline → gets competitive relevance (+5) + tracked scale (+2) = 7
+  gte(result.breakdown.impact.points, 5, 'impact points ≥ 5');
+  lte(result.breakdown.impact.points, 15, 'impact points ≤ 15 (no capability evidence)');
 });
 
-await test('untracked company + specific AI signal → 8pts', async () => {
-  const result = await scoreEntry({
-    entry: entry({
-      company:  'unknown-startup',
-      headline: 'Unknown Startup launches AI platform for advisors',
-      summary:  'This company launched an AI product with significant funding.',
-    }),
-    governance: gov(),
-    sourceUrl: 'https://businesswire.com/article',
-  });
-  eq(result.breakdown.relevance.points, 8, 'relevance points');
-});
-
-await test('untracked company + no AI signal → 3pts', async () => {
+await test('untracked company + no capability_evidence → minimal impact', async () => {
   const result = await scoreEntry({
     entry: entry({
       company:  'random-corp',
-      headline: 'RandomCorp expands its Zurich headquarters',
-      summary:  'RandomCorp has added square footage to its main office.',
+      headline: 'RandomCorp expands headquarters',
+      summary:  'RandomCorp has added square footage.',
     }),
     governance: gov(),
     sourceUrl: 'https://businesswire.com/article',
   });
-  eq(result.breakdown.relevance.points, 3, 'relevance points');
+  // untracked, no capability → only +1 general industry
+  lte(result.breakdown.impact.points, 5, 'impact points low for untracked + no capability');
+});
+
+await test('piloting stage without metric → moderate evidence score', async () => {
+  const result = await scoreEntry({
+    entry: {
+      ...entry({ company: 'morgan-stanley' }),
+      tags: { capability: 'client_personalization', region: 'us', segment: 'wirehouse', theme: [] },
+      capability_evidence: {
+        capability: 'client_personalization',
+        stage: 'piloting',
+        evidence: 'Testing with select HNW clients',
+        metric: null,
+      },
+    },
+    governance: gov(),
+    sourceUrl: 'https://businesswire.com/article',
+  });
+  gte(result.breakdown.impact.points, 10, 'piloting stage gets capability + pilot evidence points');
 });
 
 suite('1 · scorer.js — Score routing + threshold decisions');
 
-await test('Perfect score (100) → PUBLISH', async () => {
+await test('Perfect score → PUBLISH (capability_evidence + fresh + press release)', async () => {
   const result = await scoreEntry({
-    entry: entry({ company: 'goldman-sachs', date: daysAgo(1) }),
+    entry: {
+      id: 'test-perfect',
+      company: 'goldman-sachs',
+      company_name: 'Goldman Sachs',
+      headline: 'Goldman Sachs advisor AI platform live for 15,000 advisors',
+      summary: 'Goldman Sachs deployed an AI-powered advisor assistant reaching 15,000 financial advisors firm-wide.',
+      date: daysAgo(1),
+      source_url: 'https://businesswire.com/test',
+      tags: { capability: 'advisor_productivity', region: 'us', segment: 'wirehouse', theme: [] },
+      capability_evidence: {
+        capability: 'advisor_productivity',
+        stage: 'deployed',
+        evidence: 'Platform live for all Goldman advisors',
+        metric: '15,000 advisors',
+      },
+    },
     governance: gov(),
     sourceUrl: 'https://businesswire.com/article',
   });
@@ -355,15 +399,15 @@ await test('Perfect score (100) → PUBLISH', async () => {
   gte(result.score, 75, 'score');
 });
 
-await test('score=70 scenario → REVIEW (65–74 band)', async () => {
-  // unknown domain (12) + 1 unverified (18) + fresh 1d (20) + tracked+AI (20) = 70
+await test('tracked company floor → score floors to 60 → REVIEW', async () => {
+  // unknown domain (9) + 1 unverified (15) + fresh 1d (10) + tracked no-capability (7) = 41
+  // But tracked company floor: score 41 < 60 AND tracked AND ≤30 days → floor to 60 → REVIEW
   const result = await scoreEntry({
     entry: entry({ company: 'goldman-sachs', date: daysAgo(1) }),
     governance: gov({ unverified: ['One unverified claim'] }),
     sourceUrl: 'https://some-obscure-blog.com/article',
   });
-  gte(result.score, 65, 'score ≥ 65');
-  lte(result.score, 74, 'score ≤ 74');
+  gte(result.score, 60, 'score ≥ 60 (floor applied)');
   eq(result.action, 'REVIEW', 'action');
 });
 
@@ -404,7 +448,7 @@ await test('formatScoreBreakdown returns expected shape', async () => {
   assert(breakdown.includes('Source:'), 'contains Source:');
   assert(breakdown.includes('Claims:'), 'contains Claims:');
   assert(breakdown.includes('Fresh:'), 'contains Fresh:');
-  assert(breakdown.includes('Relevance:'), 'contains Relevance:');
+  assert(breakdown.includes('Impact:'), 'contains Impact:');
   assert(breakdown.includes('/100'), 'contains /100');
 });
 
@@ -677,9 +721,9 @@ test('query includes author name and organization', () => {
 // Tests the REVIEW_THRESHOLD decision boundary inline (no external calls needed)
 // ═════════════════════════════════════════════════════════════════════════════
 
-suite('5 · scheduler.js — Threshold routing (REVIEW=65, PUBLISH=75)');
+suite('5 · scheduler.js — Threshold routing (REVIEW=60, PUBLISH=75)');
 
-const REVIEW_THRESHOLD = 65;
+const REVIEW_THRESHOLD = 60;
 
 function routeScore(score, paywallCaveat = false) {
   let action = score >= 75 ? 'PUBLISH' : score >= REVIEW_THRESHOLD ? 'REVIEW' : 'BLOCK';
@@ -695,12 +739,12 @@ test('score=74 → REVIEW (upper review boundary)', () => {
   eq(routeScore(74), 'REVIEW', 'routing');
 });
 
-test('score=65 → REVIEW (lower review boundary)', () => {
-  eq(routeScore(65), 'REVIEW', 'routing');
+test('score=60 → REVIEW (lower review boundary)', () => {
+  eq(routeScore(60), 'REVIEW', 'routing');
 });
 
-test('score=64 → BLOCK (just below review threshold)', () => {
-  eq(routeScore(64), 'BLOCK', 'routing');
+test('score=59 → BLOCK (just below review threshold)', () => {
+  eq(routeScore(59), 'BLOCK', 'routing');
 });
 
 test('score=100 → PUBLISH', () => {
@@ -719,8 +763,8 @@ test('score=65 + paywall_caveat → REVIEW (no further downgrade below publish)'
   eq(routeScore(65, true), 'REVIEW', 'paywall on REVIEW stays REVIEW');
 });
 
-test('score=64 + paywall_caveat → BLOCK (already blocked, paywall irrelevant)', () => {
-  eq(routeScore(64, true), 'BLOCK', 'paywall on BLOCK stays BLOCK');
+test('score=59 + paywall_caveat → BLOCK (already blocked, paywall irrelevant)', () => {
+  eq(routeScore(59, true), 'BLOCK', 'paywall on BLOCK stays BLOCK');
 });
 
 // ═════════════════════════════════════════════════════════════════════════════

@@ -1,11 +1,11 @@
 {
   "capabilities": [
-    { "id": "advisor_productivity", "label": "Advisor Productivity", "description": "Meeting prep, note-taking, CRM automation, document summarization, knowledge retrieval" },
-    { "id": "client_personalization", "label": "Client Personalization", "description": "Hyper-personalized nudges, next-best-action, behavioral analytics, predictive life-event detection" },
-    { "id": "investment_portfolio", "label": "Investment & Portfolio", "description": "AI portfolio construction, rebalancing, tax-loss harvesting, optimization" },
-    { "id": "research_content", "label": "Research & Content", "description": "Research summarization, CIO content, market commentary, multilingual translation" },
-    { "id": "client_acquisition", "label": "Client Acquisition", "description": "AI lead scoring, propensity models, segment migration" },
-    { "id": "operations_compliance", "label": "Operations & Compliance", "description": "KYC automation, AML surveillance, regulatory reporting, trade compliance" },
-    { "id": "new_business_models", "label": "New Business Models", "description": "Prediction markets, AI-native advisory, data monetization, tokenization" }
+    { "id": "advisor_productivity",   "label": "Advisor Productivity",    "description": "Meeting prep, note-taking, CRM automation, document summarization, knowledge retrieval",              "search_term": "AI advisor productivity automation meeting notes CRM deployed" },
+    { "id": "client_personalization", "label": "Client Personalization",  "description": "Hyper-personalized nudges, next-best-action, behavioral analytics, predictive life-event detection", "search_term": "AI client personalization next best action wealth management platform" },
+    { "id": "investment_portfolio",   "label": "Investment & Portfolio",  "description": "AI portfolio construction, rebalancing, tax-loss harvesting, optimization",                          "search_term": "AI investment portfolio construction rebalancing advisors" },
+    { "id": "research_content",       "label": "Research & Content",      "description": "Research summarization, CIO content, market commentary, multilingual translation",                  "search_term": "AI research content generation market commentary wealth management" },
+    { "id": "client_acquisition",     "label": "Client Acquisition",      "description": "AI lead scoring, propensity models, segment migration",                                              "search_term": "AI client acquisition lead scoring wealth management growth" },
+    { "id": "operations_compliance",  "label": "Operations & Compliance", "description": "KYC automation, AML surveillance, regulatory reporting, trade compliance",                          "search_term": "AI operations compliance KYC AML regulatory financial advisors" },
+    { "id": "new_business_models",    "label": "New Business Models",     "description": "Prediction markets, AI-native advisory, data monetization, tokenization",                           "search_term": "AI new business models wealth platform fintech launch" }
   ]
 }

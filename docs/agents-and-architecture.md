@@ -136,15 +136,15 @@ Sits between governance output and publish/review/block routing. Scores each ent
 
 | Dimension | Max | Method |
 |---|---|---|
-| **Source Quality** | 30 | DataForSEO Backlinks API — live `domain_rank` (0–100). `spam_score ≥ 40` → 3pts regardless. Falls back to manual tier list if API unavailable. Press releases / newsrooms always = 30. |
-| **Claim Verification** | 30 | From governance output: 0 unverified = 30, 1 = 18, 2 = 8, any fabricated = −100 (auto-block) |
-| **Content Freshness** | 20 | ≤7 days = 20, ≤30 days = 14, ≤90 days = 6, older = 0 |
-| **Relevance Signal** | 20 | Tracked company + specific AI product/metric = 20, tracked + general = 13, untracked + specific = 8, tangential = 3 |
+| **A: Source Quality** | 25 | DataForSEO Backlinks API — live `domain_rank` (0–100). `spam_score ≥ 40` → 2pts regardless. Falls back to manual tier list if API unavailable. Press releases / strong newsrooms = 25. Tier 1 media = 22. Tier 2 industry press = 17. Weak newsroom (`/news/`, `/blog/`) = 20 — only applied AFTER checking TIER1/TIER2 to prevent false positives. General = 9. |
+| **B: Claim Verification** | 25 | From governance output: 0 unverified = 25, 1 = 15, 2 = 6, 3+ = 0, any fabricated = −100 (auto-block) |
+| **C: Freshness** | 10 | ≤1d = 10, ≤3d = 8, ≤7d = 6, ≤14d = 4, ≤30d = 2, ≤90d = 1, older = hard BLOCK |
+| **D: Capability Impact** | 40 | Which of 7 capability dimensions is advancing, what evidence, at what scale. `capability_evidence` populated → 15–40pts. Tracked company without capability_evidence → floor at 20pts. |
 
 **Routing thresholds:**
 - Score ≥ 75 → **PUBLISH** (auto-publish, no Telegram)
-- Score 65–74 → **REVIEW** (Telegram with score breakdown + each unverified claim)
-- Score < 65 or any fabricated claim → **BLOCK** (URL permanently blocked)
+- Score 60–74 → **REVIEW** (Telegram with score breakdown + each unverified claim)
+- Score < 60 or any fabricated claim → **BLOCK** (URL permanently blocked)
 - Paywall caveat → PUBLISH downgraded to REVIEW
 
 Domain authority results cached in-process — one Backlinks API call per domain per pipeline run.
@@ -203,8 +203,8 @@ Accessible via:
 
 Scenario-based test suite for all pipeline logic. No live API calls — all external dependencies mocked.
 
-**37 tests across 5 suites:**
-1. **scorer.js** (25 tests) — source quality tiers, claim verification scoring, freshness buckets (including hard 90-day gate), relevance signal, routing thresholds
+**39 tests across 5 suites:**
+1. **scorer.js** (27 tests) — source quality tiers (including newsroom STRONG vs WEAK), claim verification, freshness buckets (including hard 90-day gate), capability impact scoring, routing thresholds
 2. **notifier.js** (5 tests) — HMAC token signing for review links
 3. **publisher.js** (6 tests) — file writing with unique run-ID prefixed IDs + cleanup
 4. **auto-discover.js pure functions** (15 tests) — `isRelevant`, `normalizeUrl`, `buildCompanyQueries`, `buildAuthorQueries`

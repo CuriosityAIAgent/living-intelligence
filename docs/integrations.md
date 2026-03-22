@@ -167,7 +167,7 @@ const res = await fetch('https://api.dataforseo.com/v3/backlinks/summary/live', 
 // Returns: rank (0-100), spam_score (0-100), referring_domains
 ```
 
-**Scoring map:** `rank ≥ 70` → 28 pts · `≥ 50` → 22 pts · `≥ 30` → 14 pts · `< 30` → 7 pts · `spam_score ≥ 40` → 3 pts (flagged regardless of rank).
+**Scoring map (Dim A, max 25):** `rank ≥ 70` → 23 pts · `≥ 50` → 18 pts · `≥ 30` → 12 pts · `< 30` → 5 pts · `spam_score ≥ 40` → 2 pts (flagged regardless of rank). Falls back to manual tier list if API unavailable: press release wire/strong newsroom = 25, Tier 1 media = 22, Tier 2 industry press = 17, weak newsroom (/news/, /blog/) = 20 (only after TIER1/TIER2 check), general = 9.
 **Cache:** Results stored in `domainAuthorityCache` (Map) for duration of pipeline run — one API call per domain.
 
 **Env vars:** `DATAFORSEO_LOGIN`, `DATAFORSEO_PASSWORD`
@@ -230,6 +230,15 @@ RSS feeds were removed. All 11 feeds were paywalled publications already covered
 'AI financial planning advisor technology news'
 ```
 
+**Layer 1 Capabilities** — 7 DFS Google News queries, dynamically built from `data/capabilities/index.json` (`search_term` field). Year injected at runtime; Q1-aware (includes prior year since Dec–Feb content is < 90 days old).
+```
+// Built by buildCapabilityQueries(capabilities) — one query per capability dimension
+'AI advisor productivity automation meeting notes CRM deployed 2026'
+'AI client personalization hyper-personalization wealth 2026'
+... (one per capability, self-updating each year)
+```
+This layer ensures capability-specific stories surface even when broad news queries miss them.
+
 **Layer 1 TL** — 5 broad Jina Search queries for thought leadership:
 ```
 'AI wealth management thought leadership essay 2026'
@@ -254,22 +263,24 @@ All company queries are batched into a single API call (50 per batch) for effici
 ### Full pipeline flow
 
 ```
-Layer 1 News (8 DFS News)    Layer 2 Companies (N DFS Content Analysis)
-         │                             │
-         └──────────────┬──────────────┘
+Layer 1 News (8 DFS News)  Layer 1 Caps (7 DFS News)  Layer 2 Companies (N DFS Content Analysis)
+         │                          │                             │
+         └──────────────────────────┴──────────────────────────── ┘
                         ↓ URL dedup vs existing entries
                Deduplicate against source_url fields
-                        ↓ Rule-based scoring → top 40
-               +10 max  recency (last 72h = 10, week = 6, fortnight = 3)
-               +4–6     source quality (primary vs tier-1 outlet)
-               +2 each  tracked company mentions (dynamic from landscape)
+                        ↓ Rule-based scoring + HN gravity decay → top 40
+               HN gravity: score^0.8 / (hoursAgo+2)^2.0  (punishes age continuously)
+               +6       primary outlet (investmentnews, thinkadvisor, wealthmanagement.com)
+               +4       tier-1 outlet (bloomberg, reuters, ft, wsj)
+               +4 each  tracked company mention (max +10, dynamic from landscape)
                +1 each  AI keyword density (max 4)
                +5–7     Layer 2 Companies bonus (base +5, +quality_score up to +2)
+               +4       Layer 1 Capabilities bonus
                +3       Layer 1 News
                         ↓ Stage 2b: Semantic dedup (Jina Embeddings)
                Embed top-40 + published entries → drop cosine ≥ 0.90
                         ↓ Stage 3: Rerank (Jina Reranker)
-               Rerank by "significant AI product launch in wealth management"
+               Rerank by "significant AI announcement affecting wealth management advisors"
                         ↓
                Return intelCandidates (top 20) + tlCandidates (raw, for Telegram)
                intelCandidates → intake pipeline (structure → verify → score)
@@ -320,7 +331,7 @@ This two-call pattern (structure → verify) is the primary anti-hallucination m
 | Paywalled articles | DataForSEO Google News + Organic in parallel → finds open alternative sources |
 | Structuring articles into typed JSON | Anthropic Claude — strict grounding rules, no inference |
 | Verifying claims aren't fabricated | Anthropic Claude governance check (second call) |
-| Auto-publishing vs human review | scorer.js — 4-dimension scoring, PUBLISH ≥75 / REVIEW 65–74 / BLOCK <65 |
+| Auto-publishing vs human review | scorer.js — 4-dimension scoring (A: Source 0–25, B: Claims 0–25, C: Fresh 0–10, D: Impact 0–40). PUBLISH ≥75 / REVIEW 60–74 / BLOCK <60 |
 | Source authority verification | DataForSEO Backlinks API — live domain_rank per source domain |
 | Detecting spam/low-quality sources | Backlinks API spam_score ≥ 40 → auto-flag regardless of domain rank |
 | Reliable company logos | DataForSEO Google Images → downloaded to disk as local files |

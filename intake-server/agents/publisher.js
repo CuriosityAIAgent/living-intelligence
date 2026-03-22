@@ -11,11 +11,58 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const DATA_ROOT = process.env.DATA_DIR || join(__dirname, '..', '..');
 const PORTAL_DATA_DIR = join(DATA_ROOT, 'data', 'intelligence');
 
-export function publish({ entry, send }) {
+// ── Date integrity ─────────────────────────────────────────────────────────────
+
+function validateAndFixDate(entry, candidatePubDate) {
+  const now = new Date();
+
+  if (!entry.date) return; // no date — let it through undated
+
+  const eventDate = new Date(entry.date);
+  if (isNaN(eventDate.getTime())) {
+    // Unparseable date — use candidatePubDate or today
+    entry.date = candidatePubDate
+      ? new Date(candidatePubDate).toISOString().split('T')[0]
+      : now.toISOString().split('T')[0];
+    return;
+  }
+
+  // Hard gate: event must be < 90 days old
+  const ageDays = (now - eventDate) / 86400000;
+  if (ageDays > 90) {
+    throw new Error(`Entry date ${entry.date} is ${Math.round(ageDays)} days old — exceeds 90-day limit`);
+  }
+
+  // Future date: cap at today
+  if (eventDate > now) {
+    entry.date = now.toISOString().split('T')[0];
+    return;
+  }
+
+  // Divergence check: if Claude's date diverges > 30 days from source pub_date, use source date
+  if (candidatePubDate) {
+    const sourcePubDate = new Date(candidatePubDate);
+    if (!isNaN(sourcePubDate.getTime())) {
+      const divergenceDays = Math.abs(eventDate - sourcePubDate) / 86400000;
+      if (divergenceDays > 30) {
+        console.warn(`[publisher] Date divergence ${Math.round(divergenceDays)}d: Claude says ${entry.date}, source says ${candidatePubDate}. Using source date.`);
+        entry.date = sourcePubDate.toISOString().split('T')[0];
+      }
+    }
+  }
+}
+
+export function publish({ entry, candidatePubDate, send }) {
   // Ensure target directory exists
   if (!existsSync(PORTAL_DATA_DIR)) {
     mkdirSync(PORTAL_DATA_DIR, { recursive: true });
   }
+
+  // Date validation — throws if entry is too old, fixes divergence issues
+  validateAndFixDate(entry, candidatePubDate);
+
+  // Stamp when this entry entered the portal (drives feed sort order)
+  entry.published_at = new Date().toISOString();
 
   const { _governance, ...publicFields } = entry;
   const entryToWrite = {

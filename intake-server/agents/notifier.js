@@ -58,13 +58,36 @@ function buildMessage({ published, pending, blocked, errors, newCompanies, tlCan
   lines.push(`<b>Living Intelligence</b> · ${date}`);
   lines.push('');
 
-  // ── Auto-published ────────────────────────────────────────────────────────
+  // ── Auto-published — grouped by capability dimension ─────────────────────
   if (published.length > 0) {
     lines.push(`<b>✅ Auto-published (${published.length})</b>`);
+
+    // Group by capability (falls back to "General" for entries without capability_evidence)
+    const CAPABILITY_LABELS = {
+      advisor_productivity:    'Advisor Productivity',
+      client_personalization:  'Client Personalization',
+      investment_portfolio:    'Investment & Portfolio',
+      research_content:        'Research & Content',
+      client_acquisition:      'Client Acquisition',
+      operations_compliance:   'Operations & Compliance',
+      new_business_models:     'New Business Models',
+    };
+    const grouped = {};
     published.forEach(p => {
-      const score = p.score ? ` · ${p.score}/100` : '';
-      lines.push(`  → ${p.title}${p.company_name ? ` <i>${p.company_name}</i>` : ''}${score}`);
+      const cap = p.capability || 'general';
+      if (!grouped[cap]) grouped[cap] = [];
+      grouped[cap].push(p);
     });
+
+    for (const [cap, entries] of Object.entries(grouped)) {
+      const label = CAPABILITY_LABELS[cap] || (cap === 'general' ? null : cap);
+      if (label) lines.push(`  <i>${label}</i>`);
+      entries.forEach(p => {
+        const score = p.score ? ` · ${p.score}/100` : '';
+        const stage = p.capability_stage ? ` [${p.capability_stage}]` : '';
+        lines.push(`  → ${p.title}${p.company_name ? ` <i>${p.company_name}</i>` : ''}${stage}${score}`);
+      });
+    }
     lines.push('');
   }
 
