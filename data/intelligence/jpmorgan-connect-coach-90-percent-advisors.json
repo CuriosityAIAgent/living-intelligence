@@ -1,0 +1,45 @@
+{
+  "id": "jpmorgan-connect-coach-90-percent-advisors",
+  "type": "deployment",
+  "headline": "JPMorgan's Connect Coach cuts time to source advisor discussion materials by 90% — Harvard Business School calls it 'an entirely different game'",
+  "the_so_what": "A 90% reduction in the time advisors spend sourcing client discussion materials is not incremental — it rewrites how much time a wealth advisor spends in front of clients versus behind a screen.",
+  "company": "jpmorgan",
+  "company_name": "JPMorgan Private Bank and Wealth Management",
+  "date": "2025-05-20",
+  "source_name": "JPMorgan Chase 2025 Investor Day — Asset & Wealth Management",
+  "source_url": "https://www.jpmorganchase.com/content/dam/jpmc/jpmorgan-chase-and-co/investor-relations/documents/events/2025/jpmc-2025-investor-day/asset-wealth-management.pdf",
+  "source_verified": true,
+  "image_url": "/logos/jpmorgan.svg",
+  "summary": "At JPMorgan Chase's 2025 Investor Day on May 20, the Asset & Wealth Management division disclosed three live AI deployments across advisors, investors, and operations. Connect Coach — deployed for wealth advisors — delivers tailored outreach ideas, meeting prep and next steps, real-time market insights, and on-demand answers, cutting the time needed to source client discussion materials by 90%. Smart Monitor (Spectrum), deployed for investors, reduces time spent researching a topic by 83% through AI-integrated workflows, automated insights, and custom universes. A third tool, Guidelines, improves operational productivity by 50% through automated coding, alert management, and restriction analysis. Harvard Business School, which produced a case study on JPMorgan's AI programme, said: \"We've looked at AI across many industries — JPMorgan is playing an entirely different game.\"",
+  "key_stat": {
+    "number": "90%",
+    "label": "Reduction in time to source advisor discussion materials — JPMorgan Connect Coach (2025 Investor Day)"
+  },
+  "tags": {
+    "capability": "advisor_productivity",
+    "region": "us",
+    "segment": "wirehouse",
+    "theme": ["connect_coach", "meeting_prep", "advisor_tools", "enterprise_ai", "investor_day"]
+  },
+  "week": "2025-05-19",
+  "featured": false,
+  "_governance": {
+    "verdict": "PASS",
+    "confidence": 97,
+    "verified_claims": [
+      "Connect Coach deployed for advisors — tailored outreach ideas, meeting prep & next steps, real-time market insights, answers from experts (Investor Day slide 11)",
+      "90% reduction in time to source discussion materials — Connect Coach (Investor Day slide 11)",
+      "Smart Monitor (Spectrum) for investors: 83% reduction in time spent researching a topic (Investor Day slide 11)",
+      "Guidelines for operations: +50% productivity improvement from automation (Investor Day slide 11)",
+      "Harvard Business School case study on JPMorgan AI — 'playing an entirely different game' (Investor Day slide 11)"
+    ],
+    "unverified_claims": [],
+    "fabricated_claims": [],
+    "notes": "All claims sourced directly from JPMorgan 2025 Investor Day Asset & Wealth Management presentation, slide 11 (page 11/21). Source PDF verified by Haresh against the actual document. human_approved: Track 2 entry, claims confirmed directly from source slide.",
+    "paywall_caveat": false,
+    "verified_at": "2026-03-23T00:00:00.000Z",
+    "human_approved": true,
+    "approved_at": "2026-03-23T00:00:00.000Z"
+  },
+  "published_at": "2025-05-20T00:00:00.000Z"
+}
