@@ -46,27 +46,26 @@ export default function IntelligencePage({
           </p>
         </div>
 
-        {/* Time period filter */}
-        <div className="flex items-center gap-2 mb-8 flex-wrap">
-          <span className="text-xs text-gray-400 font-medium mr-1">PERIOD</span>
-          {PERIOD_FILTERS.map(f => (
-            <Link
-              key={f.value}
-              href={f.value ? `/intelligence?period=${f.value}` : '/intelligence'}
-              className={`px-3 py-1.5 rounded text-xs font-medium transition-colors ${
-                activePeriod === f.value
-                  ? 'bg-[#990F3D] text-white'
-                  : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-              }`}
-            >
-              {f.label}
-            </Link>
-          ))}
-        </div>
-
         {/* Entries list */}
         <section>
-          <SectionLabel label={`${entries.length} ${activePeriod ? `entries in last ${activePeriod} days` : 'entries — all time'}`} />
+          <div className="flex items-center justify-between mb-4">
+            <SectionLabel label={`${entries.length} ${activePeriod ? `entries — last ${activePeriod} days` : 'entries — all time'}`} />
+            <div className="flex items-center gap-2">
+              {PERIOD_FILTERS.map(f => (
+                <Link
+                  key={f.value}
+                  href={f.value ? `/intelligence?period=${f.value}` : '/intelligence'}
+                  className={`text-[11px] px-2.5 py-1 border rounded transition-colors font-medium ${
+                    activePeriod === f.value
+                      ? 'bg-[#990F3D] text-white border-[#990F3D]'
+                      : 'bg-white text-gray-500 border-gray-200 hover:border-[#990F3D] hover:text-[#990F3D]'
+                  }`}
+                >
+                  {f.label}
+                </Link>
+              ))}
+            </div>
+          </div>
           {entries.length === 0 ? (
             <div className="text-center py-16 text-gray-400 text-sm">
               No entries in this period.{' '}
