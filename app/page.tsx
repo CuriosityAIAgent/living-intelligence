@@ -1,50 +1,40 @@
 import Link from 'next/link';
 import Header from '@/components/Header';
 import SectionLabel from '@/components/SectionLabel';
-import IntelligenceFeed from '@/components/IntelligenceFeed';
+import AuthorAvatar from '@/components/AuthorAvatar';
 import {
   getAllIntelligence,
+  getAllThoughtLeadership,
   getAllCompetitors,
   getCapabilities,
-  getLatestWeek,
-  getThoughtLeadershipEntry,
   formatDateShort,
+  TYPE_LABELS,
   FORMAT_LABELS,
 } from '@/lib/data';
 
 export default function HomePage() {
   const allEntries = getAllIntelligence();
+  const allTL = getAllThoughtLeadership();
   const competitors = getAllCompetitors();
   const capabilities = getCapabilities();
-  const week = getLatestWeek();
 
-  // Derive the most recent month label from the latest entry date
   const latestDate = allEntries[0]?.date ? new Date(allEntries[0].date) : new Date();
   const monthLabel = latestDate.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
-  const featuredThought = week
-    ? getThoughtLeadershipEntry(week.featured_thought_leadership)
-    : null;
 
-  // Lead story = most recent featured entry, fallback to most recent entry
-  const leadStoryId =
-    allEntries.find(e => e.featured)?.id || allEntries[0]?.id || '';
+  // Lead story = most recent featured entry, fallback to most recent
+  const leadStory = allEntries.find(e => e.featured) || allEntries[0];
 
-  // Auto-generate key stats from entries that have them
-  const keyStats = allEntries
-    .filter(e => e.key_stat)
-    .slice(0, 4)
-    .map(e => ({
-      number: e.key_stat!.number,
-      label: e.key_stat!.label,
-      entryId: e.id,
-      sourceUrl: e.source_url,
-    }));
+  // Featured grid = 6 most recent entries after lead story
+  const featured = allEntries.filter(e => e.id !== leadStory?.id).slice(0, 6);
+
+  // Featured TL = most recent entry
+  const featuredThought = allTL[0] || null;
 
   return (
     <div className="min-h-screen">
       <Header />
 
-      {/* Date bar — below header, full-width editorial strip */}
+      {/* Date bar */}
       <div className="border-b border-gray-200 bg-gray-50">
         <div className="max-w-6xl mx-auto px-6 h-9 flex items-center gap-4">
           <span className="text-[11px] font-bold uppercase tracking-widest text-[#990F3D]">{monthLabel}</span>
@@ -55,52 +45,131 @@ export default function HomePage() {
 
       <main className="max-w-6xl mx-auto px-6 py-8">
 
-        {/* Intelligence Feed — client component with filters */}
-        <IntelligenceFeed entries={allEntries} leadStoryId={leadStoryId} />
+        {/* Lead Story */}
+        {leadStory && (
+          <section className="mb-12">
+            <div className="mb-4">
+              <p className="section-label">Lead Story</p>
+              <hr className="section-rule" />
+            </div>
+            <Link href={`/intelligence/${leadStory.id}`} className="group block">
+              <div className="grid md:grid-cols-5 gap-8 items-stretch">
+                {/* Logo panel */}
+                <div className="md:col-span-2 bg-[#1C1C2E] rounded flex items-center justify-center overflow-hidden p-10 min-h-[220px]">
+                  {leadStory.image_url ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      src={leadStory.image_url}
+                      alt={leadStory.company_name}
+                      className="max-h-20 max-w-[65%] object-contain brightness-0 invert"
+                    />
+                  ) : (
+                    <span className="text-white text-2xl font-bold opacity-80">{leadStory.company_name}</span>
+                  )}
+                </div>
+                {/* Content */}
+                <div className="md:col-span-3 flex flex-col justify-between py-1">
+                  <div>
+                    <div className="flex items-center gap-2 mb-3">
+                      <span className={`type-badge badge-${leadStory.type}`}>
+                        {TYPE_LABELS[leadStory.type]}
+                      </span>
+                      <span className="text-xs text-gray-500 font-medium">{leadStory.company_name}</span>
+                      <span className="text-gray-300">·</span>
+                      <span className="text-xs text-gray-400">{formatDateShort(leadStory.date)}</span>
+                    </div>
+                    <h2 className="text-[28px] font-bold text-gray-900 leading-tight mb-4 group-hover:text-[#990F3D] transition-colors">
+                      {leadStory.headline}
+                    </h2>
+                    <p className="text-[15px] text-gray-600 leading-relaxed line-clamp-3">{leadStory.summary}</p>
+                  </div>
+                  <div>
+                    {leadStory.key_stat && (
+                      <div className="mt-5 pt-4 border-t border-gray-100 flex items-baseline gap-3">
+                        <span className="text-3xl font-extrabold text-[#990F3D]">{leadStory.key_stat.number}</span>
+                        <span className="text-xs text-gray-500 leading-snug max-w-xs">{leadStory.key_stat.label}</span>
+                      </div>
+                    )}
+                    {leadStory.source_url && (
+                      <div className="mt-4">
+                        <span className="text-xs text-[#990F3D] font-medium">{leadStory.source_name} ↗</span>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </Link>
+          </section>
+        )}
 
-        {/* By the numbers — auto from key_stat fields */}
-        {keyStats.length > 0 && (
-          <section className="mt-14 mb-14">
-            <SectionLabel label="By the Numbers" />
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              {keyStats.map((stat) => (
+        {/* Featured Intelligence */}
+        {featured.length > 0 && (
+          <section className="mb-12">
+            <div className="mb-4 flex items-center justify-between">
+              <div>
+                <p className="section-label">Featured Intelligence</p>
+                <hr className="section-rule mt-1" />
+              </div>
+            </div>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 mb-5">
+              {featured.map(entry => (
                 <Link
-                  key={stat.entryId}
-                  href={`/intelligence/${stat.entryId}`}
-                  className="group bg-gray-50 border border-gray-100 rounded p-4 hover:border-[#990F3D] transition-colors no-underline block"
+                  key={entry.id}
+                  href={`/intelligence/${entry.id}`}
+                  className="article-card rounded p-4 block group flex flex-col"
                 >
-                  <div className="key-stat-number group-hover:text-[#990F3D] transition-colors">{stat.number}</div>
-                  <div className="key-stat-label">{stat.label}</div>
-                  <div className="mt-2 text-[10px] text-gray-400 group-hover:text-[#990F3D] transition-colors">
-                    Read source →
+                  <div className="h-7 mb-3 flex items-center">
+                    {entry.image_url ? (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img
+                        src={entry.image_url}
+                        alt={entry.company_name}
+                        className="max-h-7 max-w-[100px] object-contain"
+                      />
+                    ) : (
+                      <span className="text-xs text-gray-500 font-bold">{entry.company_name}</span>
+                    )}
+                  </div>
+                  <div className="flex items-center gap-2 mb-1.5 flex-wrap">
+                    <span className={`type-badge badge-${entry.type}`}>
+                      {TYPE_LABELS[entry.type]}
+                    </span>
+                    <span className="text-[10px] text-gray-300">·</span>
+                    <span className="text-[10px] text-gray-400 uppercase">{entry.tags?.region}</span>
+                  </div>
+                  <h3 className="text-sm font-bold text-gray-900 leading-snug mb-2 group-hover:text-[#990F3D] transition-colors flex-1">
+                    {entry.headline}
+                  </h3>
+                  {entry.key_stat && (
+                    <div className="mb-2">
+                      <span className="text-base font-extrabold text-[#990F3D]">{entry.key_stat.number}</span>
+                      <span className="text-[10px] text-gray-400 ml-1.5">{entry.key_stat.label}</span>
+                    </div>
+                  )}
+                  <div className="mt-auto flex items-center justify-between pt-2 border-t border-gray-50">
+                    <span className="text-[10px] text-gray-400">{formatDateShort(entry.date)}</span>
+                    <span className="text-[10px] text-gray-400">{entry.source_name}</span>
                   </div>
                 </Link>
               ))}
             </div>
+            <Link href="/intelligence" className="text-sm font-medium text-[#990F3D] hover:underline">
+              View all intelligence →
+            </Link>
           </section>
         )}
 
         {/* Featured Thought Leadership */}
         {featuredThought && (
-          <section className="mb-14">
-            <SectionLabel label="Featured Thought Leadership" />
+          <section className="mb-12">
+            <div className="mb-4">
+              <p className="section-label">Featured Thought Leadership</p>
+              <hr className="section-rule" />
+            </div>
             <Link href={`/thought-leadership/${featuredThought.id}`} className="group block">
               <div className="border border-gray-200 rounded p-6 hover:border-[#990F3D] transition-colors">
                 <div className="flex items-start gap-4">
-                  <div className="w-14 h-14 rounded-full overflow-hidden bg-gray-100 flex-shrink-0 border border-gray-200">
-                    {featuredThought.author.photo_url ? (
-                      // eslint-disable-next-line @next/next/no-img-element
-                      <img
-                        src={featuredThought.author.photo_url}
-                        alt={featuredThought.author.name}
-                        className="w-full h-full object-cover"
-                      />
-                    ) : (
-                      <span className="flex items-center justify-center h-full text-lg text-gray-400 font-bold">
-                        {featuredThought.author.name[0]}
-                      </span>
-                    )}
-                  </div>
+                  <AuthorAvatar name={featuredThought.author.name} size="md" />
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 mb-1">
                       <span className={`format-badge badge-${featuredThought.format}`}>
@@ -111,12 +180,12 @@ export default function HomePage() {
                     <h3 className="text-lg font-bold text-gray-900 leading-snug mb-1 group-hover:text-[#990F3D] transition-colors">
                       {featuredThought.title}
                     </h3>
-                    <p className="text-sm text-gray-500 mb-2">
+                    <p className="text-sm text-gray-500 mb-3">
                       {featuredThought.author.name} · {featuredThought.publication} · {formatDateShort(featuredThought.date_published)}
                     </p>
-                    <blockquote className="text-sm text-gray-700 italic border-l-2 border-[#990F3D] pl-3">
-                      &ldquo;{featuredThought.the_one_insight}&rdquo;
-                    </blockquote>
+                    <p className="text-sm text-gray-700 leading-relaxed border-l-2 border-[#990F3D] pl-3">
+                      {featuredThought.the_one_insight}
+                    </p>
                   </div>
                   <span className="flex-shrink-0 text-[#990F3D] font-bold text-sm hidden md:block">Read →</span>
                 </div>
@@ -147,7 +216,6 @@ export default function HomePage() {
         </section>
 
       </main>
-
     </div>
   );
 }

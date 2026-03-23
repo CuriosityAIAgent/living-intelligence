@@ -61,7 +61,46 @@ cd ../intake-server
 node --env-file=.env server.js   # localhost:3003
 ```
 
-**Git workflow:** all changes → `dev` branch. Merge `dev` → `main` to deploy (Railway auto-deploys on push to main).
+**Git workflow — branching strategy:**
+
+| Branch | Purpose | Railway deploys? |
+|--------|---------|-----------------|
+| `main` | Stable production — what subscribers and CXOs see | ✅ Portal auto-deploys on push |
+| `dev` | Active development — all code changes go here first | ✅ Intake server (`proud-reflection`) deploys from `dev` |
+| `feature/landing-page` | Public landing page `livingintel.ai` (`profound-wonder` service) | ✅ Separate Railway service |
+
+**Version tags (semantic versioning — major milestones only):**
+| Tag | What it is |
+|-----|-----------|
+| `v1.0` | Portal launch — intelligence feed, landscape, intake pipeline, Telegram digest |
+| `v1.1` | Algorithm v2 — capability-led scoring, three-layer discovery, 25 audited entries |
+| `v2.0` | Universal Inbox — editorial sign-off on everything, Editorial Studio UI revamp |
+
+**Tagging convention:** Tag `main` after every significant stable milestone with `git tag -a vX.Y HEAD -m "vX.Y: short description" && git push origin vX.Y`
+- Major version (v1→v2): architecture changes, new editorial workflow
+- Minor version (v1.0→v1.1): significant new feature or algorithm upgrade
+
+**To roll back to a previous version** (e.g. if v2.0 breaks):
+```bash
+git checkout v1.1          # inspect what v1.1 looks like
+git checkout main
+git revert HEAD            # safer: revert the bad commit, keep history
+# OR for emergency rollback:
+git reset --hard v1.1      # nuclear: resets main to v1.1 state
+git push origin main --force
+```
+
+**Rules:**
+1. **Never push untested code directly to `main`** — it immediately redeploys the public portal
+2. **All code changes start on `dev`**: `git checkout dev` → develop → commit → push → test on Railway intake server
+3. **Merge to `main` only when tested**: `git checkout main && git merge dev && git push origin main`
+4. **Content publishing (approved stories)** always pushes to `main` directly — this is intentional, it triggers portal rebuild with new content
+5. **`feature/landing-page`** is independent — developed separately, merged to `main` when landing page is ready to go live
+
+**Railway deployment config (all confirmed):**
+- Portal service (`living-intelligence`): deploys from `main` ✓
+- Intake server (`proud-reflection`): deploys from `dev` ✓
+- Landing page (`profound-wonder`): deploys from `feature/landing-page` ✓
 
 ---
 
