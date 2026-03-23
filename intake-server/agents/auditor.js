@@ -147,13 +147,25 @@ function auditIntelligenceEntry(entry, filename, featuredCount) {
   }
 
   // 7. key_stat_in_summary
+  // Checks the core numeric part appears in the summary — tolerates format differences
+  // e.g. "$130B" matches "$130 billion", "30B" matches "30 billion", "2M+" matches "2 million"
   if (entry.key_stat && entry.key_stat.number && entry.summary) {
     const statNumber = String(entry.key_stat.number).trim();
-    if (statNumber && !entry.summary.includes(statNumber)) {
+    const summaryLower = entry.summary.toLowerCase();
+    const numericCore = statNumber.replace(/[$,+%]/g, '').toLowerCase();
+    const expanded = numericCore
+      .replace(/(\d+\.?\d*)b\b/, (_, n) => `${n} billion`)
+      .replace(/(\d+\.?\d*)m\b/, (_, n) => `${n} million`)
+      .replace(/(\d+\.?\d*)t\b/, (_, n) => `${n} trillion`)
+      .replace(/(\d+\.?\d*)k\b/, (_, n) => `${n},000`);
+    const inSummary = summaryLower.includes(numericCore)
+      || summaryLower.includes(expanded)
+      || summaryLower.includes(statNumber.toLowerCase());
+    if (statNumber && !inSummary) {
       issues.push({
         severity: 'warning',
         check: 'key_stat_in_summary',
-        detail: `key_stat.number "${statNumber}" does not appear verbatim in summary`,
+        detail: `key_stat.number "${statNumber}" does not appear in summary (checked verbatim, core "${numericCore}", expanded "${expanded}")`,
       });
     }
   }

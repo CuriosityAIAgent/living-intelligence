@@ -60,10 +60,8 @@
       "The article's author is William Trout, Director, Securities and Investments, Datos Insights"
     ],
     "unverified_claims": [],
-    "fabricated_claims": [
-      "The headline and summary describe the startup acquired as 'Thyme' — the source confirms this name, so no fabrication there; however, the summary states Hazel enables 'productivity expansion' which is accurate but the framing of 'managing large, heterogeneous books' is a slight editorial addition not directly contradicted but not explicitly sourced to Datos Insights as a formal characterization"
-    ],
-    "notes": "The entry is largely faithful to the source. The $130B figure, the companies named, the Thyme acquisition, Avantos details, Mercer Advisors deployment, the three investment areas, and the Datos Insights framing all verify accurately. One minor concern: the summary's phrasing 'startup Thyme' is confirmed in the source. The headline references 'independent channel accelerates' which is editorially consistent with the source's themes. No materially fabricated or contradicted claims were identified. The entry is an accurate and tight paraphrase of the source article.",
+    "fabricated_claims": [],
+    "notes": "The entry is largely faithful to the source. The $130B figure, the companies named, the Thyme acquisition, Avantos details, Mercer Advisors deployment, the three investment areas, and the Datos Insights framing all verify accurately. One minor concern: the summary's phrasing 'startup Thyme' is confirmed in the source. The headline references 'independent channel accelerates' which is editorially consistent with the source's themes. No materially fabricated or contradicted claims were identified. The entry is an accurate and tight paraphrase of the source article. fabricated_claims array cleared — governance notes confirm no actual fabrications; \"managing large, heterogeneous books\" is editorial framing consistent with source, not a fabricated fact. Human-approved 2026-03-12.",
     "paywall_caveat": false,
     "verified_at": "2026-03-12T06:49:30.582Z",
     "human_approved": true,
