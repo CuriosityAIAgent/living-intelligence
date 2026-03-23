@@ -450,7 +450,7 @@ app.get('/api/pipeline-status', (req, res) => {
   for (const f of todayFiles) {
     try {
       const e = JSON.parse(fs.readFileSync(DATA_DIR + '/intelligence/' + f, 'utf-8'));
-      if (e.published_at && e.published_at.startsWith(today)) publishedToday++;
+      if (e._governance?.approved_at && e._governance.approved_at.startsWith(today)) publishedToday++;
     } catch (_) {}
   }
 
@@ -467,6 +467,8 @@ app.get('/api/pipeline-status', (req, res) => {
     published_today:   publishedToday,
     rejected_today:    rejectedToday,
     blocked_total:     Object.keys(blocked).length,
+    blocked_items:     status?.blocked_items || [],
+    tl_items:          status?.tl_items || [],
   });
 });
 

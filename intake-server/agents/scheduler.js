@@ -300,6 +300,8 @@ export async function runDailyPipeline() {
     blocked:           blocked.length,
     errors:            errors.length,
     tl_candidates:     tlCandidates.length,
+    tl_items:          tlCandidates.slice(0, 15),
+    blocked_items:     blocked,
   });
 
   // ── 4. Send daily digest ───────────────────────────────────────────────────

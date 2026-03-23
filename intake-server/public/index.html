@@ -681,9 +681,9 @@
             <div class="pipeline-stat-num green" id="pipelinePublished">—</div>
             <div class="pipeline-stat-label">Published Today</div>
           </div>
-          <div class="pipeline-stat">
+          <div class="pipeline-stat" style="cursor:pointer;" onclick="showBlockedModal()" title="Click to see what was blocked">
             <div class="pipeline-stat-num amber" id="pipelineBlocked">—</div>
-            <div class="pipeline-stat-label">Blocked</div>
+            <div class="pipeline-stat-label" style="text-decoration:underline dotted;text-underline-offset:2px;">Blocked</div>
           </div>
           <div class="pipeline-stat">
             <div class="pipeline-stat-num red" id="pipelineErrors">—</div>
@@ -696,6 +696,12 @@
         </div>
         <div id="pendingList" style="max-width:860px;">
           <div style="font-size:12px;color:#9CA3AF;text-align:center;padding:24px;">Loading...</div>
+        </div>
+
+        <!-- Thought Leadership candidates from last pipeline run -->
+        <div id="tlSection" style="max-width:860px;margin-top:32px;display:none;">
+          <div style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#990F3D;margin-bottom:12px;">Thought Leadership Candidates</div>
+          <div id="tlList" style="display:flex;flex-direction:column;gap:8px;"></div>
         </div>
       </div>
 
@@ -844,6 +850,17 @@
       <button class="btn-cancel-reject" onclick="closeRejectionModal()">Cancel</button>
       <button class="btn-confirm-reject" onclick="confirmReject()">Reject &amp; Block</button>
     </div>
+  </div>
+</div>
+
+<!-- Blocked items modal -->
+<div class="rejection-modal-overlay" id="blockedModal" onclick="closeBlockedModal()">
+  <div class="rejection-modal" onclick="event.stopPropagation()" style="max-width:660px;max-height:80vh;overflow-y:auto;">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+      <span style="font-weight:700;font-size:15px;color:#F9FAFB;">🚫 Blocked this run</span>
+      <button onclick="closeBlockedModal()" style="background:none;border:none;color:#9CA3AF;cursor:pointer;font-size:16px;">✕</button>
+    </div>
+    <div id="blockedModalList" style="display:flex;flex-direction:column;gap:10px;"></div>
   </div>
 </div>
 
@@ -1658,7 +1675,53 @@ async function loadPipelineStatus() {
     // errors not in current status; show inbox_count in queued (already set by loadInbox)
     const errEl = document.getElementById('pipelineErrors');
     if (errEl && errEl.textContent === '—') errEl.textContent = '0';
+
+    // Store blocked_items and tl_items for display
+    window._blockedItems = data.blocked_items || [];
+    window._tlItems = data.tl_items || [];
+    renderTlCandidates(window._tlItems);
   } catch (_) {}
+}
+
+function showBlockedModal() {
+  const items = window._blockedItems || [];
+  const list = document.getElementById('blockedModalList');
+  if (!list) return;
+  if (!items.length) {
+    list.innerHTML = '<div style="color:#9CA3AF;font-size:13px;padding:8px 0;">No blocked items from last run.</div>';
+  } else {
+    list.innerHTML = items.map(item => `
+      <div style="background:#1C1C2E;border-radius:6px;padding:10px 12px;border-left:3px solid #F59E0B;">
+        <div style="font-size:13px;font-weight:600;color:#F9FAFB;margin-bottom:3px;">${item.title || item.url}</div>
+        <div style="font-size:11px;color:#9CA3AF;">${item.reason || '—'}</div>
+        ${item.score != null ? `<div style="font-size:10px;color:#F59E0B;margin-top:3px;">Score: ${item.score}/100</div>` : ''}
+      </div>
+    `).join('');
+  }
+  document.getElementById('blockedModal').classList.add('visible');
+}
+
+function closeBlockedModal() {
+  document.getElementById('blockedModal').classList.remove('visible');
+}
+
+function renderTlCandidates(items) {
+  const section = document.getElementById('tlSection');
+  const list = document.getElementById('tlList');
+  if (!section || !list || !items.length) {
+    if (section) section.style.display = 'none';
+    return;
+  }
+  section.style.display = 'block';
+  list.innerHTML = items.map(item => `
+    <div style="background:#F9FAFB;border:1px solid #E5E7EB;border-radius:6px;padding:10px 14px;display:flex;justify-content:space-between;align-items:flex-start;gap:12px;">
+      <div style="flex:1;min-width:0;">
+        <div style="font-size:13px;font-weight:600;color:#111827;margin-bottom:2px;">${item.title || item.url}</div>
+        ${item.snippet ? `<div style="font-size:12px;color:#6B7280;margin-top:3px;line-height:1.4;">${item.snippet.slice(0, 180)}${item.snippet.length > 180 ? '…' : ''}</div>` : ''}
+      </div>
+      <a href="${item.url}" target="_blank" style="font-size:11px;color:#990F3D;white-space:nowrap;text-decoration:none;flex-shrink:0;margin-top:2px;">Open →</a>
+    </div>
+  `).join('');
 }
 
 async function runPipelineNow() {
@@ -1707,6 +1770,9 @@ document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') {
     if (document.getElementById('rejectionModal')?.classList.contains('visible')) {
       closeRejectionModal(); return;
+    }
+    if (document.getElementById('blockedModal')?.classList.contains('visible')) {
+      closeBlockedModal(); return;
     }
     if (document.getElementById('logOverlay')?.classList.contains('visible')) {
       closeLog(); return;

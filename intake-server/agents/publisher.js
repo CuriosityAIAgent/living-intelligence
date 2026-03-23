@@ -61,8 +61,11 @@ export function publish({ entry, candidatePubDate, send }) {
   // Date validation — throws if entry is too old, fixes divergence issues
   validateAndFixDate(entry, candidatePubDate);
 
-  // Stamp when this entry entered the portal (drives feed sort order)
-  entry.published_at = new Date().toISOString();
+  // Use the article's original date for published_at so it appears at the correct
+  // point in the feed. Approval timestamp is captured in _governance.approved_at.
+  entry.published_at = entry.date
+    ? new Date(entry.date).toISOString()
+    : new Date().toISOString();
 
   const { _governance, ...publicFields } = entry;
   const entryToWrite = {
