@@ -1,7 +1,7 @@
 {
   "id": "dbs-worlds-best-ai-bank",
   "type": "milestone",
-  "headline": "DBS named World's Best AI Bank — 1,500 AI models in production",
+  "headline": "DBS named World's Best AI Bank \u2014 1,500 AI models in production",
   "company": "dbs",
   "company_name": "DBS Bank",
   "date": "2026-01-15",
@@ -9,7 +9,7 @@
   "source_url": "https://www.dbs.com/newsroom/DBS_named_Worlds_Best_AI_Bank_2025",
   "source_verified": false,
   "image_url": "/logos/dbs.svg",
-  "summary": "DBS Bank has been named the World's Best AI Bank by Global Finance Magazine for the third consecutive year, with over 1,500 AI models running in production across the bank. DBS has embedded AI across every business unit — from treasury risk management to retail banking chatbots. The bank attributes $1 billion in annualized value to its AI program. DBS's AI governance framework, including model validation and ethical AI standards, is now being studied by regulators across Asia as a template for responsible AI deployment in banking.",
+  "summary": "DBS Bank has been named the World's Best AI Bank by Global Finance Magazine for the third consecutive year, with over 1,500 AI models running in production across the bank. DBS has embedded AI across every business unit \u2014 from treasury risk management to retail banking chatbots. The bank attributes $1 billion in annualized value to its AI program. DBS's AI governance framework, including model validation and ethical AI standards, is now being studied by regulators across Asia as a template for responsible AI deployment in banking.",
   "key_stat": {
     "number": "1,500+",
     "label": "AI models in production at DBS"
@@ -41,5 +41,5 @@
     "approved_at": null,
     "backfill": true
   },
-  "published_at": "2026-03-12T17:58:27.787Z"
+  "published_at": "2026-01-15T00:00:00.000Z"
 }

@@ -9,7 +9,7 @@
   "source_url": "https://www.businesswire.com/news/home/20251118149396/en/Altruist-Debuts-Industry-First-Custodial-Integration-for-its-Transformative-AI-Platform-Hazel-Bringing-Real-Time-Account-Data-Into-Every-Advisor-Conversation",
   "source_verified": true,
   "image_url": "/logos/altruist.svg",
-  "summary": "Altruist has integrated real-time custodial data — including account, beneficiary, household, holdings, and balance information — into Hazel, its AI platform for independent RIAs, marking what it claims is an industry first. Hazel can now perform household-level concentration analysis, surface asset-class or sector exposure, and run beneficiary summaries in seconds using live custodial records. The platform also unifies CRM, email, and meeting notes alongside this custodial data. Altruist CEO Jason Wenk stated plans to extend Hazel with additional custodian integrations and the ability to initiate actions directly on Altruist from within Hazel. Hazel is available as a standalone platform with a free trial and is designed to serve advisors regardless of where they custody assets.",
+  "summary": "Altruist has integrated real-time custodial data \u2014 including account, beneficiary, household, holdings, and balance information \u2014 into Hazel, its AI platform for independent RIAs, marking what it claims is an industry first. Hazel can now perform household-level concentration analysis, surface asset-class or sector exposure, and run beneficiary summaries in seconds using live custodial records. The platform also unifies CRM, email, and meeting notes alongside this custodial data. Altruist CEO Jason Wenk stated plans to extend Hazel with additional custodian integrations and the ability to initiate actions directly on Altruist from within Hazel. Hazel is available as a standalone platform with a free trial and is designed to serve advisors regardless of where they custody assets.",
   "key_stat": null,
   "tags": {
     "capability": "advisor_productivity",
@@ -43,7 +43,7 @@
     ],
     "unverified_claims": [],
     "fabricated_claims": [],
-    "notes": "Claims about 1,000+ users and September 2025 launch were not present in the final summary — entry content is clean and sourced only from the Business Wire article. All retained claims are verified.",
+    "notes": "Claims about 1,000+ users and September 2025 launch were not present in the final summary \u2014 entry content is clean and sourced only from the Business Wire article. All retained claims are verified.",
     "paywall_caveat": false,
     "verified_at": "2026-03-11T05:34:51.956Z",
     "human_approved": false,
@@ -52,9 +52,9 @@
   },
   "additional_sources": [
     {
-      "name": "Altruist — Hazel custodial integration announcement",
+      "name": "Altruist \u2014 Hazel custodial integration announcement",
       "url": "https://altruist.com/news/altruist-debuts-industry-first-custodial-integration/"
     }
   ],
-  "published_at": "2026-03-19T12:54:21.727Z"
+  "published_at": "2025-11-18T00:00:00.000Z"
 }

@@ -1,7 +1,7 @@
 {
   "id": "robinhood-cortex-launch",
   "type": "product_launch",
-  "headline": "Robinhood launches Cortex AI — real-time market analysis and trade rationale for retail investors",
+  "headline": "Robinhood launches Cortex AI \u2014 real-time market analysis and trade rationale for retail investors",
   "company": "robinhood",
   "company_name": "Robinhood",
   "date": "2026-02-12",
@@ -41,5 +41,5 @@
     "approved_at": null,
     "backfill": true
   },
-  "published_at": "2026-03-19T16:22:35.511Z"
+  "published_at": "2026-02-12T00:00:00.000Z"
 }

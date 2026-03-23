@@ -8,7 +8,6 @@
   "source_name": "PR Newswire",
   "source_url": "https://www.prnewswire.com/news-releases/arta-announces-expansion-of-arta-ai-aiming-to-empower-every-financial-advisor-and-wealth-manager-with-an-ai-sidekick-onboards-new-institutional-customers-302605798.html",
   "source_verified": false,
-  "image_url": "/logos/arta-finance.svg",
   "summary": "Arta Finance announced the expansion of Arta AI, positioning it as an AI Sidekick designed to empower financial advisors and wealth managers. The company also disclosed it has onboarded new institutional customers as part of this expansion. The announcement signals Arta's strategic push to extend its AI capabilities beyond individual investors toward serving the broader wealth management and financial advisory market.",
   "key_stat": null,
   "tags": {
@@ -33,7 +32,7 @@
       "The company disclosed it has onboarded new institutional customers as part of this expansion"
     ],
     "unverified_claims": [
-      "The announcement signals Arta's strategic push to extend its AI capabilities beyond individual investors toward serving the broader wealth management and financial advisory market — this strategic framing/interpretation is not explicitly stated in the visible source content"
+      "The announcement signals Arta's strategic push to extend its AI capabilities beyond individual investors toward serving the broader wealth management and financial advisory market \u2014 this strategic framing/interpretation is not explicitly stated in the visible source content"
     ],
     "fabricated_claims": [],
     "notes": "The headline and core claims in the generated entry are directly supported by the PR Newswire headline visible in the source article. However, the source content is heavily truncated (navigation menus and boilerplate dominate; the actual press release body is cut off). The interpretive claim about extending capabilities 'beyond individual investors' cannot be verified from the available source text. The paywall/truncation caveat applies, warranting a REVIEW rather than PASS.",
@@ -43,5 +42,5 @@
     "approved_at": null,
     "backfill": true
   },
-  "published_at": "2026-03-12T17:58:27.782Z"
+  "published_at": "2025-11-05T00:00:00.000Z"
 }
