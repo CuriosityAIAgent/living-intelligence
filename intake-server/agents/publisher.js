@@ -116,6 +116,89 @@ export function publish({ entry, candidatePubDate, send }) {
   return entryToWrite.id;
 }
 
+// ── commitInboxState ──────────────────────────────────────────────────────────
+// Commits .governance-pending.json + .governance-blocked.json + .pipeline-status.json
+// to the dev branch so the inbox survives Railway redeployments.
+// Non-fatal — a failure here does not affect the pipeline result.
+export function commitInboxState() {
+  const gitToken = process.env.GIT_TOKEN;
+  const repo     = process.env.GITHUB_REPO || 'CuriosityAIAgent/living-intelligence';
+  const branch   = 'dev';
+
+  const defaultPortalDir  = join(__dirname, '..', '..');
+  const portalDir         = process.env.PORTAL_DIR || defaultPortalDir;
+  const hasGitRepo        = existsSync(join(portalDir, '.git'));
+
+  // Relative paths (for git commands run with -C portalDir)
+  const STATE_FILES_REL = [
+    'data/.governance-pending.json',
+    'data/.governance-blocked.json',
+    'data/.pipeline-status.json',
+  ];
+
+  function _commit(repoDir) {
+    execSync(`git config --global --add safe.directory "${repoDir}"`, { stdio: 'pipe' });
+    execSync(`git -C "${repoDir}" config user.email "intake-bot@portal.ai"`, { stdio: 'pipe' });
+    execSync(`git -C "${repoDir}" config user.name "AI Portal Intake"`, { stdio: 'pipe' });
+
+    const existing = STATE_FILES_REL.filter(f => existsSync(join(repoDir, f)));
+    if (!existing.length) return false;
+
+    execSync(`git -C "${repoDir}" add ${existing.map(f => `"${f}"`).join(' ')}`, { stdio: 'pipe' });
+
+    // Exit if nothing staged
+    try { execSync(`git -C "${repoDir}" diff --cached --quiet`, { stdio: 'pipe' }); return false; }
+    catch (_) { /* changes present — proceed */ }
+
+    execSync(
+      `git -C "${repoDir}" commit -m "Update inbox state after pipeline run"`,
+      { stdio: 'pipe' }
+    );
+    execSync(`git -C "${repoDir}" push origin ${branch}`, { stdio: 'pipe' });
+    return true;
+  }
+
+  if (hasGitRepo) {
+    try {
+      if (gitToken) {
+        execSync(
+          `git -C "${portalDir}" remote set-url origin "https://${gitToken}@github.com/${repo}.git"`,
+          { stdio: 'pipe' }
+        );
+      }
+      const pushed = _commit(portalDir);
+      if (pushed) console.log('[publisher] Inbox state committed to git (dev)');
+    } catch (err) {
+      console.warn('[publisher] commitInboxState failed (non-fatal):', err.message);
+    }
+    return;
+  }
+
+  // Railway mode: no local .git — clone dev, copy state files, commit, push
+  if (!gitToken) {
+    console.warn('[publisher] commitInboxState: GIT_TOKEN not set, skipping');
+    return;
+  }
+
+  const tempDir = join(tmpdir(), `inbox-state-${Date.now()}`);
+  try {
+    execSync(`git clone --depth=1 -b ${branch} "https://${gitToken}@github.com/${repo}.git" "${tempDir}"`, { stdio: 'pipe' });
+
+    for (const f of STATE_FILES_REL) {
+      const src = join(portalDir, f);
+      const dst = join(tempDir, f);
+      if (existsSync(src)) copyFileSync(src, dst);
+    }
+
+    const pushed = _commit(tempDir);
+    if (pushed) console.log('[publisher] Inbox state committed to git (dev) via Railway clone');
+  } catch (err) {
+    console.warn('[publisher] commitInboxState Railway mode failed (non-fatal):', err.message);
+  } finally {
+    try { execSync(`rm -rf "${tempDir}"`, { stdio: 'pipe' }); } catch (_) {}
+  }
+}
+
 export function commitAndPush({ ids, send, branch = 'dev' }) {
   const gitToken = process.env.GIT_TOKEN;
   const repo    = process.env.GITHUB_REPO || 'CuriosityAIAgent/living-intelligence';

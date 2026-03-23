@@ -20,6 +20,7 @@ import { processUrl } from './intake.js';
 import { verify } from './governance.js';
 import { scoreEntry, formatScoreBreakdown } from './scorer.js';
 import { addPending, addBlocked, isBlocked, writePipelineStatus } from './gov-store.js';
+import { commitInboxState } from './publisher.js';
 import { sendDigest } from './notifier.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -303,6 +304,9 @@ export async function runDailyPipeline() {
     tl_items:          tlCandidates.slice(0, 15),
     blocked_items:     blocked,
   });
+
+  // ── 3b. Persist inbox state to git so it survives Railway redeployments ───
+  commitInboxState();
 
   // ── 4. Send daily digest ───────────────────────────────────────────────────
   const results = { published, pending, blocked, errors, newCompanies, tlCandidates };
