@@ -10,63 +10,66 @@
     "latam"
   ],
   "color": "#003087",
-  "ai_strategy_summary": "J.P. Morgan's AI strategy in wealth management and private banking centres on the Coach AI ecosystem — compressing advisor prep time, surfacing real-time client intelligence, and enabling each advisor to serve 50% more clients over time. Coach AI (Wealth Management) and Connect Coach (Private Bank) are broadly deployed across ~9,600 advisors and have driven a 20% year-over-year gross sales increase — the clearest documented AI-to-revenue link of any wealth manager tracked.",
+  "ai_strategy_summary": "JPMorgan's AI strategy in wealth management and private banking centres on three live deployments: Connect Coach for advisors (90% faster sourcing of discussion materials), Smart Monitor for investors (83% less research time), and Guidelines for operations (+50% productivity). AI tools are cited as a key driver of 20% gross sales growth in 2023–2024. Harvard Business School concluded JPMorgan is 'playing an entirely different game.'",
   "head_of_ai": {
-    "name": "Wealth Management Division Leadership",
-    "title": "No dedicated WM AI head publicly named"
+    "name": "Mike Urciuoli",
+    "title": "CIO, JPMorgan Asset & Wealth Management"
   },
-  "headline_metric": "~$6T+ client assets, 20% YoY gross sales growth — Coach AI cited as key driver at 2025 Investor Day",
-  "primary_source": "https://www.jpmorganchase.com/ir/investor-day",
-  "headline_initiative": "Coach AI (Wealth Management) + Connect Coach (Private Bank) — real-time client intelligence, next-best-action, and meeting prep via NLP, broadly deployed across ~9,600 WM and PB advisors",
+  "headline_metric": "$6T AWM client assets — Connect Coach 90% faster discussion sourcing, 20% gross sales growth YoY",
+  "primary_source": "https://www.jpmorganchase.com/content/dam/jpmc/jpmorgan-chase-and-co/investor-relations/documents/events/2025/jpmc-2025-investor-day/asset-wealth-management.pdf",
+  "headline_initiative": "Connect Coach (advisors, 90% faster), Smart Monitor (investors, 83% faster research), Guidelines (operations, +50% productivity) — three production AI platforms disclosed at 2025 Investor Day",
   "overall_maturity": "scaled",
   "key_metrics": {
-    "client_assets_trillions": 5.9,
-    "client_assets_note": "Year-end 2024; Q3 2025 reported $6.8T. Source: J.P. Morgan earnings.",
-    "advisors_total": 9600,
-    "advisors_note": "~9,600 total WM + PB advisors (confirmed). Sub-division breakdown not publicly disclosed."
+    "client_assets_trillions": 6.0,
+    "client_assets_note": "Year-end 2024, per 2025 Investor Day slide 3. AWM AUS split roughly equally between AM and GPB.",
+    "advisors_gpb": 3775,
+    "advisors_gpb_note": "GPB client advisors as of 2024, per Investor Day slide 3 — 1.6x growth since 2014.",
+    "advisors_cwm": 6000,
+    "advisors_cwm_note": "Chase Wealth Management advisors, per Investor Day slide 8.",
+    "advisors_hni_pb": 4000,
+    "advisors_hni_pb_note": "Advisers serving high-net-worth private bank clients, per Reuters/HBS case study (May 2025)."
   },
   "capabilities": {
     "advisor_productivity": {
       "maturity": "scaled",
-      "headline": "Coach AI / Connect Coach: 95% faster info retrieval, 20% YoY gross sales growth — broadly deployed across ~9,600 advisors",
-      "detail": "Coach AI (Wealth Management) and Connect Coach (Private Bank) deploy NLP to surface real-time client intelligence, next-best-action recommendations, and research digests before every client interaction. Broadly deployed across approximately 9,600 WM and PB advisors. Result: advisors retrieve client information 95% faster, and the Asset & Wealth Management division reported 20% year-over-year gross sales growth — with J.P. Morgan explicitly citing AI tools as a key contributor at its 2025 Investor Day.",
+      "headline": "Connect Coach: 90% faster sourcing of advisor discussion materials — tailored outreach, meeting prep, real-time insights (Investor Day slide 12)",
+      "detail": "Connect Coach — deployed for JPMorgan advisors — provides tailored outreach ideas, meeting prep and next steps, real-time market insights, and answers from internal experts. Disclosed at the 2025 Investor Day as delivering a 90% reduction in time to source discussion materials (before vs. today). JPMorgan CIO Mike Urciuoli separately stated advisors find information 'up to 95% faster' (Reuters, May 2025). The division cited AI tools as a key driver of 20% gross sales growth (2023–2024). Forward target: advisors expand client rosters by 50% over 3–5 years.",
       "evidence": [
-        "95% faster client information retrieval attributed to Coach AI (J.P. Morgan investor materials)",
-        "20% YoY gross sales growth, J.P. Morgan Asset & Wealth Management — AI tools cited as key driver (2025 Investor Day)",
-        "50% more clients per advisor capacity target over 3–5 years (J.P. Morgan 2025 Investor Day)",
-        "Coach AI broadly deployed across Wealth Management advisor network",
-        "Connect Coach: Private Bank equivalent, confirmed live (2024 launch)"
+        "Connect Coach: 90% reduction in time to source discussion materials — Investor Day slide 12 (verified from source)",
+        "Mike Urciuoli (CIO): advisors find information 'up to 95% faster' — Reuters, May 5, 2025 (verbatim quote)",
+        "20% YoY gross sales growth 2023–2024 — Reuters, attributed to JPMorgan; not in Investor Day deck",
+        "50% more clients per adviser target over 3–5 years — Reuters, May 5, 2025",
+        "4,000 advisers serving HNW private bank clients — Reuters/HBS case study context"
       ],
-      "date_assessed": "2026-03-18",
+      "date_assessed": "2026-03-23",
       "sources": [
         {
-          "name": "J.P. Morgan 2025 Investor Day — Asset & Wealth Management (PDF)",
+          "name": "JPMorgan 2025 Investor Day — Asset & Wealth Management (slide 12)",
           "url": "https://www.jpmorganchase.com/content/dam/jpmc/jpmorgan-chase-and-co/investor-relations/documents/events/2025/jpmc-2025-investor-day/asset-wealth-management.pdf"
         },
         {
-          "name": "J.P. Morgan Q4 2024 Earnings Release",
-          "url": "https://jpmorganchaseco.gcs-web.com/news-releases/news-release-details/jpmorganchase-reports-fourth-quarter-and-full-year-2024"
-        },
-        {
-          "name": "J.P. Morgan Investor Day portal",
-          "url": "https://www.jpmorganchase.com/ir/investor-day"
+          "name": "Reuters — JPMorgan says AI helped boost sales (Urciuoli/Erdoes quotes)",
+          "url": "https://www.reuters.com/business/finance/jpmorgan-says-ai-helped-boost-sales-add-clients-market-turmoil-2025-05-05/"
         }
       ]
     },
     "client_personalization": {
       "maturity": "deployed",
-      "headline": "Connect Coach surfaces real-time personalised recommendations at point of client interaction — all PB advisors",
-      "detail": "Connect Coach surfaces personalised investment recommendations, portfolio insights, and next-best-action prompts in real time during advisor-client interactions at J.P. Morgan Private Bank. The personalisation layer is embedded in the advisor workflow — not a separate app — and draws on live client holdings, risk profile, and relationship history. Deployed to all Private Bank advisors serving UHNW clients.",
+      "headline": "AI pre-populates real-time market data and client investment preferences — enabling tailored advice at scale during volatility",
+      "detail": "JPMorgan AWM CEO Mary Erdoes described the personalisation capability during spring 2025 market volatility: 'When you have a tool that pre-populates all the data and the movement in real time, while also remembering clients' old investment preferences and helps in tailoring a plan for them quickly, it also allows advisors to do much more.' Connect Coach (Investor Day slide 12) explicitly lists 'tailored outreach ideas' as a core feature, and 'proactive and anticipatory client advice' was added as a NEW AI use case for 2025.",
       "evidence": [
-        "Connect Coach: real-time personalised recommendations to all Private Bank advisors",
-        "Personalisation layer integrated into coach workflow, not a standalone tool",
-        "Draws on live client holdings, risk profile, and relationship history",
-        "Coach AI equivalent capabilities rolled out across WM advisor network"
+        "Mary Erdoes (CEO, AWM): AI pre-populates market movement data + client investment preferences in real time — Reuters, May 5, 2025 (verbatim quote)",
+        "Connect Coach feature: 'tailored outreach ideas' — Investor Day slide 12",
+        "'Proactive and anticipatory client advice' listed as NEW 2025 AI use case — Investor Day slide 12"
       ],
-      "date_assessed": "2026-03-18",
+      "date_assessed": "2026-03-23",
       "sources": [
         {
-          "name": "J.P. Morgan 2025 Investor Day — Asset & Wealth Management",
+          "name": "Reuters — JPMorgan says AI helped boost sales (Erdoes quote)",
+          "url": "https://www.reuters.com/business/finance/jpmorgan-says-ai-helped-boost-sales-add-clients-market-turmoil-2025-05-05/"
+        },
+        {
+          "name": "JPMorgan 2025 Investor Day — Asset & Wealth Management (slide 12)",
           "url": "https://www.jpmorganchase.com/content/dam/jpmc/jpmorgan-chase-and-co/investor-relations/documents/events/2025/jpmc-2025-investor-day/asset-wealth-management.pdf"
         }
       ]
@@ -90,18 +93,17 @@
     },
     "research_content": {
       "maturity": "deployed",
-      "headline": "WM advisors use AI tools for research summarisation, market commentary, and client report generation",
-      "detail": "J.P. Morgan wealth management advisors have access to AI tools (including the firm's internal LLM-based suite) for research summarisation, market commentary drafting, and client-facing report generation. These tools reduce the time advisors spend on content production, freeing capacity for client-facing work. The WM-specific rollout builds on the firm's broader internal AI tooling but is scoped to advisor workflows.",
+      "headline": "Smart Monitor (Spectrum) cuts investor research time by 83% — AI workflow, automated insights, custom universes",
+      "detail": "Smart Monitor — built on JPMorgan's Spectrum platform — is deployed for investors and portfolio teams. It provides AI-integrated workflow, automated insights, custom investment universes, and extensive market coverage. The 2025 Investor Day disclosed an 83% reduction in time spent researching a topic (before vs. today). The tool sits alongside Connect Coach (advisors) and Guidelines (operations) as one of three production AI platforms confirmed at Investor Day.",
       "evidence": [
-        "AI research summarisation tools available to WM advisors",
-        "Market commentary and client report generation via AI tooling",
-        "Integrated into Coach AI advisor workflow",
-        "Reduces advisor content production time, increasing client-facing capacity"
+        "Smart Monitor (Spectrum): 83% reduction in time spent researching a topic — Investor Day slide 12 (verified from source PDF)",
+        "Features: AI-integrated workflow, automated insights, custom universes, extensive coverage — Investor Day slide 12",
+        "Deployed for investors/portfolio teams alongside Connect Coach and Guidelines"
       ],
-      "date_assessed": "2026-03-18",
+      "date_assessed": "2026-03-23",
       "sources": [
         {
-          "name": "J.P. Morgan 2025 Investor Day — Asset & Wealth Management (PDF)",
+          "name": "JPMorgan 2025 Investor Day — Asset & Wealth Management (slide 12)",
           "url": "https://www.jpmorganchase.com/content/dam/jpmc/jpmorgan-chase-and-co/investor-relations/documents/events/2025/jpmc-2025-investor-day/asset-wealth-management.pdf"
         }
       ]
