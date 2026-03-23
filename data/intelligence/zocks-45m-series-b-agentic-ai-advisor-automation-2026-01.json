@@ -1,0 +1,66 @@
+{
+  "id": "zocks-45m-series-b-agentic-ai-advisor-automation-2026-01",
+  "type": "funding",
+  "headline": "Zocks Deploys Agentic AI Across 5,000 Firms, Saving Advisors 10+ Hours Weekly as It Scales to Growth Engine",
+  "the_so_what": "With agentic AI now capable of querying an entire book of business for untapped planning opportunities and triggering next-best actions in one click — deployed at scale across 5,000 firms including Osaic and Carson Group — wealth management CXOs who have not yet moved beyond point-solution AI tools risk ceding both advisor productivity and organic growth capacity to competitors who have.",
+  "company": "zocks",
+  "company_name": "Zocks",
+  "date": "2026-01-26",
+  "source_name": "Business Wire",
+  "source_url": "https://www.businesswire.com/news/home/20260126549388/en/Zocks-Raises-$45M-Series-B-to-Accelerate-AI-Powered-Automation-for-Financial-Advisors",
+  "source_verified": true,
+  "image_url": "https://unavatar.io/zocks.io",
+  "summary": "Zocks has deployed an agentic AI platform across more than 5,000 financial advisory firms — including Ameritas, Carson Group, Kestra Financial, and Osaic — that converts advisor-client conversations into structured data and syncs it bidirectionally with CRM, financial planning, tax, and portfolio management systems, saving advisors 10+ hours per week on administrative tasks. Beyond workflow automation, the platform now enables advisors to query their full book of business for planning gaps — such as clients missing college savings plans or approaching RMD age — and execute suggested next-best actions in a single click. The $45M Series B, co-led by Lightspeed Venture Partners and QED Investors, brings total funding to $65M and will be used to expand agentic capabilities, enterprise integrations, security, and compliance features. The round follows a $13.8M Series A closed in March 2025, reflecting rapid commercial velocity from seed stage in 2024.",
+  "key_stat": {
+    "number": "5,000+",
+    "label": "financial firms currently using Zocks to automate advisor workflows and generate client intelligence"
+  },
+  "capability_evidence": {
+    "capability": "advisor_productivity",
+    "stage": "deployed",
+    "evidence": "Zocks is live across 5,000+ financial firms, with two-way integrations across CRM, financial planning, tax, and portfolio management tools automating workflows including client onboarding, account openings, meeting prep, follow-ups, and document processing.",
+    "metric": "10+ hours saved per advisor per week"
+  },
+  "tags": {
+    "capability": "advisor_productivity",
+    "region": "us",
+    "segment": "ria_independent",
+    "theme": [
+      "agentic_ai",
+      "workflow_automation",
+      "book_of_business_intelligence",
+      "organic_growth"
+    ]
+  },
+  "week": "2026-03-23",
+  "featured": false,
+  "published_at": "2026-01-26T00:00:00.000Z",
+  "_governance": {
+    "verdict": "PASS",
+    "confidence": 92,
+    "verified_claims": [
+      "Zocks has deployed an agentic AI platform across more than 5,000 financial advisory firms",
+      "Enterprise customers include Ameritas, Carson Group, Kestra Financial, and Osaic",
+      "The platform converts advisor-client conversations into structured data",
+      "The platform syncs bidirectionally with CRM, financial planning, tax, and portfolio management systems",
+      "Saves advisors 10+ hours per week on administrative tasks",
+      "The platform enables advisors to query their full book of business for planning gaps such as clients missing college savings plans or approaching RMD age",
+      "Advisors can execute suggested next-best actions in a single click",
+      "The $45M Series B was co-led by Lightspeed Venture Partners and QED Investors",
+      "Total funding brings to $65M",
+      "Funding will be used to expand agentic capabilities, enterprise integrations, security, and compliance features",
+      "The round follows a $13.8M Series A closed in March 2025",
+      "The platform automates complex advisor workflows like client onboarding, account openings, meeting preparation and follow-ups, document processing"
+    ],
+    "unverified_claims": [
+      "The description of the platform 'scaling to growth engine' — while implied by the source subtitle mentioning 'efficiency tool to business growth engine', the generated entry frames this as already achieved rather than a stated goal",
+      "The claim about 'clients with old 401(k)s held outside management' as a query example — this is mentioned in the source article but was cut off; it is present in the visible source text",
+      "The characterization of the seed stage being in '2024' — the source does not explicitly mention when the seed stage occurred"
+    ],
+    "notes": "Nearly all factual claims in the generated entry are directly supported by the source article. The claim about seed stage being in 2024 cannot be verified from the source. The framing of 'scaling to growth engine' is directionally consistent with the source subtitle. The source article appears to be truncated (ends mid-sentence), so there may be additional content not visible, but no claims appear to contradict available source content.",
+    "paywall_caveat": true,
+    "verified_at": "2026-03-23T17:26:45.217Z",
+    "human_approved": true,
+    "approved_at": "2026-03-23T17:27:24.630Z"
+  }
+}
