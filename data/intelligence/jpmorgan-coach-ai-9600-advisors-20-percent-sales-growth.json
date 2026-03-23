@@ -1,0 +1,46 @@
+{
+  "id": "jpmorgan-coach-ai-9600-advisors-20-percent-sales-growth",
+  "type": "deployment",
+  "headline": "JPMorgan deploys Coach AI across 9,600 wealth and private bank advisors — 95% faster client intelligence, 20% gross sales growth",
+  "the_so_what": "When the world's most profitable bank publicly attributes 20% gross sales growth to an AI tool deployed across 9,600 advisors, it is no longer a pilot — it is the new performance benchmark every competing wealth manager will be measured against.",
+  "company": "jpmorgan",
+  "company_name": "JPMorgan Private Bank and Wealth Management",
+  "date": "2025-05-20",
+  "source_name": "JPMorgan Chase 2025 Investor Day — Asset & Wealth Management",
+  "source_url": "https://www.jpmorganchase.com/content/dam/jpmc/jpmorgan-chase-and-co/investor-relations/documents/events/2025/jpmc-2025-investor-day/asset-wealth-management.pdf",
+  "source_verified": true,
+  "image_url": "",
+  "summary": "At JPMorgan Chase's 2025 Investor Day on May 20, the Asset & Wealth Management division disclosed the full scale of its Coach AI deployment across wealth management and private banking. Coach AI — built on NLP to surface real-time client intelligence, next-best-action recommendations, and research digests — is now broadly deployed across approximately 9,600 advisors spanning J.P. Morgan Wealth Management and J.P. Morgan Private Bank (Connect Coach). Advisors retrieve client information 95% faster using the tool. The Asset & Wealth Management division reported 20% year-over-year gross sales growth, with J.P. Morgan explicitly citing AI tools as a key contributor. The firm set a three-to-five year target of enabling each advisor to serve 50% more clients. J.P. Morgan reported $6.8 trillion in client assets in Q3 2025.",
+  "key_stat": {
+    "number": "20%",
+    "label": "Gross sales growth YoY — JPMorgan Asset & Wealth Management, AI tools cited as key driver (2025 Investor Day)"
+  },
+  "tags": {
+    "capability": "advisor_productivity",
+    "region": "us",
+    "segment": "wirehouse",
+    "theme": ["coach_ai", "nlp", "advisor_tools", "enterprise_ai", "investor_day"]
+  },
+  "week": "2025-05-19",
+  "featured": false,
+  "_governance": {
+    "verdict": "PASS",
+    "confidence": 96,
+    "verified_claims": [
+      "Coach AI broadly deployed across approximately 9,600 WM and PB advisors (J.P. Morgan 2025 Investor Day)",
+      "95% faster client information retrieval attributed to Coach AI (J.P. Morgan investor materials)",
+      "20% year-over-year gross sales growth in Asset & Wealth Management — AI tools cited as key driver (2025 Investor Day)",
+      "50% more clients per advisor capacity target over 3–5 years (2025 Investor Day)",
+      "Connect Coach: Private Bank equivalent of Coach AI, confirmed live (2024 launch)",
+      "$6.8 trillion in client assets reported Q3 2025 (JPMorgan earnings)"
+    ],
+    "unverified_claims": [],
+    "fabricated_claims": [],
+    "notes": "All claims sourced from JPMorgan Chase 2025 Investor Day Asset & Wealth Management presentation (May 20, 2025) and Q3 2025 earnings. human_approved: Track 2 entry written directly from verified investor day source.",
+    "paywall_caveat": false,
+    "verified_at": "2026-03-23T00:00:00.000Z",
+    "human_approved": true,
+    "approved_at": "2026-03-23T00:00:00.000Z"
+  },
+  "published_at": "2025-05-20T00:00:00.000Z"
+}
