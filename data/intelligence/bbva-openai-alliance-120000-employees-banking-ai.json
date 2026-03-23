@@ -1,25 +1,30 @@
 {
   "id": "bbva-openai-alliance-120000-employees-banking-ai",
   "type": "partnership",
-  "headline": "BBVA seals strategic alliance with OpenAI to deploy ChatGPT Enterprise to 120,000 employees — one of the largest corporate AI rollouts globally",
-  "the_so_what": "With 80% daily active usage and 3 hours saved per employee per week in the pilot, BBVA has the clearest published ROI data on enterprise AI in banking — making it the benchmark every other institution's board is being asked about.",
+  "headline": "BBVA seals strategic alliance with OpenAI to deploy ChatGPT Enterprise to 120,000 employees \u2014 one of the largest corporate AI rollouts globally",
+  "the_so_what": "With 80% daily active usage and 3 hours saved per employee per week in the pilot, BBVA has the clearest published ROI data on enterprise AI in banking \u2014 making it the benchmark every other institution's board is being asked about.",
   "company": "bbva",
   "company_name": "BBVA",
   "date": "2025-12-12",
   "source_name": "BBVA Newsroom",
   "source_url": "https://www.bbva.com/en/innovation/bbva-and-openai-seal-a-strategic-alliance-to-redefine-banking-with-artificial-intelligence/",
   "source_verified": true,
-  "image_url": "",
-  "summary": "BBVA and OpenAI signed a strategic alliance on December 11, 2025 to deploy ChatGPT Enterprise to all 120,000 BBVA employees across 25 countries — described as one of the largest corporate AI deployments globally. The alliance follows nearly two years of joint development and a pilot with 11,000 employees, during which 80% accessed the assistant daily and saved an average of 3 hours per week on routine tasks. Use cases span customer support, personalised relationship management, risk analysis, software development, and an AI 'alter ego' employee assistant. BBVA Chairman Carlos Torres Vila and OpenAI CEO Sam Altman signed the agreement at OpenAI's San Francisco headquarters.",
+  "image_url": "/logos/bbva.svg",
+  "summary": "BBVA and OpenAI signed a strategic alliance on December 11, 2025 to deploy ChatGPT Enterprise to all 120,000 BBVA employees across 25 countries \u2014 described as one of the largest corporate AI deployments globally. The alliance follows nearly two years of joint development and a pilot with 11,000 employees, during which 80% accessed the assistant daily and saved an average of 3 hours per week on routine tasks. Use cases span customer support, personalised relationship management, risk analysis, software development, and an AI 'alter ego' employee assistant. BBVA Chairman Carlos Torres Vila and OpenAI CEO Sam Altman signed the agreement at OpenAI's San Francisco headquarters.",
   "key_stat": {
     "number": "3 hrs/week",
-    "label": "Saved per employee on routine tasks — BBVA pilot with 11,000 staff before full 120,000 rollout"
+    "label": "Saved per employee on routine tasks \u2014 BBVA pilot with 11,000 staff before full 120,000 rollout"
   },
   "tags": {
     "capability": "advisor_productivity",
     "region": "emea",
     "segment": "regional_champion",
-    "theme": ["openai", "enterprise_ai", "chatgpt_enterprise", "partnership"]
+    "theme": [
+      "openai",
+      "enterprise_ai",
+      "chatgpt_enterprise",
+      "partnership"
+    ]
   },
   "week": "2025-12-08",
   "featured": false,
