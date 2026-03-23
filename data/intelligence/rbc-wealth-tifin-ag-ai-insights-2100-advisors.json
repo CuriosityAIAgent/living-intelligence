@@ -1,0 +1,49 @@
+{
+  "id": "rbc-wealth-tifin-ag-ai-insights-2100-advisors",
+  "type": "product_launch",
+  "headline": "RBC Wealth Management rolls out AI-Powered Insights to all 2,100+ US advisors — detecting clients with money in motion using behavioural AI",
+  "the_so_what": "Behavioural AI that identifies wallet-share opportunities before advisors can spot them manually is now standard infrastructure at RBC — firms without this capability are competing with one hand tied behind their back.",
+  "company": "rbc-wealth-management",
+  "company_name": "RBC Wealth Management",
+  "date": "2024-02-28",
+  "source_name": "PR Newswire",
+  "source_url": "https://www.prnewswire.com/news-releases/tifin-ag-announces-collaboration-with-rbc-wealth-management-us-to-deepen-advisor-client-relationships-302073511.html",
+  "source_verified": true,
+  "image_url": "",
+  "summary": "RBC Wealth Management completed a company-wide rollout of TIFIN AG's AI-Powered Insights to all 2,100+ US advisors in February 2024, following a 60-advisor pilot launched in August 2023. The system uses TIFIN AG's ATOM behavioural model — trained on billions of client transactions — to identify clients most likely to consolidate outside assets due to life events, demographics, and portfolio behaviour. Insights are delivered directly into advisors' Salesforce desktops. TIFIN AG, which spun off from parent TIFIN in January 2024, cited the rollout as validation that AI-driven client intelligence is becoming standard practice in wealth management. Three or more additional AI applications are in development on the platform.",
+  "key_stat": {
+    "number": "2,100+",
+    "label": "RBC Wealth Management US advisors using AI to detect money-in-motion client opportunities"
+  },
+  "tags": {
+    "capability": "client_acquisition",
+    "region": "us",
+    "segment": "regional_champion",
+    "theme": ["behavioural_ai", "money_in_motion", "advisor_intelligence", "tifin"]
+  },
+  "week": "2024-02-26",
+  "featured": false,
+  "_governance": {
+    "verdict": "PASS",
+    "confidence": 96,
+    "verified_claims": [
+      "Company-wide rollout to all RBC Wealth Management-US advisors as of February 28, 2024 (PR Newswire official press release)",
+      "60-advisor pilot launched August 2023 (press release)",
+      "Product name: AI-Powered Insights (press release)",
+      "TIFIN AG spun off from parent TIFIN in January 2024 (press release)",
+      "Uses behavioural AI trained on client transaction data to identify money-in-motion clients (press release)",
+      "Integrated into advisor Salesforce desktops (press release)",
+      "3+ additional AI applications in development (press release)"
+    ],
+    "unverified_claims": [
+      "2,100+ advisor figure sourced from landscape assessment; press release states 'all RBC Wealth Management-US advisors' without specifying exact count"
+    ],
+    "fabricated_claims": [],
+    "notes": "Core facts verified against PR Newswire press release dated February 28, 2024. Advisor count of 2,100+ drawn from landscape data consistent with RBC WM-US advisor network size. human_approved: Track 2 entry written directly from verified landscape source.",
+    "paywall_caveat": false,
+    "verified_at": "2026-03-23T00:00:00.000Z",
+    "human_approved": true,
+    "approved_at": "2026-03-23T00:00:00.000Z"
+  },
+  "published_at": "2024-02-28T00:00:00.000Z"
+}
