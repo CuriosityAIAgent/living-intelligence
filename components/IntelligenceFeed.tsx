@@ -30,6 +30,13 @@ const REGIONS = [
   { value: 'latam', label: 'LatAm' },
 ];
 
+const PERIODS = [
+  { value: 'all', label: 'All Time' },
+  { value: '90',  label: 'Last 90 Days' },
+  { value: '30',  label: 'Last 30 Days' },
+  { value: '7',   label: 'Last 7 Days' },
+];
+
 const CAPABILITIES = [
   { value: 'all', label: 'All Topics' },
   { value: 'advisor_productivity', label: 'Advisor Productivity' },
@@ -53,14 +60,22 @@ export default function IntelligenceFeed({ entries, leadStoryId }: {
 }) {
   const [region, setRegion] = useState('all');
   const [capability, setCapability] = useState('all');
+  const [period, setPeriod] = useState('all');
 
   const leadStory = entries.find(e => e.id === leadStoryId) || entries[0];
 
+  const periodCutoff = period !== 'all' ? (() => {
+    const d = new Date();
+    d.setDate(d.getDate() - parseInt(period, 10));
+    return d.toISOString().split('T')[0];
+  })() : null;
+
   const filtered = entries.filter(e => {
-    if (e.id === leadStory?.id) return false; // lead story shown separately
+    if (e.id === leadStory?.id) return false;
     const regionMatch = region === 'all' || e.tags?.region === region;
     const capMatch = capability === 'all' || e.tags?.capability === capability;
-    return regionMatch && capMatch;
+    const periodMatch = !periodCutoff || e.date >= periodCutoff;
+    return regionMatch && capMatch && periodMatch;
   });
 
   return (
@@ -142,6 +157,7 @@ export default function IntelligenceFeed({ entries, leadStoryId }: {
             <p className="section-label">Intelligence Feed</p>
             <span className="text-[11px] text-gray-400">
               {filtered.length} {filtered.length === 1 ? 'story' : 'stories'}
+              {period !== 'all' && ` · ${PERIODS.find(p => p.value === period)?.label}`}
               {region !== 'all' && ` · ${REGIONS.find(r => r.value === region)?.label}`}
               {capability !== 'all' && ` · ${CAPABILITIES.find(c => c.value === capability)?.label}`}
             </span>
@@ -150,6 +166,24 @@ export default function IntelligenceFeed({ entries, leadStoryId }: {
         </div>
 
         <div className="flex flex-wrap gap-y-2 gap-x-4 items-center">
+          {/* Period filter */}
+          <div className="flex items-center gap-1.5 flex-wrap">
+            <span className="text-[10px] text-gray-400 font-semibold uppercase tracking-wider mr-1">Period</span>
+            {PERIODS.map(p => (
+              <button
+                key={p.value}
+                onClick={() => setPeriod(p.value)}
+                className={`text-[11px] px-2.5 py-1 border transition-colors font-medium rounded ${
+                  period === p.value
+                    ? 'bg-[#990F3D] text-white border-[#990F3D]'
+                    : 'bg-white text-gray-500 border-gray-200 hover:border-[#990F3D] hover:text-[#990F3D]'
+                }`}
+              >
+                {p.label}
+              </button>
+            ))}
+          </div>
+
           {/* Region filter */}
           <div className="flex items-center gap-1.5 flex-wrap">
             <span className="text-[10px] text-gray-400 font-semibold uppercase tracking-wider mr-1">Region</span>
