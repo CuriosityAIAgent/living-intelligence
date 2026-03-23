@@ -7,7 +7,7 @@ const dataDir = path.join(process.cwd(), 'data');
 
 export interface IntelligenceEntry {
   id: string;
-  type: 'funding' | 'acquisition' | 'regulatory' | 'partnership' | 'product_launch' | 'milestone' | 'strategy_move' | 'market_signal';
+  type: 'funding' | 'acquisition' | 'regulatory' | 'partnership' | 'product_launch' | 'milestone' | 'strategy_move' | 'market_signal' | 'deployment';
   headline: string;
   the_so_what?: string;
   company: string;
@@ -119,6 +119,10 @@ export function getAllIntelligence(): IntelligenceEntry[] {
     const bTime = new Date(b.published_at || b.date).getTime();
     return bTime - aTime;
   });
+}
+
+export function getIntelligenceByCompany(companyId: string): IntelligenceEntry[] {
+  return getAllIntelligence().filter(e => e.company === companyId);
 }
 
 export function getIntelligenceEntry(id: string): IntelligenceEntry | null {

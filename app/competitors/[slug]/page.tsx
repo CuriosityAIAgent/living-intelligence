@@ -1,4 +1,4 @@
-import { getCompetitor, getCapabilities, getAllCompetitors, SEGMENT_LABELS } from '@/lib/data';
+import { getCompetitor, getCapabilities, getAllCompetitors, getIntelligenceByCompany, SEGMENT_LABELS } from '@/lib/data';
 import Header from '@/components/Header';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
@@ -27,6 +27,7 @@ export default async function CompetitorPage({ params }: { params: Promise<{ slu
   const competitor = getCompetitor(slug);
   if (!competitor) notFound();
   const capabilities = getCapabilities();
+  const relatedIntelligence = getIntelligenceByCompany(slug);
 
   const capEntries = capabilities.map(cap => ({
     cap,
@@ -158,6 +159,52 @@ export default async function CompetitorPage({ params }: { params: Promise<{ slu
                 <span key={cap.id} className="text-xs text-gray-500 bg-white px-3 py-1 rounded border border-gray-200">
                   {cap.label}
                 </span>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Related Intelligence */}
+        {relatedIntelligence.length > 0 && (
+          <div className="mb-8">
+            <div className="flex items-baseline justify-between mb-4">
+              <div>
+                <p className="text-[11px] font-semibold uppercase tracking-widest text-[#990F3D] mb-1">Intelligence Feed</p>
+                <h2 className="text-base font-bold text-gray-900">Latest from {competitor.name}</h2>
+              </div>
+              <Link href={`/intelligence?company=${slug}`} className="text-xs text-[#990F3D] hover:underline">
+                View all →
+              </Link>
+            </div>
+            <div className="space-y-3">
+              {relatedIntelligence.map(entry => (
+                <Link key={entry.id} href={`/intelligence/${entry.id}`}
+                  className="block border border-gray-200 rounded p-4 hover:border-[#990F3D] hover:shadow-sm transition-all group">
+                  <div className="flex items-start justify-between gap-4">
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-2 mb-1.5">
+                        <span className="text-[10px] font-semibold uppercase tracking-wide text-gray-400 bg-gray-100 px-2 py-0.5 rounded">
+                          {entry.type.replace('_', ' ')}
+                        </span>
+                        <span className="text-[11px] text-gray-400">
+                          {new Date(entry.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+                        </span>
+                      </div>
+                      <h3 className="text-sm font-semibold text-gray-900 leading-snug group-hover:text-[#990F3D] transition-colors line-clamp-2">
+                        {entry.headline}
+                      </h3>
+                      {entry.the_so_what && (
+                        <p className="text-xs text-gray-500 mt-1.5 leading-relaxed line-clamp-2">{entry.the_so_what}</p>
+                      )}
+                    </div>
+                    {entry.key_stat && (
+                      <div className="text-right flex-shrink-0">
+                        <div className="text-lg font-extrabold text-[#990F3D] leading-none">{entry.key_stat.number}</div>
+                        <div className="text-[10px] text-gray-400 mt-0.5 max-w-[120px] leading-tight">{entry.key_stat.label.split('—')[0].trim()}</div>
+                      </div>
+                    )}
+                  </div>
+                </Link>
               ))}
             </div>
           </div>
