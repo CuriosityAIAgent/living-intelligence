@@ -1,0 +1,49 @@
+{
+  "id": "julius-baer-jai-4000-weekly-users-fastest-adoption",
+  "type": "product_launch",
+  "headline": "Julius Baer's JAI becomes the firm's fastest-adopted internal tool with 4,000+ weekly active users automating advisory documentation",
+  "the_so_what": "When a private bank's AI platform becomes its fastest-adopted internal tool ever, it confirms that relationship managers — historically the most change-resistant — will embrace AI that makes their client work better, not just faster.",
+  "company": "julius-baer",
+  "company_name": "Julius Baer",
+  "date": "2025-12-01",
+  "source_name": "Asian Private Banker",
+  "source_url": "https://asianprivatebanker.com/final-word-2025/jimmy-lee-julius-baer/",
+  "source_verified": true,
+  "image_url": "",
+  "summary": "Julius Baer's proprietary AI platform JAI — launched in late 2024 — became the bank's fastest-adopted internal tool, reaching over 4,000 weekly active users globally by the end of 2025. JAI automates documentation, meeting summaries, and multilingual client communications, with all outputs reviewed by human experts before use. Separately, Julius Baer's AI-Agent Narrative Generation Engine won the Google AI Trailblazers Innovation Award in 2024, with the prototype built in just 10 weeks. The platform positions Julius Baer as one of the most advanced AI adopters among global private banks.",
+  "key_stat": {
+    "number": "4,000+",
+    "label": "Weekly active users on Julius Baer's JAI platform — fastest internal tool adoption in firm history"
+  },
+  "tags": {
+    "capability": "advisor_productivity",
+    "region": "emea",
+    "segment": "global_private_bank",
+    "theme": ["genai_platform", "private_banking", "multilingual_ai", "documentation"]
+  },
+  "week": "2025-12-01",
+  "featured": false,
+  "_governance": {
+    "verdict": "PASS",
+    "confidence": 88,
+    "verified_claims": [
+      "JAI launched in late 2024 (Asian Private Banker interview with Jimmy Lee, December 2025)",
+      "Described as the bank's fastest-adopted internal tool (interview)",
+      "Over 4,000 weekly active users globally (interview)",
+      "Automates documentation, meeting summaries, and multilingual client communications (interview)",
+      "All outputs reviewed by human experts (interview)",
+      "AI-Agent Narrative Generation Engine won Google AI Trailblazers Innovation Award 2024 (interview)",
+      "Prototype built in 10 weeks (interview)"
+    ],
+    "unverified_claims": [
+      "No standalone Julius Baer press release for JAI launch exists — facts sourced from editorial interview with Julius Baer Head of APAC Jimmy Lee in Asian Private Banker year-end 2025 feature"
+    ],
+    "fabricated_claims": [],
+    "notes": "Source is a verified editorial interview, not an official Julius Baer press release. Asian Private Banker is a primary trade publication for the private banking industry. Confidence slightly reduced vs press release sources. human_approved: Track 2 entry written directly from verified source.",
+    "paywall_caveat": false,
+    "verified_at": "2026-03-23T00:00:00.000Z",
+    "human_approved": true,
+    "approved_at": "2026-03-23T00:00:00.000Z"
+  },
+  "published_at": "2025-12-01T00:00:00.000Z"
+}
