@@ -61,7 +61,25 @@ cd ../intake-server
 node --env-file=.env server.js   # localhost:3003
 ```
 
-**Git workflow:** all changes → `dev` branch. Merge `dev` → `main` to deploy (Railway auto-deploys on push to main).
+**Git workflow — branching strategy:**
+
+| Branch | Purpose | Railway deploys? |
+|--------|---------|-----------------|
+| `main` | Stable production — what subscribers and CXOs see | ✅ Portal auto-deploys on push |
+| `dev` | Active development — all code changes go here first | ✅ Intake server (`proud-reflection`) deploys from `dev` |
+| `feature/landing-page` | Public landing page `livingintel.ai` (`profound-wonder` service) | ✅ Separate Railway service |
+
+**Rules:**
+1. **Never push untested code directly to `main`** — it immediately redeploys the public portal
+2. **All code changes start on `dev`**: `git checkout dev` → develop → commit → push → test on Railway intake server
+3. **Merge to `main` only when tested**: `git checkout main && git merge dev && git push origin main`
+4. **Content publishing (approved stories)** always pushes to `main` directly — this is intentional, it triggers portal rebuild with new content
+5. **`feature/landing-page`** is independent — developed separately, merged to `main` when landing page is ready to go live
+
+**One-time Railway config needed (do in Railway dashboard):**
+- Portal service (`living-intelligence`): deploy from `main` ← already set
+- Intake server (`proud-reflection`): change to deploy from `dev` ← update this
+- Landing page (`profound-wonder`): deploy from `feature/landing-page` ← already set
 
 ---
 
