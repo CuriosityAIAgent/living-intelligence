@@ -7,6 +7,44 @@ See @docs/architecture.md for full system design and @docs/integrations.md for a
 
 ---
 
+## CONTENT STANDARDS — NON-NEGOTIABLE
+
+This is a **premium, CEO-facing platform**. Every number, every claim, every quote that appears on this site has been seen in boardrooms and senior leadership meetings. A single fabricated or unverified statistic destroys the credibility of the entire platform.
+
+### The Prime Directive
+
+**Never write a claim you have not personally read in the source during this session.**
+
+Not from memory. Not from a previous session. Not from the landscape competitor file. Not from another intelligence entry. Only from the actual source document, fetched and read right now.
+
+### Track 2 Entry Rules (direct JSON writes — no pipeline)
+
+Track 2 entries bypass governance.js and scorer.js entirely. That makes the human writing them the only check. These rules are therefore absolute:
+
+1. **WebFetch the source URL before writing a single claim.** If the URL is a PDF, fetch it. If it 404s, find the correct URL before proceeding. If it's paywalled, note it explicitly and find an open alternative. There are no exceptions.
+
+2. **Every item in `verified_claims` must include the exact location** — slide number, paragraph, section heading, or verbatim quote. "Investor Day PDF" is not acceptable. "Investor Day slide 12 — confirmed in source by Haresh" is acceptable.
+
+3. **`source_verified: true` only if the URL was fetched and read in this session.** If you cannot fetch the source, set `source_verified: false` and explain why in the governance notes.
+
+4. **`human_approved: true` only after Haresh has confirmed the key stat.** Read the headline number back to Haresh with the exact source quote before setting this field.
+
+5. **Never copy claims from `data/competitors/*.json` into an intelligence entry without first re-verifying them against the original source.** The competitor file may itself contain unverified claims from a previous session.
+
+6. **Never use a stat from a PDF you have not fetched in this session**, even if you believe it to be correct from prior knowledge.
+
+### What happens when a claim cannot be verified
+
+- Omit it entirely. A shorter, fully verified entry is always better than a longer entry with one fabricated number.
+- If a key stat is the only thing in doubt, write the entry without it and flag it to Haresh.
+- Do not round up, interpolate, or extrapolate from related figures. "~20%" when the source says "approximately 20%" is fine. "~20%" when the source says nothing is fabrication.
+
+### The cost of a miss
+
+A wrong number in a CEO presentation is not a typo. It is a trust failure that can end the platform's credibility. Every piece of content on this site should be something you would stand behind in a room full of senior executives who have read the primary source.
+
+---
+
 ## Documentation Maintenance — MANDATORY
 
 **Every time you change code, data, or configuration in this project, you MUST update all affected documentation before committing.** No exceptions. This is a CEO-facing product — stale docs cause mistakes in presentations and future sessions.
@@ -65,8 +103,8 @@ node --env-file=.env server.js   # localhost:3003
 
 | Branch | Purpose | Railway deploys? |
 |--------|---------|-----------------|
-| `main` | Stable production — what subscribers and CXOs see | ✅ Portal auto-deploys on push |
-| `dev` | Active development — all code changes go here first | ✅ Intake server (`proud-reflection`) deploys from `dev` |
+| `main` | Stable production — what subscribers and CXOs see | ✅ Portal (`living-intelligence` service) auto-deploys on push |
+| `intake` | Active development — all code changes go here first (renamed from `dev` 2026-03-23) | ✅ Intake server (`proud-reflection`) deploys from `intake` |
 | `feature/landing-page` | Public landing page `livingintel.ai` (`profound-wonder` service) | ✅ Separate Railway service |
 
 **Version tags (semantic versioning — major milestones only):**
@@ -92,14 +130,14 @@ git push origin main --force
 
 **Rules:**
 1. **Never push untested code directly to `main`** — it immediately redeploys the public portal
-2. **All code changes start on `dev`**: `git checkout dev` → develop → commit → push → test on Railway intake server
-3. **Merge to `main` only when tested**: `git checkout main && git merge dev && git push origin main`
+2. **All code changes start on `intake`**: `git checkout intake` → develop → commit → push → test on Railway intake server
+3. **Merge to `main` only when tested**: `git checkout main && git merge intake && git push origin main`
 4. **Content publishing (approved stories)** always pushes to `main` directly — this is intentional, it triggers portal rebuild with new content
 5. **`feature/landing-page`** is independent — developed separately, merged to `main` when landing page is ready to go live
 
 **Railway deployment config (all confirmed):**
 - Portal service (`living-intelligence`): deploys from `main` ✓
-- Intake server (`proud-reflection`): deploys from `dev` ✓
+- Intake server (`proud-reflection`): deploys from `intake` ✓
 - Landing page (`profound-wonder`): deploys from `feature/landing-page` ✓
 
 ---
@@ -129,7 +167,7 @@ git push origin main --force
 | Section label | `text-[11px] font-semibold uppercase tracking-widest text-[#990F3D]` |
 
 **Header structure (two-tier):**
-- Top tier (56px, `#1C1C2E`): wordmark "AI in Wealth Management" left; "Living Intelligence" + "AI of the Tiger" stacked top-right
+- Top tier (56px, `#1C1C2E`): wordmark "AI in Wealth Management" left; "LIVING INTELLIGENCE" bold right (15px, font-bold, uppercase, tracking-widest, white) — no subtitle
 - Bottom tier (40px, `#141420`): nav tabs left-flush (`pl-0 pr-6`) with `border-b-2` active underline
 
 ---
