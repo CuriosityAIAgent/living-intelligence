@@ -2,14 +2,14 @@
   "id": "jump-ai-operating-system-80m-series-b-27000-advisors",
   "type": "funding",
   "headline": "Jump's AI Operating System Reaches 27,000 Advisors as $80M Series B Signals Category Maturity",
-  "the_so_what": "With 27,000 advisors now running on a purpose-built AI operating system backed by institutional capital from Allianz and TIAA Ventures, wealth management firms that have not yet standardized an AI workflow layer risk ceding both advisor productivity and talent attraction to firms that have — the window to lead this transition rather than follow it is closing.",
+  "the_so_what": "With 27,000 advisors now running on a purpose-built AI operating system backed by institutional capital from Allianz and TIAA Ventures, wealth management firms that have not yet standardized an AI workflow layer risk ceding both advisor productivity and talent attraction to firms that have \u2014 the window to lead this transition rather than follow it is closing.",
   "company": "jump-ai",
   "company_name": "Jump",
   "date": "2026-02-19",
   "source_name": "Business Wire",
   "source_url": "https://www.businesswire.com/news/home/20260219487440/en/Jump-Raises-%2480-Million-Series-B-Led-by-Insight-Partners-to-Expand-AI-Operating-System-for-Financial-Advisors",
   "source_verified": true,
-  "summary": "Jump has built an AI operating system for financial advisors that has scaled to 27,000 users across financial advisory firms, growing from zero customers to that base in approximately two years while expanding its team from 3 to 200 employees — concrete evidence of rapid deployed adoption. The platform is positioned as an intelligence and action layer for advisory firms, targeting advisor productivity, insight generation, and organic growth. Jump closed an $80M Series B led by Insight Partners, with strategic participation from Allianz Life Ventures and TIAA Ventures — two institutional wealth and insurance players whose involvement signals validation beyond pure venture capital. The funding will be used to accelerate growth and further develop the platform's capabilities for modern advisory firms.",
+  "summary": "Jump has built an AI operating system for financial advisors that has scaled to 27,000 users across financial advisory firms, growing from zero customers to that base in approximately two years while expanding its team from 3 to 200 employees \u2014 concrete evidence of rapid deployed adoption. The platform is positioned as an intelligence and action layer for advisory firms, targeting advisor productivity, insight generation, and organic growth. Jump closed an $80M Series B led by Insight Partners, with strategic participation from Allianz Life Ventures and TIAA Ventures \u2014 two institutional wealth and insurance players whose involvement signals validation beyond pure venture capital. The funding will be used to accelerate growth and further develop the platform's capabilities for modern advisory firms.",
   "key_stat": {
     "number": "27,000",
     "label": "financial advisors actively using Jump's AI platform"
@@ -51,8 +51,8 @@
       "Jump is positioned as an intelligence and action layer for advisory firms"
     ],
     "unverified_claims": [
-      "The 27,000 users are described as 'actively using' the platform — the source says '27,000 customers' but does not specify 'actively using'",
-      "Allianz Life Ventures and TIAA Ventures are characterized as 'strategic' participants — the source lists them as 'new investors' but does not explicitly label them 'strategic' vs. financial investors",
+      "The 27,000 users are described as 'actively using' the platform \u2014 the source says '27,000 customers' but does not specify 'actively using'",
+      "Allianz Life Ventures and TIAA Ventures are characterized as 'strategic' participants \u2014 the source lists them as 'new investors' but does not explicitly label them 'strategic' vs. financial investors",
       "The generated entry omits F-Prime and Peterson Partners as participants in the round, which is not a fabrication but is an incomplete representation of the investor list",
       "The claim that the users are spread 'across financial advisory firms' is implied but not explicitly stated in the available source text"
     ],
@@ -61,5 +61,6 @@
     "verified_at": "2026-03-23T11:23:33.646Z",
     "human_approved": true,
     "approved_at": "2026-03-23T11:29:31.541Z"
-  }
+  },
+  "image_url": "/logos/jump.svg"
 }

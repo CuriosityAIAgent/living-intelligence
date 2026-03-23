@@ -42,5 +42,6 @@
     "approved_at": null,
     "backfill": true
   },
-  "published_at": "2025-11-05T00:00:00.000Z"
+  "published_at": "2025-11-05T00:00:00.000Z",
+  "image_url": "/logos/arta-ai.svg"
 }

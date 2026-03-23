@@ -2,24 +2,29 @@
   "id": "nevis-40m-sequoia-iconiq-ribbit-stealth-launch",
   "type": "funding",
   "headline": "Nevis emerges from stealth with $40M from Sequoia, ICONIQ and Ribbit to automate end-to-end advisor operations for RIAs managing $50B+",
-  "the_so_what": "Three of the most credible fintech investors backing the same thesis — that advisors spending 80% of their time on admin is a solvable problem — is the strongest possible signal that AI-powered operations automation in wealth management is about to accelerate.",
+  "the_so_what": "Three of the most credible fintech investors backing the same thesis \u2014 that advisors spending 80% of their time on admin is a solvable problem \u2014 is the strongest possible signal that AI-powered operations automation in wealth management is about to accelerate.",
   "company": "nevis",
   "company_name": "Nevis",
   "date": "2025-12-01",
   "source_name": "BusinessWire",
   "source_url": "https://www.businesswire.com/news/home/20251201734348/en/Nevis-Announces-$40M-From-Sequoia-Capital-ICONIQ-and-Ribbit-as-It-Emerges-From-Stealth-to-Build-AI-for-Wealth-Management",
   "source_verified": true,
-  "image_url": "",
-  "summary": "Nevis emerged from stealth on December 1, 2025 with $40M in total funding — including a $35M Series A from Sequoia Capital, ICONIQ, and Ribbit Capital — raised in under one year. Founded by former Revolut executives Mark Swan (CEO), Philipp Burda (CPO), and Ivan Chalov (COO), the platform handles end-to-end advisor operational workflows: meeting preparation, client follow-ups, account openings, and ongoing service delivery. Nevis already serves RIAs collectively managing over $50 billion in client assets. The company addresses the documented problem that advisors spend approximately 80% of their time on administrative tasks rather than client relationships.",
+  "image_url": "/logos/nevis.svg",
+  "summary": "Nevis emerged from stealth on December 1, 2025 with $40M in total funding \u2014 including a $35M Series A from Sequoia Capital, ICONIQ, and Ribbit Capital \u2014 raised in under one year. Founded by former Revolut executives Mark Swan (CEO), Philipp Burda (CPO), and Ivan Chalov (COO), the platform handles end-to-end advisor operational workflows: meeting preparation, client follow-ups, account openings, and ongoing service delivery. Nevis already serves RIAs collectively managing over $50 billion in client assets. The company addresses the documented problem that advisors spend approximately 80% of their time on administrative tasks rather than client relationships.",
   "key_stat": {
     "number": "$40M",
-    "label": "Raised from Sequoia, ICONIQ and Ribbit — Nevis emerges from stealth (December 2025)"
+    "label": "Raised from Sequoia, ICONIQ and Ribbit \u2014 Nevis emerges from stealth (December 2025)"
   },
   "tags": {
     "capability": "advisor_productivity",
     "region": "us",
     "segment": "advisor_tools",
-    "theme": ["funding", "stealth_launch", "operations_automation", "ria"]
+    "theme": [
+      "funding",
+      "stealth_launch",
+      "operations_automation",
+      "ria"
+    ]
   },
   "week": "2025-12-01",
   "featured": false,
@@ -30,10 +35,10 @@
       "Emerged from stealth December 1, 2025 (BusinessWire official press release)",
       "$40M total funding raised in under one year (press release)",
       "$35M Series A from Sequoia Capital, ICONIQ, and Ribbit Capital (press release)",
-      "Founders: Mark Swan (CEO), Philipp Burda (CPO), Ivan Chalov (COO) — all former Revolut executives (press release)",
+      "Founders: Mark Swan (CEO), Philipp Burda (CPO), Ivan Chalov (COO) \u2014 all former Revolut executives (press release)",
       "End-to-end advisor operational workflows: meeting prep, client follow-ups, account openings (press release)",
       "Serves RIAs collectively managing over $50 billion in client assets (press release)",
-      "Advisors spend approximately 80% of time on administrative tasks — cited as core problem (press release)"
+      "Advisors spend approximately 80% of time on administrative tasks \u2014 cited as core problem (press release)"
     ],
     "unverified_claims": [],
     "fabricated_claims": [],
