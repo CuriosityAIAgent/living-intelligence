@@ -1,0 +1,77 @@
+{
+  "id": "altruist-hazel-tax-planning-130b-selloff",
+  "type": "product_launch",
+  "headline": "Altruist launches AI tax planning in Hazel, triggering $130B sell-off across wealth management stocks",
+  "company": "altruist",
+  "company_name": "Altruist",
+  "date": "2026-02-10",
+  "source_name": "Altruist",
+  "source_url": "https://altruist.com/news/hazel-ai-tax-planning/",
+  "source_verified": true,
+  "additional_sources": [
+    {
+      "name": "BusinessWire press release",
+      "url": "https://www.businesswire.com/news/home/20260210142841/en/Altruist-Introduces-AI-Powered-Tax-Planning-in-Hazel-Helping-Advisors-Deliver-Tax-Planning-in-Minutes"
+    },
+    {
+      "name": "CNBC — LPL down 11% on AI threat",
+      "url": "https://www.cnbc.com/2026/02/10/the-ai-threat-wrecked-software-stocks-now-broker-stocks-look-next-with-lpl-down-11percent.html"
+    },
+    {
+      "name": "WealthManagement.com — selloff coverage",
+      "url": "https://www.wealthmanagement.com/artificial-intelligence/altruist-ai-agent-launch-triggers-20b-wealth-management-stock-selloff"
+    },
+    {
+      "name": "Invezz — AI fears trigger finance selloff",
+      "url": "https://invezz.com/news/2026/02/11/ai-fears-trigger-selloff-in-finance-stocks-why-analysts-say-the-threat-is-overstated/"
+    },
+    {
+      "name": "Nick Beim / Venrock — The week Altruist shook the markets",
+      "url": "https://www.nickbeim.com/blog/2026/02/17/the-week-altruist-shook-the-markets/"
+    }
+  ],
+  "image_url": "/logos/altruist.svg",
+  "summary": "Altruist launched AI-powered tax planning inside Hazel on February 10, 2026, enabling advisors to analyse 1040s, paystubs, and account statements to produce fully personalised tax plans in minutes. Because Altruist is simultaneously custodian and advisor platform, Hazel can query live ledger data for real-time embedded gain calculations, tax-loss harvesting modelling, asset location optimisation, and wash sale conflict detection. The announcement triggered an immediate market reaction: Schwab fell 11%, LPL Financial fell 13%, Raymond James fell 8.75%, and Ameriprise fell 13% — an aggregate $130 billion in market capitalisation wiped from wealth management stocks within two trading days. The sell-off reflected investor fear that AI-native platforms could disintermediate traditional custodians and broker-dealers. Hazel is priced at $600 per seat per year (basic) or $1,500 per year with full tax planning, undercutting legacy platform pricing by a wide margin.",
+  "key_stat": {
+    "number": "$130B",
+    "label": "Market cap wiped from Schwab, LPL, Raymond James and Ameriprise within 2 days of launch"
+  },
+  "tags": {
+    "capability": "new_business_models",
+    "region": "us",
+    "segment": "ria_independent",
+    "theme": [
+      "ai_platform",
+      "tax_planning",
+      "market_disruption",
+      "custodian_disintermediation",
+      "hazel"
+    ]
+  },
+  "week": "2026-02-09",
+  "featured": false,
+  "_governance": {
+    "verdict": "PASS",
+    "confidence": 95,
+    "verified_claims": [
+      "Altruist launched AI-powered tax planning in Hazel on February 10, 2026",
+      "Hazel analyses 1040s, paystubs, and account statements to produce personalised tax plans",
+      "Altruist is simultaneously custodian and advisor platform",
+      "Hazel queries live ledger data for embedded gain calculations and tax-loss harvesting",
+      "Schwab fell approximately 11% on the day of the announcement (CNBC confirmed)",
+      "LPL Financial fell approximately 13% (The Daily Upside / Invezz confirmed)",
+      "Raymond James fell approximately 8.75% — worst single day since COVID March 2020 (Invezz confirmed)",
+      "Ameriprise fell approximately 13% (The Daily Upside confirmed)",
+      "Aggregate $130B market cap loss across wealth management stocks within two days (Nick Beim/Venrock, Feb 17 2026)",
+      "Hazel basic pricing is $600/seat/year; full tax planning is $1,500/seat/year (RIABiz confirmed)"
+    ],
+    "unverified_claims": [],
+    "fabricated_claims": [],
+    "notes": "All core claims verified across multiple independent sources: Altruist press release, BusinessWire, CNBC, Invezz, WealthManagement.com, The Daily Upside (Wenk interview Feb 24), and Nick Beim/Venrock analysis (Feb 17). The $130B figure is the settled aggregate figure per Venrock/RIABiz; the $20B figure cited in WealthManagement.com was CEO Wenk's day-one U.S.-only estimate. The $150B figure in some sources represents the intraday peak before partial recovery. $130B is the most widely cited and best-supported settled figure.",
+    "paywall_caveat": false,
+    "verified_at": "2026-03-19T12:00:00.000Z",
+    "human_approved": true,
+    "approved_at": "2026-03-19T12:00:00.000Z"
+  },
+  "published_at": "2026-03-19T13:21:48.201Z"
+}

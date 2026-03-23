@@ -2,7 +2,10 @@
   "id": "conquest-planning",
   "name": "Conquest Planning",
   "segment": "advisor_tools",
-  "regions": ["us", "emea"],
+  "regions": [
+    "us",
+    "emea"
+  ],
   "color": "#0A7CFF",
   "ai_strategy_summary": "Conquest Planning serves 70% of Canadian financial advisors and 1.5M+ households, raised $80M Series B in June 2025, and launched four new AI-powered planning capabilities — making it the dominant AI financial planning platform in Canada with rapid US and UK expansion.",
   "head_of_ai": null,
@@ -21,8 +24,17 @@
         "Advisors reducing planning time from hours to minutes"
       ],
       "jpm_implication": "AI-powered financial planning that cuts plan generation from hours to minutes is becoming a standard advisor expectation. JPM's MoneyGuide/planning tools must match this speed and quality.",
-      "jpm_segments_affected": ["JPMWM", "CWM"],
-      "date_assessed": "2026-03-10"
+      "jpm_segments_affected": [
+        "JPMWM",
+        "CWM"
+      ],
+      "date_assessed": "2026-03-10",
+      "sources": [
+        {
+          "name": "Conquest Planning — $80M Series B announcement",
+          "url": "https://conquestplanning.com/media/conquest-planning-raises-80-million-series-b-led-by-growth-equity-at-goldman-sachs-alternatives-to-bring-personalized-ai-powered-financial-plans-to-more-families/"
+        }
+      ]
     },
     "investment_portfolio": {
       "maturity": "deployed",
@@ -35,9 +47,62 @@
         "70% of Canadian advisors on platform"
       ],
       "jpm_implication": "Conquest's deep penetration of Canadian advisory (70% share) means it will follow Canadian advisors into US markets. JPM's US advisor planning tools must be competitive with Conquest's AI capabilities.",
-      "jpm_segments_affected": ["JPMWM", "CWM"],
-      "date_assessed": "2026-03-10"
+      "jpm_segments_affected": [
+        "JPMWM",
+        "CWM"
+      ],
+      "date_assessed": "2026-03-10",
+      "sources": [
+        {
+          "name": "Conquest Planning — $80M Series B announcement",
+          "url": "https://conquestplanning.com/media/conquest-planning-raises-80-million-series-b-led-by-growth-equity-at-goldman-sachs-alternatives-to-bring-personalized-ai-powered-financial-plans-to-more-families/"
+        }
+      ]
+    },
+    "client_personalization": {
+      "maturity": "deployed",
+      "headline": "Personalized AI financial plans delivered directly to 1.5M+ households; BMO client self-service launched July 2025",
+      "detail": "Conquest's platform generates fully personalised financial plans for each of the 1.5M+ households it serves — tailoring goal-based scenarios to individual financial situations. The July 2025 BMO partnership extended this directly to banking clients, enabling BMO customers to build their own AI-powered financial plans without an advisor.",
+      "evidence": [
+        "1.5M+ personalised household plans in production",
+        "BMO partnership (July 2025) — bank clients build own plans via Conquest (Conquest Planning press release)",
+        "4 new AI capabilities launched April 2025 include personalised plan generation"
+      ],
+      "jpm_implication": "Conquest's B2B2C model — enabling banks to offer self-service AI planning to retail clients — threatens the entry-level advisory value proposition. JPM's self-directed and lower-tier CWM clients are a direct competitive battleground.",
+      "jpm_segments_affected": [
+        "Self-Directed",
+        "CWM"
+      ],
+      "date_assessed": "2026-03-19",
+      "sources": [
+        {
+          "name": "Conquest Planning — $80M Series B announcement",
+          "url": "https://conquestplanning.com/media/conquest-planning-raises-80-million-series-b-led-by-growth-equity-at-goldman-sachs-alternatives-to-bring-personalized-ai-powered-financial-plans-to-more-families/"
+        }
+      ]
+    },
+    "new_business_models": {
+      "maturity": "deployed",
+      "headline": "B2B2C banking distribution model: BMO partnership lets bank clients self-serve AI financial plans",
+      "detail": "The July 2025 BMO partnership represents a new distribution model for Conquest — embedding its AI financial planning engine inside a major bank's client-facing digital experience. This B2B2C model monetises Conquest's platform through bank licensing rather than direct advisor subscriptions, expanding the addressable market to retail banking clients who would not traditionally access an independent financial planner.",
+      "evidence": [
+        "BMO partnership announced July 2025 — B2B2C distribution confirmed",
+        "$80M Series B (June 2025) explicitly to fund US and UK expansion",
+        "Goldman Sachs Alternatives led the Series B — signalling institutional confidence in the model"
+      ],
+      "jpm_implication": "If banks begin embedding third-party AI planning tools into their retail digital experience, the role of captive bank advisors in delivering financial plans diminishes. JPM must determine whether to build, buy, or partner to offer comparable self-serve planning capability.",
+      "jpm_segments_affected": [
+        "Self-Directed",
+        "CWM"
+      ],
+      "date_assessed": "2026-03-19",
+      "sources": [
+        {
+          "name": "Conquest Planning — $80M Series B announcement",
+          "url": "https://conquestplanning.com/media/conquest-planning-raises-80-million-series-b-led-by-growth-equity-at-goldman-sachs-alternatives-to-bring-personalized-ai-powered-financial-plans-to-more-families/"
+        }
+      ]
     }
   },
-  "last_updated": "2026-03-10"
+  "last_updated": "2026-03-18"
 }

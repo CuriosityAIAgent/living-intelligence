@@ -25,7 +25,7 @@
       "agentic_ai"
     ]
   },
-  "week": "2026-03-09",
+  "week": "2025-10-13",
   "featured": false,
   "_governance": {
     "verdict": "REVIEW",
@@ -53,5 +53,6 @@
     "human_approved": false,
     "approved_at": null,
     "reprocessed": true
-  }
+  },
+  "published_at": "2026-03-12T17:58:27.805Z"
 }

@@ -52,5 +52,12 @@
     "human_approved": false,
     "approved_at": null,
     "reprocessed": true
-  }
+  },
+  "additional_sources": [
+    {
+      "name": "Public.com — AI-powered investing product page",
+      "url": "https://public.com/agentic"
+    }
+  ],
+  "published_at": "2026-03-18T09:09:56.936Z"
 }

@@ -12,7 +12,7 @@
   "summary": "Arta Finance announced the launch of Arta AI, a private wealth platform guided by artificial intelligence. The product launch was announced on April 2, 2025. The article content available does not provide further detail beyond the announcement headline and publication metadata.",
   "key_stat": null,
   "tags": {
-    "capability": "client_experience",
+    "capability": "client_personalization",
     "region": "us",
     "segment": "uhnw_digital",
     "theme": [
@@ -22,7 +22,7 @@
       "ai_guidance"
     ]
   },
-  "week": "2026-03-09",
+  "week": "2025-03-31",
   "featured": false,
   "_governance": {
     "verdict": "PASS",
@@ -43,5 +43,12 @@
     "human_approved": false,
     "approved_at": null,
     "reprocessed": true
-  }
+  },
+  "additional_sources": [
+    {
+      "name": "Arta Finance — official blog post",
+      "url": "https://artafinance.com/insights/arta-finance-launches-arta-ai-private-wealth-guided-by-ai"
+    }
+  ],
+  "published_at": "2026-03-19T16:22:25.115Z"
 }

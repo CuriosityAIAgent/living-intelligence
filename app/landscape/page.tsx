@@ -181,38 +181,13 @@ export default function LandscapePage() {
             </div>
           </div>
           <p className="text-[10px] text-gray-400 mt-2">
-            Ratings based on publicly available evidence as of March 2026. All assessments are directional — not investment advice.
+            Ratings based on publicly available evidence as of the date shown per entry. All assessments are directional — not investment advice.
           </p>
         </div>
 
-        {/* Summary */}
-        <div className="mt-10">
-          <SectionLabel label="At a Glance" />
-          <div className="grid grid-cols-4 gap-4">
-            {['scaled', 'deployed', 'piloting', 'announced'].map(maturity => {
-              const count = competitors.filter(c => c.overall_maturity === maturity).length;
-              const s = MATURITY_STYLES[maturity];
-              return (
-                <div key={maturity} className={`${s.cell} rounded p-5`}>
-                  <div className={`text-3xl font-bold mb-1 maturity-${maturity}`}>{count}</div>
-                  <div className="text-xs text-gray-500 capitalize">
-                    at <span className="font-semibold">{maturity}</span>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
 
       </main>
 
-      <footer className="border-t border-gray-200 mt-16 py-8">
-        <div className="max-w-6xl mx-auto px-6">
-          <p className="text-xs text-gray-400">
-            AI in Wealth Management — Landscape data last updated March 2026.
-          </p>
-        </div>
-      </footer>
     </div>
   );
 }

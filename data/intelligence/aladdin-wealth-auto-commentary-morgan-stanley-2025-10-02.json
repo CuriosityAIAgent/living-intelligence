@@ -22,7 +22,7 @@
       "advisor_efficiency"
     ]
   },
-  "week": "2026-03-09",
+  "week": "2025-09-29",
   "featured": false,
   "_governance": {
     "verdict": "REVIEW",
@@ -48,5 +48,6 @@
     "human_approved": false,
     "approved_at": null,
     "backfill": true
-  }
+  },
+  "published_at": "2026-03-12T17:58:27.778Z"
 }

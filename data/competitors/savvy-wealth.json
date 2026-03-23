@@ -2,7 +2,9 @@
   "id": "savvy-wealth",
   "name": "Savvy Wealth",
   "segment": "ai_native",
-  "regions": ["us"],
+  "regions": [
+    "us"
+  ],
   "color": "#7C3AED",
   "ai_strategy_summary": "Savvy Wealth is an AI-powered RIA platform that grew AUM more than 500% to $2B since early 2024, with some advisors reclaiming 19 hours/week via AI-automated admin — backed by $72M Series B from Industry Ventures.",
   "head_of_ai": null,
@@ -21,8 +23,17 @@
         "$500M in new assets added in 2025 alone"
       ],
       "jpm_implication": "AI-powered RIA platforms are dramatically reducing the cost per client served while improving personalization. JPM's advisor compensation model must evolve alongside AI productivity gains.",
-      "jpm_segments_affected": ["JPMWM", "CWM"],
-      "date_assessed": "2026-03-10"
+      "jpm_segments_affected": [
+        "JPMWM",
+        "CWM"
+      ],
+      "date_assessed": "2026-03-10",
+      "sources": [
+        {
+          "name": "Savvy Wealth — $72M Series B announcement",
+          "url": "https://www.savvywealth.com/series-b-page"
+        }
+      ]
     },
     "client_personalization": {
       "maturity": "deployed",
@@ -34,8 +45,17 @@
         "$72M Series B led by Industry Ventures (July 2025)"
       ],
       "jpm_implication": "Client-specific AI knowledge bases represent a step-change in advisor preparation quality. JPM's advisor support tools should aspire to this level of pre-meeting intelligence.",
-      "jpm_segments_affected": ["JPMWM", "GPB"],
-      "date_assessed": "2026-03-10"
+      "jpm_segments_affected": [
+        "JPMWM",
+        "GPB"
+      ],
+      "date_assessed": "2026-03-10",
+      "sources": [
+        {
+          "name": "Savvy Wealth — $72M Series B announcement",
+          "url": "https://www.savvywealth.com/series-b-page"
+        }
+      ]
     },
     "new_business_models": {
       "maturity": "deployed",
@@ -47,9 +67,18 @@
         "July 2025 $72M Series B to continue expansion"
       ],
       "jpm_implication": "AI-enabled RIA rollup models are growing AUM at rates that traditional wirehouse models cannot match. This is a structural threat to JPM's advisor recruitment pipeline.",
-      "jpm_segments_affected": ["JPMWM", "CWM"],
-      "date_assessed": "2026-03-10"
+      "jpm_segments_affected": [
+        "JPMWM",
+        "CWM"
+      ],
+      "date_assessed": "2026-03-10",
+      "sources": [
+        {
+          "name": "Savvy Wealth — $72M Series B announcement",
+          "url": "https://www.savvywealth.com/series-b-page"
+        }
+      ]
     }
   },
-  "last_updated": "2026-03-10"
+  "last_updated": "2026-03-18"
 }

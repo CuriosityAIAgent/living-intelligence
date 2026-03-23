@@ -110,6 +110,14 @@ export default async function IntelligenceArticlePage({
           {entry.headline}
         </h1>
 
+        {/* Why this matters — the_so_what editorial callout */}
+        {entry.the_so_what && (
+          <div className="border-l-4 border-[#990F3D] pl-5 mb-8 py-1">
+            <p className="text-[11px] font-bold uppercase tracking-widest text-[#990F3D] mb-2">Why this matters</p>
+            <p className="text-[15px] text-gray-800 leading-relaxed font-medium">{entry.the_so_what}</p>
+          </div>
+        )}
+
         {/* Key stat */}
         {entry.key_stat && (
           <div className="bg-gray-50 border border-gray-100 rounded p-5 mb-8 flex items-center gap-6">
@@ -129,31 +137,31 @@ export default async function IntelligenceArticlePage({
         </div>
 
         {/* Summary disclaimer */}
-        <div className="bg-amber-50 border border-amber-100 rounded px-4 py-2 mb-6 text-xs text-amber-700">
-          AI-generated summary · Internal use only · Verify against original source
+        <div className="bg-gray-50 border border-gray-100 rounded px-4 py-2 mb-6 text-xs text-gray-400">
+          AI-generated summary from source material · Always refer to the original source
         </div>
 
-        {/* Source */}
+        {/* Sources */}
         <div className="border-t border-gray-100 pt-6 mb-8">
-          <p className="text-xs text-gray-400 uppercase tracking-wide mb-2">Source</p>
-          {entry.source_verified && entry.source_url ? (
-            <a
-              href={entry.source_url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-sm font-medium text-[#990F3D] hover:underline"
-            >
-              {entry.source_name}
-              <span className="text-gray-400">↗</span>
-            </a>
-          ) : (
-            <div className="flex items-center gap-2">
+          <p className="text-xs text-gray-400 uppercase tracking-wide mb-3">
+            {entry.additional_sources?.length ? 'Sources' : 'Source'}
+          </p>
+          <div className="flex flex-col gap-2">
+            {entry.source_url ? (
+              <a href={entry.source_url} target="_blank" rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-sm font-medium text-[#990F3D] hover:underline">
+                {entry.source_name}<span className="text-gray-400">↗</span>
+              </a>
+            ) : (
               <span className="text-sm text-gray-700">{entry.source_name}</span>
-              <span className="text-xs text-amber-600 bg-amber-50 border border-amber-200 px-2 py-0.5 rounded">
-                Source URL pending verification
-              </span>
-            </div>
-          )}
+            )}
+            {entry.additional_sources?.map((s, i) => (
+              <a key={i} href={s.url} target="_blank" rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-sm text-gray-600 hover:text-[#990F3D] hover:underline">
+                {s.name}<span className="text-gray-400">↗</span>
+              </a>
+            ))}
+          </div>
         </div>
 
         {/* Tags */}

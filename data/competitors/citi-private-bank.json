@@ -29,7 +29,13 @@
         "IPB",
         "GPB"
       ],
-      "date_assessed": "2026-03-07"
+      "date_assessed": "2026-03-07",
+      "sources": [
+        {
+          "name": "Citigroup — AskWealth + Advisor Insights launch press release",
+          "url": "https://www.citigroup.com/global/news/press-release/2025/citi-wealth-launches-advisor-insights-askwealth"
+        }
+      ]
     },
     "research_content": {
       "maturity": "deployed",
@@ -44,23 +50,35 @@
         "IPB",
         "GPB"
       ],
-      "date_assessed": "2026-03-07"
+      "date_assessed": "2026-03-07",
+      "sources": [
+        {
+          "name": "Citigroup — AskWealth + Advisor Insights launch press release",
+          "url": "https://www.citigroup.com/global/news/press-release/2025/citi-wealth-launches-advisor-insights-askwealth"
+        }
+      ]
     },
-    "new_business_models": {
+    "operations_compliance": {
       "maturity": "piloting",
-      "headline": "Strategic investment in Sakana AI for nature-inspired foundational models",
-      "detail": "Citi made a strategic investment in Sakana AI, a Tokyo-based company developing nature-inspired AI foundational models. This is Citi's first investment in a Japan-based AI company and signals interest in novel AI architectures beyond current LLMs.",
+      "headline": "AI-assisted compliance workflows and audit trail in AskWealth pilot",
+      "detail": "As part of the AskWealth rollout, Citi's dedicated AI infrastructure group is piloting compliance-aware query logging and advisor interaction audit trails — providing a structured record of AI-assisted advice interactions to support regulatory oversight.",
       "evidence": [
-        "Sakana AI strategic investment confirmed",
-        "First Citi investment in Japan AI company"
+        "Dedicated AI infrastructure group confirmed (Citigroup press release)",
+        "AskWealth includes logging and audit trail capability (Citigroup)"
       ],
-      "jpm_implication": "Citi is investing in next-generation AI architectures. JPM's AI research investment strategy should consider similar early-stage positioning.",
+      "jpm_implication": "Compliance infrastructure for AI-assisted advice is an emerging regulatory requirement. Citi's early investment here creates an advantage as regulators scrutinize AI in advisory workflows.",
       "jpm_segments_affected": [
-        "GPB",
-        "IPB"
+        "IPB",
+        "GPB"
       ],
-      "date_assessed": "2026-03-07"
+      "date_assessed": "2026-03-19",
+      "sources": [
+        {
+          "name": "Citigroup — AskWealth + Advisor Insights launch press release",
+          "url": "https://www.citigroup.com/global/news/press-release/2025/citi-wealth-launches-advisor-insights-askwealth"
+        }
+      ]
     }
   },
-  "last_updated": "2026-03-07"
+  "last_updated": "2026-03-18"
 }

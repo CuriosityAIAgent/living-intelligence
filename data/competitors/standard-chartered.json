@@ -2,7 +2,10 @@
   "id": "standard-chartered",
   "name": "Standard Chartered",
   "segment": "regional_champion",
-  "regions": ["asia", "emea"],
+  "regions": [
+    "asia",
+    "emea"
+  ],
   "color": "#0A4E8F",
   "ai_strategy_summary": "Standard Chartered launched SC GPT across 41 markets for 70,000+ employees in March 2025 and debuted the world's first AI-generated video FX advisory product for wealth clients — setting a new bar for advisor-facing and client-facing AI simultaneously.",
   "head_of_ai": null,
@@ -20,8 +23,17 @@
         "Covers sales, advisory, and risk management workflows"
       ],
       "jpm_implication": "SC GPT's 41-market deployment shows that global AI rollout at scale is achievable. JPM's global advisory network should be targeting comparable coverage.",
-      "jpm_segments_affected": ["GPB", "JPMWM"],
-      "date_assessed": "2026-03-10"
+      "jpm_segments_affected": [
+        "GPB",
+        "JPMWM"
+      ],
+      "date_assessed": "2026-03-10",
+      "sources": [
+        {
+          "name": "Standard Chartered — SC GPT rollout across 41 markets",
+          "url": "https://www.sc.com/en/press-release/standard-chartered-rolls-out-sc-gpt-advancing-ai-driven-innovation-in-banking/"
+        }
+      ]
     },
     "research_content": {
       "maturity": "deployed",
@@ -33,21 +45,17 @@
         "Expanding to Singapore, Hong Kong, Taiwan"
       ],
       "jpm_implication": "AI-generated video market insights represent a new format for client engagement that JPM Private Bank has not yet deployed. First-mover advantage is available.",
-      "jpm_segments_affected": ["GPB"],
-      "date_assessed": "2026-03-10"
-    },
-    "operations_compliance": {
-      "maturity": "deployed",
-      "headline": "NLP transaction banking AI for relationship manager proposals",
-      "detail": "SC's transaction banking AI platform uses NLP to help relationship managers deliver faster, more accurate client proposals — cutting proposal time and reducing errors.",
-      "evidence": [
-        "NLP proposal generation deployed",
-        "Relationship manager workflow integration confirmed"
+      "jpm_segments_affected": [
+        "GPB"
       ],
-      "jpm_implication": "NLP-powered proposal tools are an immediate near-term win for JPM's institutional and private banking RM teams.",
-      "jpm_segments_affected": ["GPB", "CIB"],
-      "date_assessed": "2026-03-10"
+      "date_assessed": "2026-03-10",
+      "sources": [
+        {
+          "name": "Standard Chartered — SC GPT rollout across 41 markets",
+          "url": "https://www.sc.com/en/press-release/standard-chartered-rolls-out-sc-gpt-advancing-ai-driven-innovation-in-banking/"
+        }
+      ]
     }
   },
-  "last_updated": "2026-03-10"
+  "last_updated": "2026-03-18"
 }

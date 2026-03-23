@@ -2,7 +2,9 @@
   "id": "wealthfront",
   "name": "Wealthfront",
   "segment": "digital_disruptor",
-  "regions": ["us"],
+  "regions": [
+    "us"
+  ],
   "color": "#059669",
   "ai_strategy_summary": "The established benchmark in algorithmic wealth management. Wealthfront's AI-driven portfolio management, tax-loss harvesting, and automated rebalancing have created the cost leader position in mass affluent wealth management at 0.25% advisory fee.",
   "head_of_ai": null,
@@ -10,8 +12,69 @@
   "headline_initiative": "AI-driven robo-advisor — portfolio, tax, and rebalancing automation",
   "overall_maturity": "scaled",
   "capabilities": {
-    "investment_portfolio": { "maturity": "scaled", "headline": "Fully automated 11-asset class portfolio management with continuous optimization", "detail": "Wealthfront manages diversified portfolios across 11 asset classes with continuous AI-driven rebalancing, volatility monitoring, and tax-lot optimization. Modern Portfolio Theory algorithms run continuously across the entire client base.", "evidence": ["Best Robo-Advisor for Portfolio Options (NerdWallet 2026)", "11-asset class diversification", "Continuous automated rebalancing"], "jpm_implication": "Wealthfront's cost structure at 0.25% is structurally incompatible with human-advisory models. Mass affluent clients increasingly compare JPM fees to Wealthfront's value proposition.", "jpm_segments_affected": ["Self-Directed", "CWM"], "date_assessed": "2026-03-07" },
-    "operations_compliance": { "maturity": "scaled", "headline": "Automated tax-loss harvesting and Roth conversion optimization", "detail": "Wealthfront's tax-loss harvesting runs automatically across all eligible accounts, identifying and executing tax-saving opportunities without client or advisor action required.", "evidence": ["Automated tax-loss harvesting at scale", "Roth conversion optimization confirmed"], "jpm_implication": "Tax automation at Wealthfront's scale creates a compelling value proposition for self-directed clients. JPM Self-Directed needs comparable tax optimization features.", "jpm_segments_affected": ["Self-Directed"], "date_assessed": "2026-03-07" }
+    "investment_portfolio": {
+      "maturity": "scaled",
+      "headline": "Fully automated 11-asset class portfolio management with continuous optimization",
+      "detail": "Wealthfront manages diversified portfolios across 11 asset classes with continuous AI-driven rebalancing, volatility monitoring, and tax-lot optimization. Modern Portfolio Theory algorithms run continuously across the entire client base.",
+      "evidence": [
+        "Best Robo-Advisor for Portfolio Options — NerdWallet 2026 (4th consecutive year)",
+        "11-asset class diversification",
+        "Continuous automated rebalancing"
+      ],
+      "jpm_implication": "Wealthfront's cost structure at 0.25% is structurally incompatible with human-advisory models. Mass affluent clients increasingly compare JPM fees to Wealthfront's value proposition.",
+      "jpm_segments_affected": [
+        "Self-Directed",
+        "CWM"
+      ],
+      "date_assessed": "2026-03-07",
+      "sources": [
+        {
+          "name": "NerdWallet — Best Robo-Advisors (Wealthfront Best for Portfolio Options)",
+          "url": "https://www.nerdwallet.com/investing/best/robo-advisors"
+        }
+      ]
+    },
+    "operations_compliance": {
+      "maturity": "scaled",
+      "headline": "Automated tax-loss harvesting and Roth conversion optimization",
+      "detail": "Wealthfront's tax-loss harvesting runs automatically across all eligible accounts, identifying and executing tax-saving opportunities without client or advisor action required.",
+      "evidence": [
+        "Automated tax-loss harvesting at scale",
+        "Roth conversion optimization confirmed"
+      ],
+      "jpm_implication": "Tax automation at Wealthfront's scale creates a compelling value proposition for self-directed clients. JPM Self-Directed needs comparable tax optimization features.",
+      "jpm_segments_affected": [
+        "Self-Directed"
+      ],
+      "date_assessed": "2026-03-07",
+      "sources": [
+        {
+          "name": "Wealthfront — Automated Tax-Loss Harvesting product page",
+          "url": "https://www.wealthfront.com/tax-loss-harvesting"
+        }
+      ]
+    },
+    "new_business_models": {
+      "maturity": "announced",
+      "headline": "UBS ownership driving expansion into new product lines including lending and cash management",
+      "detail": "Under UBS ownership, Wealthfront has been expanding its product set beyond core robo-advisory — launching a high-yield cash account and a Portfolio Line of Credit (automated lending against invested assets). These adjacent products represent new monetisation streams beyond the 0.25% management fee, positioning Wealthfront as a broader automated wealth platform.",
+      "evidence": [
+        "Portfolio Line of Credit live — automated lending at competitive rates vs. brokerages",
+        "High-yield cash account launched — competing with bank savings products",
+        "UBS acquisition (2022) provided product expansion capital"
+      ],
+      "jpm_implication": "Wealthfront's expansion from pure robo-advisor into cash, lending, and planning narrows the product gap with full-service wealth management — at a fraction of the fee. JPM's self-directed offering needs a credible response.",
+      "jpm_segments_affected": [
+        "Self-Directed"
+      ],
+      "date_assessed": "2026-03-19",
+      "sources": [
+        {
+          "name": "Wealthfront — Portfolio Line of Credit product page",
+          "url": "https://www.wealthfront.com/portfolio-line-of-credit"
+        }
+      ]
+    }
   },
-  "last_updated": "2026-03-07"
+  "last_updated": "2026-03-18"
 }

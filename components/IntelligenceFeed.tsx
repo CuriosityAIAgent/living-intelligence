@@ -33,11 +33,12 @@ const REGIONS = [
 const CAPABILITIES = [
   { value: 'all', label: 'All Topics' },
   { value: 'advisor_productivity', label: 'Advisor Productivity' },
-  { value: 'client_experience', label: 'Client Experience' },
-  { value: 'investment_analytics', label: 'Investment & Research' },
+  { value: 'client_personalization', label: 'Client Personalization' },
+  { value: 'investment_portfolio', label: 'Investment & Portfolio' },
+  { value: 'research_content', label: 'Research & Content' },
+  { value: 'client_acquisition', label: 'Client Acquisition' },
   { value: 'operations_compliance', label: 'Operations & Compliance' },
   { value: 'new_business_models', label: 'New Business Models' },
-  { value: 'client_acquisition', label: 'Client Acquisition' },
 ];
 
 function formatDateShort(dateStr: string): string {
@@ -57,8 +58,8 @@ export default function IntelligenceFeed({ entries, leadStoryId }: {
 
   const filtered = entries.filter(e => {
     if (e.id === leadStory?.id) return false; // lead story shown separately
-    const regionMatch = region === 'all' || e.tags.region === region;
-    const capMatch = capability === 'all' || e.tags.capability === capability;
+    const regionMatch = region === 'all' || e.tags?.region === region;
+    const capMatch = capability === 'all' || e.tags?.capability === capability;
     return regionMatch && capMatch;
   });
 
@@ -113,7 +114,7 @@ export default function IntelligenceFeed({ entries, leadStoryId }: {
                     </div>
                   )}
                   <div className="mt-4 flex items-center gap-2">
-                    {leadStory.source_verified && leadStory.source_url ? (
+                    {leadStory.source_url ? (
                       <span
                         role="link"
                         tabIndex={0}
@@ -125,11 +126,6 @@ export default function IntelligenceFeed({ entries, leadStoryId }: {
                       </span>
                     ) : (
                       <span className="text-xs text-gray-400">{leadStory.source_name}</span>
-                    )}
-                    {!leadStory.source_verified && (
-                      <span className="text-[9px] text-amber-600 bg-amber-50 border border-amber-200 px-1.5 py-0.5 rounded">
-                        Pending verification
-                      </span>
                     )}
                   </div>
                 </div>
@@ -227,7 +223,7 @@ export default function IntelligenceFeed({ entries, leadStoryId }: {
                   {TYPE_LABELS[entry.type]}
                 </span>
                 <span className="text-[10px] text-gray-300">·</span>
-                <span className="text-[10px] text-gray-400 uppercase">{entry.tags.region}</span>
+                <span className="text-[10px] text-gray-400 uppercase">{entry.tags?.region}</span>
               </div>
 
               <h3 className="text-sm font-bold text-gray-900 leading-snug mb-2 group-hover:text-[#990F3D] transition-colors flex-1">
@@ -245,9 +241,6 @@ export default function IntelligenceFeed({ entries, leadStoryId }: {
                 <span className="text-[10px] text-gray-400">{formatDateShort(entry.date)}</span>
                 <div className="flex items-center gap-1">
                   <span className="text-[10px] text-gray-400">{entry.source_name}</span>
-                  {!entry.source_verified && (
-                    <span className="text-[8px] text-amber-500" title="Source pending verification">⚠</span>
-                  )}
                 </div>
               </div>
             </Link>

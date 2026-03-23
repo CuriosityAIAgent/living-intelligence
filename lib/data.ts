@@ -7,17 +7,26 @@ const dataDir = path.join(process.cwd(), 'data');
 
 export interface IntelligenceEntry {
   id: string;
-  type: 'partnership' | 'product_launch' | 'milestone' | 'strategy_move' | 'market_signal';
+  type: 'funding' | 'acquisition' | 'regulatory' | 'partnership' | 'product_launch' | 'milestone' | 'strategy_move' | 'market_signal';
   headline: string;
+  the_so_what?: string;
   company: string;
   company_name: string;
   date: string;
+  published_at?: string;
   source_name: string;
   source_url: string;
   source_verified: boolean;
+  additional_sources?: { name: string; url: string }[];
   image_url: string;
   summary: string;
   key_stat: { number: string; label: string } | null;
+  capability_evidence?: {
+    capability: string;
+    stage: 'deployed' | 'piloting' | 'announced';
+    evidence: string;
+    metric: string | null;
+  };
   tags: {
     capability: string;
     region: string;
@@ -67,6 +76,7 @@ export interface CapabilityEntry {
   headline: string;
   detail: string;
   evidence: string[];
+  sources?: { name: string; url: string }[];
   date_assessed: string;
   jpm_implication?: string;
   jpm_segments_affected?: string[];
@@ -103,7 +113,12 @@ export function getAllIntelligence(): IntelligenceEntry[] {
     const raw = fs.readFileSync(path.join(dir, f), 'utf-8');
     return JSON.parse(raw) as IntelligenceEntry;
   });
-  return entries.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+  // Sort by published_at (when we added it to portal) — falls back to date for legacy entries
+  return entries.sort((a, b) => {
+    const aTime = new Date(a.published_at || a.date).getTime();
+    const bTime = new Date(b.published_at || b.date).getTime();
+    return bTime - aTime;
+  });
 }
 
 export function getIntelligenceEntry(id: string): IntelligenceEntry | null {

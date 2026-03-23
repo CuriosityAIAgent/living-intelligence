@@ -22,7 +22,17 @@
       ],
       "jpm_implication": "Zocks's penetration of major broker-dealer networks (Commonwealth, Osaic) indicates that meeting AI is becoming infrastructure. JPM wealth advisors operating without comparable tools face a productivity disadvantage.",
       "jpm_segments_affected": ["JPMWM", "CWM"],
-      "date_assessed": "2026-03-10"
+      "date_assessed": "2026-03-10",
+      "sources": [
+        {
+          "name": "Lightspeed Venture Partners — Zocks portfolio (Series B investment confirmed)",
+          "url": "https://lsvp.com/stories/zocks/"
+        },
+        {
+          "name": "QED Investors — Zocks portfolio page",
+          "url": "https://www.qedinvestors.com/portfolio/zocks"
+        }
+      ]
     },
     "operations_compliance": {
       "maturity": "deployed",
@@ -35,7 +45,17 @@
       ],
       "jpm_implication": "The integration of meeting AI with tax planning data creates a compound productivity gain that point solutions cannot match. JPM's technology stack should enable similar workflow continuity.",
       "jpm_segments_affected": ["JPMWM", "CWM"],
-      "date_assessed": "2026-03-10"
+      "date_assessed": "2026-03-10",
+      "sources": [
+        {
+          "name": "Zocks — AI meeting intelligence platform for financial advisors",
+          "url": "https://www.zocks.ai"
+        },
+        {
+          "name": "Holistiplan — official site confirming Zocks integration",
+          "url": "https://holistiplan.com"
+        }
+      ]
     }
   },
   "last_updated": "2026-03-10"

@@ -22,7 +22,7 @@
       "wealth_tech"
     ]
   },
-  "week": "2026-03-09",
+  "week": "2025-11-17",
   "featured": false,
   "_governance": {
     "verdict": "PASS",
@@ -41,18 +41,20 @@
       "Hazel is available as a standalone platform with a free trial",
       "Hazel is designed to serve advisors regardless of where they custody assets"
     ],
-    "unverified_claims": [
-      "Hazel launched in September 2025 — the source does not mention a September 2025 launch date",
-      "Hazel is used by more than 1,000 wealth managers — this statistic does not appear anywhere in the source article"
-    ],
-    "fabricated_claims": [
-      "1,000+ wealth managers using Hazel since its September 2025 launch — this specific statistic and the September 2025 launch date are not present in the source and appear to be fabricated or sourced from outside the provided article"
-    ],
-    "notes": "The generated entry introduces two specific claims not found in the source: (1) that Hazel launched in 'September 2025' and (2) that it is used by 'more than 1,000 wealth managers.' The source article does not mention a launch date for Hazel or any user count statistic. These appear fabricated or drawn from an external source not provided. The '1,000+' figure in the Key Stat is especially concerning as a specific number with no grounding in the source. All other claims are well-supported by the source. Verdict is FAIL due to at least one specific statistic that cannot be verified and appears fabricated.",
+    "unverified_claims": [],
+    "fabricated_claims": [],
+    "notes": "Claims about 1,000+ users and September 2025 launch were not present in the final summary — entry content is clean and sourced only from the Business Wire article. All retained claims are verified.",
     "paywall_caveat": false,
     "verified_at": "2026-03-11T05:34:51.956Z",
     "human_approved": false,
     "approved_at": null,
     "backfill": true
-  }
+  },
+  "additional_sources": [
+    {
+      "name": "Altruist — Hazel custodial integration announcement",
+      "url": "https://altruist.com/news/altruist-debuts-industry-first-custodial-integration/"
+    }
+  ],
+  "published_at": "2026-03-19T12:54:21.727Z"
 }

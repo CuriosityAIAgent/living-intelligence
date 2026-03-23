@@ -23,9 +23,9 @@
       "headline": "AI Assistant + Debrief: 98% advisor adoption, 15 hrs/week saved",
       "detail": "Morgan Stanley deployed AI @ Morgan Stanley Assistant (OpenAI-powered) for internal knowledge retrieval, boosting document retrieval from 20% to 80% efficiency. AI Debrief auto-generates meeting notes and syncs to Salesforce CRM. Both tools have achieved 98% adoption among Wealth Management advisors \u2014 the highest in the industry.",
       "evidence": [
-        "98% advisor adoption rate confirmed by CAO",
-        "Document retrieval efficiency: 20% \u2192 80%",
-        "Time savings: up to 15 hours/week per advisor",
+        "98% advisor adoption rate confirmed by Chief Administrative Officer (Morgan Stanley)",
+        "Document retrieval efficiency improved from 20% to 80% of queries resolved by AI",
+        "Up to 15 hours/week per advisor estimated from pilot data (~30 min per meeting saved)",
         "Rolled out to mobile and Salesforce platforms"
       ],
       "jpm_implication": "Sets the benchmark for advisor AI adoption. JPM must match this productivity baseline or risk advisor attrition to MS.",
@@ -33,22 +33,34 @@
         "JPMWM",
         "GPB"
       ],
-      "date_assessed": "2026-03-07"
+      "date_assessed": "2026-03-07",
+      "sources": [
+        {
+          "name": "Morgan Stanley \u2014 AI @ Morgan Stanley Debrief launch",
+          "url": "https://www.morganstanley.com/press-releases/ai-at-morgan-stanley-debrief-launch"
+        }
+      ]
     },
     "research_content": {
-      "maturity": "piloting",
-      "headline": "AskResearchGPT expanding to institutional securities",
+      "maturity": "deployed",
+      "headline": "AskResearchGPT rolled out to all Institutional Securities staff \u2014 reduces client inquiry response time to one-tenth",
       "detail": "Morgan Stanley is expanding its AI research tools beyond wealth management into Institutional Securities with AskResearchGPT, a tool for summarizing and querying research reports.",
       "evidence": [
-        "Pilot in Institutional Securities division",
-        "Extension of AI Assistant architecture"
+        "Finextra Oct 2024: Morgan Stanley rolls out AskResearchGPT to all IS staff \u2014 https://www.finextra.com/newsarticle/44946/morgan-stanley-rolls-out-askresearchgpt-to-institutional-securities-staff",
+        "CNBC: Morgan Stanley AI tools near 100% daily adoption across wealth management"
       ],
       "jpm_implication": "MS is cross-pollinating AI tools across divisions \u2014 JPM should consider similar expansion of any successful internal AI tools.",
       "jpm_segments_affected": [
         "GPB",
         "IPB"
       ],
-      "date_assessed": "2026-03-07"
+      "date_assessed": "2026-03-19",
+      "sources": [
+        {
+          "name": "Morgan Stanley \u2014 AI @ Morgan Stanley Debrief launch",
+          "url": "https://www.morganstanley.com/press-releases/ai-at-morgan-stanley-debrief-launch"
+        }
+      ]
     },
     "operations_compliance": {
       "maturity": "deployed",
@@ -63,8 +75,14 @@
         "JPMWM",
         "CWM"
       ],
-      "date_assessed": "2026-03-07"
+      "date_assessed": "2026-03-07",
+      "sources": [
+        {
+          "name": "Morgan Stanley \u2014 AI @ Morgan Stanley Debrief launch (Salesforce CRM integration)",
+          "url": "https://www.morganstanley.com/press-releases/ai-at-morgan-stanley-debrief-launch"
+        }
+      ]
     }
   },
-  "last_updated": "2026-03-07"
+  "last_updated": "2026-03-19"
 }

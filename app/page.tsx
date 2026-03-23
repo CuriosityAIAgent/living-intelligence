@@ -4,6 +4,8 @@ import SectionLabel from '@/components/SectionLabel';
 import IntelligenceFeed from '@/components/IntelligenceFeed';
 import {
   getAllIntelligence,
+  getAllCompetitors,
+  getCapabilities,
   getLatestWeek,
   getThoughtLeadershipEntry,
   formatDateShort,
@@ -12,7 +14,13 @@ import {
 
 export default function HomePage() {
   const allEntries = getAllIntelligence();
+  const competitors = getAllCompetitors();
+  const capabilities = getCapabilities();
   const week = getLatestWeek();
+
+  // Derive the most recent month label from the latest entry date
+  const latestDate = allEntries[0]?.date ? new Date(allEntries[0].date) : new Date();
+  const monthLabel = latestDate.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
   const featuredThought = week
     ? getThoughtLeadershipEntry(week.featured_thought_leadership)
     : null;
@@ -39,7 +47,7 @@ export default function HomePage() {
       {/* Date bar — below header, full-width editorial strip */}
       <div className="border-b border-gray-200 bg-gray-50">
         <div className="max-w-6xl mx-auto px-6 h-9 flex items-center gap-4">
-          <span className="text-[11px] font-bold uppercase tracking-widest text-[#990F3D]">March 2026</span>
+          <span className="text-[11px] font-bold uppercase tracking-widest text-[#990F3D]">{monthLabel}</span>
           <span className="text-gray-300">|</span>
           <span className="text-[11px] text-gray-500">{allEntries.length} developments tracked</span>
         </div>
@@ -129,7 +137,7 @@ export default function HomePage() {
             <div>
               <h3 className="font-bold text-gray-900 mb-1">Who Is Doing What</h3>
               <p className="text-sm text-gray-500">
-                12 institutions · 7 capability dimensions · Updated March 2026
+                {competitors.length} institutions · {capabilities.length} capability dimensions
               </p>
             </div>
             <Link href="/landscape" className="text-sm font-bold text-[#990F3D] hover:underline flex-shrink-0">
@@ -140,15 +148,6 @@ export default function HomePage() {
 
       </main>
 
-      <footer className="border-t border-gray-200 mt-16 py-8">
-        <div className="max-w-6xl mx-auto px-6 flex items-center justify-between">
-          <p className="text-xs text-gray-400">
-            AI in Wealth Management &amp; Financial Services.
-            All summaries are AI-generated from source material. Internal use only.
-          </p>
-          <p className="text-xs text-gray-300">Updated March 2026</p>
-        </div>
-      </footer>
     </div>
   );
 }

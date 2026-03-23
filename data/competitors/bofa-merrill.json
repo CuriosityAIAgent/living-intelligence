@@ -7,32 +7,40 @@
     "emea"
   ],
   "color": "#E31837",
-  "ai_strategy_summary": "The longest-running AI program in wealth management. Erica has surpassed 3 billion client interactions. Ask Merrill serves 23,000 advisors monthly with 10,000+ Q&A answers. BofA is investing $13B in technology in 2026, extending the most mature AI moat in the industry.",
+  "ai_strategy_summary": "The longest-running AI program in wealth management. Erica has surpassed 3.2 billion total interactions with 20.6 million active users and 700 million interactions in 2025 alone. BofA's 30 billion total digital interactions in 2025 grew 14% YoY — 86% of wealth management clients now engage digitally.",
   "head_of_ai": null,
-  "headline_metric": "3 billion Erica interactions, $13B tech investment 2026",
+  "headline_metric": "3.2B Erica interactions total; 20.6M users; 30B digital interactions in 2025",
   "headline_initiative": "Erica + Ask Merrill + Ask Private Bank",
   "overall_maturity": "scaled",
   "capabilities": {
     "client_personalization": {
       "maturity": "scaled",
-      "headline": "Erica: 3 billion interactions, equivalent to 11,000 employees",
-      "detail": "Bank of America's Erica virtual assistant has surpassed 3 billion client interactions as of August 2025, handling an estimated 1.5 million interactions per day. The system is equivalent to the work of 11,000 employees and handles everything from transaction queries to investment guidance.",
+      "headline": "Erica: 3.2 billion total interactions, 20.6 million users, 700M interactions in 2025",
+      "detail": "Bank of America's Erica virtual assistant has reached 3.2 billion total interactions since its 2018 launch, with 20.6 million active users and 700 million interactions in 2025 alone. 86% of wealth management clients engage digitally. BofA's total digital estate logged 30 billion client interactions in 2025 — a 14% year-on-year increase.",
       "evidence": [
-        "3B+ interactions as of Aug 2025",
-        "~1.5M interactions/day",
-        "Equivalent to 11,000 FTE"
+        "3.2 billion total Erica interactions since 2018 (BofA, March 2026)",
+        "20.6 million Erica users (BofA, March 2026)",
+        "700 million Erica interactions in 2025 alone",
+        "30 billion total digital client interactions in 2025 (+14% YoY)",
+        "86% of wealth management clients engaging digitally"
       ],
       "jpm_implication": "Erica's scale is unmatched in consumer banking AI. Chase's digital AI capabilities are directly competing with Erica for the same mass affluent clients.",
       "jpm_segments_affected": [
         "CWM",
         "Self-Directed"
       ],
-      "date_assessed": "2026-03-07"
+      "date_assessed": "2026-03-19",
+      "sources": [
+        {
+          "name": "Bank of America — BofA AI and Digital Innovations Fuel 30 Billion Client Interactions (March 10, 2026)",
+          "url": "https://newsroom.bankofamerica.com/content/newsroom/press-releases/2026/03/bofa-ai-and-digital-innovations-fuel-30-billion-client-interacti.html"
+        }
+      ]
     },
     "advisor_productivity": {
       "maturity": "scaled",
       "headline": "Ask Merrill: 23,000 advisors, 10,000+ Q&A answers per month",
-      "detail": "Ask Merrill is a knowledge AI for Merrill's ~23,000 financial advisors, providing instant answers to client and compliance questions, product information, and investment guidance. Ask Private Bank provides a similar capability for the private banking team.",
+      "detail": "Ask Merrill is a knowledge AI for Merrill's ~23 million interactions in 2024 financial advisors, providing instant answers to client and compliance questions, product information, and investment guidance. Ask Private Bank provides a similar capability for the private banking team.",
       "evidence": [
         "23,000 monthly active advisors",
         "10,000+ unique Q&A answers monthly",
@@ -43,39 +51,36 @@
         "JPMWM",
         "GPB"
       ],
-      "date_assessed": "2026-03-07"
-    },
-    "operations_compliance": {
-      "maturity": "scaled",
-      "headline": "Erica handles transactions, wire tracking, and compliance documentation at scale",
-      "detail": "Erica manages a full range of operational client requests including wire tracking, transaction disputes, account management, and compliance documentation \u2014 at 1.5M interactions per day.",
-      "evidence": [
-        "Operational capability confirmed",
-        "1.5M daily interactions include operational tasks"
-      ],
-      "jpm_implication": "BofA's operational AI scale creates structural cost advantages. JPM operational efficiency through AI is a board-level priority.",
-      "jpm_segments_affected": [
-        "CWM",
-        "Self-Directed"
-      ],
-      "date_assessed": "2026-03-07"
+      "date_assessed": "2026-03-19",
+      "sources": [
+        {
+          "name": "Bank of America Q3 2025 Earnings \u2014 AI tools cited across wealth management",
+          "url": "https://investor.bankofamerica.com/press-releases/detail/701/bank-of-america-reports-third-quarter-2025-financial"
+        }
+      ]
     },
     "client_acquisition": {
-      "maturity": "deployed",
+      "maturity": "piloting",
       "headline": "AI-powered segment migration and next-best-action across 67M clients",
-      "detail": "BofA uses AI to identify segment migration opportunities across its 67 million consumer clients, using behavioral and transaction data to predict life events and recommend wealth management conversations.",
+      "detail": "Bank of America is applying AI to segment migration and next-best-action across its 67M client base, but the WM-specific AI acquisition tooling for Merrill advisors is not separately disclosed with the same specificity as the core consumer AI stack. The $13B 2026 technology investment signals intent; WM-specific AI acquisition capabilities are assumed to be in pilot.",
       "evidence": [
-        "$13B 2026 technology investment",
-        "67M client base",
-        "AI-driven segment migration confirmed"
+        "$13B 2026 technology investment includes AI across all client segments",
+        "67M client base \u2014 AI-driven segment migration from consumer to Merrill Edge/Merrill Lynch in development",
+        "WM-specific AI acquisition product not separately disclosed"
       ],
       "jpm_implication": "BofA's AI-driven migration from banking to wealth management is a direct competitive threat to CWM and JPMWM acquisition pipeline.",
       "jpm_segments_affected": [
         "CWM",
         "JPMWM"
       ],
-      "date_assessed": "2026-03-07"
+      "date_assessed": "2026-03-07",
+      "sources": [
+        {
+          "name": "Bank of America Q3 2025 Earnings \u2014 technology investment and AI strategy",
+          "url": "https://investor.bankofamerica.com/press-releases/detail/701/bank-of-america-reports-third-quarter-2025-financial"
+        }
+      ]
     }
   },
-  "last_updated": "2026-03-07"
+  "last_updated": "2026-03-19"
 }

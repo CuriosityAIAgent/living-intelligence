@@ -2,9 +2,12 @@
   "id": "rbc-wealth-management",
   "name": "RBC Wealth Management",
   "segment": "regional_champion",
-  "regions": ["us", "emea"],
+  "regions": [
+    "us",
+    "emea"
+  ],
   "color": "#0070CE",
-  "ai_strategy_summary": "RBC Wealth Management rolled out TIFIN AG's AI-Powered Insights to all US advisors in February 2024 — identifying clients with money in motion using behavioral AI trained on billions of transactions — and is developing 3+ additional AI applications on its proprietary ATOM platform.",
+  "ai_strategy_summary": "RBC Wealth Management rolled out TIFIN AG's AI-Powered Insights to all US advisors in February 2024 \u2014 identifying clients with money in motion using behavioral AI trained on billions of transactions \u2014 and is developing 3+ additional AI applications on its proprietary ATOM platform.",
   "head_of_ai": null,
   "headline_metric": "Full US advisor rollout February 2024; clients managing ~$12T in assets identified via AI",
   "headline_initiative": "TIFIN AG AI-Powered Insights + Borealis AI lab",
@@ -12,8 +15,8 @@
   "capabilities": {
     "advisor_productivity": {
       "maturity": "deployed",
-      "headline": "AI-Powered Insights deployed to all US advisors — identifies money-in-motion clients from transaction data",
-      "detail": "RBC deployed TIFIN AG's AI-Powered Insights to all US wealth management advisors in February 2024. The system uses behavioral AI trained on billions of client transactions to identify clients likely to consolidate funds due to life events — integrated into advisor Salesforce desktops.",
+      "headline": "AI-Powered Insights deployed to all US advisors \u2014 identifies money-in-motion clients from transaction data",
+      "detail": "RBC deployed TIFIN AG's AI-Powered Insights to all US wealth management advisors in February 2024. The system uses behavioral AI trained on billions of client transactions to identify clients likely to consolidate funds due to life events \u2014 integrated into advisor Salesforce desktops.",
       "evidence": [
         "Deployed to all RBC Wealth Management-US advisors February 2024",
         "Preceded by 60-advisor pilot August 2023",
@@ -21,8 +24,17 @@
         "Integrated into Salesforce advisor desktop"
       ],
       "jpm_implication": "RBC is using AI to identify wallet share growth opportunities before advisors can spot them manually. JPM wealth advisors need comparable AI-powered client intelligence tools.",
-      "jpm_segments_affected": ["JPMWM", "CWM"],
-      "date_assessed": "2026-03-10"
+      "jpm_segments_affected": [
+        "JPMWM",
+        "CWM"
+      ],
+      "date_assessed": "2026-03-19",
+      "sources": [
+        {
+          "name": "TIFIN AG \u00d7 RBC Wealth Management \u2014 official announcement",
+          "url": "https://www.prnewswire.com/news-releases/tifin-ag-announces-collaboration-with-rbc-wealth-management-us-to-deepen-advisor-client-relationships-302073511.html"
+        }
+      ]
     },
     "client_acquisition": {
       "maturity": "deployed",
@@ -34,9 +46,27 @@
         "Life event + demographic + portfolio signals combined"
       ],
       "jpm_implication": "AI-powered AUM growth signals represent a structural advantage for firms that deploy them. JPM should develop equivalent behavioral AI for client acquisition.",
-      "jpm_segments_affected": ["JPMWM", "CWM"],
-      "date_assessed": "2026-03-10"
+      "jpm_segments_affected": [
+        "JPMWM",
+        "CWM"
+      ],
+      "date_assessed": "2026-03-19",
+      "sources": [
+        {
+          "name": "TIFIN AG \u00d7 RBC Wealth Management \u2014 official announcement",
+          "url": "https://www.prnewswire.com/news-releases/tifin-ag-announces-collaboration-with-rbc-wealth-management-us-to-deepen-advisor-client-relationships-302073511.html"
+        }
+      ]
+    },
+    "investment_portfolio": {
+      "maturity": "piloting",
+      "headline": "RBC Borealis ATOM applied to personalization and investment use cases across RBC Group",
+      "detail": "RBC's Borealis AI subsidiary is applying the ATOM behavioural model to personalization and investment use cases at group level, with wealth management applications in early deployment.",
+      "evidence": [
+        "RBC Borealis AI public communications on ATOM model expansion"
+      ],
+      "date_assessed": "2026-03-19"
     }
   },
-  "last_updated": "2026-03-10"
+  "last_updated": "2026-03-19"
 }

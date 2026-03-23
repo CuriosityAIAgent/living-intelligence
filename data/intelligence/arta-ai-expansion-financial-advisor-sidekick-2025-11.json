@@ -22,7 +22,7 @@
       "financial_advisor_tools"
     ]
   },
-  "week": "2026-03-09",
+  "week": "2025-11-03",
   "featured": false,
   "_governance": {
     "verdict": "REVIEW",
@@ -42,5 +42,6 @@
     "human_approved": false,
     "approved_at": null,
     "backfill": true
-  }
+  },
+  "published_at": "2026-03-12T17:58:27.782Z"
 }

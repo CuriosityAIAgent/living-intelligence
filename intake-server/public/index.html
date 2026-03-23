@@ -1,0 +1,2163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI in Wealth Management — Content Intake</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #F9FAFB;
+      color: #111827;
+      font-size: 14px;
+      min-height: 100vh;
+    }
+
+    /* Header */
+    header {
+      background: #1C1C2E;
+      border-bottom: 1px solid #2D2D44;
+      padding: 0 24px;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .header-title { font-size: 14px; font-weight: 700; color: #fff; }
+    .header-sub { font-size: 12px; color: #6B7280; margin-left: 12px; }
+    .header-badge {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.08em;
+      text-transform: uppercase; padding: 3px 8px; border-radius: 3px;
+      background: #990F3D; color: #fff;
+    }
+    .header-inbox-count {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 12px; color: #D1D5DB;
+    }
+    .header-inbox-num {
+      background: #990F3D; color: #fff; font-size: 10px; font-weight: 700;
+      padding: 2px 7px; border-radius: 10px; min-width: 20px; text-align: center;
+    }
+
+    /* Layout */
+    .layout {
+      display: grid;
+      grid-template-columns: 340px 1fr;
+      gap: 0;
+      min-height: calc(100vh - 52px);
+    }
+
+    /* Left panel */
+    .left-panel {
+      background: #fff;
+      border-right: 1px solid #E5E7EB;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .panel-header {
+      padding: 16px;
+      border-bottom: 1px solid #E5E7EB;
+      background: #F9FAFB;
+    }
+    .panel-title {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: #1B2E5E; margin-bottom: 12px;
+    }
+    .action-btn {
+      display: inline-flex; align-items: center; gap-6px;
+      background: #1B2E5E; color: #fff;
+      border: none; border-radius: 5px;
+      padding: 8px 14px; font-size: 13px; font-weight: 600;
+      cursor: pointer; transition: background 0.15s;
+      width: 100%;
+      justify-content: center;
+    }
+    .action-btn:hover { background: #2A4080; }
+    .action-btn:disabled { background: #9CA3AF; cursor: not-allowed; }
+    .action-btn.secondary {
+      background: #fff; color: #1B2E5E;
+      border: 1px solid #1B2E5E;
+    }
+    .action-btn.secondary:hover { background: #EEF2FF; }
+    .action-btn.danger { background: #DC2626; }
+    .action-btn.danger:hover { background: #B91C1C; }
+    .action-btn.success { background: #15803D; }
+    .action-btn.success:hover { background: #166534; }
+
+    /* Candidates list */
+    .candidates-scroll {
+      flex: 1;
+      overflow-y: auto;
+      padding: 8px;
+    }
+    .candidate-item {
+      border: 1px solid #E5E7EB;
+      border-radius: 6px;
+      padding: 10px 12px;
+      margin-bottom: 6px;
+      background: #fff;
+      cursor: pointer;
+      transition: border-color 0.15s;
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+    .candidate-item:hover { border-color: #1B2E5E; }
+    .candidate-item.selected { border-color: #1B2E5E; background: #F8FAFF; }
+    .candidate-item.active { border-color: #7C3AED; background: #FAF5FF; }
+    .candidate-checkbox {
+      width: 16px; height: 16px; margin-top: 1px; flex-shrink: 0;
+      accent-color: #1B2E5E;
+    }
+    .candidate-info { flex: 1; min-width: 0; }
+    .candidate-title {
+      font-size: 12px; font-weight: 600; color: #111827;
+      line-height: 1.4; margin-bottom: 4px;
+      display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .candidate-meta {
+      font-size: 10px; color: #9CA3AF;
+    }
+    .verdict-dot {
+      width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; margin-top: 4px;
+    }
+    .verdict-pass { background: #22C55E; }
+    .verdict-review { background: #F59E0B; }
+    .verdict-fail { background: #EF4444; }
+    .verdict-pending { background: #D1D5DB; }
+    .verdict-processing { background: #6366F1; animation: pulse 1s infinite; }
+
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+    /* Status log */
+    .status-bar {
+      border-top: 1px solid #E5E7EB;
+      padding: 8px 12px;
+      font-size: 11px;
+      color: #6B7280;
+      background: #F9FAFB;
+      min-height: 36px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .status-dot { width: 6px; height: 6px; border-radius: 50%; background: #22C55E; flex-shrink: 0; }
+
+    /* Right panel */
+    .right-panel {
+      padding: 24px;
+      overflow-y: auto;
+    }
+    .empty-state {
+      display: flex; flex-direction: column; align-items: center;
+      justify-content: center; height: 60vh;
+      color: #9CA3AF; text-align: center;
+    }
+    .empty-icon { font-size: 40px; margin-bottom: 12px; }
+    .empty-title { font-size: 15px; font-weight: 600; margin-bottom: 6px; color: #6B7280; }
+
+    /* Entry preview */
+    .entry-preview {
+      background: #fff;
+      border: 1px solid #E5E7EB;
+      border-radius: 8px;
+      overflow: hidden;
+      max-width: 800px;
+    }
+    .entry-preview-header {
+      padding: 16px 20px;
+      border-bottom: 1px solid #E5E7EB;
+      background: #F9FAFB;
+      display: flex; align-items: flex-start; justify-content: space-between; gap: 12px;
+    }
+    .entry-headline {
+      font-size: 16px; font-weight: 700; color: #111827; line-height: 1.4;
+    }
+    .governance-badge {
+      flex-shrink: 0;
+      font-size: 10px; font-weight: 700; letter-spacing: 0.08em;
+      text-transform: uppercase; padding: 4px 10px; border-radius: 4px;
+    }
+    .gov-pass { background: #DCFCE7; color: #15803D; border: 1px solid #BBF7D0; }
+    .gov-review { background: #FEF3C7; color: #B45309; border: 1px solid #FDE68A; }
+    .gov-fail { background: #FEE2E2; color: #B91C1C; border: 1px solid #FECACA; }
+    .gov-pending { background: #F3F4F6; color: #6B7280; border: 1px solid #E5E7EB; }
+
+    .entry-preview-body { padding: 20px; }
+    .field-label {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: #9CA3AF; margin-bottom: 4px;
+    }
+    .field-value {
+      font-size: 13px; color: #374151; margin-bottom: 14px; line-height: 1.6;
+    }
+    .field-value.mono {
+      font-family: monospace; font-size: 12px; background: #F9FAFB;
+      padding: 6px 8px; border-radius: 4px; border: 1px solid #E5E7EB;
+    }
+    .tag-list { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 14px; }
+    .tag {
+      font-size: 10px; padding: 2px 8px; border-radius: 10px;
+      background: #EEF2FF; color: #3730A3; border: 1px solid #C7D2FE;
+    }
+
+    /* Governance result */
+    .gov-section {
+      margin-top: 16px; padding: 14px; border-radius: 6px;
+      border: 1px solid #E5E7EB; background: #F9FAFB;
+    }
+    .gov-claim { font-size: 12px; color: #374151; padding: 4px 0; display: flex; gap: 6px; }
+    .gov-check { color: #15803D; }
+    .gov-warn { color: #B45309; }
+    .gov-x { color: #B91C1C; }
+
+    /* Bottom actions */
+    .entry-actions {
+      padding: 14px 20px;
+      border-top: 1px solid #E5E7EB;
+      background: #F9FAFB;
+      display: flex; gap: 8px;
+    }
+
+    /* Publish bar */
+    .publish-bar {
+      position: fixed; bottom: 0; left: 340px; right: 0;
+      background: #1B2E5E; color: #fff;
+      padding: 12px 24px;
+      display: none; align-items: center; justify-content: space-between;
+      border-top: 2px solid #2A4080;
+      z-index: 50;
+    }
+    .publish-bar.visible { display: flex; }
+    .publish-count { font-size: 13px; font-weight: 600; }
+    .publish-sub { font-size: 11px; opacity: 0.7; }
+
+    /* Log overlay */
+    .log-overlay {
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 200; align-items: center; justify-content: center;
+    }
+    .log-overlay.visible { display: flex; }
+    .log-box {
+      background: #111827; color: #D1FAE5;
+      border-radius: 8px; padding: 20px;
+      width: 560px; max-height: 70vh;
+      overflow-y: auto; font-family: monospace; font-size: 12px;
+    }
+    .log-line { margin-bottom: 4px; line-height: 1.5; }
+    .log-line.error { color: #FCA5A5; }
+    .log-line.success { color: #86EFAC; }
+    .log-line.warn { color: #FDE68A; }
+
+    input[type="text"] {
+      width: 100%; border: 1px solid #D1D5DB; border-radius: 5px;
+      padding: 7px 10px; font-size: 13px; color: #111827;
+      outline: none; transition: border-color 0.15s;
+    }
+    input[type="text"]:focus { border-color: #1B2E5E; }
+
+    .spinner { display: inline-block; }
+    .spinner::after {
+      content: ''; display: inline-block; width: 10px; height: 10px;
+      border: 2px solid #fff; border-top-color: transparent;
+      border-radius: 50%; animation: spin 0.6s linear infinite;
+      margin-left: 6px; vertical-align: middle;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .divider { height: 1px; background: #E5E7EB; margin: 12px 0; }
+    .section-label {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; color: #1B2E5E; margin-bottom: 8px;
+    }
+
+    /* Mode tabs */
+    .mode-tabs {
+      display: flex; gap: 0; margin-bottom: 12px;
+      border: 1px solid #E5E7EB; border-radius: 5px; overflow: hidden;
+    }
+    .mode-tab {
+      flex: 1; padding: 6px 0; font-size: 11px; font-weight: 600;
+      text-align: center; cursor: pointer; border: none; background: #fff;
+      color: #6B7280; transition: background 0.15s, color 0.15s;
+    }
+    .mode-tab.active { background: #1B2E5E; color: #fff; }
+    .mode-tab:not(:last-child) { border-right: 1px solid #E5E7EB; }
+
+    /* Search chips */
+    .query-chips {
+      display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 8px;
+    }
+    .query-chip {
+      font-size: 10px; padding: 3px 8px; border-radius: 10px;
+      background: #EEF2FF; color: #3730A3; border: 1px solid #C7D2FE;
+      cursor: pointer; transition: background 0.12s;
+      white-space: nowrap;
+    }
+    .query-chip:hover { background: #C7D2FE; }
+
+    /* Pending queue */
+    .pending-badge {
+      display: inline-block; background: #F59E0B; color: #fff;
+      font-size: 9px; font-weight: 700; border-radius: 8px;
+      padding: 1px 5px; margin-left: 4px; vertical-align: middle;
+    }
+    /* Editorial card */
+    .eq-card {
+      border: 1px solid #E5E7EB; border-radius: 8px;
+      margin-bottom: 20px; background: #fff; overflow: hidden;
+      cursor: default;
+    }
+    .eq-card-active {
+      border-color: #990F3D; box-shadow: 0 0 0 2px rgba(153,15,61,0.12);
+    }
+    .eq-card-header {
+      padding: 10px 16px; background: #FFFBEB; border-bottom: 1px solid #FDE68A;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .eq-card-status {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.06em; color: #B45309;
+    }
+    .eq-card-counter { font-size: 10px; color: #9CA3AF; margin-left: auto; }
+    .eq-card-body { padding: 16px; }
+    .eq-headline { font-size: 15px; font-weight: 700; color: #111827; line-height: 1.4; margin-bottom: 8px; }
+    .eq-meta { font-size: 10px; color: #9CA3AF; margin-bottom: 14px; display: flex; gap: 10px; flex-wrap: wrap; }
+    .eq-so-what {
+      border-left: 4px solid #990F3D; padding: 10px 14px; margin-bottom: 14px;
+      background: #FFF5F7;
+    }
+    .eq-so-what-label {
+      font-size: 9px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+      color: #990F3D; margin-bottom: 5px;
+    }
+    .eq-so-what-text { font-size: 13px; color: #1F2937; line-height: 1.5; font-weight: 500; }
+    .eq-so-what-missing { font-size: 11px; color: #9CA3AF; font-style: italic; }
+    .eq-section-label {
+      font-size: 9px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+      color: #9CA3AF; margin-bottom: 6px;
+    }
+    .eq-summary { font-size: 12px; color: #374151; line-height: 1.6; margin-bottom: 14px; }
+    .eq-key-stat {
+      display: inline-flex; align-items: baseline; gap: 6px; margin-bottom: 14px;
+      padding: 6px 12px; background: #F9FAFB; border: 1px solid #E5E7EB; border-radius: 4px;
+    }
+    .eq-key-stat-number { font-size: 20px; font-weight: 800; color: #990F3D; }
+    .eq-key-stat-label { font-size: 11px; color: #6B7280; }
+    .eq-warning {
+      background: #FFFBEB; border: 1px solid #FDE68A; border-radius: 4px;
+      padding: 8px 12px; margin-bottom: 12px;
+    }
+    .eq-claim { font-size: 11px; color: #B45309; padding: 2px 0; }
+    .eq-claim::before { content: '⚠ '; }
+    .eq-source { font-size: 11px; margin-bottom: 14px; }
+    .eq-source a { color: #1B2E5E; text-decoration: none; }
+    .eq-source a:hover { text-decoration: underline; }
+    .eq-confidence {
+      display: inline-block; font-size: 10px; font-weight: 700; padding: 2px 8px;
+      border-radius: 10px; margin-bottom: 14px;
+    }
+    .eq-confidence-high { background: #DCFCE7; color: #15803D; }
+    .eq-confidence-mid { background: #FEF3C7; color: #B45309; }
+    .eq-confidence-low { background: #FEE2E2; color: #B91C1C; }
+    .eq-actions { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; padding-top: 14px; border-top: 1px solid #F3F4F6; }
+    .eq-btn-approve { background: #15803D; color: #fff; border: none; border-radius: 4px; padding: 8px 16px; font-size: 12px; font-weight: 700; cursor: pointer; }
+    .eq-btn-approve:hover { background: #166534; }
+    .eq-btn-edit { background: #1B2E5E; color: #fff; border: none; border-radius: 4px; padding: 8px 16px; font-size: 12px; font-weight: 700; cursor: pointer; }
+    .eq-btn-edit:hover { background: #162548; }
+    .eq-btn-reject { background: #fff; color: #B91C1C; border: 1px solid #FECACA; border-radius: 4px; padding: 8px 16px; font-size: 12px; font-weight: 700; cursor: pointer; }
+    .eq-btn-reject:hover { background: #FEE2E2; }
+    .eq-shortcuts { font-size: 10px; color: #9CA3AF; margin-left: auto; }
+    .eq-shortcuts kbd { background: #F3F4F6; border: 1px solid #D1D5DB; border-radius: 3px; padding: 1px 5px; font-size: 9px; }
+    /* Inline editor */
+    .eq-editor { display: none; background: #F9FAFB; border: 1px solid #E5E7EB; border-radius: 6px; padding: 14px; margin-top: 14px; }
+    .eq-editor.visible { display: block; }
+    .eq-editor label { display: block; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #6B7280; margin-bottom: 4px; margin-top: 12px; }
+    .eq-editor label:first-child { margin-top: 0; }
+    .eq-editor input, .eq-editor textarea { width: 100%; box-sizing: border-box; border: 1px solid #D1D5DB; border-radius: 4px; padding: 6px 8px; font-size: 12px; font-family: inherit; line-height: 1.5; }
+    .eq-editor textarea { resize: vertical; }
+    .eq-editor-actions { display: flex; gap: 8px; margin-top: 12px; }
+    .eq-btn-save { background: #990F3D; color: #fff; border: none; border-radius: 4px; padding: 7px 16px; font-size: 12px; font-weight: 700; cursor: pointer; }
+    .eq-btn-save:hover { background: #7A0C31; }
+    .eq-btn-cancel { background: #fff; color: #6B7280; border: 1px solid #D1D5DB; border-radius: 4px; padding: 7px 12px; font-size: 12px; cursor: pointer; }
+    /* Legacy compat */
+    .pending-item { display: none; }
+    .pending-claim { font-size: 11px; color: #B45309; padding: 2px 0; }
+    .pending-actions { display: flex; gap: 6px; margin-top: 8px; }
+    .pending-approve { background: #15803D; color: #fff; border: none; border-radius: 4px; padding: 5px 12px; font-size: 11px; font-weight: 700; cursor: pointer; }
+    .pending-approve:hover { background: #166534; }
+    .pending-reject { background: #fff; color: #B91C1C; border: 1px solid #FECACA; border-radius: 4px; padding: 5px 12px; font-size: 11px; font-weight: 700; cursor: pointer; }
+    .pending-reject:hover { background: #FEE2E2; }
+
+    /* Blocked notice */
+    .blocked-notice {
+      background: #FEE2E2; border: 1px solid #FECACA; border-radius: 6px;
+      padding: 12px; color: #B91C1C; font-size: 12px; line-height: 1.5;
+    }
+
+    /* Source progress */
+    .source-progress {
+      display: grid; grid-template-columns: 1fr 1fr 1fr;
+      gap: 4px; margin-top: 10px;
+    }
+    .source-pill {
+      text-align: center; padding: 4px 6px; border-radius: 4px;
+      font-size: 9px; font-weight: 700; letter-spacing: 0.05em;
+      border: 1px solid #E5E7EB; background: #F9FAFB; color: #9CA3AF;
+      transition: all 0.2s;
+    }
+    .source-pill.running { background: #EEF2FF; color: #3730A3; border-color: #C7D2FE; animation: pulse 1s infinite; }
+    .source-pill.done { background: #DCFCE7; color: #15803D; border-color: #BBF7D0; animation: none; }
+    .source-pill-label { font-size: 8px; opacity: 0.7; display: block; margin-bottom: 1px; }
+
+    /* Via badge on candidates */
+    .via-badge {
+      font-size: 8px; font-weight: 700; letter-spacing: 0.05em;
+      padding: 1px 5px; border-radius: 3px; flex-shrink: 0;
+    }
+    .via-layer1_news     { background: #DBEAFE; color: #1D4ED8; }
+    .via-layer2_companies { background: #D1FAE5; color: #065F46; }
+    .via-layer1_tl       { background: #EDE9FE; color: #6D28D9; }
+    .via-layer2_authors  { background: #FEF3C7; color: #92400E; }
+    /* Legacy badge classes kept for manual search results */
+    .via-jina_search { background: #EDE9FE; color: #6D28D9; }
+
+    /* ── Audit panel ── */
+    .audit-panel {
+      display: none;
+      padding: 24px;
+      overflow-y: auto;
+      height: calc(100vh - 52px);
+    }
+    .audit-panel.visible { display: block; }
+
+    .audit-score-block {
+      display: flex; align-items: center; gap: 20px;
+      background: #fff; border: 1px solid #E5E7EB; border-radius: 8px;
+      padding: 20px 24px; margin-bottom: 20px;
+    }
+    .audit-score-number {
+      font-size: 48px; font-weight: 800; color: #1B2E5E; line-height: 1;
+    }
+    .audit-score-label { font-size: 11px; color: #9CA3AF; text-transform: uppercase; letter-spacing: 0.1em; }
+    .audit-score-meta { font-size: 13px; color: #374151; margin-top: 4px; }
+
+    .audit-summary-bar {
+      display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap;
+    }
+    .audit-summary-pill {
+      display: flex; align-items: center; gap: 6px;
+      padding: 8px 14px; border-radius: 6px;
+      font-size: 13px; font-weight: 600;
+    }
+    .audit-summary-pill.pass { background: #DCFCE7; color: #15803D; border: 1px solid #BBF7D0; }
+    .audit-summary-pill.warn { background: #FEF3C7; color: #B45309; border: 1px solid #FDE68A; }
+    .audit-summary-pill.fail { background: #FEE2E2; color: #B91C1C; border: 1px solid #FECACA; }
+    .audit-summary-pill.info { background: #EEF2FF; color: #3730A3; border: 1px solid #C7D2FE; }
+
+    .audit-section-header {
+      font-size: 11px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.1em; color: #1B2E5E; margin: 20px 0 10px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .audit-section-count {
+      font-size: 10px; background: #E5E7EB; color: #374151;
+      padding: 1px 6px; border-radius: 8px; font-weight: 600;
+    }
+
+    .audit-file-row {
+      border: 1px solid #E5E7EB; border-radius: 6px;
+      margin-bottom: 6px; background: #fff; overflow: hidden;
+    }
+    .audit-file-row.fail { border-color: #FECACA; background: #FFF8F8; }
+    .audit-file-row.warn { border-color: #FDE68A; background: #FFFDF0; }
+    .audit-file-row.pass { border-color: #BBF7D0; }
+
+    .audit-file-header {
+      display: flex; align-items: center; gap: 10px;
+      padding: 10px 14px; cursor: pointer; user-select: none;
+    }
+    .audit-file-header:hover { background: rgba(0,0,0,0.02); }
+
+    .audit-status-dot {
+      width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0;
+    }
+    .audit-status-dot.pass { background: #22C55E; }
+    .audit-status-dot.warn { background: #F59E0B; }
+    .audit-status-dot.fail { background: #EF4444; }
+
+    .audit-file-name { font-size: 12px; font-weight: 600; color: #111827; flex: 1; }
+    .audit-file-meta { font-size: 10px; color: #9CA3AF; }
+
+    .audit-status-badge {
+      font-size: 9px; font-weight: 800; letter-spacing: 0.08em;
+      text-transform: uppercase; padding: 2px 8px; border-radius: 3px;
+    }
+    .audit-status-badge.pass { background: #DCFCE7; color: #15803D; }
+    .audit-status-badge.warn { background: #FEF3C7; color: #B45309; }
+    .audit-status-badge.fail { background: #FEE2E2; color: #B91C1C; }
+
+    .audit-issues-list {
+      display: none; padding: 0 14px 12px; border-top: 1px solid #F3F4F6;
+    }
+    .audit-issues-list.open { display: block; }
+
+    .audit-issue-row {
+      display: flex; gap: 8px; align-items: flex-start;
+      padding: 5px 0; font-size: 12px; border-bottom: 1px solid #F9FAFB;
+    }
+    .audit-issue-row:last-child { border-bottom: none; }
+    .audit-issue-icon { flex-shrink: 0; margin-top: 1px; font-size: 11px; }
+    .audit-issue-check {
+      font-family: monospace; font-size: 10px; color: #6B7280;
+      background: #F3F4F6; padding: 1px 5px; border-radius: 3px;
+      flex-shrink: 0; white-space: nowrap;
+    }
+    .audit-issue-detail { color: #374151; line-height: 1.5; }
+
+    .audit-progress-bar {
+      height: 4px; background: #E5E7EB; border-radius: 2px;
+      margin-bottom: 16px; overflow: hidden; display: none;
+    }
+    .audit-progress-fill {
+      height: 100%; background: #1B2E5E; border-radius: 2px;
+      transition: width 0.3s ease; width: 0%;
+    }
+
+    .audit-controls {
+      display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px;
+    }
+    .audit-btn {
+      padding: 8px 16px; border-radius: 5px; font-size: 13px;
+      font-weight: 600; cursor: pointer; border: none; transition: background 0.15s;
+    }
+    .audit-btn.primary { background: #1B2E5E; color: #fff; }
+    .audit-btn.primary:hover { background: #2A4080; }
+    .audit-btn.primary:disabled { background: #9CA3AF; cursor: not-allowed; }
+    .audit-btn.secondary { background: #fff; color: #1B2E5E; border: 1px solid #1B2E5E; }
+    .audit-btn.secondary:hover { background: #EEF2FF; }
+    .audit-btn.deep { background: #7C3AED; color: #fff; }
+    .audit-btn.deep:hover { background: #6D28D9; }
+    .audit-btn.deep:disabled { background: #9CA3AF; cursor: not-allowed; }
+
+    .audit-log-line {
+      font-size: 11px; color: #6B7280; padding: 2px 0;
+      font-family: monospace; line-height: 1.5;
+    }
+    .audit-log-line.error { color: #EF4444; }
+    .audit-log-wrap {
+      background: #F9FAFB; border: 1px solid #E5E7EB; border-radius: 5px;
+      padding: 10px 12px; max-height: 120px; overflow-y: auto;
+      margin-bottom: 16px; display: none;
+    }
+    .audit-log-wrap.visible { display: block; }
+    .audit-empty-state {
+      text-align: center; padding: 48px 24px; color: #9CA3AF;
+    }
+    .audit-empty-state .icon { font-size: 36px; margin-bottom: 12px; }
+    .audit-empty-state .title { font-size: 15px; font-weight: 600; color: #6B7280; margin-bottom: 6px; }
+
+    /* Pipeline status strip */
+    .pipeline-strip {
+      background: #F9FAFB; border: 1px solid #E5E7EB; border-radius: 6px;
+      padding: 10px 14px; margin-bottom: 14px;
+      display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+    }
+    .pipeline-stat { display: flex; flex-direction: column; align-items: center; min-width: 50px; }
+    .pipeline-stat-num { font-size: 18px; font-weight: 800; color: #1B2E5E; line-height: 1; }
+    .pipeline-stat-label { font-size: 9px; color: #9CA3AF; text-transform: uppercase; letter-spacing: 0.06em; margin-top: 2px; }
+    .pipeline-stat-num.green { color: #15803D; }
+    .pipeline-stat-num.amber { color: #B45309; }
+    .pipeline-stat-num.red { color: #B91C1C; }
+    .pipeline-divider { width: 1px; height: 32px; background: #E5E7EB; flex-shrink: 0; }
+    .pipeline-run-time { font-size: 10px; color: #9CA3AF; flex: 1; min-width: 120px; }
+    .pipeline-run-btn {
+      background: #1B2E5E; color: #fff; border: none; border-radius: 4px;
+      padding: 6px 12px; font-size: 11px; font-weight: 700; cursor: pointer;
+      white-space: nowrap; flex-shrink: 0;
+    }
+    .pipeline-run-btn:hover { background: #2A4080; }
+    .pipeline-run-btn:disabled { background: #9CA3AF; cursor: not-allowed; }
+
+    /* Score badge */
+    .score-badge {
+      display: inline-flex; align-items: baseline; gap: 2px;
+      font-size: 11px; font-weight: 800; padding: 2px 8px; border-radius: 10px;
+      flex-shrink: 0;
+    }
+    .score-high { background: #DCFCE7; color: #15803D; }
+    .score-mid  { background: #FEF3C7; color: #B45309; }
+    .score-low  { background: #FEE2E2; color: #B91C1C; }
+
+    /* Type badges (portal-consistent) */
+    .type-badge { font-size: 9px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 2px 7px; border-radius: 3px; }
+    .badge-market_signal   { background: #DBEAFE; color: #1D4ED8; }
+    .badge-product_launch  { background: #D1FAE5; color: #065F46; }
+    .badge-milestone       { background: #EDE9FE; color: #6D28D9; }
+    .badge-research        { background: #FEF3C7; color: #92400E; }
+    .badge-acquisition     { background: #FEE2E2; color: #991B1B; }
+    .badge-partnership     { background: #E0F2FE; color: #0369A1; }
+
+    /* Summary bullets (portal FormattedSummary style) */
+    .eq-bullets { list-style: none; padding: 0; margin: 0 0 14px 0; }
+    .eq-bullet { display: flex; gap: 10px; font-size: 13px; color: #374151; line-height: 1.6; margin-bottom: 10px; }
+    .eq-bullet-arrow { color: #990F3D; font-weight: 700; font-size: 11px; margin-top: 3px; flex-shrink: 0; }
+
+    /* Rejection modal */
+    .rejection-modal-overlay {
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,0.5); z-index: 300;
+      align-items: center; justify-content: center;
+    }
+    .rejection-modal-overlay.visible { display: flex; }
+    .rejection-modal {
+      background: #fff; border-radius: 8px; padding: 24px;
+      width: 420px; box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+    }
+    .rejection-modal-title { font-size: 15px; font-weight: 700; color: #111827; margin-bottom: 4px; }
+    .rejection-modal-sub { font-size: 12px; color: #6B7280; margin-bottom: 16px; }
+    .rejection-modal label { display: block; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #6B7280; margin-bottom: 6px; }
+    .rejection-modal select, .rejection-modal textarea {
+      width: 100%; border: 1px solid #D1D5DB; border-radius: 4px;
+      padding: 7px 10px; font-size: 13px; font-family: inherit; margin-bottom: 14px; outline: none;
+    }
+    .rejection-modal select:focus, .rejection-modal textarea:focus { border-color: #990F3D; }
+    .rejection-modal textarea { resize: vertical; min-height: 60px; }
+    .rejection-modal-actions { display: flex; gap: 8px; justify-content: flex-end; }
+    .btn-confirm-reject { background: #B91C1C; color: #fff; border: none; border-radius: 4px; padding: 8px 16px; font-size: 13px; font-weight: 700; cursor: pointer; }
+    .btn-confirm-reject:hover { background: #991B1B; }
+    .btn-cancel-reject { background: #fff; color: #6B7280; border: 1px solid #D1D5DB; border-radius: 4px; padding: 8px 16px; font-size: 13px; cursor: pointer; }
+    .btn-cancel-reject:hover { background: #F9FAFB; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div style="display:flex;align-items:center;">
+    <span class="header-title">Editorial Studio</span>
+    <span class="header-sub">AI in Wealth Management</span>
+  </div>
+  <div style="display:flex;align-items:center;gap:16px;">
+    <span class="header-inbox-count" id="headerInboxCount" style="display:none;">
+      Inbox <span class="header-inbox-num" id="headerInboxNum">0</span>
+    </span>
+    <button onclick="switchMode('audit')" style="background:none;border:none;font-size:11px;color:#6B7280;cursor:pointer;padding:4px 8px;border-radius:3px;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#6B7280'">Data Audit</button>
+    <span class="header-badge">Internal</span>
+  </div>
+</header>
+
+<div class="layout">
+
+  <!-- Left panel: candidates + controls -->
+  <div class="left-panel">
+    <div class="panel-header">
+      <div class="panel-title" id="panelTitle">Review Queue</div>
+
+      <!-- Mode tabs: Review (default) | Discover -->
+      <div class="mode-tabs">
+        <button class="mode-tab" id="tabPending" onclick="switchMode('pending')">
+          Review
+          <span class="pending-badge" id="pendingBadge" style="display:none;">0</span>
+        </button>
+        <button class="mode-tab" id="tabAuto" onclick="switchMode('auto')">Discover</button>
+      </div>
+
+      <!-- Review queue mode (default) -->
+      <div id="modePending">
+        <!-- Pipeline status strip -->
+        <div class="pipeline-strip" id="pipelineStrip">
+          <div class="pipeline-stat">
+            <div class="pipeline-stat-num" id="pipelineQueued">—</div>
+            <div class="pipeline-stat-label">In Inbox</div>
+          </div>
+          <div class="pipeline-divider"></div>
+          <div class="pipeline-stat">
+            <div class="pipeline-stat-num green" id="pipelinePublished">—</div>
+            <div class="pipeline-stat-label">Published Today</div>
+          </div>
+          <div class="pipeline-stat">
+            <div class="pipeline-stat-num amber" id="pipelineBlocked">—</div>
+            <div class="pipeline-stat-label">Blocked</div>
+          </div>
+          <div class="pipeline-stat">
+            <div class="pipeline-stat-num red" id="pipelineErrors">—</div>
+            <div class="pipeline-stat-label">Errors</div>
+          </div>
+          <div class="pipeline-divider"></div>
+          <div class="pipeline-run-time" id="pipelineRunTime">Last run: —</div>
+          <button class="pipeline-run-btn" id="btnRunPipeline" onclick="runPipelineNow()">▶ Run Pipeline</button>
+          <button class="action-btn secondary" style="width:auto;padding:5px 12px;font-size:11px;" onclick="loadInbox()">↺ Refresh</button>
+        </div>
+        <div id="pendingList" style="max-width:860px;">
+          <div style="font-size:12px;color:#9CA3AF;text-align:center;padding:24px;">Loading...</div>
+        </div>
+      </div>
+
+      <!-- Discover mode -->
+      <div id="modeAuto" style="display:none;">
+        <button class="action-btn" id="btnAutoDiscover" onclick="runAutoDiscover()">Find New Stories</button>
+        <div style="margin-top:10px;display:flex;gap:6px;">
+          <input type="text" id="manualUrl" placeholder="Or paste a specific URL..." style="font-size:12px;" />
+          <button class="action-btn secondary" style="width:auto;flex-shrink:0;padding:7px 12px;font-size:12px;" onclick="addManualUrl()">Add</button>
+        </div>
+      </div>
+
+      <!-- Hidden inputs kept for Search JS compat -->
+      <div id="modeSearch" style="display:none;">
+        <input type="text" id="searchQuery" placeholder="" />
+        <button id="btnSearch" onclick="runSearch()" style="display:none;"></button>
+      </div>
+      <div id="modeUrl" style="display:none;"></div>
+    </div>
+
+    <!-- Candidate list -->
+    <div class="candidates-scroll" id="candidateList" style="display:none;">
+      <div style="padding:16px;color:#9CA3AF;text-align:center;font-size:12px;">
+        Click "Find New Stories" to discover AI wealth management stories,<br/>or paste a specific URL above.
+      </div>
+    </div>
+
+    <div class="status-bar" id="statusBar" style="display:none;">
+      <div class="status-dot" id="statusDot"></div>
+      <span id="statusText">Ready</span>
+    </div>
+  </div>
+
+  <!-- Right panel: entry preview + governance (Discover mode only) -->
+  <div class="right-panel" id="rightPanel" style="display:none;">
+    <div class="empty-state">
+      <div class="empty-icon">📰</div>
+      <div class="empty-title">No story selected</div>
+      <div style="font-size:13px;">Click a story on the left to process it</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ── Audit Panel (full-width overlay, shown when Audit tab is active) ──── -->
+<div class="audit-panel" id="auditPanel">
+  <div style="max-width:960px;margin:0 auto;">
+
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;">
+      <div>
+        <div style="font-size:18px;font-weight:700;color:#1B2E5E;">Data Quality Audit</div>
+        <div style="font-size:12px;color:#9CA3AF;margin-top:2px;">Rule-based checks + AI verification across all intelligence and landscape data</div>
+      </div>
+    </div>
+
+    <!-- Controls -->
+    <div class="audit-controls">
+      <button class="audit-btn primary" id="btnFastAudit" onclick="runAudit('fast')">Run Fast Audit</button>
+      <button class="audit-btn deep" id="btnDeepAudit" onclick="runAudit('deep')">Run Deep Audit (AI)</button>
+      <button class="audit-btn secondary" onclick="loadAuditReport()">Load Last Report</button>
+      <button class="audit-btn secondary" onclick="sendTestDigest()" id="btnTestDigest">Send Test Digest</button>
+    </div>
+
+    <!-- Progress bar -->
+    <div class="audit-progress-bar" id="auditProgressBar">
+      <div class="audit-progress-fill" id="auditProgressFill"></div>
+    </div>
+
+    <!-- Log output (visible during run) -->
+    <div class="audit-log-wrap" id="auditLog"></div>
+
+    <!-- Score + summary (hidden until report loaded) -->
+    <div id="auditReportArea" style="display:none;">
+
+      <!-- Score block -->
+      <div class="audit-score-block">
+        <div>
+          <div class="audit-score-number" id="auditScoreNumber">—</div>
+          <div style="font-size:13px;color:#9CA3AF;margin-top:2px;">/100</div>
+        </div>
+        <div>
+          <div class="audit-score-label">Quality Score</div>
+          <div class="audit-score-meta" id="auditScoreMeta"></div>
+          <div style="font-size:11px;color:#9CA3AF;margin-top:4px;" id="auditRunAt"></div>
+        </div>
+      </div>
+
+      <!-- Summary pills -->
+      <div class="audit-summary-bar" id="auditSummaryBar"></div>
+
+      <!-- Intelligence results -->
+      <div class="audit-section-header">
+        Intelligence Entries
+        <span class="audit-section-count" id="auditIntelCount">0</span>
+      </div>
+      <div id="auditIntelResults"></div>
+
+      <!-- Landscape results -->
+      <div class="audit-section-header" style="margin-top:24px;">
+        Landscape / Competitors
+        <span class="audit-section-count" id="auditLandscapeCount">0</span>
+      </div>
+      <div id="auditLandscapeResults"></div>
+
+    </div>
+
+    <!-- Empty state (shown before first run) -->
+    <div class="audit-empty-state" id="auditEmptyState">
+      <div class="icon">🔍</div>
+      <div class="title">No audit report loaded</div>
+      <div style="font-size:13px;">Click "Run Fast Audit" to check all data files, or "Load Last Report" to view a saved report.</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Publish bar -->
+<div class="publish-bar" id="publishBar">
+  <div>
+    <div class="publish-count" id="publishCount">0 stories approved</div>
+    <div class="publish-sub">Ready to publish to the portal</div>
+  </div>
+  <div style="display:flex;gap:8px;">
+    <button class="action-btn secondary" style="background:transparent;color:#fff;border-color:#fff;width:auto;" onclick="clearApproved()">Clear</button>
+    <button class="action-btn success" style="width:auto;" onclick="publishApproved()">Publish to Portal →</button>
+  </div>
+</div>
+
+<!-- Rejection reason modal -->
+<div class="rejection-modal-overlay" id="rejectionModal">
+  <div class="rejection-modal" onclick="event.stopPropagation()">
+    <div class="rejection-modal-title">Reject Story</div>
+    <div class="rejection-modal-sub" id="rejectionModalSub">This will block the source URL permanently.</div>
+    <label>Reason</label>
+    <select id="rejectionReason">
+      <option value="not_relevant">Not relevant to wealth management AI</option>
+      <option value="already_covered">Already covered — duplicate story</option>
+      <option value="wrong_framing">Wrong framing — needs different angle</option>
+      <option value="low_quality">Low quality — insufficient evidence</option>
+      <option value="too_old">Too old — not timely enough</option>
+      <option value="other">Other</option>
+    </select>
+    <label>Notes (optional)</label>
+    <textarea id="rejectionNotes" placeholder="Any additional context for algorithm tuning..."></textarea>
+    <div class="rejection-modal-actions">
+      <button class="btn-cancel-reject" onclick="closeRejectionModal()">Cancel</button>
+      <button class="btn-confirm-reject" onclick="confirmReject()">Reject &amp; Block</button>
+    </div>
+  </div>
+</div>
+
+<!-- Log overlay -->
+<div class="log-overlay" id="logOverlay" onclick="closeLog()">
+  <div class="log-box" id="logBox" onclick="event.stopPropagation()">
+    <div style="display:flex;justify-content:space-between;margin-bottom:12px;">
+      <span style="font-weight:700;color:#F9FAFB;">Publish Log</span>
+      <button onclick="closeLog()" style="background:none;border:none;color:#9CA3AF;cursor:pointer;font-size:14px;">✕</button>
+    </div>
+    <div id="logLines"></div>
+  </div>
+</div>
+
+<script>
+// ── State ─────────────────────────────────────────────────────────────────────
+const candidates = new Map(); // id → candidate obj
+const processedEntries = new Map(); // id → { entry, governance }
+const approvedIds = new Set();
+let activeId = null;
+
+// ── Helpers ───────────────────────────────────────────────────────────────────
+
+function setStatus(text, type = 'default') {
+  const dot = document.getElementById('statusDot');
+  const el = document.getElementById('statusText');
+  el.textContent = text;
+  dot.style.background = type === 'error' ? '#EF4444' : type === 'loading' ? '#6366F1' : '#22C55E';
+  if (type === 'loading') dot.style.animation = 'pulse 1s infinite';
+  else dot.style.animation = '';
+}
+
+function sseStream(url, body, handlers) {
+  return new Promise((resolve, reject) => {
+    fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body),
+    }).then(res => {
+      const reader = res.body.getReader();
+      const decoder = new TextDecoder();
+      let buffer = '';
+
+      function pump() {
+        reader.read().then(({ done, value }) => {
+          if (done) { resolve(); return; }
+          buffer += decoder.decode(value, { stream: true });
+          const parts = buffer.split('\n\n');
+          buffer = parts.pop();
+          parts.forEach(chunk => {
+            const lines = chunk.split('\n');
+            let event = 'message', data = '';
+            lines.forEach(l => {
+              if (l.startsWith('event: ')) event = l.slice(7).trim();
+              if (l.startsWith('data: ')) data = l.slice(6).trim();
+            });
+            if (data) {
+              try {
+                const parsed = JSON.parse(data);
+                if (handlers[event]) handlers[event](parsed);
+              } catch(e) {}
+            }
+          });
+          pump();
+        }).catch(reject);
+      }
+      pump();
+    }).catch(reject);
+  });
+}
+
+function renderCandidateList() {
+  const list = document.getElementById('candidateList');
+  if (candidates.size === 0) {
+    list.innerHTML = '<div style="padding:16px;color:#9CA3AF;text-align:center;font-size:12px;">No stories found. Try scanning again.</div>';
+    return;
+  }
+
+  list.innerHTML = '';
+  candidates.forEach((c, id) => {
+    const processed = processedEntries.get(id);
+    const approved = approvedIds.has(id);
+    const isActive = id === activeId;
+
+    let verdictClass = 'verdict-pending';
+    if (processed) {
+      const v = processed.governance?.verdict;
+      if (v === 'PASS') verdictClass = 'verdict-pass';
+      else if (v === 'REVIEW') verdictClass = 'verdict-review';
+      else if (v === 'FAIL') verdictClass = 'verdict-fail';
+      else verdictClass = 'verdict-processing';
+    }
+
+    const viaLabels = { layer1_news: 'L1 News', layer2_companies: 'L2 Co', layer1_tl: 'L1 TL', layer2_authors: 'L2 Auth', jina_search: 'Jina' };
+    const viaLabel = viaLabels[c.via] || c.via || 'Web';
+    const viaClass = `via-${c.via || 'jina_search'}`;
+    const scoreStr = c.score != null ? `· ★${c.score}` : '';
+
+    const div = document.createElement('div');
+    div.className = `candidate-item${c.selected ? ' selected' : ''}${isActive ? ' active' : ''}`;
+    div.innerHTML = `
+      <input type="checkbox" class="candidate-checkbox" ${c.selected ? 'checked' : ''}
+        onchange="toggleCandidate('${id}', this.checked)" />
+      <div class="candidate-info" onclick="selectCandidate('${id}')">
+        <div class="candidate-title">${c.title}</div>
+        <div class="candidate-meta" style="display:flex;align-items:center;gap:4px;flex-wrap:wrap;">
+          <span class="via-badge ${viaClass}">${viaLabel}</span>
+          <span>${c.source_name}</span>
+          <span>· ${c.pub_date ? new Date(c.pub_date).toLocaleDateString() : 'Unknown'}</span>
+          ${c.score != null ? `<span style="color:#9CA3AF;">${scoreStr}</span>` : ''}
+        </div>
+        ${approved ? '<div style="font-size:10px;color:#15803D;font-weight:700;margin-top:3px;">✓ APPROVED</div>' : ''}
+      </div>
+      <div class="verdict-dot ${verdictClass}" style="margin-top:3px;"></div>
+    `;
+    list.appendChild(div);
+  });
+}
+
+function renderEntryPreview(id) {
+  const c = candidates.get(id);
+  const processed = processedEntries.get(id);
+  const approved = approvedIds.has(id);
+  const panel = document.getElementById('rightPanel');
+
+  if (!processed) {
+    panel.innerHTML = `
+      <div style="max-width:800px;">
+        <div class="section-label" style="margin-bottom:12px;">Story</div>
+        <div style="font-size:16px;font-weight:700;color:#111827;margin-bottom:8px;">${c.title}</div>
+        <div style="font-size:13px;color:#6B7280;margin-bottom:4px;">${c.source_name}</div>
+        ${c.url ? `<a href="${c.url}" target="_blank" style="font-size:12px;color:#1B2E5E;">${c.url} ↗</a>` : ''}
+        ${c.snippet ? `<div style="margin-top:12px;font-size:13px;color:#374151;line-height:1.6;border-left:3px solid #E5E7EB;padding-left:12px;">${c.snippet}</div>` : ''}
+        <div style="margin-top:20px;">
+          <button class="action-btn" onclick="processStory('${id}')">
+            Process this Story →
+          </button>
+        </div>
+      </div>
+    `;
+    return;
+  }
+
+  const { entry, governance } = processed;
+  const govClass = governance ? `gov-${governance.verdict.toLowerCase()}` : 'gov-pending';
+  const govLabel = governance ? governance.verdict : 'Pending';
+  const canPublish = governance?.verdict !== 'FAIL';
+
+  panel.innerHTML = `
+    <div class="entry-preview" style="max-width:800px;">
+      <div class="entry-preview-header">
+        <div class="entry-headline">${entry.headline}</div>
+        <div class="governance-badge ${govClass}">${govLabel}</div>
+      </div>
+      <div class="entry-preview-body">
+        <div class="field-label">Company</div>
+        <div class="field-value">
+          <img src="${entry.image_url}" onerror="this.style.display='none'" style="height:24px;object-fit:contain;vertical-align:middle;margin-right:8px;" />
+          ${entry.company_name}
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:14px;">
+          <div>
+            <div class="field-label">Type</div>
+            <div class="field-value">${entry.type}</div>
+          </div>
+          <div>
+            <div class="field-label">Date</div>
+            <div class="field-value">${entry.date}</div>
+          </div>
+          <div>
+            <div class="field-label">Region</div>
+            <div class="field-value">${entry.tags?.region || '—'}</div>
+          </div>
+        </div>
+
+        ${entry.the_so_what ? `
+        <div style="border-left:4px solid #990F3D;padding:8px 12px;margin-bottom:14px;background:#FFF5F7;">
+          <div style="font-size:9px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#990F3D;margin-bottom:4px;">Why this matters</div>
+          <div style="font-size:13px;color:#1F2937;line-height:1.5;font-weight:500;">${entry.the_so_what}</div>
+        </div>` : `
+        <div style="border-left:4px solid #F59E0B;padding:8px 12px;margin-bottom:14px;background:#FEF9F0;">
+          <div style="font-size:9px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#B45309;margin-bottom:4px;">Why this matters</div>
+          <div style="font-size:11px;color:#9CA3AF;font-style:italic;">Not generated — edit before publishing</div>
+        </div>`}
+
+        <div class="field-label">Summary</div>
+        <div class="field-value">${entry.summary}</div>
+
+        ${entry.key_stat ? `
+        <div class="field-label">Key Stat</div>
+        <div class="field-value"><strong>${entry.key_stat.number}</strong> — ${entry.key_stat.label}</div>
+        ` : ''}
+
+        <div class="field-label">Tags</div>
+        <div class="tag-list">
+          ${[entry.tags?.capability, entry.tags?.segment, ...(entry.tags?.theme || [])]
+            .filter(Boolean).map(t => `<span class="tag">${t.replace(/_/g,' ')}</span>`).join('')}
+        </div>
+
+        <div class="field-label">Entry ID</div>
+        <div class="field-value mono">${entry.id}</div>
+
+        ${governance ? `
+        <div class="gov-section">
+          <div class="section-label">Governance Check — ${governance.verdict}</div>
+          <div style="font-size:12px;color:#374151;margin-bottom:8px;">${governance.notes}</div>
+          ${governance.verified_claims?.length ? `
+            <div style="margin-bottom:6px;">
+              ${governance.verified_claims.map(c => `<div class="gov-claim"><span class="gov-check">✓</span> <span>${c}</span></div>`).join('')}
+            </div>` : ''}
+          ${governance.unverified_claims?.length ? `
+            <div style="margin-bottom:6px;">
+              ${governance.unverified_claims.map(c => `<div class="gov-claim"><span class="gov-warn">⚠</span> <span>${c}</span></div>`).join('')}
+            </div>` : ''}
+          ${governance.fabricated_claims?.length ? `
+            <div>
+              ${governance.fabricated_claims.map(c => `<div class="gov-claim"><span class="gov-x">✕</span> <span>${c}</span></div>`).join('')}
+            </div>` : ''}
+          ${governance.paywall_caveat ? '<div style="font-size:11px;color:#B45309;margin-top:6px;">⚠ Limited source content — possible paywall</div>' : ''}
+        </div>
+        ` : ''}
+      </div>
+
+      <div class="entry-actions">
+        ${canPublish && !approved ? `
+          <button class="action-btn success" style="width:auto;" onclick="approveEntry('${id}')">✓ Approve</button>
+        ` : ''}
+        ${approved ? `
+          <button class="action-btn danger" style="width:auto;" onclick="unapproveEntry('${id}')">Remove from queue</button>
+          <span style="font-size:13px;color:#15803D;font-weight:600;padding:8px 4px;">✓ Approved</span>
+        ` : ''}
+        ${!canPublish ? `
+          <span style="font-size:13px;color:#B91C1C;font-weight:600;padding:8px 4px;">✕ Blocked — governance FAIL</span>
+        ` : ''}
+        <button class="action-btn secondary" style="width:auto;margin-left:auto;" onclick="processStory('${id}')">Re-process</button>
+      </div>
+    </div>
+    <div style="margin-top:12px;font-size:11px;color:#9CA3AF;">
+      Source: <a href="${entry.source_url}" target="_blank" style="color:#1B2E5E;">${entry.source_name} ↗</a>
+    </div>
+  `;
+}
+
+// ── Actions ───────────────────────────────────────────────────────────────────
+
+async function runDiscovery() {
+  const btn = document.getElementById('btnDiscover');
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner">Scanning</span>';
+  candidates.clear();
+  processedEntries.clear();
+  approvedIds.clear();
+  updatePublishBar();
+  renderCandidateList();
+  setStatus('Scanning news feeds...', 'loading');
+
+  let total = 0;
+
+  await sseStream('/api/discover', {}, {
+    status: (d) => setStatus(d.message, 'loading'),
+    feed_done: (d) => {
+      if (d.count > 0) setStatus(`${d.feed}: ${d.count} relevant stories`, 'loading');
+    },
+    feed_error: (d) => setStatus(`${d.feed}: failed (${d.error})`, 'error'),
+    done: (d) => {
+      d.candidates.forEach(c => candidates.set(c.id, c));
+      total = d.total;
+      setStatus(`Found ${total} relevant stories from ${d.feeds_scanned} feeds`);
+      renderCandidateList();
+    },
+  });
+
+  btn.disabled = false;
+  btn.textContent = 'Scan News Feeds';
+}
+
+function addManualUrl() {
+  const input = document.getElementById('manualUrl');
+  const url = input.value.trim();
+  if (!url) return;
+
+  const id = btoa(url).slice(0, 12);
+  candidates.set(id, {
+    id,
+    title: url.replace(/https?:\/\//, '').slice(0, 80),
+    url,
+    source_name: 'Manual',
+    pub_date: new Date().toISOString(),
+    snippet: '',
+    selected: true,
+  });
+
+  input.value = '';
+  renderCandidateList();
+  selectCandidate(id);
+}
+
+function toggleCandidate(id, checked) {
+  const c = candidates.get(id);
+  if (c) { c.selected = checked; candidates.set(id, c); }
+}
+
+function selectCandidate(id) {
+  activeId = id;
+  renderCandidateList();
+  renderEntryPreview(id);
+}
+
+async function processStory(id) {
+  const c = candidates.get(id);
+  if (!c || !c.url) return;
+
+  setStatus(`Processing: ${c.title.slice(0, 50)}...`, 'loading');
+
+  // Mark as processing
+  processedEntries.set(id, null);
+  renderCandidateList();
+
+  let entry = null, governance = null;
+
+  await sseStream('/api/process-url', { url: c.url, source_name: c.source_name }, {
+    status: (d) => {
+      setStatus(d.message, 'loading');
+      if (d.paywall_suspected) setStatus('⚠ Possible paywall — content may be limited', 'error');
+    },
+    structured: (d) => {
+      entry = d.entry;
+    },
+    result: (d) => {
+      governance = d;
+    },
+    complete: (d) => {
+      entry = d.entry;
+      governance = d.governance;
+    },
+    // Fix 4: URL permanently blocked by previous FAIL
+    blocked: (d) => {
+      setStatus(`✕ Permanently blocked: ${d.message}`, 'error');
+      const panel = document.getElementById('rightPanel');
+      panel.innerHTML = `<div class="blocked-notice" style="max-width:700px;">
+        <strong>✕ URL Permanently Blocked</strong><br/>${d.message}
+        ${d.blocked_at ? `<br/><span style="font-size:10px;opacity:0.7;">Blocked: ${new Date(d.blocked_at).toLocaleString()}</span>` : ''}
+      </div>`;
+      processedEntries.delete(id);
+      renderCandidateList();
+    },
+    // Fix 1: Sent to pending queue for human approval
+    review_queued: (d) => {
+      setStatus(`⚠ Sent to Review Queue: ${d.entry_id}`, 'loading');
+      const panel = document.getElementById('rightPanel');
+      panel.innerHTML = `<div style="max-width:700px;">
+        <div class="governance-badge gov-review" style="margin-bottom:12px;">REVIEW — Pending Approval</div>
+        <div style="font-size:14px;font-weight:700;margin-bottom:8px;">Entry held for human review</div>
+        <div style="font-size:13px;color:#374151;margin-bottom:12px;">${d.message}</div>
+        ${d.unverified_claims?.length ? `<div style="margin-bottom:8px;">
+          <div class="field-label">Unverified claims</div>
+          ${d.unverified_claims.map(claim => `<div class="pending-claim">⚠ ${claim}</div>`).join('')}
+        </div>` : ''}
+        <div style="margin-top:12px;font-size:12px;color:#9CA3AF;">
+          Go to the <strong>Review</strong> tab to approve or reject this entry.
+        </div>
+      </div>`;
+      processedEntries.delete(id);
+      renderCandidateList();
+      loadInbox(); // refresh inbox badge count
+    },
+    skipped: (d) => {
+      setStatus('Article not relevant — skipped', 'error');
+      processedEntries.delete(id);
+      renderCandidateList();
+    },
+    error: (d) => {
+      setStatus(`Error: ${d.message}`, 'error');
+      processedEntries.delete(id);
+      renderCandidateList();
+    },
+  });
+
+  if (entry) {
+    processedEntries.set(id, { entry, governance });
+    renderCandidateList();
+    if (id === activeId) renderEntryPreview(id);
+    setStatus(`${governance?.verdict || 'Done'}: ${entry.headline.slice(0, 60)}...`);
+  }
+}
+
+function approveEntry(id) {
+  const p = processedEntries.get(id);
+  if (!p) return;
+  approvedIds.add(id);
+  updatePublishBar();
+  renderCandidateList();
+  if (id === activeId) renderEntryPreview(id);
+}
+
+function unapproveEntry(id) {
+  approvedIds.delete(id);
+  updatePublishBar();
+  renderCandidateList();
+  if (id === activeId) renderEntryPreview(id);
+}
+
+function clearApproved() {
+  approvedIds.clear();
+  updatePublishBar();
+  renderCandidateList();
+}
+
+function updatePublishBar() {
+  const bar = document.getElementById('publishBar');
+  const count = document.getElementById('publishCount');
+  count.textContent = `${approvedIds.size} ${approvedIds.size === 1 ? 'story' : 'stories'} approved`;
+  if (approvedIds.size > 0) bar.classList.add('visible');
+  else bar.classList.remove('visible');
+}
+
+async function publishApproved() {
+  if (approvedIds.size === 0) return;
+
+  const entries = Array.from(approvedIds)
+    .map(id => processedEntries.get(id)?.entry)
+    .filter(Boolean);
+
+  const logBox = document.getElementById('logLines');
+  logBox.innerHTML = '';
+  document.getElementById('logOverlay').classList.add('visible');
+
+  const addLog = (text, type = 'default') => {
+    const div = document.createElement('div');
+    div.className = `log-line ${type}`;
+    div.textContent = text;
+    logBox.appendChild(div);
+    logBox.scrollTop = logBox.scrollHeight;
+  };
+
+  addLog(`Publishing ${entries.length} entries...`);
+
+  await sseStream('/api/publish', { entries }, {
+    published: (d) => addLog(`✓ Published: ${d.id} [${d.governance_verdict}]`, 'success'),
+    pushed: (d) => addLog(`✓ ${d.message}`, 'success'),
+    status: (d) => addLog(d.message),
+    // Fix 3: server rejected entries that didn't pass the governance gate
+    rejected: (d) => {
+      d.items.forEach(item => addLog(`✕ Blocked: ${item.id} — ${item.reason}`, 'error'));
+    },
+    error: (d) => addLog(`✕ ${d.message}`, 'error'),
+  });
+
+  addLog('Done. Portal will rebuild from the dev branch.', 'success');
+  approvedIds.clear();
+  updatePublishBar();
+  renderCandidateList();
+}
+
+function closeLog() {
+  document.getElementById('logOverlay').classList.remove('visible');
+}
+
+// ── Mode switching ─────────────────────────────────────────────────────────────
+
+let currentMode = 'pending';
+
+function switchMode(mode) {
+  currentMode = mode;
+
+  // Show/hide mode sections in left panel
+  ['auto', 'search', 'url', 'pending'].forEach(m => {
+    const el = document.getElementById(`mode${m.charAt(0).toUpperCase() + m.slice(1)}`);
+    if (el) el.style.display = m === mode ? '' : 'none';
+  });
+
+  // Tab active states (only two real tabs)
+  ['pending', 'auto'].forEach(m => {
+    const tab = document.getElementById(`tab${m.charAt(0).toUpperCase() + m.slice(1)}`);
+    if (tab) tab.classList.toggle('active', m === mode);
+  });
+
+  const auditPanel = document.getElementById('auditPanel');
+  const layout = document.querySelector('.layout');
+  const publishBar = document.getElementById('publishBar');
+  const rightPanel = document.querySelector('.right-panel');
+  const panelTitle = document.getElementById('panelTitle');
+  const candidateList = document.getElementById('candidateList');
+  const statusBar = document.querySelector('.status-bar');
+
+  if (mode === 'audit') {
+    if (layout) layout.style.display = 'none';
+    if (publishBar) publishBar.style.display = 'none';
+    if (auditPanel) auditPanel.classList.add('visible');
+  } else if (mode === 'pending') {
+    // Full-width review queue
+    if (layout) { layout.style.display = 'grid'; layout.style.gridTemplateColumns = '1fr'; }
+    if (rightPanel) rightPanel.style.display = 'none';
+    if (candidateList) candidateList.style.display = 'none';
+    if (statusBar) statusBar.style.display = 'none';
+    if (auditPanel) auditPanel.classList.remove('visible');
+    if (panelTitle) panelTitle.textContent = 'Review Queue';
+    loadInbox();
+    loadPipelineStatus();
+  } else {
+    // Discover mode — two-panel layout
+    if (layout) { layout.style.display = 'grid'; layout.style.gridTemplateColumns = '340px 1fr'; }
+    if (rightPanel) rightPanel.style.display = '';
+    if (candidateList) candidateList.style.display = '';
+    if (statusBar) statusBar.style.display = '';
+    if (auditPanel) auditPanel.classList.remove('visible');
+    if (panelTitle) panelTitle.textContent = 'Discover';
+  }
+}
+
+// ── Auto-Discover (Two-layer: L1 News + L2 Companies) ─────────────────────────
+
+function setSourcePill(id, valId, state, text) {
+  const pill = document.getElementById(id);
+  const val  = document.getElementById(valId);
+  if (!pill || !val) return;
+  pill.className = 'source-pill' + (state === 'running' ? ' running' : state === 'done' ? ' done' : '');
+  val.textContent = text;
+}
+
+async function runAutoDiscover() {
+  const btn = document.getElementById('btnAutoDiscover');
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner">Discovering</span>';
+
+  const prog = document.getElementById('sourceProgress');
+  if (prog) prog.style.display = 'grid';
+  setSourcePill('pillL1News', 'pillL1NewsVal', 'running', 'scanning…');
+  setSourcePill('pillL2Cos',  'pillL2CosVal',  'running', 'querying…');
+  setSourcePill('pillTL',     'pillTLVal',     'running', 'searching…');
+
+  candidates.clear();
+  processedEntries.clear();
+  approvedIds.clear();
+  updatePublishBar();
+  renderCandidateList();
+  setStatus('Running two-layer discovery…', 'loading');
+
+  await sseStream('/api/auto-discover', {}, {
+    status: (d) => setStatus(d.message, 'loading'),
+    progress: (d) => {
+      if (d.layer1_news)      setSourcePill('pillL1News', 'pillL1NewsVal', 'done', d.layer1_news);
+      if (d.layer2_companies) setSourcePill('pillL2Cos',  'pillL2CosVal',  'done', d.layer2_companies);
+      if (d.layer1_tl || d.layer2_authors) {
+        const tlText = [d.layer1_tl, d.layer2_authors].filter(Boolean).join(' + ');
+        setSourcePill('pillTL', 'pillTLVal', 'done', tlText);
+      }
+    },
+    done: (d) => {
+      const s = d.sources || {};
+      setSourcePill('pillL1News', 'pillL1NewsVal', 'done', `${s.layer1_news ?? '?'} found`);
+      setSourcePill('pillL2Cos',  'pillL2CosVal',  'done', `${s.layer2_companies ?? '?'} found (${s.companies_queried ?? '?'} cos)`);
+      setSourcePill('pillTL',     'pillTLVal',     'done', `${(s.layer1_tl ?? 0) + (s.layer2_authors ?? 0)} TL`);
+      const intelList = d.intelCandidates || d.candidates || [];
+      intelList.forEach(c => candidates.set(c.id, c));
+      setStatus(`${intelList.length} intel stories found — ranked by relevance`);
+      renderCandidateList();
+    },
+    error: (d) => setStatus(`Error: ${d.message}`, 'error'),
+  });
+
+  btn.disabled = false;
+  btn.textContent = 'Find New Stories';
+}
+
+function setQuery(q) {
+  document.getElementById('searchQuery').value = q;
+  document.getElementById('searchQuery').focus();
+}
+
+// ── Pending / Review Queue ─────────────────────────────────────────────────────
+
+// Store pending items in memory for keyboard navigation
+let _pendingItems = [];
+let _activePendingIdx = 0;
+let _rejectingId = null;
+
+function confidenceClass(c) {
+  if (c >= 85) return 'eq-confidence-high';
+  if (c >= 65) return 'eq-confidence-mid';
+  return 'eq-confidence-low';
+}
+
+function scoreClass(s) {
+  if (s == null) return '';
+  if (s >= 75) return 'score-high';
+  if (s >= 60) return 'score-mid';
+  return 'score-low';
+}
+
+function typeBadge(type) {
+  const labels = {
+    market_signal: 'Market Signal',
+    product_launch: 'Product Launch',
+    milestone: 'Milestone',
+    research: 'Research',
+    acquisition: 'Acquisition',
+    partnership: 'Partnership',
+  };
+  return `<span class="type-badge badge-${type || 'market_signal'}">${labels[type] || (type || '').replace(/_/g,' ')}</span>`;
+}
+
+// Format summary as → bullet sentences (mirrors portal FormattedSummary)
+function formatSummaryBullets(text) {
+  if (!text) return '';
+  const sentences = (text.match(/[^.!?]+[.!?]+(?:\s|$)/g) || [text])
+    .map(s => s.trim()).filter(s => s.length > 10);
+  return `<ul class="eq-bullets">${sentences.map(s => `
+    <li class="eq-bullet">
+      <span class="eq-bullet-arrow">→</span>
+      <span>${escapeHtml(s)}</span>
+    </li>`).join('')}</ul>`;
+}
+
+function renderEditorialCard(item, idx, total) {
+  const urlDisplay = (item.source_url || '').length > 80
+    ? item.source_url.slice(0, 77) + '...'
+    : (item.source_url || '');
+  const queuedDate = new Date(item.queued_at).toLocaleString('en-GB', { day:'numeric', month:'short', hour:'2-digit', minute:'2-digit' });
+  const capStage = item.capability_evidence
+    ? `${(item.capability_evidence.capability || '').replace(/_/g,' ')} · ${item.capability_evidence.stage}`
+    : '';
+  const isReview = item.governance_verdict === 'REVIEW';
+  const score = item.score;
+  const scoreStr = score != null ? `${score}/100` : '—/100';
+  const scoreBreakdown = item.score_breakdown || '';
+
+  return `
+    <div class="eq-card${_activePendingIdx === idx ? ' eq-card-active' : ''}" id="eq-${escapeAttr(item.id)}" onclick="setActiveCard(${idx})">
+      <div class="eq-card-header" style="${isReview ? '' : 'background:#F0FDF4;border-color:#BBF7D0;'}">
+        <span class="eq-card-status" style="${isReview ? '' : 'color:#15803D;'}">${isReview ? '⚠ REVIEW' : '✓ HIGH CONFIDENCE'}</span>
+        ${typeBadge(item.type)}
+        ${capStage ? `<span style="font-size:10px;color:#6B7280;background:#F3F4F6;padding:2px 8px;border-radius:10px;">${escapeHtml(capStage)}</span>` : ''}
+        ${score != null ? `<span class="score-badge ${scoreClass(score)}" title="${escapeAttr(scoreBreakdown)}">${scoreStr}</span>` : ''}
+        <span class="eq-card-counter">${idx + 1} of ${total}</span>
+      </div>
+      <div class="eq-card-body">
+
+        <div class="eq-headline">${escapeHtml(item.headline)}</div>
+        <div class="eq-meta">
+          <span style="font-weight:600;">${escapeHtml(item.company_name)}</span>
+          <span>·</span>
+          <span>${escapeHtml(item.source_name)}</span>
+          <span>·</span>
+          <span>${escapeHtml(item.date)}</span>
+          <span>·</span>
+          <span>${queuedDate}</span>
+        </div>
+
+        ${item.the_so_what ? `
+          <div class="eq-so-what">
+            <div class="eq-so-what-label">Why this matters</div>
+            <div class="eq-so-what-text">${escapeHtml(item.the_so_what)}</div>
+          </div>
+        ` : `
+          <div class="eq-so-what" style="background:#FEF9F0;border-color:#F59E0B;">
+            <div class="eq-so-what-label" style="color:#B45309;">Why this matters</div>
+            <div class="eq-so-what-missing">⚠ Not generated — add before publishing</div>
+          </div>
+        `}
+
+        ${item.key_stat ? `
+          <div class="eq-key-stat">
+            <span class="eq-key-stat-number">${escapeHtml(item.key_stat.number)}</span>
+            <span class="eq-key-stat-label">${escapeHtml(item.key_stat.label)}</span>
+          </div>
+        ` : ''}
+
+        ${item.summary ? `
+          <div>
+            <div class="eq-section-label">AI Summary</div>
+            ${formatSummaryBullets(item.summary)}
+          </div>
+        ` : ''}
+
+        ${item.unverified_claims?.length ? `
+          <div class="eq-warning">
+            <div style="font-size:10px;font-weight:700;color:#B45309;margin-bottom:4px;">UNVERIFIED CLAIMS</div>
+            ${item.unverified_claims.map(c => `<div class="eq-claim">${escapeHtml(c)}</div>`).join('')}
+          </div>
+        ` : ''}
+
+        ${item.paywall_caveat ? `<div style="font-size:11px;color:#B45309;margin-bottom:12px;">⚠ Limited source content — possible paywall</div>` : ''}
+        ${item.notes ? `<div style="font-size:11px;color:#6B7280;margin-bottom:12px;">${escapeHtml(item.notes)}</div>` : ''}
+
+        <div class="eq-source">
+          ${item.confidence != null ? `<span class="eq-confidence ${confidenceClass(item.confidence)}">${item.confidence}% confidence</span>&nbsp;` : ''}
+          ${item.source_url ? `<a href="${escapeAttr(item.source_url)}" target="_blank">${escapeHtml(urlDisplay)} ↗</a>` : ''}
+        </div>
+
+        <div class="eq-actions">
+          <button class="eq-btn-approve" onclick="approvePendingEntry('${escapeAttr(item.id)}');event.stopPropagation()">✓ Publish</button>
+          <button class="eq-btn-edit" onclick="toggleEditMode('${escapeAttr(item.id)}');event.stopPropagation()">✏ Edit then Publish</button>
+          <button class="eq-btn-reject" onclick="rejectPendingEntry('${escapeAttr(item.id)}','${escapeAttr(item.headline)}');event.stopPropagation()">✕ Reject</button>
+          <span class="eq-shortcuts"><kbd>J</kbd>/<kbd>K</kbd> nav &nbsp; <kbd>P</kbd> Publish &nbsp; <kbd>E</kbd> Edit &nbsp; <kbd>R</kbd> Reject</span>
+        </div>
+
+        <!-- Inline editor -->
+        <div class="eq-editor" id="editor-${item.id}">
+          <label>Headline</label>
+          <input type="text" id="edit-headline-${item.id}" value="${escapeAttr(item.headline)}" />
+          <label>Why this matters (the_so_what) — one sentence, CXO decision-oriented</label>
+          <textarea id="edit-sowhat-${item.id}" rows="2">${escapeHtml(item.the_so_what || '')}</textarea>
+          <label>Summary</label>
+          <textarea id="edit-summary-${item.id}" rows="4">${escapeHtml(item.summary || '')}</textarea>
+          ${item.key_stat ? `
+            <label>Key Stat Number</label>
+            <input type="text" id="edit-statnum-${item.id}" value="${escapeAttr(item.key_stat.number)}" />
+            <label>Key Stat Label</label>
+            <input type="text" id="edit-statlabel-${item.id}" value="${escapeAttr(item.key_stat.label)}" />
+          ` : ''}
+          <div class="eq-editor-actions">
+            <button class="eq-btn-save" onclick="saveAndPublish('${item.id}')">Save & Publish</button>
+            <button class="eq-btn-cancel" onclick="toggleEditMode('${item.id}')">Cancel</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  `;
+}
+
+function escapeHtml(str) {
+  return String(str || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+function escapeAttr(str) {
+  return String(str || '').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+}
+
+function toggleEditMode(id) {
+  const ed = document.getElementById(`editor-${id}`);
+  if (ed) ed.classList.toggle('visible');
+}
+
+async function loadInbox() {
+  try {
+    const res = await fetch('/api/inbox');
+    const data = await res.json();
+    const count = data.count || 0;
+
+    // Update tab badge
+    const badge = document.getElementById('pendingBadge');
+    if (count > 0) { badge.textContent = count; badge.style.display = 'inline-block'; }
+    else { badge.style.display = 'none'; }
+
+    // Update header badge
+    const headerCount = document.getElementById('headerInboxCount');
+    const headerNum = document.getElementById('headerInboxNum');
+    if (count > 0) {
+      headerNum.textContent = count;
+      headerCount.style.display = 'inline-flex';
+    } else {
+      headerCount.style.display = 'none';
+    }
+
+    // Update pipeline strip inbox count
+    const pipelineQueued = document.getElementById('pipelineQueued');
+    if (pipelineQueued) pipelineQueued.textContent = count;
+
+    const list = document.getElementById('pendingList');
+    if (!list) return;
+
+    if (count === 0) {
+      list.innerHTML = `
+        <div style="text-align:center;padding:48px 24px;color:#9CA3AF;">
+          <div style="font-size:36px;margin-bottom:12px;">✓</div>
+          <div style="font-size:15px;font-weight:600;color:#6B7280;margin-bottom:6px;">Inbox clear</div>
+          <div style="font-size:13px;">No stories waiting for review. Run the pipeline to discover new content.</div>
+          <button class="pipeline-run-btn" style="margin-top:16px;" onclick="runPipelineNow()">▶ Run Pipeline Now</button>
+        </div>`;
+      _pendingItems = [];
+      _activePendingIdx = 0;
+      return;
+    }
+
+    _pendingItems = data.items;
+    if (_activePendingIdx >= _pendingItems.length) _activePendingIdx = 0;
+    list.innerHTML = data.items.map((item, idx) => renderEditorialCard(item, idx, count)).join('');
+
+    // Scroll active card into view
+    const activeCard = document.querySelector('.eq-card-active');
+    if (activeCard) activeCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  } catch (err) {
+    console.error('Failed to load inbox:', err);
+  }
+}
+
+// Legacy alias (called from Discover tab when story is processed)
+function loadPendingQueue() { return loadInbox(); }
+
+async function loadPipelineStatus() {
+  try {
+    const res = await fetch('/api/pipeline-status');
+    if (!res.ok) return;
+    const data = await res.json();
+
+    if (data.last_run_at) {
+      const dt = new Date(data.last_run_at);
+      const timeStr = dt.toLocaleString('en-GB', { day:'numeric', month:'short', hour:'2-digit', minute:'2-digit' });
+      const el = document.getElementById('pipelineRunTime');
+      if (el) el.textContent = `Last run: ${timeStr} · ${data.last_run_found || 0} candidates`;
+    }
+    if (data.published_today != null) {
+      const el = document.getElementById('pipelinePublished');
+      if (el) el.textContent = data.published_today;
+    }
+    if (data.last_run_blocked != null) {
+      const el = document.getElementById('pipelineBlocked');
+      if (el) el.textContent = data.last_run_blocked;
+    }
+    // errors not in current status; show inbox_count in queued (already set by loadInbox)
+    const errEl = document.getElementById('pipelineErrors');
+    if (errEl && errEl.textContent === '—') errEl.textContent = '0';
+  } catch (_) {}
+}
+
+async function runPipelineNow() {
+  const btn = document.getElementById('btnRunPipeline');
+  if (btn) { btn.disabled = true; btn.textContent = '⏳ Running...'; }
+
+  const logBox = document.getElementById('logLines');
+  logBox.innerHTML = '';
+  document.getElementById('logOverlay').classList.add('visible');
+  const addLog = (text, type = 'default') => {
+    const div = document.createElement('div');
+    div.className = `log-line ${type}`;
+    div.textContent = text;
+    logBox.appendChild(div);
+    logBox.scrollTop = logBox.scrollHeight;
+  };
+  addLog('Starting pipeline...');
+
+  try {
+    await sseStream('/api/run-pipeline', {}, {
+      status: (d) => addLog(d.message || d.stage || JSON.stringify(d)),
+      done: (d) => addLog(`Done. Published: ${d.published || 0} · Pending: ${d.pending || 0} · Blocked: ${d.blocked || 0}`, 'success'),
+      error: (d) => addLog(`Error: ${d.message}`, 'error'),
+    });
+    addLog('Pipeline complete. Refreshing inbox...', 'success');
+    await Promise.all([loadInbox(), loadPipelineStatus()]);
+  } catch (err) {
+    addLog(`Failed: ${err.message}`, 'error');
+  }
+
+  if (btn) { btn.disabled = false; btn.textContent = '▶ Run Pipeline'; }
+}
+
+function setActiveCard(idx) {
+  _activePendingIdx = idx;
+  // Re-render to update active highlight
+  if (_pendingItems.length > 0) {
+    const list = document.getElementById('pendingList');
+    if (list) list.innerHTML = _pendingItems.map((item, i) => renderEditorialCard(item, i, _pendingItems.length)).join('');
+  }
+}
+
+// Keyboard shortcuts for review queue
+document.addEventListener('keydown', (e) => {
+  // Close rejection modal on Escape
+  if (e.key === 'Escape') {
+    if (document.getElementById('rejectionModal')?.classList.contains('visible')) {
+      closeRejectionModal(); return;
+    }
+    if (document.getElementById('logOverlay')?.classList.contains('visible')) {
+      closeLog(); return;
+    }
+  }
+
+  if (currentMode !== 'pending') return;
+  if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.tagName === 'SELECT') return;
+  if (_pendingItems.length === 0) return;
+
+  // J/K navigation
+  if (e.key === 'j' || e.key === 'J') {
+    e.preventDefault();
+    setActiveCard(Math.min(_activePendingIdx + 1, _pendingItems.length - 1));
+    document.querySelector('.eq-card-active')?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    return;
+  }
+  if (e.key === 'k' || e.key === 'K') {
+    e.preventDefault();
+    setActiveCard(Math.max(_activePendingIdx - 1, 0));
+    document.querySelector('.eq-card-active')?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    return;
+  }
+
+  const item = _pendingItems[_activePendingIdx];
+  if (!item) return;
+  if (e.key === 'p' || e.key === 'P') { e.preventDefault(); approvePendingEntry(item.id); }
+  if (e.key === 'e' || e.key === 'E') { e.preventDefault(); toggleEditMode(item.id); }
+  if (e.key === 'r' || e.key === 'R') { e.preventDefault(); rejectPendingEntry(item.id, item.headline); }
+});
+
+async function saveAndPublish(id) {
+  const headline    = document.getElementById(`edit-headline-${id}`)?.value?.trim();
+  const the_so_what = document.getElementById(`edit-sowhat-${id}`)?.value?.trim();
+  const summary     = document.getElementById(`edit-summary-${id}`)?.value?.trim();
+  const statNum     = document.getElementById(`edit-statnum-${id}`)?.value?.trim();
+  const statLabel   = document.getElementById(`edit-statlabel-${id}`)?.value?.trim();
+
+  const edits = {};
+  if (headline) edits.headline = headline;
+  if (the_so_what) edits.the_so_what = the_so_what;
+  if (summary) edits.summary = summary;
+  if (statNum && statLabel) edits.key_stat = { number: statNum, label: statLabel };
+
+  const logBox = document.getElementById('logLines');
+  logBox.innerHTML = '';
+  document.getElementById('logOverlay').classList.add('visible');
+  const addLog = (text, type = 'default') => {
+    const div = document.createElement('div');
+    div.className = `log-line ${type}`;
+    div.textContent = text;
+    logBox.appendChild(div);
+    logBox.scrollTop = logBox.scrollHeight;
+  };
+  addLog(`Saving edits and publishing: ${id}...`);
+
+  try {
+    await sseStream(`/api/inbox/${id}/approve-and-publish`, edits, {
+      status:    (d) => addLog(d.message),
+      published: (d) => addLog(`✓ Published: ${d.id}`, 'success'),
+      pushed:    (d) => addLog(`✓ ${d.message}`, 'success'),
+      error:     (d) => addLog(`✕ ${d.message}`, 'error'),
+    });
+    addLog('Done.', 'success');
+    loadInbox();
+    loadPipelineStatus();
+    setStatus(`✓ Edited and published: ${id}`);
+  } catch (err) {
+    addLog(`✕ ${err.message}`, 'error');
+    setStatus(`Error: ${err.message}`, 'error');
+  }
+}
+
+async function approvePendingEntry(id) {
+  const card = document.getElementById(`eq-${id}`);
+  const btn = card?.querySelector('.eq-btn-approve');
+  if (btn) { btn.disabled = true; btn.textContent = 'Publishing...'; }
+
+  const logBox = document.getElementById('logLines');
+  logBox.innerHTML = '';
+  document.getElementById('logOverlay').classList.add('visible');
+  const addLog = (text, type = 'default') => {
+    const div = document.createElement('div');
+    div.className = `log-line ${type}`;
+    div.textContent = text;
+    logBox.appendChild(div);
+    logBox.scrollTop = logBox.scrollHeight;
+  };
+  addLog(`Approving and publishing: ${id}...`);
+
+  try {
+    await sseStream(`/api/inbox/${id}/approve-and-publish`, {}, {
+      status:    (d) => addLog(d.message),
+      published: (d) => addLog(`✓ Published: ${d.id}`, 'success'),
+      pushed:    (d) => addLog(`✓ ${d.message}`, 'success'),
+      error:     (d) => addLog(`✕ ${d.message}`, 'error'),
+    });
+    addLog('Done.', 'success');
+    loadInbox();
+    loadPipelineStatus();
+    setStatus(`✓ Published: ${id}`);
+  } catch (err) {
+    addLog(`✕ ${err.message}`, 'error');
+    setStatus(`Error: ${err.message}`, 'error');
+    if (btn) { btn.disabled = false; btn.textContent = '✓ Publish'; }
+  }
+}
+
+function rejectPendingEntry(id, headline) {
+  _rejectingId = id;
+  // Show headline in modal sub-text
+  const sub = document.getElementById('rejectionModalSub');
+  if (sub) sub.textContent = `"${(headline || id).slice(0, 80)}"`;
+  // Reset fields
+  const reason = document.getElementById('rejectionReason');
+  const notes = document.getElementById('rejectionNotes');
+  if (reason) reason.value = 'not_relevant';
+  if (notes) notes.value = '';
+  document.getElementById('rejectionModal').classList.add('visible');
+}
+
+function closeRejectionModal() {
+  _rejectingId = null;
+  document.getElementById('rejectionModal').classList.remove('visible');
+}
+
+async function confirmReject() {
+  const id = _rejectingId;
+  if (!id) return;
+
+  const reason = document.getElementById('rejectionReason')?.value || 'other';
+  const notes = document.getElementById('rejectionNotes')?.value?.trim() || '';
+
+  closeRejectionModal();
+
+  try {
+    const res = await fetch(`/api/inbox/${id}/reject-with-reason`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ reason, notes }),
+    });
+    const data = await res.json();
+    if (!data.ok) throw new Error(data.error || 'Reject failed');
+    setStatus(`✕ Rejected: ${id}`);
+    loadInbox();
+  } catch (err) {
+    setStatus(`Error: ${err.message}`, 'error');
+  }
+}
+
+// ── Jina Web Search ────────────────────────────────────────────────────────────
+
+async function runSearch() {
+  const input = document.getElementById('searchQuery');
+  const query = input.value.trim();
+  if (!query) return;
+
+  const btn = document.getElementById('btnSearch');
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner">Searching</span>';
+  setStatus(`Searching: "${query}"...`, 'loading');
+
+  await sseStream('/api/search', { query }, {
+    status: (d) => setStatus(d.message, 'loading'),
+    done: (d) => {
+      if (d.candidates.length === 0) {
+        setStatus('No results found — try a different query', 'error');
+      } else {
+        // Add to existing candidates (don't clear — user may have RSS results too)
+        let added = 0;
+        d.candidates.forEach(c => {
+          if (!candidates.has(c.id)) { candidates.set(c.id, c); added++; }
+        });
+        setStatus(`Found ${d.total} results for "${d.query}" — ${added} new`);
+        renderCandidateList();
+      }
+    },
+    error: (d) => setStatus(`Search error: ${d.message}`, 'error'),
+  });
+
+  btn.disabled = false;
+  btn.textContent = 'Search';
+}
+
+// ── Audit panel ────────────────────────────────────────────────────────────────
+
+// In-memory last report for tab switching persistence
+let lastAuditReport = null;
+
+function auditLog(message, isError = false) {
+  const wrap = document.getElementById('auditLog');
+  wrap.classList.add('visible');
+  const div = document.createElement('div');
+  div.className = 'audit-log-line' + (isError ? ' error' : '');
+  div.textContent = message;
+  wrap.appendChild(div);
+  wrap.scrollTop = wrap.scrollHeight;
+}
+
+function clearAuditLog() {
+  const wrap = document.getElementById('auditLog');
+  wrap.innerHTML = '';
+  wrap.classList.remove('visible');
+}
+
+function setAuditProgress(pct) {
+  const bar = document.getElementById('auditProgressBar');
+  const fill = document.getElementById('auditProgressFill');
+  if (pct < 0) {
+    bar.style.display = 'none';
+  } else {
+    bar.style.display = 'block';
+    fill.style.width = Math.min(100, pct) + '%';
+  }
+}
+
+async function runAudit(mode) {
+  const fastBtn = document.getElementById('btnFastAudit');
+  const deepBtn = document.getElementById('btnDeepAudit');
+  fastBtn.disabled = true;
+  deepBtn.disabled = true;
+
+  clearAuditLog();
+  setAuditProgress(0);
+  document.getElementById('auditEmptyState').style.display = 'none';
+  document.getElementById('auditReportArea').style.display = 'none';
+
+  const url = mode === 'deep' ? '/api/audit/deep' : '/api/audit';
+  auditLog(`Starting ${mode} audit...`);
+
+  // Use EventSource for GET endpoints
+  await new Promise((resolve) => {
+    const es = new EventSource(url);
+
+    let totalInPhase = null;
+
+    es.addEventListener('status', (e) => {
+      const d = JSON.parse(e.data);
+      auditLog(d.message);
+    });
+
+    es.addEventListener('progress', (e) => {
+      const d = JSON.parse(e.data);
+      if (d.total) totalInPhase = d.total;
+      if (totalInPhase) {
+        setAuditProgress((d.checked / totalInPhase) * 90);
+      }
+    });
+
+    es.addEventListener('file_result', (e) => {
+      const d = JSON.parse(e.data);
+      // Stream results into the UI in real-time
+      renderSingleResult(d.type, d.result);
+    });
+
+    es.addEventListener('complete', (e) => {
+      const d = JSON.parse(e.data);
+      lastAuditReport = d.report;
+      setAuditProgress(100);
+      renderAuditReport(d.report);
+      es.close();
+      resolve();
+    });
+
+    es.addEventListener('error', (e) => {
+      let msg = 'Connection error';
+      try { msg = JSON.parse(e.data).message; } catch(_) {}
+      auditLog('Error: ' + msg, true);
+      es.close();
+      resolve();
+    });
+  });
+
+  setAuditProgress(-1);
+  fastBtn.disabled = false;
+  deepBtn.disabled = false;
+  auditLog('Audit complete.');
+}
+
+async function sendTestDigest() {
+  const btn = document.getElementById('btnTestDigest');
+  btn.disabled = true;
+  btn.textContent = 'Sending...';
+  try {
+    const res = await fetch('/api/test-digest', { method: 'POST' });
+    const data = await res.json();
+    btn.textContent = data.ok ? 'Sent ✓' : 'Failed ✗';
+    setTimeout(() => { btn.disabled = false; btn.textContent = 'Send Test Digest'; }, 3000);
+  } catch (err) {
+    btn.textContent = 'Error ✗';
+    setTimeout(() => { btn.disabled = false; btn.textContent = 'Send Test Digest'; }, 3000);
+  }
+}
+
+async function loadAuditReport() {
+  clearAuditLog();
+  document.getElementById('auditEmptyState').style.display = 'none';
+  document.getElementById('auditReportArea').style.display = 'none';
+
+  try {
+    const res = await fetch('/api/audit/report');
+    if (!res.ok) {
+      const data = await res.json();
+      auditLog('No saved report found: ' + (data.error || res.statusText), true);
+      document.getElementById('auditEmptyState').style.display = '';
+      return;
+    }
+    const report = await res.json();
+    lastAuditReport = report;
+    renderAuditReport(report);
+  } catch (err) {
+    auditLog('Failed to load report: ' + err.message, true);
+    document.getElementById('auditEmptyState').style.display = '';
+  }
+}
+
+function renderAuditReport(report) {
+  if (!report) return;
+
+  document.getElementById('auditEmptyState').style.display = 'none';
+  document.getElementById('auditReportArea').style.display = '';
+
+  const s = report.summary;
+
+  // Score
+  document.getElementById('auditScoreNumber').textContent = s.score;
+  document.getElementById('auditScoreNumber').style.color =
+    s.score >= 90 ? '#15803D' : s.score >= 70 ? '#B45309' : '#B91C1C';
+  document.getElementById('auditScoreMeta').textContent =
+    `${s.pass_count} PASS · ${s.warn_count} WARN · ${s.fail_count} FAIL` +
+    `   ·   ${s.issues_critical} critical · ${s.issues_warning} warnings`;
+  document.getElementById('auditRunAt').textContent =
+    `Mode: ${report.mode} · Run at: ${new Date(report.run_at).toLocaleString()}`;
+
+  // Summary bar
+  const bar = document.getElementById('auditSummaryBar');
+  bar.innerHTML = [
+    { cls: 'pass', label: `${s.pass_count} PASS` },
+    { cls: 'warn', label: `${s.warn_count} WARN` },
+    { cls: 'fail', label: `${s.fail_count} FAIL` },
+    { cls: 'info', label: `${s.total_intelligence} intelligence` },
+    { cls: 'info', label: `${s.total_competitors} landscape` },
+  ].map(p => `<div class="audit-summary-pill ${p.cls}">${p.label}</div>`).join('');
+
+  // Intelligence results
+  document.getElementById('auditIntelCount').textContent = report.intelligence.length;
+  const intelContainer = document.getElementById('auditIntelResults');
+  intelContainer.innerHTML = '';
+  report.intelligence.forEach(r => {
+    intelContainer.appendChild(buildResultRow(r));
+  });
+
+  // Landscape results
+  document.getElementById('auditLandscapeCount').textContent = report.landscape.length;
+  const landscapeContainer = document.getElementById('auditLandscapeResults');
+  landscapeContainer.innerHTML = '';
+  report.landscape.forEach(r => {
+    landscapeContainer.appendChild(buildResultRow(r));
+  });
+}
+
+// Stream a single result into the appropriate container while audit is running
+function renderSingleResult(type, result) {
+  const containerId = type === 'intelligence' ? 'auditIntelResults' : 'auditLandscapeResults';
+  let container = document.getElementById(containerId);
+  if (!container) return;
+
+  // Show the report area while streaming
+  document.getElementById('auditReportArea').style.display = '';
+  document.getElementById('auditEmptyState').style.display = 'none';
+
+  // Update count
+  const countId = type === 'intelligence' ? 'auditIntelCount' : 'auditLandscapeCount';
+  const countEl = document.getElementById(countId);
+  countEl.textContent = parseInt(countEl.textContent || '0', 10) + 1;
+
+  // Check if row already exists (update) or needs to be appended
+  const existing = container.querySelector(`[data-file="${CSS.escape(result.file)}"]`);
+  const row = buildResultRow(result);
+  if (existing) {
+    existing.replaceWith(row);
+  } else {
+    container.appendChild(row);
+  }
+}
+
+function buildResultRow(result) {
+  const statusCls = result.status.toLowerCase();
+  const hasIssues = result.issues && result.issues.length > 0;
+
+  const wrap = document.createElement('div');
+  wrap.className = `audit-file-row ${statusCls}`;
+  wrap.dataset.file = result.file;
+
+  const header = document.createElement('div');
+  header.className = 'audit-file-header';
+  header.innerHTML = `
+    <div class="audit-status-dot ${statusCls}"></div>
+    <div style="flex:1;min-width:0;">
+      <div class="audit-file-name">${escAuditHtml(result.name)}</div>
+      <div class="audit-file-meta">${escAuditHtml(result.file)}</div>
+    </div>
+    <div class="audit-status-badge ${statusCls}">${result.status}</div>
+    ${hasIssues ? `<div style="font-size:10px;color:#9CA3AF;margin-left:8px;">${result.issues.length} issue${result.issues.length !== 1 ? 's' : ''} ▾</div>` : ''}
+  `;
+
+  const issuesList = document.createElement('div');
+  issuesList.className = 'audit-issues-list';
+
+  if (hasIssues) {
+    issuesList.innerHTML = result.issues.map(issue => {
+      const icon = issue.severity === 'critical' ? '✕' : '⚠';
+      const iconColor = issue.severity === 'critical' ? '#EF4444' : '#F59E0B';
+      return `
+        <div class="audit-issue-row">
+          <span class="audit-issue-icon" style="color:${iconColor}">${icon}</span>
+          <span class="audit-issue-check">${escAuditHtml(issue.check)}</span>
+          <span class="audit-issue-detail">${escAuditHtml(issue.detail)}</span>
+        </div>
+      `;
+    }).join('');
+
+    header.addEventListener('click', () => {
+      issuesList.classList.toggle('open');
+    });
+
+    // Auto-expand FAIL rows
+    if (result.status === 'FAIL') {
+      issuesList.classList.add('open');
+    }
+  }
+
+  wrap.appendChild(header);
+  wrap.appendChild(issuesList);
+  return wrap;
+}
+
+function escAuditHtml(str) {
+  return String(str || '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
+// Start on Review Queue
+document.addEventListener('DOMContentLoaded', () => {
+  switchMode('pending');
+  loadPipelineStatus();
+});
+</script>
+
+</body>
+</html>

@@ -2,6 +2,7 @@
 
 # dependencies
 /node_modules
+/intake-server/node_modules
 /.pnp
 .pnp.*
 .yarn/*

@@ -1,0 +1,79 @@
+[
+  {
+    "id": "thinkadvisor",
+    "name": "ThinkAdvisor",
+    "url": "https://www.thinkadvisor.com/feed/",
+    "relevance": "primary",
+    "notes": "Best for RIA and wealth management industry news"
+  },
+  {
+    "id": "investmentnews",
+    "name": "InvestmentNews",
+    "url": "https://www.investmentnews.com/feed",
+    "relevance": "primary",
+    "notes": "US wealth management, M&A, advisor channel"
+  },
+  {
+    "id": "wealthmanagement",
+    "name": "WealthManagement.com",
+    "url": "https://www.wealthmanagement.com/rss.xml",
+    "relevance": "primary",
+    "notes": "Broad wealth management coverage"
+  },
+  {
+    "id": "financial-planning",
+    "name": "Financial Planning",
+    "url": "https://www.financial-planning.com/feed",
+    "relevance": "primary",
+    "notes": "Practitioner-focused wealth management"
+  },
+  {
+    "id": "riabiz",
+    "name": "RIABiz",
+    "url": "https://riabiz.com/feed",
+    "relevance": "primary",
+    "notes": "Independent advisor channel, fintech deals"
+  },
+  {
+    "id": "citywire-us",
+    "name": "Citywire USA",
+    "url": "https://citywire.com/usa/rss.aspx",
+    "relevance": "primary",
+    "notes": "Advisor moves, WM strategy, global coverage"
+  },
+  {
+    "id": "reuters-fintech",
+    "name": "Reuters Financial Services",
+    "url": "https://feeds.reuters.com/reuters/businessNews",
+    "relevance": "secondary",
+    "notes": "Broad financial services news"
+  },
+  {
+    "id": "techcrunch-fintech",
+    "name": "TechCrunch Fintech",
+    "url": "https://techcrunch.com/tag/fintech/feed/",
+    "relevance": "secondary",
+    "notes": "Startup launches, AI-native fintech"
+  },
+  {
+    "id": "crunchbase",
+    "name": "Crunchbase News",
+    "url": "https://news.crunchbase.com/feed/",
+    "relevance": "secondary",
+    "notes": "Fundraising, M&A, new company launches"
+  },
+  {
+    "id": "axios-fintech",
+    "name": "Axios Pro Fintech",
+    "url": "https://www.axios.com/pro/fintech-deals/feed.rss",
+    "relevance": "secondary",
+    "notes": "Deal flow, institutional moves"
+  },
+  {
+    "id": "advisorhub",
+    "name": "AdvisorHub",
+    "url": "https://advisorhub.com/feed/",
+    "relevance": "primary",
+    "notes": "Advisor industry intelligence, WM moves"
+  }
+]

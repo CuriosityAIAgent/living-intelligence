@@ -1,0 +1,57 @@
+{
+  "id": "altruist-hazel-1600-rias-one-month",
+  "type": "milestone",
+  "headline": "Altruist's Hazel signs 1,600 RIA firms in its first month, with 1,500 more expected monthly for the next nine months",
+  "company": "altruist",
+  "company_name": "Altruist",
+  "date": "2026-03-18",
+  "source_name": "RIABiz",
+  "source_url": "https://riabiz.com/a/2026/3/18/altruist-again-has-staggering-ai-news-1600-ria-firms-subscribe-to-hazel-in-one-month-and-pipeline-suggests-1500-advisors-will-join-per-month-for-next-nine-months-ceo-says",
+  "source_verified": true,
+  "additional_sources": [
+    {
+      "name": "The Daily Upside — Jason Wenk interview post-selloff",
+      "url": "https://www.thedailyupside.com/advisor/industry-news/altruist-ceo-jason-wenk-talks-ai-after-unusual-wall-street-selloff/"
+    }
+  ],
+  "image_url": "/logos/altruist.svg",
+  "summary": "One month after Altruist launched AI-powered tax planning in Hazel on February 10, 2026, 1,600 new RIA firms had subscribed to the platform — including 400 existing Altruist custodial clients and 1,200 net-new firms. CEO Jason Wenk told RIABiz that the pipeline suggests 1,500 advisors per month will join for the next nine months. The total Hazel client base stands at approximately 2,000 RIA firms within five weeks of the tax planning launch. Wenk called the market reaction to the February launch 'unusual', noting he woke up the morning after the announcement to 'complete chaos' as incumbent wealth platform stocks sold off sharply. The rapid adoption figures confirm Hazel as the fastest-growing AI platform in the independent RIA channel.",
+  "key_stat": {
+    "number": "1,600",
+    "label": "New RIA firms subscribed to Hazel in the first month after launch"
+  },
+  "tags": {
+    "capability": "new_business_models",
+    "region": "us",
+    "segment": "ria_independent",
+    "theme": [
+      "ai_platform",
+      "hazel",
+      "ria_growth",
+      "advisor_tools",
+      "tax_planning"
+    ]
+  },
+  "week": "2026-03-16",
+  "featured": true,
+  "_governance": {
+    "verdict": "PASS",
+    "confidence": 93,
+    "verified_claims": [
+      "1,600 new RIA firms subscribed to Hazel in the first month after the February 10 launch (RIABiz)",
+      "400 of those were existing Altruist custodial clients; 1,200 were net-new firms (RIABiz)",
+      "Total Hazel client base approximately 2,000 RIA firms within five weeks (RIABiz)",
+      "CEO Jason Wenk projects 1,500 advisors per month joining for the next nine months (RIABiz)",
+      "Wenk described the post-launch market reaction as 'unusual' (The Daily Upside, Feb 24 2026)",
+      "Wenk said he woke up to 'complete chaos' after the announcement (The Daily Upside)"
+    ],
+    "unverified_claims": [],
+    "fabricated_claims": [],
+    "notes": "All figures verified against RIABiz source (March 18, 2026) and The Daily Upside Wenk interview (February 24, 2026). RIABiz is a primary trade publication for the RIA industry with direct CEO access. No discrepancies found across sources.",
+    "paywall_caveat": false,
+    "verified_at": "2026-03-19T12:00:00.000Z",
+    "human_approved": true,
+    "approved_at": "2026-03-19T12:00:00.000Z"
+  },
+  "published_at": "2026-03-20T09:17:19.195Z"
+}

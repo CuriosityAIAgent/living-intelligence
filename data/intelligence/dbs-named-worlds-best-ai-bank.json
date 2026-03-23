@@ -12,7 +12,7 @@
   "summary": "DBS has been named the World's Best AI Bank according to a recognition announced on 15 October 2025. The article headline and title confirm the award but the body content available in the provided markdown is limited to navigation elements and does not contain further detail about the awarding body, criteria, or specific AI initiatives cited.",
   "key_stat": null,
   "tags": {
-    "capability": "investment_analytics",
+    "capability": "research_content",
     "region": "asia",
     "segment": "global_bank",
     "theme": [
@@ -21,7 +21,7 @@
       "digital_transformation"
     ]
   },
-  "week": "2026-03-09",
+  "week": "2025-10-13",
   "featured": false,
   "_governance": {
     "verdict": "REVIEW",
@@ -41,5 +41,6 @@
     "human_approved": false,
     "approved_at": null,
     "backfill": true
-  }
+  },
+  "published_at": "2026-03-19T16:22:35.507Z"
 }

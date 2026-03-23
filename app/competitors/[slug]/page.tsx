@@ -96,7 +96,7 @@ export default async function CompetitorPage({ params }: { params: Promise<{ slu
         <div className="mb-4">
           <h2 className="text-base font-bold text-gray-900 mb-1">AI Capability Breakdown</h2>
           <p className="text-xs text-gray-400">
-            {capEntries.length} of {capabilities.length} capability areas active · Assessed March 2026
+            {capEntries.length} of {capabilities.length} capability areas active · Last updated {competitor.last_updated}
           </p>
         </div>
 
@@ -129,6 +129,20 @@ export default async function CompetitorPage({ params }: { params: Promise<{ slu
                         </li>
                       ))}
                     </ul>
+                  </div>
+                )}
+
+                {entry.sources && entry.sources.length > 0 && (
+                  <div className="mt-3 pt-3 border-t border-gray-100">
+                    <p className="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-1.5">Sources</p>
+                    <div className="flex flex-col gap-1">
+                      {entry.sources.map((s, i) => (
+                        <a key={i} href={s.url} target="_blank" rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1.5 text-xs text-[#990F3D] hover:underline">
+                          {s.name} <span className="text-gray-400">↗</span>
+                        </a>
+                      ))}
+                    </div>
                   </div>
                 )}
               </div>

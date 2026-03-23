@@ -68,8 +68,8 @@ export default async function ThoughtLeadershipPiecePage({
           <p className="text-[10px] font-bold uppercase tracking-widest text-[#990F3D] mb-2">
             The One Insight
           </p>
-          <p className="text-base font-medium text-[#990F3D] leading-relaxed italic">
-            &ldquo;{entry.the_one_insight}&rdquo;
+          <p className="text-base font-medium text-[#990F3D] leading-relaxed">
+            {entry.the_one_insight}
           </p>
         </div>
 

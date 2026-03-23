@@ -2,16 +2,96 @@
   "id": "altruist",
   "name": "Altruist",
   "segment": "ria_independent",
-  "regions": ["us"],
+  "regions": [
+    "us"
+  ],
   "color": "#0F172A",
-  "ai_strategy_summary": "Altruist's launch of Hazel — the first AI agent dedicated to tax planning for advisors — triggered a $150 billion wealth management stock sell-off in February 2026. The market's reaction signals investor belief that AI will structurally commoditize high-fee advisory services.",
+  "ai_strategy_summary": "Altruist's launch of Hazel — the first AI agent dedicated to tax planning for advisors — triggered a $130 billion wealth management stock sell-off in February 2026. The market's reaction signals investor belief that AI will structurally commoditize high-fee advisory services.",
   "head_of_ai": null,
-  "headline_metric": "$150B market sell-off on Hazel AI launch",
+  "headline_metric": "$130B market sell-off on Hazel AI launch; 1,600 new RIA firms in first month",
   "headline_initiative": "Hazel AI — first dedicated AI tax planning agent for advisors",
-  "overall_maturity": "announced",
+  "overall_maturity": "deployed",
   "capabilities": {
-    "operations_compliance": { "maturity": "announced", "headline": "Hazel AI: first AI agent dedicated to tax planning — caused $150B market sell-off", "detail": "Altruist launched Hazel, described as the first AI agent dedicated to tax planning for financial advisors, in early February 2026. The announcement triggered an immediate market reaction: LPL -8.3%, Raymond James -8.8%, Schwab -7.4%, Stifel down significantly — a combined loss of over $150 billion in market cap across wealth management stocks. Investors interpreted Hazel as evidence that AI will structurally commoditize tax planning, a core high-fee advisor service.", "evidence": ["$150B market cap loss across wealth stocks", "LPL -8.3%, Raymond James -8.8%, Schwab -7.4%", "Largest single-day losses for these stocks since 2020", "Hazel positioned as 'first of future AI agents'"], "jpm_implication": "The market has already priced in AI disruption of wealth management fee structures. Tax planning as a differentiator for JPM advisors is at risk. Proactive response needed.", "jpm_segments_affected": ["JPMWM", "GPB", "CWM"], "date_assessed": "2026-03-07" },
-    "advisor_productivity": { "maturity": "announced", "headline": "Personalized tax strategy generation for advisors and clients", "detail": "Hazel generates personalized tax strategies for clients, produces tax planning documents, and integrates with advisor workflows — automating a function that typically requires specialized expertise.", "evidence": ["Personalized tax strategy generation confirmed", "Document generation capability"], "jpm_implication": "If tax planning is commoditized by AI, the value proposition of human financial advisors narrows further. JPM advisor value articulation must evolve.", "jpm_segments_affected": ["JPMWM", "GPB"], "date_assessed": "2026-03-07" }
+    "advisor_productivity": {
+      "maturity": "deployed",
+      "headline": "Hazel: AI platform for wealth professionals — meeting intelligence, live custodial data, and tax planning in one environment",
+      "detail": "Altruist launched Hazel in September 2025 (platform) and February 2026 (AI tax planning). Hazel unifies real-time custodial data with CRM, emails, and meeting notes — the first AI platform to combine a major custodian integration with advisor workflow. Tax planning features analyse tax returns and generate personalised strategies in minutes. Hazel is live and in production for RIA advisors on the Altruist platform.",
+      "evidence": [
+        "Hazel platform launched September 2025 — first AI platform to unify custodial data with advisor workflow (Altruist)",
+        "AI tax planning launched February 2026 — analyses 1040s, paystubs, account statements to generate personalised tax plans in minutes (Altruist)",
+        "Live for RIA advisors on Altruist custodial platform",
+        "$152M Series F (GIC, April 2025) — explicitly to fund AI platform expansion"
+      ],
+      "jpm_implication": "If tax planning is commoditized by AI, the value proposition of human financial advisors narrows further. JPM advisor value articulation must evolve.",
+      "jpm_segments_affected": [
+        "JPMWM",
+        "GPB"
+      ],
+      "date_assessed": "2026-03-07",
+      "sources": [
+        {
+          "name": "Altruist — Hazel platform launch (Sep 2025)",
+          "url": "https://altruist.com/news/altruist-unveils-hazel/"
+        },
+        {
+          "name": "Altruist — Hazel AI tax planning (Feb 2026)",
+          "url": "https://altruist.com/news/hazel-ai-tax-planning/"
+        },
+        {
+          "name": "Altruist — real-time custodial integration (Nov 2025)",
+          "url": "https://altruist.com/news/altruist-debuts-industry-first-custodial-integration/"
+        }
+      ]
+    },
+    "operations_compliance": {
+      "maturity": "deployed",
+      "headline": "Wash sale conflict detection and real-time tax compliance built into Hazel",
+      "detail": "Hazel's tax planning engine includes automated wash sale conflict detection, embedded gain calculations, and asset location optimisation — all run against live custodial ledger data. This makes Hazel the first advisor platform to deliver compliance-aware tax operations in real time without manual reconciliation.",
+      "evidence": [
+        "Wash sale conflict detection confirmed at Hazel AI tax planning launch (Altruist, Feb 2026)",
+        "Real-time embedded gain calculations from live custodial ledger (Altruist press release)",
+        "Asset location optimisation and tax-loss harvesting modelling (BusinessWire, Feb 2026)"
+      ],
+      "jpm_implication": "Automated compliance-aware tax execution reduces advisor error risk and regulatory exposure. This is a structural operational advantage for RIAs using Altruist over those relying on manual tax workflows.",
+      "jpm_segments_affected": [
+        "JPMWM",
+        "CWM"
+      ],
+      "date_assessed": "2026-03-19",
+      "sources": [
+        {
+          "name": "Altruist — Hazel AI tax planning (Feb 2026)",
+          "url": "https://altruist.com/news/hazel-ai-tax-planning/"
+        },
+        {
+          "name": "BusinessWire — Altruist AI tax planning press release",
+          "url": "https://www.businesswire.com/news/home/20260210142841/en/Altruist-Introduces-AI-Powered-Tax-Planning-in-Hazel-Helping-Advisors-Deliver-Tax-Planning-in-Minutes"
+        }
+      ]
+    },
+    "new_business_models": {
+      "maturity": "deployed",
+      "headline": "Hazel SaaS subscription: 1,600 net-new RIA firms in first month at $600–$1,500/seat/year",
+      "detail": "Hazel is priced as a standalone SaaS subscription ($600/seat/year basic; $1,500/seat/year with full tax planning) — a first for Altruist, which historically charged only custodial fees. Within one month of the February 2026 AI tax planning launch, 1,600 new RIA firms had subscribed, including 1,200 net-new firms not previously on Altruist's custodial platform. CEO Jason Wenk projects 1,500 new advisors per month for the next nine months.",
+      "evidence": [
+        "1,600 new RIA firms in first month post-launch (RIABiz, March 18 2026)",
+        "1,200 net-new firms not previously on Altruist custodial platform (RIABiz)",
+        "$600/seat/year basic; $1,500/seat/year full tax planning (RIABiz confirmed pricing)",
+        "CEO projects 1,500 advisors/month for next 9 months (RIABiz)"
+      ],
+      "jpm_implication": "Hazel's subscription model decouples revenue from custodial AUM — enabling Altruist to monetise across the full RIA market, not just its custodial clients. This is a structurally new revenue model for custodian-adjacent platforms.",
+      "jpm_segments_affected": [
+        "JPMWM",
+        "CWM"
+      ],
+      "date_assessed": "2026-03-19",
+      "sources": [
+        {
+          "name": "RIABiz — 1,600 RIA firms subscribe to Hazel in one month (March 18 2026)",
+          "url": "https://riabiz.com/a/2026/3/18/altruist-again-has-staggering-ai-news-1600-ria-firms-subscribe-to-hazel-in-one-month-and-pipeline-suggests-1500-advisors-will-join-per-month-for-next-nine-months-ceo-says"
+        }
+      ]
+    }
   },
-  "last_updated": "2026-03-07"
+  "last_updated": "2026-03-18"
 }
