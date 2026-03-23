@@ -155,35 +155,27 @@ export default function IntelligenceFeed({ entries, leadStoryId }: {
         <div className="mb-5">
           <div className="flex items-center justify-between mb-3">
             <p className="section-label">Intelligence Feed</p>
-            <span className="text-[11px] text-gray-400">
-              {filtered.length} {filtered.length === 1 ? 'story' : 'stories'}
-              {period !== 'all' && ` · ${PERIODS.find(p => p.value === period)?.label}`}
-              {region !== 'all' && ` · ${REGIONS.find(r => r.value === region)?.label}`}
-              {capability !== 'all' && ` · ${CAPABILITIES.find(c => c.value === capability)?.label}`}
-            </span>
+            <div className="flex items-center gap-3">
+              <select
+                value={period}
+                onChange={e => setPeriod(e.target.value)}
+                className="text-[11px] text-gray-600 border border-gray-200 rounded px-2 py-1 bg-white cursor-pointer hover:border-[#990F3D] focus:outline-none focus:border-[#990F3D]"
+              >
+                {PERIODS.map(p => (
+                  <option key={p.value} value={p.value}>{p.label}</option>
+                ))}
+              </select>
+              <span className="text-[11px] text-gray-400">
+                {filtered.length} {filtered.length === 1 ? 'story' : 'stories'}
+                {region !== 'all' && ` · ${REGIONS.find(r => r.value === region)?.label}`}
+                {capability !== 'all' && ` · ${CAPABILITIES.find(c => c.value === capability)?.label}`}
+              </span>
+            </div>
           </div>
           <hr className="section-rule" />
         </div>
 
         <div className="flex flex-wrap gap-y-2 gap-x-4 items-center">
-          {/* Period filter */}
-          <div className="flex items-center gap-1.5 flex-wrap">
-            <span className="text-[10px] text-gray-400 font-semibold uppercase tracking-wider mr-1">Period</span>
-            {PERIODS.map(p => (
-              <button
-                key={p.value}
-                onClick={() => setPeriod(p.value)}
-                className={`text-[11px] px-2.5 py-1 border transition-colors font-medium rounded ${
-                  period === p.value
-                    ? 'bg-[#990F3D] text-white border-[#990F3D]'
-                    : 'bg-white text-gray-500 border-gray-200 hover:border-[#990F3D] hover:text-[#990F3D]'
-                }`}
-              >
-                {p.label}
-              </button>
-            ))}
-          </div>
-
           {/* Region filter */}
           <div className="flex items-center gap-1.5 flex-wrap">
             <span className="text-[10px] text-gray-400 font-semibold uppercase tracking-wider mr-1">Region</span>
