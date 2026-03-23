@@ -97,10 +97,10 @@ git push origin main --force
 4. **Content publishing (approved stories)** always pushes to `main` directly — this is intentional, it triggers portal rebuild with new content
 5. **`feature/landing-page`** is independent — developed separately, merged to `main` when landing page is ready to go live
 
-**One-time Railway config needed (do in Railway dashboard):**
-- Portal service (`living-intelligence`): deploy from `main` ← already set
-- Intake server (`proud-reflection`): change to deploy from `dev` ← update this
-- Landing page (`profound-wonder`): deploy from `feature/landing-page` ← already set
+**Railway deployment config (all confirmed):**
+- Portal service (`living-intelligence`): deploys from `main` ✓
+- Intake server (`proud-reflection`): deploys from `dev` ✓
+- Landing page (`profound-wonder`): deploys from `feature/landing-page` ✓
 
 ---
 
