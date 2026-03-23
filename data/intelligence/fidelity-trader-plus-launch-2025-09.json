@@ -44,21 +44,21 @@
       "Josh Krugman, SVP Brokerage, is quoted in the announcement"
     ],
     "unverified_claims": [
-      "Integrated screen sharing with Fidelity trading specialists — source is truncated before this feature is confirmed",
-      "Free third-party analyst ratings — source truncated before confirmation",
-      "Custom alerts — source truncated before confirmation",
-      "Access to Fidelity Crypto on mobile and web — source truncated before confirmation",
-      "Desktop crypto integration planned for 2026 — source truncated before confirmation",
-      "$16.4 trillion assets under administration as of June 30, 2025 — source truncated before this statistic appears",
-      "$6.4 trillion discretionary assets — source truncated before confirmation"
+      "Integrated screen sharing with Fidelity trading specialists \u2014 source is truncated before this feature is confirmed",
+      "Free third-party analyst ratings \u2014 source truncated before confirmation",
+      "Custom alerts \u2014 source truncated before confirmation",
+      "Access to Fidelity Crypto on mobile and web \u2014 source truncated before confirmation",
+      "Desktop crypto integration planned for 2026 \u2014 source truncated before confirmation",
+      "$16.4 trillion assets under administration as of June 30, 2025 \u2014 source truncated before this statistic appears",
+      "$6.4 trillion discretionary assets \u2014 source truncated before confirmation"
     ],
     "fabricated_claims": [],
-    "notes": "The source document is truncated due to what appears to be a paywall or content cut-off, preventing verification of several specific feature claims and the key financial statistic ($16.4 trillion AUA, $6.4 trillion discretionary assets). All verifiable claims in the visible portion of the source are consistent with the generated entry. No claims directly contradict the source, but multiple material claims — particularly the key stat — cannot be confirmed from the available text.",
+    "notes": "The source document is truncated due to what appears to be a paywall or content cut-off, preventing verification of several specific feature claims and the key financial statistic ($16.4 trillion AUA, $6.4 trillion discretionary assets). All verifiable claims in the visible portion of the source are consistent with the generated entry. No claims directly contradict the source, but multiple material claims \u2014 particularly the key stat \u2014 cannot be confirmed from the available text.",
     "paywall_caveat": true,
     "verified_at": "2026-03-11T11:01:30.001Z",
     "human_approved": false,
     "approved_at": null,
     "reprocessed": true
   },
-  "published_at": "2026-03-19T16:22:25.141Z"
+  "published_at": "2025-09-25T00:00:00.000Z"
 }

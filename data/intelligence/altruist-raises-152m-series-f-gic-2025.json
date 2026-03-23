@@ -46,8 +46,8 @@
       "The 2025 T3 Software Survey is referenced in relation to market share"
     ],
     "unverified_claims": [
-      "Market share jumped from 2.85% to 6.25% per the 2025 T3 Software Survey — the source article references the T3 Software Survey but the specific percentages (2.85% and 6.25%) are not visible in the provided source text (the article appears to be cut off before those figures are shown)",
-      "The funding will support 'continued innovation' as a stated use — implied but not explicitly stated as a funding purpose in the visible source text"
+      "Market share jumped from 2.85% to 6.25% per the 2025 T3 Software Survey \u2014 the source article references the T3 Software Survey but the specific percentages (2.85% and 6.25%) are not visible in the provided source text (the article appears to be cut off before those figures are shown)",
+      "The funding will support 'continued innovation' as a stated use \u2014 implied but not explicitly stated as a funding purpose in the visible source text"
     ],
     "fabricated_claims": [],
     "notes": "Most claims are well-supported by the source article. However, the source article is truncated and the specific T3 Software Survey market share figures (2.85% to 6.25%) cannot be verified from the available text. The source cuts off mid-sentence when referencing the T3 Software Survey link, leaving those statistics unverifiable. This warrants a REVIEW verdict.",
@@ -59,9 +59,9 @@
   },
   "additional_sources": [
     {
-      "name": "Altruist — Series F announcement",
+      "name": "Altruist \u2014 Series F announcement",
       "url": "https://altruist.com/news/series-f/"
     }
   ],
-  "published_at": "2026-03-18T09:09:56.933Z"
+  "published_at": "2025-04-22T00:00:00.000Z"
 }

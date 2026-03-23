@@ -1,7 +1,7 @@
 {
   "id": "webull-vega-ai-assistant-2025-11",
   "type": "product_launch",
-  "headline": "Webull unveils Vega — AI decision partner with voice-activated trade execution and real-time portfolio analysis",
+  "headline": "Webull unveils Vega \u2014 AI decision partner with voice-activated trade execution and real-time portfolio analysis",
   "company": "webull",
   "company_name": "Webull",
   "date": "2025-11-10",
@@ -44,12 +44,12 @@
       "Voice-activated trade execution via Vega AI (key stat)"
     ],
     "fabricated_claims": [],
-    "notes": "The source article is severely truncated — it only contains navigation menus and the headline, with no actual article body content visible. While the headline confirms that Webull did unveil a product called Vega described as 'the next evolution of its AI-powered decision partner,' none of the specific feature claims (voice-activated trading, multi-leg options execution, real-time portfolio risk analysis, natural language queries, plain-English explanations) can be verified against the source. The paywall or content truncation prevents full verification.",
+    "notes": "The source article is severely truncated \u2014 it only contains navigation menus and the headline, with no actual article body content visible. While the headline confirms that Webull did unveil a product called Vega described as 'the next evolution of its AI-powered decision partner,' none of the specific feature claims (voice-activated trading, multi-leg options execution, real-time portfolio risk analysis, natural language queries, plain-English explanations) can be verified against the source. The paywall or content truncation prevents full verification.",
     "paywall_caveat": true,
     "verified_at": "2026-03-11T05:44:09.651Z",
     "human_approved": false,
     "approved_at": null,
     "backfill": true
   },
-  "published_at": "2026-03-19T16:22:35.521Z"
+  "published_at": "2025-11-10T00:00:00.000Z"
 }

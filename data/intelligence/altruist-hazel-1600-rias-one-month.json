@@ -10,12 +10,12 @@
   "source_verified": true,
   "additional_sources": [
     {
-      "name": "The Daily Upside — Jason Wenk interview post-selloff",
+      "name": "The Daily Upside \u2014 Jason Wenk interview post-selloff",
       "url": "https://www.thedailyupside.com/advisor/industry-news/altruist-ceo-jason-wenk-talks-ai-after-unusual-wall-street-selloff/"
     }
   ],
   "image_url": "/logos/altruist.svg",
-  "summary": "One month after Altruist launched AI-powered tax planning in Hazel on February 10, 2026, 1,600 new RIA firms had subscribed to the platform — including 400 existing Altruist custodial clients and 1,200 net-new firms. CEO Jason Wenk told RIABiz that the pipeline suggests 1,500 advisors per month will join for the next nine months. The total Hazel client base stands at approximately 2,000 RIA firms within five weeks of the tax planning launch. Wenk called the market reaction to the February launch 'unusual', noting he woke up the morning after the announcement to 'complete chaos' as incumbent wealth platform stocks sold off sharply. The rapid adoption figures confirm Hazel as the fastest-growing AI platform in the independent RIA channel.",
+  "summary": "One month after Altruist launched AI-powered tax planning in Hazel on February 10, 2026, 1,600 new RIA firms had subscribed to the platform \u2014 including 400 existing Altruist custodial clients and 1,200 net-new firms. CEO Jason Wenk told RIABiz that the pipeline suggests 1,500 advisors per month will join for the next nine months. The total Hazel client base stands at approximately 2,000 RIA firms within five weeks of the tax planning launch. Wenk called the market reaction to the February launch 'unusual', noting he woke up the morning after the announcement to 'complete chaos' as incumbent wealth platform stocks sold off sharply. The rapid adoption figures confirm Hazel as the fastest-growing AI platform in the independent RIA channel.",
   "key_stat": {
     "number": "1,600",
     "label": "New RIA firms subscribed to Hazel in the first month after launch"
@@ -53,5 +53,5 @@
     "human_approved": true,
     "approved_at": "2026-03-19T12:00:00.000Z"
   },
-  "published_at": "2026-03-20T09:17:19.195Z"
+  "published_at": "2026-03-18T00:00:00.000Z"
 }

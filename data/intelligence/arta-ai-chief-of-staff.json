@@ -8,7 +8,6 @@
   "source_name": "PR Newswire",
   "source_url": "https://www.prnewswire.com/news-releases/arta-finance-launches-arta-ai-private-wealth-guided-by-ai-302418182.html",
   "source_verified": true,
-  "image_url": "/logos/arta-finance.svg",
   "summary": "Arta Finance announced the launch of Arta AI, a private wealth platform guided by artificial intelligence. The product launch was announced on April 2, 2025. The article content available does not provide further detail beyond the announcement headline and publication metadata.",
   "key_stat": null,
   "tags": {
@@ -34,7 +33,7 @@
       "The headline 'Arta Finance Launches Arta AI: Private Wealth Guided by AI' matches the source"
     ],
     "unverified_claims": [
-      "The summary states 'the article content available does not provide further detail' — this is a meta-claim about source completeness, not directly verifiable but not contradicted"
+      "The summary states 'the article content available does not provide further detail' \u2014 this is a meta-claim about source completeness, not directly verifiable but not contradicted"
     ],
     "fabricated_claims": [],
     "notes": "The generated entry accurately reflects the headline, publication date, and core announcement from the source. The slight rephrasing of the headline subtitle ('AI-Guided Private Wealth Platform' vs. 'Private Wealth Guided by AI') is a minor paraphrase that preserves the meaning. No key stats were fabricated. The acknowledgment of limited detail is consistent with the source content provided, which is largely navigation/boilerplate from PR Newswire with no article body visible. No contradictions found.",
@@ -46,9 +45,9 @@
   },
   "additional_sources": [
     {
-      "name": "Arta Finance — official blog post",
+      "name": "Arta Finance \u2014 official blog post",
       "url": "https://artafinance.com/insights/arta-finance-launches-arta-ai-private-wealth-guided-by-ai"
     }
   ],
-  "published_at": "2026-03-19T16:22:25.115Z"
+  "published_at": "2025-04-02T00:00:00.000Z"
 }
