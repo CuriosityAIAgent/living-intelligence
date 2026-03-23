@@ -37,8 +37,10 @@
 │  competitors/     → Competitor JSON files (27 companies)         │
 │  capabilities/    → index.json (7 capability dimensions)         │
 │  logos/           → SVG/PNG logos (24 companies, local only)     │
-│  .governance-pending.json  → REVIEW entries awaiting approval   │
+│  .governance-pending.json  → Universal inbox (ALL stories pre-publish) │
 │  .governance-blocked.json  → FAIL URLs permanently blocked      │
+│  .rejection-log.json       → Editorial rejections (reason+notes)│
+│  .pipeline-status.json     → Last pipeline run summary          │
 └───────────────────────────────┬──────────────────────────────────┘
                                 │ read at build time
                                 ↓
@@ -96,39 +98,42 @@
 
 | Route | Method | Description |
 |-------|--------|-------------|
-| `/api/auto-discover` | POST | Full parallel pipeline: RSS + Jina + DataForSEO |
+| `/api/auto-discover` | POST | Three-layer discovery: L1 News + L1 Caps + L2 Companies |
 | `/api/search` | POST | Jina s.jina.ai search (body: `{query}`) |
-| `/api/discover` | POST | RSS-only discovery |
-| `/api/process-url` | POST | Fetch + structure + governance for one URL |
-| `/api/publish` | POST | Publish entries (enforces governance gate server-side) |
-| `/api/pending` | GET | List REVIEW entries awaiting human approval |
-| `/api/pending/:id/approve` | POST | Approve a REVIEW entry → moves to publishable |
-| `/api/pending/:id/reject` | POST | Reject a REVIEW entry → permanently blocks URL |
+| `/api/process-url` | POST | Fetch + structure + governance for one URL → queues to inbox |
+| `/api/publish` | POST | Write JSON + git commit + push (called by approve-and-publish) |
+| `/api/inbox` | GET | All queued stories, REVIEW-first then score desc |
+| `/api/inbox/:id/approve-and-publish` | POST | SSE: approve → publish → git push (rollback on failure) |
+| `/api/inbox/:id/reject-with-reason` | POST | Rejection with reason → .rejection-log.json |
+| `/api/pipeline-status` | GET | Last pipeline run summary |
+| `/api/recent-published` | GET | Last 7 days of published entries for audit |
+| `/api/pending` | GET | Legacy pending list |
+| `/api/pending/:id/approve` | POST | Legacy approve |
+| `/api/pending/:id/reject` | POST | Legacy reject |
 | `/api/blocked` | GET | View all permanently blocked URLs |
-| `/api/health` | GET | Server health + governance queue counts |
+| `/api/health` | GET | Server health + queue counts |
 
 ---
 
 ## Data Flow: New Intelligence Entry
 
 ```
-1. Auto-Discover runs (two-layer: L1 broad DFS News + L2 per-company DFS Content Analysis)
+1. Auto-Discover runs (three-layer: L1 News + L1 Caps + L2 Companies per-company DFS Content Analysis)
 2. Stories scored by: recency + source quality + tracked company mentions + AI keyword density
-3. Top 20 candidates surfaced in intake UI with via badges (L1 News/L1 Caps/L2 Companies)
-4. Human reviews and selects a story
+3. Semantic dedup (Jina Embeddings) + reranking (Jina Reranker) → top 15 candidates
+4. Each candidate processed automatically by scheduler (6am daily) OR manually via Discover tab
 5. Jina fetches full article from URL
-   └── If paywall detected → searches for open-source alternatives automatically
-       └── Fetches up to 2 open-source alternatives and combines content
-6. Claude structures into IntelligenceEntry JSON (strict grounding rules — no inference)
+   └── If paywall detected → DataForSEO News + Organic in parallel → Jina Reranker picks best alt
+6. Claude structures into IntelligenceEntry JSON with the_so_what field (no inference allowed)
 7. Claude verifies every claim in the entry against the source (governance check)
-   ├── PASS  → entry ready to publish
-   ├── REVIEW → entry held in pending queue (localhost:3003 Review tab)
-   │           Human approves/rejects before publish allowed
-   └── FAIL  → URL permanently blocked, entry discarded
-8. Human clicks Publish → entry written to data/intelligence/{slug}.json
-   └── _governance audit block written inline to every JSON file
-   └── source_verified = true only if PASS or human_approved
-9. git add + commit + push origin dev → Railway auto-deploys on merge to main
+   ├── PASS  → score ≥ 75 → INBOX (high-confidence, awaits editorial sign-off)
+   ├── REVIEW → score 60–74 → INBOX (flagged for closer look)
+   └── FAIL   → URL permanently blocked, entry discarded
+8. **UNIVERSAL INBOX**: All stories queue in .governance-pending.json — nothing auto-publishes
+   Haresh reviews each item in Editorial Studio (localhost:3003):
+   → Approve: entry written to data/intelligence/{slug}.json + git commit + push
+   → Reject: reason logged to .rejection-log.json, URL blocked
+9. git push origin main → Railway auto-deploys portal
 ```
 
 ---

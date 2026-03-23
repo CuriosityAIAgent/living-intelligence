@@ -110,6 +110,14 @@ export default async function IntelligenceArticlePage({
           {entry.headline}
         </h1>
 
+        {/* Why this matters — the_so_what editorial callout */}
+        {entry.the_so_what && (
+          <div className="border-l-4 border-[#990F3D] pl-5 mb-8 py-1">
+            <p className="text-[11px] font-bold uppercase tracking-widest text-[#990F3D] mb-2">Why this matters</p>
+            <p className="text-[15px] text-gray-800 leading-relaxed font-medium">{entry.the_so_what}</p>
+          </div>
+        )}
+
         {/* Key stat */}
         {entry.key_stat && (
           <div className="bg-gray-50 border border-gray-100 rounded p-5 mb-8 flex items-center gap-6">

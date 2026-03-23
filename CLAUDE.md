@@ -171,9 +171,11 @@ Every intelligence entry that goes through the intake pipeline receives a `_gove
 }
 ```
 
-- **PASS** → `source_verified: true`, publish immediately
-- **REVIEW** → held in pending queue at `/api/pending`, requires human approval at `localhost:3003`
-- **FAIL** → URL permanently blocked in `.governance-blocked.json`, cannot be resubmitted
+- **PASS** (score ≥ 75) → queued in Universal Inbox for editorial sign-off
+- **REVIEW** (score 60–74) → queued in Universal Inbox, flagged for closer review
+- **FAIL** (score < 60 or fabricated) → URL permanently blocked in `.governance-blocked.json`
+
+**Nothing auto-publishes.** All stories require Haresh's approval in the Editorial Studio (`localhost:3003`) before going live. Approve → `POST /api/inbox/:id/approve-and-publish` (SSE, git push included). Reject → reason logged to `.rejection-log.json`.
 
 `source_verified` on every entry always reflects the actual governance outcome — never hardcoded.
 

@@ -19,8 +19,7 @@ import { autoDiscover } from './auto-discover.js';
 import { processUrl } from './intake.js';
 import { verify } from './governance.js';
 import { scoreEntry, formatScoreBreakdown } from './scorer.js';
-import { publish, commitAndPush } from './publisher.js';
-import { addPending, addBlocked, isBlocked } from './gov-store.js';
+import { addPending, addBlocked, isBlocked, writePipelineStatus } from './gov-store.js';
 import { sendDigest } from './notifier.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -73,15 +72,20 @@ function makeSink() {
 /**
  * Run the full daily pipeline.
  * Returns a summary object: { published, pending, blocked, errors, newCompanies, tlCandidates }
+ *
+ * NOTE: Nothing auto-publishes. All scored stories (PASS and REVIEW) go to the
+ * editorial inbox for human sign-off. 'published' array will always be empty
+ * from this function — it's kept for interface compatibility with sendDigest.
  */
 export async function runDailyPipeline() {
-  console.log(`[scheduler] Daily pipeline started at ${new Date().toISOString()}`);
+  const startedAt = new Date().toISOString();
+  console.log(`[scheduler] Daily pipeline started at ${startedAt}`);
 
-  const published    = [];
+  const published    = []; // always empty — nothing auto-publishes
   const pending      = [];
   const blocked      = [];
   const errors       = [];
-  const newCompanies = []; // companies discovered but not in the landscape
+  const newCompanies = [];
 
   // ── 1. Discover candidates ─────────────────────────────────────────────────
   let intelCandidates = [];
@@ -113,7 +117,6 @@ export async function runDailyPipeline() {
   console.log(`[scheduler] ${top15.length} intel candidates to process, ${tlCandidates.length} TL candidates`);
 
   // ── 2. Process each intelligence candidate ─────────────────────────────────
-  const publishedIds = [];
 
   for (const candidate of top15) {
     const url = candidate.url;
@@ -263,19 +266,25 @@ export async function runDailyPipeline() {
         continue;
       }
 
-      // ── PUBLISH ────────────────────────────────────────────────────────────
-      const { send: pubSend } = makeSink();
-      const entryId = publish({ entry: intakeResult.entry, candidatePubDate: candidate.pub_date, send: pubSend });
-      publishedIds.push(entryId);
-      published.push({
-        id:                entryId,
+      // ── INBOX (was PUBLISH) ────────────────────────────────────────────────
+      // All stories — including high-scoring PASS entries — go to the editorial
+      // inbox for human review. Nothing publishes automatically.
+      addPending(intakeResult.entry, govAudit, {
+        score:           scored.score,
+        score_breakdown: formatScoreBreakdown(scored),
+      });
+      pending.push({
+        id:                intakeResult.entry.id,
         title:             intakeResult.entry.headline || candidate.title,
         company_name:      intakeResult.entry.company_name,
         score:             scored.score,
-        capability:        intakeResult.entry.capability_evidence?.capability || intakeResult.entry.tags?.capability || null,
-        capability_stage:  intakeResult.entry.capability_evidence?.stage || null,
+        score_breakdown:   formatScoreBreakdown(scored),
+        unverified_claims: govResult.unverified_claims || [],
+        paywall_caveat:    govAudit.paywall_caveat,
+        notes:             govResult.notes || '',
+        governance_verdict: govAudit.verdict,
       });
-      console.log(`[scheduler] PUBLISH → auto-published: ${entryId}`);
+      console.log(`[scheduler] INBOX → queued for editorial review (score ${scored.score}): ${intakeResult.entry.id}`);
 
     } catch (err) {
       console.error(`[scheduler] Error processing ${url}:`, err.message);
@@ -283,24 +292,15 @@ export async function runDailyPipeline() {
     }
   }
 
-  // ── 3. Commit + push published entries to main ─────────────────────────────
-  if (publishedIds.length > 0) {
-    let gitError = null;
-    const gitSend = (type, data) => {
-      if (type === 'error') gitError = data.message;
-    };
-    try {
-      commitAndPush({ ids: publishedIds, send: gitSend, branch: 'main' });
-      if (gitError) throw new Error(gitError);
-      console.log(`[scheduler] Pushed ${publishedIds.length} entries to main`);
-    } catch (err) {
-      console.error('[scheduler] Git push failed:', err.message);
-      errors.push({
-        stage:   'git_push',
-        message: `⚠️ Git push FAILED — ${publishedIds.length} entries written but NOT deployed. Check GIT_TOKEN. IDs: ${publishedIds.join(', ')}. Error: ${err.message}`,
-      });
-    }
-  }
+  // ── 3. Write pipeline status (for inbox dashboard) ────────────────────────
+  writePipelineStatus({
+    started_at:        startedAt,
+    candidates_found:  top15.length,
+    queued:            pending.length,
+    blocked:           blocked.length,
+    errors:            errors.length,
+    tl_candidates:     tlCandidates.length,
+  });
 
   // ── 4. Send daily digest ───────────────────────────────────────────────────
   const results = { published, pending, blocked, errors, newCompanies, tlCandidates };

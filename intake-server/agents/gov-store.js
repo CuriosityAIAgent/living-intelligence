@@ -12,8 +12,10 @@ import { fileURLToPath } from 'url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const STORE_DIR = join(process.env.DATA_DIR || join(__dirname, '..', '..'), 'data');
-const PENDING_FILE = join(STORE_DIR, '.governance-pending.json');
-const BLOCKED_FILE = join(STORE_DIR, '.governance-blocked.json');
+const PENDING_FILE  = join(STORE_DIR, '.governance-pending.json');
+const BLOCKED_FILE  = join(STORE_DIR, '.governance-blocked.json');
+const REJECTION_LOG = join(STORE_DIR, '.rejection-log.json');
+const PIPELINE_STATUS_FILE = join(STORE_DIR, '.pipeline-status.json');
 
 function readStore(file) {
   if (!existsSync(file)) return {};
@@ -31,12 +33,15 @@ export function getPending() {
   return readStore(PENDING_FILE);
 }
 
-export function addPending(entry, governance) {
+// metadata: optional { score, score_breakdown } from scorer
+export function addPending(entry, governance, metadata = {}) {
   const store = readStore(PENDING_FILE);
   store[entry.id] = {
     entry,
     governance,
     queued_at: new Date().toISOString(),
+    score: metadata.score ?? null,
+    score_breakdown: metadata.score_breakdown ?? null,
   };
   writeStore(PENDING_FILE, store);
 }
@@ -80,4 +85,30 @@ export function addBlocked(url, id, reason) {
 
 export function isBlocked(url) {
   return !!readStore(BLOCKED_FILE)[url];
+}
+
+// ─── Rejection log (editorial feedback for algorithm tuning) ──────────────────
+
+export function getRejectionLog() {
+  if (!existsSync(REJECTION_LOG)) return [];
+  try { return JSON.parse(readFileSync(REJECTION_LOG, 'utf-8')); } catch { return []; }
+}
+
+export function addRejectionLog(entry) {
+  const log = getRejectionLog();
+  log.push({ ...entry, rejected_at: entry.rejected_at || new Date().toISOString() });
+  if (!existsSync(STORE_DIR)) mkdirSync(STORE_DIR, { recursive: true });
+  writeFileSync(REJECTION_LOG, JSON.stringify(log, null, 2), 'utf-8');
+}
+
+// ─── Pipeline status (last run timestamp + summary) ───────────────────────────
+
+export function writePipelineStatus(status) {
+  if (!existsSync(STORE_DIR)) mkdirSync(STORE_DIR, { recursive: true });
+  writeFileSync(PIPELINE_STATUS_FILE, JSON.stringify({ ...status, written_at: new Date().toISOString() }, null, 2), 'utf-8');
+}
+
+export function readPipelineStatus() {
+  if (!existsSync(PIPELINE_STATUS_FILE)) return null;
+  try { return JSON.parse(readFileSync(PIPELINE_STATUS_FILE, 'utf-8')); } catch { return null; }
 }

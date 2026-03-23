@@ -9,6 +9,7 @@ export interface IntelligenceEntry {
   id: string;
   type: 'funding' | 'acquisition' | 'regulatory' | 'partnership' | 'product_launch' | 'milestone' | 'strategy_move' | 'market_signal';
   headline: string;
+  the_so_what?: string;
   company: string;
   company_name: string;
   date: string;

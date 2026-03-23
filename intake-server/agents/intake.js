@@ -39,6 +39,7 @@ const INTAKE_SCHEMA = `{
   "id": "url-slug-style-id",
   "type": "funding | acquisition | regulatory | partnership | product_launch | milestone | strategy_move | market_signal",
   "headline": "Concise, factual headline under 120 chars — lead with capability/impact, not the event trigger",
+  "the_so_what": "One sentence. What should a CXO in wealth management think or decide differently because of this? Business-decision oriented — not a summary of what happened, not a quote. The strategic implication.",
   "company": "company-slug",
   "company_name": "Full Company Name",
   "date": "YYYY-MM-DD",
@@ -322,7 +323,12 @@ async function structureEntry(url, markdown, sourceInfo) {
 
   const prompt = `You are an editorial analyst for a wealth management intelligence publication read by CXOs and senior executives.
 
-Your job is NOT to summarise what happened. Your job is to explain which AI capability is advancing, what the evidence is, and what the business impact is for wealth management firms and advisors. The event (funding round, product launch, partnership) is context — not the story.
+Your job is NOT to summarise what happened. You are writing for a CXO in wealth management who needs to make business decisions. Every entry must answer three questions:
+1. Which AI capability is advancing and what is the concrete evidence? (the intelligence)
+2. What does this mean for wealth management firms strategically? (the_so_what)
+3. What was the triggering event? (context only — funding, launch, partnership)
+
+The event is never the story. The story is always the capability advancing and the business implication.
 
 SOURCE ARTICLE URL: ${url}
 SOURCE NAME: ${sourceInfo.source_name}
@@ -337,19 +343,30 @@ ${markdown.slice(0, 10000)}
 Structure this into the following JSON schema.
 
 CRITICAL RULES:
-1. summary: Lead with the CAPABILITY and its EVIDENCE. Then explain the event trigger. Example:
-   BAD: "Jump raises $80M Series B to expand its AI platform for financial advisors."
-   GOOD: "Jump's AI assistant automates meeting notes and CRM updates, saving advisors 6 hours per week. Used by 3,000 advisors today, the company raised $80M to scale to 15,000. Lead investor Insight Partners cited advisor time savings as primary thesis."
-2. headline: Lead with the capability impact or scale, not the dollar amount or event type.
+1. the_so_what: One sentence answering "what should a wealth management CXO think or decide differently because of this?" This is the editorial product — not a summary, not a quote. It must be a strategic business implication.
+   BAD: "Jump raised $80M to expand its AI meeting assistant platform."
+   BAD: "This shows that AI is growing in wealth management."
+   GOOD: "Advisor productivity tools are now a funded, scaling category — firms without an AI meeting workflow strategy are falling behind 15,000 advisors who already have one."
+   GOOD: "The independent channel is adopting AI faster than the institutional channel — a structural reversal of the historic adoption curve that wirehouse strategy teams need to factor into their 2026 plans."
+   Think: what would a Chief Strategy Officer or Head of Wealth Management need to hear to make a better decision?
+
+2. summary: Lead with the CAPABILITY and its EVIDENCE. Then explain the event trigger. Only facts from the source.
+   BAD: "Jump raises $80M Series B to expand its AI platform."
+   GOOD: "Jump's AI assistant automates meeting notes and CRM updates, saving advisors 6 hours per week. Currently used by 3,000 advisors, the company raised $80M to scale to 15,000. Lead investor Insight Partners cited advisor time savings as primary investment thesis."
+
+3. headline: Lead with the capability impact or scale, not the dollar amount or event type.
    BAD: "Jump Raises $80M Series B"
    GOOD: "Jump Scales AI Meeting Assistant to 15,000 Advisors After $80M Series B"
-3. key_stat: The single most significant number for a CXO — advisors reached, AUM affected, time saved, cost reduced. Must be explicitly stated in the source. If no meaningful number exists, set to null.
-4. capability_evidence: Populate ALL fields if any evidence exists. stage = "deployed" only if the capability is live with real users. "piloting" = being tested. "announced" = committed but not yet live. Set metric to null if no quantified impact is stated.
-5. If the article has no identifiable AI capability dimension for wealth management, set type to "market_signal".
-6. If the article is not about AI in wealth management or financial services at all, set type to null.
-7. All summary content must come ONLY from the source article above. No inference from training data.
-8. For image_url: https://unavatar.io/[company-main-domain]
-9. If multiple sources cover the same story, synthesize the most complete version. Prefer primary sources.
+
+4. key_stat: The single most significant number for a CXO — advisors reached, AUM affected, time saved, cost reduced. Must be explicitly stated in the source. If no meaningful number, set to null.
+
+5. capability_evidence: Populate ALL fields if evidence exists. stage = "deployed" only if live with real users. "piloting" = being tested. "announced" = committed but not live. metric = null if no quantified impact stated.
+
+6. If the article has no identifiable AI capability dimension for wealth management, set type to "market_signal".
+7. If the article is not about AI in wealth management or financial services at all, set type to null.
+8. All summary content must come ONLY from the source article above. No inference from training data.
+9. For image_url: https://unavatar.io/[company-main-domain]
+10. If multiple sources cover the same story, synthesize the most complete version. Prefer primary sources.
 
 Event type definitions:
 - funding: capital raise (seed, Series A/B/C, debt, IPO)

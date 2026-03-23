@@ -16,8 +16,8 @@
 
     /* Header */
     header {
-      background: #fff;
-      border-bottom: 1px solid #E5E7EB;
+      background: #1C1C2E;
+      border-bottom: 1px solid #2D2D44;
       padding: 0 24px;
       height: 52px;
       display: flex;
@@ -27,12 +27,20 @@
       top: 0;
       z-index: 100;
     }
-    .header-title { font-size: 14px; font-weight: 700; color: #1B2E5E; }
-    .header-sub { font-size: 12px; color: #9CA3AF; margin-left: 12px; }
+    .header-title { font-size: 14px; font-weight: 700; color: #fff; }
+    .header-sub { font-size: 12px; color: #6B7280; margin-left: 12px; }
     .header-badge {
       font-size: 10px; font-weight: 700; letter-spacing: 0.08em;
       text-transform: uppercase; padding: 3px 8px; border-radius: 3px;
-      background: #EEF2FF; color: #3730A3;
+      background: #990F3D; color: #fff;
+    }
+    .header-inbox-count {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 12px; color: #D1D5DB;
+    }
+    .header-inbox-num {
+      background: #990F3D; color: #fff; font-size: 10px; font-weight: 700;
+      padding: 2px 7px; border-radius: 10px; min-width: 20px; text-align: center;
     }
 
     /* Layout */
@@ -301,12 +309,85 @@
       font-size: 9px; font-weight: 700; border-radius: 8px;
       padding: 1px 5px; margin-left: 4px; vertical-align: middle;
     }
-    .pending-item {
-      border: 1px solid #FDE68A; border-radius: 6px;
-      padding: 10px 12px; margin-bottom: 8px; background: #FFFBEB;
+    /* Editorial card */
+    .eq-card {
+      border: 1px solid #E5E7EB; border-radius: 8px;
+      margin-bottom: 20px; background: #fff; overflow: hidden;
+      cursor: default;
     }
-    .pending-item-headline { font-size: 12px; font-weight: 700; color: #111827; margin-bottom: 4px; }
-    .pending-item-meta { font-size: 10px; color: #9CA3AF; margin-bottom: 6px; }
+    .eq-card-active {
+      border-color: #990F3D; box-shadow: 0 0 0 2px rgba(153,15,61,0.12);
+    }
+    .eq-card-header {
+      padding: 10px 16px; background: #FFFBEB; border-bottom: 1px solid #FDE68A;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .eq-card-status {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.06em; color: #B45309;
+    }
+    .eq-card-counter { font-size: 10px; color: #9CA3AF; margin-left: auto; }
+    .eq-card-body { padding: 16px; }
+    .eq-headline { font-size: 15px; font-weight: 700; color: #111827; line-height: 1.4; margin-bottom: 8px; }
+    .eq-meta { font-size: 10px; color: #9CA3AF; margin-bottom: 14px; display: flex; gap: 10px; flex-wrap: wrap; }
+    .eq-so-what {
+      border-left: 4px solid #990F3D; padding: 10px 14px; margin-bottom: 14px;
+      background: #FFF5F7;
+    }
+    .eq-so-what-label {
+      font-size: 9px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+      color: #990F3D; margin-bottom: 5px;
+    }
+    .eq-so-what-text { font-size: 13px; color: #1F2937; line-height: 1.5; font-weight: 500; }
+    .eq-so-what-missing { font-size: 11px; color: #9CA3AF; font-style: italic; }
+    .eq-section-label {
+      font-size: 9px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+      color: #9CA3AF; margin-bottom: 6px;
+    }
+    .eq-summary { font-size: 12px; color: #374151; line-height: 1.6; margin-bottom: 14px; }
+    .eq-key-stat {
+      display: inline-flex; align-items: baseline; gap: 6px; margin-bottom: 14px;
+      padding: 6px 12px; background: #F9FAFB; border: 1px solid #E5E7EB; border-radius: 4px;
+    }
+    .eq-key-stat-number { font-size: 20px; font-weight: 800; color: #990F3D; }
+    .eq-key-stat-label { font-size: 11px; color: #6B7280; }
+    .eq-warning {
+      background: #FFFBEB; border: 1px solid #FDE68A; border-radius: 4px;
+      padding: 8px 12px; margin-bottom: 12px;
+    }
+    .eq-claim { font-size: 11px; color: #B45309; padding: 2px 0; }
+    .eq-claim::before { content: '⚠ '; }
+    .eq-source { font-size: 11px; margin-bottom: 14px; }
+    .eq-source a { color: #1B2E5E; text-decoration: none; }
+    .eq-source a:hover { text-decoration: underline; }
+    .eq-confidence {
+      display: inline-block; font-size: 10px; font-weight: 700; padding: 2px 8px;
+      border-radius: 10px; margin-bottom: 14px;
+    }
+    .eq-confidence-high { background: #DCFCE7; color: #15803D; }
+    .eq-confidence-mid { background: #FEF3C7; color: #B45309; }
+    .eq-confidence-low { background: #FEE2E2; color: #B91C1C; }
+    .eq-actions { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; padding-top: 14px; border-top: 1px solid #F3F4F6; }
+    .eq-btn-approve { background: #15803D; color: #fff; border: none; border-radius: 4px; padding: 8px 16px; font-size: 12px; font-weight: 700; cursor: pointer; }
+    .eq-btn-approve:hover { background: #166534; }
+    .eq-btn-edit { background: #1B2E5E; color: #fff; border: none; border-radius: 4px; padding: 8px 16px; font-size: 12px; font-weight: 700; cursor: pointer; }
+    .eq-btn-edit:hover { background: #162548; }
+    .eq-btn-reject { background: #fff; color: #B91C1C; border: 1px solid #FECACA; border-radius: 4px; padding: 8px 16px; font-size: 12px; font-weight: 700; cursor: pointer; }
+    .eq-btn-reject:hover { background: #FEE2E2; }
+    .eq-shortcuts { font-size: 10px; color: #9CA3AF; margin-left: auto; }
+    .eq-shortcuts kbd { background: #F3F4F6; border: 1px solid #D1D5DB; border-radius: 3px; padding: 1px 5px; font-size: 9px; }
+    /* Inline editor */
+    .eq-editor { display: none; background: #F9FAFB; border: 1px solid #E5E7EB; border-radius: 6px; padding: 14px; margin-top: 14px; }
+    .eq-editor.visible { display: block; }
+    .eq-editor label { display: block; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #6B7280; margin-bottom: 4px; margin-top: 12px; }
+    .eq-editor label:first-child { margin-top: 0; }
+    .eq-editor input, .eq-editor textarea { width: 100%; box-sizing: border-box; border: 1px solid #D1D5DB; border-radius: 4px; padding: 6px 8px; font-size: 12px; font-family: inherit; line-height: 1.5; }
+    .eq-editor textarea { resize: vertical; }
+    .eq-editor-actions { display: flex; gap: 8px; margin-top: 12px; }
+    .eq-btn-save { background: #990F3D; color: #fff; border: none; border-radius: 4px; padding: 7px 16px; font-size: 12px; font-weight: 700; cursor: pointer; }
+    .eq-btn-save:hover { background: #7A0C31; }
+    .eq-btn-cancel { background: #fff; color: #6B7280; border: 1px solid #D1D5DB; border-radius: 4px; padding: 7px 12px; font-size: 12px; cursor: pointer; }
+    /* Legacy compat */
+    .pending-item { display: none; }
     .pending-claim { font-size: 11px; color: #B45309; padding: 2px 0; }
     .pending-actions { display: flex; gap: 6px; margin-top: 8px; }
     .pending-approve { background: #15803D; color: #fff; border: none; border-radius: 4px; padding: 5px 12px; font-size: 11px; font-weight: 700; cursor: pointer; }
@@ -481,16 +562,94 @@
     }
     .audit-empty-state .icon { font-size: 36px; margin-bottom: 12px; }
     .audit-empty-state .title { font-size: 15px; font-weight: 600; color: #6B7280; margin-bottom: 6px; }
+
+    /* Pipeline status strip */
+    .pipeline-strip {
+      background: #F9FAFB; border: 1px solid #E5E7EB; border-radius: 6px;
+      padding: 10px 14px; margin-bottom: 14px;
+      display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+    }
+    .pipeline-stat { display: flex; flex-direction: column; align-items: center; min-width: 50px; }
+    .pipeline-stat-num { font-size: 18px; font-weight: 800; color: #1B2E5E; line-height: 1; }
+    .pipeline-stat-label { font-size: 9px; color: #9CA3AF; text-transform: uppercase; letter-spacing: 0.06em; margin-top: 2px; }
+    .pipeline-stat-num.green { color: #15803D; }
+    .pipeline-stat-num.amber { color: #B45309; }
+    .pipeline-stat-num.red { color: #B91C1C; }
+    .pipeline-divider { width: 1px; height: 32px; background: #E5E7EB; flex-shrink: 0; }
+    .pipeline-run-time { font-size: 10px; color: #9CA3AF; flex: 1; min-width: 120px; }
+    .pipeline-run-btn {
+      background: #1B2E5E; color: #fff; border: none; border-radius: 4px;
+      padding: 6px 12px; font-size: 11px; font-weight: 700; cursor: pointer;
+      white-space: nowrap; flex-shrink: 0;
+    }
+    .pipeline-run-btn:hover { background: #2A4080; }
+    .pipeline-run-btn:disabled { background: #9CA3AF; cursor: not-allowed; }
+
+    /* Score badge */
+    .score-badge {
+      display: inline-flex; align-items: baseline; gap: 2px;
+      font-size: 11px; font-weight: 800; padding: 2px 8px; border-radius: 10px;
+      flex-shrink: 0;
+    }
+    .score-high { background: #DCFCE7; color: #15803D; }
+    .score-mid  { background: #FEF3C7; color: #B45309; }
+    .score-low  { background: #FEE2E2; color: #B91C1C; }
+
+    /* Type badges (portal-consistent) */
+    .type-badge { font-size: 9px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 2px 7px; border-radius: 3px; }
+    .badge-market_signal   { background: #DBEAFE; color: #1D4ED8; }
+    .badge-product_launch  { background: #D1FAE5; color: #065F46; }
+    .badge-milestone       { background: #EDE9FE; color: #6D28D9; }
+    .badge-research        { background: #FEF3C7; color: #92400E; }
+    .badge-acquisition     { background: #FEE2E2; color: #991B1B; }
+    .badge-partnership     { background: #E0F2FE; color: #0369A1; }
+
+    /* Summary bullets (portal FormattedSummary style) */
+    .eq-bullets { list-style: none; padding: 0; margin: 0 0 14px 0; }
+    .eq-bullet { display: flex; gap: 10px; font-size: 13px; color: #374151; line-height: 1.6; margin-bottom: 10px; }
+    .eq-bullet-arrow { color: #990F3D; font-weight: 700; font-size: 11px; margin-top: 3px; flex-shrink: 0; }
+
+    /* Rejection modal */
+    .rejection-modal-overlay {
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,0.5); z-index: 300;
+      align-items: center; justify-content: center;
+    }
+    .rejection-modal-overlay.visible { display: flex; }
+    .rejection-modal {
+      background: #fff; border-radius: 8px; padding: 24px;
+      width: 420px; box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+    }
+    .rejection-modal-title { font-size: 15px; font-weight: 700; color: #111827; margin-bottom: 4px; }
+    .rejection-modal-sub { font-size: 12px; color: #6B7280; margin-bottom: 16px; }
+    .rejection-modal label { display: block; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #6B7280; margin-bottom: 6px; }
+    .rejection-modal select, .rejection-modal textarea {
+      width: 100%; border: 1px solid #D1D5DB; border-radius: 4px;
+      padding: 7px 10px; font-size: 13px; font-family: inherit; margin-bottom: 14px; outline: none;
+    }
+    .rejection-modal select:focus, .rejection-modal textarea:focus { border-color: #990F3D; }
+    .rejection-modal textarea { resize: vertical; min-height: 60px; }
+    .rejection-modal-actions { display: flex; gap: 8px; justify-content: flex-end; }
+    .btn-confirm-reject { background: #B91C1C; color: #fff; border: none; border-radius: 4px; padding: 8px 16px; font-size: 13px; font-weight: 700; cursor: pointer; }
+    .btn-confirm-reject:hover { background: #991B1B; }
+    .btn-cancel-reject { background: #fff; color: #6B7280; border: 1px solid #D1D5DB; border-radius: 4px; padding: 8px 16px; font-size: 13px; cursor: pointer; }
+    .btn-cancel-reject:hover { background: #F9FAFB; }
   </style>
 </head>
 <body>
 
 <header>
   <div style="display:flex;align-items:center;">
-    <span class="header-title">AI in Wealth Management</span>
-    <span class="header-sub">Content Intake</span>
+    <span class="header-title">Editorial Studio</span>
+    <span class="header-sub">AI in Wealth Management</span>
   </div>
-  <span class="header-badge">Internal Tool</span>
+  <div style="display:flex;align-items:center;gap:16px;">
+    <span class="header-inbox-count" id="headerInboxCount" style="display:none;">
+      Inbox <span class="header-inbox-num" id="headerInboxNum">0</span>
+    </span>
+    <button onclick="switchMode('audit')" style="background:none;border:none;font-size:11px;color:#6B7280;cursor:pointer;padding:4px 8px;border-radius:3px;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#6B7280'">Data Audit</button>
+    <span class="header-badge">Internal</span>
+  </div>
 </header>
 
 <div class="layout">
@@ -498,100 +657,84 @@
   <!-- Left panel: candidates + controls -->
   <div class="left-panel">
     <div class="panel-header">
-      <div class="panel-title">Discovery</div>
+      <div class="panel-title" id="panelTitle">Review Queue</div>
 
-      <!-- Mode tabs -->
+      <!-- Mode tabs: Review (default) | Discover -->
       <div class="mode-tabs">
-        <button class="mode-tab active" id="tabAuto" onclick="switchMode('auto')">Auto-Discover</button>
-        <button class="mode-tab" id="tabSearch" onclick="switchMode('search')">Search</button>
-        <button class="mode-tab" id="tabUrl" onclick="switchMode('url')">URL</button>
-        <button class="mode-tab" id="tabPending" onclick="switchMode('pending')">Review<span class="pending-badge" id="pendingBadge" style="display:none;">0</span></button>
-        <button class="mode-tab" id="tabAudit" onclick="switchMode('audit')">Audit</button>
-      </div>
-
-      <!-- Auto-Discover mode (default) -->
-      <div id="modeAuto">
-        <button class="action-btn" id="btnAutoDiscover" onclick="runAutoDiscover()">
-          Find New Stories
+        <button class="mode-tab" id="tabPending" onclick="switchMode('pending')">
+          Review
+          <span class="pending-badge" id="pendingBadge" style="display:none;">0</span>
         </button>
-        <div class="source-progress" id="sourceProgress" style="display:none;">
-          <div class="source-pill" id="pillL1News">
-            <span class="source-pill-label">L1 News</span>
-            <span id="pillL1NewsVal">—</span>
+        <button class="mode-tab" id="tabAuto" onclick="switchMode('auto')">Discover</button>
+      </div>
+
+      <!-- Review queue mode (default) -->
+      <div id="modePending">
+        <!-- Pipeline status strip -->
+        <div class="pipeline-strip" id="pipelineStrip">
+          <div class="pipeline-stat">
+            <div class="pipeline-stat-num" id="pipelineQueued">—</div>
+            <div class="pipeline-stat-label">In Inbox</div>
           </div>
-          <div class="source-pill" id="pillL2Cos">
-            <span class="source-pill-label">L2 Companies</span>
-            <span id="pillL2CosVal">—</span>
+          <div class="pipeline-divider"></div>
+          <div class="pipeline-stat">
+            <div class="pipeline-stat-num green" id="pipelinePublished">—</div>
+            <div class="pipeline-stat-label">Published Today</div>
           </div>
-          <div class="source-pill" id="pillTL">
-            <span class="source-pill-label">TL Candidates</span>
-            <span id="pillTLVal">—</span>
+          <div class="pipeline-stat">
+            <div class="pipeline-stat-num amber" id="pipelineBlocked">—</div>
+            <div class="pipeline-stat-label">Blocked</div>
           </div>
+          <div class="pipeline-stat">
+            <div class="pipeline-stat-num red" id="pipelineErrors">—</div>
+            <div class="pipeline-stat-label">Errors</div>
+          </div>
+          <div class="pipeline-divider"></div>
+          <div class="pipeline-run-time" id="pipelineRunTime">Last run: —</div>
+          <button class="pipeline-run-btn" id="btnRunPipeline" onclick="runPipelineNow()">▶ Run Pipeline</button>
+          <button class="action-btn secondary" style="width:auto;padding:5px 12px;font-size:11px;" onclick="loadInbox()">↺ Refresh</button>
         </div>
-        <div style="margin-top:8px;font-size:10px;color:#9CA3AF;line-height:1.5;">
-          Layer 1: 8 broad news queries. Layer 2: one query per company in the landscape (auto-expands).
-          TL candidates surfaced in Telegram for manual review.
+        <div id="pendingList" style="max-width:860px;">
+          <div style="font-size:12px;color:#9CA3AF;text-align:center;padding:24px;">Loading...</div>
         </div>
       </div>
 
-      <!-- Manual Search mode (Jina) -->
+      <!-- Discover mode -->
+      <div id="modeAuto" style="display:none;">
+        <button class="action-btn" id="btnAutoDiscover" onclick="runAutoDiscover()">Find New Stories</button>
+        <div style="margin-top:10px;display:flex;gap:6px;">
+          <input type="text" id="manualUrl" placeholder="Or paste a specific URL..." style="font-size:12px;" />
+          <button class="action-btn secondary" style="width:auto;flex-shrink:0;padding:7px 12px;font-size:12px;" onclick="addManualUrl()">Add</button>
+        </div>
+      </div>
+
+      <!-- Hidden inputs kept for Search JS compat -->
       <div id="modeSearch" style="display:none;">
-        <div class="query-chips">
-          <span class="query-chip" onclick="setQuery('AI wealth management news 2025')">AI wealth management</span>
-          <span class="query-chip" onclick="setQuery('financial advisor AI product launch 2025')">advisor AI launch</span>
-          <span class="query-chip" onclick="setQuery('Goldman Sachs AI 2025')">Goldman Sachs AI</span>
-          <span class="query-chip" onclick="setQuery('Morgan Stanley AI advisor 2025')">Morgan Stanley AI</span>
-          <span class="query-chip" onclick="setQuery('Anthropic wealth management partnership')">Anthropic + wealth</span>
-          <span class="query-chip" onclick="setQuery('wealthtech AI funding 2025')">wealthtech funding</span>
-        </div>
-        <div style="display:flex;gap:6px;">
-          <input type="text" id="searchQuery" placeholder="e.g. AI wealth management news 2025" />
-          <button class="action-btn" id="btnSearch" style="width:auto;flex-shrink:0;padding:7px 14px;" onclick="runSearch()">Search</button>
-        </div>
-        <div style="margin-top:6px;font-size:10px;color:#9CA3AF;">
-          Powered by Jina AI — full article text from top results
-        </div>
+        <input type="text" id="searchQuery" placeholder="" />
+        <button id="btnSearch" onclick="runSearch()" style="display:none;"></button>
       </div>
-
-      <!-- Paste URL mode -->
-      <div id="modeUrl" style="display:none;">
-        <div style="display:flex;gap:6px;">
-          <input type="text" id="manualUrl" placeholder="https://..." />
-          <button class="action-btn secondary" style="width:auto;flex-shrink:0;padding:7px 12px;" onclick="addManualUrl()">Add</button>
-        </div>
-      </div>
-
-      <!-- Pending queue mode -->
-      <div id="modePending" style="display:none;">
-        <div style="font-size:10px;color:#B45309;font-weight:700;margin-bottom:8px;">
-          REVIEW ENTRIES — require human sign-off before publishing
-        </div>
-        <button class="action-btn secondary" style="margin-bottom:8px;" onclick="loadPendingQueue()">Refresh Queue</button>
-        <div id="pendingList">
-          <div style="font-size:12px;color:#9CA3AF;text-align:center;padding:16px;">Loading...</div>
-        </div>
-      </div>
+      <div id="modeUrl" style="display:none;"></div>
     </div>
 
     <!-- Candidate list -->
-    <div class="candidates-scroll" id="candidateList">
+    <div class="candidates-scroll" id="candidateList" style="display:none;">
       <div style="padding:16px;color:#9CA3AF;text-align:center;font-size:12px;">
-        Click "Find New Stories" to auto-discover,<br/>or use Search / URL tabs above.
+        Click "Find New Stories" to discover AI wealth management stories,<br/>or paste a specific URL above.
       </div>
     </div>
 
-    <div class="status-bar" id="statusBar">
+    <div class="status-bar" id="statusBar" style="display:none;">
       <div class="status-dot" id="statusDot"></div>
       <span id="statusText">Ready</span>
     </div>
   </div>
 
-  <!-- Right panel: entry preview + governance -->
-  <div class="right-panel" id="rightPanel">
+  <!-- Right panel: entry preview + governance (Discover mode only) -->
+  <div class="right-panel" id="rightPanel" style="display:none;">
     <div class="empty-state">
       <div class="empty-icon">📰</div>
       <div class="empty-title">No story selected</div>
-      <div style="font-size:13px;">Select a story from the left to process and review it</div>
+      <div style="font-size:13px;">Click a story on the left to process it</div>
     </div>
   </div>
 
@@ -678,6 +821,29 @@
   <div style="display:flex;gap:8px;">
     <button class="action-btn secondary" style="background:transparent;color:#fff;border-color:#fff;width:auto;" onclick="clearApproved()">Clear</button>
     <button class="action-btn success" style="width:auto;" onclick="publishApproved()">Publish to Portal →</button>
+  </div>
+</div>
+
+<!-- Rejection reason modal -->
+<div class="rejection-modal-overlay" id="rejectionModal">
+  <div class="rejection-modal" onclick="event.stopPropagation()">
+    <div class="rejection-modal-title">Reject Story</div>
+    <div class="rejection-modal-sub" id="rejectionModalSub">This will block the source URL permanently.</div>
+    <label>Reason</label>
+    <select id="rejectionReason">
+      <option value="not_relevant">Not relevant to wealth management AI</option>
+      <option value="already_covered">Already covered — duplicate story</option>
+      <option value="wrong_framing">Wrong framing — needs different angle</option>
+      <option value="low_quality">Low quality — insufficient evidence</option>
+      <option value="too_old">Too old — not timely enough</option>
+      <option value="other">Other</option>
+    </select>
+    <label>Notes (optional)</label>
+    <textarea id="rejectionNotes" placeholder="Any additional context for algorithm tuning..."></textarea>
+    <div class="rejection-modal-actions">
+      <button class="btn-cancel-reject" onclick="closeRejectionModal()">Cancel</button>
+      <button class="btn-confirm-reject" onclick="confirmReject()">Reject &amp; Block</button>
+    </div>
   </div>
 </div>
 
@@ -853,6 +1019,16 @@ function renderEntryPreview(id) {
             <div class="field-value">${entry.tags?.region || '—'}</div>
           </div>
         </div>
+
+        ${entry.the_so_what ? `
+        <div style="border-left:4px solid #990F3D;padding:8px 12px;margin-bottom:14px;background:#FFF5F7;">
+          <div style="font-size:9px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#990F3D;margin-bottom:4px;">Why this matters</div>
+          <div style="font-size:13px;color:#1F2937;line-height:1.5;font-weight:500;">${entry.the_so_what}</div>
+        </div>` : `
+        <div style="border-left:4px solid #F59E0B;padding:8px 12px;margin-bottom:14px;background:#FEF9F0;">
+          <div style="font-size:9px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#B45309;margin-bottom:4px;">Why this matters</div>
+          <div style="font-size:11px;color:#9CA3AF;font-style:italic;">Not generated — edit before publishing</div>
+        </div>`}
 
         <div class="field-label">Summary</div>
         <div class="field-value">${entry.summary}</div>
@@ -1033,7 +1209,7 @@ async function processStory(id) {
       </div>`;
       processedEntries.delete(id);
       renderCandidateList();
-      loadPendingQueue(); // refresh badge count
+      loadInbox(); // refresh inbox badge count
     },
     skipped: (d) => {
       setStatus('Article not relevant — skipped', 'error');
@@ -1129,33 +1305,53 @@ function closeLog() {
 
 // ── Mode switching ─────────────────────────────────────────────────────────────
 
-function switchMode(mode) {
-  const intakeModes = ['auto', 'search', 'url', 'pending'];
+let currentMode = 'pending';
 
-  // Show/hide intake left-panel sections
-  intakeModes.forEach(m => {
+function switchMode(mode) {
+  currentMode = mode;
+
+  // Show/hide mode sections in left panel
+  ['auto', 'search', 'url', 'pending'].forEach(m => {
     const el = document.getElementById(`mode${m.charAt(0).toUpperCase() + m.slice(1)}`);
     if (el) el.style.display = m === mode ? '' : 'none';
+  });
+
+  // Tab active states (only two real tabs)
+  ['pending', 'auto'].forEach(m => {
     const tab = document.getElementById(`tab${m.charAt(0).toUpperCase() + m.slice(1)}`);
     if (tab) tab.classList.toggle('active', m === mode);
   });
 
-  // Handle Audit tab
-  const tabAudit = document.getElementById('tabAudit');
-  if (tabAudit) tabAudit.classList.toggle('active', mode === 'audit');
-
   const auditPanel = document.getElementById('auditPanel');
   const layout = document.querySelector('.layout');
   const publishBar = document.getElementById('publishBar');
+  const rightPanel = document.querySelector('.right-panel');
+  const panelTitle = document.getElementById('panelTitle');
+  const candidateList = document.getElementById('candidateList');
+  const statusBar = document.querySelector('.status-bar');
 
   if (mode === 'audit') {
     if (layout) layout.style.display = 'none';
     if (publishBar) publishBar.style.display = 'none';
     if (auditPanel) auditPanel.classList.add('visible');
-  } else {
-    if (layout) layout.style.display = '';
+  } else if (mode === 'pending') {
+    // Full-width review queue
+    if (layout) { layout.style.display = 'grid'; layout.style.gridTemplateColumns = '1fr'; }
+    if (rightPanel) rightPanel.style.display = 'none';
+    if (candidateList) candidateList.style.display = 'none';
+    if (statusBar) statusBar.style.display = 'none';
     if (auditPanel) auditPanel.classList.remove('visible');
-    if (mode === 'pending') loadPendingQueue();
+    if (panelTitle) panelTitle.textContent = 'Review Queue';
+    loadInbox();
+    loadPipelineStatus();
+  } else {
+    // Discover mode — two-panel layout
+    if (layout) { layout.style.display = 'grid'; layout.style.gridTemplateColumns = '340px 1fr'; }
+    if (rightPanel) rightPanel.style.display = '';
+    if (candidateList) candidateList.style.display = '';
+    if (statusBar) statusBar.style.display = '';
+    if (auditPanel) auditPanel.classList.remove('visible');
+    if (panelTitle) panelTitle.textContent = 'Discover';
   }
 }
 
@@ -1175,7 +1371,7 @@ async function runAutoDiscover() {
   btn.innerHTML = '<span class="spinner">Discovering</span>';
 
   const prog = document.getElementById('sourceProgress');
-  prog.style.display = 'grid';
+  if (prog) prog.style.display = 'grid';
   setSourcePill('pillL1News', 'pillL1NewsVal', 'running', 'scanning…');
   setSourcePill('pillL2Cos',  'pillL2CosVal',  'running', 'querying…');
   setSourcePill('pillTL',     'pillTLVal',     'running', 'searching…');
@@ -1219,104 +1415,443 @@ function setQuery(q) {
   document.getElementById('searchQuery').focus();
 }
 
-// ── Pending queue ──────────────────────────────────────────────────────────────
+// ── Pending / Review Queue ─────────────────────────────────────────────────────
 
-async function loadPendingQueue() {
+// Store pending items in memory for keyboard navigation
+let _pendingItems = [];
+let _activePendingIdx = 0;
+let _rejectingId = null;
+
+function confidenceClass(c) {
+  if (c >= 85) return 'eq-confidence-high';
+  if (c >= 65) return 'eq-confidence-mid';
+  return 'eq-confidence-low';
+}
+
+function scoreClass(s) {
+  if (s == null) return '';
+  if (s >= 75) return 'score-high';
+  if (s >= 60) return 'score-mid';
+  return 'score-low';
+}
+
+function typeBadge(type) {
+  const labels = {
+    market_signal: 'Market Signal',
+    product_launch: 'Product Launch',
+    milestone: 'Milestone',
+    research: 'Research',
+    acquisition: 'Acquisition',
+    partnership: 'Partnership',
+  };
+  return `<span class="type-badge badge-${type || 'market_signal'}">${labels[type] || (type || '').replace(/_/g,' ')}</span>`;
+}
+
+// Format summary as → bullet sentences (mirrors portal FormattedSummary)
+function formatSummaryBullets(text) {
+  if (!text) return '';
+  const sentences = (text.match(/[^.!?]+[.!?]+(?:\s|$)/g) || [text])
+    .map(s => s.trim()).filter(s => s.length > 10);
+  return `<ul class="eq-bullets">${sentences.map(s => `
+    <li class="eq-bullet">
+      <span class="eq-bullet-arrow">→</span>
+      <span>${escapeHtml(s)}</span>
+    </li>`).join('')}</ul>`;
+}
+
+function renderEditorialCard(item, idx, total) {
+  const urlDisplay = (item.source_url || '').length > 80
+    ? item.source_url.slice(0, 77) + '...'
+    : (item.source_url || '');
+  const queuedDate = new Date(item.queued_at).toLocaleString('en-GB', { day:'numeric', month:'short', hour:'2-digit', minute:'2-digit' });
+  const capStage = item.capability_evidence
+    ? `${(item.capability_evidence.capability || '').replace(/_/g,' ')} · ${item.capability_evidence.stage}`
+    : '';
+  const isReview = item.governance_verdict === 'REVIEW';
+  const score = item.score;
+  const scoreStr = score != null ? `${score}/100` : '—/100';
+  const scoreBreakdown = item.score_breakdown || '';
+
+  return `
+    <div class="eq-card${_activePendingIdx === idx ? ' eq-card-active' : ''}" id="eq-${escapeAttr(item.id)}" onclick="setActiveCard(${idx})">
+      <div class="eq-card-header" style="${isReview ? '' : 'background:#F0FDF4;border-color:#BBF7D0;'}">
+        <span class="eq-card-status" style="${isReview ? '' : 'color:#15803D;'}">${isReview ? '⚠ REVIEW' : '✓ HIGH CONFIDENCE'}</span>
+        ${typeBadge(item.type)}
+        ${capStage ? `<span style="font-size:10px;color:#6B7280;background:#F3F4F6;padding:2px 8px;border-radius:10px;">${escapeHtml(capStage)}</span>` : ''}
+        ${score != null ? `<span class="score-badge ${scoreClass(score)}" title="${escapeAttr(scoreBreakdown)}">${scoreStr}</span>` : ''}
+        <span class="eq-card-counter">${idx + 1} of ${total}</span>
+      </div>
+      <div class="eq-card-body">
+
+        <div class="eq-headline">${escapeHtml(item.headline)}</div>
+        <div class="eq-meta">
+          <span style="font-weight:600;">${escapeHtml(item.company_name)}</span>
+          <span>·</span>
+          <span>${escapeHtml(item.source_name)}</span>
+          <span>·</span>
+          <span>${escapeHtml(item.date)}</span>
+          <span>·</span>
+          <span>${queuedDate}</span>
+        </div>
+
+        ${item.the_so_what ? `
+          <div class="eq-so-what">
+            <div class="eq-so-what-label">Why this matters</div>
+            <div class="eq-so-what-text">${escapeHtml(item.the_so_what)}</div>
+          </div>
+        ` : `
+          <div class="eq-so-what" style="background:#FEF9F0;border-color:#F59E0B;">
+            <div class="eq-so-what-label" style="color:#B45309;">Why this matters</div>
+            <div class="eq-so-what-missing">⚠ Not generated — add before publishing</div>
+          </div>
+        `}
+
+        ${item.key_stat ? `
+          <div class="eq-key-stat">
+            <span class="eq-key-stat-number">${escapeHtml(item.key_stat.number)}</span>
+            <span class="eq-key-stat-label">${escapeHtml(item.key_stat.label)}</span>
+          </div>
+        ` : ''}
+
+        ${item.summary ? `
+          <div>
+            <div class="eq-section-label">AI Summary</div>
+            ${formatSummaryBullets(item.summary)}
+          </div>
+        ` : ''}
+
+        ${item.unverified_claims?.length ? `
+          <div class="eq-warning">
+            <div style="font-size:10px;font-weight:700;color:#B45309;margin-bottom:4px;">UNVERIFIED CLAIMS</div>
+            ${item.unverified_claims.map(c => `<div class="eq-claim">${escapeHtml(c)}</div>`).join('')}
+          </div>
+        ` : ''}
+
+        ${item.paywall_caveat ? `<div style="font-size:11px;color:#B45309;margin-bottom:12px;">⚠ Limited source content — possible paywall</div>` : ''}
+        ${item.notes ? `<div style="font-size:11px;color:#6B7280;margin-bottom:12px;">${escapeHtml(item.notes)}</div>` : ''}
+
+        <div class="eq-source">
+          ${item.confidence != null ? `<span class="eq-confidence ${confidenceClass(item.confidence)}">${item.confidence}% confidence</span>&nbsp;` : ''}
+          ${item.source_url ? `<a href="${escapeAttr(item.source_url)}" target="_blank">${escapeHtml(urlDisplay)} ↗</a>` : ''}
+        </div>
+
+        <div class="eq-actions">
+          <button class="eq-btn-approve" onclick="approvePendingEntry('${escapeAttr(item.id)}');event.stopPropagation()">✓ Publish</button>
+          <button class="eq-btn-edit" onclick="toggleEditMode('${escapeAttr(item.id)}');event.stopPropagation()">✏ Edit then Publish</button>
+          <button class="eq-btn-reject" onclick="rejectPendingEntry('${escapeAttr(item.id)}','${escapeAttr(item.headline)}');event.stopPropagation()">✕ Reject</button>
+          <span class="eq-shortcuts"><kbd>J</kbd>/<kbd>K</kbd> nav &nbsp; <kbd>P</kbd> Publish &nbsp; <kbd>E</kbd> Edit &nbsp; <kbd>R</kbd> Reject</span>
+        </div>
+
+        <!-- Inline editor -->
+        <div class="eq-editor" id="editor-${item.id}">
+          <label>Headline</label>
+          <input type="text" id="edit-headline-${item.id}" value="${escapeAttr(item.headline)}" />
+          <label>Why this matters (the_so_what) — one sentence, CXO decision-oriented</label>
+          <textarea id="edit-sowhat-${item.id}" rows="2">${escapeHtml(item.the_so_what || '')}</textarea>
+          <label>Summary</label>
+          <textarea id="edit-summary-${item.id}" rows="4">${escapeHtml(item.summary || '')}</textarea>
+          ${item.key_stat ? `
+            <label>Key Stat Number</label>
+            <input type="text" id="edit-statnum-${item.id}" value="${escapeAttr(item.key_stat.number)}" />
+            <label>Key Stat Label</label>
+            <input type="text" id="edit-statlabel-${item.id}" value="${escapeAttr(item.key_stat.label)}" />
+          ` : ''}
+          <div class="eq-editor-actions">
+            <button class="eq-btn-save" onclick="saveAndPublish('${item.id}')">Save & Publish</button>
+            <button class="eq-btn-cancel" onclick="toggleEditMode('${item.id}')">Cancel</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  `;
+}
+
+function escapeHtml(str) {
+  return String(str || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+function escapeAttr(str) {
+  return String(str || '').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+}
+
+function toggleEditMode(id) {
+  const ed = document.getElementById(`editor-${id}`);
+  if (ed) ed.classList.toggle('visible');
+}
+
+async function loadInbox() {
   try {
-    const res = await fetch('/api/pending');
+    const res = await fetch('/api/inbox');
     const data = await res.json();
+    const count = data.count || 0;
 
-    // Update badge
+    // Update tab badge
     const badge = document.getElementById('pendingBadge');
-    if (data.count > 0) {
-      badge.textContent = data.count;
-      badge.style.display = 'inline-block';
+    if (count > 0) { badge.textContent = count; badge.style.display = 'inline-block'; }
+    else { badge.style.display = 'none'; }
+
+    // Update header badge
+    const headerCount = document.getElementById('headerInboxCount');
+    const headerNum = document.getElementById('headerInboxNum');
+    if (count > 0) {
+      headerNum.textContent = count;
+      headerCount.style.display = 'inline-flex';
     } else {
-      badge.style.display = 'none';
+      headerCount.style.display = 'none';
     }
+
+    // Update pipeline strip inbox count
+    const pipelineQueued = document.getElementById('pipelineQueued');
+    if (pipelineQueued) pipelineQueued.textContent = count;
 
     const list = document.getElementById('pendingList');
     if (!list) return;
 
-    if (data.count === 0) {
-      list.innerHTML = '<div style="font-size:12px;color:#9CA3AF;text-align:center;padding:16px;">No entries awaiting review</div>';
+    if (count === 0) {
+      list.innerHTML = `
+        <div style="text-align:center;padding:48px 24px;color:#9CA3AF;">
+          <div style="font-size:36px;margin-bottom:12px;">✓</div>
+          <div style="font-size:15px;font-weight:600;color:#6B7280;margin-bottom:6px;">Inbox clear</div>
+          <div style="font-size:13px;">No stories waiting for review. Run the pipeline to discover new content.</div>
+          <button class="pipeline-run-btn" style="margin-top:16px;" onclick="runPipelineNow()">▶ Run Pipeline Now</button>
+        </div>`;
+      _pendingItems = [];
+      _activePendingIdx = 0;
       return;
     }
 
-    list.innerHTML = data.items.map(item => `
-      <div class="pending-item" id="pending-${item.id}">
-        <div class="pending-item-headline">${item.headline}</div>
-        <div class="pending-item-meta">
-          ${item.company_name} · Queued ${new Date(item.queued_at).toLocaleString()}
-          · Confidence: ${item.confidence}%
-        </div>
-        ${item.unverified_claims?.length ? `
-          <div style="margin-bottom:4px;">
-            ${item.unverified_claims.map(c => `<div class="pending-claim">⚠ ${c}</div>`).join('')}
-          </div>` : ''}
-        ${item.notes ? `<div style="font-size:11px;color:#6B7280;margin-bottom:4px;">${item.notes}</div>` : ''}
-        <div style="font-size:11px;margin-bottom:6px;">
-          <a href="${item.source_url}" target="_blank" style="color:#1B2E5E;">${item.source_url.slice(0,70)}... ↗</a>
-        </div>
-        <div class="pending-actions">
-          <button class="pending-approve" onclick="approvePendingEntry('${item.id}')">✓ Approve & Publish</button>
-          <button class="pending-reject" onclick="rejectPendingEntry('${item.id}')">✕ Reject</button>
-        </div>
-      </div>
-    `).join('');
+    _pendingItems = data.items;
+    if (_activePendingIdx >= _pendingItems.length) _activePendingIdx = 0;
+    list.innerHTML = data.items.map((item, idx) => renderEditorialCard(item, idx, count)).join('');
+
+    // Scroll active card into view
+    const activeCard = document.querySelector('.eq-card-active');
+    if (activeCard) activeCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   } catch (err) {
-    console.error('Failed to load pending queue:', err);
+    console.error('Failed to load inbox:', err);
+  }
+}
+
+// Legacy alias (called from Discover tab when story is processed)
+function loadPendingQueue() { return loadInbox(); }
+
+async function loadPipelineStatus() {
+  try {
+    const res = await fetch('/api/pipeline-status');
+    if (!res.ok) return;
+    const data = await res.json();
+
+    if (data.last_run_at) {
+      const dt = new Date(data.last_run_at);
+      const timeStr = dt.toLocaleString('en-GB', { day:'numeric', month:'short', hour:'2-digit', minute:'2-digit' });
+      const el = document.getElementById('pipelineRunTime');
+      if (el) el.textContent = `Last run: ${timeStr} · ${data.last_run_found || 0} candidates`;
+    }
+    if (data.published_today != null) {
+      const el = document.getElementById('pipelinePublished');
+      if (el) el.textContent = data.published_today;
+    }
+    if (data.last_run_blocked != null) {
+      const el = document.getElementById('pipelineBlocked');
+      if (el) el.textContent = data.last_run_blocked;
+    }
+    // errors not in current status; show inbox_count in queued (already set by loadInbox)
+    const errEl = document.getElementById('pipelineErrors');
+    if (errEl && errEl.textContent === '—') errEl.textContent = '0';
+  } catch (_) {}
+}
+
+async function runPipelineNow() {
+  const btn = document.getElementById('btnRunPipeline');
+  if (btn) { btn.disabled = true; btn.textContent = '⏳ Running...'; }
+
+  const logBox = document.getElementById('logLines');
+  logBox.innerHTML = '';
+  document.getElementById('logOverlay').classList.add('visible');
+  const addLog = (text, type = 'default') => {
+    const div = document.createElement('div');
+    div.className = `log-line ${type}`;
+    div.textContent = text;
+    logBox.appendChild(div);
+    logBox.scrollTop = logBox.scrollHeight;
+  };
+  addLog('Starting pipeline...');
+
+  try {
+    await sseStream('/api/run-pipeline', {}, {
+      status: (d) => addLog(d.message || d.stage || JSON.stringify(d)),
+      done: (d) => addLog(`Done. Published: ${d.published || 0} · Pending: ${d.pending || 0} · Blocked: ${d.blocked || 0}`, 'success'),
+      error: (d) => addLog(`Error: ${d.message}`, 'error'),
+    });
+    addLog('Pipeline complete. Refreshing inbox...', 'success');
+    await Promise.all([loadInbox(), loadPipelineStatus()]);
+  } catch (err) {
+    addLog(`Failed: ${err.message}`, 'error');
+  }
+
+  if (btn) { btn.disabled = false; btn.textContent = '▶ Run Pipeline'; }
+}
+
+function setActiveCard(idx) {
+  _activePendingIdx = idx;
+  // Re-render to update active highlight
+  if (_pendingItems.length > 0) {
+    const list = document.getElementById('pendingList');
+    if (list) list.innerHTML = _pendingItems.map((item, i) => renderEditorialCard(item, i, _pendingItems.length)).join('');
+  }
+}
+
+// Keyboard shortcuts for review queue
+document.addEventListener('keydown', (e) => {
+  // Close rejection modal on Escape
+  if (e.key === 'Escape') {
+    if (document.getElementById('rejectionModal')?.classList.contains('visible')) {
+      closeRejectionModal(); return;
+    }
+    if (document.getElementById('logOverlay')?.classList.contains('visible')) {
+      closeLog(); return;
+    }
+  }
+
+  if (currentMode !== 'pending') return;
+  if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.tagName === 'SELECT') return;
+  if (_pendingItems.length === 0) return;
+
+  // J/K navigation
+  if (e.key === 'j' || e.key === 'J') {
+    e.preventDefault();
+    setActiveCard(Math.min(_activePendingIdx + 1, _pendingItems.length - 1));
+    document.querySelector('.eq-card-active')?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    return;
+  }
+  if (e.key === 'k' || e.key === 'K') {
+    e.preventDefault();
+    setActiveCard(Math.max(_activePendingIdx - 1, 0));
+    document.querySelector('.eq-card-active')?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    return;
+  }
+
+  const item = _pendingItems[_activePendingIdx];
+  if (!item) return;
+  if (e.key === 'p' || e.key === 'P') { e.preventDefault(); approvePendingEntry(item.id); }
+  if (e.key === 'e' || e.key === 'E') { e.preventDefault(); toggleEditMode(item.id); }
+  if (e.key === 'r' || e.key === 'R') { e.preventDefault(); rejectPendingEntry(item.id, item.headline); }
+});
+
+async function saveAndPublish(id) {
+  const headline    = document.getElementById(`edit-headline-${id}`)?.value?.trim();
+  const the_so_what = document.getElementById(`edit-sowhat-${id}`)?.value?.trim();
+  const summary     = document.getElementById(`edit-summary-${id}`)?.value?.trim();
+  const statNum     = document.getElementById(`edit-statnum-${id}`)?.value?.trim();
+  const statLabel   = document.getElementById(`edit-statlabel-${id}`)?.value?.trim();
+
+  const edits = {};
+  if (headline) edits.headline = headline;
+  if (the_so_what) edits.the_so_what = the_so_what;
+  if (summary) edits.summary = summary;
+  if (statNum && statLabel) edits.key_stat = { number: statNum, label: statLabel };
+
+  const logBox = document.getElementById('logLines');
+  logBox.innerHTML = '';
+  document.getElementById('logOverlay').classList.add('visible');
+  const addLog = (text, type = 'default') => {
+    const div = document.createElement('div');
+    div.className = `log-line ${type}`;
+    div.textContent = text;
+    logBox.appendChild(div);
+    logBox.scrollTop = logBox.scrollHeight;
+  };
+  addLog(`Saving edits and publishing: ${id}...`);
+
+  try {
+    await sseStream(`/api/inbox/${id}/approve-and-publish`, edits, {
+      status:    (d) => addLog(d.message),
+      published: (d) => addLog(`✓ Published: ${d.id}`, 'success'),
+      pushed:    (d) => addLog(`✓ ${d.message}`, 'success'),
+      error:     (d) => addLog(`✕ ${d.message}`, 'error'),
+    });
+    addLog('Done.', 'success');
+    loadInbox();
+    loadPipelineStatus();
+    setStatus(`✓ Edited and published: ${id}`);
+  } catch (err) {
+    addLog(`✕ ${err.message}`, 'error');
+    setStatus(`Error: ${err.message}`, 'error');
   }
 }
 
 async function approvePendingEntry(id) {
-  const btn = document.querySelector(`#pending-${id} .pending-approve`);
-  if (btn) { btn.disabled = true; btn.textContent = 'Approving...'; }
+  const card = document.getElementById(`eq-${id}`);
+  const btn = card?.querySelector('.eq-btn-approve');
+  if (btn) { btn.disabled = true; btn.textContent = 'Publishing...'; }
+
+  const logBox = document.getElementById('logLines');
+  logBox.innerHTML = '';
+  document.getElementById('logOverlay').classList.add('visible');
+  const addLog = (text, type = 'default') => {
+    const div = document.createElement('div');
+    div.className = `log-line ${type}`;
+    div.textContent = text;
+    logBox.appendChild(div);
+    logBox.scrollTop = logBox.scrollHeight;
+  };
+  addLog(`Approving and publishing: ${id}...`);
 
   try {
-    const res = await fetch(`/api/pending/${id}/approve`, { method: 'POST' });
-    const data = await res.json();
-    if (!data.ok) throw new Error(data.error);
-
-    // Immediately publish the approved entry
-    const logBox = document.getElementById('logLines');
-    logBox.innerHTML = '';
-    document.getElementById('logOverlay').classList.add('visible');
-    const addLog = (text, type = 'default') => {
-      const div = document.createElement('div');
-      div.className = `log-line ${type}`;
-      div.textContent = text;
-      logBox.appendChild(div);
-      logBox.scrollTop = logBox.scrollHeight;
-    };
-
-    addLog(`Publishing approved entry: ${data.entry.id}...`);
-    await sseStream('/api/publish', { entries: [data.entry] }, {
+    await sseStream(`/api/inbox/${id}/approve-and-publish`, {}, {
+      status:    (d) => addLog(d.message),
       published: (d) => addLog(`✓ Published: ${d.id}`, 'success'),
-      pushed: (d) => addLog(`✓ ${d.message}`, 'success'),
-      status: (d) => addLog(d.message),
-      rejected: (d) => d.items.forEach(i => addLog(`✕ ${i.reason}`, 'error')),
-      error: (d) => addLog(`✕ ${d.message}`, 'error'),
+      pushed:    (d) => addLog(`✓ ${d.message}`, 'success'),
+      error:     (d) => addLog(`✕ ${d.message}`, 'error'),
     });
     addLog('Done.', 'success');
-
-    loadPendingQueue();
-    setStatus(`✓ Approved and published: ${id}`);
+    loadInbox();
+    loadPipelineStatus();
+    setStatus(`✓ Published: ${id}`);
   } catch (err) {
+    addLog(`✕ ${err.message}`, 'error');
     setStatus(`Error: ${err.message}`, 'error');
-    if (btn) { btn.disabled = false; btn.textContent = '✓ Approve & Publish'; }
+    if (btn) { btn.disabled = false; btn.textContent = '✓ Publish'; }
   }
 }
 
-async function rejectPendingEntry(id) {
-  if (!confirm('Reject this entry? The source URL will be permanently blocked.')) return;
+function rejectPendingEntry(id, headline) {
+  _rejectingId = id;
+  // Show headline in modal sub-text
+  const sub = document.getElementById('rejectionModalSub');
+  if (sub) sub.textContent = `"${(headline || id).slice(0, 80)}"`;
+  // Reset fields
+  const reason = document.getElementById('rejectionReason');
+  const notes = document.getElementById('rejectionNotes');
+  if (reason) reason.value = 'not_relevant';
+  if (notes) notes.value = '';
+  document.getElementById('rejectionModal').classList.add('visible');
+}
+
+function closeRejectionModal() {
+  _rejectingId = null;
+  document.getElementById('rejectionModal').classList.remove('visible');
+}
+
+async function confirmReject() {
+  const id = _rejectingId;
+  if (!id) return;
+
+  const reason = document.getElementById('rejectionReason')?.value || 'other';
+  const notes = document.getElementById('rejectionNotes')?.value?.trim() || '';
+
+  closeRejectionModal();
 
   try {
-    const res = await fetch(`/api/pending/${id}/reject`, { method: 'POST' });
+    const res = await fetch(`/api/inbox/${id}/reject-with-reason`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ reason, notes }),
+    });
     const data = await res.json();
-    if (!data.ok) throw new Error(data.error);
-    setStatus(`✕ Rejected and blocked: ${id}`);
-    loadPendingQueue();
+    if (!data.ok) throw new Error(data.error || 'Reject failed');
+    setStatus(`✕ Rejected: ${id}`);
+    loadInbox();
   } catch (err) {
     setStatus(`Error: ${err.message}`, 'error');
   }
@@ -1617,8 +2152,11 @@ function escAuditHtml(str) {
     .replace(/"/g, '&quot;');
 }
 
-// Initialise pending badge on page load
-document.addEventListener('DOMContentLoaded', () => { loadPendingQueue(); });
+// Start on Review Queue
+document.addEventListener('DOMContentLoaded', () => {
+  switchMode('pending');
+  loadPipelineStatus();
+});
 </script>
 
 </body>
