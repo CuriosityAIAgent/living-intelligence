@@ -24,12 +24,9 @@ export default function Header() {
               AI in Wealth Management
             </span>
           </Link>
-          <div className="hidden md:flex flex-col items-end gap-0.5">
-            <span className="text-[11px] font-medium uppercase tracking-widest text-[#888899]">
+          <div className="hidden md:flex items-center">
+            <span className="text-[15px] font-bold uppercase tracking-widest text-white">
               Living Intelligence
-            </span>
-            <span className="text-[8px] font-medium uppercase tracking-[0.2em] text-[#444458]">
-              AI of the Tiger
             </span>
           </div>
         </div>
