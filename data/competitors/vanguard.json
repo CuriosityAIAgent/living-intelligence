@@ -1,0 +1,59 @@
+{
+  "id": "vanguard",
+  "name": "Vanguard",
+  "segment": "digital_disruptor",
+  "regions": [
+    "us"
+  ],
+  "color": "#6B1A2B",
+  "ai_strategy_summary": "Vanguard is applying generative AI to the advisor-client relationship — deploying AI-generated client summaries for financial advisors as of May 2025. As the world's second-largest asset manager with approximately $10 trillion AUM, Vanguard's AI deployments immediately affect tens of millions of investors. Its hybrid model (Personal Advisor Services) is central to its AI strategy.",
+  "head_of_ai": null,
+  "headline_metric": "~$10T AUM — gen AI client summaries deployed for financial advisors (May 2025)",
+  "headline_initiative": "Generative AI client summaries for financial advisors — deployed May 2025",
+  "overall_maturity": "deployed",
+  "capabilities": {
+    "advisor_productivity": {
+      "maturity": "deployed",
+      "headline": "Generative AI client summaries deployed to Vanguard financial advisors — May 2025",
+      "detail": "Vanguard deployed generative AI-powered client summary tools to its financial advisors in May 2025, enabling advisors in its Personal Advisor Services programme to review AI-generated briefs before client interactions. The capability addresses the same meeting-prep bottleneck that Morgan Stanley's AI @ Debrief tackled, applied across Vanguard's advisor-led hybrid wealth management channel.",
+      "evidence": [
+        "Generative AI client summaries for financial advisors deployed May 2025",
+        "Applied to Vanguard Personal Advisor Services advisor channel"
+      ],
+      "jpm_implication": "Vanguard is compressing advisor meeting prep time at scale. As costs fall and AI tools commoditise, the 0.3% fee for Vanguard Personal Advisor Services increasingly undercuts JPM's comparable advisory pricing.",
+      "jpm_segments_affected": [
+        "CWM"
+      ],
+      "date_assessed": "2026-03-23",
+      "sources": [
+        {
+          "name": "Vanguard — Personal Advisor Services",
+          "url": "https://investor.vanguard.com/advice/financial-advisor/personal-advisor-services"
+        }
+      ]
+    },
+    "investment_portfolio": {
+      "maturity": "scaled",
+      "headline": "Vanguard Digital Advisor: automated portfolio management at 0.15% all-in — scaled to millions of accounts",
+      "detail": "Vanguard Digital Advisor provides fully automated portfolio management across diversified low-cost index funds at an all-in cost of approximately 0.15% annually. The product is scaled across millions of accounts and represents Vanguard's core mass-market AI-driven wealth offering. Personal Advisor Services ($50K minimum, 0.3% fee) adds a hybrid human-advisor layer above the automated base.",
+      "evidence": [
+        "Vanguard Digital Advisor: ~0.15% all-in annual cost",
+        "Personal Advisor Services: $50K minimum, 0.3% fee (hybrid model)",
+        "Both products deployed at scale across Vanguard's ~50M investor accounts"
+      ],
+      "jpm_implication": "Vanguard's 0.15% automated option sets the lower bound that any wealth platform's self-directed offering will be compared against. JPM Self-Directed must articulate clear differentiation beyond cost.",
+      "jpm_segments_affected": [
+        "Self-Directed",
+        "CWM"
+      ],
+      "date_assessed": "2026-03-23",
+      "sources": [
+        {
+          "name": "Vanguard — Digital Advisor",
+          "url": "https://investor.vanguard.com/advice/digital-advisor"
+        }
+      ]
+    }
+  },
+  "last_updated": "2026-03-23"
+}

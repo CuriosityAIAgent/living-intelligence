@@ -34,7 +34,7 @@
 │                                                                  │
 │  intelligence/    → IntelligenceEntry JSON files (25 entries)   │
 │  thought-leadership/ → ThoughtLeadershipEntry JSON files (6)    │
-│  competitors/     → Competitor JSON files (27 companies)         │
+│  competitors/     → Competitor JSON files (30 companies)         │
 │  capabilities/    → index.json (7 capability dimensions)         │
 │  logos/           → SVG/PNG logos (24 companies, local only)     │
 │  .governance-pending.json  → Universal inbox (ALL stories pre-publish) │
@@ -54,7 +54,7 @@
 │  /intelligence/[slug]    → Article detail page                   │
 │  /thought-leadership     → All thought leadership                │
 │  /thought-leadership/[slug] → Piece detail page                  │
-│  /landscape              → AI capabilities matrix (27 companies) │
+│  /landscape              → AI capabilities matrix (30 companies) │
 │  /competitors/[slug]     → Company detail page                   │
 └──────────────────────────────────────────────────────────────────┘
 ```
@@ -207,14 +207,14 @@ Definitions shown on the landscape page below the matrix:
 
 ## Landscape Coverage (as of March 2026)
 
-**27 companies across 7 segments:**
+**30 companies across 7 segments:**
 
 | Segment | Companies |
 |---------|-----------|
 | Wirehouse (4) | Morgan Stanley, BofA/Merrill, Wells Fargo, JPMorgan |
 | Global Private Bank (6) | UBS, Goldman Sachs, Citi PB, HSBC PB, Julius Baer, BNP Paribas Wealth |
 | Regional Champion (4) | DBS, BBVA, Standard Chartered, RBC Wealth Management |
-| Digital Disruptor (4) | Robinhood, Wealthfront, eToro, Public.com |
+| Digital Disruptor (7) | Robinhood, Wealthfront, eToro, Public.com, Fidelity, Vanguard, Betterment |
 | AI-Native Wealth (2) | Arta Finance, Savvy Wealth |
 | RIA / Independent (2) | Altruist, LPL Financial |
 | Advisor Tools (5) | Jump, Nevis, Zocks, Holistiplan, Conquest Planning |

@@ -1,0 +1,505 @@
+{
+  "run_at": "2026-03-23T06:04:26.844Z",
+  "mode": "fast",
+  "summary": {
+    "total_intelligence": 25,
+    "total_competitors": 27,
+    "issues_critical": 0,
+    "issues_warning": 21,
+    "pass_count": 34,
+    "warn_count": 18,
+    "fail_count": 0,
+    "score": 83
+  },
+  "intelligence": [
+    {
+      "id": "aladdin-wealth-auto-commentary-morgan-stanley-2025-10-02",
+      "file": "aladdin-wealth-auto-commentary-morgan-stanley-2025-10-02.json",
+      "name": "Aladdin Wealth launches AI Auto Commentary tool; Morgan Stanley Portfolio Risk P...",
+      "status": "PASS",
+      "issues": []
+    },
+    {
+      "id": "altruist-hazel-1600-rias-one-month",
+      "file": "altruist-hazel-1600-rias-one-month.json",
+      "name": "Altruist's Hazel signs 1,600 RIA firms in its first month, with 1,500 more expec...",
+      "status": "PASS",
+      "issues": []
+    },
+    {
+      "id": "altruist-hazel-custodial-integration-real-time-account-data",
+      "file": "altruist-hazel-custodial-integration-real-time-account-data.json",
+      "name": "Altruist Adds Real-Time Custodial Data to AI Platform Hazel, a First for Wealth ...",
+      "status": "PASS",
+      "issues": []
+    },
+    {
+      "id": "altruist-hazel-tax-planning-130b-selloff",
+      "file": "altruist-hazel-tax-planning-130b-selloff.json",
+      "name": "Altruist launches AI tax planning in Hazel, triggering $130B sell-off across wea...",
+      "status": "PASS",
+      "issues": []
+    },
+    {
+      "id": "altruist-raises-152m-series-f-gic-2025",
+      "file": "altruist-raises-152m-series-f-gic-2025.json",
+      "name": "Altruist Raises $152M Series F Led by GIC, Valued at $1.9B to Expand RIA Custodi...",
+      "status": "WARN",
+      "issues": [
+        {
+          "severity": "warning",
+          "check": "governance_confidence_low",
+          "detail": "Governance confidence is 72 (below threshold of 75)"
+        }
+      ]
+    },
+    {
+      "id": "arta-ai-chief-of-staff",
+      "file": "arta-ai-chief-of-staff.json",
+      "name": "Arta Finance Launches Arta AI: AI-Guided Private Wealth Platform",
+      "status": "PASS",
+      "issues": []
+    },
+    {
+      "id": "arta-ai-expansion-financial-advisor-sidekick-2025-11",
+      "file": "arta-ai-expansion-financial-advisor-sidekick-2025-11.json",
+      "name": "Arta expands Arta AI to empower financial advisors and wealth managers with an A...",
+      "status": "WARN",
+      "issues": [
+        {
+          "severity": "warning",
+          "check": "governance_confidence_low",
+          "detail": "Governance confidence is 62 (below threshold of 75)"
+        }
+      ]
+    },
+    {
+      "id": "betterment-ai-account-recommender-launch-2026-03-09",
+      "file": "betterment-ai-account-recommender-launch-2026-03-09.json",
+      "name": "Betterment Launches AI-Enabled Account Recommender as Part of Enterprise AI Stra...",
+      "status": "WARN",
+      "issues": [
+        {
+          "severity": "warning",
+          "check": "governance_confidence_low",
+          "detail": "Governance confidence is 72 (below threshold of 75)"
+        }
+      ]
+    },
+    {
+      "id": "bofa-erica-3billion-digital-30billion-2026",
+      "file": "bofa-erica-3billion-digital-30billion-2026.json",
+      "name": "BofA's AI and digital estate reaches 30 billion client interactions — Erica surp...",
+      "status": "PASS",
+      "issues": []
+    },
+    {
+      "id": "citigroup-askwealth-ai-advisors-2025-08",
+      "file": "citigroup-askwealth-ai-advisors-2025-08.json",
+      "name": "Citi Wealth Launches AI Tools 'Advisor Insights' and 'AskWealth' to Enhance Clie...",
+      "status": "PASS",
+      "issues": []
+    },
+    {
+      "id": "dbs-named-worlds-best-ai-bank",
+      "file": "dbs-named-worlds-best-ai-bank.json",
+      "name": "DBS Named World's Best AI Bank",
+      "status": "WARN",
+      "issues": [
+        {
+          "severity": "warning",
+          "check": "governance_confidence_low",
+          "detail": "Governance confidence is 72 (below threshold of 75)"
+        }
+      ]
+    },
+    {
+      "id": "dbs-worlds-best-ai-bank",
+      "file": "dbs-worlds-best-ai-bank.json",
+      "name": "DBS named World's Best AI Bank — 1,500 AI models in production",
+      "status": "WARN",
+      "issues": [
+        {
+          "severity": "warning",
+          "check": "key_stat_in_summary",
+          "detail": "key_stat.number \"1,500+\" does not appear in summary (checked verbatim, core \"1500\", expanded \"1500\")"
+        },
+        {
+          "severity": "warning",
+          "check": "governance_confidence_low",
+          "detail": "Governance confidence is 0 (below threshold of 75)"
+        }
+      ]
+    },
+    {
+      "id": "etoro-tori-ai-companion-2025-08",
+      "file": "etoro-tori-ai-companion-2025-08.json",
+      "name": "eToro launches Tori AI companion and Alpha Portfolios — AI-driven social investi...",
+      "status": "WARN",
+      "issues": [
+        {
+          "severity": "warning",
+          "check": "governance_confidence_low",
+          "detail": "Governance confidence is 30 (below threshold of 75)"
+        }
+      ]
+    },
+    {
+      "id": "fidelity-trader-plus-launch-2025-09",
+      "file": "fidelity-trader-plus-launch-2025-09.json",
+      "name": "Fidelity Investments Launches Fidelity Trader+, Integrated Advanced Trading Plat...",
+      "status": "WARN",
+      "issues": [
+        {
+          "severity": "warning",
+          "check": "governance_confidence_low",
+          "detail": "Governance confidence is 72 (below threshold of 75)"
+        }
+      ]
+    },
+    {
+      "id": "fnz-advisor-ai-platform-2025-08",
+      "file": "fnz-advisor-ai-platform-2025-08.json",
+      "name": "FNZ launches Advisor AI — end-to-end meeting workflow automation for 650+ wealth...",
+      "status": "WARN",
+      "issues": [
+        {
+          "severity": "warning",
+          "check": "governance_confidence_low",
+          "detail": "Governance confidence is 35 (below threshold of 75)"
+        }
+      ]
+    },
+    {
+      "id": "goldman-sachs-gs-ai-platform",
+      "file": "goldman-sachs-gs-ai-platform.json",
+      "name": "Goldman Sachs deploys GS AI Platform to 46,000 employees firm-wide",
+      "status": "WARN",
+      "issues": [
+        {
+          "severity": "warning",
+          "check": "governance_confidence_low",
+          "detail": "Governance confidence is 30 (below threshold of 75)"
+        }
+      ]
+    },
+    {
+      "id": "hazel-avantos-and-the-bank-wealth-management-opportunity",
+      "file": "hazel-avantos-and-the-bank-wealth-management-opportunity.json",
+      "name": "AI platforms Hazel and Avantos pressure bank wealth units to modernize as indepe...",
+      "status": "PASS",
+      "issues": []
+    },
+    {
+      "id": "hsbc-jade-ai",
+      "file": "hsbc-jade-ai.json",
+      "name": "HSBC Private Bank deploys Wealth Intelligence gen AI platform for wealth managem...",
+      "status": "WARN",
+      "issues": [
+        {
+          "severity": "warning",
+          "check": "governance_confidence_low",
+          "detail": "Governance confidence is 72 (below threshold of 75)"
+        }
+      ]
+    },
+    {
+      "id": "lpl-anthropic-partnership",
+      "file": "lpl-anthropic-partnership.json",
+      "name": "LPL Financial Expands Partnership With Anthropic to Advance AI Capabilities",
+      "status": "WARN",
+      "issues": [
+        {
+          "severity": "warning",
+          "check": "governance_confidence_low",
+          "detail": "Governance confidence is 72 (below threshold of 75)"
+        }
+      ]
+    },
+    {
+      "id": "public-com-agentic-brokerage-2025-11",
+      "file": "public-com-agentic-brokerage-2025-11.json",
+      "name": "Public launches AI-powered brokerage letting users build custom indexes and auto...",
+      "status": "PASS",
+      "issues": []
+    },
+    {
+      "id": "robinhood-cortex-launch",
+      "file": "robinhood-cortex-launch.json",
+      "name": "Robinhood launches Cortex AI — real-time market analysis and trade rationale for...",
+      "status": "WARN",
+      "issues": [
+        {
+          "severity": "warning",
+          "check": "key_stat_in_summary",
+          "detail": "key_stat.number \"2M+\" does not appear in summary (checked verbatim, core \"2m\", expanded \"2 million\")"
+        },
+        {
+          "severity": "warning",
+          "check": "governance_confidence_low",
+          "detail": "Governance confidence is 0 (below threshold of 75)"
+        }
+      ]
+    },
+    {
+      "id": "savvy-wealth-series-b-72-million-2025-07-02",
+      "file": "savvy-wealth-series-b-72-million-2025-07-02.json",
+      "name": "Savvy Wealth raises $72M Series B to accelerate AI-augmented advisor platform an...",
+      "status": "WARN",
+      "issues": [
+        {
+          "severity": "warning",
+          "check": "governance_confidence_low",
+          "detail": "Governance confidence is 72 (below threshold of 75)"
+        }
+      ]
+    },
+    {
+      "id": "ubs-ai-transformation-factory",
+      "file": "ubs-ai-transformation-factory.json",
+      "name": "UBS Appoints Daniele Magazzeni as Chief AI Officer to Lead Firm-Wide AI Strategy",
+      "status": "PASS",
+      "issues": []
+    },
+    {
+      "id": "vanguard-generative-ai-client-summaries-financial-advisors-2025",
+      "file": "vanguard-generative-ai-client-summaries-financial-advisors-2025.json",
+      "name": "Vanguard Launches Generative AI Client Summaries Tool for Financial Advisors",
+      "status": "WARN",
+      "issues": [
+        {
+          "severity": "warning",
+          "check": "governance_confidence_low",
+          "detail": "Governance confidence is 62 (below threshold of 75)"
+        }
+      ]
+    },
+    {
+      "id": "webull-vega-ai-assistant-2025-11",
+      "file": "webull-vega-ai-assistant-2025-11.json",
+      "name": "Webull unveils Vega — AI decision partner with voice-activated trade execution a...",
+      "status": "WARN",
+      "issues": [
+        {
+          "severity": "warning",
+          "check": "governance_confidence_low",
+          "detail": "Governance confidence is 35 (below threshold of 75)"
+        }
+      ]
+    }
+  ],
+  "landscape": [
+    {
+      "id": "altruist",
+      "file": "altruist.json",
+      "name": "Altruist",
+      "status": "PASS",
+      "issues": []
+    },
+    {
+      "id": "arta-ai",
+      "file": "arta-ai.json",
+      "name": "Arta.ai",
+      "status": "PASS",
+      "issues": []
+    },
+    {
+      "id": "bbva",
+      "file": "bbva.json",
+      "name": "BBVA",
+      "status": "PASS",
+      "issues": []
+    },
+    {
+      "id": "bnp-paribas-wealth",
+      "file": "bnp-paribas-wealth.json",
+      "name": "BNP Paribas Wealth",
+      "status": "WARN",
+      "issues": [
+        {
+          "severity": "warning",
+          "check": "capability_no_sources",
+          "detail": "Capability \"operations_compliance\" has no sources array or empty sources"
+        }
+      ]
+    },
+    {
+      "id": "bofa-merrill",
+      "file": "bofa-merrill.json",
+      "name": "BofA / Merrill",
+      "status": "PASS",
+      "issues": []
+    },
+    {
+      "id": "citi-private-bank",
+      "file": "citi-private-bank.json",
+      "name": "Citi Private Bank",
+      "status": "PASS",
+      "issues": []
+    },
+    {
+      "id": "conquest-planning",
+      "file": "conquest-planning.json",
+      "name": "Conquest Planning",
+      "status": "PASS",
+      "issues": []
+    },
+    {
+      "id": "dbs",
+      "file": "dbs.json",
+      "name": "DBS Bank",
+      "status": "PASS",
+      "issues": []
+    },
+    {
+      "id": "etoro",
+      "file": "etoro.json",
+      "name": "eToro",
+      "status": "PASS",
+      "issues": []
+    },
+    {
+      "id": "goldman-sachs",
+      "file": "goldman-sachs.json",
+      "name": "Goldman Sachs",
+      "status": "PASS",
+      "issues": []
+    },
+    {
+      "id": "holistiplan",
+      "file": "holistiplan.json",
+      "name": "Holistiplan",
+      "status": "PASS",
+      "issues": []
+    },
+    {
+      "id": "hsbc",
+      "file": "hsbc.json",
+      "name": "HSBC Private Banking",
+      "status": "PASS",
+      "issues": []
+    },
+    {
+      "id": "jpmorgan",
+      "file": "jpmorgan.json",
+      "name": "J.P. Morgan Wealth Management and Private Bank",
+      "status": "PASS",
+      "issues": []
+    },
+    {
+      "id": "julius-baer",
+      "file": "julius-baer.json",
+      "name": "Julius Baer",
+      "status": "PASS",
+      "issues": []
+    },
+    {
+      "id": "jump-ai",
+      "file": "jump-ai.json",
+      "name": "Jump",
+      "status": "PASS",
+      "issues": []
+    },
+    {
+      "id": "lpl-financial",
+      "file": "lpl-financial.json",
+      "name": "LPL Financial",
+      "status": "PASS",
+      "issues": []
+    },
+    {
+      "id": "morgan-stanley",
+      "file": "morgan-stanley.json",
+      "name": "Morgan Stanley",
+      "status": "PASS",
+      "issues": []
+    },
+    {
+      "id": "nevis",
+      "file": "nevis.json",
+      "name": "Nevis",
+      "status": "PASS",
+      "issues": []
+    },
+    {
+      "id": "public-com",
+      "file": "public-com.json",
+      "name": "Public.com",
+      "status": "PASS",
+      "issues": []
+    },
+    {
+      "id": "rbc-wealth-management",
+      "file": "rbc-wealth-management.json",
+      "name": "RBC Wealth Management",
+      "status": "WARN",
+      "issues": [
+        {
+          "severity": "warning",
+          "check": "capability_no_sources",
+          "detail": "Capability \"investment_portfolio\" has no sources array or empty sources"
+        }
+      ]
+    },
+    {
+      "id": "robinhood",
+      "file": "robinhood.json",
+      "name": "Robinhood",
+      "status": "PASS",
+      "issues": []
+    },
+    {
+      "id": "savvy-wealth",
+      "file": "savvy-wealth.json",
+      "name": "Savvy Wealth",
+      "status": "PASS",
+      "issues": []
+    },
+    {
+      "id": "standard-chartered",
+      "file": "standard-chartered.json",
+      "name": "Standard Chartered",
+      "status": "PASS",
+      "issues": []
+    },
+    {
+      "id": "ubs",
+      "file": "ubs.json",
+      "name": "UBS",
+      "status": "PASS",
+      "issues": []
+    },
+    {
+      "id": "wealthfront",
+      "file": "wealthfront.json",
+      "name": "Wealthfront",
+      "status": "PASS",
+      "issues": []
+    },
+    {
+      "id": "wells-fargo",
+      "file": "wells-fargo.json",
+      "name": "Wells Fargo Advisors",
+      "status": "WARN",
+      "issues": [
+        {
+          "severity": "warning",
+          "check": "capability_no_sources",
+          "detail": "Capability \"operations_compliance\" has no sources array or empty sources"
+        },
+        {
+          "severity": "warning",
+          "check": "capability_no_sources",
+          "detail": "Capability \"client_personalization\" has no sources array or empty sources"
+        }
+      ]
+    },
+    {
+      "id": "zocks",
+      "file": "zocks.json",
+      "name": "Zocks",
+      "status": "PASS",
+      "issues": []
+    }
+  ]
+}

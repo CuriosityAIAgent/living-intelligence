@@ -450,7 +450,7 @@ app.get('/api/pipeline-status', (req, res) => {
   for (const f of todayFiles) {
     try {
       const e = JSON.parse(fs.readFileSync(DATA_DIR + '/intelligence/' + f, 'utf-8'));
-      if (e.published_at && e.published_at.startsWith(today)) publishedToday++;
+      if (e._governance?.approved_at && e._governance.approved_at.startsWith(today)) publishedToday++;
     } catch (_) {}
   }
 
@@ -467,6 +467,8 @@ app.get('/api/pipeline-status', (req, res) => {
     published_today:   publishedToday,
     rejected_today:    rejectedToday,
     blocked_total:     Object.keys(blocked).length,
+    blocked_items:     status?.blocked_items || [],
+    tl_items:          status?.tl_items || [],
   });
 });
 
@@ -692,11 +694,23 @@ cron.schedule('0 6 * * *', () => {
 // ─── POST /api/run-pipeline — manually trigger full pipeline + digest ─────────
 
 app.post('/api/run-pipeline', async (req, res) => {
+  const { send, done } = createSSE(res);
   console.log('[manual] Pipeline triggered via API');
-  res.json({ ok: true, message: 'Pipeline started — check server logs' });
-  runDailyPipeline().catch(err => {
+  send('status', { message: 'Pipeline starting — discovery + processing (~4-6 min)...' });
+  try {
+    const results = await runDailyPipeline();
+    send('done', {
+      published: results.published.length,
+      pending:   results.pending.length,
+      blocked:   results.blocked.length,
+      errors:    results.errors.length,
+      message:   `Done. ${results.pending.length} queued for review · ${results.blocked.length} blocked · ${results.errors.length} errors`,
+    });
+  } catch (err) {
     console.error('[manual] Pipeline failed:', err.message);
-  });
+    send('error', { message: err.message });
+  }
+  done();
 });
 
 // ─── POST /api/test-digest — send a sample digest email immediately ───────────

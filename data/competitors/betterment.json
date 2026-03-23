@@ -1,0 +1,85 @@
+{
+  "id": "betterment",
+  "name": "Betterment",
+  "segment": "digital_disruptor",
+  "regions": [
+    "us"
+  ],
+  "color": "#0A6EBD",
+  "ai_strategy_summary": "Betterment pioneered robo-advisory in 2010 and is now applying AI to account onboarding and recommendations, launching an AI Account Recommender in March 2026 that uses a conversational AI model to guide investors to the right account type. Betterment operates three channels: direct-to-consumer investing, Betterment for Advisors (B2B RIA custodian), and Betterment at Work (401k).",
+  "head_of_ai": null,
+  "headline_metric": "AI Account Recommender launched March 2026 — conversational AI onboarding",
+  "headline_initiative": "AI Account Recommender — conversational AI guides investors to optimal account type at sign-up",
+  "overall_maturity": "deployed",
+  "capabilities": {
+    "client_personalization": {
+      "maturity": "deployed",
+      "headline": "AI Account Recommender launched March 9, 2026 — conversational AI for account onboarding",
+      "detail": "Betterment launched its AI Account Recommender on March 9, 2026 — a conversational AI model that asks investors a series of questions about their goals, timeline, and tax situation, then recommends the most suitable account type (taxable, IRA, Roth IRA, etc.). The tool replaces a static decision tree with an interactive AI dialogue, reducing friction at the top of the acquisition funnel and improving account-to-goal alignment.",
+      "evidence": [
+        "AI Account Recommender launched March 9, 2026",
+        "Conversational AI model used for account type recommendation",
+        "Betterment help centre confirms AI model powers the recommendation engine"
+      ],
+      "jpm_implication": "Betterment is using AI to personalise the onboarding experience from the first interaction — a tactic that sets the expectation for AI-driven personalisation throughout the client lifecycle. JPM's onboarding flows will increasingly be compared against this standard.",
+      "jpm_segments_affected": [
+        "Self-Directed",
+        "CWM"
+      ],
+      "date_assessed": "2026-03-23",
+      "sources": [
+        {
+          "name": "Betterment — AI Account Recommender",
+          "url": "https://www.betterment.com/help/account-recommender-artificial-intelligence"
+        }
+      ]
+    },
+    "investment_portfolio": {
+      "maturity": "scaled",
+      "headline": "Automated tax-optimized portfolio management at 0.25% — Betterment's core robo-advisory product scaled since 2010",
+      "detail": "Betterment's core automated investing product has been scaled since 2010, offering goal-based portfolio management with automated tax-loss harvesting, rebalancing, and dividend reinvestment at 0.25% annually. The platform operates across direct retail, Betterment for Advisors (RIA B2B), and Betterment at Work (401k), giving it reach across multiple wealth segments simultaneously.",
+      "evidence": [
+        "Betterment founded 2010 — pioneer robo-advisor, scaled product",
+        "0.25% annual fee for core automated investing",
+        "Tax-loss harvesting, automated rebalancing, dividend reinvestment included",
+        "Betterment for Advisors: B2B RIA custodian channel",
+        "Betterment at Work: workplace 401k channel"
+      ],
+      "jpm_implication": "Betterment's multi-channel distribution (retail + RIA + 401k) means its AI capabilities reach clients across their entire financial lifecycle — from first brokerage account to retirement. JPM must consider the full journey, not just AUM.",
+      "jpm_segments_affected": [
+        "Self-Directed",
+        "CWM"
+      ],
+      "date_assessed": "2026-03-23",
+      "sources": [
+        {
+          "name": "Betterment — How it works",
+          "url": "https://www.betterment.com/how-it-works"
+        }
+      ]
+    },
+    "new_business_models": {
+      "maturity": "deployed",
+      "headline": "Betterment at Work: 401k channel + Betterment for Advisors B2B platform — AI embedded across all three distribution channels",
+      "detail": "Betterment has extended beyond direct-to-consumer into two distinct B2B channels: Betterment for Advisors (RIA custodian and managed account platform) and Betterment at Work (employer 401k plan administration). This multi-channel architecture means Betterment's AI capabilities are deployed at retail, advisor, and employer levels simultaneously — a distribution model that traditional wealth managers have not replicated at comparable cost.",
+      "evidence": [
+        "Betterment for Advisors: B2B RIA platform with managed accounts",
+        "Betterment at Work: employer 401k administration",
+        "AI Account Recommender deployed across all channels (March 2026)"
+      ],
+      "jpm_implication": "Betterment's three-channel model (retail + RIA + 401k) creates compounding distribution reach. AI improvements benefit all three channels simultaneously — a structural advantage that single-channel competitors cannot match at this cost point.",
+      "jpm_segments_affected": [
+        "Self-Directed",
+        "CWM"
+      ],
+      "date_assessed": "2026-03-23",
+      "sources": [
+        {
+          "name": "Betterment for Advisors",
+          "url": "https://www.betterment.com/advisors"
+        }
+      ]
+    }
+  },
+  "last_updated": "2026-03-23"
+}
