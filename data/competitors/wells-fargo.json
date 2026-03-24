@@ -28,8 +28,12 @@
       "date_assessed": "2026-03-19",
       "sources": [
         {
-          "name": "Wells Fargo \u2014 Investor Relations",
-          "url": "https://www.wellsfargo.com/about/investor-relations/"
+          "name": "Google Cloud Blog — Wells Fargo deploying Agentspace to ~2,000 employees",
+          "url": "https://cloud.google.com/blog/topics/financial-services/wells-fargo-agentic-ai-agentspace-empowering-workers"
+        },
+        {
+          "name": "American Banker — Wells Fargo plans Google agentic AI bank-wide",
+          "url": "https://www.americanbanker.com/news/wells-fargo-plans-to-unleash-googles-agentic-ai-bank-wide"
         }
       ]
     },
@@ -38,18 +42,30 @@
       "headline": "Google Agentspace deployed for compliance and risk workflows",
       "detail": "Wells Fargo's Google Agentspace deployment explicitly covers risk analysis and compliance automation workflows per American Banker reporting.",
       "evidence": [
-        "American Banker: Wells Fargo Agentspace covers compliance/risk \u2014 https://www.americanbanker.com/news/wells-fargo-plans-to-unleash-googles-agentic-ai-bank-wide"
+        "American Banker: Wells Fargo Agentspace covers compliance/risk — https://www.americanbanker.com/news/wells-fargo-plans-to-unleash-googles-agentic-ai-bank-wide"
       ],
-      "date_assessed": "2026-03-19"
+      "date_assessed": "2026-03-19",
+      "sources": [
+        {
+          "name": "American Banker — Wells Fargo plans Google agentic AI bank-wide",
+          "url": "https://www.americanbanker.com/news/wells-fargo-plans-to-unleash-googles-agentic-ai-bank-wide"
+        }
+      ]
     },
     "client_personalization": {
       "maturity": "piloting",
       "headline": "Fargo assistant provides AI-personalised financial guidance for retail and mass affluent clients",
       "detail": "Fargo digital assistant is live across retail banking offering personalised financial insights and guidance. Wealth management personalisation tools in development.",
       "evidence": [
-        "J.D. Power 2025 digital satisfaction rankings \u2014 Fargo tops app satisfaction"
+        "J.D. Power 2025 digital satisfaction rankings — Fargo tops app satisfaction"
       ],
-      "date_assessed": "2026-03-19"
+      "date_assessed": "2026-03-19",
+      "sources": [
+        {
+          "name": "American Banker — Wells Fargo plans Google agentic AI bank-wide",
+          "url": "https://www.americanbanker.com/news/wells-fargo-plans-to-unleash-googles-agentic-ai-bank-wide"
+        }
+      ]
     }
   },
   "last_updated": "2026-03-19"

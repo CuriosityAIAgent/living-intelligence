@@ -34,7 +34,11 @@
       "date_assessed": "2026-03-19",
       "sources": [
         {
-          "name": "CNBC \u2014 Goldman Sachs AI assistant launch (Jan 2025)",
+          "name": "Fortune — Goldman Sachs completes firmwide AI assistant rollout (Jun 2025)",
+          "url": "https://fortune.com/2025/06/24/goldman-sachs-internal-ai-assistant/"
+        },
+        {
+          "name": "CNBC — Goldman Sachs AI assistant launch (Jan 2025)",
           "url": "https://www.cnbc.com/2025/01/21/goldman-sachs-launches-ai-assistant.html"
         }
       ]

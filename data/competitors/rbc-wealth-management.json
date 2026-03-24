@@ -63,10 +63,16 @@
       "headline": "RBC Borealis ATOM applied to personalization and investment use cases across RBC Group",
       "detail": "RBC's Borealis AI subsidiary is applying the ATOM behavioural model to personalization and investment use cases at group level, with wealth management applications in early deployment.",
       "evidence": [
-        "RBC Borealis AI public communications on ATOM model expansion"
+        "RBC Borealis AI applying ATOM behavioural model to personalisation and investment use cases at group level — per TIFIN AG collaboration announcement"
       ],
-      "date_assessed": "2026-03-19"
+      "date_assessed": "2026-03-19",
+      "sources": [
+        {
+          "name": "TIFIN AG × RBC Wealth Management — official announcement (covers ATOM model context)",
+          "url": "https://www.prnewswire.com/news-releases/tifin-ag-announces-collaboration-with-rbc-wealth-management-us-to-deepen-advisor-client-relationships-302073511.html"
+        }
+      ]
     }
   },
-  "last_updated": "2026-03-19"
+  "last_updated": "2026-03-24"
 }
