@@ -8,7 +8,7 @@
   "color": "#00C805",
   "ai_strategy_summary": "Cortex AI is Robinhood's conversational investment intelligence platform, rolling out to Gold subscribers in early 2026. While targeting retail investors today, the expectation risk is significant: the next generation of wealth clients will expect this level of AI-native interaction as a baseline.",
   "head_of_ai": null,
-  "headline_metric": "Cortex AI live for Gold subscribers Q1 2026; natural language portfolio intelligence and AI scanner widgets deployed",
+  "headline_metric": "Cortex AI live for 2.6 million Gold subscribers Q1 2026; natural language portfolio intelligence and AI scanner widgets deployed",
   "headline_initiative": "Cortex AI for Robinhood Gold subscribers",
   "overall_maturity": "deployed",
   "capabilities": {
@@ -59,21 +59,26 @@
       "headline": "Cortex as Gold subscription add-on generating live subscription revenue — $5/month premium tier",
       "detail": "Robinhood is monetizing AI through a tiered subscription model, bundling Cortex with Gold membership. This creates recurring AI revenue and increases platform stickiness.",
       "evidence": [
-        "Gold subscriber model",
-        "$5/month add-on pricing"
+        "Gold subscriber model — $5/month premium tier",
+        "2.6 million Gold subscribers as of Q4 2024, up 86% YoY — Robinhood Q4 2024 earnings (investors.robinhood.com)",
+        "Gold adoption exceeded 10% of total Robinhood users in Q4 2024 — Robinhood Q4 2024 earnings"
       ],
       "jpm_implication": "AI as a premium product tier is a viable business model. JPM self-directed and Chase platforms should consider AI feature tiering.",
       "jpm_segments_affected": [
         "Self-Directed"
       ],
-      "date_assessed": "2026-03-19",
+      "date_assessed": "2026-03-24",
       "sources": [
         {
           "name": "Robinhood — Introducing Strategies, Banking and Cortex",
           "url": "https://newsroom.aboutrobinhood.com/introducing-strategies-banking-and-cortex/"
+        },
+        {
+          "name": "Robinhood Q4 2024 Earnings — Gold subscriber count",
+          "url": "https://investors.robinhood.com/news-releases/news-release-details/robinhood-reports-fourth-quarter-and-full-year-2024-results"
         }
       ]
     }
   },
-  "last_updated": "2026-03-19"
+  "last_updated": "2026-03-24"
 }

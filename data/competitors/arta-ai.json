@@ -9,7 +9,7 @@
   "color": "#7C3AED",
   "ai_strategy_summary": "AI-native private wealth platform built from scratch on AI infrastructure. Three specialized AI agents (Investment Planner, Product Specialist, Research Analyst) with institutional expansion underway across Asia. Team includes PhDs from Google Research and finance veterans from Morgan Stanley and J.P. Morgan.",
   "head_of_ai": null,
-  "headline_metric": "3 specialised AI agents live; Bank of Singapore, Hong Leong Bank, Ethivo institutional deployments confirmed",
+  "headline_metric": "3 specialised AI agents deployed at 5 institutional partners across Asia; ~$123M AUM / 968 HNW accounts (US entity, SEC Form ADV, March 2025)",
   "headline_initiative": "Arta AI agent suite — institutional and consumer deployment",
   "overall_maturity": "piloting",
   "capabilities": {
@@ -19,8 +19,9 @@
       "detail": "Arta's Investment Planner agent creates personalized investment strategies using agentic systems, RAG, and convex optimization. The Research Analyst agent provides customized market research. Both agents are deploying to institutional clients and rolling out to consumers in 2026.",
       "evidence": [
         "Three specialized AI agents confirmed",
-        "Institutional clients: Bank of Singapore, Hong Leong Bank, Ethivo",
-        "Consumer launch rolling out 2026"
+        "Institutional clients: Bank of Singapore, Hong Leong Bank, Ethivo, Wio Invest, Income Advisory",
+        "Consumer launch rolling out 2026",
+        "~$123.4M AUM, 968 accounts (all HNW individuals) — Arta Finance Wealth Management LLC, SEC Form ADV, March 31, 2025 (US registered entity only; global AUM not separately disclosed)"
       ],
       "jpm_implication": "AI-native wealth planning at $20/month creates massive fee compression pressure for traditional private banking at the entry level.",
       "jpm_segments_affected": [
@@ -82,5 +83,5 @@
       ]
     }
   },
-  "last_updated": "2026-03-07"
+  "last_updated": "2026-03-24"
 }
