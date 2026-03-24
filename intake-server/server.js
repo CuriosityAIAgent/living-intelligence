@@ -18,6 +18,7 @@ import {
   getPending, addPending, approvePending, rejectPending,
   getBlocked, addBlocked, isBlocked,
   getRejectionLog, addRejectionLog, readPipelineStatus,
+  getArchive, archiveStaleItems,
 } from './agents/gov-store.js';
 import { runDailyPipeline } from './agents/scheduler.js';
 import { signToken, verifyToken } from './agents/notifier.js';
@@ -340,6 +341,9 @@ app.post('/api/pending/:id/reject', (req, res) => {
 
 // All stories queued for editorial review (PASS + REVIEW, nothing auto-publishes)
 app.get('/api/inbox', (req, res) => {
+  // Move stale items (>7 days) to archive before returning inbox
+  archiveStaleItems();
+
   const pending = getPending();
   let items = Object.entries(pending).map(([id, item]) => ({
     id,
@@ -363,6 +367,7 @@ app.get('/api/inbox', (req, res) => {
     score:              item.score ?? null,
     score_breakdown:    item.score_breakdown ?? null,
     queued_at:          item.queued_at,
+    discovered_at:      item.discovered_at || item.queued_at || null,
     _entry:             item.entry,
   }));
 
@@ -373,6 +378,26 @@ app.get('/api/inbox', (req, res) => {
     return (b.score || 0) - (a.score || 0);
   });
 
+  res.json({ count: items.length, items });
+});
+
+// Archived stories (>7 days old, read-only history)
+app.get('/api/inbox/archive', (req, res) => {
+  const archive = getArchive();
+  const items = Object.entries(archive).map(([id, item]) => ({
+    id,
+    headline:      item.entry.headline,
+    company_name:  item.entry.company_name,
+    source_name:   item.entry.source_name,
+    source_url:    item.entry.source_url,
+    date:          item.entry.date,
+    type:          item.entry.type,
+    score:         item.score ?? null,
+    governance_verdict: item.governance?.verdict || null,
+    discovered_at: item.discovered_at || item.queued_at || null,
+  }));
+  // Newest first
+  items.sort((a, b) => (b.discovered_at || '').localeCompare(a.discovered_at || ''));
   res.json({ count: items.length, items });
 });
 

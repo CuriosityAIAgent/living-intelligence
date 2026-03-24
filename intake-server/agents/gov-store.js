@@ -14,6 +14,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const STORE_DIR = join(process.env.DATA_DIR || join(__dirname, '..', '..'), 'data');
 const PENDING_FILE  = join(STORE_DIR, '.governance-pending.json');
 const BLOCKED_FILE  = join(STORE_DIR, '.governance-blocked.json');
+const ARCHIVE_FILE  = join(STORE_DIR, '.governance-archive.json');
 const REJECTION_LOG = join(STORE_DIR, '.rejection-log.json');
 const PIPELINE_STATUS_FILE = join(STORE_DIR, '.pipeline-status.json');
 
@@ -36,10 +37,12 @@ export function getPending() {
 // metadata: optional { score, score_breakdown } from scorer
 export function addPending(entry, governance, metadata = {}) {
   const store = readStore(PENDING_FILE);
+  const now = new Date().toISOString();
   store[entry.id] = {
     entry,
     governance,
-    queued_at: new Date().toISOString(),
+    queued_at: now,
+    discovered_at: now,
     score: metadata.score ?? null,
     score_breakdown: metadata.score_breakdown ?? null,
   };
@@ -111,4 +114,30 @@ export function writePipelineStatus(status) {
 export function readPipelineStatus() {
   if (!existsSync(PIPELINE_STATUS_FILE)) return null;
   try { return JSON.parse(readFileSync(PIPELINE_STATUS_FILE, 'utf-8')); } catch { return null; }
+}
+
+// ─── Archive (items > 7 days old from pending) ───────────────────────────────
+
+export function getArchive() {
+  return readStore(ARCHIVE_FILE);
+}
+
+// Move pending items older than 7 days into .governance-archive.json
+export function archiveStaleItems() {
+  const store = readStore(PENDING_FILE);
+  const cutoff = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString();
+  const archive = readStore(ARCHIVE_FILE);
+  let changed = false;
+  for (const [id, item] of Object.entries(store)) {
+    const ts = item.discovered_at || item.queued_at || '';
+    if (ts && ts < cutoff) {
+      archive[id] = item;
+      delete store[id];
+      changed = true;
+    }
+  }
+  if (changed) {
+    writeStore(PENDING_FILE, store);
+    writeStore(ARCHIVE_FILE, archive);
+  }
 }

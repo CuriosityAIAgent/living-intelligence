@@ -202,6 +202,45 @@
     .activity-company { font-size: 11px; color: #9CA3AF; flex-shrink: 0; }
     .activity-time { font-size: 11px; color: #9CA3AF; flex-shrink: 0; }
 
+    /* Inbox date groups */
+    .inbox-date-header {
+      font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+      color: #9CA3AF; padding: 20px 0 10px;
+      display: flex; align-items: center; gap: 8px;
+      max-width: 900px; margin: 0 auto;
+    }
+    .inbox-date-header:first-child { padding-top: 8px; }
+    .inbox-date-header-count {
+      font-weight: 400; color: #D1D5DB;
+    }
+    .inbox-date-divider {
+      flex: 1; height: 1px; background: #E5E7EB;
+    }
+
+    /* Archive trigger */
+    #archiveTrigger {
+      max-width: 900px; margin: 24px auto 0; padding: 16px 0; text-align: center;
+    }
+    .archive-link {
+      font-size: 12px; color: #9CA3AF; cursor: pointer; text-decoration: underline;
+      background: none; border: none; padding: 0;
+    }
+    .archive-link:hover { color: #6B7280; }
+    .archive-section { max-width: 900px; margin: 0 auto; padding-top: 8px; }
+    .archive-item-row {
+      display: flex; align-items: center; gap: 10px; padding: 8px 12px;
+      background: #fff; border: 1px solid #E5E7EB; border-radius: 6px;
+      margin-bottom: 6px; font-size: 12px; color: #6B7280;
+    }
+    .archive-item-headline { flex: 1; color: #374151; font-weight: 500; }
+    .archive-item-meta { flex-shrink: 0; font-size: 11px; color: #9CA3AF; }
+    .archive-score-pill {
+      font-size: 9px; font-weight: 700; padding: 2px 6px; border-radius: 3px;
+      flex-shrink: 0; background: #F3F4F6; color: #6B7280;
+    }
+    .archive-score-pill.high { background: #DCFCE7; color: #15803D; }
+    .archive-score-pill.mid { background: #FEF3C7; color: #B45309; }
+
     /* Layout */
     .layout {
       display: grid;
@@ -846,6 +885,12 @@
     <div id="pendingList" style="max-width:900px;margin:0 auto;">
       <div style="font-size:12px;color:#9CA3AF;text-align:center;padding:24px;">Loading...</div>
     </div>
+
+    <!-- Archive trigger -->
+    <div id="archiveTrigger" style="display:none;">
+      <button class="archive-link" onclick="loadArchive()">Show older stories →</button>
+    </div>
+    <div id="archiveSection" style="display:none;"></div>
 
     <!-- 7-day activity log -->
     <div id="activityLog" style="max-width:900px;margin:32px auto 0;"></div>
@@ -1843,7 +1888,11 @@ async function loadInbox() {
 
     _pendingItems = data.items;
     if (_activePendingIdx >= _pendingItems.length) _activePendingIdx = 0;
-    list.innerHTML = data.items.map((item, idx) => renderEditorialCard(item, idx, count)).join('');
+    list.innerHTML = renderGroupedInbox(data.items, count);
+
+    // Show archive trigger if there may be older items
+    const archiveTrigger = document.getElementById('archiveTrigger');
+    if (archiveTrigger) archiveTrigger.style.display = 'block';
 
     // Scroll active card into view
     const activeCard = document.querySelector('.eq-card-active');
@@ -1853,8 +1902,103 @@ async function loadInbox() {
   }
 }
 
+// Render inbox items grouped by discovered_at date
+function renderGroupedInbox(items, total) {
+  const today = new Date();
+  const yesterday = new Date(today);
+  yesterday.setDate(yesterday.getDate() - 1);
+
+  function dateLabel(ts) {
+    if (!ts) return 'EARLIER';
+    const d = new Date(ts);
+    const shortDate = d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short' }).toUpperCase();
+    if (d.toDateString() === today.toDateString()) return `TODAY — ${shortDate}`;
+    if (d.toDateString() === yesterday.toDateString()) return `YESTERDAY — ${shortDate}`;
+    return shortDate;
+  }
+
+  // Build ordered groups (preserve insertion order = newest first after sort)
+  const groups = [];
+  const groupMap = {};
+  items.forEach(item => {
+    const label = dateLabel(item.discovered_at || item.queued_at || null);
+    if (!groupMap[label]) { groupMap[label] = []; groups.push(label); }
+    groupMap[label].push(item);
+  });
+
+  let html = '';
+  let flatIdx = 0;
+  for (const label of groups) {
+    const groupItems = groupMap[label];
+    const countStr = groupItems.length === 1 ? '1 story' : `${groupItems.length} stories`;
+    html += `
+      <div class="inbox-date-header">
+        <span>${esc(label)}</span>
+        <span class="inbox-date-header-count">${countStr}</span>
+        <span class="inbox-date-divider"></span>
+      </div>`;
+    for (const item of groupItems) {
+      html += renderEditorialCard(item, flatIdx, total);
+      flatIdx++;
+    }
+  }
+  return html;
+}
+
 // Legacy alias (called from Discover tab when story is processed)
 function loadPendingQueue() { return loadInbox(); }
+
+async function loadArchive() {
+  const trigger = document.getElementById('archiveTrigger');
+  const section = document.getElementById('archiveSection');
+  if (!section) return;
+
+  if (trigger) trigger.style.display = 'none';
+  section.style.display = 'block';
+  section.innerHTML = '<div class="archive-section"><div style="font-size:12px;color:#9CA3AF;padding:12px 0;">Loading older stories…</div></div>';
+
+  try {
+    const res = await fetch('/api/inbox/archive');
+    const data = await res.json();
+    const items = data.items || [];
+
+    if (!items.length) {
+      section.innerHTML = '<div class="archive-section"><div style="font-size:12px;color:#9CA3AF;padding:12px 0;">No archived stories.</div></div>';
+      return;
+    }
+
+    // Group by date
+    const today = new Date();
+    const groups = {};
+    items.forEach(item => {
+      const ts = item.discovered_at || null;
+      const d = ts ? new Date(ts) : null;
+      const label = d ? d.toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short' }).toUpperCase() : 'EARLIER';
+      if (!groups[label]) groups[label] = [];
+      groups[label].push(item);
+    });
+
+    let html = '<div class="archive-section">';
+    html += `<div class="inbox-date-header" style="padding-top:4px;"><span style="color:#B45309;">OLDER STORIES</span><span class="inbox-date-header-count">${items.length} archived</span><span class="inbox-date-divider"></span></div>`;
+    for (const [label, groupItems] of Object.entries(groups)) {
+      html += `<div style="font-size:10px;font-weight:700;color:#D1D5DB;letter-spacing:.08em;text-transform:uppercase;margin:12px 0 6px;">${esc(label)}</div>`;
+      for (const item of groupItems) {
+        const scoreClass = item.score >= 75 ? 'high' : item.score >= 60 ? 'mid' : '';
+        html += `
+          <div class="archive-item-row">
+            <span class="archive-score-pill ${scoreClass}">${item.score != null ? item.score : '—'}</span>
+            <span class="archive-item-headline">${esc(item.headline || '')}</span>
+            <span class="archive-item-meta">${esc(item.company_name || '')} · ${esc(item.source_name || '')}</span>
+            ${item.source_url ? `<a href="${escapeAttr(item.source_url)}" target="_blank" style="font-size:11px;color:#9CA3AF;text-decoration:none;flex-shrink:0;">↗</a>` : ''}
+          </div>`;
+      }
+    }
+    html += '</div>';
+    section.innerHTML = html;
+  } catch (e) {
+    section.innerHTML = '<div class="archive-section"><div style="font-size:12px;color:#9CA3AF;padding:12px 0;">Failed to load archive.</div></div>';
+  }
+}
 
 async function loadPipelineStatus() {
   try {
@@ -2009,7 +2153,7 @@ function setActiveCard(idx) {
   // Re-render to update active highlight
   if (_pendingItems.length > 0) {
     const list = document.getElementById('pendingList');
-    if (list) list.innerHTML = _pendingItems.map((item, i) => renderEditorialCard(item, i, _pendingItems.length)).join('');
+    if (list) list.innerHTML = renderGroupedInbox(_pendingItems, _pendingItems.length);
   }
 }
 
