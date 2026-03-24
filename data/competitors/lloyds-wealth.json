@@ -2,14 +2,16 @@
   "id": "lloyds-wealth",
   "name": "Lloyds Wealth (formerly Schroders Personal Wealth)",
   "segment": "regional_champion",
-  "regions": ["uk"],
+  "regions": [
+    "uk"
+  ],
   "color": "#006A4E",
   "ai_strategy_summary": "Lloyds Banking Group is executing the most ambitious agentic AI rollout in UK retail banking — deploying 'the UK's first large-scale, multi-feature agentic AI financial assistant' to 21 million mobile app customers from November 2025. Lloyds acquired 100% of Schroders Personal Wealth (£17B AUM, ~300 advisers) in October 2025, rebranding it as Lloyds Wealth. GenAI delivered £50M of value across the group in 2025, with a £100M+ target for 2026.",
   "head_of_ai": {
     "name": "Rohit Dhawan",
     "title": "Group Head of Artificial Intelligence"
   },
-  "headline_metric": "£17B AUM (Lloyds Wealth); agentic AI assistant deployed to 21 million customers",
+  "headline_metric": "Agentic AI assistant deployed to 21 million customers; GenAI delivered £50M group value in 2025 — £100M+ target for 2026",
   "headline_initiative": "Agentic AI Financial Assistant — 'UK's first large-scale multi-feature agentic AI' (Nov 2025)",
   "overall_maturity": "deployed",
   "capabilities": {

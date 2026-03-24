@@ -2,14 +2,18 @@
   "id": "santander-private-banking",
   "name": "Santander Private Banking",
   "segment": "global_private_bank",
-  "regions": ["emea", "latam", "us"],
+  "regions": [
+    "emea",
+    "latam",
+    "us"
+  ],
   "color": "#EC0000",
   "ai_strategy_summary": "Santander is deploying AI at scale across its €558B Wealth Management & Insurance division. In August 2025, the bank partnered with OpenAI and deployed ChatGPT Enterprise to 15,000 employees across Europe and the Americas within two months, targeting 30,000. For private banking, AI investment copilots provide real-time strategy suggestions and hyper-personalised client journeys. €200M+ in AI savings confirmed in 2024. Chief Data & AI Officer Ricardo Martín Manjón: 'Competitive edge comes not just from adopting AI, but from embedding it.'",
   "head_of_ai": {
     "name": "Ricardo Martín Manjón",
     "title": "Chief Data & AI Officer, Banco Santander"
   },
-  "headline_metric": "€558B Wealth Management & Insurance AUM; 277,000+ private banking clients; €200M+ AI savings in 2024",
+  "headline_metric": "€200M+ AI savings in 2024; ChatGPT Enterprise to 15,000 employees across €558B AUM and 277,000+ private banking clients",
   "headline_initiative": "ChatGPT Enterprise to 15,000+ employees + AI investment copilots for private banking (Aug 2025)",
   "overall_maturity": "deployed",
   "capabilities": {

@@ -8,16 +8,16 @@
   "color": "#00C805",
   "ai_strategy_summary": "Cortex AI is Robinhood's conversational investment intelligence platform, rolling out to Gold subscribers in early 2026. While targeting retail investors today, the expectation risk is significant: the next generation of wealth clients will expect this level of AI-native interaction as a baseline.",
   "head_of_ai": null,
-  "headline_metric": "Cortex AI \u2014 conversational portfolio intelligence",
+  "headline_metric": "Cortex AI live for Gold subscribers Q1 2026; natural language portfolio intelligence and AI scanner widgets deployed",
   "headline_initiative": "Cortex AI for Robinhood Gold subscribers",
   "overall_maturity": "deployed",
   "capabilities": {
     "client_personalization": {
       "maturity": "deployed",
-      "headline": "Cortex Digests live for all Gold subscribers Q1 2026 \u2014 AI-personalised daily market briefings",
+      "headline": "Cortex Digests live for all Gold subscribers Q1 2026 — AI-personalised daily market briefings",
       "detail": "Cortex Digests provide personalized AI analysis of user portfolios, drawing on real-time market data, analyst reports, and Wall Street research. Launching for Gold members Q1 2026.",
       "evidence": [
-        "Robinhood newsroom: Cortex Digests live Q1 2026 \u2014 https://robinhood.com/us/en/support/articles/cortex-digests/",
+        "Robinhood newsroom: Cortex Digests live Q1 2026 — https://robinhood.com/us/en/support/articles/cortex-digests/",
         "Robinhood product blog: Cortex features rolling out to Gold subscribers"
       ],
       "jpm_implication": "When today's Robinhood user inherits wealth, they will expect AI-native portfolio insights as baseline. This sets the expectation floor.",
@@ -28,7 +28,7 @@
       "date_assessed": "2026-03-19",
       "sources": [
         {
-          "name": "Robinhood \u2014 Introducing Strategies, Banking and Cortex",
+          "name": "Robinhood — Introducing Strategies, Banking and Cortex",
           "url": "https://newsroom.aboutrobinhood.com/introducing-strategies-banking-and-cortex/"
         }
       ]
@@ -36,9 +36,9 @@
     "investment_portfolio": {
       "maturity": "deployed",
       "headline": "Cortex natural language market scanning and custom indicators live across Robinhood Legends and Gold in Q1 2026",
-      "detail": "Cortex allows users to build custom trading indicators using natural language commands and scan markets in real-time \u2014 capabilities previously only available to institutional traders.",
+      "detail": "Cortex allows users to build custom trading indicators using natural language commands and scan markets in real-time — capabilities previously only available to institutional traders.",
       "evidence": [
-        "Robinhood Legends platform: Cortex scanner widgets live \u2014 https://robinhood.com/legends",
+        "Robinhood Legends platform: Cortex scanner widgets live — https://robinhood.com/legends",
         "Robinhood product updates: Natural language indicators in Q1 2026 rollout"
       ],
       "jpm_implication": "Robinhood is democratizing institutional-grade investment tools. Self-directed clients will migrate to platforms offering AI-native tools.",
@@ -49,14 +49,14 @@
       "date_assessed": "2026-03-19",
       "sources": [
         {
-          "name": "Robinhood \u2014 Introducing Strategies, Banking and Cortex",
+          "name": "Robinhood — Introducing Strategies, Banking and Cortex",
           "url": "https://newsroom.aboutrobinhood.com/introducing-strategies-banking-and-cortex/"
         }
       ]
     },
     "new_business_models": {
       "maturity": "deployed",
-      "headline": "Cortex as Gold subscription add-on generating live subscription revenue \u2014 $5/month premium tier",
+      "headline": "Cortex as Gold subscription add-on generating live subscription revenue — $5/month premium tier",
       "detail": "Robinhood is monetizing AI through a tiered subscription model, bundling Cortex with Gold membership. This creates recurring AI revenue and increases platform stickiness.",
       "evidence": [
         "Gold subscriber model",
@@ -69,7 +69,7 @@
       "date_assessed": "2026-03-19",
       "sources": [
         {
-          "name": "Robinhood \u2014 Introducing Strategies, Banking and Cortex",
+          "name": "Robinhood — Introducing Strategies, Banking and Cortex",
           "url": "https://newsroom.aboutrobinhood.com/introducing-strategies-banking-and-cortex/"
         }
       ]

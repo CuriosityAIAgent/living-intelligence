@@ -7,9 +7,9 @@
     "asia"
   ],
   "color": "#009640",
-  "ai_strategy_summary": "BNP Paribas Wealth Management has 750+ AI use cases in production targeting \u20ac500M in value, opened a dedicated AI Centre of Excellence in Singapore in 2025, and launched an LLM-as-a-Service platform \u2014 making it the most AI-mature major European private bank by use case volume.",
+  "ai_strategy_summary": "BNP Paribas Wealth Management has 750+ AI use cases in production targeting €500M in value, opened a dedicated AI Centre of Excellence in Singapore in 2025, and launched an LLM-as-a-Service platform — making it the most AI-mature major European private bank by use case volume.",
   "head_of_ai": null,
-  "headline_metric": "750+ AI use cases in production; ~\u20ac447B AUM; \u20ac500M value target 2025",
+  "headline_metric": "750+ AI use cases in production; LLM-as-a-Service platform launched June 2025 across ~€447B AUM",
   "headline_initiative": "AI Centre of Excellence Singapore + LLM-as-a-Service platform",
   "overall_maturity": "deployed",
   "capabilities": {
@@ -20,7 +20,7 @@
       "evidence": [
         "AI Centre of Excellence Singapore launched 2025",
         "LLM-as-a-Service platform launched June 2025",
-        "750+ AI use cases cited group-wide \u2014 WM-specific count not separately disclosed"
+        "750+ AI use cases cited group-wide — WM-specific count not separately disclosed"
       ],
       "jpm_implication": "BNP's shared LLM infrastructure model is a mature enterprise pattern. JPM should review its own internal AI platform architecture against this benchmark.",
       "jpm_segments_affected": [
@@ -30,15 +30,15 @@
       "date_assessed": "2026-03-10",
       "sources": [
         {
-          "name": "BNP Paribas Wealth Management \u2014 Singapore AI CoE launch (Hubbis)",
+          "name": "BNP Paribas Wealth Management — Singapore AI CoE launch (Hubbis)",
           "url": "https://www.hubbis.com/news/bnp-paribas-wealth-management-launches-ai-centre-of-excellence-in-singapore"
         }
       ]
     },
     "research_content": {
       "maturity": "piloting",
-      "headline": "AI research and portfolio analytics for WM advisors in development via AI Centre of Excellence \u2014 not yet broadly deployed",
-      "detail": "BNP Paribas advisors use AI for investment research synthesis, portfolio analytics, and the generation of client advisory materials \u2014 supported by the AI Centre of Excellence in Singapore.",
+      "headline": "AI research and portfolio analytics for WM advisors in development via AI Centre of Excellence — not yet broadly deployed",
+      "detail": "BNP Paribas advisors use AI for investment research synthesis, portfolio analytics, and the generation of client advisory materials — supported by the AI Centre of Excellence in Singapore.",
       "evidence": [
         "Portfolio analytics AI in production",
         "Advisory material generation confirmed",
@@ -52,7 +52,7 @@
       "date_assessed": "2026-03-19",
       "sources": [
         {
-          "name": "BNP Paribas Wealth Management \u2014 Singapore AI CoE launch (Hubbis)",
+          "name": "BNP Paribas Wealth Management — Singapore AI CoE launch (Hubbis)",
           "url": "https://www.hubbis.com/news/bnp-paribas-wealth-management-launches-ai-centre-of-excellence-in-singapore"
         }
       ]

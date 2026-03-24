@@ -2,14 +2,16 @@
   "id": "handelsbanken",
   "name": "Handelsbanken Wealth & Asset Management",
   "segment": "regional_champion",
-  "regions": ["emea"],
+  "regions": [
+    "emea"
+  ],
   "color": "#003087",
   "ai_strategy_summary": "Handelsbanken takes the most deliberate AI posture among Nordic banks — deploying AI only where it demonstrably enhances human relationships, not as an end in itself. The bank internally describes the technology as 'Augmented Intelligence.' An IBM Watson-based AI compliance tool enabled a 40%+ surge in investment advice meetings with no headcount increase. An AI investment-advice system in Sweden drove 70%+ more customer meetings year-on-year. CDO Stephan Erne: 'You have to filter out what is really creating value for your customers or employees, not just push out a technology because it is cool.'",
   "head_of_ai": {
     "name": "Stephan Erne",
     "title": "Chief Digital Officer"
   },
-  "headline_metric": "70%+ more customer investment-advice meetings YoY with no headcount increase (Sweden)",
+  "headline_metric": "70%+ more investment-advice meetings YoY with no headcount increase; IBM Watson handles 40%+ surge in compliance documents",
   "headline_initiative": "AI investment-advice system (Sweden) + IBM Watson compliance AI — 'Augmented Intelligence' philosophy",
   "overall_maturity": "piloting",
   "capabilities": {

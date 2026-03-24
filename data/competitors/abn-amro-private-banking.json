@@ -2,11 +2,13 @@
   "id": "abn-amro-private-banking",
   "name": "ABN AMRO Private Banking",
   "segment": "regional_champion",
-  "regions": ["emea"],
+  "regions": [
+    "emea"
+  ],
   "color": "#009DE0",
   "ai_strategy_summary": "ABN AMRO is executing the most structurally significant AI transformation among European private banks — 5,200 job cuts by 2028 as AI automation replaces operational roles, targeting a sub-55% cost-to-income ratio. Microsoft Copilot Studio agents (Anna for customers, Abby for employees) are live at scale: 3.5 million conversations annually. The November 2025 Capital Markets Day set a strategic ambition to become a top-5 European private bank, with AI central to efficiency gains.",
   "head_of_ai": null,
-  "headline_metric": "€239B group wealth AUM; 3.5M AI agent conversations/year; 5,200 roles cut by 2028 via AI",
+  "headline_metric": "3.5M AI agent conversations/year (Anna: 2M text + 1.5M voice); 5,200 roles cut by 2028 across €239B group AUM",
   "headline_initiative": "Microsoft Copilot Studio agents (Anna + Abby) + Gen AI factory with Capgemini",
   "overall_maturity": "deployed",
   "capabilities": {

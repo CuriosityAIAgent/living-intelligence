@@ -2,11 +2,13 @@
   "id": "nevis",
   "name": "Nevis",
   "segment": "advisor_tools",
-  "regions": ["us"],
+  "regions": [
+    "us"
+  ],
   "color": "#1A1A2E",
   "ai_strategy_summary": "Nevis emerged from stealth in December 2025 with $40M from Sequoia, ICONIQ, and Ribbit Capital to build a unified AI operating system that completes end-to-end operational work for wealth advisors — from meeting capture to account opening to personalized client communication.",
   "head_of_ai": null,
-  "headline_metric": "$40M from Sequoia, ICONIQ, Ribbit; customers overseeing $50B+ AUA at launch",
+  "headline_metric": "AI operating system for advisors overseeing $50B+ client assets at launch; $40M from Sequoia, ICONIQ, Ribbit",
   "headline_initiative": "Unified AI operating system for end-to-end wealth advisor workflows",
   "overall_maturity": "piloting",
   "capabilities": {
@@ -22,7 +24,9 @@
         "Built in stealth with $5M seed from Sequoia"
       ],
       "jpm_implication": "Nevis's backing from top-tier investors (Sequoia, ICONIQ, Ribbit) signals that unified advisor workflow AI is the highest-conviction bet in wealthtech right now. The race to become the AI operating system for wealth management is accelerating.",
-      "jpm_segments_affected": ["JPMWM"],
+      "jpm_segments_affected": [
+        "JPMWM"
+      ],
       "date_assessed": "2026-03-10",
       "sources": [
         {
@@ -41,7 +45,10 @@
         "Operational work automation is core product promise"
       ],
       "jpm_implication": "AI-powered account opening is a high-impact automation target. JPM's client onboarding process should be benchmarked against AI-native tools like Nevis.",
-      "jpm_segments_affected": ["JPMWM", "GPB"],
+      "jpm_segments_affected": [
+        "JPMWM",
+        "GPB"
+      ],
       "date_assessed": "2026-03-10",
       "sources": [
         {

@@ -2,14 +2,16 @@
   "id": "st-jamess-place",
   "name": "St. James's Place",
   "segment": "regional_champion",
-  "regions": ["uk"],
+  "regions": [
+    "uk"
+  ],
   "color": "#1B3A6B",
   "ai_strategy_summary": "St. James's Place is deploying AI to reduce adviser admin burden — not to replace advisers. The Advice Assistant (built with IntellectAI on Salesforce) compresses 60-90 minutes of post-meeting documentation into ~5 minutes and is expanding from ISA cases to pensions and protection. The Intelligent Investment Hub automates fund analytics, ESG intelligence, and factsheet generation. Head of AI Wenyu Bai: 'AI is the background assistant, but the value of advice still lies with the financial adviser.'",
   "head_of_ai": {
     "name": "Wenyu Bai",
     "title": "Head of AI and Machine Learning"
   },
-  "headline_metric": "£190.2B FUM (2024 record); 4,920 advisers; Advice Assistant compresses 90-min admin to 5 mins",
+  "headline_metric": "Advice Assistant compresses 90-min admin to 5 minutes across 4,920 advisers managing £190.2B FUM",
   "headline_initiative": "Advice Assistant (ISA → pensions/protection rollout) + Intelligent Investment Hub",
   "overall_maturity": "piloting",
   "capabilities": {

@@ -10,7 +10,7 @@
   "color": "#E31837",
   "ai_strategy_summary": "30,000 employees on Red AI platform. UBS built a proprietary AI assistant on Azure OpenAI, deployed to wealth management and personal banking. Their AI & Transformation Factory in Singapore is the world's largest, signaling major APAC expansion ambitions.",
   "head_of_ai": null,
-  "headline_metric": "30,000 employees trained on Red AI",
+  "headline_metric": "Red AI deployed to 30,000 employees; multi-agentic KYC pilot across Switzerland, Hong Kong, Singapore",
   "headline_initiative": "Red AI Platform + AI & Transformation Factory Singapore",
   "overall_maturity": "deployed",
   "capabilities": {

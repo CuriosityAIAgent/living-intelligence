@@ -2,14 +2,18 @@
   "id": "barclays-private-bank",
   "name": "Barclays Private Bank",
   "segment": "global_private_bank",
-  "regions": ["uk", "emea", "asia"],
+  "regions": [
+    "uk",
+    "emea",
+    "asia"
+  ],
   "color": "#00AEEF",
   "ai_strategy_summary": "Barclays is scaling AI firm-wide with a 2,000-person AI team and GenAI Centre of Excellence. In Private Bank and Wealth Management, AI call summarisation is confirmed deployed. Microsoft 365 Copilot rolled out to 100,000 employees by early 2026 — including wealth teams — covering document drafting, data analysis, and meeting summarisation. Group CIO Craig Bright: 'The opportunity lies in how we use AI alongside everything we know about our customers to improve their experience.'",
   "head_of_ai": {
     "name": "Craig Bright",
     "title": "Group Chief Information Officer"
   },
-  "headline_metric": "£124.6B invested assets (end-2024); Microsoft Copilot deployed to 100,000 employees",
+  "headline_metric": "Microsoft Copilot deployed to 100,000 employees; AI call summarisation live in Private Bank across £124.6B invested assets",
   "headline_initiative": "GenAI Centre of Excellence + Microsoft Copilot at scale + AI call summarisation in Private Bank",
   "overall_maturity": "piloting",
   "capabilities": {

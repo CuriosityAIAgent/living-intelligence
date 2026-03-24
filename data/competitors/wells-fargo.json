@@ -8,7 +8,7 @@
   "color": "#C0392B",
   "ai_strategy_summary": "Wells Fargo is deploying AI across its advisor workforce through its Fargo virtual assistant and advisor productivity tools, while piloting AI-powered client intelligence and compliance automation across its ~12,000-advisor wealth network.",
   "head_of_ai": null,
-  "headline_metric": "~12,000 financial advisors; ~$2T in client assets under management",
+  "headline_metric": "Google Agentspace deploying bank-wide across ~12,000 advisors managing ~$2T in client assets; Fargo AI assistant in production",
   "headline_initiative": "Fargo AI assistant + advisor productivity AI rollout",
   "overall_maturity": "deployed",
   "capabilities": {
@@ -17,8 +17,8 @@
       "headline": "Wells Fargo deploys Google Agentspace to ~2,000 employees including wealth management roles, with bank-wide rollout to 215,000 employees planned",
       "detail": "Wells Fargo deployed Google Agentspace to approximately 2,000 employees in initial rollout, covering wealth management, risk, and operations roles. Bank-wide expansion to all 215,000 employees announced. Fargo digital assistant already live across retail banking providing personalized guidance.",
       "evidence": [
-        "Google Cloud Blog: Wells Fargo deploying Agentspace to ~2,000 employees \u2014 https://cloud.google.com/blog/topics/financial-services/wells-fargo-agentic-ai-agentspace-empowering-workers",
-        "American Banker: Wells Fargo plans Google agentic AI bank-wide \u2014 https://www.americanbanker.com/news/wells-fargo-plans-to-unleash-googles-agentic-ai-bank-wide"
+        "Google Cloud Blog: Wells Fargo deploying Agentspace to ~2,000 employees — https://cloud.google.com/blog/topics/financial-services/wells-fargo-agentic-ai-agentspace-empowering-workers",
+        "American Banker: Wells Fargo plans Google agentic AI bank-wide — https://www.americanbanker.com/news/wells-fargo-plans-to-unleash-googles-agentic-ai-bank-wide"
       ],
       "jpm_implication": "Wells Fargo's slower pace of advisor AI deployment relative to Morgan Stanley and Merrill represents a competitive window for JPM to widen its advantage in advisor productivity tooling.",
       "jpm_segments_affected": [
