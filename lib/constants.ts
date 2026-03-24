@@ -20,6 +20,7 @@ export const SEGMENT_LABELS: Record<string, string> = {
   wirehouse: 'Wirehouse',
   global_private_bank: 'Global Private Bank',
   regional_champion: 'Regional Champion',
+  asset_manager: 'Asset Manager',
   digital_disruptor: 'Digital Disruptor',
   ai_native: 'AI-Native Wealth',
   ria_independent: 'RIA / Independent',

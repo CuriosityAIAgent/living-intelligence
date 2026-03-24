@@ -202,12 +202,13 @@ To add a new landscape company: create a JSON file in `data/competitors/` with a
 
 ## Segments (landscape)
 
-`wirehouse` · `global_private_bank` · `regional_champion` · `digital_disruptor` · `ai_native` · `ria_independent` · `advisor_tools`
+`wirehouse` · `global_private_bank` · `regional_champion` · `asset_manager` · `digital_disruptor` · `ai_native` · `ria_independent` · `advisor_tools`
 
 **Classification rules:**
 - Large US advisor-network broker-dealers (Morgan Stanley, Merrill, Wells Fargo) → `wirehouse`
 - HNW/UHNW focused institutions globally, whether standalone or bank division → `global_private_bank` (UBS, Goldman, Citi PB, HSBC PB, Julius Baer, BNP Paribas)
 - Dominant in their home region, full-service banking + wealth → `regional_champion` (DBS, BBVA, StanChart, RBC)
+- Large-scale fund managers with direct-to-investor and/or advisor-facing wealth platforms → `asset_manager` (Vanguard, Fidelity) — NOT `digital_disruptor`
 - AI tools used BY advisors (Jump, Nevis, Zocks, Holistiplan) → `advisor_tools`, NOT `ai_native`
 - AI-native wealth platforms built from scratch (Arta, Savvy) → `ai_native`
 

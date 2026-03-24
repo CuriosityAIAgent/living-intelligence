@@ -35,7 +35,7 @@
       "headline": "Connect Coach rolling to ~17,000 advisors by year-end — 90% faster discussion sourcing, now live across Private Bank and Chase Wealth Management",
       "detail": "Connect Coach — deployed for JPMorgan advisors — provides tailored outreach ideas, meeting prep and next steps, real-time market insights, and answers from internal experts. At the 2025 Investor Day (May 20), Mary Erdoes confirmed the rollout trajectory: live for '4,600 private banking advisors', launched that Saturday to 'Kristin Lemkau's 7,600 CWM employees', targeting 'about 17,000 by the end of the year.' The 2025 Investor Day slide 12 disclosed a 90% reduction in time to source discussion materials. JPMorgan CIO Mike Urciuoli separately stated advisors find information 'up to 95% faster' (Reuters, May 5, 2025). The division cited AI tools as a key driver of 20% gross sales growth (2023–2024).",
       "evidence": [
-        "Mary Erdoes (CEO, AWM — Investor Day, May 20, 2025): 'We've got 4,600 private banking advisors... launched to Kristin Lemkau's 7,600 CWM employees... about 17,000 by the end of the year' — verbatim from transcript",
+        "Mary Erdoes (CEO, AWM — Investor Day, May 20, 2025): 'We've got 4,600 private banking advisors... launched to Kristin Lemkau's 7,600 CWM employees... about 17,000 by the end of the year'",
         "Connect Coach: 90% reduction in time to source discussion materials — Investor Day slide 12 (visually verified from PDF by Haresh)",
         "Mike Urciuoli (CIO, AWM): advisors find information 'up to 95% faster' — Reuters, May 5, 2025 (verbatim quote)",
         "20% YoY gross sales growth 2023–2024 — Reuters, May 5, 2025 (paraphrase, not a named exec quote)",
@@ -79,7 +79,7 @@
       "headline": "55ip manages $380B in personalised accounts — JPMorgan's tax-optimised, client-specific portfolio platform brought in $25B in new assets in 2024",
       "detail": "55ip — JPMorgan's personalised account platform — delivers tax-optimised, client-specific portfolios at scale. At the 2025 Investor Day (May 20), Mary Erdoes described 55ip as a 'flywheel' now at $380B in personalised accounts, having brought in $25B in new assets during 2024. The platform enables advisors to offer institutional-grade personalised portfolio construction to private bank and wealth management clients. Harvard Business School, as part of its JPMorgan AI case study (now required first-year curriculum), identified personalised portfolio delivery as a core competitive differentiator.",
       "evidence": [
-        "Mary Erdoes (CEO, AWM — Investor Day, May 20, 2025): 55ip is a 'flywheel' at $380B in personalised accounts — from Investor Day transcript",
+        "Mary Erdoes (CEO, AWM — Investor Day, May 20, 2025): 55ip is a 'flywheel' at $380B in personalised accounts",
         "55ip brought in $25B in new assets in 2024 — Investor Day, May 20, 2025",
         "HBS case study (required first-year curriculum): personalised portfolio delivery cited as competitive differentiator"
       ],
@@ -97,7 +97,7 @@
       "detail": "Smart Monitor — built on JPMorgan's Spectrum platform — is deployed for investors and portfolio teams. It provides AI-integrated workflow, automated insights, custom investment universes, and extensive market coverage. The 2025 Investor Day slide 12 disclosed an 83% reduction in time spent researching a topic. Mary Erdoes, in the same Investor Day session, characterised the impact: 'takes things that take days and weeks and turning them into seconds' (verbatim). Smart Monitor sits alongside Connect Coach (advisors) and 55ip (personalised portfolios) as one of JPMorgan's core production AI capabilities in wealth management.",
       "evidence": [
         "Smart Monitor (Spectrum): 83% reduction in time spent researching a topic — Investor Day slide 12 (visually verified from PDF by Haresh)",
-        "Mary Erdoes (CEO, AWM — Investor Day, May 20, 2025): Smart Monitor 'takes things that take days and weeks and turning them into seconds' — verbatim from transcript",
+        "Mary Erdoes (CEO, AWM — Investor Day, May 20, 2025): Smart Monitor 'takes things that take days and weeks and turning them into seconds'",
         "Features: AI-integrated workflow, automated insights, custom universes, extensive coverage — Investor Day slide 12"
       ],
       "date_assessed": "2026-03-24",
