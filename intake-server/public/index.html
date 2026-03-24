@@ -644,9 +644,9 @@
     <span class="header-sub">AI in Wealth Management</span>
   </div>
   <div style="display:flex;align-items:center;gap:16px;">
-    <span class="header-inbox-count" id="headerInboxCount" style="display:none;">
+    <button onclick="switchMode('pending')" class="header-inbox-count" id="headerInboxCount" style="display:none;background:none;border:none;cursor:pointer;color:inherit;">
       Inbox <span class="header-inbox-num" id="headerInboxNum">0</span>
-    </span>
+    </button>
     <button onclick="switchMode('landscape')" id="btnLandscapeMode" style="background:none;border:none;font-size:11px;color:#6B7280;cursor:pointer;padding:4px 8px;border-radius:3px;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#6B7280'">Landscape <span id="landscadgeBadge" style="display:none;background:#990F3D;color:#fff;font-size:9px;font-weight:700;padding:1px 5px;border-radius:8px;margin-left:3px;">0</span></button>
     <button onclick="switchMode('audit')" style="background:none;border:none;font-size:11px;color:#6B7280;cursor:pointer;padding:4px 8px;border-radius:3px;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#6B7280'">Data Audit</button>
     <span class="header-badge">Internal</span>
@@ -2314,6 +2314,9 @@ function escAuditHtml(str) {
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;');
 }
+
+// ── Shared escape helper (used by landscape + TL render functions) ────────────
+function esc(s) { return escAuditHtml(s); }
 
 // ── Landscape tab ─────────────────────────────────────────────────────────────
 
