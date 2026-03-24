@@ -1,4 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 40" width="120" height="40">
-  <rect width="120" height="40" rx="4" fill="#FF5C00"/>
-  <text x="60" y="26" font-family="Arial,sans-serif" font-size="16" font-weight="700" fill="white" text-anchor="middle" letter-spacing="1">JUMP</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 110 36" width="110" height="36">
+  <!-- Two-circle icon (Jump's actual brand motif: large body + small head, forming jumping figure) -->
+  <circle cx="14" cy="22" r="10" fill="#FF5C00"/>
+  <circle cx="26" cy="8" r="6" fill="#FF5C00"/>
+  <!-- "jump" wordmark in lowercase bold -->
+  <text x="42" y="25" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="18" font-weight="700" fill="#111827" letter-spacing="-0.3">jump</text>
 </svg>

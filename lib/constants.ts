@@ -6,6 +6,8 @@ export const TYPE_LABELS: Record<string, string> = {
   milestone: 'Milestone',
   strategy_move: 'Strategy',
   market_signal: 'Market Signal',
+  deployment: 'Deployment',
+  funding: 'Funding',
 };
 
 export const FORMAT_LABELS: Record<string, string> = {
