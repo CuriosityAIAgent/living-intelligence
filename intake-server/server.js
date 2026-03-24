@@ -22,6 +22,12 @@ import {
 import { runDailyPipeline } from './agents/scheduler.js';
 import { signToken, verifyToken } from './agents/notifier.js';
 import { runFastAudit, runDeepAudit } from './agents/auditor.js';
+import {
+  checkLandscapeImpact, getLandscapeSuggestions,
+  applyLandscapeSuggestion, dismissLandscapeSuggestion,
+} from './agents/landscape-trigger.js';
+import { runLandscapeSweep, getStaleList } from './agents/landscape-sweep.js';
+import { publishTlEntry } from './agents/tl-publisher.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const DATA_DIR = join(__dirname, '..', 'data');
@@ -409,6 +415,10 @@ app.post('/api/inbox/:id/approve-and-publish', (req, res) => {
     send('error', { message: `Published but git push failed: ${gitErr.message}` });
   }
 
+  // 5. Non-blocking landscape impact check — runs after response is sent
+  const publishedEntry = { ...entry, id: entryId };
+  setImmediate(() => checkLandscapeImpact(publishedEntry).catch(() => {}));
+
   done();
 });
 
@@ -433,6 +443,64 @@ app.post('/api/inbox/:id/reject-with-reason', (req, res) => {
 
   rejectPending(req.params.id);
   res.json({ ok: true });
+});
+
+// ─── Landscape suggestions ────────────────────────────────────────────────────
+
+// All pending landscape maturity upgrade suggestions
+app.get('/api/landscape-suggestions', (req, res) => {
+  res.json(getLandscapeSuggestions());
+});
+
+// Apply a suggestion: updates competitor JSON + git push to main
+app.post('/api/landscape-suggestions/:id/apply', (req, res) => {
+  const result = applyLandscapeSuggestion(req.params.id);
+  if (!result) return res.status(404).json({ error: 'Suggestion not found or already actioned' });
+  res.json({ ok: true, ...result });
+});
+
+// Dismiss a suggestion without applying
+app.post('/api/landscape-suggestions/:id/dismiss', (req, res) => {
+  const ok = dismissLandscapeSuggestion(req.params.id);
+  if (!ok) return res.status(404).json({ error: 'Suggestion not found' });
+  res.json({ ok: true });
+});
+
+// Stale capability list (fast — no search, just reads date_assessed fields)
+app.get('/api/landscape-stale', (req, res) => {
+  res.json(getStaleList());
+});
+
+// Run staleness sweep — searches for recent news on all stale capabilities (slow, SSE)
+app.post('/api/landscape-sweep', async (req, res) => {
+  const { send, done } = createSSE(res);
+  try {
+    await runLandscapeSweep({ send });
+  } catch (err) {
+    send('error', { message: err.message });
+  }
+  done();
+});
+
+// ─── Thought Leadership publish ───────────────────────────────────────────────
+
+// Approve a TL candidate: fetch + Claude extract + write JSON + push to main
+app.post('/api/tl-publish', async (req, res) => {
+  const { url } = req.body;
+  const { send, done } = createSSE(res);
+
+  if (!url) {
+    send('error', { message: 'URL is required' });
+    done();
+    return;
+  }
+
+  try {
+    await publishTlEntry({ url, send });
+  } catch (err) {
+    send('error', { message: err.message });
+  }
+  done();
 });
 
 // Pipeline status — last run summary for inbox dashboard

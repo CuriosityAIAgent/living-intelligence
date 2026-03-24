@@ -647,6 +647,7 @@
     <span class="header-inbox-count" id="headerInboxCount" style="display:none;">
       Inbox <span class="header-inbox-num" id="headerInboxNum">0</span>
     </span>
+    <button onclick="switchMode('landscape')" id="btnLandscapeMode" style="background:none;border:none;font-size:11px;color:#6B7280;cursor:pointer;padding:4px 8px;border-radius:3px;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#6B7280'">Landscape <span id="landscadgeBadge" style="display:none;background:#990F3D;color:#fff;font-size:9px;font-weight:700;padding:1px 5px;border-radius:8px;margin-left:3px;">0</span></button>
     <button onclick="switchMode('audit')" style="background:none;border:none;font-size:11px;color:#6B7280;cursor:pointer;padding:4px 8px;border-radius:3px;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#6B7280'">Data Audit</button>
     <span class="header-badge">Internal</span>
   </div>
@@ -744,6 +745,47 @@
     </div>
   </div>
 
+</div>
+
+<!-- ── Landscape Panel (full-width overlay, shown when Landscape tab is active) ──── -->
+<div class="audit-panel" id="landscapePanel">
+  <div style="max-width:960px;margin:0 auto;">
+
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;">
+      <div>
+        <div style="font-size:18px;font-weight:700;color:#1B2E5E;">Landscape Intelligence</div>
+        <div style="font-size:12px;color:#9CA3AF;margin-top:2px;">Maturity upgrade suggestions + staleness tracking across 37 companies × 7 capabilities</div>
+      </div>
+      <button onclick="runSweepNow()" id="btnRunSweep"
+        style="background:#1B2E5E;color:#fff;border:none;border-radius:5px;padding:8px 16px;font-size:13px;font-weight:600;cursor:pointer;">
+        Run Staleness Sweep
+      </button>
+    </div>
+
+    <!-- Sweep status log -->
+    <div id="sweepLog" style="display:none;background:#111827;border-radius:6px;padding:12px 16px;margin-bottom:20px;max-height:180px;overflow-y:auto;font-family:monospace;font-size:12px;color:#D1D5DB;"></div>
+
+    <!-- Pending upgrade suggestions -->
+    <div style="margin-bottom:28px;">
+      <div style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#990F3D;margin-bottom:12px;">
+        Pending Maturity Upgrades <span id="suggestionsCount" style="color:#6B7280;font-weight:400;text-transform:none;letter-spacing:0;">(loading…)</span>
+      </div>
+      <div id="suggestionsList">
+        <div style="font-size:13px;color:#9CA3AF;text-align:center;padding:32px;">Loading suggestions…</div>
+      </div>
+    </div>
+
+    <!-- Stale capabilities -->
+    <div>
+      <div style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#6B7280;margin-bottom:12px;">
+        Stale Capabilities <span id="staleCount" style="font-weight:400;text-transform:none;letter-spacing:0;">(loading…)</span>
+      </div>
+      <div id="staleList">
+        <div style="font-size:13px;color:#9CA3AF;text-align:center;padding:32px;">Loading…</div>
+      </div>
+    </div>
+
+  </div>
 </div>
 
 <!-- ── Audit Panel (full-width overlay, shown when Audit tab is active) ──── -->
@@ -1339,7 +1381,8 @@ function switchMode(mode) {
     if (tab) tab.classList.toggle('active', m === mode);
   });
 
-  const auditPanel = document.getElementById('auditPanel');
+  const auditPanel     = document.getElementById('auditPanel');
+  const landscapePanel = document.getElementById('landscapePanel');
   const layout = document.querySelector('.layout');
   const publishBar = document.getElementById('publishBar');
   const rightPanel = document.querySelector('.right-panel');
@@ -1351,6 +1394,13 @@ function switchMode(mode) {
     if (layout) layout.style.display = 'none';
     if (publishBar) publishBar.style.display = 'none';
     if (auditPanel) auditPanel.classList.add('visible');
+    if (landscapePanel) landscapePanel.classList.remove('visible');
+  } else if (mode === 'landscape') {
+    if (layout) layout.style.display = 'none';
+    if (publishBar) publishBar.style.display = 'none';
+    if (auditPanel) auditPanel.classList.remove('visible');
+    if (landscapePanel) landscapePanel.classList.add('visible');
+    loadLandscapeData();
   } else if (mode === 'pending') {
     // Full-width review queue
     if (layout) { layout.style.display = 'grid'; layout.style.gridTemplateColumns = '1fr'; }
@@ -1358,6 +1408,7 @@ function switchMode(mode) {
     if (candidateList) candidateList.style.display = 'none';
     if (statusBar) statusBar.style.display = 'none';
     if (auditPanel) auditPanel.classList.remove('visible');
+    if (landscapePanel) landscapePanel.classList.remove('visible');
     if (panelTitle) panelTitle.textContent = 'Review Queue';
     loadInbox();
     loadPipelineStatus();
@@ -1368,6 +1419,7 @@ function switchMode(mode) {
     if (candidateList) candidateList.style.display = '';
     if (statusBar) statusBar.style.display = '';
     if (auditPanel) auditPanel.classList.remove('visible');
+    if (landscapePanel) landscapePanel.classList.remove('visible');
     if (panelTitle) panelTitle.textContent = 'Discover';
   }
 }
@@ -1713,15 +1765,60 @@ function renderTlCandidates(items) {
     return;
   }
   section.style.display = 'block';
-  list.innerHTML = items.map(item => `
-    <div style="background:#F9FAFB;border:1px solid #E5E7EB;border-radius:6px;padding:10px 14px;display:flex;justify-content:space-between;align-items:flex-start;gap:12px;">
+  list.innerHTML = items.map((item, idx) => `
+    <div id="tlCard_${idx}" style="background:#F9FAFB;border:1px solid #E5E7EB;border-radius:6px;padding:10px 14px;display:flex;justify-content:space-between;align-items:flex-start;gap:12px;">
       <div style="flex:1;min-width:0;">
-        <div style="font-size:13px;font-weight:600;color:#111827;margin-bottom:2px;">${item.title || item.url}</div>
-        ${item.snippet ? `<div style="font-size:12px;color:#6B7280;margin-top:3px;line-height:1.4;">${item.snippet.slice(0, 180)}${item.snippet.length > 180 ? '…' : ''}</div>` : ''}
+        <div style="font-size:13px;font-weight:600;color:#111827;margin-bottom:2px;">${esc(item.title || item.url)}</div>
+        ${item.snippet ? `<div style="font-size:12px;color:#6B7280;margin-top:3px;line-height:1.4;">${esc(item.snippet.slice(0, 180))}${item.snippet.length > 180 ? '…' : ''}</div>` : ''}
+        <div id="tlCardStatus_${idx}" style="font-size:11px;color:#6B7280;margin-top:4px;display:none;"></div>
       </div>
-      <a href="${item.url}" target="_blank" style="font-size:11px;color:#990F3D;white-space:nowrap;text-decoration:none;flex-shrink:0;margin-top:2px;">Open →</a>
+      <div style="display:flex;flex-direction:column;gap:6px;align-items:flex-end;flex-shrink:0;">
+        <a href="${item.url}" target="_blank" style="font-size:11px;color:#990F3D;white-space:nowrap;text-decoration:none;">Open →</a>
+        <button
+          id="tlApproveBtn_${idx}"
+          onclick="approveTlCandidate('${esc(item.url)}', ${idx})"
+          style="font-size:10px;font-weight:700;background:#990F3D;color:#fff;border:none;border-radius:3px;padding:3px 8px;cursor:pointer;white-space:nowrap;">
+          Approve as TL
+        </button>
+      </div>
     </div>
   `).join('');
+}
+
+async function approveTlCandidate(url, idx) {
+  const btn    = document.getElementById(`tlApproveBtn_${idx}`);
+  const status = document.getElementById(`tlCardStatus_${idx}`);
+  if (!btn || !status) return;
+
+  btn.disabled = true;
+  btn.textContent = '⏳ Processing...';
+  status.style.display = 'block';
+  status.style.color = '#6B7280';
+  status.textContent = 'Fetching article...';
+
+  try {
+    await sseStream('/api/tl-publish', { url }, {
+      status:    (d) => { status.textContent = d.message || ''; },
+      published: (d) => {
+        status.style.color = '#15803D';
+        status.textContent = `✓ Published: "${d.title}" by ${d.author}`;
+        btn.style.display = 'none';
+        document.getElementById(`tlCard_${idx}`).style.opacity = '0.5';
+      },
+      pushed:    (d) => { status.textContent = d.message || 'Pushed to portal'; },
+      error:     (d) => {
+        status.style.color = '#B91C1C';
+        status.textContent = `✗ ${d.message}`;
+        btn.disabled = false;
+        btn.textContent = 'Approve as TL';
+      },
+    });
+  } catch (err) {
+    status.style.color = '#B91C1C';
+    status.textContent = `✗ ${err.message}`;
+    btn.disabled = false;
+    btn.textContent = 'Approve as TL';
+  }
 }
 
 async function runPipelineNow() {
@@ -2216,6 +2313,173 @@ function escAuditHtml(str) {
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;');
+}
+
+// ── Landscape tab ─────────────────────────────────────────────────────────────
+
+const MATURITY_COLOURS = {
+  scaled:    { bg: '#DCFCE7', text: '#15803D' },
+  deployed:  { bg: '#DBEAFE', text: '#1D4ED8' },
+  piloting:  { bg: '#FEF3C7', text: '#B45309' },
+  announced: { bg: '#F3F4F6', text: '#6B7280' },
+  no_activity: { bg: '#F9FAFB', text: '#D1D5DB' },
+};
+
+function maturityBadge(m) {
+  const c = MATURITY_COLOURS[m] || MATURITY_COLOURS.no_activity;
+  return `<span style="font-size:10px;font-weight:700;padding:2px 7px;border-radius:3px;background:${c.bg};color:${c.text};">${m}</span>`;
+}
+
+async function loadLandscapeData() {
+  await Promise.all([loadSuggestions(), loadStaleList()]);
+}
+
+async function loadSuggestions() {
+  const listEl   = document.getElementById('suggestionsList');
+  const countEl  = document.getElementById('suggestionsCount');
+  const badgeEl  = document.getElementById('landscadgeBadge');
+  try {
+    const res   = await fetch('/api/landscape-suggestions');
+    const items = await res.json();
+    countEl.textContent = `(${items.length})`;
+
+    // Update header badge
+    if (items.length > 0) {
+      if (badgeEl) { badgeEl.style.display = 'inline'; badgeEl.textContent = items.length; }
+    } else {
+      if (badgeEl) badgeEl.style.display = 'none';
+    }
+
+    if (!items.length) {
+      listEl.innerHTML = '<div style="font-size:13px;color:#9CA3AF;text-align:center;padding:24px;">No pending suggestions — all maturity ratings look current.</div>';
+      return;
+    }
+
+    listEl.innerHTML = items.map(s => `
+      <div id="sug_${s.id}" style="background:#fff;border:1px solid #E5E7EB;border-radius:6px;padding:14px 16px;margin-bottom:8px;display:flex;align-items:flex-start;gap:14px;">
+        <div style="flex:1;min-width:0;">
+          <div style="font-size:13px;font-weight:700;color:#111827;margin-bottom:4px;">${esc(s.company_name)} · <span style="font-weight:400;color:#6B7280;">${s.capability.replace(/_/g,' ')}</span></div>
+          <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px;">
+            ${maturityBadge(s.current_maturity)}
+            <span style="color:#9CA3AF;font-size:12px;">→</span>
+            ${maturityBadge(s.suggested_maturity)}
+            ${s.source === 'staleness_sweep' ? '<span style="font-size:10px;color:#9CA3AF;margin-left:4px;">· sweep</span>' : '<span style="font-size:10px;color:#9CA3AF;margin-left:4px;">· post-publish</span>'}
+          </div>
+          <div style="font-size:12px;color:#374151;">${esc(s.reason)}</div>
+          ${s.triggered_by_headline ? `<div style="font-size:11px;color:#9CA3AF;margin-top:4px;">Triggered by: ${esc(s.triggered_by_headline)}</div>` : ''}
+          ${s.source_hint ? `<div style="font-size:11px;color:#9CA3AF;margin-top:2px;">Source: ${esc(s.source_hint)}</div>` : ''}
+          <div id="sugStatus_${s.id}" style="font-size:11px;margin-top:6px;display:none;"></div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:6px;flex-shrink:0;">
+          <button onclick="applySuggestion('${s.id}')" style="background:#15803D;color:#fff;border:none;border-radius:4px;padding:6px 12px;font-size:12px;font-weight:700;cursor:pointer;">Apply</button>
+          <button onclick="dismissSuggestion('${s.id}')" style="background:#fff;color:#6B7280;border:1px solid #D1D5DB;border-radius:4px;padding:6px 12px;font-size:12px;cursor:pointer;">Dismiss</button>
+        </div>
+      </div>
+    `).join('');
+  } catch (err) {
+    listEl.innerHTML = `<div style="color:#B91C1C;font-size:13px;">Failed to load: ${esc(err.message)}</div>`;
+  }
+}
+
+async function applySuggestion(id) {
+  const statusEl = document.getElementById(`sugStatus_${id}`);
+  if (statusEl) { statusEl.style.display = 'block'; statusEl.style.color = '#6B7280'; statusEl.textContent = 'Applying…'; }
+  try {
+    const res = await fetch(`/api/landscape-suggestions/${id}/apply`, { method: 'POST' });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error);
+    const card = document.getElementById(`sug_${id}`);
+    if (card) {
+      card.style.opacity = '0.4';
+      if (statusEl) { statusEl.style.color = '#15803D'; statusEl.textContent = `✓ Applied — ${data.capability} updated to ${data.new_maturity}`; }
+    }
+    await loadSuggestions(); // refresh count
+  } catch (err) {
+    if (statusEl) { statusEl.style.color = '#B91C1C'; statusEl.textContent = `✗ ${err.message}`; }
+  }
+}
+
+async function dismissSuggestion(id) {
+  try {
+    await fetch(`/api/landscape-suggestions/${id}/dismiss`, { method: 'POST' });
+    const card = document.getElementById(`sug_${id}`);
+    if (card) card.remove();
+    await loadSuggestions();
+  } catch { /* ignore */ }
+}
+
+async function loadStaleList() {
+  const listEl  = document.getElementById('staleList');
+  const countEl = document.getElementById('staleCount');
+  try {
+    const res   = await fetch('/api/landscape-stale');
+    const items = await res.json();
+    countEl.textContent = `(${items.length} capabilities >${45} days old)`;
+
+    if (!items.length) {
+      listEl.innerHTML = '<div style="font-size:13px;color:#9CA3AF;text-align:center;padding:24px;">All capabilities assessed within 45 days — nothing stale.</div>';
+      return;
+    }
+
+    // Group by company
+    const byCompany = {};
+    for (const item of items) {
+      if (!byCompany[item.company_name]) byCompany[item.company_name] = [];
+      byCompany[item.company_name].push(item);
+    }
+
+    listEl.innerHTML = Object.entries(byCompany).map(([company, caps]) => `
+      <div style="background:#fff;border:1px solid #E5E7EB;border-radius:6px;padding:12px 16px;margin-bottom:6px;">
+        <div style="font-size:13px;font-weight:700;color:#111827;margin-bottom:8px;">${esc(company)}</div>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;">
+          ${caps.map(c => `
+            <span style="font-size:11px;display:inline-flex;align-items:center;gap:5px;background:#F9FAFB;border:1px solid #E5E7EB;border-radius:4px;padding:3px 8px;">
+              ${maturityBadge(c.current_maturity)}
+              <span style="color:#374151;">${c.capability.replace(/_/g,' ')}</span>
+              <span style="color:#EF4444;font-weight:700;">${c.days_stale}d</span>
+            </span>
+          `).join('')}
+        </div>
+      </div>
+    `).join('');
+  } catch (err) {
+    listEl.innerHTML = `<div style="color:#B91C1C;font-size:13px;">Failed to load: ${esc(err.message)}</div>`;
+  }
+}
+
+async function runSweepNow() {
+  const btn    = document.getElementById('btnRunSweep');
+  const logEl  = document.getElementById('sweepLog');
+  btn.disabled = true;
+  btn.textContent = '⏳ Sweeping…';
+  logEl.style.display = 'block';
+  logEl.innerHTML = '';
+
+  const addLog = (text, colour = '#D1D5DB') => {
+    const div = document.createElement('div');
+    div.style.color = colour;
+    div.textContent = text;
+    logEl.appendChild(div);
+    logEl.scrollTop = logEl.scrollHeight;
+  };
+
+  addLog('Starting staleness sweep…');
+
+  try {
+    await sseStream('/api/landscape-sweep', {}, {
+      status: (d) => addLog(d.message),
+      done:   (d) => {
+        addLog(`✓ Done. Checked: ${d.checked} · New suggestions: ${d.suggestions}`, '#22C55E');
+        loadLandscapeData();
+      },
+      error:  (d) => addLog(`✗ ${d.message}`, '#EF4444'),
+    });
+  } catch (err) {
+    addLog(`Failed: ${err.message}`, '#EF4444');
+  }
+
+  btn.disabled = false;
+  btn.textContent = 'Run Staleness Sweep';
 }
 
 // Start on Review Queue
