@@ -643,13 +643,12 @@
     <span class="header-title">Editorial Studio</span>
     <span class="header-sub">AI in Wealth Management</span>
   </div>
-  <div style="display:flex;align-items:center;gap:16px;">
-    <button onclick="switchMode('pending')" class="header-inbox-count" id="headerInboxCount" style="display:none;background:none;border:none;cursor:pointer;color:inherit;">
-      Inbox <span class="header-inbox-num" id="headerInboxNum">0</span>
-    </button>
+  <div style="display:flex;align-items:center;gap:4px;">
+    <button onclick="switchMode('pending')" id="btnReviewMode" style="background:none;border:none;font-size:11px;color:#6B7280;cursor:pointer;padding:4px 8px;border-radius:3px;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#6B7280'">Review <span id="headerInboxNum" style="display:none;background:#990F3D;color:#fff;font-size:9px;font-weight:700;padding:1px 5px;border-radius:8px;margin-left:3px;">0</span></button>
+    <button onclick="switchMode('auto')" id="btnDiscoverMode" style="background:none;border:none;font-size:11px;color:#6B7280;cursor:pointer;padding:4px 8px;border-radius:3px;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#6B7280'">Discover</button>
     <button onclick="switchMode('landscape')" id="btnLandscapeMode" style="background:none;border:none;font-size:11px;color:#6B7280;cursor:pointer;padding:4px 8px;border-radius:3px;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#6B7280'">Landscape <span id="landscadgeBadge" style="display:none;background:#990F3D;color:#fff;font-size:9px;font-weight:700;padding:1px 5px;border-radius:8px;margin-left:3px;">0</span></button>
-    <button onclick="switchMode('audit')" style="background:none;border:none;font-size:11px;color:#6B7280;cursor:pointer;padding:4px 8px;border-radius:3px;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#6B7280'">Data Audit</button>
-    <span class="header-badge">Internal</span>
+    <button onclick="switchMode('audit')" id="btnAuditMode" style="background:none;border:none;font-size:11px;color:#6B7280;cursor:pointer;padding:4px 8px;border-radius:3px;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#6B7280'">Data Audit</button>
+    <span class="header-badge" style="margin-left:8px;">Internal</span>
   </div>
 </header>
 
@@ -1381,6 +1380,13 @@ function switchMode(mode) {
     if (tab) tab.classList.toggle('active', m === mode);
   });
 
+  // Header nav active states
+  const headerNavMap = { pending: 'btnReviewMode', auto: 'btnDiscoverMode', landscape: 'btnLandscapeMode', audit: 'btnAuditMode' };
+  Object.entries(headerNavMap).forEach(([m, btnId]) => {
+    const btn = document.getElementById(btnId);
+    if (btn) btn.style.color = m === mode ? '#fff' : '#6B7280';
+  });
+
   const auditPanel     = document.getElementById('auditPanel');
   const landscapePanel = document.getElementById('landscapePanel');
   const layout = document.querySelector('.layout');
@@ -1659,14 +1665,15 @@ async function loadInbox() {
     if (count > 0) { badge.textContent = count; badge.style.display = 'inline-block'; }
     else { badge.style.display = 'none'; }
 
-    // Update header badge
-    const headerCount = document.getElementById('headerInboxCount');
+    // Update header inbox badge
     const headerNum = document.getElementById('headerInboxNum');
-    if (count > 0) {
-      headerNum.textContent = count;
-      headerCount.style.display = 'inline-flex';
-    } else {
-      headerCount.style.display = 'none';
+    if (headerNum) {
+      if (count > 0) {
+        headerNum.textContent = count;
+        headerNum.style.display = 'inline-block';
+      } else {
+        headerNum.style.display = 'none';
+      }
     }
 
     // Update pipeline strip inbox count
