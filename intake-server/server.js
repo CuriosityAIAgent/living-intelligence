@@ -28,6 +28,7 @@ import {
 } from './agents/landscape-trigger.js';
 import { runLandscapeSweep, getStaleList } from './agents/landscape-sweep.js';
 import { publishTlEntry } from './agents/tl-publisher.js';
+import { runTLDiscover, getTLCandidates, dismissTLCandidate } from './agents/tl-discover.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const DATA_DIR = join(__dirname, '..', 'data');
@@ -503,6 +504,39 @@ app.post('/api/tl-publish', async (req, res) => {
   done();
 });
 
+// ── TL Discovery routes ───────────────────────────────────────────────────────
+
+app.post('/api/tl-discover', (req, res) => {
+  const { send, done } = createSSE(res);
+  runTLDiscover({ send })
+    .then(() => done())
+    .catch(e => { send('error', { message: e.message }); done(); });
+});
+
+app.get('/api/tl-candidates', (req, res) => {
+  res.json({ candidates: getTLCandidates() });
+});
+
+app.post('/api/tl-candidates/dismiss', (req, res) => {
+  const { url } = req.body;
+  if (!url) return res.status(400).json({ error: 'url required' });
+  dismissTLCandidate(url);
+  res.json({ ok: true });
+});
+
+app.get('/api/tl-published', (req, res) => {
+  try {
+    const tlDir = join(__dirname, '..', 'data', 'thought-leadership');
+    const files = fs.readdirSync(tlDir).filter(f => f.endsWith('.json'));
+    const entries = files.map(f => {
+      try { return JSON.parse(fs.readFileSync(join(tlDir, f), 'utf8')); } catch { return null; }
+    }).filter(Boolean).sort((a, b) => (b.date_published || '').localeCompare(a.date_published || ''));
+    res.json({ entries });
+  } catch(e) {
+    res.json({ entries: [] });
+  }
+});
+
 // Pipeline status — last run summary for inbox dashboard
 app.get('/api/pipeline-status', (req, res) => {
   const status = readPipelineStatus();
@@ -750,10 +784,10 @@ app.post('/review/:token/reject', (req, res) => {
   res.json({ ok: true, message: 'Entry rejected and URL permanently blocked' });
 });
 
-// ─── Cron: daily pipeline at 6:00 AM ─────────────────────────────────────────
+// ─── Cron: daily pipeline at 5:00 AM UK time ─────────────────────────────────
 
-cron.schedule('0 6 * * *', () => {
-  console.log('[cron] 6:00 AM Europe/London — starting daily pipeline');
+cron.schedule('0 5 * * *', () => {
+  console.log('[cron] 5:00 AM Europe/London — starting daily pipeline');
   runDailyPipeline().catch(err => {
     console.error('[cron] Daily pipeline failed:', err.message);
   });

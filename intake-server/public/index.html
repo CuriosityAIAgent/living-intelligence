@@ -8,39 +8,177 @@
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: #F9FAFB;
+      background: #FDF8F2;
       color: #111827;
       font-size: 14px;
       min-height: 100vh;
     }
 
-    /* Header */
-    header {
+    /* ── Two-tier header (matches portal) ── */
+    .masthead {
       background: #1C1C2E;
-      border-bottom: 1px solid #2D2D44;
-      padding: 0 24px;
       height: 52px;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      padding: 0 24px;
       position: sticky;
       top: 0;
       z-index: 100;
     }
-    .header-title { font-size: 14px; font-weight: 700; color: #fff; }
-    .header-sub { font-size: 12px; color: #6B7280; margin-left: 12px; }
+    .masthead-title { font-size: 14px; font-weight: 700; color: #fff; }
+    .masthead-sub { font-size: 12px; color: #6B7280; margin-left: 12px; }
     .header-badge {
       font-size: 10px; font-weight: 700; letter-spacing: 0.08em;
       text-transform: uppercase; padding: 3px 8px; border-radius: 3px;
       background: #990F3D; color: #fff;
     }
-    .header-inbox-count {
-      display: inline-flex; align-items: center; gap: 6px;
-      font-size: 12px; color: #D1D5DB;
+
+    .nav-bar {
+      background: #141420;
+      height: 40px;
+      display: flex;
+      align-items: stretch;
+      padding: 0 24px;
+      position: sticky;
+      top: 52px;
+      z-index: 99;
+      border-bottom: 1px solid #2D2D44;
     }
-    .header-inbox-num {
-      background: #990F3D; color: #fff; font-size: 10px; font-weight: 700;
-      padding: 2px 7px; border-radius: 10px; min-width: 20px; text-align: center;
+    .nav-tab {
+      background: none;
+      border: none;
+      border-bottom: 2px solid transparent;
+      color: #9CA3AF;
+      font-size: 13px;
+      font-weight: 500;
+      padding: 0 16px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: color .15s;
+      white-space: nowrap;
+    }
+    .nav-tab:hover { color: #fff; }
+    .nav-tab.active { color: #fff; border-bottom-color: #990F3D; font-weight: 600; }
+    .nav-badge {
+      background: #990F3D; color: #fff; font-size: 9px; font-weight: 700;
+      padding: 1px 5px; border-radius: 8px;
+    }
+
+    /* ── Section layout ── */
+    .section { display: none; min-height: calc(100vh - 92px); }
+    .section.active { display: block; }
+
+    /* Intelligence section header bar */
+    .intel-header {
+      background: #fff;
+      border-bottom: 1px solid #E5E7EB;
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .intel-kpis { display: flex; align-items: center; gap: 0; }
+    .kpi { display: flex; flex-direction: column; align-items: center; padding: 0 16px; }
+    .kpi:first-child { padding-left: 0; }
+    .kpi-num { font-size: 20px; font-weight: 700; color: #111827; line-height: 1; }
+    .kpi-num.green { color: #15803D; }
+    .kpi-num.amber { color: #B45309; }
+    .kpi-num.red { color: #B91C1C; }
+    .kpi-label { font-size: 10px; color: #9CA3AF; margin-top: 2px; text-transform: uppercase; letter-spacing: .05em; }
+    .kpi-div { width: 1px; background: #E5E7EB; height: 28px; margin: 0 4px; flex-shrink: 0; }
+    .kpi.clickable { cursor: pointer; }
+    .intel-header-right { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+    .last-run-label { font-size: 11px; color: #9CA3AF; }
+    .btn-run { background: #990F3D; color: #fff; border: none; border-radius: 4px; padding: 7px 14px; font-size: 12px; font-weight: 600; cursor: pointer; white-space: nowrap; }
+    .btn-run:hover { background: #7a0c31; }
+    .btn-run:disabled { background: #9CA3AF; cursor: not-allowed; }
+    .btn-icon { background: #fff; color: #374151; border: 1px solid #D1D5DB; border-radius: 4px; padding: 6px 10px; font-size: 13px; cursor: pointer; }
+    .btn-icon:hover { background: #F9FAFB; }
+
+    /* Sub-nav (Review | Discover inside Intelligence) */
+    .sub-nav {
+      background: #fff;
+      border-bottom: 1px solid #E5E7EB;
+      padding: 0 24px;
+      display: flex;
+      align-items: stretch;
+      height: 36px;
+    }
+    .sub-tab {
+      background: none; border: none; border-bottom: 2px solid transparent;
+      color: #6B7280; font-size: 12px; font-weight: 500;
+      padding: 0 14px; cursor: pointer;
+      display: flex; align-items: center; gap: 5px;
+    }
+    .sub-tab:hover { color: #111827; }
+    .sub-tab.active { color: #111827; border-bottom-color: #990F3D; font-weight: 600; }
+
+    /* Section content area */
+    .section-content { padding: 24px; }
+    .section-content.wide { max-width: 960px; margin: 0 auto; }
+
+    /* Discover two-panel layout */
+    .discover-layout {
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 0;
+      min-height: calc(100vh - 128px);
+    }
+    .discover-left {
+      background: #fff;
+      border-right: 1px solid #E5E7EB;
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      overflow: hidden;
+    }
+    .discover-right { padding: 24px; overflow-y: auto; background: #FDF8F2; }
+    .url-input {
+      flex: 1; font-size: 12px; padding: 7px 10px;
+      border: 1px solid #D1D5DB; border-radius: 4px; background: #fff;
+    }
+    .btn-secondary {
+      background: #fff; color: #374151; border: 1px solid #D1D5DB;
+      border-radius: 4px; padding: 7px 12px; font-size: 12px; cursor: pointer; white-space: nowrap;
+    }
+    .btn-secondary:hover { background: #F9FAFB; }
+
+    /* TL section cards */
+    .tl-section-header {
+      background: #fff;
+      border-bottom: 1px solid #E5E7EB;
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .tl-card {
+      background: #fff; border: 1px solid #E5E7EB; border-radius: 6px;
+      padding: 16px 20px; margin-bottom: 8px;
+      display: flex; align-items: flex-start; justify-content: space-between; gap: 16px;
+      transition: border-color .15s;
+    }
+    .tl-card:hover { border-color: #D1D5DB; }
+    .tl-card-title { font-size: 14px; font-weight: 600; color: #111827; line-height: 1.4; margin-bottom: 3px; }
+    .tl-card-meta { font-size: 11px; color: #6B7280; }
+    .tl-card-url { margin-top: 4px; font-size: 11px; }
+    .tl-card-url a { color: #990F3D; text-decoration: none; }
+    .tl-card-url a:hover { text-decoration: underline; }
+    .tl-card-actions { display: flex; gap: 6px; flex-shrink: 0; padding-top: 2px; }
+    .tl-card-log { display: none; margin-top: 8px; font-size: 11px; color: #6B7280; }
+    .tl-published-row {
+      display: flex; align-items: baseline; justify-content: space-between;
+      padding: 9px 0; border-bottom: 1px solid #F3F4F6; font-size: 13px;
+    }
+    .tl-published-row:last-child { border-bottom: none; }
+    .section-label-sm {
+      font-size: 10px; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; color: #990F3D; margin-bottom: 12px;
     }
 
     /* Layout */
@@ -428,14 +566,7 @@
     /* Legacy badge classes kept for manual search results */
     .via-jina_search { background: #EDE9FE; color: #6D28D9; }
 
-    /* ── Audit panel ── */
-    .audit-panel {
-      display: none;
-      padding: 24px;
-      overflow-y: auto;
-      height: calc(100vh - 52px);
-    }
-    .audit-panel.visible { display: block; }
+    /* audit-panel is now inside .section — no separate show/hide needed */
 
     .audit-score-block {
       display: flex; align-items: center; gap: 20px;
@@ -638,116 +769,138 @@
 </head>
 <body>
 
-<header>
+<header class="masthead">
   <div style="display:flex;align-items:center;">
-    <span class="header-title">Editorial Studio</span>
-    <span class="header-sub">AI in Wealth Management</span>
+    <span class="masthead-title">Editorial Studio</span>
+    <span class="masthead-sub">AI in Wealth Management</span>
   </div>
-  <div style="display:flex;align-items:center;gap:4px;">
-    <button onclick="switchMode('pending')" id="btnReviewMode" style="background:none;border:none;font-size:11px;color:#6B7280;cursor:pointer;padding:4px 8px;border-radius:3px;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#6B7280'">Review <span id="headerInboxNum" style="display:none;background:#990F3D;color:#fff;font-size:9px;font-weight:700;padding:1px 5px;border-radius:8px;margin-left:3px;">0</span></button>
-    <button onclick="switchMode('auto')" id="btnDiscoverMode" style="background:none;border:none;font-size:11px;color:#6B7280;cursor:pointer;padding:4px 8px;border-radius:3px;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#6B7280'">Discover</button>
-    <button onclick="switchMode('landscape')" id="btnLandscapeMode" style="background:none;border:none;font-size:11px;color:#6B7280;cursor:pointer;padding:4px 8px;border-radius:3px;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#6B7280'">Landscape <span id="landscadgeBadge" style="display:none;background:#990F3D;color:#fff;font-size:9px;font-weight:700;padding:1px 5px;border-radius:8px;margin-left:3px;">0</span></button>
-    <button onclick="switchMode('audit')" id="btnAuditMode" style="background:none;border:none;font-size:11px;color:#6B7280;cursor:pointer;padding:4px 8px;border-radius:3px;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#6B7280'">Data Audit</button>
-    <span class="header-badge" style="margin-left:8px;">Internal</span>
-  </div>
+  <span class="header-badge">Internal</span>
 </header>
 
-<div class="layout">
+<nav class="nav-bar">
+  <button class="nav-tab active" id="navIntelligence" onclick="switchSection('intelligence')">
+    Intelligence
+    <span class="nav-badge" id="navIntelBadge" style="display:none;">0</span>
+  </button>
+  <button class="nav-tab" id="navTl" onclick="switchSection('tl')">Thought Leadership</button>
+  <button class="nav-tab" id="navLandscape" onclick="switchSection('landscape')">
+    Landscape
+    <span class="nav-badge" id="navLandscapeBadge" style="display:none;">0</span>
+  </button>
+  <button class="nav-tab" id="navAudit" onclick="switchSection('audit')">Data Audit</button>
+</nav>
 
-  <!-- Left panel: candidates + controls -->
-  <div class="left-panel">
-    <div class="panel-header">
-      <div class="panel-title" id="panelTitle">Review Queue</div>
+<!-- ── Intelligence Section ── -->
+<div id="sectionIntelligence" class="section active">
 
-      <!-- Mode tabs: Review (default) | Discover -->
-      <div class="mode-tabs">
-        <button class="mode-tab" id="tabPending" onclick="switchMode('pending')">
-          Review
-          <span class="pending-badge" id="pendingBadge" style="display:none;">0</span>
-        </button>
-        <button class="mode-tab" id="tabAuto" onclick="switchMode('auto')">Discover</button>
-      </div>
-
-      <!-- Review queue mode (default) -->
-      <div id="modePending">
-        <!-- Pipeline status strip -->
-        <div class="pipeline-strip" id="pipelineStrip">
-          <div class="pipeline-stat">
-            <div class="pipeline-stat-num" id="pipelineQueued">—</div>
-            <div class="pipeline-stat-label">In Inbox</div>
-          </div>
-          <div class="pipeline-divider"></div>
-          <div class="pipeline-stat">
-            <div class="pipeline-stat-num green" id="pipelinePublished">—</div>
-            <div class="pipeline-stat-label">Published Today</div>
-          </div>
-          <div class="pipeline-stat" style="cursor:pointer;" onclick="showBlockedModal()" title="Click to see what was blocked">
-            <div class="pipeline-stat-num amber" id="pipelineBlocked">—</div>
-            <div class="pipeline-stat-label" style="text-decoration:underline dotted;text-underline-offset:2px;">Blocked</div>
-          </div>
-          <div class="pipeline-stat">
-            <div class="pipeline-stat-num red" id="pipelineErrors">—</div>
-            <div class="pipeline-stat-label">Errors</div>
-          </div>
-          <div class="pipeline-divider"></div>
-          <div class="pipeline-run-time" id="pipelineRunTime">Last run: —</div>
-          <button class="pipeline-run-btn" id="btnRunPipeline" onclick="runPipelineNow()">▶ Run Pipeline</button>
-          <button class="action-btn secondary" style="width:auto;padding:5px 12px;font-size:11px;" onclick="loadInbox()">↺ Refresh</button>
-        </div>
-        <div id="pendingList" style="max-width:860px;">
-          <div style="font-size:12px;color:#9CA3AF;text-align:center;padding:24px;">Loading...</div>
-        </div>
-
-        <!-- Thought Leadership candidates from last pipeline run -->
-        <div id="tlSection" style="max-width:860px;margin-top:32px;display:none;">
-          <div style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#990F3D;margin-bottom:12px;">Thought Leadership Candidates</div>
-          <div id="tlList" style="display:flex;flex-direction:column;gap:8px;"></div>
-        </div>
-      </div>
-
-      <!-- Discover mode -->
-      <div id="modeAuto" style="display:none;">
-        <button class="action-btn" id="btnAutoDiscover" onclick="runAutoDiscover()">Find New Stories</button>
-        <div style="margin-top:10px;display:flex;gap:6px;">
-          <input type="text" id="manualUrl" placeholder="Or paste a specific URL..." style="font-size:12px;" />
-          <button class="action-btn secondary" style="width:auto;flex-shrink:0;padding:7px 12px;font-size:12px;" onclick="addManualUrl()">Add</button>
-        </div>
-      </div>
-
-      <!-- Hidden inputs kept for Search JS compat -->
-      <div id="modeSearch" style="display:none;">
-        <input type="text" id="searchQuery" placeholder="" />
-        <button id="btnSearch" onclick="runSearch()" style="display:none;"></button>
-      </div>
-      <div id="modeUrl" style="display:none;"></div>
+  <!-- Stats + Run Pipeline bar -->
+  <div class="intel-header">
+    <div class="intel-kpis">
+      <div class="kpi"><span class="kpi-num" id="pipelineQueued">—</span><span class="kpi-label">In Inbox</span></div>
+      <div class="kpi-div"></div>
+      <div class="kpi"><span class="kpi-num green" id="pipelinePublished">—</span><span class="kpi-label">Published Today</span></div>
+      <div class="kpi-div"></div>
+      <div class="kpi clickable" onclick="showBlockedModal()" title="Click to see blocked URLs"><span class="kpi-num amber" id="pipelineBlocked">—</span><span class="kpi-label" style="text-decoration:underline dotted;text-underline-offset:2px;">Blocked</span></div>
+      <div class="kpi-div"></div>
+      <div class="kpi"><span class="kpi-num red" id="pipelineErrors">—</span><span class="kpi-label">Errors</span></div>
     </div>
-
-    <!-- Candidate list -->
-    <div class="candidates-scroll" id="candidateList" style="display:none;">
-      <div style="padding:16px;color:#9CA3AF;text-align:center;font-size:12px;">
-        Click "Find New Stories" to discover AI wealth management stories,<br/>or paste a specific URL above.
-      </div>
-    </div>
-
-    <div class="status-bar" id="statusBar" style="display:none;">
-      <div class="status-dot" id="statusDot"></div>
-      <span id="statusText">Ready</span>
+    <div class="intel-header-right">
+      <span class="last-run-label" id="pipelineRunTime">Last run: —</span>
+      <button class="btn-run" id="btnRunPipeline" onclick="runPipelineNow()">▶ Run Pipeline</button>
+      <button class="btn-icon" onclick="loadInbox()" title="Refresh">↺</button>
     </div>
   </div>
 
-  <!-- Right panel: entry preview + governance (Discover mode only) -->
-  <div class="right-panel" id="rightPanel" style="display:none;">
-    <div class="empty-state">
-      <div class="empty-icon">📰</div>
-      <div class="empty-title">No story selected</div>
-      <div style="font-size:13px;">Click a story on the left to process it</div>
+  <!-- Sub-nav: Review | Discover -->
+  <div class="sub-nav">
+    <button class="sub-tab active" id="tabPending" onclick="switchMode('pending')">
+      Review
+      <span class="pending-badge" id="pendingBadge" style="display:none;">0</span>
+    </button>
+    <button class="sub-tab" id="tabAuto" onclick="switchMode('auto')">Discover</button>
+  </div>
+
+  <!-- Review content -->
+  <div id="modePending" class="section-content">
+    <div id="pendingList" style="max-width:900px;margin:0 auto;">
+      <div style="font-size:12px;color:#9CA3AF;text-align:center;padding:24px;">Loading...</div>
     </div>
   </div>
+
+  <!-- Discover content (two-panel) -->
+  <div id="modeAuto" class="discover-layout" style="display:none;">
+    <div class="discover-left">
+      <button class="btn-run" style="width:100%;" id="btnAutoDiscover" onclick="runAutoDiscover()">Find New Stories</button>
+      <div style="display:flex;gap:6px;">
+        <input type="text" id="manualUrl" class="url-input" placeholder="Or paste a specific URL..." />
+        <button class="btn-secondary" onclick="addManualUrl()">Add</button>
+      </div>
+      <div class="candidates-scroll" id="candidateList" style="flex:1;overflow-y:auto;margin:0 -14px;padding:0 8px;">
+        <div style="padding:16px;color:#9CA3AF;text-align:center;font-size:12px;">
+          Click "Find New Stories" to discover stories,<br/>or paste a specific URL above.
+        </div>
+      </div>
+      <div class="status-bar" id="statusBar">
+        <div class="status-dot" id="statusDot"></div>
+        <span id="statusText">Ready</span>
+      </div>
+    </div>
+    <div class="discover-right" id="rightPanel">
+      <div class="empty-state">
+        <div class="empty-icon">📰</div>
+        <div class="empty-title">No story selected</div>
+        <div style="font-size:13px;color:#9CA3AF;">Click a story on the left to process it</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hidden compat inputs -->
+  <div id="modeSearch" style="display:none;"><input type="text" id="searchQuery" /><button id="btnSearch" onclick="runSearch()" style="display:none;"></button></div>
+  <div id="modeUrl" style="display:none;"></div>
 
 </div>
 
-<!-- ── Landscape Panel (full-width overlay, shown when Landscape tab is active) ──── -->
-<div class="audit-panel" id="landscapePanel">
+<!-- ── Thought Leadership Section ── -->
+<div id="sectionTl" class="section">
+
+  <div class="tl-section-header">
+    <div style="display:flex;align-items:center;gap:12px;">
+      <span style="font-size:13px;font-weight:600;color:#111827;">Thought Leadership</span>
+      <span style="font-size:12px;color:#9CA3AF;" id="tlLastRun">Last discovery: —</span>
+    </div>
+    <div style="display:flex;gap:8px;">
+      <button class="btn-run" id="btnTLDiscover" onclick="runTLDiscover()">▶ Run TL Discovery</button>
+      <button class="btn-icon" onclick="loadTLCandidates()" title="Refresh">↺</button>
+    </div>
+  </div>
+
+  <div id="tlDiscoverLog" style="display:none;background:#111827;border-radius:6px;padding:12px 16px;margin:16px 24px 0;max-height:140px;overflow-y:auto;font-family:monospace;font-size:12px;color:#D1D5DB;"></div>
+
+  <div class="section-content" style="max-width:900px;margin:0 auto;">
+
+    <div style="margin-bottom:32px;">
+      <div class="section-label-sm" style="margin-bottom:12px;">
+        Candidates
+        <span id="tlCandidateCount" style="color:#6B7280;font-weight:400;text-transform:none;letter-spacing:0;font-size:12px;"> (loading…)</span>
+      </div>
+      <div id="tlCandidateList">
+        <div style="color:#9CA3AF;font-size:13px;text-align:center;padding:32px;">Run TL Discovery to find candidates.</div>
+      </div>
+    </div>
+
+    <div>
+      <div class="section-label-sm" style="margin-bottom:12px;">Published</div>
+      <div id="tlPublishedList">
+        <div style="color:#9CA3AF;font-size:13px;padding:12px;">Loading…</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ── Landscape Section ── -->
+<div id="sectionLandscape" class="section">
+<div style="padding:24px;" id="landscapePanel">
   <div style="max-width:960px;margin:0 auto;">
 
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;">
@@ -787,9 +940,12 @@
   </div>
 </div>
 
-<!-- ── Audit Panel (full-width overlay, shown when Audit tab is active) ──── -->
-<div class="audit-panel" id="auditPanel">
-  <div style="max-width:960px;margin:0 auto;">
+</div><!-- /sectionLandscape -->
+
+<!-- ── Audit Section ── -->
+<div id="sectionAudit" class="section">
+<div style="padding:24px;max-width:960px;margin:0 auto;" id="auditPanel">
+  <div>
 
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;">
       <div>
@@ -858,6 +1014,7 @@
 
   </div>
 </div>
+</div><!-- /sectionAudit -->
 
 <!-- Publish bar -->
 <div class="publish-bar" id="publishBar">
@@ -1363,71 +1520,39 @@ function closeLog() {
 
 // ── Mode switching ─────────────────────────────────────────────────────────────
 
+let currentSection = 'intelligence';
 let currentMode = 'pending';
+
+function switchSection(section) {
+  currentSection = section;
+  // Nav tab active states
+  ['intelligence', 'tl', 'landscape', 'audit'].forEach(s => {
+    const btn = document.getElementById(`nav${s.charAt(0).toUpperCase() + s.slice(1)}`);
+    if (btn) btn.classList.toggle('active', s === section);
+  });
+  // Show/hide sections
+  document.querySelectorAll('.section').forEach(el => el.classList.remove('active'));
+  const target = document.getElementById(`section${section.charAt(0).toUpperCase() + section.slice(1)}`);
+  if (target) target.classList.add('active');
+  // Load data for section
+  if (section === 'intelligence') { loadInbox(); loadPipelineStatus(); }
+  else if (section === 'tl') { loadTLCandidates(); loadTLPublished(); }
+  else if (section === 'landscape') { loadLandscapeData(); }
+}
 
 function switchMode(mode) {
   currentMode = mode;
-
-  // Show/hide mode sections in left panel
-  ['auto', 'search', 'url', 'pending'].forEach(m => {
-    const el = document.getElementById(`mode${m.charAt(0).toUpperCase() + m.slice(1)}`);
-    if (el) el.style.display = m === mode ? '' : 'none';
-  });
-
-  // Tab active states (only two real tabs)
+  // Sub-tab active states
   ['pending', 'auto'].forEach(m => {
     const tab = document.getElementById(`tab${m.charAt(0).toUpperCase() + m.slice(1)}`);
     if (tab) tab.classList.toggle('active', m === mode);
   });
-
-  // Header nav active states
-  const headerNavMap = { pending: 'btnReviewMode', auto: 'btnDiscoverMode', landscape: 'btnLandscapeMode', audit: 'btnAuditMode' };
-  Object.entries(headerNavMap).forEach(([m, btnId]) => {
-    const btn = document.getElementById(btnId);
-    if (btn) btn.style.color = m === mode ? '#fff' : '#6B7280';
+  // Show/hide mode panels inside intelligence section
+  ['pending', 'auto', 'search', 'url'].forEach(m => {
+    const el = document.getElementById(`mode${m.charAt(0).toUpperCase() + m.slice(1)}`);
+    if (el) el.style.display = m === mode ? '' : 'none';
   });
-
-  const auditPanel     = document.getElementById('auditPanel');
-  const landscapePanel = document.getElementById('landscapePanel');
-  const layout = document.querySelector('.layout');
-  const publishBar = document.getElementById('publishBar');
-  const rightPanel = document.querySelector('.right-panel');
-  const panelTitle = document.getElementById('panelTitle');
-  const candidateList = document.getElementById('candidateList');
-  const statusBar = document.querySelector('.status-bar');
-
-  if (mode === 'audit') {
-    if (layout) layout.style.display = 'none';
-    if (publishBar) publishBar.style.display = 'none';
-    if (auditPanel) auditPanel.classList.add('visible');
-    if (landscapePanel) landscapePanel.classList.remove('visible');
-  } else if (mode === 'landscape') {
-    if (layout) layout.style.display = 'none';
-    if (publishBar) publishBar.style.display = 'none';
-    if (auditPanel) auditPanel.classList.remove('visible');
-    if (landscapePanel) landscapePanel.classList.add('visible');
-    loadLandscapeData();
-  } else if (mode === 'pending') {
-    // Full-width review queue
-    if (layout) { layout.style.display = 'grid'; layout.style.gridTemplateColumns = '1fr'; }
-    if (rightPanel) rightPanel.style.display = 'none';
-    if (candidateList) candidateList.style.display = 'none';
-    if (statusBar) statusBar.style.display = 'none';
-    if (auditPanel) auditPanel.classList.remove('visible');
-    if (landscapePanel) landscapePanel.classList.remove('visible');
-    if (panelTitle) panelTitle.textContent = 'Review Queue';
-    loadInbox();
-    loadPipelineStatus();
-  } else {
-    // Discover mode — two-panel layout
-    if (layout) { layout.style.display = 'grid'; layout.style.gridTemplateColumns = '340px 1fr'; }
-    if (rightPanel) rightPanel.style.display = '';
-    if (candidateList) candidateList.style.display = '';
-    if (statusBar) statusBar.style.display = '';
-    if (auditPanel) auditPanel.classList.remove('visible');
-    if (landscapePanel) landscapePanel.classList.remove('visible');
-    if (panelTitle) panelTitle.textContent = 'Discover';
-  }
+  if (mode === 'pending') { loadInbox(); loadPipelineStatus(); }
 }
 
 // ── Auto-Discover (Two-layer: L1 News + L2 Companies) ─────────────────────────
@@ -1665,15 +1790,11 @@ async function loadInbox() {
     if (count > 0) { badge.textContent = count; badge.style.display = 'inline-block'; }
     else { badge.style.display = 'none'; }
 
-    // Update header inbox badge
-    const headerNum = document.getElementById('headerInboxNum');
-    if (headerNum) {
-      if (count > 0) {
-        headerNum.textContent = count;
-        headerNum.style.display = 'inline-block';
-      } else {
-        headerNum.style.display = 'none';
-      }
+    // Update nav badge
+    const navBadge = document.getElementById('navIntelBadge');
+    if (navBadge) {
+      navBadge.textContent = count;
+      navBadge.style.display = count > 0 ? 'inline-block' : 'none';
     }
 
     // Update pipeline strip inbox count
@@ -2492,10 +2613,123 @@ async function runSweepNow() {
   btn.textContent = 'Run Staleness Sweep';
 }
 
-// Start on Review Queue
+// ── Thought Leadership ────────────────────────────────────────────────────────
+
+async function runTLDiscover() {
+  const btn = document.getElementById('btnTLDiscover');
+  const logEl = document.getElementById('tlDiscoverLog');
+  btn.disabled = true;
+  btn.textContent = '⏳ Discovering…';
+  logEl.style.display = 'block';
+  logEl.innerHTML = '';
+  const addLog = msg => { logEl.innerHTML += `<div>${esc(String(msg))}</div>`; logEl.scrollTop = logEl.scrollHeight; };
+  try {
+    await sseStream('/api/tl-discover', {}, {
+      status: d => addLog(d.message || JSON.stringify(d)),
+      done:   d => addLog(`✓ Done — ${d.found || 0} candidates found`),
+      error:  d => addLog(`✗ ${d.message || d}`),
+    });
+    document.getElementById('tlLastRun').textContent = `Last discovery: ${new Date().toLocaleDateString('en-GB', {day:'numeric',month:'short',year:'numeric'})}`;
+    await loadTLCandidates();
+  } catch(e) {
+    addLog(`✗ ${e.message}`);
+  } finally {
+    btn.disabled = false;
+    btn.textContent = '▶ Run TL Discovery';
+  }
+}
+
+async function loadTLCandidates() {
+  const list = document.getElementById('tlCandidateList');
+  const countEl = document.getElementById('tlCandidateCount');
+  try {
+    const res = await fetch('/api/tl-candidates');
+    const data = await res.json();
+    const items = data.candidates || [];
+    if (countEl) countEl.textContent = `(${items.length})`;
+    if (items.length === 0) {
+      list.innerHTML = '<div style="color:#9CA3AF;font-size:13px;text-align:center;padding:32px;">No candidates — run TL Discovery to find thought leadership pieces.</div>';
+      return;
+    }
+    list.innerHTML = items.map((c, i) => `
+      <div class="tl-card" id="tlcard-${i}">
+        <div style="flex:1;min-width:0;">
+          <div class="tl-card-title">${esc(c.title || c.url)}</div>
+          <div class="tl-card-meta">${c.author ? esc(c.author) + ' · ' : ''}${esc(c.publication || '')}${c.date ? ' · ' + esc(c.date) : ''}</div>
+          <div class="tl-card-url"><a href="${esc(c.url)}" target="_blank">${esc(c.url)}</a></div>
+          <div class="tl-card-log" id="tlcard-log-${i}"></div>
+        </div>
+        <div class="tl-card-actions">
+          <a href="${esc(c.url)}" target="_blank" class="btn-secondary" style="text-decoration:none;font-size:11px;padding:5px 10px;">Open →</a>
+          <button class="btn-run" style="font-size:11px;padding:5px 12px;" onclick="approveTLCandidate('${esc(c.url)}',${i})">Approve as TL</button>
+          <button class="btn-secondary" style="font-size:11px;padding:5px 10px;color:#B91C1C;border-color:#FECACA;" onclick="dismissTLCandidate('${esc(c.url)}',${i})">Dismiss</button>
+        </div>
+      </div>`).join('');
+  } catch(e) {
+    if (list) list.innerHTML = `<div style="color:#EF4444;padding:16px;">${esc(e.message)}</div>`;
+  }
+}
+
+async function loadTLPublished() {
+  const list = document.getElementById('tlPublishedList');
+  try {
+    const res = await fetch('/api/tl-published');
+    const data = await res.json();
+    const entries = data.entries || [];
+    if (!entries.length) { list.innerHTML = '<div style="color:#9CA3AF;font-size:13px;">None published yet.</div>'; return; }
+    list.innerHTML = entries.map(e => `
+      <div class="tl-published-row">
+        <div><span style="font-weight:600;">${esc(e.author?.name || '—')}</span><span style="color:#6B7280;"> — ${esc(e.title || '')}</span></div>
+        <span style="font-size:11px;color:#9CA3AF;">${esc(e.date_published || '')}</span>
+      </div>`).join('');
+  } catch(e) {
+    if (list) list.innerHTML = '<div style="color:#9CA3AF;font-size:13px;">Could not load.</div>';
+  }
+}
+
+async function approveTLCandidate(url, idx) {
+  const logEl = document.getElementById(`tlcard-log-${idx}`);
+  const card = document.getElementById(`tlcard-${idx}`);
+  logEl.style.display = 'block';
+  logEl.textContent = 'Fetching article…';
+  card.querySelectorAll('button').forEach(b => b.disabled = true);
+  try {
+    await sseStream('/api/tl-publish', { url }, {
+      status: d => { logEl.textContent = d.message || JSON.stringify(d); },
+      done:   () => {
+        logEl.textContent = '✓ Published to thought-leadership';
+        logEl.style.color = '#15803D';
+        setTimeout(() => {
+          card.style.transition = 'opacity .3s'; card.style.opacity = '0';
+          setTimeout(() => { card.remove(); loadTLCandidates(); loadTLPublished(); }, 300);
+        }, 800);
+      },
+      error:  d => {
+        logEl.textContent = `✗ ${d.message || d}`;
+        logEl.style.color = '#B91C1C';
+        card.querySelectorAll('button').forEach(b => b.disabled = false);
+      },
+    });
+  } catch(e) {
+    logEl.textContent = `✗ ${e.message}`;
+    logEl.style.color = '#B91C1C';
+    card.querySelectorAll('button').forEach(b => b.disabled = false);
+  }
+}
+
+async function dismissTLCandidate(url, idx) {
+  const card = document.getElementById(`tlcard-${idx}`);
+  card.style.opacity = '0.4';
+  try {
+    await fetch('/api/tl-candidates/dismiss', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({url}) });
+    card.remove();
+    loadTLCandidates();
+  } catch(e) { card.style.opacity = '1'; }
+}
+
+// ── Init ──────────────────────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
-  switchMode('pending');
-  loadPipelineStatus();
+  switchSection('intelligence');
 });
 </script>
 
