@@ -10,14 +10,14 @@
     "latam"
   ],
   "color": "#003087",
-  "ai_strategy_summary": "JPMorgan's AI strategy in wealth management and private banking centres on live deployments reaching across the entire advisor network — and a deepening conviction that AI creates an unassailable client moat. Connect Coach cuts discussion-material sourcing by 90% and is rolling to ~17,000 advisors by year-end. Smart Monitor reduces research time by 83%. 55ip manages $380B in personalised accounts for wealth clients. At the February 2026 Company Update, Mary Erdoes declared 'JPMorgan will be an end game winner in the AI space' and articulated the moat thesis: 'the more you know about me... how could I ever not be with you because somebody else doesn't have all that information and all that history.' AWM posted record $553B in flows for 2025 and hit a 40% ROE — well above its 25% target.",
+  "ai_strategy_summary": "JPMorgan's AI strategy in wealth management and private banking centres on live deployments reaching across the entire advisor network — and a deepening conviction that AI creates an unassailable client moat. Connect Coach cuts discussion-material sourcing by 90% and is rolling to ~17,000 advisors by year-end. Smart Monitor reduces research time by 83%. Controls AI has expanded from 200 AWM employees to 3,000 firmwide. At the February 2026 Company Update, Mary Erdoes declared 'JPMorgan will be an end game winner in the AI space' and articulated the moat thesis: 'the more you know about me... how could I ever not be with you because somebody else doesn't have all that information and all that history.' AWM posted record $553B in flows for 2025 and hit a 40% ROE — well above its 25% target.",
   "head_of_ai": {
     "name": "Mike Urciuoli",
     "title": "CIO, JPMorgan Asset & Wealth Management"
   },
-  "headline_metric": "$6T AWM client assets — Connect Coach rolling to ~17,000 advisors by year-end; $380B in 55ip personalised accounts",
+  "headline_metric": "$6T AWM client assets — Connect Coach rolling to ~17,000 advisors by year-end; Smart Monitor cuts research time by 83%",
   "primary_source": "https://www.jpmorganchase.com/content/dam/jpmc/jpmorgan-chase-and-co/investor-relations/documents/events/2025/jpmc-2025-investor-day/asset-wealth-management.pdf",
-  "headline_initiative": "Connect Coach (90% faster discussion sourcing, ~17,000 advisors by year-end), Smart Monitor (83% faster research), 55ip ($380B personalised accounts) — live at scale across advisor network (2025 Investor Day)",
+  "headline_initiative": "Connect Coach (90% faster discussion sourcing, ~17,000 advisors by year-end), Smart Monitor (83% faster research), Controls AI (3,000 firmwide employees, 80 compliance prompts) — live at scale across advisor network",
   "overall_maturity": "scaled",
   "key_metrics": {
     "client_assets_trillions": 6.0,
@@ -76,23 +76,6 @@
         },
         {
           "name": "JPMorgan 2025 Investor Day — Asset & Wealth Management (slide 12)",
-          "url": "https://www.jpmorganchase.com/content/dam/jpmc/jpmorgan-chase-and-co/investor-relations/documents/events/2025/jpmc-2025-investor-day/asset-wealth-management.pdf"
-        }
-      ]
-    },
-    "investment_portfolio": {
-      "maturity": "scaled",
-      "headline": "55ip manages $380B in personalised accounts — JPMorgan's tax-optimised, client-specific portfolio platform brought in $25B in new assets in 2024",
-      "detail": "55ip — JPMorgan's personalised account platform within Wealth Management (not J.P. Morgan Asset Management) — delivers tax-optimised, client-specific portfolios at scale for individual wealth clients through advisors. At the 2025 Investor Day (May 20), Mary Erdoes described 55ip as a 'flywheel' now at $380B in personalised accounts, having brought in $25B in new assets during 2024. The platform enables advisors to offer institutional-grade personalised portfolio construction to private bank and wealth management clients. Harvard Business School, as part of its JPMorgan AI case study (now required first-year curriculum), identified personalised portfolio delivery as a core competitive differentiator.",
-      "evidence": [
-        "Mary Erdoes (CEO, AWM — Investor Day, May 20, 2025): 55ip is a 'flywheel' at $380B in personalised accounts",
-        "55ip brought in $25B in new assets in 2024 — Investor Day, May 20, 2025",
-        "HBS case study (required first-year curriculum): personalised portfolio delivery cited as competitive differentiator"
-      ],
-      "date_assessed": "2026-03-24",
-      "sources": [
-        {
-          "name": "JPMorgan 2025 Investor Day — Asset & Wealth Management (May 20, 2025)",
           "url": "https://www.jpmorganchase.com/content/dam/jpmc/jpmorgan-chase-and-co/investor-relations/documents/events/2025/jpmc-2025-investor-day/asset-wealth-management.pdf"
         }
       ]
