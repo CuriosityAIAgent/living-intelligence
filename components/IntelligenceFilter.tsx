@@ -176,9 +176,9 @@ export default function IntelligenceFilter({ entries }: { entries: IntelligenceE
 
               {/* Key stat */}
               {entry.key_stat && (
-                <div className="flex-shrink-0 text-right min-w-[80px]">
-                  <div className="text-xl font-extrabold text-[#990F3D]">{entry.key_stat.number}</div>
-                  <div className="text-xs text-gray-400 leading-tight">{entry.key_stat.label}</div>
+                <div className="flex-shrink-0 text-right w-44">
+                  <div className="text-2xl font-extrabold text-[#990F3D] leading-none">{entry.key_stat.number}</div>
+                  <div className="text-xs text-gray-400 leading-snug mt-1.5">{entry.key_stat.label}</div>
                 </div>
               )}
             </Link>
