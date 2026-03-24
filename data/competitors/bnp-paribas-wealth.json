@@ -38,11 +38,11 @@
     "research_content": {
       "maturity": "piloting",
       "headline": "AI research and portfolio analytics for WM advisors in development via AI Centre of Excellence — not yet broadly deployed",
-      "detail": "BNP Paribas advisors use AI for investment research synthesis, portfolio analytics, and the generation of client advisory materials — supported by the AI Centre of Excellence in Singapore.",
+      "detail": "BNP Paribas AI Centre of Excellence in Singapore (launched November 2025) is co-developing GenAI for investment research synthesis, portfolio analytics, and client advisory material generation — not yet broadly deployed.",
       "evidence": [
-        "Portfolio analytics AI in production",
-        "Advisory material generation confirmed",
-        "AI-assisted investment research deployed"
+        "AI Centre of Excellence Singapore launched November 2025 — co-development mandate includes portfolio analytics and research AI",
+        "Advisory material generation and research synthesis in development",
+        "Not yet broadly deployed — AI CoE mandate, not a live product confirmation"
       ],
       "jpm_implication": "Investment research AI at scale is now table stakes among major European private banks. JPM Research must accelerate AI-assisted synthesis for advisor consumption.",
       "jpm_segments_affected": [

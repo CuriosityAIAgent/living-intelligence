@@ -38,12 +38,12 @@
       ]
     },
     "research_content": {
-      "maturity": "deployed",
+      "maturity": "piloting",
       "headline": "AI-generated market insights and research synthesis for private banking teams",
       "detail": "AskWealth provides market intelligence synthesis and Advisor Insights offers an ML-based markets update dashboard, currently in pilot for private banking advisors.",
       "evidence": [
         "AskWealth market insights capability confirmed",
-        "Advisor Insights pilot"
+        "Advisor Insights ML dashboard in pilot — not yet broadly deployed"
       ],
       "jpm_implication": "Citi's research AI is live. JPM's comparative research delivery speed should be benchmarked.",
       "jpm_segments_affected": [
