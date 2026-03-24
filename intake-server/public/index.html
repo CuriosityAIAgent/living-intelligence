@@ -2302,16 +2302,49 @@ async function confirmReject() {
 
   closeRejectionModal();
 
+  // Immediately remove card from DOM and pending list (optimistic)
+  const card = document.getElementById(`eq-${id}`);
+  if (card) card.remove();
+  _pendingItems = _pendingItems.filter(i => i.id !== id);
+  if (_activePendingIdx >= _pendingItems.length) _activePendingIdx = Math.max(0, _pendingItems.length - 1);
+
+  // Re-render remaining cards with updated indices
+  const list = document.getElementById('pendingList');
+  if (list) {
+    if (_pendingItems.length === 0) {
+      list.innerHTML = `
+        <div style="text-align:center;padding:48px 24px;color:#9CA3AF;">
+          <div style="font-size:36px;margin-bottom:12px;">✓</div>
+          <div style="font-size:15px;font-weight:600;color:#6B7280;margin-bottom:6px;">Inbox clear</div>
+          <div style="font-size:13px;">No stories waiting for review. Run the pipeline to discover new content.</div>
+          <button class="pipeline-run-btn" style="margin-top:16px;" onclick="runPipelineNow()">▶ Run Pipeline Now</button>
+        </div>`;
+    } else {
+      list.innerHTML = renderGroupedInbox(_pendingItems, _pendingItems.length);
+    }
+  }
+
+  // Update badge counts
+  const badge = document.getElementById('pendingBadge');
+  if (badge) { badge.textContent = _pendingItems.length; badge.style.display = _pendingItems.length > 0 ? 'inline-block' : 'none'; }
+  const navBadge = document.getElementById('navIntelBadge');
+  if (navBadge) { navBadge.textContent = _pendingItems.length; navBadge.style.display = _pendingItems.length > 0 ? 'inline-block' : 'none'; }
+  const pipelineQueued = document.getElementById('pipelineQueued');
+  if (pipelineQueued) pipelineQueued.textContent = _pendingItems.length;
+
+  // Scroll to activity log so user sees the rejection appear
+  setTimeout(() => {
+    const actEl = document.getElementById('activityLog');
+    if (actEl) actEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 100);
+
   try {
-    const res = await fetch(`/api/inbox/${id}/reject-with-reason`, {
+    await fetch(`/api/inbox/${id}/reject-with-reason`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ reason, notes }),
     });
-    const data = await res.json();
-    if (!data.ok) throw new Error(data.error || 'Reject failed');
-    setStatus(`✕ Rejected: ${id}`);
-    loadInbox();
+    // Refresh activity log to show the rejection
     loadActivityLog();
   } catch (err) {
     setStatus(`Error: ${err.message}`, 'error');
