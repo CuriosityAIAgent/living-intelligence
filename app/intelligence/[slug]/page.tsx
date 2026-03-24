@@ -22,7 +22,10 @@ function boldKey(text: string): React.ReactNode {
 
 // Split into sentences; bold opening clause (lede) + key figures + proper nouns
 function FormattedSummary({ text }: { text: string }) {
-  const sentences = (text.match(/[^.!?]+[.!?]+(?:\s|$)/g) || [text])
+  // Split on sentence-ending punctuation — but NOT on periods inside numbers (e.g. $14.00, 0.25%)
+  const normalized = text.replace(/(\d)\.(\d)/g, '$1·$2'); // temp-replace decimal points
+  const sentences = (normalized.match(/[^.!?]+[.!?]+(?:\s|$)/g) || [normalized])
+    .map(s => s.replace(/(\d)·(\d)/g, '$1.$2')) // restore decimal points
     .map(s => s.trim())
     .filter(s => s.length > 10);
 
