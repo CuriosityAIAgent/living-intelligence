@@ -604,6 +604,49 @@ app.get('/api/recent-published', (req, res) => {
 
 // ─── Governance audit endpoints ───────────────────────────────────────────────
 
+// Activity log — last 7 days of approvals + rejections combined
+app.get('/api/activity-log', (req, res) => {
+  const cutoff = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString();
+
+  // Rejections from rejection log
+  const rejections = (getRejectionLog() || [])
+    .filter(r => r.rejected_at && r.rejected_at >= cutoff)
+    .map(r => ({
+      id:         r.id,
+      headline:   r.headline || r.id,
+      company:    r.company_name || null,
+      action:     'rejected',
+      reason:     r.reason || null,
+      timestamp:  r.rejected_at,
+    }));
+
+  // Approvals from published entries
+  const approvals = [];
+  const intelFiles = fs.existsSync(DATA_DIR + '/intelligence')
+    ? fs.readdirSync(DATA_DIR + '/intelligence').filter(f => f.endsWith('.json'))
+    : [];
+  for (const f of intelFiles) {
+    try {
+      const e = JSON.parse(fs.readFileSync(DATA_DIR + '/intelligence/' + f, 'utf-8'));
+      const approvedAt = e._governance?.approved_at || e.published_at;
+      if (approvedAt && approvedAt >= cutoff) {
+        approvals.push({
+          id:        e.id,
+          headline:  e.headline,
+          company:   e.company_name || null,
+          action:    'approved',
+          timestamp: approvedAt,
+        });
+      }
+    } catch {}
+  }
+
+  const combined = [...rejections, ...approvals]
+    .sort((a, b) => b.timestamp.localeCompare(a.timestamp));
+
+  res.json({ log: combined });
+});
+
 // View all permanently blocked URLs
 app.get('/api/blocked', (req, res) => {
   res.json(getBlocked());

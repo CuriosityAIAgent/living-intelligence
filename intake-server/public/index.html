@@ -181,6 +181,27 @@
       text-transform: uppercase; color: #990F3D; margin-bottom: 12px;
     }
 
+    /* Activity log */
+    .activity-date-group { margin-bottom: 20px; }
+    .activity-date-label {
+      font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+      color: #9CA3AF; margin-bottom: 8px; padding-bottom: 6px; border-bottom: 1px solid #E5E7EB;
+    }
+    .activity-row {
+      display: flex; align-items: baseline; gap: 10px;
+      padding: 7px 0; border-bottom: 1px solid #F9FAFB; font-size: 13px;
+    }
+    .activity-row:last-child { border-bottom: none; }
+    .activity-pill {
+      font-size: 9px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+      padding: 2px 7px; border-radius: 3px; flex-shrink: 0;
+    }
+    .activity-pill.approved { background: #DCFCE7; color: #15803D; }
+    .activity-pill.rejected { background: #FEE2E2; color: #B91C1C; }
+    .activity-headline { flex: 1; color: #374151; line-height: 1.4; }
+    .activity-company { font-size: 11px; color: #9CA3AF; flex-shrink: 0; }
+    .activity-time { font-size: 11px; color: #9CA3AF; flex-shrink: 0; }
+
     /* Layout */
     .layout {
       display: grid;
@@ -825,6 +846,9 @@
     <div id="pendingList" style="max-width:900px;margin:0 auto;">
       <div style="font-size:12px;color:#9CA3AF;text-align:center;padding:24px;">Loading...</div>
     </div>
+
+    <!-- 7-day activity log -->
+    <div id="activityLog" style="max-width:900px;margin:32px auto 0;"></div>
   </div>
 
   <!-- Discover content (two-panel) -->
@@ -1535,7 +1559,7 @@ function switchSection(section) {
   const target = document.getElementById(`section${section.charAt(0).toUpperCase() + section.slice(1)}`);
   if (target) target.classList.add('active');
   // Load data for section
-  if (section === 'intelligence') { loadInbox(); loadPipelineStatus(); }
+  if (section === 'intelligence') { loadInbox(); loadPipelineStatus(); loadActivityLog(); }
   else if (section === 'tl') { loadTLCandidates(); loadTLPublished(); }
   else if (section === 'landscape') { loadLandscapeData(); }
 }
@@ -1552,7 +1576,7 @@ function switchMode(mode) {
     const el = document.getElementById(`mode${m.charAt(0).toUpperCase() + m.slice(1)}`);
     if (el) el.style.display = m === mode ? '' : 'none';
   });
-  if (mode === 'pending') { loadInbox(); loadPipelineStatus(); }
+  if (mode === 'pending') { loadInbox(); loadPipelineStatus(); loadActivityLog(); }
 }
 
 // ── Auto-Discover (Two-layer: L1 News + L2 Companies) ─────────────────────────
@@ -2098,6 +2122,7 @@ async function approvePendingEntry(id) {
     addLog('Done.', 'success');
     loadInbox();
     loadPipelineStatus();
+    loadActivityLog();
     setStatus(`✓ Published: ${id}`);
   } catch (err) {
     addLog(`✕ ${err.message}`, 'error');
@@ -2143,6 +2168,7 @@ async function confirmReject() {
     if (!data.ok) throw new Error(data.error || 'Reject failed');
     setStatus(`✕ Rejected: ${id}`);
     loadInbox();
+    loadActivityLog();
   } catch (err) {
     setStatus(`Error: ${err.message}`, 'error');
   }
@@ -2614,6 +2640,53 @@ async function runSweepNow() {
 }
 
 // ── Thought Leadership ────────────────────────────────────────────────────────
+
+// ── Activity Log (7-day history) ─────────────────────────────────────────────
+
+async function loadActivityLog() {
+  const el = document.getElementById('activityLog');
+  if (!el) return;
+  try {
+    const res = await fetch('/api/activity-log');
+    const data = await res.json();
+    const log = data.log || [];
+    if (!log.length) { el.innerHTML = ''; return; }
+
+    const groups = {};
+    log.forEach(item => {
+      const d = new Date(item.timestamp);
+      const key = d.toLocaleDateString('en-GB', { weekday:'short', day:'numeric', month:'short' });
+      if (!groups[key]) groups[key] = [];
+      groups[key].push(item);
+    });
+
+    const REASON_LABELS = {
+      not_relevant: 'Not relevant', already_covered: 'Duplicate', wrong_framing: 'Wrong framing',
+      low_quality: 'Low quality', too_old: 'Too old', other: 'Other',
+    };
+
+    el.innerHTML = `
+      <div style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#9CA3AF;padding-bottom:10px;border-top:1px solid #E5E7EB;padding-top:24px;margin-bottom:12px;">
+        Recent Activity — Last 7 Days
+      </div>
+      ${Object.entries(groups).map(([date, items]) => `
+        <div class="activity-date-group">
+          <div class="activity-date-label">${esc(date)}</div>
+          ${items.map(item => `
+            <div class="activity-row">
+              <span class="activity-pill ${item.action}">${item.action === 'approved' ? '✓ Approved' : '✕ Rejected'}</span>
+              <span class="activity-headline">${esc(item.headline)}</span>
+              ${item.company ? `<span class="activity-company">${esc(item.company)}</span>` : ''}
+              ${item.reason && item.action === 'rejected' ? `<span class="activity-time" style="color:#B91C1C;">${esc(REASON_LABELS[item.reason] || item.reason)}</span>` : ''}
+              <span class="activity-time">${new Date(item.timestamp).toLocaleTimeString('en-GB', {hour:'2-digit',minute:'2-digit'})}</span>
+            </div>
+          `).join('')}
+        </div>
+      `).join('')}`;
+  } catch(e) {
+    el.innerHTML = '';
+  }
+}
 
 async function runTLDiscover() {
   const btn = document.getElementById('btnTLDiscover');
