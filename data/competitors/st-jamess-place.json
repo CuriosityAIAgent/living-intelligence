@@ -1,0 +1,60 @@
+{
+  "id": "st-jamess-place",
+  "name": "St. James's Place",
+  "segment": "regional_champion",
+  "regions": ["uk"],
+  "color": "#1B3A6B",
+  "ai_strategy_summary": "St. James's Place is deploying AI to reduce adviser admin burden — not to replace advisers. The Advice Assistant (built with IntellectAI on Salesforce) compresses 60-90 minutes of post-meeting documentation into ~5 minutes and is expanding from ISA cases to pensions and protection. The Intelligent Investment Hub automates fund analytics, ESG intelligence, and factsheet generation. Head of AI Wenyu Bai: 'AI is the background assistant, but the value of advice still lies with the financial adviser.'",
+  "head_of_ai": {
+    "name": "Wenyu Bai",
+    "title": "Head of AI and Machine Learning"
+  },
+  "headline_metric": "£190.2B FUM (2024 record); 4,920 advisers; Advice Assistant compresses 90-min admin to 5 mins",
+  "headline_initiative": "Advice Assistant (ISA → pensions/protection rollout) + Intelligent Investment Hub",
+  "overall_maturity": "piloting",
+  "capabilities": {
+    "advisor_productivity": {
+      "maturity": "deployed",
+      "headline": "Advice Assistant compresses 60-90 minutes of post-meeting documentation to ~5 minutes — live for ISA cases, expanding to pensions and protection",
+      "detail": "Built with SS&C Technologies and IntellectAI on Salesforce, the Advice Assistant uses NLP to interpret adviser notes from client meetings, automatically builds an advice file, checks recommendations against SJP's advice policy, and populates all documentation. Reduces a 60-90 minute admin process to ~5 minutes and saves 1-2 hours per case on back-office work. Currently live for ISA advice. Planned expansion to pensions, protection, and other products. Won the UK IT Industry Awards (Financial Services Project of the Year) and FSTech Best Financial Services IT Team (2023).",
+      "evidence": [
+        "Advice Assistant: 60-90 minute documentation process reduced to ~5 minutes — IntellectAI/SJP, 2023-2024",
+        "Saves 1-2 hours per case on back-office documentation — IntellectAI case study",
+        "Live for ISA advice; expanding to pensions, protection — IntellectAI, 2024",
+        "Won UK IT Industry Awards Financial Services Project of the Year + FSTech Best Financial Services IT Team — 2023"
+      ],
+      "date_assessed": "2026-03-24",
+      "sources": [
+        {
+          "name": "IntellectAI — SJP wins Celent Model Wealth Manager with Intelligent Automation",
+          "url": "https://www.intellectai.com/news/st-jamess-place-wins-celents-model-wealth-manager-with-intellect-ais-intelligent-automation/"
+        },
+        {
+          "name": "IntellectAI — SJP and IntellectAI receive coveted industry recognitions",
+          "url": "https://www.intellectai.com/intellectai-and-st-jamess-place-receive-coveted-industry-recognitions-as-they-redefine-adviser-led-wealth-management-on-salesforce/"
+        }
+      ]
+    },
+    "research_content": {
+      "maturity": "deployed",
+      "headline": "Intelligent Investment Hub: automated fund performance intelligence, sentiment analysis, ESG intelligence, and factsheet generation",
+      "detail": "SJP's Intelligent Investment Hub, built with IntellectAI on Snowflake and Matillion, covers: fund performance intelligence, sentiment analysis of analyst reactions, automated fund comparison and commentary, auto-generation of fund fact sheets, and ESG intelligence. Deployed in the Investment Management division. SJ-GPT (GenAI tool for advisers to retrieve regulatory information) and Chat SJP (internal GPT-style assistant) are in development.",
+      "evidence": [
+        "Intelligent Investment Hub: fund performance intelligence, sentiment analysis, automated factsheet generation, ESG intelligence — IntellectAI, June 2021+",
+        "SJ-GPT (regulatory Q&A for advisers) and Chat SJP in development — Spear's Magazine, 2024"
+      ],
+      "date_assessed": "2026-03-24",
+      "sources": [
+        {
+          "name": "IntellectAI — SJP selects Intellect as strategic AI transformation partner for Investment Management",
+          "url": "https://www.intellectai.com/st-jamess-place-selects-intellect-as-their-strategic-ai-transformation-partner-for-their-investment-management-division/"
+        },
+        {
+          "name": "Spear's Magazine — The rise of AI in wealth management (SJP section)",
+          "url": "https://spearswms.com/wealth/the-rise-of-wealth-manager-chatgpt-ai-artificial-intelligence/"
+        }
+      ]
+    }
+  },
+  "last_updated": "2026-03-24"
+}

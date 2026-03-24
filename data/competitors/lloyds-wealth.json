@@ -1,0 +1,72 @@
+{
+  "id": "lloyds-wealth",
+  "name": "Lloyds Wealth (formerly Schroders Personal Wealth)",
+  "segment": "regional_champion",
+  "regions": ["uk"],
+  "color": "#006A4E",
+  "ai_strategy_summary": "Lloyds Banking Group is executing the most ambitious agentic AI rollout in UK retail banking — deploying 'the UK's first large-scale, multi-feature agentic AI financial assistant' to 21 million mobile app customers from November 2025. Lloyds acquired 100% of Schroders Personal Wealth (£17B AUM, ~300 advisers) in October 2025, rebranding it as Lloyds Wealth. GenAI delivered £50M of value across the group in 2025, with a £100M+ target for 2026.",
+  "head_of_ai": {
+    "name": "Rohit Dhawan",
+    "title": "Group Head of Artificial Intelligence"
+  },
+  "headline_metric": "£17B AUM (Lloyds Wealth); agentic AI assistant deployed to 21 million customers",
+  "headline_initiative": "Agentic AI Financial Assistant — 'UK's first large-scale multi-feature agentic AI' (Nov 2025)",
+  "overall_maturity": "deployed",
+  "capabilities": {
+    "client_personalization": {
+      "maturity": "deployed",
+      "headline": "Agentic AI financial assistant live for 21 million customers — conversational spending analysis and savings/investment guidance",
+      "detail": "Launched November 2025 as 'the UK's first large-scale, multi-feature agentic AI powered financial assistant.' Deployed to 21 million Lloyds mobile app customers. Initial features: conversational spending analysis and savings/investment guidance. Expansion to mortgages, car finance, and insurance planned through 2026. Thousands of internal colleagues tested the system before public launch. Developed in partnership with Google Cloud (named primary AI infrastructure partner).",
+      "evidence": [
+        "Lloyds Banking Group: 'the UK's first large-scale, multi-feature agentic AI powered financial assistant' — Lloyds newsroom, November 2025",
+        "Deployed to 21 million Lloyds mobile app customers — Lloyds newsroom, November 2025",
+        "Google Cloud named primary AI infrastructure partner — PR Newswire, 2025"
+      ],
+      "date_assessed": "2026-03-24",
+      "sources": [
+        {
+          "name": "Lloyds Banking Group — Launching the UK's first agentic AI financial assistant (Nov 2025)",
+          "url": "https://www.lloydsbankinggroup.com/insights/launching-the-uks-first-agentic-ai-financial-assistant.html"
+        },
+        {
+          "name": "PR Newswire — Lloyds Banking Group accelerates AI innovation with Google Cloud",
+          "url": "https://www.prnewswire.com/news-releases/lloyds-banking-group-accelerates-ai-innovation-with-google-cloud-302424543.html"
+        }
+      ]
+    },
+    "operations_compliance": {
+      "maturity": "scaled",
+      "headline": "GenAI delivering £50M value in 2025, targeting £100M+ in 2026 — AI-driven efficiency tools contributed to £0.8B additional revenues in 2024",
+      "detail": "Lloyds reported generative AI delivered £50 million of value in 2025 across the group. The 2026 target is £100 million+. AI-driven efficiency tools contributed to £0.8 billion in additional revenues in 2024, exceeding the £0.7 billion target. Technology savings of $1.5 billion delivered in 2024.",
+      "evidence": [
+        "GenAI delivered £50M of group value in 2025; £100M+ target for 2026 — FStech, 2025",
+        "AI-driven efficiency tools contributed to £0.8B additional revenues in 2024 — Lloyds FY2024 results"
+      ],
+      "date_assessed": "2026-03-24",
+      "sources": [
+        {
+          "name": "FStech — Lloyds targets £100M AI value (2025)",
+          "url": "https://www.fstech.co.uk/fst/Lloyds_Banking_Group_Targets_100m_AI_Value.php"
+        }
+      ]
+    },
+    "new_business_models": {
+      "maturity": "piloting",
+      "headline": "Lloyds acquires 100% of Schroders Personal Wealth (Oct 2025) — rebranding as Lloyds Wealth to build integrated banking + AI wealth platform",
+      "detail": "Lloyds Banking Group acquired 100% of Schroders Personal Wealth in October 2025 (no cash; exchanged SPW stake for a Cazenove Capital stake). SPW — with £17B AUM, ~60,000 clients, ~300 financial advisers — will rebrand as Lloyds Wealth. The acquisition positions Lloyds to cross-sell AI-powered wealth guidance to its 21 million+ banking customers. Schroders continues to manage assets under a multi-year agreement.",
+      "evidence": [
+        "Lloyds acquires 100% of Schroders Personal Wealth, October 2025 — Hubbis / AJ Bell",
+        "SPW: £17B AUM, ~60,000 clients, ~300 financial advisers",
+        "Will rebrand as Lloyds Wealth — Hubbis, 2025"
+      ],
+      "date_assessed": "2026-03-24",
+      "sources": [
+        {
+          "name": "Hubbis — Lloyds takes full control of Schroders Personal Wealth to rebrand as Lloyds Wealth",
+          "url": "https://www.hubbis.com/news/lloyds-takes-full-control-of-schroders-personal-wealth-to-rebrand-as-lloyds-wealth"
+        }
+      ]
+    }
+  },
+  "last_updated": "2026-03-24"
+}
