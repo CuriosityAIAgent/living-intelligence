@@ -10,7 +10,7 @@
     "latam"
   ],
   "color": "#003087",
-  "ai_strategy_summary": "JPMorgan's AI strategy in wealth management and private banking centres on live deployments now reaching across the entire advisor network. Connect Coach — which cuts discussion-material sourcing by 90% — has been rolled out to 4,600 private banking advisors and launched to 7,600 Chase Wealth Management employees in May 2025, targeting ~17,000 advisors by year-end (Mary Erdoes, 2025 Investor Day). Smart Monitor reduces investor research time by 83%. 55ip, JPMorgan's tax-optimised personalised account platform, manages $380B in personalised accounts and brought in $25B in new assets in 2024. Harvard Business School, which made JPMorgan a required first-year case, said students concluded: 'J.P. Morgan's playing an entirely different game.'",
+  "ai_strategy_summary": "JPMorgan's AI strategy in wealth management and private banking centres on live deployments reaching across the entire advisor network — and a deepening conviction that AI creates an unassailable client moat. Connect Coach cuts discussion-material sourcing by 90% and is rolling to ~17,000 advisors by year-end. Smart Monitor reduces research time by 83%. 55ip manages $380B in personalised accounts for wealth clients. At the February 2026 Company Update, Mary Erdoes declared 'JPMorgan will be an end game winner in the AI space' and articulated the moat thesis: 'the more you know about me... how could I ever not be with you because somebody else doesn't have all that information and all that history.' AWM posted record $553B in flows for 2025 and hit a 40% ROE — well above its 25% target.",
   "head_of_ai": {
     "name": "Mike Urciuoli",
     "title": "CIO, JPMorgan Asset & Wealth Management"
@@ -39,7 +39,9 @@
         "Connect Coach: 90% reduction in time to source discussion materials — Investor Day slide 12 (visually verified from PDF by Haresh)",
         "Mike Urciuoli (CIO, AWM): advisors find information 'up to 95% faster' — Reuters, May 5, 2025 (verbatim quote)",
         "20% YoY gross sales growth 2023–2024 — Reuters, May 5, 2025 (paraphrase, not a named exec quote)",
-        "50% more clients per adviser target over 3–5 years — Reuters, May 5, 2025"
+        "50% more clients per adviser target over 3–5 years — Reuters, May 5, 2025",
+        "Marianne Lake (CEO, Consumer & Community Banking — LOB Q&A, Feb 23, 2026): AWM is generating 'twice as many net flows per advisor over the last five years' — attributed to AI tools enabling advisor scale",
+        "Mary Erdoes (CEO, AWM — LOB Q&A, Feb 23, 2026): 'JPMorgan will be an end game winner in the AI space' — moat thesis: 'the more you know about me... how could I ever not be with you because somebody else doesn't have all that information and all that history'"
       ],
       "date_assessed": "2026-03-24",
       "sources": [
@@ -50,6 +52,10 @@
         {
           "name": "Reuters — JPMorgan says AI helped boost sales (Urciuoli/Erdoes quotes)",
           "url": "https://www.reuters.com/business/finance/jpmorgan-says-ai-helped-boost-sales-add-clients-market-turmoil-2025-05-05/"
+        },
+        {
+          "name": "JPMorgan 2026 Company Update — LOB Q&A (Feb 23, 2026)",
+          "url": "https://www.jpmorganchase.com/ir/2026-company-update"
         }
       ]
     },
@@ -77,7 +83,7 @@
     "investment_portfolio": {
       "maturity": "scaled",
       "headline": "55ip manages $380B in personalised accounts — JPMorgan's tax-optimised, client-specific portfolio platform brought in $25B in new assets in 2024",
-      "detail": "55ip — JPMorgan's personalised account platform — delivers tax-optimised, client-specific portfolios at scale. At the 2025 Investor Day (May 20), Mary Erdoes described 55ip as a 'flywheel' now at $380B in personalised accounts, having brought in $25B in new assets during 2024. The platform enables advisors to offer institutional-grade personalised portfolio construction to private bank and wealth management clients. Harvard Business School, as part of its JPMorgan AI case study (now required first-year curriculum), identified personalised portfolio delivery as a core competitive differentiator.",
+      "detail": "55ip — JPMorgan's personalised account platform within Wealth Management (not J.P. Morgan Asset Management) — delivers tax-optimised, client-specific portfolios at scale for individual wealth clients through advisors. At the 2025 Investor Day (May 20), Mary Erdoes described 55ip as a 'flywheel' now at $380B in personalised accounts, having brought in $25B in new assets during 2024. The platform enables advisors to offer institutional-grade personalised portfolio construction to private bank and wealth management clients. Harvard Business School, as part of its JPMorgan AI case study (now required first-year curriculum), identified personalised portfolio delivery as a core competitive differentiator.",
       "evidence": [
         "Mary Erdoes (CEO, AWM — Investor Day, May 20, 2025): 55ip is a 'flywheel' at $380B in personalised accounts",
         "55ip brought in $25B in new assets in 2024 — Investor Day, May 20, 2025",
@@ -94,7 +100,7 @@
     "research_content": {
       "maturity": "deployed",
       "headline": "Smart Monitor (Spectrum) cuts investor research time by 83% — Erdoes: 'takes things that take days and weeks and turning them into seconds'",
-      "detail": "Smart Monitor — built on JPMorgan's Spectrum platform — is deployed for investors and portfolio teams. It provides AI-integrated workflow, automated insights, custom investment universes, and extensive market coverage. The 2025 Investor Day slide 12 disclosed an 83% reduction in time spent researching a topic. Mary Erdoes, in the same Investor Day session, characterised the impact: 'takes things that take days and weeks and turning them into seconds' (verbatim). Smart Monitor sits alongside Connect Coach (advisors) and 55ip (personalised portfolios) as one of JPMorgan's core production AI capabilities in wealth management.",
+      "detail": "Smart Monitor — built on JPMorgan's Spectrum platform — is deployed across Asset & Wealth Management (AWM), bridging both the Asset Management and Wealth Management divisions. It provides AI-integrated workflow, automated insights, custom investment universes, and extensive market coverage for investors, portfolio teams, and wealth advisors alike. The 2025 Investor Day slide 12 disclosed an 83% reduction in time spent researching a topic. Mary Erdoes, in the same Investor Day session, characterised the impact: 'takes things that take days and weeks and turning them into seconds' (verbatim). Within the wealth management context covered here, Smart Monitor is used by advisors and relationship managers in the Private Bank and Chase Wealth Management. Smart Monitor sits alongside Connect Coach (advisors) and 55ip (personalised portfolios) as one of JPMorgan's core production AI capabilities.",
       "evidence": [
         "Smart Monitor (Spectrum): 83% reduction in time spent researching a topic — Investor Day slide 12 (visually verified from PDF by Haresh)",
         "Mary Erdoes (CEO, AWM — Investor Day, May 20, 2025): Smart Monitor 'takes things that take days and weeks and turning them into seconds'",
@@ -109,6 +115,22 @@
         {
           "name": "Reuters — JPMorgan says AI helped boost sales, add clients in market turmoil",
           "url": "https://www.reuters.com/business/finance/jpmorgan-says-ai-helped-boost-sales-add-clients-market-turmoil-2025-05-05/"
+        }
+      ]
+    },
+    "operations_compliance": {
+      "maturity": "deployed",
+      "headline": "Controls AI scaled from 200 AWM employees to 3,000 firmwide — 80 compliance prompts deployed, 3,000–5,000 more employees identified for rollout",
+      "detail": "JPMorgan's Controls AI programme automates compliance and controls workflows at scale across the firm. At the February 2026 Company Update (LOB Q&A, Feb 23), Mary Erdoes described the trajectory: the programme began with 200 AWM employees, expanded to 3,000 firmwide employees using 80 prompts, and a further 3,000–5,000 employees have been identified for the next wave of rollout. Within AWM, Controls AI reduces the manual burden of compliance monitoring, freeing advisor and operations capacity. The programme exemplifies JPMorgan's thesis that AI's highest-value applications in financial services are not just client-facing — but in the operational and regulatory infrastructure that underpins the business.",
+      "evidence": [
+        "Mary Erdoes (CEO, AWM — LOB Q&A, Feb 23, 2026): Controls AI started with 200 AWM employees, expanded to 3,000 firmwide with 80 prompts",
+        "Mary Erdoes (CEO, AWM — LOB Q&A, Feb 23, 2026): 3,000–5,000 additional employees identified for next rollout wave"
+      ],
+      "date_assessed": "2026-03-24",
+      "sources": [
+        {
+          "name": "JPMorgan 2026 Company Update — LOB Q&A (Feb 23, 2026)",
+          "url": "https://www.jpmorganchase.com/ir/2026-company-update"
         }
       ]
     }
