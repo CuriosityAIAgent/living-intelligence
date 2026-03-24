@@ -63,5 +63,15 @@
     "id": "lpl-anthropic-claude-ai-integration-expansion-2026-02",
     "reason": "Paywalled source — claims unverifiable, not fabricated. Human review required.",
     "blocked_at": "2026-03-23T11:29:05.293Z"
+  },
+  "https://fintechnews.ch/fintechusa/jump-series-b-ai-financial-advisors/82171/": {
+    "id": "jump-series-b-ai-financial-advisors-2026-02",
+    "reason": "Human rejected REVIEW entry",
+    "blocked_at": "2026-03-24T15:17:07.110Z"
+  },
+  "https://www.businesswire.com/news/home/20260219487440/en/Jump-Raises-%2480-Million-Series-B-Led-by-Insight-Partners-to-Expand-AI-Operating-System-for-Financial-Advisors": {
+    "id": "jump-ai-operating-system-80m-series-b-27000-advisors",
+    "reason": "Human rejected REVIEW entry",
+    "blocked_at": "2026-03-24T15:17:28.191Z"
   }
 }

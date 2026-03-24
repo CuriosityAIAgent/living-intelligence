@@ -9,5 +9,27 @@
     "score": null,
     "governance_verdict": "REVIEW",
     "rejected_at": "2026-03-24T05:31:57.357Z"
+  },
+  {
+    "id": "jump-series-b-ai-financial-advisors-2026-02",
+    "url": "https://fintechnews.ch/fintechusa/jump-series-b-ai-financial-advisors/82171/",
+    "headline": "Jump's AI Advisor Assistant Scales to 15,000 Advisors on $80M Series B",
+    "company": "Jump",
+    "reason": "already_covered",
+    "notes": "",
+    "score": null,
+    "governance_verdict": "REVIEW",
+    "rejected_at": "2026-03-24T15:17:07.102Z"
+  },
+  {
+    "id": "jump-ai-operating-system-80m-series-b-27000-advisors",
+    "url": "https://www.businesswire.com/news/home/20260219487440/en/Jump-Raises-%2480-Million-Series-B-Led-by-Insight-Partners-to-Expand-AI-Operating-System-for-Financial-Advisors",
+    "headline": "Jump's AI Operating System Reaches 27,000 Advisors as $80M Series B Signals Category Maturity",
+    "company": "Jump",
+    "reason": "already_covered",
+    "notes": "",
+    "score": null,
+    "governance_verdict": "REVIEW",
+    "rejected_at": "2026-03-24T15:17:28.189Z"
   }
 ]
