@@ -12,8 +12,8 @@
   "image_url": "/logos/jpmorgan.svg",
   "summary": "In a Reuters interview published May 5, 2025, Mary Erdoes (CEO, JPMorgan Asset & Wealth Management) described how AI enabled personalised client engagement at scale during spring 2025 market volatility: 'When you have a tool that pre-populates all the data and the movement in real time, while also remembering clients' old investment preferences and helps in tailoring a plan for them quickly, it also allows advisors to do much more.' Erdoes further noted that 'AI has also been handling a lot of anticipatory work, allowing advisors to be prepared for what could have otherwise been a very stressful moment with market movements.' The JPMorgan 2025 Investor Day AWM presentation (slide 12) separately confirmed that Connect Coach — the advisor-facing AI tool — provides tailored outreach ideas and that 'proactive and anticipatory client advice' was added as a new AI use case target for 2025.",
   "key_stat": {
-    "number": "4,000",
-    "label": "Private bank advisers using AI-powered personalised client engagement tools — JPMorgan (Reuters, May 2025)"
+    "number": "4,600",
+    "label": "Private banking advisors with Connect Coach — rolling to ~17,000 across advisor network by year-end (Erdoes, Investor Day May 2025)"
   },
   "tags": {
     "capability": "client_personalization",
@@ -29,7 +29,7 @@
     "verified_claims": [
       "Mary Erdoes (CEO, JPMorgan AWM): 'tool that pre-populates all the data and the movement in real time, while also remembering clients' old investment preferences and helps in tailoring a plan for them quickly' — verbatim quote, Reuters May 5, 2025",
       "Mary Erdoes: 'AI has also been handling a lot of anticipatory work, allowing advisors to be prepared for what could have otherwise been a very stressful moment' — verbatim quote, Reuters May 5, 2025",
-      "4,000 advisers serving high-net-worth private bank clients — Reuters May 5, 2025, citing HBS case study context",
+      "4,600 private banking advisors with Connect Coach — Mary Erdoes, Investor Day May 20, 2025 (supersedes Reuters figure of 4,000 from HBS case study context)",
       "Connect Coach features include 'tailored outreach ideas' and 'proactive and anticipatory client advice' listed as NEW 2025 use case — Investor Day slide 12, May 20, 2025"
     ],
     "unverified_claims": [],
