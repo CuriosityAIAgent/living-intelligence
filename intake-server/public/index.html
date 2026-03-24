@@ -1807,8 +1807,21 @@ function renderEditorialCard(item, idx, total) {
         <div class="eq-actions">
           <button class="eq-btn-approve" onclick="approvePendingEntry('${escapeAttr(item.id)}');event.stopPropagation()">✓ Publish</button>
           <button class="eq-btn-edit" onclick="toggleEditMode('${escapeAttr(item.id)}');event.stopPropagation()">✏ Edit then Publish</button>
-          <button class="eq-btn-reject" onclick="rejectPendingEntry('${escapeAttr(item.id)}','${escapeAttr(item.headline)}');event.stopPropagation()">✕ Reject</button>
+          <button class="eq-btn-reject" onclick="showInlineReject('${escapeAttr(item.id)}');event.stopPropagation()">✕ Reject</button>
           <span class="eq-shortcuts"><kbd>J</kbd>/<kbd>K</kbd> nav &nbsp; <kbd>P</kbd> Publish &nbsp; <kbd>E</kbd> Edit &nbsp; <kbd>R</kbd> Reject</span>
+        </div>
+        <!-- Inline reject bar -->
+        <div id="inline-reject-${escapeAttr(item.id)}" style="display:none;padding:10px 16px;background:#FEF2F2;border-top:1px solid #FECACA;display:none;align-items:center;gap:8px;flex-wrap:wrap;">
+          <select id="inline-reason-${escapeAttr(item.id)}" style="font-size:12px;border:1px solid #D1D5DB;border-radius:4px;padding:4px 8px;background:#fff;color:#374151;" onclick="event.stopPropagation()">
+            <option value="not_relevant">Not relevant</option>
+            <option value="already_covered">Already covered</option>
+            <option value="low_quality">Low quality source</option>
+            <option value="unverifiable">Unverifiable claims</option>
+            <option value="too_old">Too old</option>
+            <option value="other">Other</option>
+          </select>
+          <button onclick="doInstantReject('${escapeAttr(item.id)}');event.stopPropagation()" style="background:#B91C1C;color:#fff;border:none;border-radius:4px;padding:5px 12px;font-size:12px;font-weight:700;cursor:pointer;">Confirm Reject</button>
+          <button onclick="hideInlineReject('${escapeAttr(item.id)}');event.stopPropagation()" style="background:#fff;color:#6B7280;border:1px solid #D1D5DB;border-radius:4px;padding:5px 10px;font-size:12px;cursor:pointer;">Cancel</button>
         </div>
 
         <!-- Inline editor -->
@@ -2276,16 +2289,70 @@ async function approvePendingEntry(id) {
 }
 
 function rejectPendingEntry(id, headline) {
-  _rejectingId = id;
-  // Show headline in modal sub-text
-  const sub = document.getElementById('rejectionModalSub');
-  if (sub) sub.textContent = `"${(headline || id).slice(0, 80)}"`;
-  // Reset fields
-  const reason = document.getElementById('rejectionReason');
-  const notes = document.getElementById('rejectionNotes');
-  if (reason) reason.value = 'not_relevant';
-  if (notes) notes.value = '';
-  document.getElementById('rejectionModal').classList.add('visible');
+  // Keyboard shortcut path — use inline reject bar
+  showInlineReject(id);
+}
+
+function showInlineReject(id) {
+  // Hide any other open inline reject bars first
+  document.querySelectorAll('[id^="inline-reject-"]').forEach(el => el.style.display = 'none');
+  const bar = document.getElementById(`inline-reject-${id}`);
+  if (bar) bar.style.display = 'flex';
+}
+
+function hideInlineReject(id) {
+  const bar = document.getElementById(`inline-reject-${id}`);
+  if (bar) bar.style.display = 'none';
+}
+
+async function doInstantReject(id) {
+  const reason = document.getElementById(`inline-reason-${id}`)?.value || 'not_relevant';
+
+  // Immediately remove card
+  const card = document.getElementById(`eq-${id}`);
+  if (card) card.remove();
+  _pendingItems = _pendingItems.filter(i => i.id !== id);
+  if (_activePendingIdx >= _pendingItems.length) _activePendingIdx = Math.max(0, _pendingItems.length - 1);
+
+  const list = document.getElementById('pendingList');
+  if (list) {
+    if (_pendingItems.length === 0) {
+      list.innerHTML = `
+        <div style="text-align:center;padding:48px 24px;color:#9CA3AF;">
+          <div style="font-size:36px;margin-bottom:12px;">✓</div>
+          <div style="font-size:15px;font-weight:600;color:#6B7280;margin-bottom:6px;">Inbox clear</div>
+          <div style="font-size:13px;">No stories waiting for review. Run the pipeline to discover new content.</div>
+          <button class="pipeline-run-btn" style="margin-top:16px;" onclick="runPipelineNow()">▶ Run Pipeline Now</button>
+        </div>`;
+    } else {
+      list.innerHTML = renderGroupedInbox(_pendingItems, _pendingItems.length);
+    }
+  }
+
+  // Update badges
+  const n = _pendingItems.length;
+  const badge = document.getElementById('pendingBadge');
+  if (badge) { badge.textContent = n; badge.style.display = n > 0 ? 'inline-block' : 'none'; }
+  const navBadge = document.getElementById('navIntelBadge');
+  if (navBadge) { navBadge.textContent = n; navBadge.style.display = n > 0 ? 'inline-block' : 'none'; }
+  const pipelineQueued = document.getElementById('pipelineQueued');
+  if (pipelineQueued) pipelineQueued.textContent = n;
+
+  // Scroll to activity log
+  setTimeout(() => {
+    document.getElementById('activityLog')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 150);
+
+  try {
+    await fetch(`/api/inbox/${id}/reject-with-reason`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ reason, notes: '' }),
+    });
+    loadActivityLog();
+  } catch (err) {
+    setStatus(`Error: ${err.message}`, 'error');
+  }
 }
 
 function closeRejectionModal() {
