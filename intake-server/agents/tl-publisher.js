@@ -133,8 +133,10 @@ export async function publishTlEntry({ url, send }) {
   }
 
   // 3. Quality gate
-  if (!extracted.author_name) {
-    throw new Error('Quality gate: no named author found — review manually');
+  // author_name may be null for institutional/multi-author reports — fall back to organization
+  const resolvedAuthor = extracted.author_name || extracted.author_organization || null;
+  if (!resolvedAuthor) {
+    throw new Error('Quality gate: no author or organization found — review manually');
   }
   if (!extracted.the_one_insight) {
     throw new Error('Quality gate: could not extract a clear point of view — review manually');
@@ -144,7 +146,7 @@ export async function publishTlEntry({ url, send }) {
   }
 
   // 4. Build entry
-  const slug = makeSlug(extracted.author_name, extracted.title);
+  const slug = makeSlug(resolvedAuthor, extracted.title);
   const filepath = join(TL_DIR, `${slug}.json`);
 
   // Prevent overwriting existing entries
@@ -157,7 +159,7 @@ export async function publishTlEntry({ url, send }) {
     type:           extracted.format || 'essay',
     title:          extracted.title,
     author: {
-      name:         extracted.author_name,
+      name:         resolvedAuthor,
       title:        extracted.author_title || null,
       organization: extracted.author_organization || null,
       photo_url:    null,
