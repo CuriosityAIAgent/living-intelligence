@@ -5,9 +5,15 @@
   "company": "hsbc-private-bank",
   "company_name": "HSBC Private Bank",
   "date": "2025-09-16",
-  "source_name": "HSBC Private Bank",
-  "source_url": "https://www.privatebanking.hsbc.com/media-releases-and-news/hsbc-deploys-wealth-intelligence/",
-  "source_verified": false,
+  "source_name": "Asian Banking & Finance",
+  "source_url": "https://asianbankingandfinance.net/wealth-management/news/hsbc-private-bank-rolls-out-gen-ai-platform-wealth-management-staff",
+  "source_verified": true,
+  "additional_sources": [
+    {
+      "name": "HSBC Private Bank — official media release (Sep 16, 2025)",
+      "url": "https://www.privatebanking.hsbc.com/media-releases-and-news/hsbc-deploys-wealth-intelligence/"
+    }
+  ],
   "image_url": "/logos/hsbc.svg",
   "summary": "HSBC Private Bank announced on 16 September 2025 the deployment of a generative AI platform called Wealth Intelligence for use by its wealth management staff. The platform is designed to support relationship managers and advisors in their day-to-day workflows. The rollout reflects HSBC's broader push to embed AI-driven tools across its private banking operations globally.",
   "key_stat": null,
