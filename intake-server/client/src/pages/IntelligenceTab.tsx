@@ -248,9 +248,9 @@ export default function IntelligenceTab() {
       </div>
 
       {/* Content */}
-      <div style={{ display: 'flex', minHeight: 'calc(100vh - 168px)' }}>
+      <div style={{ padding: 24 }}>
         {/* Main panel */}
-        <div style={{ flex: 1, padding: 24, overflowY: 'auto' }}>
+        <div>
           {subTab === 'review' ? (
             <>
               {isLoading ? (
@@ -310,14 +310,12 @@ export default function IntelligenceTab() {
           )}
         </div>
 
-        {/* Activity log sidebar */}
+        {/* Activity log — full width below main content */}
         <div
           style={{
-            width: 300,
-            borderLeft: '1px solid #E5E7EB',
-            padding: 16,
-            background: '#fff',
-            overflowY: 'auto',
+            marginTop: 32,
+            borderTop: '1px solid #E5E7EB',
+            paddingTop: 24,
           }}
         >
           <ActivityLog />
