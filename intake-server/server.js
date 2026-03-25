@@ -16,7 +16,7 @@ import { verify } from './agents/governance.js';
 import { publish, commitAndPush } from './agents/publisher.js';
 import {
   getPending, addPending, approvePending, rejectPending,
-  getBlocked, addBlocked, isBlocked,
+  getBlocked, addBlocked, isBlocked, removeBlocked,
   getRejectionLog, addRejectionLog, readPipelineStatus,
   getArchive, archiveStaleItems,
   isTopicSuppressed, suppressTopic, getSuppressedTopics,
@@ -714,7 +714,16 @@ app.get('/api/activity-log', (req, res) => {
 
 // View all permanently blocked URLs
 app.get('/api/blocked', (req, res) => {
-  res.json(getBlocked());
+  const store = getBlocked();
+  const blocked = Object.entries(store).map(([url, meta]) => ({ url, ...meta }));
+  res.json({ blocked });
+});
+
+app.post('/api/blocked/unblock', (req, res) => {
+  const { url } = req.body;
+  if (!url) return res.status(400).json({ error: 'url required' });
+  removeBlocked(url);
+  res.json({ ok: true, url });
 });
 
 // ─── Health check ─────────────────────────────────────────────────────────────

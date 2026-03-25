@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
-import { fetchInbox, fetchPipelineStatus, fetchBlocked } from '../api';
+import { fetchInbox, fetchPipelineStatus, fetchBlocked, unblockUrl } from '../api';
 import StoryCard from '../components/StoryCard';
 import ActivityLog from '../components/ActivityLog';
 
@@ -482,6 +482,10 @@ function DiscoverPanel() {
 // ── Blocked panel ─────────────────────────────────────────────────────────────
 
 function BlockedPanel() {
+  const queryClient = useQueryClient();
+  const [search, setSearch] = useState('');
+  const [unblocking, setUnblocking] = useState<string | null>(null);
+
   const { data, isLoading } = useQuery({
     queryKey: ['blocked'],
     queryFn: fetchBlocked,
@@ -489,56 +493,126 @@ function BlockedPanel() {
 
   const blocked = data?.blocked ?? [];
 
+  const filtered = search.trim()
+    ? blocked.filter(b =>
+        b.url.toLowerCase().includes(search.toLowerCase()) ||
+        (b.reason ?? '').toLowerCase().includes(search.toLowerCase())
+      )
+    : blocked;
+
+  const handleUnblock = async (url: string) => {
+    setUnblocking(url);
+    try {
+      await unblockUrl(url);
+      queryClient.invalidateQueries({ queryKey: ['blocked'] });
+    } finally {
+      setUnblocking(null);
+    }
+  };
+
   if (isLoading) return <div style={{ color: '#9CA3AF', fontSize: 13 }}>Loading…</div>;
 
-  if (blocked.length === 0) {
-    return <div style={{ color: '#9CA3AF', fontSize: 13 }}>No blocked URLs.</div>;
-  }
-
   return (
-    <div style={{ maxWidth: 820 }}>
-      <div
-        style={{
-          fontSize: 10,
-          fontWeight: 700,
-          letterSpacing: '0.1em',
-          textTransform: 'uppercase',
-          color: '#B91C1C',
-          marginBottom: 14,
-        }}
-      >
-        Permanently Blocked — {blocked.length} URLs
-      </div>
-      {blocked.map((b, i) => (
-        <div
-          key={i}
+    <div style={{ maxWidth: 860 }}>
+      {/* Header row */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 16 }}>
+        <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#B91C1C' }}>
+          Permanently Blocked — {blocked.length} URL{blocked.length !== 1 ? 's' : ''}
+        </div>
+        <input
+          value={search}
+          onChange={e => setSearch(e.target.value)}
+          placeholder="Search URL or reason…"
           style={{
-            background: '#fff',
-            border: '1px solid #FECACA',
-            borderRadius: 6,
-            padding: '10px 14px',
-            marginBottom: 6,
-            display: 'flex',
-            gap: 12,
-            alignItems: 'flex-start',
+            marginLeft: 'auto',
+            width: 260,
+            padding: '5px 10px',
+            fontSize: 12,
+            border: '1px solid #E5E7EB',
+            borderRadius: 4,
+            outline: 'none',
+            fontFamily: 'inherit',
           }}
-        >
-          <div style={{ flex: 1, minWidth: 0 }}>
-            <div style={{ fontSize: 12, color: '#374151', marginBottom: 3, wordBreak: 'break-all' }}>
-              <a href={b.url} target="_blank" rel="noopener noreferrer"
-                style={{ color: '#374151', textDecoration: 'none' }}>
-                {b.url}
-              </a>
+        />
+      </div>
+
+      {filtered.length === 0 && (
+        <div style={{ color: '#9CA3AF', fontSize: 13 }}>
+          {blocked.length === 0 ? 'No blocked URLs yet.' : 'No matches.'}
+        </div>
+      )}
+
+      {filtered.map((b, i) => {
+        // Extract score from reason string e.g. "Score 41/100 — ..."
+        const scoreMatch = b.reason?.match(/Score (\d+)\/100/);
+        const score = scoreMatch ? parseInt(scoreMatch[1]) : null;
+
+        return (
+          <div
+            key={i}
+            style={{
+              background: '#fff',
+              border: '1px solid #FECACA',
+              borderRadius: 6,
+              padding: '10px 14px',
+              marginBottom: 6,
+              display: 'flex',
+              gap: 12,
+              alignItems: 'center',
+            }}
+          >
+            {/* Score badge */}
+            {score !== null && (
+              <span style={{
+                fontSize: 14,
+                fontWeight: 800,
+                color: score >= 60 ? '#B45309' : '#B91C1C',
+                minWidth: 32,
+                flexShrink: 0,
+              }}>
+                {score}
+              </span>
+            )}
+
+            {/* URL + reason */}
+            <div style={{ flex: 1, minWidth: 0 }}>
+              <div style={{ fontSize: 12, color: '#374151', marginBottom: 2, wordBreak: 'break-all' }}>
+                <a href={b.url} target="_blank" rel="noopener noreferrer"
+                  style={{ color: '#374151', textDecoration: 'none' }}>
+                  {b.url}
+                </a>
+              </div>
+              <div style={{ fontSize: 11, color: '#B91C1C' }}>{b.reason}</div>
             </div>
-            <div style={{ fontSize: 11, color: '#B91C1C' }}>{b.reason}</div>
+
+            {/* Date */}
             {b.blocked_at && (
-              <div style={{ fontSize: 10, color: '#9CA3AF', marginTop: 2 }}>
-                {new Date(b.blocked_at).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}
+              <div style={{ fontSize: 10, color: '#9CA3AF', flexShrink: 0 }}>
+                {new Date(b.blocked_at).toLocaleDateString('en-GB', { day: 'numeric', month: 'short' })}
               </div>
             )}
+
+            {/* Unblock button */}
+            <button
+              onClick={() => handleUnblock(b.url)}
+              disabled={unblocking === b.url}
+              style={{
+                flexShrink: 0,
+                background: unblocking === b.url ? '#F3F4F6' : '#fff',
+                border: '1px solid #D1D5DB',
+                borderRadius: 4,
+                padding: '4px 10px',
+                fontSize: 11,
+                fontWeight: 600,
+                color: '#374151',
+                cursor: unblocking === b.url ? 'wait' : 'pointer',
+              }}
+            >
+              {unblocking === b.url ? '…' : 'Unblock'}
+            </button>
           </div>
-        </div>
-      ))}
+        );
+      })}
     </div>
   );
 }

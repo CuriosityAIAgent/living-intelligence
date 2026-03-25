@@ -107,6 +107,12 @@ export function isBlocked(url) {
   return !!readStore(BLOCKED_FILE)[url];
 }
 
+export function removeBlocked(url) {
+  const store = readStore(BLOCKED_FILE);
+  delete store[url];
+  writeStore(BLOCKED_FILE, store);
+}
+
 // ─── Rejection log (editorial feedback for algorithm tuning) ──────────────────
 
 export function getRejectionLog() {

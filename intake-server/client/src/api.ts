@@ -118,6 +118,9 @@ export const runAuditDeep = (): Promise<unknown> =>
 export const fetchBlocked = (): Promise<{ blocked: BlockedUrl[] }> =>
   apiFetch('/api/blocked');
 
+export const unblockUrl = (url: string): Promise<{ ok: boolean }> =>
+  apiFetch('/api/blocked/unblock', { method: 'POST', body: JSON.stringify({ url }) });
+
 // ── Health ────────────────────────────────────────────────────────────────────
 
 export const fetchHealth = (): Promise<{ status: string; queue: number; blocked: number }> =>
