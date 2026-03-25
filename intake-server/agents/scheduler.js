@@ -19,7 +19,7 @@ import { autoDiscover } from './auto-discover.js';
 import { processUrl } from './intake.js';
 import { verify } from './governance.js';
 import { scoreEntry, formatScoreBreakdown } from './scorer.js';
-import { addPending, addBlocked, isBlocked, isCompanySuppressed, writePipelineStatus } from './gov-store.js';
+import { addPending, addBlocked, isBlocked, isTopicSuppressed, writePipelineStatus } from './gov-store.js';
 import { commitInboxState } from './publisher.js';
 import { sendDigest } from './notifier.js';
 
@@ -127,14 +127,6 @@ export async function runDailyPipeline() {
       continue;
     }
 
-    // Skip if company has been repeatedly rejected and is in suppression window
-    const candidateCompany = (candidate.company_id || candidate.company || '').toLowerCase().replace(/[^a-z0-9-]/g, '-');
-    if (candidateCompany && isCompanySuppressed(candidateCompany)) {
-      console.log(`[scheduler] Skipping suppressed company: ${candidate.company || candidateCompany}`);
-      blocked.push({ url, reason: `Company suppressed: ${candidate.company || candidateCompany}` });
-      continue;
-    }
-
     console.log(`[scheduler] Processing: ${candidate.title}`);
 
     try {
@@ -149,6 +141,16 @@ export async function runDailyPipeline() {
 
       if (!intakeResult) {
         errors.push({ url, stage: 'intake', message: 'processUrl returned null' });
+        continue;
+      }
+
+      // Topic suppression — company+type rejected 2+ times with same reason → skip
+      const entryCompanyId = intakeResult.entry.company;
+      const entryType = intakeResult.entry.type;
+      if (entryCompanyId && entryType && isTopicSuppressed(entryCompanyId, entryType)) {
+        console.log(`[scheduler] Skipping suppressed topic ${entryCompanyId}:${entryType}`);
+        blocked.push({ url, reason: `Topic suppressed: ${intakeResult.entry.company_name || entryCompanyId} / ${entryType}` });
+        addBlocked(url, intakeResult.entry.id || url, `Topic suppressed: ${entryCompanyId}:${entryType}`);
         continue;
       }
 

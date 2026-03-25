@@ -159,29 +159,37 @@ export function archiveStaleItems() {
   }
 }
 
-// ─── Company suppression (auto-suppress after repeated rejections) ────────────
-// After rejecting the same company ≥2 times, it gets suppressed for 30 days.
-// The scheduler skips suppressed companies during candidate processing.
+// ─── Topic suppression (company + entry_type level — smarter than company-wide) ─
+//
+// When the same company:type combination is rejected ≥2 times, suppress that
+// specific topic for 60 days. A different entry type for the same company still
+// gets through: Jump funding → suppressed, Jump product_launch → allowed.
+//
+// Key: "{companyId}:{entryType}"  e.g. "jump-ai:funding"
 
-export function isCompanySuppressed(companyId) {
-  if (!companyId) return false;
+export function isTopicSuppressed(companyId, entryType) {
+  if (!companyId || !entryType) return false;
+  const key = `${companyId.toLowerCase()}:${entryType.toLowerCase()}`;
   const store = readStore(SUPPRESSED_FILE);
-  const entry = store[companyId.toLowerCase()];
+  const entry = store[key];
   if (!entry) return false;
   return new Date(entry.suppressed_until) > new Date();
 }
 
-export function suppressCompany(companyId, companyName, reason, days = 30) {
-  if (!companyId) return;
+export function suppressTopic(companyId, entryType, companyName, reason, days = 60) {
+  if (!companyId || !entryType) return;
+  const key = `${companyId.toLowerCase()}:${entryType.toLowerCase()}`;
   const store = readStore(SUPPRESSED_FILE);
   const until = new Date(Date.now() + days * 24 * 60 * 60 * 1000).toISOString();
-  store[companyId.toLowerCase()] = { company_name: companyName, reason, suppressed_until: until, suppressed_at: new Date().toISOString() };
+  store[key] = { company_name: companyName, entry_type: entryType, reason, suppressed_until: until, suppressed_at: new Date().toISOString() };
   writeStore(SUPPRESSED_FILE, store);
 }
 
-export function getSuppressedCompanies() {
+export function getSuppressedTopics() {
   const store = readStore(SUPPRESSED_FILE);
   const now = new Date();
-  // Return only active suppressions
   return Object.fromEntries(Object.entries(store).filter(([, v]) => new Date(v.suppressed_until) > now));
 }
+
+// Legacy alias — keep scheduler import working
+export const isCompanySuppressed = isTopicSuppressed;

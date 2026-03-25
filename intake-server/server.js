@@ -19,7 +19,7 @@ import {
   getBlocked, addBlocked, isBlocked,
   getRejectionLog, addRejectionLog, readPipelineStatus,
   getArchive, archiveStaleItems,
-  isCompanySuppressed, suppressCompany, getSuppressedCompanies,
+  isTopicSuppressed, suppressTopic, getSuppressedTopics,
 } from './agents/gov-store.js';
 import { runDailyPipeline } from './agents/scheduler.js';
 import { signToken, verifyToken } from './agents/notifier.js';
@@ -457,12 +457,16 @@ app.post('/api/inbox/:id/reject-with-reason', (req, res) => {
   const item = pending[req.params.id];
   if (!item) return res.status(404).json({ error: 'Entry not found in inbox' });
 
+  const companyId  = item.entry.company;
+  const entryType  = item.entry.type;
+
   addRejectionLog({
     id:                req.params.id,
     url:               item.entry.source_url,
     headline:          item.entry.headline,
     company:           item.entry.company_name,
-    company_id:        item.entry.company,
+    company_id:        companyId,
+    entry_type:        entryType,
     reason,
     notes,
     score:             item.score ?? null,
@@ -470,19 +474,23 @@ app.post('/api/inbox/:id/reject-with-reason', (req, res) => {
     rejected_at:       new Date().toISOString(),
   });
 
-  // Auto-suppress company after 2+ rejections (different URLs, same company)
-  const companyId = item.entry.company;
-  if (companyId) {
+  // Auto-suppress this company+type topic after 2+ rejections with same reason
+  // (e.g. jump-ai:funding rejected twice → suppress jump-ai:funding for 60 days)
+  // A different entry type for the same company still gets through.
+  if (companyId && entryType) {
     const log = getRejectionLog();
-    const rejectionCount = log.filter(r => r.company_id === companyId || r.company === item.entry.company_name).length;
-    if (rejectionCount >= 2 && !isCompanySuppressed(companyId)) {
-      suppressCompany(companyId, item.entry.company_name, `Auto-suppressed after ${rejectionCount} rejections`, 30);
-      console.log(`[inbox] Suppressed ${item.entry.company_name} for 30 days after ${rejectionCount} rejections`);
+    const topicRejections = log.filter(
+      r => r.company_id === companyId && r.entry_type === entryType && r.reason === reason
+    ).length;
+    if (topicRejections >= 1 && !isTopicSuppressed(companyId, entryType)) {
+      suppressTopic(companyId, entryType, item.entry.company_name,
+        `Auto-suppressed: ${reason} (${topicRejections + 1}x)`, 60);
+      console.log(`[inbox] Suppressed topic ${companyId}:${entryType} for 60 days (${reason})`);
     }
   }
 
   rejectPending(req.params.id);
-  res.json({ ok: true, suppressed: companyId ? isCompanySuppressed(companyId) : false });
+  res.json({ ok: true });
 });
 
 // ─── Landscape suggestions ────────────────────────────────────────────────────
