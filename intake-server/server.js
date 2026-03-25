@@ -18,10 +18,19 @@ import {
   getPending, addPending, approvePending, rejectPending,
   getBlocked, addBlocked, isBlocked,
   getRejectionLog, addRejectionLog, readPipelineStatus,
+  getArchive, archiveStaleItems,
+  isTopicSuppressed, suppressTopic, getSuppressedTopics,
 } from './agents/gov-store.js';
 import { runDailyPipeline } from './agents/scheduler.js';
 import { signToken, verifyToken } from './agents/notifier.js';
 import { runFastAudit, runDeepAudit } from './agents/auditor.js';
+import {
+  checkLandscapeImpact, getLandscapeSuggestions,
+  applyLandscapeSuggestion, dismissLandscapeSuggestion,
+} from './agents/landscape-trigger.js';
+import { runLandscapeSweep, getStaleList } from './agents/landscape-sweep.js';
+import { publishTlEntry } from './agents/tl-publisher.js';
+import { runTLDiscover, getTLCandidates, dismissTLCandidate } from './agents/tl-discover.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const DATA_DIR = join(__dirname, '..', 'data');
@@ -333,6 +342,9 @@ app.post('/api/pending/:id/reject', (req, res) => {
 
 // All stories queued for editorial review (PASS + REVIEW, nothing auto-publishes)
 app.get('/api/inbox', (req, res) => {
+  // Move stale items (>7 days) to archive before returning inbox
+  archiveStaleItems();
+
   const pending = getPending();
   let items = Object.entries(pending).map(([id, item]) => ({
     id,
@@ -356,6 +368,7 @@ app.get('/api/inbox', (req, res) => {
     score:              item.score ?? null,
     score_breakdown:    item.score_breakdown ?? null,
     queued_at:          item.queued_at,
+    discovered_at:      item.discovered_at || item.queued_at || null,
     _entry:             item.entry,
   }));
 
@@ -366,6 +379,27 @@ app.get('/api/inbox', (req, res) => {
     return (b.score || 0) - (a.score || 0);
   });
 
+  const archiveCount = Object.keys(getArchive()).length;
+  res.json({ count: items.length, items, archive_count: archiveCount });
+});
+
+// Archived stories (>7 days old, read-only history)
+app.get('/api/inbox/archive', (req, res) => {
+  const archive = getArchive();
+  const items = Object.entries(archive).map(([id, item]) => ({
+    id,
+    headline:      item.entry.headline,
+    company_name:  item.entry.company_name,
+    source_name:   item.entry.source_name,
+    source_url:    item.entry.source_url,
+    date:          item.entry.date,
+    type:          item.entry.type,
+    score:         item.score ?? null,
+    governance_verdict: item.governance?.verdict || null,
+    discovered_at: item.discovered_at || item.queued_at || null,
+  }));
+  // Newest first
+  items.sort((a, b) => (b.discovered_at || '').localeCompare(a.discovered_at || ''));
   res.json({ count: items.length, items });
 });
 
@@ -409,6 +443,10 @@ app.post('/api/inbox/:id/approve-and-publish', (req, res) => {
     send('error', { message: `Published but git push failed: ${gitErr.message}` });
   }
 
+  // 5. Non-blocking landscape impact check — runs after response is sent
+  const publishedEntry = { ...entry, id: entryId };
+  setImmediate(() => checkLandscapeImpact(publishedEntry).catch(() => {}));
+
   done();
 });
 
@@ -419,11 +457,16 @@ app.post('/api/inbox/:id/reject-with-reason', (req, res) => {
   const item = pending[req.params.id];
   if (!item) return res.status(404).json({ error: 'Entry not found in inbox' });
 
+  const companyId  = item.entry.company;
+  const entryType  = item.entry.type;
+
   addRejectionLog({
     id:                req.params.id,
     url:               item.entry.source_url,
     headline:          item.entry.headline,
     company:           item.entry.company_name,
+    company_id:        companyId,
+    entry_type:        entryType,
     reason,
     notes,
     score:             item.score ?? null,
@@ -431,8 +474,114 @@ app.post('/api/inbox/:id/reject-with-reason', (req, res) => {
     rejected_at:       new Date().toISOString(),
   });
 
+  // Auto-suppress this company+type topic after 2+ rejections with same reason
+  // (e.g. jump-ai:funding rejected twice → suppress jump-ai:funding for 60 days)
+  // A different entry type for the same company still gets through.
+  if (companyId && entryType) {
+    const log = getRejectionLog();
+    const topicRejections = log.filter(
+      r => r.company_id === companyId && r.entry_type === entryType && r.reason === reason
+    ).length;
+    if (topicRejections >= 1 && !isTopicSuppressed(companyId, entryType)) {
+      suppressTopic(companyId, entryType, item.entry.company_name,
+        `Auto-suppressed: ${reason} (${topicRejections + 1}x)`, 60);
+      console.log(`[inbox] Suppressed topic ${companyId}:${entryType} for 60 days (${reason})`);
+    }
+  }
+
   rejectPending(req.params.id);
   res.json({ ok: true });
+});
+
+// ─── Landscape suggestions ────────────────────────────────────────────────────
+
+// All pending landscape maturity upgrade suggestions
+app.get('/api/landscape-suggestions', (req, res) => {
+  res.json(getLandscapeSuggestions());
+});
+
+// Apply a suggestion: updates competitor JSON + git push to main
+app.post('/api/landscape-suggestions/:id/apply', (req, res) => {
+  const result = applyLandscapeSuggestion(req.params.id);
+  if (!result) return res.status(404).json({ error: 'Suggestion not found or already actioned' });
+  res.json({ ok: true, ...result });
+});
+
+// Dismiss a suggestion without applying
+app.post('/api/landscape-suggestions/:id/dismiss', (req, res) => {
+  const ok = dismissLandscapeSuggestion(req.params.id);
+  if (!ok) return res.status(404).json({ error: 'Suggestion not found' });
+  res.json({ ok: true });
+});
+
+// Stale capability list (fast — no search, just reads date_assessed fields)
+app.get('/api/landscape-stale', (req, res) => {
+  res.json(getStaleList());
+});
+
+// Run staleness sweep — searches for recent news on all stale capabilities (slow, SSE)
+app.post('/api/landscape-sweep', async (req, res) => {
+  const { send, done } = createSSE(res);
+  try {
+    await runLandscapeSweep({ send });
+  } catch (err) {
+    send('error', { message: err.message });
+  }
+  done();
+});
+
+// ─── Thought Leadership publish ───────────────────────────────────────────────
+
+// Approve a TL candidate: fetch + Claude extract + write JSON + push to main
+app.post('/api/tl-publish', async (req, res) => {
+  const { url } = req.body;
+  const { send, done } = createSSE(res);
+
+  if (!url) {
+    send('error', { message: 'URL is required' });
+    done();
+    return;
+  }
+
+  try {
+    await publishTlEntry({ url, send });
+  } catch (err) {
+    send('error', { message: err.message });
+  }
+  done();
+});
+
+// ── TL Discovery routes ───────────────────────────────────────────────────────
+
+app.post('/api/tl-discover', (req, res) => {
+  const { send, done } = createSSE(res);
+  runTLDiscover({ send })
+    .then(() => done())
+    .catch(e => { send('error', { message: e.message }); done(); });
+});
+
+app.get('/api/tl-candidates', (req, res) => {
+  res.json({ candidates: getTLCandidates() });
+});
+
+app.post('/api/tl-candidates/dismiss', (req, res) => {
+  const { url } = req.body;
+  if (!url) return res.status(400).json({ error: 'url required' });
+  dismissTLCandidate(url);
+  res.json({ ok: true });
+});
+
+app.get('/api/tl-published', (req, res) => {
+  try {
+    const tlDir = join(__dirname, '..', 'data', 'thought-leadership');
+    const files = fs.readdirSync(tlDir).filter(f => f.endsWith('.json'));
+    const entries = files.map(f => {
+      try { return JSON.parse(fs.readFileSync(join(tlDir, f), 'utf8')); } catch { return null; }
+    }).filter(Boolean).sort((a, b) => (b.date_published || '').localeCompare(a.date_published || ''));
+    res.json({ entries });
+  } catch(e) {
+    res.json({ entries: [] });
+  }
 });
 
 // Pipeline status — last run summary for inbox dashboard
@@ -501,6 +650,49 @@ app.get('/api/recent-published', (req, res) => {
 });
 
 // ─── Governance audit endpoints ───────────────────────────────────────────────
+
+// Activity log — last 7 days of approvals + rejections combined
+app.get('/api/activity-log', (req, res) => {
+  const cutoff = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString();
+
+  // Rejections from rejection log
+  const rejections = (getRejectionLog() || [])
+    .filter(r => r.rejected_at && r.rejected_at >= cutoff)
+    .map(r => ({
+      id:         r.id,
+      headline:   r.headline || r.id,
+      company:    r.company_name || null,
+      action:     'rejected',
+      reason:     r.reason || null,
+      timestamp:  r.rejected_at,
+    }));
+
+  // Approvals from published entries
+  const approvals = [];
+  const intelFiles = fs.existsSync(DATA_DIR + '/intelligence')
+    ? fs.readdirSync(DATA_DIR + '/intelligence').filter(f => f.endsWith('.json'))
+    : [];
+  for (const f of intelFiles) {
+    try {
+      const e = JSON.parse(fs.readFileSync(DATA_DIR + '/intelligence/' + f, 'utf-8'));
+      const approvedAt = e._governance?.approved_at || e.published_at;
+      if (approvedAt && approvedAt >= cutoff) {
+        approvals.push({
+          id:        e.id,
+          headline:  e.headline,
+          company:   e.company_name || null,
+          action:    'approved',
+          timestamp: approvedAt,
+        });
+      }
+    } catch {}
+  }
+
+  const combined = [...rejections, ...approvals]
+    .sort((a, b) => b.timestamp.localeCompare(a.timestamp));
+
+  res.json({ log: combined });
+});
 
 // View all permanently blocked URLs
 app.get('/api/blocked', (req, res) => {
@@ -682,10 +874,10 @@ app.post('/review/:token/reject', (req, res) => {
   res.json({ ok: true, message: 'Entry rejected and URL permanently blocked' });
 });
 
-// ─── Cron: daily pipeline at 6:00 AM ─────────────────────────────────────────
+// ─── Cron: daily pipeline at 5:00 AM UK time ─────────────────────────────────
 
-cron.schedule('0 6 * * *', () => {
-  console.log('[cron] 6:00 AM Europe/London — starting daily pipeline');
+cron.schedule('0 5 * * *', () => {
+  console.log('[cron] 5:00 AM Europe/London — starting daily pipeline');
   runDailyPipeline().catch(err => {
     console.error('[cron] Daily pipeline failed:', err.message);
   });

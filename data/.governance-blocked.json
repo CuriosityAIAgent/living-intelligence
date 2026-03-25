@@ -67,31 +67,11 @@
   "https://fintechnews.ch/fintechusa/jump-series-b-ai-financial-advisors/82171/": {
     "id": "jump-series-b-ai-financial-advisors-2026-02",
     "reason": "Human rejected REVIEW entry",
-    "blocked_at": "2026-03-24T05:31:57.361Z"
+    "blocked_at": "2026-03-24T15:17:07.110Z"
   },
-  "https://www.planadviser.com/ai-product-service-launches-3-23-2026/": {
-    "id": "datalign-wealthfeed-zocks-ai-agents-prospecting-launch-march-2026",
-    "reason": "Score 43/100 — below 60 review threshold",
-    "blocked_at": "2026-03-24T06:01:20.857Z"
-  },
-  "https://aimmediahouse.com/ai-bfsi/ai-just-hit-wealth-managements-core-business": {
-    "id": "altruist-hazel-ai-tax-planning-wealth-management-disruption",
-    "reason": "Paywalled source — claims unverifiable, not fabricated. Human review required.",
-    "blocked_at": "2026-03-24T06:01:59.789Z"
-  },
-  "https://www.investmentnews.com/videos/in-the-nasdaq/how-ai-will-change-wealth-management-in-2026-and-beyond/265219": {
-    "id": "pebble-finance-ai-wealth-management-2026",
-    "reason": "Score 39/100 — below 60 review threshold",
-    "blocked_at": "2026-03-24T06:02:37.830Z"
-  },
-  "https://www.wealthmanagement.com/artificial-intelligence/morgan-stanley-s-wealth-head-addresses-ai-driven-pressures": {
-    "id": "morgan-stanley-wealth-head-ai-stock-fears-2026-02",
-    "reason": "Score 45/100 — below 60 review threshold",
-    "blocked_at": "2026-03-24T06:04:30.651Z"
-  },
-  "https://www.hubbis.com/article/from-experimentation-to-execution-how-ai-is-rewiring-wealth-management-workflows": {
-    "id": "ai-rewiring-wealth-management-workflows-hubbis-2026",
-    "reason": "Paywalled source — claims unverifiable, not fabricated. Human review required.",
-    "blocked_at": "2026-03-24T06:05:28.105Z"
+  "https://www.businesswire.com/news/home/20260219487440/en/Jump-Raises-%2480-Million-Series-B-Led-by-Insight-Partners-to-Expand-AI-Operating-System-for-Financial-Advisors": {
+    "id": "jump-ai-operating-system-80m-series-b-27000-advisors",
+    "reason": "Human rejected REVIEW entry",
+    "blocked_at": "2026-03-24T15:17:28.191Z"
   }
 }

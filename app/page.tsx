@@ -202,14 +202,14 @@ export default function HomePage() {
         {/* Landscape teaser */}
         <section className="mb-6">
           <SectionLabel label="The AI Landscape" />
-          <div className="bg-gray-50 border border-gray-200 rounded p-6 flex items-center justify-between gap-4">
-            <div>
-              <h3 className="font-bold text-gray-900 mb-1">Who Is Doing What</h3>
-              <p className="text-sm text-gray-500">
-                {competitors.length} institutions · {capabilities.length} capability dimensions
-              </p>
-            </div>
-            <Link href="/landscape" className="text-sm font-bold text-[#990F3D] hover:underline flex-shrink-0">
+          <div className="bg-gray-50 border border-gray-200 rounded p-6">
+            <h3 className="font-bold text-gray-900 mb-1">Who Is Doing What</h3>
+            <p className="text-sm text-gray-500">
+              {competitors.length} institutions · {capabilities.length} capability dimensions
+            </p>
+          </div>
+          <div className="mt-4">
+            <Link href="/landscape" className="text-sm font-medium text-[#990F3D] hover:underline">
               View full landscape →
             </Link>
           </div>
