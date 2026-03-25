@@ -205,7 +205,7 @@ export default function HomePage() {
           <div className="bg-gray-50 border border-gray-200 rounded p-6 flex items-center gap-10">
             <div className="flex-1">
               <h3 className="text-base font-semibold text-gray-800 mb-1">Who Is Doing What</h3>
-              <p className="text-sm text-gray-500">AI capability coverage across wealth management</p>
+              <p className="text-sm text-gray-500">AI Capabilities Across Wealth Management</p>
             </div>
             <div className="flex gap-8 flex-shrink-0">
               <div className="text-center">
