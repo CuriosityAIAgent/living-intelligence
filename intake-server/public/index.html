@@ -2154,6 +2154,8 @@ async function runPipelineNow() {
     });
     addLog('Pipeline complete. Refreshing inbox...', 'success');
     await Promise.all([loadInbox(), loadPipelineStatus()]);
+    addLog('Inbox updated. ✓', 'success');
+    setTimeout(() => document.getElementById('logOverlay').classList.remove('visible'), 1800);
   } catch (err) {
     addLog(`Failed: ${err.message}`, 'error');
   }
