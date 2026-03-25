@@ -36,6 +36,24 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const DATA_DIR = join(__dirname, '..', 'data');
 const app = express();
 app.use(express.json());
+
+// ── Basic Auth — protects the entire studio ────────────────────────────────
+const STUDIO_USER = process.env.STUDIO_USER;
+const STUDIO_PASS = process.env.STUDIO_PASS;
+if (STUDIO_USER && STUDIO_PASS) {
+  app.use((req, res, next) => {
+    const auth = req.headers.authorization;
+    if (!auth || !auth.startsWith('Basic ')) {
+      res.set('WWW-Authenticate', 'Basic realm="Editorial Studio"');
+      return res.status(401).send('Authentication required');
+    }
+    const [user, pass] = Buffer.from(auth.slice(6), 'base64').toString().split(':');
+    if (user === STUDIO_USER && pass === STUDIO_PASS) return next();
+    res.set('WWW-Authenticate', 'Basic realm="Editorial Studio"');
+    return res.status(401).send('Invalid credentials');
+  });
+}
+
 app.use(express.static(join(__dirname, 'public')));
 
 const PORT = process.env.INTAKE_PORT || 3003;
