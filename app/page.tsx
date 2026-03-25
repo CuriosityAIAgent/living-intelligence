@@ -204,18 +204,18 @@ export default function HomePage() {
           <SectionLabel label="The AI Landscape" />
           <div className="bg-gray-50 border border-gray-200 rounded p-6 flex items-center gap-10">
             <div className="flex-1">
-              <h3 className="font-semibold text-gray-700 mb-1">Who Is Doing What</h3>
-              <p className="text-sm text-gray-400">AI capability coverage across wealth management</p>
+              <h3 className="text-base font-semibold text-gray-800 mb-1">Who Is Doing What</h3>
+              <p className="text-sm text-gray-500">AI capability coverage across wealth management</p>
             </div>
             <div className="flex gap-8 flex-shrink-0">
               <div className="text-center">
-                <div className="text-3xl font-light text-[#990F3D] leading-none">{competitors.length}</div>
-                <div className="text-xs text-gray-400 mt-1 uppercase tracking-wide">Institutions</div>
+                <div className="text-2xl font-semibold text-[#990F3D] leading-none">{competitors.length}</div>
+                <div className="text-xs text-gray-500 mt-1.5 uppercase tracking-wide">Institutions</div>
               </div>
               <div className="w-px bg-gray-200" />
               <div className="text-center">
-                <div className="text-3xl font-light text-[#990F3D] leading-none">{capabilities.length}</div>
-                <div className="text-xs text-gray-400 mt-1 uppercase tracking-wide">Capability<br/>Dimensions</div>
+                <div className="text-2xl font-semibold text-[#990F3D] leading-none">{capabilities.length}</div>
+                <div className="text-xs text-gray-500 mt-1.5 uppercase tracking-wide">Capability<br/>Dimensions</div>
               </div>
             </div>
           </div>
