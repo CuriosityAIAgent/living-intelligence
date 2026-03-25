@@ -148,7 +148,7 @@ export async function runDailyPipeline() {
       }
 
       // Topic suppression — company+type rejected 2+ times with same reason → skip
-      const entryCompanyId = intakeResult.entry.company;
+      const entryCompanyId = (intakeResult.entry.company || '').toLowerCase().replace(/[^a-z0-9-]/g, '-');
       const entryType = intakeResult.entry.type;
       if (entryCompanyId && entryType && isTopicSuppressed(entryCompanyId, entryType)) {
         console.log(`[scheduler] Skipping suppressed topic ${entryCompanyId}:${entryType}`);
@@ -277,7 +277,6 @@ export async function runDailyPipeline() {
 
       // ── New company detection ──────────────────────────────────────────────
       // If the entry references a company not in our landscape, flag it.
-      const entryCompanyId   = (intakeResult.entry.company      || '').toLowerCase().replace(/[^a-z0-9-]/g, '-');
       const entryCompanyName = (intakeResult.entry.company_name || '').toLowerCase();
       // Match by ID, by name, or by partial ID (e.g. "jump" matches "jump-ai")
       const isKnown = knownCompanyIds.has(entryCompanyId)
