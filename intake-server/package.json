@@ -5,7 +5,9 @@
   "type": "module",
   "scripts": {
     "start": "node server.js",
-    "dev": "node --watch server.js"
+    "dev": "node --watch server.js",
+    "build:client": "cd client && npm run build",
+    "dev:client": "cd client && npm run dev"
   },
   "keywords": [],
   "author": "",
