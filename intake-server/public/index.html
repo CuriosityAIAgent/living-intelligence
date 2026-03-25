@@ -1903,9 +1903,9 @@ async function loadInbox() {
     if (_activePendingIdx >= _pendingItems.length) _activePendingIdx = 0;
     list.innerHTML = renderGroupedInbox(data.items, count);
 
-    // Show archive trigger if there may be older items
+    // Show archive trigger only if there are actually archived items
     const archiveTrigger = document.getElementById('archiveTrigger');
-    if (archiveTrigger) archiveTrigger.style.display = 'block';
+    if (archiveTrigger) archiveTrigger.style.display = (data.archive_count > 0) ? 'block' : 'none';
 
     // Scroll active card into view
     const activeCard = document.querySelector('.eq-card-active');

@@ -19,6 +19,7 @@ import {
   getBlocked, addBlocked, isBlocked,
   getRejectionLog, addRejectionLog, readPipelineStatus,
   getArchive, archiveStaleItems,
+  isCompanySuppressed, suppressCompany, getSuppressedCompanies,
 } from './agents/gov-store.js';
 import { runDailyPipeline } from './agents/scheduler.js';
 import { signToken, verifyToken } from './agents/notifier.js';
@@ -378,7 +379,8 @@ app.get('/api/inbox', (req, res) => {
     return (b.score || 0) - (a.score || 0);
   });
 
-  res.json({ count: items.length, items });
+  const archiveCount = Object.keys(getArchive()).length;
+  res.json({ count: items.length, items, archive_count: archiveCount });
 });
 
 // Archived stories (>7 days old, read-only history)
@@ -460,6 +462,7 @@ app.post('/api/inbox/:id/reject-with-reason', (req, res) => {
     url:               item.entry.source_url,
     headline:          item.entry.headline,
     company:           item.entry.company_name,
+    company_id:        item.entry.company,
     reason,
     notes,
     score:             item.score ?? null,
@@ -467,8 +470,19 @@ app.post('/api/inbox/:id/reject-with-reason', (req, res) => {
     rejected_at:       new Date().toISOString(),
   });
 
+  // Auto-suppress company after 2+ rejections (different URLs, same company)
+  const companyId = item.entry.company;
+  if (companyId) {
+    const log = getRejectionLog();
+    const rejectionCount = log.filter(r => r.company_id === companyId || r.company === item.entry.company_name).length;
+    if (rejectionCount >= 2 && !isCompanySuppressed(companyId)) {
+      suppressCompany(companyId, item.entry.company_name, `Auto-suppressed after ${rejectionCount} rejections`, 30);
+      console.log(`[inbox] Suppressed ${item.entry.company_name} for 30 days after ${rejectionCount} rejections`);
+    }
+  }
+
   rejectPending(req.params.id);
-  res.json({ ok: true });
+  res.json({ ok: true, suppressed: companyId ? isCompanySuppressed(companyId) : false });
 });
 
 // ─── Landscape suggestions ────────────────────────────────────────────────────

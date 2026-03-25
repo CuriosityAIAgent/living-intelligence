@@ -6,7 +6,7 @@
  *   .governance-blocked.json  — FAIL entries permanently blocked by URL
  */
 
-import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'fs';
+import { readFileSync, writeFileSync, existsSync, mkdirSync, copyFileSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 
@@ -17,6 +17,23 @@ const BLOCKED_FILE  = join(STORE_DIR, '.governance-blocked.json');
 const ARCHIVE_FILE  = join(STORE_DIR, '.governance-archive.json');
 const REJECTION_LOG = join(STORE_DIR, '.rejection-log.json');
 const PIPELINE_STATUS_FILE = join(STORE_DIR, '.pipeline-status.json');
+const SUPPRESSED_FILE      = join(STORE_DIR, '.suppressed-companies.json');
+
+// One-time migration: if STATE_DIR is set and files exist at the old DATA_DIR/data path, copy them over.
+// This handles the transition from DATA_DIR=/data → STATE_DIR=/data where old files lived at /data/data/.
+if (process.env.STATE_DIR) {
+  const oldDir = join(process.env.DATA_DIR || join(__dirname, '..', '..'), 'data');
+  if (oldDir !== STORE_DIR && existsSync(oldDir)) {
+    if (!existsSync(STORE_DIR)) mkdirSync(STORE_DIR, { recursive: true });
+    for (const fname of ['.governance-pending.json', '.governance-blocked.json', '.governance-archive.json', '.rejection-log.json', '.pipeline-status.json']) {
+      const src = join(oldDir, fname);
+      const dst = join(STORE_DIR, fname);
+      if (existsSync(src) && !existsSync(dst)) {
+        try { copyFileSync(src, dst); } catch {}
+      }
+    }
+  }
+}
 
 function readStore(file) {
   if (!existsSync(file)) return {};
@@ -140,4 +157,31 @@ export function archiveStaleItems() {
     writeStore(PENDING_FILE, store);
     writeStore(ARCHIVE_FILE, archive);
   }
+}
+
+// ─── Company suppression (auto-suppress after repeated rejections) ────────────
+// After rejecting the same company ≥2 times, it gets suppressed for 30 days.
+// The scheduler skips suppressed companies during candidate processing.
+
+export function isCompanySuppressed(companyId) {
+  if (!companyId) return false;
+  const store = readStore(SUPPRESSED_FILE);
+  const entry = store[companyId.toLowerCase()];
+  if (!entry) return false;
+  return new Date(entry.suppressed_until) > new Date();
+}
+
+export function suppressCompany(companyId, companyName, reason, days = 30) {
+  if (!companyId) return;
+  const store = readStore(SUPPRESSED_FILE);
+  const until = new Date(Date.now() + days * 24 * 60 * 60 * 1000).toISOString();
+  store[companyId.toLowerCase()] = { company_name: companyName, reason, suppressed_until: until, suppressed_at: new Date().toISOString() };
+  writeStore(SUPPRESSED_FILE, store);
+}
+
+export function getSuppressedCompanies() {
+  const store = readStore(SUPPRESSED_FILE);
+  const now = new Date();
+  // Return only active suppressions
+  return Object.fromEntries(Object.entries(store).filter(([, v]) => new Date(v.suppressed_until) > now));
 }
