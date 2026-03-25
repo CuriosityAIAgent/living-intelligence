@@ -192,7 +192,7 @@ export default function HomePage() {
               </div>
             </Link>
             <div className="mt-4">
-              <Link href="/thought-leadership" className="text-sm font-medium text-[#990F3D] hover:underline">
+              <Link href="/thought-leadership" className="text-sm font-bold text-[#990F3D] hover:underline">
                 View all thought leadership →
               </Link>
             </div>
@@ -209,7 +209,7 @@ export default function HomePage() {
             </p>
           </div>
           <div className="mt-4">
-            <Link href="/landscape" className="text-sm font-medium text-[#990F3D] hover:underline">
+            <Link href="/landscape" className="text-sm font-bold text-[#990F3D] hover:underline">
               View full landscape →
             </Link>
           </div>
