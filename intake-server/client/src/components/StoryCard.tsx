@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import type { InboxItem } from '../types';
+import type { InboxItem, EnrichmentResult } from '../types';
 import { approveUrl, rejectItem } from '../api';
 
 const REJECT_REASONS = [
@@ -27,9 +27,29 @@ export default function StoryCard({ item, index, total, onDone }: StoryCardProps
   const [approveLog, setApproveLog] = useState<string[]>([]);
   const [done, setDone] = useState(false);
 
-  const entry = item.entry;
-  const gov = item.governance || entry._governance;
+  // Server returns items in a flat format — entry fields at top level + _entry nested.
+  // Normalise to a consistent shape regardless of which format arrives.
+  const raw = item as unknown as Record<string, unknown>;
+  const entry = item.entry ?? (raw._entry as typeof item.entry);
+  const gov: typeof item.governance = (item.governance?.verdict)
+    ? item.governance
+    : {
+        verdict:           (raw.governance_verdict as 'PASS' | 'REVIEW' | 'FAIL') ?? 'REVIEW',
+        confidence:        (raw.confidence as number) ?? 0,
+        verified_claims:   (raw.verified_claims as string[]) ?? [],
+        unverified_claims: (raw.unverified_claims as string[]) ?? [],
+        fabricated_claims: (raw.fabricated_claims as string[]) ?? [],
+        notes:             (raw.notes as string) ?? '',
+        paywall_caveat:    Boolean(raw.paywall_caveat),
+        verified_at:       '',
+        human_approved:    false,
+        approved_at:       null,
+      };
   const score = item.score;
+  const fabrication = item.fabrication_verdict;
+  const formatErrors = item.format_errors ?? [];
+  const enrichment: EnrichmentResult | undefined =
+    item.enrichment && Object.keys(item.enrichment).length > 0 ? item.enrichment : undefined;
 
   const verdict = gov?.verdict ?? 'REVIEW';
   const verdictColor =
@@ -121,17 +141,16 @@ export default function StoryCard({ item, index, total, onDone }: StoryCardProps
           gap: 10,
         }}
       >
-        {score !== undefined && (
-          <span
-            style={{
-              fontSize: 18,
-              fontWeight: 800,
-              color: score >= 75 ? '#15803D' : score >= 60 ? '#B45309' : '#B91C1C',
-            }}
-          >
-            {score}
-          </span>
-        )}
+        <span
+          style={{
+            fontSize: 18,
+            fontWeight: 800,
+            color: score == null ? '#9CA3AF' : score >= 75 ? '#15803D' : score >= 60 ? '#B45309' : '#B91C1C',
+            minWidth: 28,
+          }}
+        >
+          {score ?? '—'}
+        </span>
         <span
           style={{
             fontSize: 10,
@@ -157,6 +176,48 @@ export default function StoryCard({ item, index, total, onDone }: StoryCardProps
             }}
           >
             PAYWALL
+          </span>
+        )}
+        {fabrication && (
+          <span
+            style={{
+              fontSize: 9,
+              fontWeight: 700,
+              padding: '2px 7px',
+              borderRadius: 3,
+              background: fabrication === 'CLEAN' ? '#DCFCE7' : fabrication === 'SUSPECT' ? '#FEF3C7' : '#FEE2E2',
+              color: fabrication === 'CLEAN' ? '#15803D' : fabrication === 'SUSPECT' ? '#B45309' : '#B91C1C',
+            }}
+          >
+            FAB {fabrication}
+          </span>
+        )}
+        {formatErrors.length > 0 && (
+          <span
+            style={{
+              fontSize: 9,
+              fontWeight: 700,
+              background: '#FEF3C7',
+              color: '#92400E',
+              padding: '2px 7px',
+              borderRadius: 3,
+            }}
+          >
+            {formatErrors.length} FORMAT {formatErrors.length === 1 ? 'ISSUE' : 'ISSUES'}
+          </span>
+        )}
+        {enrichment?.landscape_already_covered && (
+          <span
+            style={{
+              fontSize: 9,
+              fontWeight: 700,
+              background: '#F3F4F6',
+              color: '#6B7280',
+              padding: '2px 7px',
+              borderRadius: 3,
+            }}
+          >
+            ALREADY IN LANDSCAPE
           </span>
         )}
         <span style={{ marginLeft: 'auto', fontSize: 10, color: '#9CA3AF' }}>
@@ -264,6 +325,100 @@ export default function StoryCard({ item, index, total, onDone }: StoryCardProps
           </div>
         )}
 
+        {/* Enrichment context */}
+        {enrichment && (enrichment.what_changed || enrichment.landscape_context) && (
+          <div
+            style={{
+              border: '1px solid #E0E7FF',
+              borderRadius: 4,
+              marginBottom: 14,
+              overflow: 'hidden',
+            }}
+          >
+            <div
+              style={{
+                background: '#EEF2FF',
+                padding: '5px 12px',
+                display: 'flex',
+                alignItems: 'center',
+                gap: 8,
+              }}
+            >
+              <span
+                style={{
+                  fontSize: 9,
+                  fontWeight: 700,
+                  letterSpacing: '0.08em',
+                  textTransform: 'uppercase',
+                  color: '#3730A3',
+                }}
+              >
+                Landscape Context
+              </span>
+              {enrichment.enrichment_confidence && (
+                <span
+                  style={{
+                    fontSize: 9,
+                    fontWeight: 600,
+                    color: enrichment.enrichment_confidence === 'high' ? '#15803D' : enrichment.enrichment_confidence === 'medium' ? '#B45309' : '#9CA3AF',
+                    marginLeft: 'auto',
+                  }}
+                >
+                  {enrichment.enrichment_confidence.toUpperCase()} CONFIDENCE
+                </span>
+              )}
+            </div>
+            <div style={{ padding: '8px 12px', background: '#F5F7FF' }}>
+              {enrichment.what_changed && (
+                <div style={{ marginBottom: enrichment.landscape_context ? 8 : 0 }}>
+                  <span style={{ fontSize: 9, fontWeight: 700, color: '#6366F1', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+                    vs previous coverage{' '}
+                  </span>
+                  <span style={{ fontSize: 12, color: '#374151' }}>{enrichment.what_changed}</span>
+                </div>
+              )}
+              {enrichment.landscape_context && (
+                <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
+                  {enrichment.landscape_context.maturity_direction && enrichment.landscape_context.maturity_direction !== 'unknown' && (
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
+                      <span
+                        style={{
+                          fontSize: 14,
+                          color: enrichment.landscape_context.maturity_direction === 'up' ? '#15803D' : enrichment.landscape_context.maturity_direction === 'down' ? '#B91C1C' : '#6B7280',
+                        }}
+                      >
+                        {enrichment.landscape_context.maturity_direction === 'up' ? '↑' : enrichment.landscape_context.maturity_direction === 'down' ? '↓' : '→'}
+                      </span>
+                      <span style={{ fontSize: 11, color: '#374151', fontWeight: 600 }}>
+                        {enrichment.landscape_context.current_maturity ?? 'unknown'}
+                      </span>
+                      <span style={{ fontSize: 10, color: '#9CA3AF' }}>maturity</span>
+                    </div>
+                  )}
+                  {enrichment.landscape_context.competitor_gap && (
+                    <div style={{ fontSize: 11, color: '#374151' }}>
+                      <span style={{ fontSize: 9, fontWeight: 700, color: '#6366F1', textTransform: 'uppercase', letterSpacing: '0.06em', marginRight: 4 }}>
+                        vs peers
+                      </span>
+                      {enrichment.landscape_context.competitor_gap}
+                    </div>
+                  )}
+                </div>
+              )}
+              {enrichment.landscape_match_notes && (
+                <div style={{ marginTop: 6, fontSize: 11, color: enrichment.landscape_already_covered ? '#B45309' : '#15803D' }}>
+                  {enrichment.landscape_already_covered ? '⚠ ' : '↑ '}{enrichment.landscape_match_notes}
+                </div>
+              )}
+              {enrichment.enrichment_notes && (
+                <div style={{ marginTop: 6, fontSize: 10, color: '#9CA3AF', fontStyle: 'italic' }}>
+                  {enrichment.enrichment_notes}
+                </div>
+              )}
+            </div>
+          </div>
+        )}
+
         {/* Summary */}
         {entry.summary && (
           <div style={{ marginBottom: 14 }}>
@@ -284,7 +439,7 @@ export default function StoryCard({ item, index, total, onDone }: StoryCardProps
         )}
 
         {/* Governance claims */}
-        {gov && (gov.unverified_claims.length > 0 || gov.fabricated_claims.length > 0) && (
+        {gov && ((gov.unverified_claims ?? []).length > 0 || (gov.fabricated_claims ?? []).length > 0) && (
           <div
             style={{
               background: '#FFFBEB',
@@ -306,12 +461,12 @@ export default function StoryCard({ item, index, total, onDone }: StoryCardProps
             >
               Verification Issues
             </div>
-            {gov.fabricated_claims.map((c, i) => (
+            {(gov.fabricated_claims ?? []).map((c, i) => (
               <div key={i} style={{ fontSize: 11, color: '#B91C1C', padding: '2px 0' }}>
                 ✗ {c}
               </div>
             ))}
-            {gov.unverified_claims.map((c, i) => (
+            {(gov.unverified_claims ?? []).map((c, i) => (
               <div key={i} style={{ fontSize: 11, color: '#B45309', padding: '2px 0' }}>
                 ⚠ {c}
               </div>
@@ -319,8 +474,47 @@ export default function StoryCard({ item, index, total, onDone }: StoryCardProps
           </div>
         )}
 
+        {/* Fabrication detail — only show if SUSPECT or FAIL */}
+        {fabrication && fabrication !== 'CLEAN' && (
+          <div
+            style={{
+              background: fabrication === 'FAIL' ? '#FEF2F2' : '#FFFBEB',
+              border: `1px solid ${fabrication === 'FAIL' ? '#FECACA' : '#FDE68A'}`,
+              borderRadius: 4,
+              padding: '8px 12px',
+              marginBottom: 12,
+            }}
+          >
+            <div
+              style={{
+                fontSize: 9,
+                fontWeight: 700,
+                letterSpacing: '0.08em',
+                textTransform: 'uppercase',
+                color: fabrication === 'FAIL' ? '#B91C1C' : '#B45309',
+                marginBottom: 5,
+                display: 'flex',
+                alignItems: 'center',
+                gap: 6,
+              }}
+            >
+              <span>Fabrication Check: {fabrication}</span>
+              {fabrication === 'FAIL' && (
+                <span style={{ fontSize: 9, background: '#B91C1C', color: '#fff', padding: '1px 5px', borderRadius: 2 }}>
+                  HARD BLOCK
+                </span>
+              )}
+            </div>
+            {(item.fabrication_issues ?? []).map((issue, i) => (
+              <div key={i} style={{ fontSize: 11, color: fabrication === 'FAIL' ? '#B91C1C' : '#B45309', padding: '2px 0' }}>
+                {fabrication === 'FAIL' ? '✗' : '⚠'} {issue}
+              </div>
+            ))}
+          </div>
+        )}
+
         {/* Verified claims */}
-        {gov && gov.verified_claims.length > 0 && (
+        {gov && (gov.verified_claims ?? []).length > 0 && (
           <div style={{ marginBottom: 14 }}>
             <div
               style={{
@@ -334,16 +528,47 @@ export default function StoryCard({ item, index, total, onDone }: StoryCardProps
             >
               Verified Claims
             </div>
-            {gov.verified_claims.slice(0, 3).map((c, i) => (
+            {(gov.verified_claims ?? []).slice(0, 3).map((c, i) => (
               <div key={i} style={{ fontSize: 11, color: '#15803D', padding: '2px 0' }}>
                 ✓ {c}
               </div>
             ))}
-            {gov.verified_claims.length > 3 && (
+            {(gov.verified_claims ?? []).length > 3 && (
               <div style={{ fontSize: 10, color: '#9CA3AF', marginTop: 3 }}>
-                +{gov.verified_claims.length - 3} more verified
+                +{(gov.verified_claims ?? []).length - 3} more verified
               </div>
             )}
+          </div>
+        )}
+
+        {/* Format errors */}
+        {formatErrors.length > 0 && (
+          <div
+            style={{
+              background: '#FFFBEB',
+              border: '1px solid #FDE68A',
+              borderRadius: 4,
+              padding: '8px 12px',
+              marginBottom: 12,
+            }}
+          >
+            <div
+              style={{
+                fontSize: 9,
+                fontWeight: 700,
+                letterSpacing: '0.08em',
+                textTransform: 'uppercase',
+                color: '#92400E',
+                marginBottom: 5,
+              }}
+            >
+              Schema Issues ({formatErrors.length})
+            </div>
+            {formatErrors.map((err, i) => (
+              <div key={i} style={{ fontSize: 11, color: '#B45309', padding: '2px 0' }}>
+                ⚠ {err}
+              </div>
+            ))}
           </div>
         )}
 

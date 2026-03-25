@@ -109,7 +109,61 @@ function findTopCompetitorsByCapability(companyData, capabilityId, allCompetitor
     .slice(0, limit);
 }
 
+// ── Cross-reference: is this story already covered in our landscape? ──────────
+
+const MATURITY_RANK = { scaled: 4, deployed: 3, piloting: 2, announced: 1, no_activity: 0 };
+
+function EVIDENCE_STAGE_TO_MATURITY(stage) {
+  // Maps capability_evidence.stage (from intake.js) to landscape maturity levels
+  if (!stage) return 'no_activity';
+  const s = stage.toLowerCase();
+  if (s === 'deployed' || s === 'live' || s === 'scaled') return 'deployed';
+  if (s === 'piloting' || s === 'beta' || s === 'pilot') return 'piloting';
+  if (s === 'announced') return 'announced';
+  return 'no_activity';
+}
+
+function crossReferenceCheck(competitorData, capabilityId, entry) {
+  if (!competitorData || !capabilityId) {
+    return { landscape_already_covered: false, landscape_match_notes: null };
+  }
+
+  const landscapeCapability = competitorData.capabilities?.[capabilityId];
+  if (!landscapeCapability) {
+    return { landscape_already_covered: false, landscape_match_notes: `${capabilityId} not yet in landscape for this company` };
+  }
+
+  const landscapeMaturity = landscapeCapability.maturity || 'no_activity';
+  const landscapeRank = MATURITY_RANK[landscapeMaturity] ?? 0;
+
+  // What maturity does this story's evidence suggest?
+  const storyStage = entry.capability_evidence?.stage;
+  const storyMaturity = EVIDENCE_STAGE_TO_MATURITY(storyStage);
+  const storyRank = MATURITY_RANK[storyMaturity] ?? 0;
+
+  if (storyRank <= landscapeRank && landscapeRank >= 2) {
+    // Story doesn't advance the maturity — landscape already at this level or higher
+    return {
+      landscape_already_covered: true,
+      landscape_match_notes: `Landscape already shows ${landscapeMaturity.toUpperCase()} for ${capabilityId} — story may not advance our coverage`,
+    };
+  }
+
+  if (storyRank > landscapeRank) {
+    return {
+      landscape_already_covered: false,
+      landscape_match_notes: `Story advances maturity: ${landscapeMaturity.toUpperCase()} → ${storyMaturity.toUpperCase()} — landscape update may be warranted`,
+    };
+  }
+
+  return { landscape_already_covered: false, landscape_match_notes: null };
+}
+
 // ── Main enricher ─────────────────────────────────────────────────────────────
+
+// ── Exported pure functions (used by tests) ───────────────────────────────────
+
+export { crossReferenceCheck, EVIDENCE_STAGE_TO_MATURITY, MATURITY_RANK };
 
 export async function enrichContext({ entry, articleMarkdown }) {
   const companySlug = entry.company || '';
@@ -120,6 +174,9 @@ export async function enrichContext({ entry, articleMarkdown }) {
   const competitorData = loadCompetitorFile(companySlug);
   const allCompetitors = loadAllCompetitors();
   const peerCompetitors = findTopCompetitorsByCapability(competitorData, capabilityId, allCompetitors);
+
+  // Cross-reference uses already-loaded competitorData — no extra I/O
+  const crossRef = crossReferenceCheck(competitorData, capabilityId, entry);
 
   // ── Build context blocks for Claude ──────────────────────────────────────
   const previousCoverageBlock = previousEntries.length > 0
@@ -223,6 +280,8 @@ Return only valid JSON. No explanation outside the JSON.`;
       landscape_context: null,
       enrichment_confidence: 'low',
       enrichment_notes: `Enrichment API call failed: ${err.message}`,
+      landscape_already_covered: crossRef.landscape_already_covered,
+      landscape_match_notes: crossRef.landscape_match_notes,
     };
   }
 
@@ -234,6 +293,8 @@ Return only valid JSON. No explanation outside the JSON.`;
       landscape_context: null,
       enrichment_confidence: 'low',
       enrichment_notes: 'Enrichment returned non-JSON — using original the_so_what',
+      landscape_already_covered: crossRef.landscape_already_covered,
+      landscape_match_notes: crossRef.landscape_match_notes,
     };
   }
 
@@ -245,6 +306,9 @@ Return only valid JSON. No explanation outside the JSON.`;
       landscape_context: result.landscape_context || null,
       enrichment_confidence: result.enrichment_confidence || 'medium',
       enrichment_notes: result.enrichment_notes || null,
+      // Cross-reference — uses already-loaded landscape data, no extra API call
+      landscape_already_covered: crossRef.landscape_already_covered,
+      landscape_match_notes: crossRef.landscape_match_notes,
     };
   } catch (_) {
     return {
@@ -253,6 +317,8 @@ Return only valid JSON. No explanation outside the JSON.`;
       landscape_context: null,
       enrichment_confidence: 'low',
       enrichment_notes: 'JSON parse error — using original the_so_what',
+      landscape_already_covered: crossRef.landscape_already_covered,
+      landscape_match_notes: crossRef.landscape_match_notes,
     };
   }
 }

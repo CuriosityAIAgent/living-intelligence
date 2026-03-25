@@ -47,6 +47,33 @@ export interface IntelligenceEntry {
   _governance?: GovernanceAudit;
 }
 
+// ── Fabrication check result ─────────────────────────────────────────────────
+
+export interface FabricationResult {
+  verdict: 'CLEAN' | 'SUSPECT' | 'FAIL';
+  issues: string[];
+  check_details?: Record<string, string>;
+  checked_at: string;
+}
+
+// ── Context enrichment result ─────────────────────────────────────────────────
+
+export interface LandscapeContext {
+  current_maturity: string | null;
+  maturity_direction: 'up' | 'down' | 'stable' | 'unknown';
+  competitor_gap: string | null;
+}
+
+export interface EnrichmentResult {
+  the_so_what: string;
+  what_changed: string | null;
+  landscape_context: LandscapeContext | null;
+  enrichment_confidence: 'high' | 'medium' | 'low';
+  enrichment_notes: string | null;
+  landscape_already_covered: boolean;
+  landscape_match_notes: string | null;
+}
+
 // ── Inbox item (pending queue) ────────────────────────────────────────────────
 
 export interface InboxItem {
@@ -58,6 +85,11 @@ export interface InboxItem {
   score?: number;
   score_breakdown?: string;
   governance_verdict?: string;
+  // Session 8 — new pipeline agent outputs
+  fabrication_verdict?: 'CLEAN' | 'SUSPECT' | 'FAIL';
+  fabrication_issues?: string[];
+  format_errors?: string[];
+  enrichment?: EnrichmentResult;
 }
 
 export interface InboxResponse {

@@ -322,6 +322,91 @@ function scoreCapabilityImpact(entry) {
   };
 }
 
+// ── Dimension E: CXO Relevance (0–10, rule-based) ────────────────────────────
+//
+// Does the_so_what actually answer "what should a CXO think or decide differently"?
+// Pure rule-based — zero API cost. Catches the obvious failures.
+// If score ≤ 4, the entry is flagged for REVIEW regardless of total score.
+
+const FORBIDDEN_PHRASES = [
+  'this signals', 'this suggests', 'wealth managers should consider',
+  'underscores the importance', 'highlights the growing', 'it is clear that',
+  'this demonstrates', 'the growing importance', 'increasingly important',
+  'this shows that', 'this indicates', 'this highlights',
+];
+
+const COMPARATIVE_TERMS = [
+  'ahead', 'behind', 'leads', 'lags', 'outpaces', 'overtaken',
+  'first to', 'only firm', 'no peer', 'ahead of', 'behind competitors',
+  'market leader', 'catching up', 'gap between',
+];
+
+const DECISION_TERMS = [
+  'cannot afford', 'must now', 'no longer', 'already losing', 'at risk of',
+  'has crossed', 'default', 'benchmark', 'cannot ignore', 'inflection point',
+  'window is closing', 'competitive disadvantage', 'losing the',
+];
+
+function scoreCXORelevance(entry) {
+  const soWhat = (entry.the_so_what || '').toLowerCase().trim();
+  const signals = [];
+  let points = 5; // Start at midpoint, adjust up/down
+
+  if (!soWhat || soWhat.length < 20) {
+    return { points: 0, label: 'No the_so_what or too short', weak: true };
+  }
+
+  // Penalise forbidden generic phrases
+  const forbidden = FORBIDDEN_PHRASES.filter(p => soWhat.includes(p));
+  if (forbidden.length > 0) {
+    points -= 3;
+    signals.push(`generic phrases: ${forbidden.join(', ')} (-3)`);
+  }
+
+  // Penalise if company name absent (generic statement not about a specific company)
+  const companyName = (entry.company_name || '').toLowerCase();
+  if (companyName.length > 2 && !soWhat.includes(companyName)) {
+    points -= 2;
+    signals.push('company name absent (-2)');
+  }
+
+  // Penalise if too long (rambling, not a tight strategic insight)
+  const wordCount = soWhat.split(/\s+/).length;
+  if (wordCount > 60) {
+    points -= 1;
+    signals.push(`too long (${wordCount} words) (-1)`);
+  }
+
+  // Reward: contains a specific number or metric
+  if (/\d/.test(soWhat)) {
+    points += 2;
+    signals.push('contains specific metric (+2)');
+  }
+
+  // Reward: comparative language (positions against competitors)
+  const comparative = COMPARATIVE_TERMS.filter(t => soWhat.includes(t));
+  if (comparative.length > 0) {
+    points += 2;
+    signals.push('comparative positioning (+2)');
+  }
+
+  // Reward: decision/action language (tells CXO what it means for them)
+  const decision = DECISION_TERMS.filter(t => soWhat.includes(t));
+  if (decision.length > 0) {
+    points += 2;
+    signals.push('decision language (+2)');
+  }
+
+  const finalPoints = Math.max(0, Math.min(10, points));
+  const weak = finalPoints <= 4;
+
+  return {
+    points: finalPoints,
+    label: signals.length > 0 ? signals.join(', ') : 'Adequate the_so_what',
+    weak,
+  };
+}
+
 // ── Main scorer ───────────────────────────────────────────────────────────────
 
 export async function scoreEntry({ entry, governance, sourceUrl }) {
@@ -350,20 +435,22 @@ export async function scoreEntry({ entry, governance, sourceUrl }) {
     Promise.resolve(scoreCapabilityImpact(entry)),
   ]);
 
+  const dimE = scoreCXORelevance(entry);
+
   // Fabricated claims: block unless paywalled (can't verify ≠ fabricated)
   if (dimB.fabricated) {
     if (governance.paywall_caveat) {
       return {
         action: 'REVIEW',
         score: 40,
-        breakdown: { source: dimA, claims: { ...dimB, points: 0, label: 'Unverifiable — paywalled source' }, freshness: dimC, impact: dimD },
+        breakdown: { source: dimA, claims: { ...dimB, points: 0, label: 'Unverifiable — paywalled source' }, freshness: dimC, impact: dimD, cxo: dimE },
         reason: 'Paywalled source — claims unverifiable, not fabricated. Human review required.',
       };
     }
     return {
       action: 'BLOCK',
       score: 0,
-      breakdown: { source: dimA, claims: dimB, freshness: dimC, impact: dimD },
+      breakdown: { source: dimA, claims: dimB, freshness: dimC, impact: dimD, cxo: dimE },
       reason: `Fabricated claims: ${(governance.fabricated_claims || []).join('; ')}`,
     };
   }
@@ -382,21 +469,44 @@ export async function scoreEntry({ entry, governance, sourceUrl }) {
   // Paywall caveat: can't fully verify → downgrade PUBLISH to REVIEW
   if (action === 'PUBLISH' && governance.paywall_caveat) action = 'REVIEW';
 
+  // Dimension E gate: weak the_so_what → downgrade PUBLISH to REVIEW (never BLOCK)
+  // The editorial team can fix the_so_what before publishing — it's not a hard failure
+  if (action === 'PUBLISH' && dimE.weak) action = 'REVIEW';
+
   return {
     action,
     score,
-    breakdown: { source: dimA, claims: dimB, freshness: dimC, impact: dimD },
-    reason: null,
+    breakdown: { source: dimA, claims: dimB, freshness: dimC, impact: dimD, cxo: dimE },
+    reason: dimE.weak ? `the_so_what flagged as weak CXO relevance (${dimE.points}/10) — review before publishing` : null,
   };
 }
 
 export function formatScoreBreakdown(scorerResult) {
-  const { score, breakdown: { source, claims, freshness, impact } } = scorerResult;
-  return [
+  const { score, breakdown: { source, claims, freshness, impact, cxo } } = scorerResult;
+  const parts = [
     `Score: ${score}/100`,
     `Source: ${source.label} (${source.points})`,
     `Claims: ${claims.label} (${claims.points > 0 ? '+' : ''}${claims.points})`,
     `Fresh: ${freshness.label} (${freshness.points})`,
     `Impact: ${impact?.label || 'n/a'} (${impact?.points || 0})`,
-  ].join(' · ');
+  ];
+  if (cxo) {
+    parts.push(`CXO: ${cxo.label} (${cxo.points}/10)${cxo.weak ? ' ⚠' : ''}`);
+  }
+  return parts.join(' · ');
+}
+
+// ── Utility: classify source tier (used externally for display/filtering) ─────
+export function classifySource(sourceUrl) {
+  let hostname = '';
+  let fullUrl = '';
+  try {
+    const u = new URL(sourceUrl);
+    hostname = u.hostname.replace(/^www\./, '');
+    fullUrl = sourceUrl.toLowerCase();
+  } catch (_) {
+    return { tier: 'unknown', label: 'Unrecognised source' };
+  }
+  const result = fallbackSourceScore(hostname, fullUrl);
+  return { tier: result.tier, label: result.label };
 }

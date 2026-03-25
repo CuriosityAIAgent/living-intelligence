@@ -67,25 +67,31 @@ GitHub: CuriosityAIAgent/living-intelligence
 
 ## Agent Architecture
 
-Eight agents in `intake-server/agents/`, each with a single responsibility:
+Eleven agents in `intake-server/agents/`, each with a single responsibility:
 
 ```
-auto-discover.js  ──┐
-                    ├──► scored candidates (RSS + Jina + DFS News + DFS Content Analysis)
-intake.js  ─────────┤
-                    ├──► structured entry (paywall → DataForSEO News + Organic in parallel)
-governance.js  ─────┤
-                    ├──► verified claims
-scorer.js  ─────────┤
-                    ├──► PUBLISH / REVIEW / BLOCK + score breakdown
-gov-store.js  ──────┤
-                    ├──► pending queue / blocked list
-publisher.js  ──────┤
-                    ├──► JSON file + git commit + push
-notifier.js  ───────┤
-                    └──► Telegram digest (score + unverified claims per item)
-scheduler.js  ──────── orchestrates daily pipeline
-auditor.js  ────────── standalone audit engine (fast + deep modes)
+auto-discover.js     ──┐
+                       ├──► scored candidates (DFS News + DFS Content Analysis + Jina)
+intake.js  ────────────┤
+                       ├──► structured entry (paywall → DataForSEO News + Organic in parallel)
+context-enricher.js ───┤
+                       ├──► enriched the_so_what (landscape + peer context)
+format-validator.js ───┤
+                       ├──► schema validation (pure rules, no API cost)
+governance.js  ────────┤
+                       ├──► claim verification (12k source window)
+fabrication-strict.js ─┤
+                       ├──► CLEAN / SUSPECT / FAIL (5 explicit checks, 12k window)
+scorer.js  ────────────┤
+                       ├──► PUBLISH / REVIEW / BLOCK + score breakdown
+gov-store.js  ─────────┤
+                       ├──► pending queue / blocked list
+publisher.js  ─────────┤
+                       ├──► JSON file + git commit + push
+notifier.js  ──────────┤
+                       └──► Telegram digest (score + unverified claims per item)
+scheduler.js  ─────────── orchestrates daily pipeline (11-step)
+auditor.js  ───────────── standalone audit engine (fast + deep modes)
 ```
 
 ### `auto-discover.js` — Content Discovery
@@ -122,9 +128,57 @@ Returns top 20 candidates with `via` badge (RSS / Jina / DFS / Content Analysis)
    - Layer 3: `the_so_what` — why this matters strategically (CXO-facing, one sentence)
 4. No inference allowed — Claude only extracts what is in the source
 
+### `context-enricher.js` — Landscape-Aware the_so_what *(session 8)*
+
+Runs after intake structuring, before validation. Regenerates `the_so_what` with full competitive context that intake.js cannot have.
+
+Inputs to Claude:
+- Last 3 published entries for the same company (from `data/intelligence/`)
+- Company's current maturity in the relevant capability (from `data/competitors/`)
+- Top 2 peer competitors in the same segment + same capability dimension, by maturity rank
+
+Output: `{ the_so_what, what_changed, landscape_context: { current_maturity, maturity_direction, competitor_gap }, enrichment_confidence, enrichment_notes }`
+
+**Non-fatal:** Falls back to original `the_so_what` on any error — enrichment failure never blocks a good story.
+
+### `format-validator.js` — Schema Validation *(session 8)*
+
+Pure rules engine — zero Claude API cost. Runs after context enrichment.
+
+9 checks:
+1. Headline ≤ 120 characters
+2. Summary ≥ 2 sentences (regex: skips digit.digit to avoid splitting "$14.00")
+3. `the_so_what` present and non-empty
+4. Date is valid and not in the future
+5. `week` matches ISO Monday of the date (UTC noon to avoid DST edge cases)
+6. `type` is one of valid enum values
+7. `tags.capability`, `tags.region`, `tags.segment` are valid enum values
+8. `key_stat.number` non-empty if key_stat present
+9. `source_url` starts with `http`; `image_url` is not an unavatar.io URL
+
+**Non-fatal:** Format errors annotate `_format_errors` on the entry and route it to REVIEW, but do not block the pipeline.
+
+### `fabrication-strict.js` — Dedicated Fabrication Check *(session 8)*
+
+Third Claude call (after governance) dedicated entirely to fabrication detection. Uses 12k source window (double the original governance.js 6k limit).
+
+Five explicit checks:
+1. Numbers in headline appear verbatim in source
+2. Company name spelled correctly as used in source
+3. Date in the entry appears in the article body
+4. `key_stat.number` is literally present in source text
+5. Any quoted phrases appear verbatim in source
+
+Verdicts: **CLEAN** / **SUSPECT** / **FAIL**
+- **CLEAN** → no issues found
+- **SUSPECT** → "not found" may be truncation, not fabrication (source window limit hit)
+- **FAIL** → claim directly contradicts source → **HARD BLOCK** regardless of governance verdict
+
+Returns: `{ verdict, issues, check_details, checked_at }`
+
 ### `governance.js` — Claim Verification
 
-Second Claude call (separate from structuring) verifies every claim in the generated entry against the source article.
+Second Claude call (separate from structuring) verifies every claim in the generated entry against the source article. Source window: **12,000 characters** (increased from 6,000 in session 8).
 
 Verdict rules:
 - **PASS** → all claims verified, `source_verified: true`
@@ -186,17 +240,24 @@ Review links use HMAC-SHA256 token signing (`REVIEW_SECRET`) — one-tap approve
 
 ### `scheduler.js` — Daily Pipeline Orchestration
 
-Runs at 6am Europe/London:
+Runs at 5am Europe/London:
 1. `autoDiscover()` → find new candidates (intelCandidates + tlCandidates + knownCompanyIds)
 2. Build entity+event dedup map (same company + same type within 14 days → REVIEW with note)
-3. For each of top 15 candidates: `processUrl()` + `verify()` + `scoreEntry()`
-4. **ROUTING (Universal Inbox — nothing auto-publishes):**
-   - Score ≥ 75 → `addPending(entry, govAudit, { score, score_breakdown })` → INBOX (high confidence)
-   - Score 60–74 → `addPending(entry, govAudit)` → INBOX (REVIEW)
+3. For each of top 15 candidates:
+   - **Step 1:** `processUrl()` → structured entry
+   - **Step 1b:** `enrichContext()` → regenerate the_so_what with landscape context (non-fatal)
+   - **Step 2:** `validateFormat()` → 9 schema rules (non-fatal, annotates `_format_errors`)
+   - **Step 2b:** `verify()` → governance claim check (12k window)
+   - **Step 2c:** `checkFabrication()` → dedicated fabrication pass (12k window)
+     - Fabrication FAIL → **HARD BLOCK** regardless of governance verdict
+4. `scoreEntry()` → 4-dimension scoring
+5. **ROUTING (Universal Inbox — nothing auto-publishes):**
+   - Score ≥ 75 → `addPending(entry, govAudit, { score, score_breakdown, fabrication_verdict, format_errors, enrichment })` → INBOX (high confidence)
+   - Score 60–74 → `addPending(...)` → INBOX (REVIEW)
    - Score < 60 or fabricated → `addBlocked()` → permanently blocked
-5. New company detection: entry.company not in knownCompanyIds → flagged in digest
-6. `writePipelineStatus()` → `.pipeline-status.json`
-7. `sendDigest()` → Telegram (trigger-only: "N stories need review → [link to studio]")
+6. New company detection: entry.company not in knownCompanyIds → flagged in digest
+7. `writePipelineStatus()` → `.pipeline-status.json`
+8. `sendDigest()` → Telegram (trigger-only: "N stories need review → [link to studio]")
 
 ### `auditor.js` — Data Quality Audit Engine *(new)*
 
@@ -263,9 +324,9 @@ Run: `node --env-file=.env scripts/run-tests.js`
 
 ```
 data/
-├── intelligence/             ← 25 IntelligenceEntry JSON files (audited, 2026-03-22)
-├── thought-leadership/       ← 6 ThoughtLeadershipEntry JSON files (all URLs verified)
-├── competitors/              ← 27 Competitor JSON files (7 segments)
+├── intelligence/             ← 42 IntelligenceEntry JSON files (audited, 2026-03-25)
+├── thought-leadership/       ← 7 ThoughtLeadershipEntry JSON files (all URLs verified)
+├── competitors/              ← 37 Competitor JSON files (8 segments)
 ├── capabilities/             ← index.json (7 capability dimensions)
 ├── logos/                    ← Local SVG/PNG logos (never use external URLs)
 ├── audit-report.json         ← Latest audit output (auto-generated)

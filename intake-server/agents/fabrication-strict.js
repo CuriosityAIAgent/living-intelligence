@@ -1,18 +1,26 @@
-// fabrication-strict.js — dedicated second Claude verification pass
-// Stricter than governance.js: looks for EXACT text matches, not general claim support.
-// Called AFTER governance.js with the same sourceMarkdown.
-//
-// Returns: { verdict: "CLEAN" | "SUSPECT" | "FAIL", issues: string[], checked_at: ISO string }
-//
-//   CLEAN  — all numbers, names, dates, stats verified as verbatim matches in source
-//   SUSPECT — 1-2 items couldn't be confirmed (may be in truncated text) — flag but don't block
-//   FAIL   — any number or name demonstrably contradicts source, OR key stat absent from source
+/**
+ * fabrication-strict.js — Exact-text fabrication detection
+ *
+ * Single responsibility: verify that specific numbers, names, statistics,
+ * and quoted phrases in the entry appear VERBATIM in the source text.
+ * This is complementary to governance.js (which checks logical support).
+ *
+ * Called AFTER governance.js. Both use a 12k source window.
+ *
+ * Checked fields: headline · summary · the_so_what · key_stat
+ *
+ * Returns: { verdict: "CLEAN" | "SUSPECT" | "FAIL", issues: string[], checked_at: ISO string }
+ *
+ *   CLEAN   — all explicit numbers, names, stats, quotes verified verbatim in source
+ *   SUSPECT — item not found but source may be truncated (not contradicted) — flag, don't block
+ *   FAIL    — a specific number or quote is demonstrably contradicted by the source → HARD BLOCK
+ */
 
 import Anthropic from '@anthropic-ai/sdk';
 
 const client = new Anthropic();
 
-const SOURCE_WINDOW = 12_000; // chars — wider than governance.js (6,000) for better coverage
+const SOURCE_WINDOW = 12_000; // chars — same window as governance.js
 
 export async function checkFabrication({ entry, sourceMarkdown }) {
   const sourceSnippet = (sourceMarkdown || '').slice(0, SOURCE_WINDOW);
@@ -23,12 +31,13 @@ export async function checkFabrication({ entry, sourceMarkdown }) {
 
   const prompt = `You are a fabrication-detection agent for a premium financial intelligence platform.
 
-Your job is STRICTLY different from general fact-checking: you are looking for EXACT TEXT MATCHES, not plausible support or paraphrasing. Every number, company name, date, and quoted phrase must appear VERBATIM (or near-verbatim with only minor grammatical inflection) in the source text below.
+Your job is STRICTLY different from general fact-checking: you are looking for EXACT TEXT MATCHES, not plausible support or paraphrasing. Every specific number, company name, and quoted phrase must appear VERBATIM (or near-verbatim with only minor grammatical inflection) in the source text below.
 
 ENTRY TO CHECK:
 ---
 Headline: ${entry.headline}
 Summary: ${entry.summary}
+The so what: ${entry.the_so_what || 'none'}
 Key stat: ${keyStat}
 Company name: ${entry.company_name}
 Date: ${entry.date}
@@ -39,37 +48,40 @@ SOURCE ARTICLE (first ${SOURCE_WINDOW.toLocaleString()} chars — may be truncat
 ${sourceSnippet}
 ---
 
-Answer each of the following five checks precisely:
+Answer each of the following six checks precisely:
 
 1. NUMBERS IN HEADLINE — Extract every digit sequence from the headline (e.g. "150", "2.5", "$4B"). For each: does it appear verbatim or near-verbatim in the source text? If the source text is truncated and the number simply isn't present (not contradicted), note it as "not found — possible truncation".
 
-2. COMPANY NAME SPELLING — Is "${entry.company_name}" spelled exactly as it appears in the source? Check the source for the company name and report the exact spelling found. If the source uses a different form (e.g. "JPMorgan Chase" vs "JPMorgan"), flag it.
+2. COMPANY NAME SPELLING — Is "${entry.company_name}" spelled exactly as it appears in the source? Check the source for the company name and report the exact spelling found. If the source uses a different form (e.g. "JPMorgan Chase" vs "JPMorgan"), flag it only if the forms are substantively different (not just abbreviation vs full name).
 
-3. DATE VERIFICATION — Is the date "${entry.date}" stated explicitly as a publication or event date somewhere in the BODY of the article (not just implied by a URL slug or byline metadata)? Answer yes/no with evidence.
+3. DATE VERIFICATION — Does the year "${entry.date.slice(0, 4)}" appear in the source text? (We check year only — exact date in article body is unreliable.) If the source contains a clearly different year for the same events, flag it.
 
-4. KEY STAT VERBATIM — ${entry.key_stat ? `The key stat is "${entry.key_stat.number}". Does this exact number appear literally in the source text? If not: is it contradicted, or simply absent (possible truncation)?` : 'No key stat to check.'}
+4. KEY STAT VERBATIM — ${entry.key_stat ? `The key stat is "${entry.key_stat.number}". Does this exact number appear literally in the source text? If not: is it contradicted by a different number in the source, or simply absent (possible truncation)?` : 'No key stat to check.'}
 
-5. QUOTED PHRASES — Identify any phrase in the summary that appears to be a direct quote (enclosed in quotation marks or attributed with "said", "noted", "announced", "stated"). For each: find the verbatim match in the source. Flag any that cannot be found.
+5. QUOTED PHRASES IN SUMMARY — Identify any phrase in the summary enclosed in quotation marks or attributed with "said", "noted", "announced", "stated". For each: find the verbatim match in the source. Flag any that cannot be found.
 
-After checking all five, return a JSON object in exactly this format:
+6. NUMBERS IN THE SO WHAT — Extract any specific numbers or statistics from the "the so what" field (e.g. "$105M", "27,000 advisors", "6 months"). For each: does it appear verbatim in the source? If absent but not contradicted, note as "not found — possible truncation".
+
+After checking all six, return a JSON object in exactly this format:
 {
   "verdict": "CLEAN" | "SUSPECT" | "FAIL",
   "issues": ["list of specific problems found — empty array if CLEAN"],
   "check_details": {
-    "numbers_in_headline": "pass | fail | not_found_truncation",
+    "numbers_in_headline": "pass | fail | not_found_truncation | none",
     "company_name": "pass | fail",
-    "date_explicit": "pass | fail | not_found_truncation",
+    "date_year": "pass | fail | not_found_truncation",
     "key_stat": "pass | fail | not_found_truncation | no_stat",
-    "quoted_phrases": "pass | fail | none"
+    "quoted_phrases": "pass | fail | none",
+    "numbers_in_so_what": "pass | fail | not_found_truncation | none"
   }
 }
 
 Verdict rules (strict):
-- CLEAN: All five checks pass. No contradictions. No fabrications.
-- SUSPECT: 1-2 checks returned "not_found_truncation" (item absent but not contradicted — source may be cut off). No outright contradictions.
-- FAIL: ANY of the following: a digit sequence in the headline contradicts the source; the company name is misspelled relative to the source; a key stat is present in the entry but entirely absent AND contradicted by the source; a quoted phrase cannot be found verbatim.
+- CLEAN: All checks pass. No contradictions.
+- SUSPECT: 1-2 checks returned "not_found_truncation" — item absent but not contradicted (source may be cut off). No outright contradictions.
+- FAIL: ANY of the following: a digit sequence in the headline or key stat CONTRADICTS the source (different number present for the same metric); the company name is substantively wrong; a quoted phrase cannot be found and appears to be invented; a number in the_so_what contradicts the source.
 
-Important: "not found because source is truncated" is SUSPECT, not FAIL. Only contradiction is FAIL.
+Critical distinction: "not found because source is truncated" = SUSPECT. "Found but wrong" = FAIL.
 
 Return only valid JSON. No explanation outside the JSON.`;
 

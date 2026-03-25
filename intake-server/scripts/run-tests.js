@@ -12,11 +12,15 @@
  * Exit code 0 = all pass. Exit code 1 = one or more failures.
  *
  * Test suites:
- *   1. scorer.js     — 4-dimension scoring, threshold routing, hard 90-day gate
- *   2. notifier.js   — HMAC token signing/verification, digest message structure
- *   3. publisher.js  — File writing, source_verified logic, ID collision handling
- *   4. auto-discover — Pure functions: isRelevant, normalizeUrl, query builders
- *   5. scheduler     — Threshold routing logic (inline, no external calls)
+ *   1. scorer.js        — 4-dimension scoring + Dimension E CXO gate, threshold routing
+ *   2. notifier.js      — HMAC token signing/verification, digest message structure
+ *   3. publisher.js     — File writing, source_verified logic, ID collision handling
+ *   4. auto-discover    — Pure functions: isRelevant, normalizeUrl, query builders
+ *   5. scheduler        — Threshold routing logic (inline, no external calls)
+ *   6. format-validator — 9 schema rules (pure, no API)
+ *   7. scorer/Dim-E     — scoreCXORelevance via scoreEntry (forbidden phrases, metrics, language)
+ *   8. context-enricher — crossReferenceCheck pure function (maturity advancement logic)
+ *   9. governance       — Upfront paywall short-circuit (sourceLen < 300 → REVIEW, no Claude)
  */
 
 import { scoreEntry, formatScoreBreakdown } from '../agents/scorer.js';
@@ -25,6 +29,11 @@ import { publish } from '../agents/publisher.js';
 import {
   isRelevant, normalizeUrl, buildCompanyQueries, buildAuthorQueries,
 } from '../agents/auto-discover.js';
+import { validateFormat } from '../agents/format-validator.js';
+import {
+  crossReferenceCheck, EVIDENCE_STAGE_TO_MATURITY, MATURITY_RANK,
+} from '../agents/context-enricher.js';
+import { verify as governanceVerify } from '../agents/governance.js';
 
 import { mkdirSync, existsSync, readFileSync, rmSync } from 'fs';
 import { join } from 'path';
@@ -374,7 +383,7 @@ await test('piloting stage without metric → moderate evidence score', async ()
 
 suite('1 · scorer.js — Score routing + threshold decisions');
 
-await test('Perfect score → PUBLISH (capability_evidence + fresh + press release)', async () => {
+await test('Perfect score → PUBLISH (capability_evidence + fresh + press release + strong the_so_what)', async () => {
   const result = await scoreEntry({
     entry: {
       id: 'test-perfect',
@@ -382,6 +391,8 @@ await test('Perfect score → PUBLISH (capability_evidence + fresh + press relea
       company_name: 'Goldman Sachs',
       headline: 'Goldman Sachs advisor AI platform live for 15,000 advisors',
       summary: 'Goldman Sachs deployed an AI-powered advisor assistant reaching 15,000 financial advisors firm-wide.',
+      // Strong the_so_what: company name present, metric, decision/comparative language → Dimension E will not flag as weak
+      the_so_what: 'Goldman Sachs has crossed the inflection point where 15,000 advisors on AI tooling means any wirehouse without a comparable deployment is already losing the talent acquisition argument.',
       date: daysAgo(1),
       source_url: 'https://businesswire.com/test',
       tags: { capability: 'advisor_productivity', region: 'us', segment: 'wirehouse', theme: [] },
@@ -437,9 +448,12 @@ await test('paywall_caveat=true on PUBLISH-eligible score → downgrade to REVIE
   eq(result.action, 'REVIEW', 'action downgraded to REVIEW');
 });
 
-await test('formatScoreBreakdown returns expected shape', async () => {
+await test('formatScoreBreakdown returns expected shape (includes CXO field)', async () => {
   const result = await scoreEntry({
-    entry: entry(),
+    entry: {
+      ...entry(),
+      the_so_what: 'Goldman Sachs has crossed the threshold where its AI advisor platform cannot be ignored by peer institutions.',
+    },
     governance: gov(),
     sourceUrl: 'https://businesswire.com/article',
   });
@@ -450,6 +464,8 @@ await test('formatScoreBreakdown returns expected shape', async () => {
   assert(breakdown.includes('Fresh:'), 'contains Fresh:');
   assert(breakdown.includes('Impact:'), 'contains Impact:');
   assert(breakdown.includes('/100'), 'contains /100');
+  assert(breakdown.includes('CXO:'), 'contains CXO: field (Dimension E)');
+  assert(breakdown.includes('/10'), 'contains /10 (CXO score)');
 });
 
 // ═════════════════════════════════════════════════════════════════════════════
@@ -765,6 +781,351 @@ test('score=65 + paywall_caveat → REVIEW (no further downgrade below publish)'
 
 test('score=59 + paywall_caveat → BLOCK (already blocked, paywall irrelevant)', () => {
   eq(routeScore(59, true), 'BLOCK', 'paywall on BLOCK stays BLOCK');
+});
+
+// ═════════════════════════════════════════════════════════════════════════════
+// SUITE 6: format-validator.js — Pure schema validation (9 rules)
+// No API calls — all checks are deterministic
+// ═════════════════════════════════════════════════════════════════════════════
+
+suite('6 · format-validator.js — Schema validation');
+
+function validEntry(overrides = {}) {
+  return {
+    headline:     'Goldman Sachs launches AI advisor platform for 15,000 advisors',
+    summary:      'Goldman Sachs deployed an AI-powered advisor assistant. The platform reaches 15,000 financial advisors firm-wide.',
+    the_so_what:  'Goldman Sachs has crossed the threshold where its AI advisor platform cannot be ignored.',
+    company:      'goldman-sachs',
+    company_name: 'Goldman Sachs',
+    date:         '2026-03-20',
+    week:         '2026-03-16', // Monday of 2026-03-20's week
+    type:         'product_launch',
+    tags: {
+      capability: 'advisor_productivity',
+      region:     'us',
+      segment:    'wirehouse',
+    },
+    source_url: 'https://businesswire.com/test-article',
+    ...overrides,
+  };
+}
+
+await test('fully valid entry → valid: true, no errors', async () => {
+  const result = validateFormat(validEntry());
+  eq(result.valid, true, 'valid');
+  assert(!result.errors, 'no errors array');
+});
+
+await test('missing headline → error', async () => {
+  const { headline: _h, ...rest } = validEntry();
+  const result = validateFormat(rest);
+  eq(result.valid, false, 'invalid');
+  assert(result.errors.some(e => e.includes('headline')), 'headline error');
+});
+
+await test('headline > 120 chars → error', async () => {
+  const result = validateFormat(validEntry({ headline: 'A'.repeat(121) }));
+  eq(result.valid, false, 'invalid');
+  assert(result.errors.some(e => e.includes('120')), 'length error mentions 120');
+});
+
+await test('summary with only 1 sentence → error', async () => {
+  const result = validateFormat(validEntry({ summary: 'Only one sentence here' }));
+  eq(result.valid, false, 'invalid');
+  assert(result.errors.some(e => e.includes('2 sentences')), 'sentence count error');
+});
+
+await test('decimal number in summary does not count as sentence boundary', async () => {
+  // "$14.50" → period preceded by digit → NOT a sentence break
+  // "assets." and "globally." are real sentence ends
+  const result = validateFormat(validEntry({
+    summary: 'Goldman Sachs manages $14.50 billion in AI-powered assets. The platform serves advisors globally.',
+  }));
+  eq(result.valid, true, 'decimal not split into sentences — valid');
+});
+
+await test('missing the_so_what → error', async () => {
+  const result = validateFormat(validEntry({ the_so_what: '' }));
+  eq(result.valid, false, 'invalid');
+  assert(result.errors.some(e => e.includes('the_so_what')), 'the_so_what error');
+});
+
+await test('invalid type → error', async () => {
+  const result = validateFormat(validEntry({ type: 'not_a_real_type' }));
+  eq(result.valid, false, 'invalid');
+  assert(result.errors.some(e => e.includes('not_a_real_type')), 'bad type flagged');
+});
+
+await test('invalid tags.capability → error', async () => {
+  const result = validateFormat(validEntry({ tags: { capability: 'bad_cap', region: 'us', segment: 'wirehouse' } }));
+  eq(result.valid, false, 'invalid');
+  assert(result.errors.some(e => e.includes('bad_cap')), 'bad capability flagged');
+});
+
+await test('week not Monday of date\'s week → error', async () => {
+  const result = validateFormat(validEntry({ date: '2026-03-20', week: '2026-03-17' }));
+  eq(result.valid, false, 'invalid');
+  assert(result.errors.some(e => e.includes('week')), 'week error');
+});
+
+await test('key_stat with null number → error', async () => {
+  const result = validateFormat(validEntry({ key_stat: { number: null, label: 'advisors' } }));
+  eq(result.valid, false, 'invalid');
+  assert(result.errors.some(e => e.includes('key_stat.number')), 'key_stat number error');
+});
+
+await test('valid key_stat → passes', async () => {
+  const result = validateFormat(validEntry({ key_stat: { number: '15,000', label: 'advisors on platform' } }));
+  eq(result.valid, true, 'valid with key_stat');
+});
+
+await test('unavatar.io image_url → error', async () => {
+  const result = validateFormat(validEntry({ image_url: 'https://unavatar.io/goldman-sachs' }));
+  eq(result.valid, false, 'invalid');
+  assert(result.errors.some(e => e.includes('unavatar.io')), 'unavatar error');
+});
+
+await test('source_url not starting with http → error', async () => {
+  const result = validateFormat(validEntry({ source_url: 'ftp://example.com/article' }));
+  eq(result.valid, false, 'invalid');
+  assert(result.errors.some(e => e.includes('http')), 'non-http source error');
+});
+
+// ═════════════════════════════════════════════════════════════════════════════
+// SUITE 7: scorer.js — Dimension E CXO Relevance (via scoreEntry)
+// scoreCXORelevance is internal but observable through scoreEntry() results:
+//   - breakdown.cxo present on all results
+//   - weak=true + PUBLISH-eligible score → action downgraded to REVIEW
+//   - formatScoreBreakdown includes ⚠ when weak
+// ═════════════════════════════════════════════════════════════════════════════
+
+suite('7 · scorer.js — Dimension E: CXO Relevance gate');
+
+function publishEligibleEntry(theSoWhat) {
+  return {
+    id: 'test-dime',
+    company: 'goldman-sachs',
+    company_name: 'Goldman Sachs',
+    headline: 'Goldman Sachs advisor AI platform live for 15,000 advisors',
+    summary: 'Goldman Sachs deployed an AI-powered advisor assistant reaching 15,000 financial advisors firm-wide.',
+    the_so_what: theSoWhat,
+    date: daysAgo(1),
+    source_url: 'https://businesswire.com/test',
+    tags: { capability: 'advisor_productivity', region: 'us', segment: 'wirehouse', theme: [] },
+    capability_evidence: {
+      capability: 'advisor_productivity',
+      stage: 'deployed',
+      evidence: 'Platform live for all Goldman advisors',
+      metric: '15,000 advisors',
+    },
+  };
+}
+
+await test('forbidden phrase in the_so_what → cxo.weak=true, PUBLISH→REVIEW downgrade', async () => {
+  const theSoWhat = 'This signals that Goldman Sachs is embracing AI at scale across its advisor network.';
+  const result = await scoreEntry({
+    entry: publishEligibleEntry(theSoWhat),
+    governance: gov(),
+    sourceUrl: 'https://businesswire.com/article',
+  });
+  eq(result.action, 'REVIEW', 'forbidden phrase → downgraded to REVIEW');
+  eq(result.breakdown.cxo.weak, true, 'cxo.weak=true');
+  assert(result.reason !== null, 'reason explains the downgrade');
+});
+
+await test('strong the_so_what with metric + comparative + decision → not weak, stays PUBLISH', async () => {
+  const theSoWhat = 'Goldman Sachs has crossed the inflection point where 15,000 advisors on AI tooling means any wirehouse without a comparable deployment is already losing the talent acquisition argument.';
+  const result = await scoreEntry({
+    entry: publishEligibleEntry(theSoWhat),
+    governance: gov(),
+    sourceUrl: 'https://businesswire.com/article',
+  });
+  eq(result.breakdown.cxo.weak, false, 'strong the_so_what → not weak');
+  eq(result.action, 'PUBLISH', 'not downgraded → PUBLISH');
+});
+
+await test('cxo field present in breakdown on all scoreEntry results', async () => {
+  const result = await scoreEntry({
+    entry: entry(),
+    governance: gov(),
+    sourceUrl: 'https://businesswire.com/article',
+  });
+  assert('cxo' in result.breakdown, 'breakdown.cxo exists');
+  assert(typeof result.breakdown.cxo.points === 'number', 'cxo.points is number');
+  assert(typeof result.breakdown.cxo.weak === 'boolean', 'cxo.weak is boolean');
+});
+
+await test('empty the_so_what → cxo.points=0, cxo.weak=true', async () => {
+  const result = await scoreEntry({
+    entry: { ...publishEligibleEntry(''), the_so_what: '' },
+    governance: gov(),
+    sourceUrl: 'https://businesswire.com/article',
+  });
+  eq(result.breakdown.cxo.points, 0, 'empty → 0 points');
+  eq(result.breakdown.cxo.weak, true, 'empty → weak=true');
+});
+
+await test('formatScoreBreakdown includes ⚠ when cxo.weak=true', async () => {
+  const theSoWhat = 'This highlights the growing importance of AI in wealth management.';
+  const result = await scoreEntry({
+    entry: publishEligibleEntry(theSoWhat),
+    governance: gov(),
+    sourceUrl: 'https://businesswire.com/article',
+  });
+  const breakdown = formatScoreBreakdown(result);
+  assert(breakdown.includes('CXO:'), 'CXO: in breakdown');
+  if (result.breakdown.cxo.weak) {
+    assert(breakdown.includes('⚠'), 'weak CXO shows ⚠');
+  }
+});
+
+await test('Dimension E never downgrades to BLOCK — only REVIEW at most', async () => {
+  const theSoWhat = 'This suggests Goldman Sachs is embracing AI.';
+  const result = await scoreEntry({
+    entry: publishEligibleEntry(theSoWhat),
+    governance: gov(),
+    sourceUrl: 'https://businesswire.com/article',
+  });
+  assert(result.action !== 'BLOCK', 'Dimension E cannot cause BLOCK — only REVIEW');
+});
+
+// ═════════════════════════════════════════════════════════════════════════════
+// SUITE 8: context-enricher.js — crossReferenceCheck (exported pure function)
+// Tests the landscape coverage cross-reference logic:
+//   - Story at same/lower maturity as landscape → already_covered=true
+//   - Story advances maturity beyond landscape → already_covered=false
+//   - No competitor data or capability → never covered
+// ═════════════════════════════════════════════════════════════════════════════
+
+suite('8 · context-enricher.js — crossReferenceCheck()');
+
+function makeCompetitor(capabilityId, maturity) {
+  return {
+    id: 'test-co',
+    name: 'Test Corp',
+    segment: 'wirehouse',
+    capabilities: {
+      [capabilityId]: { maturity, headline: 'Test headline' },
+    },
+  };
+}
+
+function makeCapEntry(capStage) {
+  return {
+    capability_evidence: { capability: 'advisor_productivity', stage: capStage },
+    tags: { capability: 'advisor_productivity' },
+  };
+}
+
+await test('landscape=DEPLOYED, story=piloting → already_covered=true', async () => {
+  const result = crossReferenceCheck(makeCompetitor('advisor_productivity', 'deployed'), 'advisor_productivity', makeCapEntry('piloting'));
+  eq(result.landscape_already_covered, true, 'story does not advance');
+});
+
+await test('landscape=DEPLOYED, story=deployed → already_covered=true (same level)', async () => {
+  const result = crossReferenceCheck(makeCompetitor('advisor_productivity', 'deployed'), 'advisor_productivity', makeCapEntry('deployed'));
+  eq(result.landscape_already_covered, true, 'same maturity → already covered');
+});
+
+await test('landscape=PILOTING, story=deployed → already_covered=false (story advances)', async () => {
+  const result = crossReferenceCheck(makeCompetitor('advisor_productivity', 'piloting'), 'advisor_productivity', makeCapEntry('deployed'));
+  eq(result.landscape_already_covered, false, 'story advances maturity');
+  assert(result.landscape_match_notes.includes('advances maturity'), 'notes mention advancement');
+});
+
+await test('landscape=ANNOUNCED (rank<2), story=piloting → already_covered=false (below threshold)', async () => {
+  const result = crossReferenceCheck(makeCompetitor('advisor_productivity', 'announced'), 'advisor_productivity', makeCapEntry('piloting'));
+  eq(result.landscape_already_covered, false, 'announced rank < 2 → threshold not met');
+});
+
+await test('landscape=SCALED, story=piloting → already_covered=true', async () => {
+  const result = crossReferenceCheck(makeCompetitor('advisor_productivity', 'scaled'), 'advisor_productivity', makeCapEntry('piloting'));
+  eq(result.landscape_already_covered, true, 'scaled is highest — always covered');
+});
+
+await test('no competitor data → always already_covered=false', async () => {
+  const result = crossReferenceCheck(null, 'advisor_productivity', makeCapEntry('deployed'));
+  eq(result.landscape_already_covered, false, 'no competitor → not covered');
+  eq(result.landscape_match_notes, null, 'no notes');
+});
+
+await test('capability not in competitor → already_covered=false with note', async () => {
+  const competitor = makeCompetitor('client_personalization', 'deployed');
+  const result = crossReferenceCheck(competitor, 'advisor_productivity', makeCapEntry('deployed'));
+  eq(result.landscape_already_covered, false, 'cap not in landscape → not covered');
+  assert(result.landscape_match_notes !== null, 'has a note');
+});
+
+await test('null capabilityId → always already_covered=false', async () => {
+  const result = crossReferenceCheck(makeCompetitor('advisor_productivity', 'deployed'), null, makeCapEntry('deployed'));
+  eq(result.landscape_already_covered, false, 'null capability → not covered');
+});
+
+await test('MATURITY_RANK has all 5 levels in correct order', async () => {
+  eq(MATURITY_RANK.scaled, 4, 'scaled=4');
+  eq(MATURITY_RANK.deployed, 3, 'deployed=3');
+  eq(MATURITY_RANK.piloting, 2, 'piloting=2');
+  eq(MATURITY_RANK.announced, 1, 'announced=1');
+  eq(MATURITY_RANK.no_activity, 0, 'no_activity=0');
+});
+
+await test('EVIDENCE_STAGE_TO_MATURITY maps all key stages correctly', async () => {
+  eq(EVIDENCE_STAGE_TO_MATURITY('deployed'), 'deployed', 'deployed');
+  eq(EVIDENCE_STAGE_TO_MATURITY('live'), 'deployed', 'live → deployed');
+  eq(EVIDENCE_STAGE_TO_MATURITY('piloting'), 'piloting', 'piloting');
+  eq(EVIDENCE_STAGE_TO_MATURITY('beta'), 'piloting', 'beta → piloting');
+  eq(EVIDENCE_STAGE_TO_MATURITY('announced'), 'announced', 'announced');
+  eq(EVIDENCE_STAGE_TO_MATURITY(null), 'no_activity', 'null → no_activity');
+  eq(EVIDENCE_STAGE_TO_MATURITY('unknown_stage'), 'no_activity', 'unknown → no_activity');
+});
+
+// ═════════════════════════════════════════════════════════════════════════════
+// SUITE 9: governance.js — Upfront paywall short-circuit (no Claude call)
+// When sourceMarkdown.length < 300, verify() returns REVIEW immediately
+// without calling the Anthropic API — deterministic in test environments.
+// ═════════════════════════════════════════════════════════════════════════════
+
+suite('9 · governance.js — Paywall short-circuit (sourceLen < 300)');
+
+const govTestEntry = {
+  id: 'gov-test-001',
+  headline: 'Goldman Sachs launches AI platform',
+  summary: 'Goldman Sachs deployed a new AI advisor platform. The platform serves 15,000 advisors.',
+  the_so_what: 'Goldman Sachs cannot be ignored by peers.',
+  company: 'goldman-sachs',
+  company_name: 'Goldman Sachs',
+  date: daysAgo(1),
+  key_stat: { number: '15,000', label: 'advisors' },
+};
+
+await test('sourceMarkdown < 300 chars → REVIEW + paywall_caveat=true (no Claude call)', async () => {
+  const tinySource = 'Subscribe to continue reading. This content is behind a paywall.';
+  const result = await governanceVerify({ entry: govTestEntry, sourceMarkdown: tinySource, send: () => {} });
+  eq(result.verdict, 'REVIEW', 'short source → REVIEW');
+  eq(result.paywall_caveat, true, 'paywall_caveat=true');
+  assert(result.verified_at, 'verified_at timestamp present');
+});
+
+await test('empty sourceMarkdown → REVIEW + paywall_caveat=true', async () => {
+  const result = await governanceVerify({ entry: govTestEntry, sourceMarkdown: '', send: () => {} });
+  eq(result.verdict, 'REVIEW', 'empty source → REVIEW');
+  eq(result.paywall_caveat, true, 'paywall_caveat=true');
+});
+
+await test('null sourceMarkdown → REVIEW + paywall_caveat=true', async () => {
+  const result = await governanceVerify({ entry: govTestEntry, sourceMarkdown: null, send: () => {} });
+  eq(result.verdict, 'REVIEW', 'null source → REVIEW');
+  eq(result.paywall_caveat, true, 'paywall_caveat=true');
+});
+
+await test('short-circuit result has human_approved=false', async () => {
+  const result = await governanceVerify({ entry: govTestEntry, sourceMarkdown: 'tiny', send: () => {} });
+  eq(result.human_approved, false, 'human_approved defaults to false');
+});
+
+await test('short-circuit result has approved_at=null', async () => {
+  const result = await governanceVerify({ entry: govTestEntry, sourceMarkdown: 'tiny', send: () => {} });
+  eq(result.approved_at, null, 'approved_at=null until human approves');
 });
 
 // ═════════════════════════════════════════════════════════════════════════════
