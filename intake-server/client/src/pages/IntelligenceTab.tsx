@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
-import { fetchInbox, fetchPipelineStatus } from '../api';
+import { fetchInbox, fetchPipelineStatus, fetchBlocked } from '../api';
 import StoryCard from '../components/StoryCard';
 import ActivityLog from '../components/ActivityLog';
 
-type SubTab = 'review' | 'discover';
+type SubTab = 'review' | 'discover' | 'blocked';
 
 export default function IntelligenceTab() {
   const [subTab, setSubTab] = useState<SubTab>('review');
@@ -72,14 +72,18 @@ export default function IntelligenceTab() {
     }
   };
 
-  const lastRun = pipelineStatus?.started_at
-    ? new Date(pipelineStatus.started_at).toLocaleString('en-GB', {
+  const lastRunAt = pipelineStatus?.last_run_at || pipelineStatus?.started_at;
+  const lastRun = lastRunAt
+    ? new Date(lastRunAt).toLocaleString('en-GB', {
         day: 'numeric',
         month: 'short',
         hour: '2-digit',
         minute: '2-digit',
       })
     : 'Never';
+  const blockedCount = pipelineStatus?.blocked_total ?? pipelineStatus?.last_run_blocked ?? pipelineStatus?.blocked ?? 0;
+  const errorsCount = pipelineStatus?.errors ?? 0;
+  const tlCount = pipelineStatus?.tl_candidates ?? 0;
 
   return (
     <div>
@@ -96,25 +100,13 @@ export default function IntelligenceTab() {
         }}
       >
         <div style={{ display: 'flex', alignItems: 'center', gap: 0 }}>
-          <Kpi value={items.length} label="In Review" color="#111827" />
+          <Kpi value={items.length} label="In Review" color={items.length > 0 ? '#15803D' : '#9CA3AF'} onClick={() => setSubTab('review')} />
           <KpiDivider />
-          <Kpi
-            value={pipelineStatus?.blocked ?? 0}
-            label="Blocked"
-            color="#B91C1C"
-          />
+          <Kpi value={blockedCount} label="Blocked" color={blockedCount > 0 ? '#B91C1C' : '#9CA3AF'} onClick={() => setSubTab('blocked')} />
           <KpiDivider />
-          <Kpi
-            value={pipelineStatus?.errors ?? 0}
-            label="Errors"
-            color="#B45309"
-          />
+          <Kpi value={errorsCount} label="Errors" color={errorsCount > 0 ? '#B45309' : '#9CA3AF'} />
           <KpiDivider />
-          <Kpi
-            value={pipelineStatus?.tl_candidates ?? 0}
-            label="TL Queue"
-            color="#3730A3"
-          />
+          <Kpi value={tlCount} label="TL Queue" color={tlCount > 0 ? '#3730A3' : '#9CA3AF'} />
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexShrink: 0 }}>
           <span style={{ fontSize: 11, color: '#9CA3AF' }}>Last run: {lastRun}</span>
@@ -214,30 +206,33 @@ export default function IntelligenceTab() {
           height: 36,
         }}
       >
-        {(['review', 'discover'] as SubTab[]).map((tab) => (
+        {([
+          { id: 'review' as SubTab, label: 'Review', badge: items.length > 0 ? items.length : null, badgeColor: '#990F3D' },
+          { id: 'discover' as SubTab, label: 'Discover', badge: null, badgeColor: '' },
+          { id: 'blocked' as SubTab, label: 'Blocked', badge: blockedCount > 0 ? blockedCount : null, badgeColor: '#B91C1C' },
+        ]).map((tab) => (
           <button
-            key={tab}
-            onClick={() => setSubTab(tab)}
+            key={tab.id}
+            onClick={() => setSubTab(tab.id)}
             style={{
               background: 'none',
               border: 'none',
-              borderBottom: subTab === tab ? '2px solid #990F3D' : '2px solid transparent',
-              color: subTab === tab ? '#111827' : '#6B7280',
+              borderBottom: subTab === tab.id ? '2px solid #990F3D' : '2px solid transparent',
+              color: subTab === tab.id ? '#111827' : '#6B7280',
               fontSize: 12,
-              fontWeight: subTab === tab ? 600 : 500,
+              fontWeight: subTab === tab.id ? 600 : 500,
               padding: '0 14px',
               cursor: 'pointer',
               display: 'flex',
               alignItems: 'center',
               gap: 5,
-              textTransform: 'capitalize',
             }}
           >
-            {tab}
-            {tab === 'review' && items.length > 0 && (
+            {tab.label}
+            {tab.badge !== null && (
               <span
                 style={{
-                  background: '#990F3D',
+                  background: tab.badgeColor,
                   color: '#fff',
                   fontSize: 9,
                   fontWeight: 700,
@@ -245,7 +240,7 @@ export default function IntelligenceTab() {
                   borderRadius: 8,
                 }}
               >
-                {items.length}
+                {tab.badge}
               </span>
             )}
           </button>
@@ -308,6 +303,8 @@ export default function IntelligenceTab() {
                 </>
               )}
             </>
+          ) : subTab === 'blocked' ? (
+            <BlockedPanel />
           ) : (
             <DiscoverPanel />
           )}
@@ -332,15 +329,21 @@ export default function IntelligenceTab() {
 
 // ── KPI components ────────────────────────────────────────────────────────────
 
-function Kpi({ value, label, color }: { value: number; label: string; color: string }) {
+function Kpi({ value, label, color, onClick }: { value: number; label: string; color: string; onClick?: () => void }) {
   return (
     <div
+      onClick={onClick}
       style={{
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
         padding: '0 16px',
+        cursor: onClick ? 'pointer' : 'default',
+        borderRadius: 4,
+        transition: 'background 0.1s',
       }}
+      onMouseEnter={(e) => { if (onClick) (e.currentTarget as HTMLDivElement).style.background = '#F9FAFB'; }}
+      onMouseLeave={(e) => { if (onClick) (e.currentTarget as HTMLDivElement).style.background = 'transparent'; }}
     >
       <span style={{ fontSize: 20, fontWeight: 700, color, lineHeight: 1 }}>{value}</span>
       <span
@@ -474,6 +477,70 @@ function DiscoverPanel() {
           ))}
         </div>
       )}
+    </div>
+  );
+}
+
+// ── Blocked panel ─────────────────────────────────────────────────────────────
+
+function BlockedPanel() {
+  const { data, isLoading } = useQuery({
+    queryKey: ['blocked'],
+    queryFn: fetchBlocked,
+  });
+
+  const blocked = data?.blocked ?? [];
+
+  if (isLoading) return <div style={{ color: '#9CA3AF', fontSize: 13 }}>Loading…</div>;
+
+  if (blocked.length === 0) {
+    return <div style={{ color: '#9CA3AF', fontSize: 13 }}>No blocked URLs.</div>;
+  }
+
+  return (
+    <div style={{ maxWidth: 820 }}>
+      <div
+        style={{
+          fontSize: 10,
+          fontWeight: 700,
+          letterSpacing: '0.1em',
+          textTransform: 'uppercase',
+          color: '#B91C1C',
+          marginBottom: 14,
+        }}
+      >
+        Permanently Blocked — {blocked.length} URLs
+      </div>
+      {blocked.map((b, i) => (
+        <div
+          key={i}
+          style={{
+            background: '#fff',
+            border: '1px solid #FECACA',
+            borderRadius: 6,
+            padding: '10px 14px',
+            marginBottom: 6,
+            display: 'flex',
+            gap: 12,
+            alignItems: 'flex-start',
+          }}
+        >
+          <div style={{ flex: 1, minWidth: 0 }}>
+            <div style={{ fontSize: 12, color: '#374151', marginBottom: 3, wordBreak: 'break-all' }}>
+              <a href={b.url} target="_blank" rel="noopener noreferrer"
+                style={{ color: '#374151', textDecoration: 'none' }}>
+                {b.url}
+              </a>
+            </div>
+            <div style={{ fontSize: 11, color: '#B91C1C' }}>{b.reason}</div>
+            {b.blocked_at && (
+              <div style={{ fontSize: 10, color: '#9CA3AF', marginTop: 2 }}>
+                {new Date(b.blocked_at).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}
+              </div>
+            )}
+          </div>
+        </div>
+      ))}
     </div>
   );
 }

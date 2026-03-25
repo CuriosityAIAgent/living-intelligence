@@ -17,7 +17,10 @@ import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { autoDiscover } from './auto-discover.js';
 import { processUrl } from './intake.js';
+import { enrichContext } from './context-enricher.js';
 import { verify } from './governance.js';
+import { checkFabrication } from './fabrication-strict.js';
+import { validateFormat } from './format-validator.js';
 import { scoreEntry, formatScoreBreakdown } from './scorer.js';
 import { addPending, addBlocked, isBlocked, isTopicSuppressed, writePipelineStatus } from './gov-store.js';
 import { commitInboxState } from './publisher.js';
@@ -184,7 +187,35 @@ export async function runDailyPipeline() {
         continue;
       }
 
-      // Step 2: governance verification
+      // Step 1b: context enrichment — regenerate the_so_what with landscape context
+      try {
+        const enriched = await enrichContext({
+          entry: intakeResult.entry,
+          articleMarkdown: intakeResult.markdown,
+        });
+        // Replace blind the_so_what with context-aware version
+        intakeResult.entry.the_so_what = enriched.the_so_what;
+        intakeResult.entry._enrichment = {
+          what_changed: enriched.what_changed,
+          landscape_context: enriched.landscape_context,
+          confidence: enriched.enrichment_confidence,
+          notes: enriched.enrichment_notes,
+        };
+        console.log(`[scheduler] Context enriched (${enriched.enrichment_confidence}): ${intakeResult.entry.id}`);
+      } catch (enrichErr) {
+        console.error(`[scheduler] Context enrichment failed: ${enrichErr.message}`);
+        // Non-fatal — continue with original the_so_what
+      }
+
+      // Step 2a: format validation (pure rules, no API cost)
+      const formatResult = validateFormat(intakeResult.entry);
+      if (!formatResult.valid) {
+        console.log(`[scheduler] Format issues for ${intakeResult.entry.id}: ${formatResult.errors.join(', ')}`);
+        // Don't block — format errors route to REVIEW with annotation
+        intakeResult.entry._format_errors = formatResult.errors;
+      }
+
+      // Step 2b: governance verification (6k→12k window)
       const { send: govSend } = makeSink();
       const govResult = await verify({
         entry: intakeResult.entry,
@@ -205,6 +236,28 @@ export async function runDailyPipeline() {
       };
 
       intakeResult.entry._governance = govAudit;
+
+      // Step 2c: fabrication-strict check (12k window, dedicated pass)
+      let fabricationResult = { verdict: 'SUSPECT', issues: ['Not checked'], checked_at: new Date().toISOString() };
+      try {
+        fabricationResult = await checkFabrication({
+          entry: intakeResult.entry,
+          sourceMarkdown: intakeResult.markdown,
+        });
+        console.log(`[scheduler] Fabrication check: ${fabricationResult.verdict} for ${intakeResult.entry.id}`);
+      } catch (fabErr) {
+        console.error(`[scheduler] Fabrication check failed: ${fabErr.message}`);
+      }
+      intakeResult.entry._fabrication = fabricationResult;
+
+      // Hard block on FAIL fabrication verdict
+      if (fabricationResult.verdict === 'FAIL') {
+        const reason = `Fabrication detected: ${fabricationResult.issues.join('; ')}`;
+        addBlocked(url, intakeResult.entry.id, reason);
+        blocked.push({ url, title: intakeResult.entry.headline || candidate.title, reason, score: 0 });
+        console.log(`[scheduler] FABRICATION FAIL → BLOCK: ${url}`);
+        continue;
+      }
 
       // Step 3: score
       const scored = await scoreEntry({
@@ -264,14 +317,18 @@ export async function runDailyPipeline() {
       if (scored.action === 'REVIEW') {
         addPending(intakeResult.entry, govAudit);
         pending.push({
-          id:                intakeResult.entry.id,
-          title:             intakeResult.entry.headline || candidate.title,
-          company_name:      intakeResult.entry.company_name,
-          score:             scored.score,
-          score_breakdown:   formatScoreBreakdown(scored),
-          unverified_claims: govResult.unverified_claims || [],
-          paywall_caveat:    govAudit.paywall_caveat,
-          notes:             govResult.notes || '',
+          id:                  intakeResult.entry.id,
+          title:               intakeResult.entry.headline || candidate.title,
+          company_name:        intakeResult.entry.company_name,
+          score:               scored.score,
+          score_breakdown:     formatScoreBreakdown(scored),
+          unverified_claims:   govResult.unverified_claims || [],
+          paywall_caveat:      govAudit.paywall_caveat,
+          notes:               govResult.notes || '',
+          fabrication_verdict: fabricationResult.verdict,
+          fabrication_issues:  fabricationResult.issues,
+          format_errors:       intakeResult.entry._format_errors || [],
+          enrichment:          intakeResult.entry._enrichment || null,
         });
         console.log(`[scheduler] REVIEW → pending: ${intakeResult.entry.id}`);
         continue;
@@ -285,15 +342,19 @@ export async function runDailyPipeline() {
         score_breakdown: formatScoreBreakdown(scored),
       });
       pending.push({
-        id:                intakeResult.entry.id,
-        title:             intakeResult.entry.headline || candidate.title,
-        company_name:      intakeResult.entry.company_name,
-        score:             scored.score,
-        score_breakdown:   formatScoreBreakdown(scored),
-        unverified_claims: govResult.unverified_claims || [],
-        paywall_caveat:    govAudit.paywall_caveat,
-        notes:             govResult.notes || '',
-        governance_verdict: govAudit.verdict,
+        id:                  intakeResult.entry.id,
+        title:               intakeResult.entry.headline || candidate.title,
+        company_name:        intakeResult.entry.company_name,
+        score:               scored.score,
+        score_breakdown:     formatScoreBreakdown(scored),
+        unverified_claims:   govResult.unverified_claims || [],
+        paywall_caveat:      govAudit.paywall_caveat,
+        notes:               govResult.notes || '',
+        governance_verdict:  govAudit.verdict,
+        fabrication_verdict: fabricationResult.verdict,
+        fabrication_issues:  fabricationResult.issues,
+        format_errors:       intakeResult.entry._format_errors || [],
+        enrichment:          intakeResult.entry._enrichment || null,
       });
       console.log(`[scheduler] INBOX → queued for editorial review (score ${scored.score}): ${intakeResult.entry.id}`);
 

@@ -24,7 +24,7 @@ Key stat: ${entry.key_stat ? `${entry.key_stat.number} — ${entry.key_stat.labe
 
 SOURCE ARTICLE (ground truth):
 ---
-${sourceMarkdown.slice(0, 6000)}
+${sourceMarkdown.slice(0, 12000)}
 ---
 
 Verify each claim in the generated entry against the source article.

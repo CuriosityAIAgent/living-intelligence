@@ -84,14 +84,24 @@ export interface TLCandidate {
 }
 
 export interface PipelineStatus {
-  started_at: string;
-  candidates_found: number;
-  queued: number;
-  blocked: number;
-  errors: number;
-  tl_candidates: number;
-  tl_items: TLCandidate[];
-  blocked_items: BlockedItem[];
+  // New scheduler format
+  last_run_at?: string;
+  last_run_found?: number;
+  last_run_queued?: number;
+  last_run_blocked?: number;
+  inbox_count?: number;
+  published_today?: number;
+  rejected_today?: number;
+  blocked_total?: number;
+  // Legacy scheduler format
+  started_at?: string;
+  candidates_found?: number;
+  queued?: number;
+  blocked?: number;
+  errors?: number;
+  tl_candidates?: number;
+  tl_items?: TLCandidate[];
+  blocked_items?: BlockedItem[];
 }
 
 // ── Activity log ──────────────────────────────────────────────────────────────

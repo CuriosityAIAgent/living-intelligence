@@ -46,7 +46,7 @@ const INTAKE_SCHEMA = `{
   "source_name": "Publication Name",
   "source_url": "the actual URL",
   "source_verified": true,
-  "image_url": "https://unavatar.io/[company-domain]",
+  "image_url": null,
   "summary": "3-5 sentences. Lead with the capability being advanced and its evidence. Then explain the event (funding/launch/etc). Only facts from the source — no inference.",
   "key_stat": { "number": "X", "label": "what it measures — advisors reached, AUM affected, time saved, etc." },
   "capability_evidence": {
@@ -365,7 +365,7 @@ CRITICAL RULES:
 6. If the article has no identifiable AI capability dimension for wealth management, set type to "market_signal".
 7. If the article is not about AI in wealth management or financial services at all, set type to null.
 8. All summary content must come ONLY from the source article above. No inference from training data.
-9. For image_url: https://unavatar.io/[company-main-domain]
+9. For image_url: always set to null — logos are managed separately via local files
 10. If multiple sources cover the same story, synthesize the most complete version. Prefer primary sources.
 
 Event type definitions:
