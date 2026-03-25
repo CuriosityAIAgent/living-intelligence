@@ -11,7 +11,7 @@ import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const STORE_DIR = join(process.env.DATA_DIR || join(__dirname, '..', '..'), 'data');
+const STORE_DIR = process.env.STATE_DIR || join(process.env.DATA_DIR || join(__dirname, '..', '..'), 'data');
 const PENDING_FILE  = join(STORE_DIR, '.governance-pending.json');
 const BLOCKED_FILE  = join(STORE_DIR, '.governance-blocked.json');
 const ARCHIVE_FILE  = join(STORE_DIR, '.governance-archive.json');
