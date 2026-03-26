@@ -1,14 +1,14 @@
 {
   "id": "vanguard",
   "name": "Vanguard",
-  "segment": "digital_disruptor",
+  "segment": "asset_manager",
   "regions": [
     "us"
   ],
   "color": "#6B1A2B",
   "ai_strategy_summary": "Vanguard is applying generative AI to the advisor-client relationship — deploying AI-generated client summaries for financial advisors as of May 2025. As the world's second-largest asset manager with approximately $10 trillion AUM, Vanguard's AI deployments immediately affect tens of millions of investors. Its hybrid model (Personal Advisor Services) is central to its AI strategy.",
   "head_of_ai": null,
-  "headline_metric": "~$10T AUM — gen AI client summaries deployed for financial advisors (May 2025)",
+  "headline_metric": "Gen AI client summaries deployed for financial advisors (May 2025) across ~$10T AUM platform",
   "headline_initiative": "Generative AI client summaries for financial advisors — deployed May 2025",
   "overall_maturity": "deployed",
   "capabilities": {

@@ -6,22 +6,22 @@
     "us"
   ],
   "color": "#00C805",
-  "ai_strategy_summary": "Public.com launched Generated Assets in November 2025 \u2014 a first-of-kind system where AI swarms of evaluation agents build custom stock indexes from natural language prompts \u2014 and is building toward fully agentic portfolio execution by 2026.",
+  "ai_strategy_summary": "Public.com launched Generated Assets in November 2025 — a first-of-kind system where AI swarms of evaluation agents build custom stock indexes from natural language prompts — and is building toward fully agentic portfolio execution by 2026.",
   "head_of_ai": null,
-  "headline_metric": "2,500+ Generated Assets created in first month; agentic brokerage roadmap for 2026",
+  "headline_metric": "2,500+ AI-built custom indexes (Generated Assets) created in first month; agentic portfolio execution roadmap live for 2026",
   "headline_initiative": "Generated Assets (AI-built custom indexes) + agentic portfolio execution",
   "overall_maturity": "deployed",
   "capabilities": {
     "investment_portfolio": {
       "maturity": "deployed",
       "headline": "Generated Assets: AI swarm builds custom stock indexes from natural language prompts",
-      "detail": "Public.com's AI swarm of evaluation agents screens every publicly traded stock based on a user's natural language prompt and assembles a custom index to invest in \u2014 launched November 2025. 2,500+ Generated Assets created in the first month.",
+      "detail": "Public.com's AI swarm of evaluation agents screens every publicly traded stock based on a user's natural language prompt and assembles a custom index to invest in — launched November 2025. 2,500+ Generated Assets created in the first month.",
       "evidence": [
         "2,500+ Generated Assets created in first month",
         "AI evaluation agent swarm screens all publicly traded stocks",
         "Natural language prompt to investable index"
       ],
-      "jpm_implication": "Public.com is making bespoke index construction \u2014 previously a high-fee institutional product \u2014 available to retail investors at no extra cost. JPM Direct Indexing strategy must account for this.",
+      "jpm_implication": "Public.com is making bespoke index construction — previously a high-fee institutional product — available to retail investors at no extra cost. JPM Direct Indexing strategy must account for this.",
       "jpm_segments_affected": [
         "CWM",
         "JPMWM"
@@ -29,17 +29,17 @@
       "date_assessed": "2026-03-10",
       "sources": [
         {
-          "name": "Public.com \u2014 Generated Assets product page",
+          "name": "Public.com — Generated Assets product page",
           "url": "https://public.com/generated-assets"
         }
       ]
     },
     "new_business_models": {
-      "maturity": "piloting",
-      "headline": "Agentic Brokerage initial automated investing features launching in 2026 \u2014 recurring actions and auto-investing rules live",
-      "detail": "Public.com's roadmap includes agentic portfolio management \u2014 conditional automated trading rules like 'trim 10% of bank stocks if Fed cuts rates' \u2014 moving toward a fully autonomous AI portfolio execution model.",
+      "maturity": "announced",
+      "headline": "Agentic Brokerage initial automated investing features launching in 2026 — recurring actions and auto-investing rules live",
+      "detail": "Public.com's roadmap includes agentic portfolio management — conditional automated trading rules like 'trim 10% of bank stocks if Fed cuts rates' — moving toward a fully autonomous AI portfolio execution model.",
       "evidence": [
-        "Axios Nov 2025: Public launches Generated Assets \u2014 https://www.axios.com/2025/11/17/ai-stock-market-public",
+        "Axios Nov 2025: Public launches Generated Assets — https://www.axios.com/2025/11/17/ai-stock-market-public",
         "FX News Group: Public agentic brokerage features in 2026 rollout"
       ],
       "jpm_implication": "Agentic brokerage represents the next frontier of retail competition. If JPM does not offer AI-driven conditional portfolio management, next-gen investors will shift AUM to platforms that do.",
@@ -49,11 +49,15 @@
       "date_assessed": "2026-03-19",
       "sources": [
         {
-          "name": "Public.com \u2014 Agentic portfolio roadmap",
+          "name": "Axios — Public.com launches Generated Assets AI system (Nov 2025)",
+          "url": "https://www.axios.com/2025/11/17/ai-stock-market-public"
+        },
+        {
+          "name": "Public.com — Agentic portfolio roadmap",
           "url": "https://public.com/agentic"
         }
       ]
     }
   },
-  "last_updated": "2026-03-19"
+  "last_updated": "2026-03-24"
 }

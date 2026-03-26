@@ -1,15 +1,15 @@
 {
-  "run_at": "2026-03-23T06:04:26.844Z",
-  "mode": "fast",
+  "run_at": "2026-03-24T05:53:41.196Z",
+  "mode": "deep",
   "summary": {
-    "total_intelligence": 25,
-    "total_competitors": 27,
-    "issues_critical": 0,
-    "issues_warning": 21,
-    "pass_count": 34,
-    "warn_count": 18,
-    "fail_count": 0,
-    "score": 83
+    "total_intelligence": 42,
+    "total_competitors": 30,
+    "issues_critical": 66,
+    "issues_warning": 58,
+    "pass_count": 7,
+    "warn_count": 37,
+    "fail_count": 28,
+    "score": 35
   },
   "intelligence": [
     {
@@ -37,8 +37,29 @@
       "id": "altruist-hazel-tax-planning-130b-selloff",
       "file": "altruist-hazel-tax-planning-130b-selloff.json",
       "name": "Altruist launches AI tax planning in Hazel, triggering $130B sell-off across wea...",
-      "status": "PASS",
-      "issues": []
+      "status": "FAIL",
+      "issues": [
+        {
+          "severity": "critical",
+          "check": "ai_claim_verification_failed",
+          "detail": "Source content could not be fetched — no content was returned from the URL, making it impossible to verify any claims"
+        },
+        {
+          "severity": "critical",
+          "check": "ai_claim_verification_failed",
+          "detail": "The key stat of $130B market cap wiped from Schwab, LPL, Raymond James, and Ameriprise cannot be verified against the source content"
+        },
+        {
+          "severity": "critical",
+          "check": "ai_claim_verification_failed",
+          "detail": "The entry date of February 10, 2026 cannot be confirmed as consistent with the source content due to missing content"
+        },
+        {
+          "severity": "critical",
+          "check": "ai_claim_verification_failed",
+          "detail": "The claim that Altruist launched AI-powered tax planning in Hazel on February 10, 2026 cannot be supported without source content"
+        }
+      ]
     },
     {
       "id": "altruist-raises-152m-series-f-gic-2025",
@@ -74,6 +95,34 @@
       ]
     },
     {
+      "id": "bbva-openai-alliance-120000-employees-banking-ai",
+      "file": "bbva-openai-alliance-120000-employees-banking-ai.json",
+      "name": "BBVA seals strategic alliance with OpenAI to deploy ChatGPT Enterprise to 120,00...",
+      "status": "FAIL",
+      "issues": [
+        {
+          "severity": "warning",
+          "check": "key_stat_in_summary",
+          "detail": "key_stat.number \"3 hrs/week\" does not appear in summary (checked verbatim, core \"3 hrs/week\", expanded \"3 hrs/week\")"
+        },
+        {
+          "severity": "critical",
+          "check": "ai_claim_verification_failed",
+          "detail": "The key stat (3 hrs/week saved per employee, 11,000 staff pilot before 120,000 rollout) cannot be verified from the provided source content, which only contains navigation/menu elements and no article body text with statistics."
+        },
+        {
+          "severity": "critical",
+          "check": "ai_claim_verification_failed",
+          "detail": "The first verified claim states the alliance was signed on December 11, 2025 at OpenAI San Francisco HQ, but the source content publication timestamp is 2025-12-12, and the provided source excerpt contains no body text confirming the date of signing or the location (San Francisco HQ)."
+        },
+        {
+          "severity": "critical",
+          "check": "ai_claim_verification_failed",
+          "detail": "The source content provided is truncated and contains only navigation/menu markup with no substantive article body, making it impossible to verify any specific claims or statistics from the press release."
+        }
+      ]
+    },
+    {
       "id": "betterment-ai-account-recommender-launch-2026-03-09",
       "file": "betterment-ai-account-recommender-launch-2026-03-09.json",
       "name": "Betterment Launches AI-Enabled Account Recommender as Part of Enterprise AI Stra...",
@@ -87,16 +136,42 @@
       ]
     },
     {
+      "id": "bnp-paribas-ai-centre-excellence-singapore-447b",
+      "file": "bnp-paribas-ai-centre-excellence-singapore-447b.json",
+      "name": "BNP Paribas Wealth Management launches AI Centre of Excellence in Singapore to b...",
+      "status": "FAIL",
+      "issues": [
+        {
+          "severity": "critical",
+          "check": "ai_claim_verification_failed",
+          "detail": "The key stat of $447B AUM for BNP Paribas Wealth Management Asia is not present or verifiable in the provided source content, which is truncated and contains only navigation/header elements without article body text confirming this figure."
+        }
+      ]
+    },
+    {
       "id": "bofa-erica-3billion-digital-30billion-2026",
       "file": "bofa-erica-3billion-digital-30billion-2026.json",
       "name": "BofA's AI and digital estate reaches 30 billion client interactions — Erica surp...",
-      "status": "PASS",
-      "issues": []
+      "status": "FAIL",
+      "issues": [
+        {
+          "severity": "critical",
+          "check": "ai_claim_verification_failed",
+          "detail": "Source content could not be fetched (no content returned from URL), making it impossible to verify the key stat, date consistency, or the first verified claim against the original source material."
+        }
+      ]
     },
     {
       "id": "citigroup-askwealth-ai-advisors-2025-08",
       "file": "citigroup-askwealth-ai-advisors-2025-08.json",
       "name": "Citi Wealth Launches AI Tools 'Advisor Insights' and 'AskWealth' to Enhance Clie...",
+      "status": "PASS",
+      "issues": []
+    },
+    {
+      "id": "conquest-planning-80m-series-b-goldman-sachs-1000-firms",
+      "file": "conquest-planning-80m-series-b-goldman-sachs-1000-firms.json",
+      "name": "Conquest Planning raises $80M Series B led by Goldman Sachs to bring AI-powered ...",
       "status": "PASS",
       "issues": []
     },
@@ -117,7 +192,7 @@
       "id": "dbs-worlds-best-ai-bank",
       "file": "dbs-worlds-best-ai-bank.json",
       "name": "DBS named World's Best AI Bank — 1,500 AI models in production",
-      "status": "WARN",
+      "status": "FAIL",
       "issues": [
         {
           "severity": "warning",
@@ -128,6 +203,21 @@
           "severity": "warning",
           "check": "governance_confidence_low",
           "detail": "Governance confidence is 0 (below threshold of 75)"
+        },
+        {
+          "severity": "critical",
+          "check": "ai_claim_verification_failed",
+          "detail": "Source content could not be fetched, so the key stat '1,500+ AI models in production at DBS' cannot be verified against the source."
+        },
+        {
+          "severity": "critical",
+          "check": "ai_claim_verification_failed",
+          "detail": "The date (2026-01-15) cannot be confirmed as consistent with the source content since no content was retrieved."
+        },
+        {
+          "severity": "critical",
+          "check": "ai_claim_verification_failed",
+          "detail": "No verified claims are listed, and without source content, no claims can be validated."
         }
       ]
     },
@@ -135,12 +225,17 @@
       "id": "etoro-tori-ai-companion-2025-08",
       "file": "etoro-tori-ai-companion-2025-08.json",
       "name": "eToro launches Tori AI companion and Alpha Portfolios — AI-driven social investi...",
-      "status": "WARN",
+      "status": "FAIL",
       "issues": [
         {
           "severity": "warning",
           "check": "governance_confidence_low",
           "detail": "Governance confidence is 30 (below threshold of 75)"
+        },
+        {
+          "severity": "critical",
+          "check": "ai_claim_verification_failed",
+          "detail": "The key stat '$31B — eToro assets under management' is not present in or supported by the provided source content. The source content makes no mention of $31B or any specific assets under management figure."
         }
       ]
     },
@@ -148,12 +243,17 @@
       "id": "fidelity-trader-plus-launch-2025-09",
       "file": "fidelity-trader-plus-launch-2025-09.json",
       "name": "Fidelity Investments Launches Fidelity Trader+, Integrated Advanced Trading Plat...",
-      "status": "WARN",
+      "status": "FAIL",
       "issues": [
         {
           "severity": "warning",
           "check": "governance_confidence_low",
           "detail": "Governance confidence is 72 (below threshold of 75)"
+        },
+        {
+          "severity": "critical",
+          "check": "ai_claim_verification_failed",
+          "detail": "The key stat of $16.4 trillion in assets under administration as of June 30, 2025 is not present or verifiable in the provided source content, which is truncated and contains no financial figures."
         }
       ]
     },
@@ -161,12 +261,17 @@
       "id": "fnz-advisor-ai-platform-2025-08",
       "file": "fnz-advisor-ai-platform-2025-08.json",
       "name": "FNZ launches Advisor AI — end-to-end meeting workflow automation for 650+ wealth...",
-      "status": "WARN",
+      "status": "FAIL",
       "issues": [
         {
           "severity": "warning",
           "check": "governance_confidence_low",
           "detail": "Governance confidence is 35 (below threshold of 75)"
+        },
+        {
+          "severity": "critical",
+          "check": "ai_claim_verification_failed",
+          "detail": "The key stat of $2T in assets under administration cannot be confirmed from the provided source content, which is truncated and does not include this figure. The stat is neither present nor verifiable from the available text."
         }
       ]
     },
@@ -174,12 +279,27 @@
       "id": "goldman-sachs-gs-ai-platform",
       "file": "goldman-sachs-gs-ai-platform.json",
       "name": "Goldman Sachs deploys GS AI Platform to 46,000 employees firm-wide",
-      "status": "WARN",
+      "status": "FAIL",
       "issues": [
         {
           "severity": "warning",
           "check": "governance_confidence_low",
           "detail": "Governance confidence is 30 (below threshold of 75)"
+        },
+        {
+          "severity": "critical",
+          "check": "ai_claim_verification_failed",
+          "detail": "Source content could not be fetched (no content retrieved from the URL), so the key stat of 46,000 employees on GS AI Platform cannot be verified against the source."
+        },
+        {
+          "severity": "critical",
+          "check": "ai_claim_verification_failed",
+          "detail": "The publication date of 2025-01-21 cannot be confirmed as consistent with the source content due to failed content retrieval."
+        },
+        {
+          "severity": "critical",
+          "check": "ai_claim_verification_failed",
+          "detail": "No verified claims are listed, and the source content is unavailable, making full verification impossible."
         }
       ]
     },
@@ -187,19 +307,216 @@
       "id": "hazel-avantos-and-the-bank-wealth-management-opportunity",
       "file": "hazel-avantos-and-the-bank-wealth-management-opportunity.json",
       "name": "AI platforms Hazel and Avantos pressure bank wealth units to modernize as indepe...",
-      "status": "PASS",
-      "issues": []
+      "status": "FAIL",
+      "issues": [
+        {
+          "severity": "critical",
+          "check": "ai_claim_verification_failed",
+          "detail": "The key stat (3 investment areas: data completeness, compliance architecture, and advisor change management) cannot be verified from the provided source content, which only shows navigation/menu elements and no article body text."
+        },
+        {
+          "severity": "critical",
+          "check": "ai_claim_verification_failed",
+          "detail": "The first verified claim that 'Altruist launched Hazel's AI-based tax planning capability in February' cannot be verified from the provided source content, which contains no article body text to support or refute this claim."
+        },
+        {
+          "severity": "critical",
+          "check": "ai_claim_verification_failed",
+          "detail": "The source content provided is truncated to only navigation/header elements and does not include the actual article body needed to verify any of the claims."
+        }
+      ]
+    },
+    {
+      "id": "holistiplan-1-tax-planning-software-5th-year-8000-firms",
+      "file": "holistiplan-1-tax-planning-software-5th-year-8000-firms.json",
+      "name": "Holistiplan named #1 tax planning software for the fifth consecutive year as ado...",
+      "status": "FAIL",
+      "issues": [
+        {
+          "severity": "warning",
+          "check": "key_stat_in_summary",
+          "detail": "key_stat.number \"8,000+\" does not appear in summary (checked verbatim, core \"8000\", expanded \"8000\")"
+        },
+        {
+          "severity": "critical",
+          "check": "ai_claim_verification_failed",
+          "detail": "Source content could not be fetched (no content returned from the URL), so the key stat of '8,000+ advisory firms' cannot be verified against the source."
+        },
+        {
+          "severity": "critical",
+          "check": "ai_claim_verification_failed",
+          "detail": "The date of March 5, 2025 cannot be confirmed as consistent with the source content due to failed content retrieval."
+        },
+        {
+          "severity": "critical",
+          "check": "ai_claim_verification_failed",
+          "detail": "The first verified claim regarding '#1 tax planning software — 2025 T3/Inside Information Technology Survey, 5th consecutive year' cannot be supported or refuted because the source content was not accessible."
+        }
+      ]
     },
     {
       "id": "hsbc-jade-ai",
       "file": "hsbc-jade-ai.json",
       "name": "HSBC Private Bank deploys Wealth Intelligence gen AI platform for wealth managem...",
-      "status": "WARN",
+      "status": "FAIL",
       "issues": [
         {
           "severity": "warning",
           "check": "governance_confidence_low",
           "detail": "Governance confidence is 72 (below threshold of 75)"
+        },
+        {
+          "severity": "critical",
+          "check": "ai_claim_verification_failed",
+          "detail": "The entry date is 2025-09-16, but the source content was published on Mon, 23 Mar 2026, which is after the entry date, making the date inconsistent — the entry predates the source publication by approximately 6 months."
+        },
+        {
+          "severity": "critical",
+          "check": "ai_claim_verification_failed",
+          "detail": "The source content does not contain enough substantive text within the provided 3000 characters to confirm the claim that HSBC Private Bank deployed a generative AI platform called Wealth Intelligence, though the URL and page title ('HSBC deploys Wealth Intelligence') are suggestive, the claim that it is specifically a 'generative AI platform' is not supported by the available source content."
+        }
+      ]
+    },
+    {
+      "id": "jpmorgan-ai-personalised-client-advice-market-volatility-2025",
+      "file": "jpmorgan-ai-personalised-client-advice-market-volatility-2025.json",
+      "name": "JPMorgan AWM CEO: AI pre-populates real-time market data and each client's inves...",
+      "status": "FAIL",
+      "issues": [
+        {
+          "severity": "warning",
+          "check": "key_stat_in_summary",
+          "detail": "key_stat.number \"4,600\" does not appear in summary (checked verbatim, core \"4600\", expanded \"4600\")"
+        },
+        {
+          "severity": "critical",
+          "check": "ai_claim_verification_failed",
+          "detail": "Source content could not be fetched (no content returned from URL), making it impossible to verify the key stat of 4,600 private banking advisors with Connect Coach rolling to ~17,000 by year-end."
+        },
+        {
+          "severity": "critical",
+          "check": "ai_claim_verification_failed",
+          "detail": "Source content could not be fetched, making it impossible to verify the entry date of 2025-05-05 against the article."
+        },
+        {
+          "severity": "critical",
+          "check": "ai_claim_verification_failed",
+          "detail": "Source content could not be fetched, making it impossible to verify the verbatim quote attributed to Mary Erdoes about the tool that pre-populates data and remembers clients' investment preferences."
+        }
+      ]
+    },
+    {
+      "id": "jpmorgan-coach-ai-95-percent-faster-20-percent-sales-growth",
+      "file": "jpmorgan-coach-ai-95-percent-faster-20-percent-sales-growth.json",
+      "name": "JPMorgan CIO: Coach AI lets advisors find client information 95% faster — wealth...",
+      "status": "FAIL",
+      "issues": [
+        {
+          "severity": "critical",
+          "check": "ai_claim_verification_failed",
+          "detail": "Source content could not be fetched (no content returned), so the key stat of 20% gross sales growth YoY cannot be verified against the source."
+        },
+        {
+          "severity": "critical",
+          "check": "ai_claim_verification_failed",
+          "detail": "Source content could not be fetched, so the date consistency cannot be confirmed."
+        },
+        {
+          "severity": "critical",
+          "check": "ai_claim_verification_failed",
+          "detail": "Source content could not be fetched, so the verbatim quote attributed to Mike Urciuoli ('advisors are finding the right information up to 95% faster') cannot be verified."
+        }
+      ]
+    },
+    {
+      "id": "jpmorgan-connect-coach-90-percent-advisors",
+      "file": "jpmorgan-connect-coach-90-percent-advisors.json",
+      "name": "JPMorgan's Connect Coach rolling to ~17,000 advisors by year-end — 90% faster di...",
+      "status": "FAIL",
+      "issues": [
+        {
+          "severity": "critical",
+          "check": "ai_claim_verification_failed",
+          "detail": "The key stat '90% reduction in time to source advisor discussion materials' for JPMorgan Connect Coach is not present or supported in the provided source content excerpt."
+        },
+        {
+          "severity": "critical",
+          "check": "ai_claim_verification_failed",
+          "detail": "The first verified claim about Connect Coach being deployed for advisors with tailored outreach ideas, meeting prep, real-time market insights, and expert answers (referenced as Investor Day slide 11) cannot be confirmed from the provided source content, which only covers introductory slides about AWM overview and does not include slide 11 content."
+        },
+        {
+          "severity": "critical",
+          "check": "ai_claim_verification_failed",
+          "detail": "The source content provided does not mention 'Connect Coach' at all within the first 3000 characters available for review."
+        }
+      ]
+    },
+    {
+      "id": "jpmorgan-smart-monitor-83-percent-research-time-investors",
+      "file": "jpmorgan-smart-monitor-83-percent-research-time-investors.json",
+      "name": "JPMorgan's Smart Monitor cuts investor research time by 83% — AI-integrated work...",
+      "status": "FAIL",
+      "issues": [
+        {
+          "severity": "critical",
+          "check": "ai_claim_verification_failed",
+          "detail": "The key stat '83% reduction in time spent researching a topic' attributed to JPMorgan Smart Monitor (Spectrum) is not present in or consistent with the provided source content. The source content (first 3000 characters) makes no mention of this statistic."
+        },
+        {
+          "severity": "critical",
+          "check": "ai_claim_verification_failed",
+          "detail": "The first verified claim about 'Smart Monitor (Spectrum) deployed for investors — AI-integrated workflow, automated insights, custom universes, extensive coverage (Investor Day slide 12)' is not supported by the provided source content. There is no mention of Smart Monitor, Spectrum, or these specific features in the extracted text."
+        },
+        {
+          "severity": "critical",
+          "check": "ai_claim_verification_failed",
+          "detail": "While the entry date of 2025-05-20 is consistent with the source publication date of 2025-05-19, the specific claims and statistics cannot be verified from the available source content provided."
+        }
+      ]
+    },
+    {
+      "id": "julius-baer-jai-4000-weekly-users-fastest-adoption",
+      "file": "julius-baer-jai-4000-weekly-users-fastest-adoption.json",
+      "name": "Julius Baer's JAI becomes the firm's fastest-adopted internal tool with 4,000+ w...",
+      "status": "FAIL",
+      "issues": [
+        {
+          "severity": "warning",
+          "check": "key_stat_in_summary",
+          "detail": "key_stat.number \"4,000+\" does not appear in summary (checked verbatim, core \"4000\", expanded \"4000\")"
+        },
+        {
+          "severity": "critical",
+          "check": "ai_claim_verification_failed",
+          "detail": "The source content is behind a subscriber login wall and does not contain any accessible text supporting the key stat of '4,000+ weekly active users on Julius Baer's JAI platform' or the claim that JAI is 'the fastest internal tool adoption in firm history'."
+        },
+        {
+          "severity": "critical",
+          "check": "ai_claim_verification_failed",
+          "detail": "The entry claims the source is from 'December 2025', but the source URL published time is March 24, 2026, making the attributed date of 'December 2025' inconsistent with the actual publication date."
+        },
+        {
+          "severity": "critical",
+          "check": "ai_claim_verification_failed",
+          "detail": "The first verified claim that 'JAI launched in late 2024' cannot be confirmed as supported by the source content, since the article body is not accessible (paywalled) and no relevant text is present in the scraped content."
+        }
+      ]
+    },
+    {
+      "id": "jump-ai-operating-system-80m-series-b-27000-advisors",
+      "file": "jump-ai-operating-system-80m-series-b-27000-advisors.json",
+      "name": "Jump's AI Operating System Reaches 27,000 Advisors as $80M Series B Signals Cate...",
+      "status": "FAIL",
+      "issues": [
+        {
+          "severity": "warning",
+          "check": "governance_confidence_low",
+          "detail": "Governance confidence is 72 (below threshold of 75)"
+        },
+        {
+          "severity": "critical",
+          "check": "ai_claim_verification_failed",
+          "detail": "The source content provided is truncated and contains only navigation/boilerplate content from BusinessWire — the actual press release body text is not included in the 3000 characters provided. The key stat of 27,000 financial advisors actively using Jump's AI platform cannot be confirmed or denied from the available source content. The claim requires verification against the full article text."
         }
       ]
     },
@@ -217,6 +534,42 @@
       ]
     },
     {
+      "id": "morgan-stanley-debrief-ai-meeting-notes-advisors",
+      "file": "morgan-stanley-debrief-ai-meeting-notes-advisors.json",
+      "name": "Morgan Stanley launches AI @ Debrief — OpenAI-powered meeting notes tool saves a...",
+      "status": "FAIL",
+      "issues": [
+        {
+          "severity": "critical",
+          "check": "ai_claim_verification_failed",
+          "detail": "Source content could not be fetched (no content returned from the URL), so the key stat of '30 min saved per client meeting' cannot be verified against the source."
+        },
+        {
+          "severity": "critical",
+          "check": "ai_claim_verification_failed",
+          "detail": "The launch date of June 26, 2024 for AI @ Debrief cannot be confirmed as the source content is empty."
+        },
+        {
+          "severity": "critical",
+          "check": "ai_claim_verification_failed",
+          "detail": "The first verified claim that 'AI @ Debrief launched June 26, 2024 (Morgan Stanley official press release)' cannot be supported because no source content was retrieved."
+        }
+      ]
+    },
+    {
+      "id": "nevis-40m-sequoia-iconiq-ribbit-stealth-launch",
+      "file": "nevis-40m-sequoia-iconiq-ribbit-stealth-launch.json",
+      "name": "Nevis emerges from stealth with $40M from Sequoia, ICONIQ and Ribbit to automate...",
+      "status": "FAIL",
+      "issues": [
+        {
+          "severity": "critical",
+          "check": "ai_claim_verification_failed",
+          "detail": "Key stat discrepancy: The entry states '$40M raised from Sequoia, ICONIQ and Ribbit' implying all $40M came from those investors, but the source clarifies that $35M was raised in a Series A from those investors, bringing total funding to $40M (implying ~$5M in prior funding). The $40M total figure is present but the framing is misleading."
+        }
+      ]
+    },
+    {
       "id": "public-com-agentic-brokerage-2025-11",
       "file": "public-com-agentic-brokerage-2025-11.json",
       "name": "Public launches AI-powered brokerage letting users build custom indexes and auto...",
@@ -224,10 +577,33 @@
       "issues": []
     },
     {
+      "id": "rbc-wealth-tifin-ag-ai-insights-2100-advisors",
+      "file": "rbc-wealth-tifin-ag-ai-insights-2100-advisors.json",
+      "name": "RBC Wealth Management rolls out AI-Powered Insights to all 2,100+ US advisors — ...",
+      "status": "FAIL",
+      "issues": [
+        {
+          "severity": "critical",
+          "check": "ai_claim_verification_failed",
+          "detail": "The key stat of '2,100+ RBC Wealth Management US advisors' cannot be verified from the provided source content, as the 3000-character excerpt does not contain any advisor count figures."
+        },
+        {
+          "severity": "critical",
+          "check": "ai_claim_verification_failed",
+          "detail": "The first verified claim of a 'company-wide rollout to all RBC Wealth Management-US advisors' cannot be confirmed from the provided source content, as the excerpt only contains navigation/menu elements and does not include the substantive press release body text where such a claim would appear."
+        },
+        {
+          "severity": "critical",
+          "check": "ai_claim_verification_failed",
+          "detail": "While the date (2024-02-28) is consistent with the press release published timestamp (2024-02-28T08:37:00-05:00), the lack of substantive body content in the provided source excerpt means neither the key stat nor the rollout claim can be verified or refuted."
+        }
+      ]
+    },
+    {
       "id": "robinhood-cortex-launch",
       "file": "robinhood-cortex-launch.json",
       "name": "Robinhood launches Cortex AI — real-time market analysis and trade rationale for...",
-      "status": "WARN",
+      "status": "FAIL",
       "issues": [
         {
           "severity": "warning",
@@ -238,6 +614,21 @@
           "severity": "warning",
           "check": "governance_confidence_low",
           "detail": "Governance confidence is 0 (below threshold of 75)"
+        },
+        {
+          "severity": "critical",
+          "check": "ai_claim_verification_failed",
+          "detail": "Source content could not be fetched (no content retrieved from the URL), so the key stat of '2M+ Robinhood Gold subscribers with Cortex access' cannot be verified against the source."
+        },
+        {
+          "severity": "critical",
+          "check": "ai_claim_verification_failed",
+          "detail": "The entry date of 2026-02-12 cannot be confirmed as consistent with the source content due to missing content."
+        },
+        {
+          "severity": "critical",
+          "check": "ai_claim_verification_failed",
+          "detail": "No verified claims are listed, but the inability to retrieve source content means no aspect of this entry can be confirmed as accurate."
         }
       ]
     },
@@ -255,11 +646,55 @@
       ]
     },
     {
+      "id": "standard-chartered-sc-gpt-41-markets-70000-employees",
+      "file": "standard-chartered-sc-gpt-41-markets-70000-employees.json",
+      "name": "Standard Chartered deploys SC GPT to 70,000+ employees across 41 markets in one ...",
+      "status": "FAIL",
+      "issues": [
+        {
+          "severity": "warning",
+          "check": "key_stat_in_summary",
+          "detail": "key_stat.number \"70,000+\" does not appear in summary (checked verbatim, core \"70000\", expanded \"70000\")"
+        },
+        {
+          "severity": "critical",
+          "check": "ai_claim_verification_failed",
+          "detail": "The key stat of '70,000+ employees across 41 markets' cannot be verified from the provided source content, as the source text is truncated and contains only navigation/menu elements with no article body content present."
+        },
+        {
+          "severity": "critical",
+          "check": "ai_claim_verification_failed",
+          "detail": "The launch date of March 27, 2025 cannot be confirmed from the provided source content, as no date is visible in the truncated text."
+        },
+        {
+          "severity": "critical",
+          "check": "ai_claim_verification_failed",
+          "detail": "The first verified claim that SC GPT launched on March 27, 2025 cannot be supported by the source content provided, as the article body is not present in the 3000 characters supplied — only the page title and navigation structure are visible."
+        }
+      ]
+    },
+    {
       "id": "ubs-ai-transformation-factory",
       "file": "ubs-ai-transformation-factory.json",
       "name": "UBS Appoints Daniele Magazzeni as Chief AI Officer to Lead Firm-Wide AI Strategy",
-      "status": "PASS",
-      "issues": []
+      "status": "FAIL",
+      "issues": [
+        {
+          "severity": "critical",
+          "check": "ai_claim_verification_failed",
+          "detail": "The key stat '300+ live AI use cases at UBS' is not present in or supported by the provided source content excerpt."
+        },
+        {
+          "severity": "critical",
+          "check": "ai_claim_verification_failed",
+          "detail": "The first verified claim about Daniele Magazzeni being appointed as Chief Artificial Intelligence Officer cannot be confirmed from the provided source content, as the excerpt only contains navigation and header elements without the body of the article."
+        },
+        {
+          "severity": "critical",
+          "check": "ai_claim_verification_failed",
+          "detail": "While the date (2025-10-16) is consistent with the URL (en-20251016-ai-strategy.html), the source content provided is insufficient to verify the key stat or the specific name mentioned in the first verified claim."
+        }
+      ]
     },
     {
       "id": "vanguard-generative-ai-client-summaries-financial-advisors-2025",
@@ -275,15 +710,94 @@
       ]
     },
     {
+      "id": "wealthfront-ipo-nasdaq-484m-wlth",
+      "file": "wealthfront-ipo-nasdaq-484m-wlth.json",
+      "name": "Wealthfront raises $484.6M in IPO on Nasdaq at $14 per share, validating the AI-...",
+      "status": "FAIL",
+      "issues": [
+        {
+          "severity": "critical",
+          "check": "ai_claim_verification_failed",
+          "detail": "The source content provided only contains navigation/header elements of the GlobeNewswire page and does not include the actual press release body text. The key stat of $484.6M raised, the IPO pricing at $14.00 per share, and the $12–$14 price range cannot be verified from the available source content. The substantive financial details of the press release are absent from the first 3000 characters provided."
+        }
+      ]
+    },
+    {
       "id": "webull-vega-ai-assistant-2025-11",
       "file": "webull-vega-ai-assistant-2025-11.json",
       "name": "Webull unveils Vega — AI decision partner with voice-activated trade execution a...",
-      "status": "WARN",
+      "status": "FAIL",
       "issues": [
         {
           "severity": "warning",
           "check": "governance_confidence_low",
           "detail": "Governance confidence is 35 (below threshold of 75)"
+        },
+        {
+          "severity": "critical",
+          "check": "ai_claim_verification_failed",
+          "detail": "The key stat claims 'voice-activated trade execution via Vega AI', but the source content does not mention voice-activated trade execution. The source only describes Vega as an 'AI-Powered Decision Partner', with no reference to voice-activated trading functionality within the provided excerpt."
+        },
+        {
+          "severity": "critical",
+          "check": "ai_claim_verification_failed",
+          "detail": "The first verified claim that 'Webull launched a product named Vega' is supported by the source title 'Webull Unveils Vega, the Next Evolution of Its AI-Powered Decision Partner'."
+        },
+        {
+          "severity": "critical",
+          "check": "ai_claim_verification_failed",
+          "detail": "The date is consistent: the entry date is 2025-11-10 and the source published time is 2025-11-10T09:00:00-05:00."
+        }
+      ]
+    },
+    {
+      "id": "wells-fargo-google-agentspace-2000-employees",
+      "file": "wells-fargo-google-agentspace-2000-employees.json",
+      "name": "Wells Fargo becomes early adopter of Google Agentspace with 2,000+ employees alr...",
+      "status": "FAIL",
+      "issues": [
+        {
+          "severity": "warning",
+          "check": "key_stat_in_summary",
+          "detail": "key_stat.number \"2,000+\" does not appear in summary (checked verbatim, core \"2000\", expanded \"2000\")"
+        },
+        {
+          "severity": "critical",
+          "check": "ai_claim_verification_failed",
+          "detail": "The source content provided is truncated to navigation/header elements only and does not contain the article body. The key stat of '2,000+ Wells Fargo employees using Google Agentspace at launch' cannot be confirmed or denied from the available source content."
+        },
+        {
+          "severity": "critical",
+          "check": "ai_claim_verification_failed",
+          "detail": "The date of August 5, 2025 is referenced in the entry but the source content does not display a publication date within the provided 3000 characters."
+        },
+        {
+          "severity": "critical",
+          "check": "ai_claim_verification_failed",
+          "detail": "The first verified claim that Wells Fargo was announced as an early adopter of Google Agentspace on August 5, 2025 cannot be verified because the article body is not present in the provided source content — only navigation menus and site structure are visible."
+        }
+      ]
+    },
+    {
+      "id": "zocks-45m-series-b-agentic-ai-advisor-automation-2026-01",
+      "file": "zocks-45m-series-b-agentic-ai-advisor-automation-2026-01.json",
+      "name": "Zocks Deploys Agentic AI Across 5,000 Firms, Saving Advisors 10+ Hours Weekly as...",
+      "status": "FAIL",
+      "issues": [
+        {
+          "severity": "warning",
+          "check": "week_field_correct",
+          "detail": "'week' is 2026-03-23 but expected Monday 2026-01-26 for date 2026-01-26 (56 days off)"
+        },
+        {
+          "severity": "warning",
+          "check": "key_stat_in_summary",
+          "detail": "key_stat.number \"5,000+\" does not appear in summary (checked verbatim, core \"5000\", expanded \"5000\")"
+        },
+        {
+          "severity": "critical",
+          "check": "ai_claim_verification_failed",
+          "detail": "The source content provided is truncated and does not contain the key stat of '5,000+ financial firms' or any mention of the number of firms using Zocks. The claim that Zocks has deployed an agentic AI platform across more than 5,000 financial advisory firms cannot be verified from the available source content. The date (2026-01-26) is consistent with the source publication date. However, without the full article content confirming the 5,000+ figure and the 'agentic AI platform' characterization, the key stat and first verified claim cannot be confirmed as supported."
         }
       ]
     }
@@ -293,22 +807,53 @@
       "id": "altruist",
       "file": "altruist.json",
       "name": "Altruist",
-      "status": "PASS",
-      "issues": []
+      "status": "WARN",
+      "issues": [
+        {
+          "severity": "warning",
+          "check": "ai_verification_error",
+          "detail": "AI verification failed (network/API error): Expected ',' or ']' after array element in JSON at position 1618"
+        }
+      ]
     },
     {
       "id": "arta-ai",
       "file": "arta-ai.json",
       "name": "Arta.ai",
-      "status": "PASS",
-      "issues": []
+      "status": "WARN",
+      "issues": [
+        {
+          "severity": "warning",
+          "check": "ai_verification_error",
+          "detail": "AI verification failed (network/API error): Expected ',' or ']' after array element in JSON at position 1896"
+        }
+      ]
     },
     {
       "id": "bbva",
       "file": "bbva.json",
       "name": "BBVA",
-      "status": "PASS",
-      "issues": []
+      "status": "WARN",
+      "issues": [
+        {
+          "severity": "warning",
+          "check": "ai_verification_error",
+          "detail": "AI verification failed (network/API error): Expected ',' or ']' after array element in JSON at position 1947"
+        }
+      ]
+    },
+    {
+      "id": "betterment",
+      "file": "betterment.json",
+      "name": "Betterment",
+      "status": "WARN",
+      "issues": [
+        {
+          "severity": "warning",
+          "check": "ai_verification_error",
+          "detail": "AI verification failed (network/API error): Expected ',' or ']' after array element in JSON at position 1961"
+        }
+      ]
     },
     {
       "id": "bnp-paribas-wealth",
@@ -318,8 +863,8 @@
       "issues": [
         {
           "severity": "warning",
-          "check": "capability_no_sources",
-          "detail": "Capability \"operations_compliance\" has no sources array or empty sources"
+          "check": "ai_verification_error",
+          "detail": "AI verification failed (network/API error): Expected ',' or ']' after array element in JSON at position 1948"
         }
       ]
     },
@@ -327,106 +872,219 @@
       "id": "bofa-merrill",
       "file": "bofa-merrill.json",
       "name": "BofA / Merrill",
-      "status": "PASS",
-      "issues": []
+      "status": "WARN",
+      "issues": [
+        {
+          "severity": "warning",
+          "check": "ai_verification_error",
+          "detail": "AI verification failed (network/API error): Expected ',' or ']' after array element in JSON at position 1987"
+        }
+      ]
     },
     {
       "id": "citi-private-bank",
       "file": "citi-private-bank.json",
       "name": "Citi Private Bank",
-      "status": "PASS",
-      "issues": []
+      "status": "WARN",
+      "issues": [
+        {
+          "severity": "warning",
+          "check": "ai_verification_error",
+          "detail": "AI verification failed (network/API error): Expected ',' or ']' after array element in JSON at position 2014"
+        }
+      ]
     },
     {
       "id": "conquest-planning",
       "file": "conquest-planning.json",
       "name": "Conquest Planning",
-      "status": "PASS",
-      "issues": []
+      "status": "WARN",
+      "issues": [
+        {
+          "severity": "warning",
+          "check": "ai_verification_error",
+          "detail": "AI verification failed (network/API error): Expected ',' or ']' after array element in JSON at position 1693"
+        }
+      ]
     },
     {
       "id": "dbs",
       "file": "dbs.json",
       "name": "DBS Bank",
-      "status": "PASS",
-      "issues": []
+      "status": "WARN",
+      "issues": [
+        {
+          "severity": "warning",
+          "check": "ai_verification_error",
+          "detail": "AI verification failed (network/API error): Expected ',' or ']' after array element in JSON at position 1678"
+        }
+      ]
     },
     {
       "id": "etoro",
       "file": "etoro.json",
       "name": "eToro",
-      "status": "PASS",
-      "issues": []
+      "status": "WARN",
+      "issues": [
+        {
+          "severity": "warning",
+          "check": "ai_verification_error",
+          "detail": "AI verification failed (network/API error): Expected ',' or ']' after array element in JSON at position 1716"
+        }
+      ]
+    },
+    {
+      "id": "fidelity",
+      "file": "fidelity.json",
+      "name": "Fidelity Investments",
+      "status": "WARN",
+      "issues": [
+        {
+          "severity": "warning",
+          "check": "ai_verification_error",
+          "detail": "AI verification failed (network/API error): Expected ',' or ']' after array element in JSON at position 1936"
+        }
+      ]
     },
     {
       "id": "goldman-sachs",
       "file": "goldman-sachs.json",
       "name": "Goldman Sachs",
-      "status": "PASS",
-      "issues": []
+      "status": "WARN",
+      "issues": [
+        {
+          "severity": "warning",
+          "check": "ai_verification_error",
+          "detail": "AI verification failed (network/API error): Expected ',' or ']' after array element in JSON at position 1678"
+        }
+      ]
     },
     {
       "id": "holistiplan",
       "file": "holistiplan.json",
       "name": "Holistiplan",
-      "status": "PASS",
-      "issues": []
+      "status": "WARN",
+      "issues": [
+        {
+          "severity": "warning",
+          "check": "ai_verification_error",
+          "detail": "AI verification failed (network/API error): Expected ',' or ']' after array element in JSON at position 1796"
+        }
+      ]
     },
     {
       "id": "hsbc",
       "file": "hsbc.json",
       "name": "HSBC Private Banking",
-      "status": "PASS",
-      "issues": []
+      "status": "WARN",
+      "issues": [
+        {
+          "severity": "warning",
+          "check": "ai_verification_error",
+          "detail": "AI verification failed (network/API error): Expected ',' or ']' after array element in JSON at position 2105"
+        }
+      ]
     },
     {
       "id": "jpmorgan",
       "file": "jpmorgan.json",
-      "name": "J.P. Morgan Wealth Management and Private Bank",
-      "status": "PASS",
-      "issues": []
+      "name": "JPMorgan Private Bank and Wealth Management",
+      "status": "WARN",
+      "issues": [
+        {
+          "severity": "warning",
+          "check": "ai_verification_error",
+          "detail": "AI verification failed (network/API error): Expected ',' or ']' after array element in JSON at position 1813"
+        }
+      ]
     },
     {
       "id": "julius-baer",
       "file": "julius-baer.json",
       "name": "Julius Baer",
-      "status": "PASS",
-      "issues": []
+      "status": "WARN",
+      "issues": [
+        {
+          "severity": "warning",
+          "check": "ai_verification_error",
+          "detail": "AI verification failed (network/API error): Expected ',' or ']' after array element in JSON at position 1808"
+        }
+      ]
     },
     {
       "id": "jump-ai",
       "file": "jump-ai.json",
       "name": "Jump",
-      "status": "PASS",
-      "issues": []
+      "status": "WARN",
+      "issues": [
+        {
+          "severity": "warning",
+          "check": "ai_verification_error",
+          "detail": "AI verification failed (network/API error): Expected ',' or ']' after array element in JSON at position 1721"
+        }
+      ]
     },
     {
       "id": "lpl-financial",
       "file": "lpl-financial.json",
       "name": "LPL Financial",
-      "status": "PASS",
-      "issues": []
+      "status": "WARN",
+      "issues": [
+        {
+          "severity": "warning",
+          "check": "segment_classification",
+          "detail": "LPL Financial is classified as 'ria_independent' but is more accurately a large independent broker-dealer (IBD) and custodian platform. While it serves independent advisors (including RIAs), LPL itself is not an RIA — it is a broker-dealer that also provides RIA custodial services. A segment like 'independent_broker_dealer' or 'advisor_platform' would be more precise. This distinction matters competitively as LPL's model differs from pure RIA aggregators like Focus Financial or Hightower."
+        },
+        {
+          "severity": "warning",
+          "check": "overall_maturity_consistency",
+          "detail": "The overall_maturity of 'announced' is consistent with the single capability listed (advisor_productivity: 'announced'). However, LPL has had a prior Anthropic partnership before the February 2026 expansion, suggesting some pilot or earlier deployment phase existed. If prior-phase usage is documented, the maturity could reasonably be 'pilot' rather than purely 'announced,' and this history is not reflected in the entry."
+        },
+        {
+          "severity": "warning",
+          "check": "headline_metric_plausibility",
+          "detail": "The '30,000+ advisors' figure is a network size metric, not an AI adoption metric. It reflects LPL's total advisor count, not the number of advisors actively using or enrolled in the Claude AI plugins. This conflation overstates AI deployment scale — the announcement describes a rollout intent, not confirmed adoption. The headline_metric should clarify this is the addressable advisor base, not confirmed AI users."
+        }
+      ]
     },
     {
       "id": "morgan-stanley",
       "file": "morgan-stanley.json",
       "name": "Morgan Stanley",
-      "status": "PASS",
-      "issues": []
+      "status": "WARN",
+      "issues": [
+        {
+          "severity": "warning",
+          "check": "ai_verification_error",
+          "detail": "AI verification failed (network/API error): Expected ',' or ']' after array element in JSON at position 1764"
+        }
+      ]
     },
     {
       "id": "nevis",
       "file": "nevis.json",
       "name": "Nevis",
-      "status": "PASS",
-      "issues": []
+      "status": "WARN",
+      "issues": [
+        {
+          "severity": "warning",
+          "check": "ai_verification_error",
+          "detail": "AI verification failed (network/API error): Expected ',' or ']' after array element in JSON at position 1747"
+        }
+      ]
     },
     {
       "id": "public-com",
       "file": "public-com.json",
       "name": "Public.com",
-      "status": "PASS",
-      "issues": []
+      "status": "WARN",
+      "issues": [
+        {
+          "severity": "warning",
+          "check": "ai_verification_error",
+          "detail": "AI verification failed (network/API error): Expected ',' or ']' after array element in JSON at position 1837"
+        }
+      ]
     },
     {
       "id": "rbc-wealth-management",
@@ -436,8 +1094,8 @@
       "issues": [
         {
           "severity": "warning",
-          "check": "capability_no_sources",
-          "detail": "Capability \"investment_portfolio\" has no sources array or empty sources"
+          "check": "ai_verification_error",
+          "detail": "AI verification failed (network/API error): Expected ',' or ']' after array element in JSON at position 1774"
         }
       ]
     },
@@ -445,36 +1103,79 @@
       "id": "robinhood",
       "file": "robinhood.json",
       "name": "Robinhood",
-      "status": "PASS",
-      "issues": []
+      "status": "WARN",
+      "issues": [
+        {
+          "severity": "warning",
+          "check": "ai_verification_error",
+          "detail": "AI verification failed (network/API error): Expected ',' or ']' after array element in JSON at position 1938"
+        }
+      ]
     },
     {
       "id": "savvy-wealth",
       "file": "savvy-wealth.json",
       "name": "Savvy Wealth",
-      "status": "PASS",
-      "issues": []
+      "status": "WARN",
+      "issues": [
+        {
+          "severity": "warning",
+          "check": "ai_verification_error",
+          "detail": "AI verification failed (network/API error): Expected ',' or ']' after array element in JSON at position 1982"
+        }
+      ]
     },
     {
       "id": "standard-chartered",
       "file": "standard-chartered.json",
       "name": "Standard Chartered",
-      "status": "PASS",
-      "issues": []
+      "status": "WARN",
+      "issues": [
+        {
+          "severity": "warning",
+          "check": "ai_verification_error",
+          "detail": "AI verification failed (network/API error): Expected ',' or ']' after array element in JSON at position 2116"
+        }
+      ]
     },
     {
       "id": "ubs",
       "file": "ubs.json",
       "name": "UBS",
-      "status": "PASS",
-      "issues": []
+      "status": "WARN",
+      "issues": [
+        {
+          "severity": "warning",
+          "check": "ai_verification_error",
+          "detail": "AI verification failed (network/API error): Expected ',' or ']' after array element in JSON at position 2129"
+        }
+      ]
+    },
+    {
+      "id": "vanguard",
+      "file": "vanguard.json",
+      "name": "Vanguard",
+      "status": "WARN",
+      "issues": [
+        {
+          "severity": "warning",
+          "check": "ai_verification_error",
+          "detail": "AI verification failed (network/API error): Expected ',' or ']' after array element in JSON at position 1956"
+        }
+      ]
     },
     {
       "id": "wealthfront",
       "file": "wealthfront.json",
       "name": "Wealthfront",
-      "status": "PASS",
-      "issues": []
+      "status": "WARN",
+      "issues": [
+        {
+          "severity": "warning",
+          "check": "ai_verification_error",
+          "detail": "AI verification failed (network/API error): Expected ',' or ']' after array element in JSON at position 1956"
+        }
+      ]
     },
     {
       "id": "wells-fargo",
@@ -484,13 +1185,8 @@
       "issues": [
         {
           "severity": "warning",
-          "check": "capability_no_sources",
-          "detail": "Capability \"operations_compliance\" has no sources array or empty sources"
-        },
-        {
-          "severity": "warning",
-          "check": "capability_no_sources",
-          "detail": "Capability \"client_personalization\" has no sources array or empty sources"
+          "check": "ai_verification_error",
+          "detail": "AI verification failed (network/API error): Expected ',' or ']' after array element in JSON at position 1965"
         }
       ]
     },
@@ -498,8 +1194,14 @@
       "id": "zocks",
       "file": "zocks.json",
       "name": "Zocks",
-      "status": "PASS",
-      "issues": []
+      "status": "WARN",
+      "issues": [
+        {
+          "severity": "warning",
+          "check": "ai_verification_error",
+          "detail": "AI verification failed (network/API error): Expected ',' or ']' after array element in JSON at position 1546"
+        }
+      ]
     }
   ]
 }

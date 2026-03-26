@@ -1,0 +1,59 @@
+{
+  "id": "barclays-private-bank",
+  "name": "Barclays Private Bank",
+  "segment": "global_private_bank",
+  "regions": [
+    "uk",
+    "emea",
+    "asia"
+  ],
+  "color": "#00AEEF",
+  "ai_strategy_summary": "Barclays is scaling AI firm-wide with a 2,000-person AI team and GenAI Centre of Excellence. In Private Bank and Wealth Management, AI call summarisation is confirmed deployed. Microsoft 365 Copilot rolled out to 100,000 employees by early 2026 — including wealth teams — covering document drafting, data analysis, and meeting summarisation. Group CIO Craig Bright: 'The opportunity lies in how we use AI alongside everything we know about our customers to improve their experience.'",
+  "head_of_ai": {
+    "name": "Craig Bright",
+    "title": "Group Chief Information Officer"
+  },
+  "headline_metric": "Microsoft Copilot deployed to 100,000 employees; AI call summarisation live in Private Bank across £124.6B invested assets",
+  "headline_initiative": "GenAI Centre of Excellence + Microsoft Copilot at scale + AI call summarisation in Private Bank",
+  "overall_maturity": "piloting",
+  "capabilities": {
+    "advisor_productivity": {
+      "maturity": "piloting",
+      "headline": "AI call summarisation deployed in Private Bank — Copilot rolled out to 100,000 Barclays employees including wealth teams",
+      "detail": "Barclays Private Bank and Wealth Management is 'leveraging AI technology and seeing visible improvements in summarising calls' (Barclays newsroom, July 2025). Microsoft 365 Copilot was rolled out to 50,000 employees in 2025 and doubled to 100,000 in early 2026. Use cases cover drafting documents, analysing data, and meeting summarisation. A GenAI Centre of Excellence provides reusable AI components across divisions. Barclays employs 2,000 AI specialists group-wide.",
+      "evidence": [
+        "Barclays PB&WM: 'leveraging AI technology and seeing visible improvements in summarising calls' — Barclays newsroom, July 2025",
+        "Microsoft Copilot deployed to 100,000 Barclays employees by early 2026 — Computer Weekly, 2026",
+        "2,000 AI specialists employed group-wide; GenAI Centre of Excellence established — Barclays newsroom, July 2025"
+      ],
+      "date_assessed": "2026-03-24",
+      "sources": [
+        {
+          "name": "Barclays — Scaling AI at Barclays (Jul 2025)",
+          "url": "https://home.barclays/insights/2025/07/scaling-AI-at-Barclays/"
+        },
+        {
+          "name": "Computer Weekly — Barclays rolls out Microsoft Copilot to 100,000 employees",
+          "url": "https://www.computerweekly.com/news/366625580/Barclays-rolls-out-Microsoft-Copilot-to-100000-employees-as-AI-adoption-gathers-pace"
+        }
+      ]
+    },
+    "operations_compliance": {
+      "maturity": "deployed",
+      "headline": "GitLab Duo in production for code generation and vulnerability detection; GenAI CoE industrialising use cases across compliance, IT, and operations",
+      "detail": "Barclays' GenAI Centre of Excellence identifies high-value use cases and provides reusable AI components across all divisions, including compliance and operations. GitLab Duo is in production for developer code generation and security vulnerability detection. BarxBot, an AI tool for FX trading operations, is deployed in Markets. The group's AI infrastructure underpins the private bank's operational workflows.",
+      "evidence": [
+        "GitLab Duo in production for code generation and vulnerability detection — Barclays newsroom, July 2025",
+        "GenAI Centre of Excellence provides reusable AI components across divisions — Barclays newsroom, July 2025"
+      ],
+      "date_assessed": "2026-03-24",
+      "sources": [
+        {
+          "name": "Barclays — Scaling AI at Barclays (Jul 2025)",
+          "url": "https://home.barclays/insights/2025/07/scaling-AI-at-Barclays/"
+        }
+      ]
+    }
+  },
+  "last_updated": "2026-03-24"
+}

@@ -159,13 +159,12 @@ export default function IntelligenceFilter({ entries }: { entries: IntelligenceE
 
               {/* Content */}
               <div className="flex-1 min-w-0">
-                <div className="flex items-center gap-2 mb-1.5 flex-wrap">
-                  <span className={`type-badge badge-${entry.type}`}>
-                    {TYPE_LABELS[entry.type]}
+                <div className="flex items-center gap-2 mb-1.5 min-w-0">
+                  <span className={`type-badge badge-${entry.type} flex-shrink-0`}>
+                    {TYPE_LABELS[entry.type] ?? entry.type}
                   </span>
-                  <span className="text-xs text-gray-400">{entry.company_name}</span>
-                  <span className="text-xs text-gray-300">·</span>
-                  <span className="text-xs text-gray-400">{formatDateShort(entry.date)}</span>
+                  <span className="text-xs text-gray-400 truncate min-w-0">{entry.company_name}</span>
+                  <span className="text-xs text-gray-400 flex-shrink-0 whitespace-nowrap">· {formatDateShort(entry.date)}</span>
                 </div>
                 <h3 className="text-base font-bold text-gray-900 leading-snug mb-1.5 group-hover:text-[#990F3D] transition-colors">
                   {entry.headline}
@@ -177,9 +176,9 @@ export default function IntelligenceFilter({ entries }: { entries: IntelligenceE
 
               {/* Key stat */}
               {entry.key_stat && (
-                <div className="flex-shrink-0 text-right min-w-[80px]">
-                  <div className="text-xl font-extrabold text-[#990F3D]">{entry.key_stat.number}</div>
-                  <div className="text-xs text-gray-400 leading-tight">{entry.key_stat.label}</div>
+                <div className="flex-shrink-0 text-right w-44">
+                  <div className="text-2xl font-extrabold text-[#990F3D] leading-none">{entry.key_stat.number}</div>
+                  <div className="text-xs text-gray-400 leading-snug mt-1.5">{entry.key_stat.label}</div>
                 </div>
               )}
             </Link>

@@ -6,6 +6,8 @@ export const TYPE_LABELS: Record<string, string> = {
   milestone: 'Milestone',
   strategy_move: 'Strategy',
   market_signal: 'Market Signal',
+  deployment: 'Deployment',
+  funding: 'Funding',
 };
 
 export const FORMAT_LABELS: Record<string, string> = {
@@ -20,6 +22,7 @@ export const SEGMENT_LABELS: Record<string, string> = {
   wirehouse: 'Wirehouse',
   global_private_bank: 'Global Private Bank',
   regional_champion: 'Regional Champion',
+  asset_manager: 'Asset Manager',
   digital_disruptor: 'Digital Disruptor',
   ai_native: 'AI-Native Wealth',
   ria_independent: 'RIA / Independent',

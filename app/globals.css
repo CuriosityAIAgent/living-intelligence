@@ -112,6 +112,8 @@ body {
 .badge-milestone { background: #FFF7ED; color: #C2410C; }
 .badge-strategy_move { background: #F0F9FF; color: #0369A1; }
 .badge-market_signal { background: #FEF2F2; color: #B91C1C; }
+.badge-deployment { background: #F0FDF4; color: #15803D; }
+.badge-funding { background: #FEFCE8; color: #854D0E; }
 
 /* Maturity indicators (for landscape view) */
 .maturity-announced { color: #D97706; }

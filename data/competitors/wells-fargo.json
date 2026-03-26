@@ -8,7 +8,7 @@
   "color": "#C0392B",
   "ai_strategy_summary": "Wells Fargo is deploying AI across its advisor workforce through its Fargo virtual assistant and advisor productivity tools, while piloting AI-powered client intelligence and compliance automation across its ~12,000-advisor wealth network.",
   "head_of_ai": null,
-  "headline_metric": "~12,000 financial advisors; ~$2T in client assets under management",
+  "headline_metric": "Google Agentspace deploying bank-wide across ~12,000 advisors managing ~$2T in client assets; Fargo AI assistant in production",
   "headline_initiative": "Fargo AI assistant + advisor productivity AI rollout",
   "overall_maturity": "deployed",
   "capabilities": {
@@ -17,8 +17,8 @@
       "headline": "Wells Fargo deploys Google Agentspace to ~2,000 employees including wealth management roles, with bank-wide rollout to 215,000 employees planned",
       "detail": "Wells Fargo deployed Google Agentspace to approximately 2,000 employees in initial rollout, covering wealth management, risk, and operations roles. Bank-wide expansion to all 215,000 employees announced. Fargo digital assistant already live across retail banking providing personalized guidance.",
       "evidence": [
-        "Google Cloud Blog: Wells Fargo deploying Agentspace to ~2,000 employees \u2014 https://cloud.google.com/blog/topics/financial-services/wells-fargo-agentic-ai-agentspace-empowering-workers",
-        "American Banker: Wells Fargo plans Google agentic AI bank-wide \u2014 https://www.americanbanker.com/news/wells-fargo-plans-to-unleash-googles-agentic-ai-bank-wide"
+        "Google Cloud Blog: Wells Fargo deploying Agentspace to ~2,000 employees — https://cloud.google.com/blog/topics/financial-services/wells-fargo-agentic-ai-agentspace-empowering-workers",
+        "American Banker: Wells Fargo plans Google agentic AI bank-wide — https://www.americanbanker.com/news/wells-fargo-plans-to-unleash-googles-agentic-ai-bank-wide"
       ],
       "jpm_implication": "Wells Fargo's slower pace of advisor AI deployment relative to Morgan Stanley and Merrill represents a competitive window for JPM to widen its advantage in advisor productivity tooling.",
       "jpm_segments_affected": [
@@ -28,8 +28,12 @@
       "date_assessed": "2026-03-19",
       "sources": [
         {
-          "name": "Wells Fargo \u2014 Investor Relations",
-          "url": "https://www.wellsfargo.com/about/investor-relations/"
+          "name": "Google Cloud Blog — Wells Fargo deploying Agentspace to ~2,000 employees",
+          "url": "https://cloud.google.com/blog/topics/financial-services/wells-fargo-agentic-ai-agentspace-empowering-workers"
+        },
+        {
+          "name": "American Banker — Wells Fargo plans Google agentic AI bank-wide",
+          "url": "https://www.americanbanker.com/news/wells-fargo-plans-to-unleash-googles-agentic-ai-bank-wide"
         }
       ]
     },
@@ -38,18 +42,30 @@
       "headline": "Google Agentspace deployed for compliance and risk workflows",
       "detail": "Wells Fargo's Google Agentspace deployment explicitly covers risk analysis and compliance automation workflows per American Banker reporting.",
       "evidence": [
-        "American Banker: Wells Fargo Agentspace covers compliance/risk \u2014 https://www.americanbanker.com/news/wells-fargo-plans-to-unleash-googles-agentic-ai-bank-wide"
+        "American Banker: Wells Fargo Agentspace covers compliance/risk — https://www.americanbanker.com/news/wells-fargo-plans-to-unleash-googles-agentic-ai-bank-wide"
       ],
-      "date_assessed": "2026-03-19"
+      "date_assessed": "2026-03-19",
+      "sources": [
+        {
+          "name": "American Banker — Wells Fargo plans Google agentic AI bank-wide",
+          "url": "https://www.americanbanker.com/news/wells-fargo-plans-to-unleash-googles-agentic-ai-bank-wide"
+        }
+      ]
     },
     "client_personalization": {
       "maturity": "piloting",
       "headline": "Fargo assistant provides AI-personalised financial guidance for retail and mass affluent clients",
       "detail": "Fargo digital assistant is live across retail banking offering personalised financial insights and guidance. Wealth management personalisation tools in development.",
       "evidence": [
-        "J.D. Power 2025 digital satisfaction rankings \u2014 Fargo tops app satisfaction"
+        "J.D. Power 2025 digital satisfaction rankings — Fargo tops app satisfaction"
       ],
-      "date_assessed": "2026-03-19"
+      "date_assessed": "2026-03-19",
+      "sources": [
+        {
+          "name": "American Banker — Wells Fargo plans Google agentic AI bank-wide",
+          "url": "https://www.americanbanker.com/news/wells-fargo-plans-to-unleash-googles-agentic-ai-bank-wide"
+        }
+      ]
     }
   },
   "last_updated": "2026-03-19"

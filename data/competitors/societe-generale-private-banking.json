@@ -1,0 +1,73 @@
+{
+  "id": "societe-generale-private-banking",
+  "name": "Societe Generale Private Banking",
+  "segment": "global_private_bank",
+  "regions": [
+    "emea"
+  ],
+  "color": "#E60028",
+  "ai_strategy_summary": "Societe Generale has 330+ AI use cases in production group-wide (170 pure-AI), targeting €500M in value creation by 2025. For private banking clients, two live digital products are deployed: Synoe (AI-driven arbitrage advice for life insurance policies, customised per client) and Mon Patrimoine (real-time wealth aggregation). SocGen AI — a new Group entity — is industrialising AI across six domains including client interaction, compliance, and onboarding. A GenAI documentary search tool is live for advisers.",
+  "head_of_ai": {
+    "name": "Noémie Ellezam",
+    "title": "Group Head of AI"
+  },
+  "headline_metric": "330+ AI use cases in production; Synoe AI advice and Mon Patrimoine aggregation across €154B private banking AUM",
+  "headline_initiative": "Synoe (AI arbitrage advice) + Mon Patrimoine (wealth aggregation) + SocGen AI entity",
+  "overall_maturity": "deployed",
+  "capabilities": {
+    "investment_portfolio": {
+      "maturity": "deployed",
+      "headline": "Synoe: AI-driven arbitrage advice for life insurance policies — customised to each client's financial objectives and risk knowledge",
+      "detail": "Synoe is a digital arbitration advisory solution that sends clients regular arbitrage advice for their life insurance policies, customised to each client's financial objectives, risk profile, and investment knowledge. The system also generates alerts during exceptional market events. Deployed in Societe Generale Private Banking France.",
+      "evidence": [
+        "Synoe: regular AI-generated arbitrage advice for life insurance policies, customised per client — SG Private Banking product page",
+        "Alerts generated during exceptional market events — SG Private Banking product page"
+      ],
+      "date_assessed": "2026-03-24",
+      "sources": [
+        {
+          "name": "SG Private Banking — Mon Patrimoine and digital advisory solutions",
+          "url": "https://www.privatebanking.societegenerale.com/en/insights/mon-patrimoine-the-wealth-management-solution/"
+        }
+      ]
+    },
+    "client_personalization": {
+      "maturity": "deployed",
+      "headline": "Mon Patrimoine: real-time comprehensive view of all financial and non-financial assets — deployed for SG private banking clients",
+      "detail": "Mon Patrimoine provides private banking clients with a comprehensive real-time view of all financial assets (securities, life insurance, bank accounts) and non-financial assets (real estate, business holdings). Tax and estate planning integration via Kwiper partnership. Deployed in Societe Generale Private Banking France.",
+      "evidence": [
+        "Mon Patrimoine: real-time view of all financial and non-financial assets — SG Private Banking",
+        "Tax/estate planning integration via Kwiper partnership — SG Private Banking"
+      ],
+      "date_assessed": "2026-03-24",
+      "sources": [
+        {
+          "name": "SG Private Banking — Mon Patrimoine wealth management solution",
+          "url": "https://www.privatebanking.societegenerale.com/en/insights/mon-patrimoine-the-wealth-management-solution/"
+        }
+      ]
+    },
+    "advisor_productivity": {
+      "maturity": "deployed",
+      "headline": "GenAI documentary search tool for advisers — retrieves answers from internal knowledge base; SocGen AI entity formalising group-wide AI industrialisation",
+      "detail": "A generative AI-enhanced documentary search tool is deployed for advisers to retrieve answers from the bank's internal knowledge base. SocGen AI, a new Group-level entity, is industrialising AI use cases across six domains: client interaction, onboarding, back-office, IT, compliance, and productivity. SOBOT handles ~6,000 daily client interactions; ELLIOT (BoursoBank) handles 70%+ of customer interactions end-to-end.",
+      "evidence": [
+        "GenAI documentary search tool deployed for advisers — SocGen AI strategy, 2024",
+        "SocGen AI entity created to industrialise AI across 6 domains: client interaction, onboarding, back-office, IT, compliance, productivity — SocGen newsroom, 2024",
+        "330+ AI/data use cases in production group-wide; 170 pure-AI cases — Banking Frontiers, 2024"
+      ],
+      "date_assessed": "2026-03-24",
+      "sources": [
+        {
+          "name": "Societe Generale — Strategy for integrating generative AI in financial sector",
+          "url": "https://www.societegenerale.com/en/news/all-news/societe-generale-shares-its-strategy-integrating-generative-ai-financial-sector"
+        },
+        {
+          "name": "Societe Generale — Our approach to using AI to support clients and employees",
+          "url": "https://www.societegenerale.com/en/news/all-news/our-approach-using-artificial-intelligence-support-our-clients-and-employees"
+        }
+      ]
+    }
+  },
+  "last_updated": "2026-03-24"
+}

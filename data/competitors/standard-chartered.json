@@ -9,7 +9,7 @@
   "color": "#0A4E8F",
   "ai_strategy_summary": "Standard Chartered launched SC GPT across 41 markets for 70,000+ employees in March 2025 and debuted the world's first AI-generated video FX advisory product for wealth clients — setting a new bar for advisor-facing and client-facing AI simultaneously.",
   "head_of_ai": null,
-  "headline_metric": "SC GPT live across 41 markets, 70,000+ employees; FX AI video advisory for clients",
+  "headline_metric": "SC GPT deployed to 70,000+ employees across 41 markets; FX Intelligent Expert AI video advisory rolling globally",
   "headline_initiative": "SC GPT global rollout + FX Intelligent Expert AI video advisory",
   "overall_maturity": "deployed",
   "capabilities": {
@@ -36,13 +36,13 @@
       ]
     },
     "research_content": {
-      "maturity": "deployed",
+      "maturity": "piloting",
       "headline": "FX Intelligent Expert: first AI-generated video market insights for wealth clients",
-      "detail": "FX Intelligent Expert delivers dynamic AI-generated video insights on FX markets to private wealth clients — debuted in mainland China (December 2024), expanding to Singapore, Hong Kong, and Taiwan.",
+      "detail": "FX Intelligent Expert delivers dynamic AI-generated video insights on FX markets to private wealth clients — piloted in mainland China (December 2024), with expansion to Singapore, Hong Kong, and Taiwan announced.",
       "evidence": [
         "First-of-kind AI video advisory product",
         "FX Intelligent Expert piloted in mainland China December 2024",
-        "Expanding to Singapore, Hong Kong, Taiwan"
+        "Expansion to Singapore, Hong Kong, Taiwan announced — not yet live"
       ],
       "jpm_implication": "AI-generated video market insights represent a new format for client engagement that JPM Private Bank has not yet deployed. First-mover advantage is available.",
       "jpm_segments_affected": [

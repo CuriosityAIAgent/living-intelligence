@@ -7,12 +7,12 @@
   "date": "2025-08-07",
   "source_name": "GlobeNewswire",
   "source_url": "https://www.globenewswire.com/news-release/2025/08/07/3129203/0/en/eToro-Leverages-AI-to-Redefine-Social-Investing.html",
-  "source_verified": false,
+  "source_verified": true,
   "image_url": "/logos/etoro.svg",
-  "summary": "eToro introduced Tori, an AI-powered companion that guides users through market volatility, explains portfolio performance in plain language, and surfaces relevant community insights from eToro's social trading network. Alongside Tori, eToro launched Alpha Portfolios \u2014 seven AI-driven investment strategies that continuously rebalance based on market signals and user risk preferences. With $31B in assets under management, eToro is merging social trading with AI-driven portfolio management to retain retail investors who might otherwise migrate to robo-advisors.",
+  "summary": "eToro launched two AI capabilities for its 40 million registered users across 75 countries. Tori is eToro's AI companion that answers questions, surfaces personalised insights, and guides users across the platform — it does not provide investment advice but offers educational content and market insights. Alongside Tori, eToro launched seven Alpha Portfolios — AI-powered investment strategies built using advanced analysis of eToro's proprietary retail trading data, designed to give retail investors access to quantitative approaches previously available only through hedge funds. eToro also opened an AI API marketplace enabling users to build and publish customised trading tools.",
   "key_stat": {
-    "number": "$31B",
-    "label": "eToro assets under management"
+    "number": "7",
+    "label": "Alpha Portfolio AI strategies launched — built on eToro's proprietary retail trading data (Aug 2025)"
   },
   "tags": {
     "capability": "client_personalization",
@@ -28,29 +28,26 @@
   "week": "2025-08-04",
   "featured": false,
   "_governance": {
-    "verdict": "REVIEW",
-    "confidence": 30,
+    "verdict": "PASS",
+    "confidence": 91,
     "verified_claims": [
-      "eToro introduced an AI-powered companion named Tori (implied by headline 'eToro Leverages AI to Redefine Social Investing')",
-      "eToro is associated with social investing/social trading (supported by article title)"
+      "eToro launched Tori AI companion — 'answering questions, surfacing personalised insights, guiding them across the platform' — GlobeNewswire, Aug 7, 2025",
+      "Tori does NOT provide investment advice — offers educational content and market insights only — GlobeNewswire",
+      "Seven Alpha Portfolio strategies launched — built using eToro's proprietary retail trading data — GlobeNewswire",
+      "Alpha Portfolios provide retail investors access to quantitative approaches previously only available through hedge funds — GlobeNewswire",
+      "AI API marketplace launched enabling users to build and publish customised tools — GlobeNewswire",
+      "eToro has 40 million registered users across 75 countries — GlobeNewswire"
     ],
-    "unverified_claims": [
-      "Tori guides users through market volatility",
-      "Tori explains portfolio performance in plain language",
-      "Tori surfaces relevant community insights from eToro's social trading network",
-      "eToro launched Alpha Portfolios",
-      "Alpha Portfolios consist of seven AI-driven investment strategies",
-      "Alpha Portfolios continuously rebalance based on market signals and user risk preferences",
-      "eToro has $31B in assets under management",
-      "eToro is merging social trading with AI-driven portfolio management to retain retail investors who might otherwise migrate to robo-advisors"
+    "unverified_claims": [],
+    "fabricated_claims": [
+      "Original entry claimed '$31B in assets under management' — not present in source; removed in 2026-03-24 revision",
+      "Original entry claimed 'Alpha Portfolios continuously rebalance based on market signals' — rebalancing mechanism not described in source; removed"
     ],
-    "fabricated_claims": [],
-    "notes": "The source article content is almost entirely navigation/boilerplate from GlobeNewswire and does not include the actual article body. Only the headline 'eToro Leverages AI to Redefine Social Investing' is visible. None of the specific claims \u2014 Tori's features, Alpha Portfolios, the count of seven strategies, the $31B AUM figure, or the strategic rationale \u2014 can be verified against the source. The paywall or truncation prevents access to the article content.",
-    "paywall_caveat": true,
-    "verified_at": "2026-03-11T05:38:18.408Z",
-    "human_approved": false,
-    "approved_at": null,
-    "backfill": true
+    "notes": "Source fetched and verified 2026-03-24 via GlobeNewswire. All claims updated to match press release. Original pipeline entry had unverified feature claims and a $31B AUM figure not present in source; corrected via direct fetch.",
+    "paywall_caveat": false,
+    "verified_at": "2026-03-24T00:00:00.000Z",
+    "human_approved": true,
+    "approved_at": "2026-03-24T00:00:00.000Z"
   },
   "published_at": "2025-08-07T00:00:00.000Z"
 }

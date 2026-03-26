@@ -9,7 +9,7 @@
   "color": "#E31837",
   "ai_strategy_summary": "The longest-running AI program in wealth management. Erica has surpassed 3.2 billion total interactions with 20.6 million active users and 700 million interactions in 2025 alone. BofA's 30 billion total digital interactions in 2025 grew 14% YoY — 86% of wealth management clients now engage digitally.",
   "head_of_ai": null,
-  "headline_metric": "3.2B Erica interactions total; 20.6M users; 30B digital interactions in 2025",
+  "headline_metric": "3.2B Erica interactions total (700M in 2025) across 20.6M users; 23,000 monthly active advisors",
   "headline_initiative": "Erica + Ask Merrill + Ask Private Bank",
   "overall_maturity": "scaled",
   "capabilities": {
@@ -54,7 +54,7 @@
       "date_assessed": "2026-03-19",
       "sources": [
         {
-          "name": "Bank of America Q3 2025 Earnings \u2014 AI tools cited across wealth management",
+          "name": "Bank of America Q3 2025 Earnings — AI tools cited across wealth management",
           "url": "https://investor.bankofamerica.com/press-releases/detail/701/bank-of-america-reports-third-quarter-2025-financial"
         }
       ]
@@ -65,7 +65,7 @@
       "detail": "Bank of America is applying AI to segment migration and next-best-action across its 67M client base, but the WM-specific AI acquisition tooling for Merrill advisors is not separately disclosed with the same specificity as the core consumer AI stack. The $13B 2026 technology investment signals intent; WM-specific AI acquisition capabilities are assumed to be in pilot.",
       "evidence": [
         "$13B 2026 technology investment includes AI across all client segments",
-        "67M client base \u2014 AI-driven segment migration from consumer to Merrill Edge/Merrill Lynch in development",
+        "67M client base — AI-driven segment migration from consumer to Merrill Edge/Merrill Lynch in development",
         "WM-specific AI acquisition product not separately disclosed"
       ],
       "jpm_implication": "BofA's AI-driven migration from banking to wealth management is a direct competitive threat to CWM and JPMWM acquisition pipeline.",
@@ -76,7 +76,7 @@
       "date_assessed": "2026-03-07",
       "sources": [
         {
-          "name": "Bank of America Q3 2025 Earnings \u2014 technology investment and AI strategy",
+          "name": "Bank of America Q3 2025 Earnings — technology investment and AI strategy",
           "url": "https://investor.bankofamerica.com/press-releases/detail/701/bank-of-america-reports-third-quarter-2025-financial"
         }
       ]

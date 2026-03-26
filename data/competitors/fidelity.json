@@ -1,14 +1,14 @@
 {
   "id": "fidelity",
   "name": "Fidelity Investments",
-  "segment": "digital_disruptor",
+  "segment": "asset_manager",
   "regions": [
     "us"
   ],
   "color": "#007A33",
   "ai_strategy_summary": "Fidelity is applying AI across both its direct-to-retail platform and its advisor-facing tools, with Trader+ (launched Sep 2025) as the flagship AI-powered active trading platform. With $16.4 trillion in AUA and 40+ million individual investor accounts, Fidelity's AI deployment operates at a scale that most wealth managers cannot match.",
   "head_of_ai": null,
-  "headline_metric": "$16.4T AUA, 40M+ individual investor accounts",
+  "headline_metric": "Trader+ AI platform launched September 2025; AI research tools available to all 40M+ accounts across $16.4T AUA",
   "headline_initiative": "Trader+ — AI-powered active trading platform launched September 2025",
   "overall_maturity": "deployed",
   "capabilities": {

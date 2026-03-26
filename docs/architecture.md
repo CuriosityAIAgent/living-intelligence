@@ -32,11 +32,11 @@
 │                  DATA DIRECTORY (inside this repo)               │
 │                    ./data/  — tracked in git                     │
 │                                                                  │
-│  intelligence/    → IntelligenceEntry JSON files (25 entries)   │
+│  intelligence/    → IntelligenceEntry JSON files (42 entries)   │
 │  thought-leadership/ → ThoughtLeadershipEntry JSON files (6)    │
-│  competitors/     → Competitor JSON files (30 companies)         │
+│  competitors/     → Competitor JSON files (37 companies)         │
 │  capabilities/    → index.json (7 capability dimensions)         │
-│  logos/           → SVG/PNG logos (24 companies, local only)     │
+│  logos/           → SVG/PNG logos (42 companies, local only)     │
 │  .governance-pending.json  → Universal inbox (ALL stories pre-publish) │
 │  .governance-blocked.json  → FAIL URLs permanently blocked      │
 │  .rejection-log.json       → Editorial rejections (reason+notes)│
@@ -54,7 +54,7 @@
 │  /intelligence/[slug]    → Article detail page                   │
 │  /thought-leadership     → All thought leadership                │
 │  /thought-leadership/[slug] → Piece detail page                  │
-│  /landscape              → AI capabilities matrix (30 companies) │
+│  /landscape              → AI capabilities matrix (37 companies) │
 │  /competitors/[slug]     → Company detail page                   │
 └──────────────────────────────────────────────────────────────────┘
 ```
@@ -207,14 +207,15 @@ Definitions shown on the landscape page below the matrix:
 
 ## Landscape Coverage (as of March 2026)
 
-**30 companies across 7 segments:**
+**37 companies across 8 segments:**
 
 | Segment | Companies |
 |---------|-----------|
 | Wirehouse (4) | Morgan Stanley, BofA/Merrill, Wells Fargo, JPMorgan |
-| Global Private Bank (6) | UBS, Goldman Sachs, Citi PB, HSBC PB, Julius Baer, BNP Paribas Wealth |
-| Regional Champion (4) | DBS, BBVA, Standard Chartered, RBC Wealth Management |
-| Digital Disruptor (7) | Robinhood, Wealthfront, eToro, Public.com, Fidelity, Vanguard, Betterment |
+| Global Private Bank (9) | UBS, Goldman Sachs, Citi PB, HSBC PB, Julius Baer, BNP Paribas Wealth, Barclays Private Bank, Santander Private Banking, Société Générale Private Banking |
+| Regional Champion (7) | DBS, BBVA, Standard Chartered, RBC Wealth Management, Lloyds Wealth, ABN AMRO Private Banking, St. James's Place |
+| Asset Manager (2) | Fidelity, Vanguard |
+| Digital Disruptor (5) | Robinhood, Wealthfront, eToro, Public.com, Betterment |
 | AI-Native Wealth (2) | Arta Finance, Savvy Wealth |
 | RIA / Independent (2) | Altruist, LPL Financial |
 | Advisor Tools (5) | Jump, Nevis, Zocks, Holistiplan, Conquest Planning |
