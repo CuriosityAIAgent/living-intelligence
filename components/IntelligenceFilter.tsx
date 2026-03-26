@@ -8,6 +8,7 @@ type IntelligenceEntry = {
   id: string;
   type: string;
   headline: string;
+  the_so_what?: string;
   company_name: string;
   date: string;
   source_name: string;
@@ -95,7 +96,8 @@ export default function IntelligenceFilter({ entries }: { entries: IntelligenceE
       const q = search.toLowerCase();
       return e.company_name.toLowerCase().includes(q)
         || e.headline.toLowerCase().includes(q)
-        || e.summary.toLowerCase().includes(q);
+        || e.summary.toLowerCase().includes(q)
+        || (e.the_so_what || '').toLowerCase().includes(q);
     })();
     return regionMatch && capMatch && periodMatch && searchMatch;
   });
@@ -249,6 +251,12 @@ export default function IntelligenceFilter({ entries }: { entries: IntelligenceE
                 <p className="text-sm text-gray-500 leading-relaxed line-clamp-2">
                   {entry.summary}
                 </p>
+                {entry.the_so_what && (
+                  <p className="mt-2 text-xs text-gray-600 leading-relaxed border-l-2 border-[#990F3D] pl-2.5 line-clamp-2">
+                    <span className="font-semibold text-[#990F3D]">Why it matters</span>{' '}
+                    {entry.the_so_what}
+                  </p>
+                )}
               </div>
 
               {/* Key stat */}
