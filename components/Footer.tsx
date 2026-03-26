@@ -10,9 +10,12 @@ export default function Footer() {
           <p className="text-xs text-gray-500 leading-relaxed max-w-3xl">
             <span className="font-semibold text-gray-700">For informational purposes only.</span>{' '}
             Nothing on this portal constitutes investment advice, financial advice, trading advice,
-            or any other advice. All content is curated from publicly available sources.
-            AI-generated summaries are produced from source material and may contain errors or
-            omissions — always refer to the original source before acting on any information.
+            a securities recommendation, or an offer to buy or sell any security or financial
+            instrument. The information provided is general in nature and should not be relied upon
+            for making any investment decision. You should consult a qualified financial advisor
+            before making investment decisions. All content is curated from publicly available
+            sources. Any decisions you make based on information from this portal are made solely
+            at your own risk.
           </p>
         </div>
 
@@ -23,17 +26,67 @@ export default function Footer() {
             Maturity ratings (Scaled, Deployed, Piloting, Announced) reflect editorial judgements
             based on publicly available disclosures, press releases, and reporting as of the date
             shown. They are not certifications, endorsements, or investment ratings. Assessed
-            companies have not reviewed or approved these ratings.
+            companies have not reviewed or approved these ratings. These ratings reflect our
+            editorial opinion only and should not be construed as statements of fact. A rating
+            of &ldquo;No Activity&rdquo; means no publicly available evidence was identified — it
+            does not mean a company has no internal initiatives in that area.
           </p>
         </div>
 
-        {/* Sources & IP */}
+        {/* AI-assisted content */}
         <div className="mb-6 pb-6 border-b border-gray-100">
           <p className="text-xs text-gray-500 leading-relaxed max-w-3xl">
-            <span className="font-semibold text-gray-700">Source attribution.</span>{' '}
-            All intelligence entries link to the original source publication. Summaries represent
-            condensed excerpts for research and reference purposes. Copyright in original articles
-            remains with their respective publishers.
+            <span className="font-semibold text-gray-700">AI-assisted content.</span>{' '}
+            Intelligence summaries on this portal are structured with the assistance of artificial
+            intelligence (Anthropic Claude). A separate AI verification step checks all factual
+            claims against the original source, and a human editor reviews and approves every entry
+            before publication. Despite these safeguards, summaries may contain errors or
+            omissions — always refer to the original linked source before acting on any information.
+          </p>
+        </div>
+
+        {/* Sources, copyright & trademarks */}
+        <div className="mb-6 pb-6 border-b border-gray-100">
+          <p className="text-xs text-gray-500 leading-relaxed max-w-3xl">
+            <span className="font-semibold text-gray-700">Source attribution and copyright.</span>{' '}
+            All intelligence entries link to the original source publication. Summaries are
+            independently structured editorial abstracts created for research and commentary
+            purposes. They are not reproductions or substitutes for the original reporting.
+            Copyright in original articles remains with their respective publishers.
+          </p>
+          <p className="text-xs text-gray-500 leading-relaxed max-w-3xl mt-2">
+            <span className="font-semibold text-gray-700">Trademarks.</span>{' '}
+            Company names, logos, and trademarks displayed on this portal are the property of their
+            respective owners and are used solely for identification and editorial reference
+            purposes. Their use does not imply any affiliation with, endorsement by, or sponsorship
+            by the respective trademark holders. Living Intelligence is an independent editorial
+            publication.
+          </p>
+        </div>
+
+        {/* Limitation of liability */}
+        <div className="mb-6 pb-6 border-b border-gray-100">
+          <p className="text-xs text-gray-500 leading-relaxed max-w-3xl">
+            <span className="font-semibold text-gray-700">No warranty.</span>{' '}
+            All content, data, and ratings are provided on an &ldquo;as is&rdquo; and &ldquo;as
+            available&rdquo; basis without warranties of any kind, express or implied. To the
+            maximum extent permitted by applicable law, Living Intelligence and its operators shall
+            not be liable for any direct, indirect, incidental, or consequential damages arising
+            from your use of or reliance on any content on this portal.
+          </p>
+        </div>
+
+        {/* Corrections */}
+        <div className="mb-6 pb-6 border-b border-gray-100">
+          <p className="text-xs text-gray-500 leading-relaxed max-w-3xl">
+            <span className="font-semibold text-gray-700">Corrections.</span>{' '}
+            While we make every effort to verify information against original sources, errors may
+            occur. If you believe any content on this portal contains a factual error, please
+            contact us at{' '}
+            <a href="mailto:corrections@tigerai.tech" className="text-[#990F3D] hover:underline">
+              corrections@tigerai.tech
+            </a>{' '}
+            and we will investigate promptly.
           </p>
         </div>
 
