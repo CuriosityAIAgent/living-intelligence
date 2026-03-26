@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useMemo, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import { TYPE_LABELS } from '@/lib/constants';
 
@@ -53,6 +53,33 @@ export default function IntelligenceFilter({ entries }: { entries: IntelligenceE
   const [region, setRegion] = useState('all');
   const [capability, setCapability] = useState('all');
   const [period, setPeriod] = useState('all');
+  const [search, setSearch] = useState('');
+  const [showSuggestions, setShowSuggestions] = useState(false);
+  const searchRef = useRef<HTMLDivElement>(null);
+
+  // Unique company names for autocomplete
+  const companyNames = useMemo(() => {
+    const names = [...new Set(entries.map(e => e.company_name))].sort();
+    return names;
+  }, [entries]);
+
+  // Suggestions filtered by current search input
+  const suggestions = useMemo(() => {
+    if (!search || search.length < 1) return [];
+    const q = search.toLowerCase();
+    return companyNames.filter(name => name.toLowerCase().includes(q)).slice(0, 8);
+  }, [search, companyNames]);
+
+  // Close suggestions on click outside
+  useEffect(() => {
+    function handleClickOutside(e: MouseEvent) {
+      if (searchRef.current && !searchRef.current.contains(e.target as Node)) {
+        setShowSuggestions(false);
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
   const periodCutoff = period !== 'all' ? (() => {
     const d = new Date();
@@ -64,11 +91,61 @@ export default function IntelligenceFilter({ entries }: { entries: IntelligenceE
     const regionMatch = region === 'all' || e.tags?.region === region;
     const capMatch = capability === 'all' || e.tags?.capability === capability;
     const periodMatch = !periodCutoff || e.date >= periodCutoff;
-    return regionMatch && capMatch && periodMatch;
+    const searchMatch = !search || (() => {
+      const q = search.toLowerCase();
+      return e.company_name.toLowerCase().includes(q)
+        || e.headline.toLowerCase().includes(q)
+        || e.summary.toLowerCase().includes(q);
+    })();
+    return regionMatch && capMatch && periodMatch && searchMatch;
   });
 
   return (
     <div>
+      {/* Search */}
+      <div className="mb-5 relative" ref={searchRef}>
+        <div className="relative">
+          <svg className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
+          <input
+            type="text"
+            placeholder="Search by company, headline, or keyword..."
+            value={search}
+            onChange={e => { setSearch(e.target.value); setShowSuggestions(true); }}
+            onFocus={() => setShowSuggestions(true)}
+            className="w-full pl-10 pr-4 py-2.5 text-sm border border-gray-200 rounded-lg bg-white text-gray-900 placeholder-gray-400 focus:outline-none focus:border-[#990F3D] focus:ring-1 focus:ring-[#990F3D] transition-colors"
+          />
+          {search && (
+            <button
+              onClick={() => { setSearch(''); setShowSuggestions(false); }}
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          )}
+        </div>
+        {/* Autocomplete suggestions */}
+        {showSuggestions && suggestions.length > 0 && (
+          <div className="absolute z-10 mt-1 w-full bg-white border border-gray-200 rounded-lg shadow-lg overflow-hidden">
+            {suggestions.map(name => (
+              <button
+                key={name}
+                onClick={() => { setSearch(name); setShowSuggestions(false); }}
+                className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-[#990F3D] transition-colors flex items-center gap-2"
+              >
+                <svg className="w-3.5 h-3.5 text-gray-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                </svg>
+                {name}
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
+
       {/* Filters */}
       <div className="mb-6 space-y-3">
         <div className="flex items-center justify-between flex-wrap gap-3">
