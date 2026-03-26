@@ -118,12 +118,12 @@ export function publish({ entry, candidatePubDate, send }) {
 
 // ── commitInboxState ──────────────────────────────────────────────────────────
 // Commits .governance-pending.json + .governance-blocked.json + .pipeline-status.json
-// to the dev branch so the inbox survives Railway redeployments.
+// to the intake branch so the inbox survives Railway redeployments.
 // Non-fatal — a failure here does not affect the pipeline result.
 export function commitInboxState() {
   const gitToken = process.env.GIT_TOKEN;
   const repo     = process.env.GITHUB_REPO || 'CuriosityAIAgent/living-intelligence';
-  const branch   = 'dev';
+  const branch   = 'intake';
 
   const defaultPortalDir  = join(__dirname, '..', '..');
   const portalDir         = process.env.PORTAL_DIR || defaultPortalDir;
@@ -199,7 +199,7 @@ export function commitInboxState() {
   }
 }
 
-export function commitAndPush({ ids, send, branch = 'dev' }) {
+export function commitAndPush({ ids, send, branch = 'main' }) {
   const gitToken = process.env.GIT_TOKEN;
   const repo    = process.env.GITHUB_REPO || 'CuriosityAIAgent/living-intelligence';
 
