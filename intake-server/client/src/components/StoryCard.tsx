@@ -59,7 +59,7 @@ export default function StoryCard({ item, index, total, onDone }: StoryCardProps
     setApproving(true);
     setApproveLog([]);
     try {
-      const res = await fetch(approveUrl(item.id));
+      const res = await fetch(approveUrl(item.id), { method: 'POST' });
       if (!res.body) throw new Error('No stream');
       const reader = res.body.getReader();
       const decoder = new TextDecoder();
