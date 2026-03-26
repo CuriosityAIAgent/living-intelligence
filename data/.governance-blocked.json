@@ -1,9 +1,4 @@
 {
-  "https://www.prnewswire.com/news-releases/guardian-announces-strategic-partnership-with-avantos-enhancing-wealth-management-capabilities-and-accelerating-ai-driven-transformation-302697428.html": {
-    "id": "guardian-avantos-ai-wealth-management-partnership",
-    "reason": "Score 41/100 — below 60 review threshold",
-    "blocked_at": "2026-03-23T11:19:49.973Z"
-  },
   "https://www.wealthmanagement.com/artificial-intelligence/jump_secures_series_b": {
     "id": "jump-ai-advisor-platform-series-b-2026",
     "reason": "Score 45/100 — below 60 review threshold",
@@ -73,5 +68,50 @@
     "id": "jump-ai-operating-system-80m-series-b-27000-advisors",
     "reason": "Human rejected REVIEW entry",
     "blocked_at": "2026-03-24T15:17:28.191Z"
+  },
+  "https://www.prnewswire.com/news-releases/guardian-announces-strategic-partnership-with-avantos-enhancing-wealth-management-capabilities-and-accelerating-ai-driven-transformation-302697428.html": {
+    "id": "guardian-avantos-ai-onboarding-partnership-2026",
+    "reason": "the_so_what flagged as weak CXO relevance (4/10) — review before publishing",
+    "blocked_at": "2026-03-26T05:01:35.149Z"
+  },
+  "https://fintech.global/2026/01/29/wealthai-raises-800k-to-launch-ai-first-os-for-wealth-managers/": {
+    "id": "wealthai-800k-preseed-ai-native-os-2026-01",
+    "reason": "Score 32/100 — below 60 review threshold",
+    "blocked_at": "2026-03-26T05:02:34.084Z"
+  },
+  "https://fintech.global/2026/03/25/flanks-launches-ai-financial-advisor-for-wealth-managers/": {
+    "id": "flanks-ai-financial-advisor-launch-2026-03",
+    "reason": "Score 46/100 — below 60 review threshold",
+    "blocked_at": "2026-03-26T05:03:29.634Z"
+  },
+  "https://www.investmentnews.com/videos/in-the-nasdaq/how-ai-will-change-wealth-management-in-2026-and-beyond/265219": {
+    "id": "ai-wealth-management-2026-trends-investment-news",
+    "reason": "Score 48/100 — below 60 review threshold",
+    "blocked_at": "2026-03-26T05:04:39.576Z"
+  },
+  "https://www.businesswire.com/news/home/20260219678156/en/Nitrogen-Redefines-the-Client-Meeting-with-Launch-of-Nucleus-Agentic-AI-Tax-Planning-Upgrades": {
+    "id": "nitrogen-nucleus-agentic-ai-advisor-platform-2026",
+    "reason": "Score 47/100 — below 60 review threshold",
+    "blocked_at": "2026-03-26T05:05:51.988Z"
+  },
+  "https://www.hubbis.com/article/avaloq-s-paweena-suchattrakoon-on-why-ai-resilience-and-investing-in-digital-capabilities-matter-more-than-ever-in-thailand-s-wealth-market": {
+    "id": "avaloq-thailand-ai-digital-capabilities-wealth-2026",
+    "reason": "Score 40/100 — below 60 review threshold",
+    "blocked_at": "2026-03-26T05:06:50.563Z"
+  },
+  "https://aimmediahouse.com/ai-bfsi/ai-just-hit-wealth-managements-core-business": {
+    "id": "altruist-hazel-ai-tax-planning-wealth-management-disruption",
+    "reason": "Fabrication detected: Quoted phrase 'what-if' scenarios: source uses 'what-if' — PASS, but the summary attributes the phrase to Altruist's press release; source confirms this.; Quoted phrase 'within minutes': source states Altruist said tax plans produced 'within minutes' — PASS.; Quoted phrase 'expands what a single advisor can handle': source attributes this to Jason Wenk — PASS.; Quoted phrase 'makes average advice a lot harder to justify': source attributes this to Jason Wenk — PASS.; Number in 'the so what': '1,600 RIA firms signed in the first month post-launch' — this number does NOT appear in the source text and is NOT supported anywhere in the source. The source only mentions Lifeworks Advisors ($900M RIA) as a single named signing. This specific figure (1,600 RIA firms) is fabricated and not found in the source, with no truncation explanation since the source covers the topic directly.; Number in 'the so what': '5,500 advisors' — PASS, appears in source.; Key stat '6–9%': source states 'fell between roughly 6% and 9%' — this is near-verbatim support for the 6–9% figure — PASS.; The 'so what' claims '1,600 RIA firms signed in the first month post-launch' — the source does not mention this figure anywhere and directly discusses Altruist's scale without referencing 1,600 RIA firms, making this a fabricated specific statistic contradicting the source's omission in a directly relevant passage.",
+    "blocked_at": "2026-03-26T05:07:53.638Z"
+  },
+  "https://www.moneymanagement.com.au/adviser-ai-tool-hits-market/": {
+    "id": "adviser-ai-tool-hits-market",
+    "reason": "Article is 662 days old — exceeds 90-day freshness limit",
+    "blocked_at": "2026-03-26T05:08:46.576Z"
+  },
+  "https://www.financial-planning.com/list/10-experts-predict-whats-next-for-ai-in-wealthtech-in-2026": {
+    "id": "10-experts-predict-ai-wealthtech-2026",
+    "reason": "Article is 94 days old — exceeds 90-day freshness limit",
+    "blocked_at": "2026-03-26T05:09:21.803Z"
   }
 }

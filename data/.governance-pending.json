@@ -1,1 +1,87 @@
-{}
+{
+  "jump-ai-advisor-assistant-105m-27000-advisors": {
+    "entry": {
+      "id": "jump-ai-advisor-assistant-105m-27000-advisors",
+      "type": "funding",
+      "headline": "Jump's AI Meeting Assistant Reaches 27,000 Advisors as $105M Raise Signals Scaled Adoption",
+      "the_so_what": "With 27,000 advisors already using an AI-native meeting and CRM workflow tool — and $105M in fresh capital behind it — firms that have not yet standardized AI-assisted advisor productivity infrastructure are now measurably behind a rapidly scaling industry baseline.",
+      "company": "jump",
+      "company_name": "Jump",
+      "date": "2025-03-13",
+      "source_name": "Business Wire",
+      "source_url": "https://www.businesswire.com/news/home/20250313530481/en/Jump-Raises-105-Million-Reaches-27000-Financial-Advisors",
+      "source_verified": true,
+      "image_url": "https://unavatar.io/jumpai.io",
+      "summary": "The source article was inaccessible due to a 403 error, and all enrichment sources returned unrelated content — no substantive details about Jump's capabilities, use case, funding terms, investors, or business model could be retrieved from any of the provided sources. Based solely on the article URL, Jump raised $105 million and had reached 27,000 financial advisors as of March 2025. No further facts about the product, capability evidence, or strategic context can be confirmed from available source material.",
+      "key_stat": {
+        "number": "27,000",
+        "label": "financial advisors reached — from article URL only; source content unavailable"
+      },
+      "capability_evidence": {
+        "capability": "advisor_productivity",
+        "stage": "deployed",
+        "evidence": "Article URL references 27,000 financial advisors reached, implying live deployment at scale — but no product details, capability description, or impact metrics were accessible from the source.",
+        "metric": "27,000 advisors (from URL only; no quantified productivity impact available from source)"
+      },
+      "tags": {
+        "capability": "advisor_productivity",
+        "region": "us",
+        "segment": "advisor_tools",
+        "theme": [
+          "ai_native",
+          "advisor_workflow",
+          "scaling_adoption",
+          "funding"
+        ]
+      },
+      "week": "2026-03-24",
+      "featured": false,
+      "_governance": {
+        "verdict": "REVIEW",
+        "confidence": 40,
+        "verified_claims": [
+          "The source article URL references Jump raising $105 million",
+          "The source article URL references reaching 27,000 financial advisors",
+          "The source article was inaccessible due to a 403 error",
+          "All enrichment sources returned unrelated content",
+          "No substantive details about Jump's capabilities, use case, funding terms, investors, or business model could be retrieved"
+        ],
+        "unverified_claims": [
+          "The date 'March 2025' — while the URL slug and BusinessWire reference number suggest a March 2025 publication, this cannot be confirmed from actual article content",
+          "Jump is described as an 'AI Meeting Assistant' — this descriptor does not appear in the URL or any accessible source content",
+          "The phrase 'Scaled Adoption' as a characterization of the funding/user milestone cannot be verified from any source"
+        ],
+        "fabricated_claims": [],
+        "notes": "The source article was entirely inaccessible (403 Forbidden), and all enrichment sources were irrelevant. The two core statistics ($105M and 27,000 advisors) are inferable solely from the article URL, which is acknowledged in the generated entry. The 'AI Meeting Assistant' product description in the headline is not derivable from the URL or any available source and represents an unverified addition. No claims directly contradict available evidence, but the product category label and strategic framing cannot be confirmed. Paywall/access caveat applies.",
+        "paywall_caveat": true,
+        "verified_at": "2026-03-25T12:07:38.646Z",
+        "human_approved": false
+      }
+    },
+    "governance": {
+      "verdict": "REVIEW",
+      "confidence": 40,
+      "verified_claims": [
+        "The source article URL references Jump raising $105 million",
+        "The source article URL references reaching 27,000 financial advisors",
+        "The source article was inaccessible due to a 403 error",
+        "All enrichment sources returned unrelated content",
+        "No substantive details about Jump's capabilities, use case, funding terms, investors, or business model could be retrieved"
+      ],
+      "unverified_claims": [
+        "The date 'March 2025' — while the URL slug and BusinessWire reference number suggest a March 2025 publication, this cannot be confirmed from actual article content",
+        "Jump is described as an 'AI Meeting Assistant' — this descriptor does not appear in the URL or any accessible source content",
+        "The phrase 'Scaled Adoption' as a characterization of the funding/user milestone cannot be verified from any source"
+      ],
+      "fabricated_claims": [],
+      "notes": "The source article was entirely inaccessible (403 Forbidden), and all enrichment sources were irrelevant. The two core statistics ($105M and 27,000 advisors) are inferable solely from the article URL, which is acknowledged in the generated entry. The 'AI Meeting Assistant' product description in the headline is not derivable from the URL or any available source and represents an unverified addition. No claims directly contradict available evidence, but the product category label and strategic framing cannot be confirmed. Paywall/access caveat applies.",
+      "paywall_caveat": true,
+      "verified_at": "2026-03-25T12:07:38.646Z",
+      "human_approved": false
+    },
+    "queued_at": "2026-03-25T12:07:38.647Z",
+    "discovered_at": "2026-03-25T12:07:38.647Z",
+    "score": null,
+    "score_breakdown": null
+  }
+}
