@@ -222,6 +222,28 @@ Definitions shown on the landscape page below the matrix:
 
 ---
 
+## Railway Deployment Map
+
+Three independent Railway services, each deploying from a different git branch:
+
+| Railway Service | Git Branch | Domain | What It Deploys |
+|----------------|------------|--------|-----------------|
+| `living-intelligence` | `main` | `wealth.tigerai.tech` | **The Portal** — what users/executives see (Next.js) |
+| `proud-reflection` | `intake` | (internal only) | **Editorial Studio / Intake Server** — content pipeline, agents, API (Express) |
+| `profound-wonder` | `feature/landing-page` | `livingintel.ai` | **Landing page** — public marketing site |
+
+### What goes where
+
+- **Portal UI changes** (pages, components, styles, CTA buttons, data files) → commit and push to `main` → `living-intelligence` service rebuilds → live on `wealth.tigerai.tech`
+- **Intake server changes** (agents, pipeline code, Editorial Studio UI) → commit and push to `intake` → `proud-reflection` service rebuilds
+- **Content publishing** (approved stories via Editorial Studio) → publisher.js pushes directly to `main` → portal rebuilds with new content
+
+### Common mistake
+
+Pushing portal UI changes to `intake` will only redeploy the intake server — the portal at `wealth.tigerai.tech` won't update. Portal changes **must** go to `main`.
+
+---
+
 ## Article Summary Formatting
 
 The intelligence article detail page (`app/intelligence/[slug]/page.tsx`) uses pure regex formatting — no AI, no fabrication risk:
