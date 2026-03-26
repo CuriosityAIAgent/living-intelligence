@@ -153,9 +153,8 @@ export default function HomePage() {
                 </Link>
               ))}
             </div>
-            <Link href="/intelligence" className="inline-flex items-center gap-2 px-5 py-2.5 border-2 border-[#990F3D] text-[#990F3D] text-sm font-bold tracking-wide rounded hover:bg-[#990F3D] hover:text-white transition-colors">
-              View all intelligence
-              <span className="text-lg leading-none">→</span>
+            <Link href="/intelligence" className="text-sm font-bold text-[#990F3D] hover:underline">
+              View all intelligence →
             </Link>
           </section>
         )}
@@ -193,9 +192,8 @@ export default function HomePage() {
               </div>
             </Link>
             <div className="mt-4">
-              <Link href="/thought-leadership" className="inline-flex items-center gap-2 px-5 py-2.5 border-2 border-[#990F3D] text-[#990F3D] text-sm font-bold tracking-wide rounded hover:bg-[#990F3D] hover:text-white transition-colors">
-                View all thought leadership
-                <span className="text-lg leading-none">→</span>
+              <Link href="/thought-leadership" className="text-sm font-bold text-[#990F3D] hover:underline">
+                View all thought leadership →
               </Link>
             </div>
           </section>
@@ -222,9 +220,8 @@ export default function HomePage() {
             </div>
           </div>
           <div className="mt-4">
-            <Link href="/landscape" className="inline-flex items-center gap-2 px-5 py-2.5 border-2 border-[#990F3D] text-[#990F3D] text-sm font-bold tracking-wide rounded hover:bg-[#990F3D] hover:text-white transition-colors">
-              View full landscape
-              <span className="text-lg leading-none">→</span>
+            <Link href="/landscape" className="text-sm font-bold text-[#990F3D] hover:underline">
+              View full landscape →
             </Link>
           </div>
         </section>
