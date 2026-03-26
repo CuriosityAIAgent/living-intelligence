@@ -1,0 +1,88 @@
+{
+  "id": "zocks-series-b-agentic-ai-advisor-productivity-2026-01",
+  "type": "funding",
+  "headline": "Zocks Scales Privacy-First Agentic AI to 5,000 Advisory Firms After $45M Series B",
+  "the_so_what": "Zocks has embedded itself across 5,000 firms — including Ameritas, Carson Group, Kestra, and Osaic — before most enterprise wealth management CXOs have finalized their agentic AI vendor selection, meaning the window to negotiate favorable terms or run a competitive evaluation is closing, and the $45M now funding a pivot from task automation to revenue generation makes displacement significantly more costly the longer a decision is deferred.",
+  "company": "zocks",
+  "company_name": "Zocks",
+  "date": "2026-01-27",
+  "source_name": "The SaaS News",
+  "source_url": "https://www.thesaasnews.com/news/zocks-raises-45-million-in-series-b",
+  "source_verified": true,
+  "image_url": null,
+  "summary": "Zocks operates a privacy-first agentic AI platform that automates advisor workflows — including meeting preparation and notes, intake and account opening forms, tailored client emails, and document processing — and is already deployed across more than 5,000 firms including Ameritas, Carson Group, Kestra Financial, and Osaic. The platform's next phase, funded by this raise, will expand agentic AI capabilities, deepen enterprise integrations, and strengthen compliance controls specifically to help advisors surface new business opportunities — moving the capability beyond task automation toward revenue generation. The $45M Series B was co-led by Lightspeed Venture Partners and QED Investors, with participation from Illuminate Financial and existing backers including Motive Partners, founded in 2022 and headquartered in San Francisco.",
+  "key_stat": {
+    "number": "5,000",
+    "label": "advisory firms currently using the Zocks AI platform"
+  },
+  "capability_evidence": {
+    "capability": "advisor_productivity",
+    "stage": "deployed",
+    "evidence": "Zocks is live across more than 5,000 firms — including named enterprise clients Ameritas, Carson Group, Kestra Financial, and Osaic — automating meeting notes, intake forms, client emails, and document processing.",
+    "metric": "5,000+ firms deployed"
+  },
+  "tags": {
+    "capability": "advisor_productivity",
+    "region": "us",
+    "segment": "ria_independent",
+    "theme": [
+      "agentic_ai",
+      "advisor_workflow_automation",
+      "enterprise_ai_adoption",
+      "privacy_compliance"
+    ]
+  },
+  "week": "2026-03-23",
+  "featured": false,
+  "_enrichment": {
+    "what_changed": "First coverage of this company.",
+    "landscape_context": {
+      "current_maturity": "Series B, deployed at scale across 5,000+ advisory firms with named enterprise clients",
+      "maturity_direction": "up",
+      "competitor_gap": "No peer comparison data available for this capability in this segment"
+    },
+    "confidence": "medium",
+    "notes": "Company not previously in landscape; no peer comparison data available for the advisor productivity segment, limiting competitive positioning assessment."
+  },
+  "_format_errors": [
+    "week \"2026-03-23\" is not the Monday of date \"2026-01-27\" (expected \"2026-01-26\")"
+  ],
+  "_fabrication": {
+    "verdict": "SUSPECT",
+    "issues": [
+      "Fabrication check JSON parse error: Unexpected token ` in JSON at position 1789. Raw snippet: ```json\n{\n  \"verdict\": \"FAIL\",\n  \"issues\": [\n    \"The entry states the Series B was 'co-led by Lightspeed Venture Partners and QED Investors, with participation from Illuminate Financial and existing "
+    ],
+    "checked_at": "2026-03-26T05:10:17.060Z"
+  },
+  "published_at": "2026-01-27T00:00:00.000Z",
+  "_governance": {
+    "verdict": "REVIEW",
+    "confidence": 82,
+    "verified_claims": [
+      "Zocks operates a privacy-first agentic AI platform",
+      "The platform automates meeting preparation and notes, intake and account opening forms, tailored client emails, and document processing",
+      "Zocks is deployed across more than 5,000 firms",
+      "Client firms include Ameritas, Carson Group, Kestra Financial, and Osaic",
+      "The $45M Series B funding will expand agentic AI capabilities",
+      "The funding will deepen/enhance enterprise integrations",
+      "The funding will strengthen security and compliance features",
+      "The funding is intended to help advisors uncover/surface new business opportunities",
+      "The round was co-led by Lightspeed Venture Partners and QED Investors",
+      "Illuminate Financial participated in the round",
+      "Motive Partners is an existing backer/investor",
+      "Zocks was founded in 2022",
+      "Zocks is headquartered in San Francisco",
+      "The raise was a $45M Series B"
+    ],
+    "unverified_claims": [
+      "The entry characterizes the funding as enabling a 'pivot from task automation to revenue generation' — the source says the funds support advisors in 'uncovering new business opportunities' but does not explicitly frame it as a pivot away from task automation",
+      "The 'so what' framing about enterprise wealth management CXOs not having finalized agentic AI vendor selection and a 'closing window' for competitive evaluation is editorial inference not present in the source",
+      "The claim that displacement becomes 'significantly more costly the longer a decision is deferred' is editorial inference not present in the source"
+    ],
+    "notes": "All hard factual claims (funding amount, round type, investors, firm count, named clients, founding year, HQ location, use of funds) are directly supported by the source; the only unverified items are editorial interpretations and strategic framing added by the entry author.",
+    "paywall_caveat": false,
+    "verified_at": "2026-03-26T05:10:03.064Z",
+    "human_approved": true,
+    "approved_at": "2026-03-26T15:13:27.381Z"
+  }
+}
