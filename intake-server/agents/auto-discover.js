@@ -240,6 +240,56 @@ function getExistingUrls() {
   return urls;
 }
 
+// ── Company + date proximity dedup ────────────────────────────────────────────
+// Catches same-story duplicates from different source URLs (e.g. Business Wire
+// vs The SaaS News covering the same funding round). If a published entry exists
+// for the same company within 7 days, the candidate is flagged as a likely dupe.
+
+function getPublishedCompanyDates() {
+  const map = new Map(); // company_slug → [{ date, headline }]
+  try {
+    for (const f of readdirSync(INTEL_DIR).filter(f => f.endsWith('.json'))) {
+      const entry = JSON.parse(readFileSync(join(INTEL_DIR, f), 'utf8'));
+      if (!entry.company || !entry.date) continue;
+      const slug = entry.company.toLowerCase();
+      if (!map.has(slug)) map.set(slug, []);
+      map.get(slug).push({ date: entry.date, headline: (entry.headline || '').toLowerCase() });
+    }
+  } catch (_) {}
+  return map;
+}
+
+function isCompanyDateDuplicate(candidateTitle, companyNames, publishedCompanyDates) {
+  if (!candidateTitle || !companyNames?.length) return false;
+  const titleLower = candidateTitle.toLowerCase();
+  const today = new Date();
+
+  for (const name of companyNames) {
+    // Try to match candidate title against known company names
+    if (!titleLower.includes(name.toLowerCase())) continue;
+
+    // Find the slug for this company
+    for (const [slug, entries] of publishedCompanyDates) {
+      if (!name.toLowerCase().includes(slug) && !slug.includes(name.toLowerCase().replace(/\s+/g, '-'))) continue;
+
+      for (const pub of entries) {
+        const pubDate = new Date(pub.date);
+        const daysDiff = Math.abs((today - pubDate) / 86400000);
+        if (daysDiff > 90) continue; // only check recent entries
+
+        // Check if candidate title shares significant words with published headline
+        const candidateWords = new Set(titleLower.split(/\s+/).filter(w => w.length > 3));
+        const pubWords = new Set(pub.headline.split(/\s+/).filter(w => w.length > 3));
+        const overlap = [...candidateWords].filter(w => pubWords.has(w)).length;
+        const overlapRatio = overlap / Math.min(candidateWords.size, pubWords.size);
+
+        if (overlapRatio >= 0.4) return true; // 40%+ word overlap = likely same story
+      }
+    }
+  }
+  return false;
+}
+
 // ── Relevance filter ──────────────────────────────────────────────────────────
 
 const AI_KWS = [
@@ -661,6 +711,7 @@ export async function autoDiscover({ send }) {
   send('status', { message: `Running three-layer discovery — L1 News: 8 queries; L1 Capabilities: ${capabilities.length} queries; L2 Companies: ${competitors.length} queries...` });
 
   const existingUrls = getExistingUrls();
+  const publishedCompanyDates = getPublishedCompanyDates();
 
   // Run all five layers in parallel
   const [l1NewsResult, l1CapsResult, l2CosResult, l1TlResult, l2AuthResult] = await Promise.allSettled([
@@ -687,14 +738,23 @@ export async function autoDiscover({ send }) {
 
   // ── Intelligence candidates pipeline ─────────────────────────────────────────
 
-  // Merge L1 News + L1 Capabilities + L2 Companies, URL-dedup
+  // Merge L1 News + L1 Capabilities + L2 Companies, URL-dedup + company-date proximity dedup
   const seenIntelUrls = new Set();
+  let companyDateDupes = 0;
   const allIntel = [...l1News, ...l1Caps, ...l2Cos].filter(c => {
     const norm = normalizeUrl(c.url || '');
     if (!norm || seenIntelUrls.has(norm)) return false;
     seenIntelUrls.add(norm);
+    // Company + headline proximity check — catches same story from different publications
+    if (isCompanyDateDuplicate(c.title, TRACKED_COMPANY_NAMES, publishedCompanyDates)) {
+      companyDateDupes++;
+      return false;
+    }
     return true;
   });
+  if (companyDateDupes > 0) {
+    send('status', { message: `Company-date proximity dedup: ${companyDateDupes} candidate(s) matched existing published stories` });
+  }
 
   // Rule-based scoring → top 40
   const top40 = allIntel
