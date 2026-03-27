@@ -50,42 +50,34 @@ export default async function CompetitorPage({ params }: { params: Promise<{ slu
           <span className="text-gray-600">{competitor.name}</span>
         </nav>
 
-        {/* Header card */}
-        <div className="border border-gray-200 rounded p-6 mb-8">
-          <div className="flex items-start justify-between flex-wrap gap-4">
-            <div>
-              <h1 className="text-2xl font-bold text-gray-900 mb-2">{competitor.name}</h1>
-              <div className="flex items-center gap-2 flex-wrap">
-                <span className="text-xs text-gray-500 px-2 py-0.5 bg-gray-100 rounded">
-                  {SEGMENT_LABELS[competitor.segment] || competitor.segment}
-                </span>
-                <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full border uppercase tracking-wide ${MATURITY_BADGE[competitor.overall_maturity] || 'text-gray-500 bg-gray-50 border-gray-200'}`}>
-                  {competitor.overall_maturity}
-                </span>
-                {competitor.regions.map(r => (
-                  <span key={r} className="text-[10px] text-gray-400 uppercase">{r}</span>
-                ))}
-              </div>
-            </div>
-            <div className="text-right">
-              <div className="text-xl font-extrabold text-[#990F3D]">{competitor.headline_metric}</div>
-              <div className="text-xs text-gray-400 mt-0.5">headline metric</div>
-            </div>
-          </div>
+        {/* Header */}
+        <div className="mb-8">
+          <h1 className="text-2xl font-bold text-gray-900 mb-1">{competitor.name}</h1>
+          <span className="text-xs text-gray-500">
+            {SEGMENT_LABELS[competitor.segment] || competitor.segment}
+          </span>
+        </div>
 
-          <div className="mt-5 pt-5 border-t border-gray-100">
-            <p className="text-xs text-gray-500 uppercase tracking-wide font-semibold mb-2">AI Strategy</p>
-            <p className="text-sm text-gray-700 leading-relaxed">{competitor.ai_strategy_summary}</p>
-          </div>
+        {/* AI Strategy — the most important section */}
+        <div className="border-l-2 border-[#990F3D] pl-5 mb-8">
+          <p className="text-[11px] font-semibold uppercase tracking-widest text-[#990F3D] mb-2">AI Strategy</p>
+          <p className="text-[15px] text-gray-800 leading-relaxed">{competitor.ai_strategy_summary}</p>
+        </div>
 
-          <div className="mt-4 pt-4 border-t border-gray-100 grid grid-cols-2 gap-4">
+        {/* Key metrics row */}
+        <div className="border border-gray-200 rounded p-5 mb-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             <div>
-              <p className="text-xs text-gray-400 mb-1">Headline Initiative</p>
+              <p className="text-xs text-gray-400 uppercase tracking-wide mb-1.5">Headline Metric</p>
+              <p className="text-lg font-extrabold text-[#990F3D] leading-snug">{competitor.headline_metric}</p>
+            </div>
+            <div>
+              <p className="text-xs text-gray-400 uppercase tracking-wide mb-1.5">Headline Initiative</p>
               <p className="text-sm font-semibold text-gray-800">{competitor.headline_initiative}</p>
             </div>
             {competitor.head_of_ai && (
               <div>
-                <p className="text-xs text-gray-400 mb-1">AI Leadership</p>
+                <p className="text-xs text-gray-400 uppercase tracking-wide mb-1.5">AI Leadership</p>
                 <p className="text-sm font-semibold text-gray-800">{competitor.head_of_ai.name}</p>
                 <p className="text-xs text-gray-500">{competitor.head_of_ai.title}</p>
               </div>
