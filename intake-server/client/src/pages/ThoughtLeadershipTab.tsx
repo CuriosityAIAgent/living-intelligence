@@ -1,12 +1,14 @@
 import { useState } from 'react';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { fetchTLCandidates, fetchTLPublished, dismissTLCandidate, runTLDiscover } from '../api';
+import { useProcessTracker } from '../App';
 
 export default function ThoughtLeadershipTab() {
   const queryClient = useQueryClient();
   const [discovering, setDiscovering] = useState(false);
   const [publishingId, setPublishingId] = useState<string | null>(null);
   const [log, setLog] = useState<string[]>([]);
+  const { start: startProcess, stop: stopProcess } = useProcessTracker();
 
   const { data: candidatesData } = useQuery({
     queryKey: ['tl-candidates'],
@@ -23,11 +25,13 @@ export default function ThoughtLeadershipTab() {
 
   const handleDiscover = async () => {
     setDiscovering(true);
+    startProcess('tl-discover', 'Discovering TL…');
     try {
       await runTLDiscover();
       queryClient.invalidateQueries({ queryKey: ['tl-candidates'] });
     } finally {
       setDiscovering(false);
+      stopProcess('tl-discover');
     }
   };
 

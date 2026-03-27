@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { fetchInbox } from '../api';
+import { useProcessTracker } from '../App';
 
 type Tab = 'intelligence' | 'thought-leadership' | 'landscape' | 'audit';
 
@@ -14,6 +15,9 @@ export default function Header({ activeTab, onTabChange }: HeaderProps) {
     queryFn: fetchInbox,
     refetchInterval: 30_000,
   });
+
+  const { active: activeProcesses } = useProcessTracker();
+  const processLabels = Object.values(activeProcesses);
 
   const pendingCount = inbox?.count ?? 0;
 
@@ -43,20 +47,44 @@ export default function Header({ activeTab, onTabChange }: HeaderProps) {
           </span>
           <span style={{ fontSize: 12, color: '#6B7280' }}>Editorial Studio</span>
         </div>
-        <span
-          style={{
-            fontSize: 10,
-            fontWeight: 700,
-            letterSpacing: '0.08em',
-            textTransform: 'uppercase',
-            padding: '3px 8px',
-            borderRadius: 3,
-            background: '#990F3D',
-            color: '#fff',
-          }}
-        >
-          Editorial
-        </span>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+          {processLabels.length > 0 && (
+            <span
+              style={{
+                fontSize: 10,
+                fontWeight: 600,
+                padding: '3px 10px',
+                borderRadius: 3,
+                background: '#1E3A5F',
+                color: '#93C5FD',
+                display: 'flex',
+                alignItems: 'center',
+                gap: 6,
+                animation: 'pulse 2s infinite',
+              }}
+            >
+              <span style={{
+                width: 6, height: 6, borderRadius: '50%',
+                background: '#60A5FA', display: 'inline-block',
+              }} />
+              {processLabels[0]}
+            </span>
+          )}
+          <span
+            style={{
+              fontSize: 10,
+              fontWeight: 700,
+              letterSpacing: '0.08em',
+              textTransform: 'uppercase',
+              padding: '3px 8px',
+              borderRadius: 3,
+              background: '#990F3D',
+              color: '#fff',
+            }}
+          >
+            Editorial
+          </span>
+        </div>
       </div>
 
       {/* Nav bar */}

@@ -3,6 +3,7 @@ import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { fetchInbox, fetchPipelineStatus, fetchBlocked, unblockUrl } from '../api';
 import StoryCard from '../components/StoryCard';
 import ActivityLog from '../components/ActivityLog';
+import { useProcessTracker } from '../App';
 
 type SubTab = 'review' | 'discover' | 'blocked';
 
@@ -13,6 +14,7 @@ export default function IntelligenceTab() {
   const [showLog, setShowLog] = useState(false);
   const [showArchive, setShowArchive] = useState(false);
   const queryClient = useQueryClient();
+  const { start: startProcess, stop: stopProcess } = useProcessTracker();
 
   const { data: inbox, isLoading } = useQuery({
     queryKey: ['inbox'],
@@ -33,6 +35,7 @@ export default function IntelligenceTab() {
     setPipelineRunning(true);
     setPipelineLog([]);
     setShowLog(true);
+    startProcess('pipeline', 'Pipeline running…');
 
     try {
       const res = await fetch('/api/run-pipeline', { method: 'POST' });
@@ -69,6 +72,7 @@ export default function IntelligenceTab() {
       setPipelineLog((prev) => [...prev, `Error: ${err}`]);
     } finally {
       setPipelineRunning(false);
+      stopProcess('pipeline');
     }
   };
 
@@ -491,7 +495,9 @@ function BlockedPanel() {
     queryFn: fetchBlocked,
   });
 
-  const blocked = data?.blocked ?? [];
+  const blocked = (data?.blocked ?? [])
+    .slice()
+    .sort((a, b) => (b.blocked_at || '').localeCompare(a.blocked_at || ''));
 
   const filtered = search.trim()
     ? blocked.filter(b =>
