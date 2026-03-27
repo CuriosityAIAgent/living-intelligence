@@ -171,8 +171,38 @@ export default function ThoughtLeadershipTab() {
                 }}
               >
                 <div style={{ flex: 1, minWidth: 0 }}>
-                  <div style={{ fontSize: 13, fontWeight: 600, color: '#111827', marginBottom: 3 }}>
+                  <div style={{ fontSize: 13, fontWeight: 600, color: '#111827', marginBottom: 4 }}>
                     {c.title}
+                  </div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4, flexWrap: 'wrap' }}>
+                    {/* Source organisation */}
+                    <span style={{
+                      fontSize: 11, fontWeight: 600, color: '#1E40AF',
+                      background: '#EFF6FF', padding: '2px 8px', borderRadius: 3,
+                    }}>
+                      {(() => {
+                        try {
+                          const host = new URL(c.url).hostname.replace('www.', '');
+                          const parts = host.split('.');
+                          return parts.length > 2 ? parts.slice(-2, -1)[0] : parts[0];
+                        } catch { return c.source || 'Unknown'; }
+                      })().toUpperCase()}
+                    </span>
+                    {/* Publication date */}
+                    {c.date && (
+                      <span style={{ fontSize: 11, color: '#6B7280' }}>
+                        {(() => {
+                          try {
+                            return new Date(c.date).toLocaleDateString('en-GB', {
+                              day: 'numeric', month: 'short', year: 'numeric',
+                            });
+                          } catch { return c.date; }
+                        })()}
+                      </span>
+                    )}
+                    {!c.date && (
+                      <span style={{ fontSize: 10, color: '#D1D5DB', fontStyle: 'italic' }}>No date</span>
+                    )}
                   </div>
                   {c.snippet && (
                     <div
