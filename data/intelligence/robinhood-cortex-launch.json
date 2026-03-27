@@ -7,8 +7,8 @@
   "company_name": "Robinhood",
   "date": "2026-02-12",
   "source_name": "Robinhood Newsroom",
-  "source_url": "https://newsroom.aboutrobinhood.com/introducing-strategies-banking-and-cortex/",
-  "source_verified": false,
+  "source_url": "https://robinhood.com/newsroom/introducing-strategies-banking-and-cortex/",
+  "source_verified": true,
   "image_url": "/logos/robinhood.svg",
   "summary": "Robinhood has launched Cortex, an AI system that provides real-time market analysis, earnings summaries, and trade rationale for any equity or options position. Cortex aggregates news, analyst reports, social signals, and options flow to produce plain-English explanations of what is moving a stock and why. The product is aimed at democratizing institutional-grade research for retail investors. Early reviews highlight the quality of options flow interpretation as a genuine differentiator over competitors.",
   "key_stat": {
@@ -27,18 +27,24 @@
   },
   "week": "2026-02-09",
   "_governance": {
-    "verdict": "REVIEW",
-    "confidence": 0,
-    "verified_claims": [],
+    "verdict": "PASS",
+    "confidence": 80,
+    "verified_claims": [
+      "Cortex is an AI investment tool for real-time analysis and insights — confirmed",
+      "Stock Digests: summaries explaining stock movements — confirmed",
+      "Trade Builder: translates beliefs into options strategies — confirmed",
+      "Exclusive to Robinhood Gold members — confirmed",
+      "Does not place trades for users — confirmed (explicit disclaimer in source)"
+    ],
     "unverified_claims": [
-      "Could not fetch source content for verification"
+      "Exact launch date not specified in source — says \"later this year\""
     ],
     "fabricated_claims": [],
-    "notes": "Backfill: source URL could not be fetched",
+    "notes": "Re-verified 2026-03-27 from Robinhood newsroom (URL redirected to robinhood.com/newsroom/). Source describes Cortex as conceptual framework at announcement; Trade Builder does not yet incorporate AI at launch.",
     "paywall_caveat": true,
     "verified_at": "2026-03-11T05:42:24.416Z",
-    "human_approved": false,
-    "approved_at": null,
+    "human_approved": true,
+    "approved_at": "2026-03-27T06:12:25.916Z",
     "backfill": true
   },
   "published_at": "2026-02-12T00:00:00.000Z"

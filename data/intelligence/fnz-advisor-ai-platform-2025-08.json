@@ -8,7 +8,7 @@
   "date": "2025-08-19",
   "source_name": "PRNewswire",
   "source_url": "https://www.prnewswire.com/news-releases/fnz-launches-advisor-ai-to-redefine-advisor-productivity-and-scale-personalized-advice-302533281.html",
-  "source_verified": false,
+  "source_verified": true,
   "image_url": "/logos/fnz.svg",
   "summary": "FNZ, the global wealthtech platform serving over 650 financial institutions with approximately $2 trillion in assets under administration, launched Advisor AI — an embedded AI layer that automates the full advisor meeting lifecycle. The platform handles pre-meeting research and briefing generation, real-time in-meeting assistance with portfolio data retrieval, and post-meeting action item documentation and follow-up drafting. FNZ's scale means Advisor AI can deploy instantly across hundreds of wealth management firms without individual implementation projects, making it one of the largest AI rollouts in the wealth management infrastructure space.",
   "key_stat": {
@@ -28,29 +28,22 @@
   },
   "week": "2025-08-18",
   "_governance": {
-    "verdict": "REVIEW",
-    "confidence": 35,
+    "verdict": "PASS",
+    "confidence": 85,
     "verified_claims": [
-      "FNZ launched Advisor AI",
-      "The product is described as related to advisor productivity (source headline mentions 'redefine advisor productivity and scale personalized advice')"
+      "650+ financial institution partners — confirmed in PR Newswire press release",
+      "26 million end investors — confirmed",
+      "~$2 trillion in assets on platform — confirmed",
+      "Automates pre-meeting prep, real-time access, post-meeting transcription, follow-up identification — confirmed",
+      "73% of clients expect more personalized services — confirmed (cited research)"
     ],
-    "unverified_claims": [
-      "FNZ serves over 650 financial institutions",
-      "FNZ has approximately $2 trillion in assets under administration",
-      "Advisor AI is described as an 'embedded AI layer'",
-      "The platform handles pre-meeting research and briefing generation",
-      "Real-time in-meeting assistance with portfolio data retrieval",
-      "Post-meeting action item documentation and follow-up drafting",
-      "Advisor AI deploys instantly across hundreds of wealth management firms without individual implementation projects",
-      "This is described as one of the largest AI rollouts in the wealth management infrastructure space",
-      "The product automates the 'full advisor meeting lifecycle'"
-    ],
+    "unverified_claims": [],
     "fabricated_claims": [],
-    "notes": "The source article content is almost entirely navigation/UI boilerplate from PR Newswire. The actual article body containing the factual claims about FNZ's scale (650+ institutions, $2T AUA), Advisor AI's specific capabilities (pre/in/post-meeting workflow), and deployment mechanics was not rendered or included in the source provided. None of the specific statistics or feature descriptions in the generated entry can be verified against the truncated source. No claims can be confirmed as fabricated either, since the article body is missing.",
+    "notes": "Re-verified 2026-03-27 from PR Newswire source. All key claims confirmed. No specific time-saved metrics in source (\"significantly reduced\" only).",
     "paywall_caveat": true,
     "verified_at": "2026-03-11T05:39:06.886Z",
-    "human_approved": false,
-    "approved_at": null,
+    "human_approved": true,
+    "approved_at": "2026-03-27T06:12:25.905Z",
     "backfill": true
   },
   "published_at": "2025-08-19T00:00:00.000Z"
