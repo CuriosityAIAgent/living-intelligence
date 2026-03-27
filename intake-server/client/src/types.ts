@@ -136,6 +136,15 @@ export interface PipelineStatus {
   blocked_items?: BlockedItem[];
 }
 
+export interface PipelineRun {
+  started_at: string;
+  candidates_found: number;
+  queued: number;
+  blocked: number;
+  errors: number;
+  tl_candidates: number;
+}
+
 // ── Activity log ──────────────────────────────────────────────────────────────
 
 export interface ActivityLogEntry {

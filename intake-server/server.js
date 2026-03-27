@@ -17,7 +17,7 @@ import { publish, commitAndPush } from './agents/publisher.js';
 import {
   getPending, addPending, approvePending, rejectPending,
   getBlocked, addBlocked, isBlocked, removeBlocked,
-  getRejectionLog, addRejectionLog, readPipelineStatus,
+  getRejectionLog, addRejectionLog, readPipelineStatus, readPipelineHistory,
   getArchive, archiveStaleItems,
   isTopicSuppressed, suppressTopic, getSuppressedTopics,
 } from './agents/gov-store.js';
@@ -636,6 +636,22 @@ app.get('/api/pipeline-status', (req, res) => {
     blocked_total:     Object.keys(blocked).length,
     blocked_items:     status?.blocked_items || [],
     tl_items:          status?.tl_items || [],
+  });
+});
+
+// Pipeline run history — last 30 runs with counts
+app.get('/api/pipeline-history', (req, res) => {
+  const history = readPipelineHistory();
+  // Return lightweight version (no blocked_items or tl_items arrays — just counts)
+  res.json({
+    runs: history.map(run => ({
+      started_at:       run.started_at,
+      candidates_found: run.candidates_found || 0,
+      queued:           run.queued || 0,
+      blocked:          run.blocked || 0,
+      errors:           run.errors || 0,
+      tl_candidates:    run.tl_candidates || 0,
+    })),
   });
 });
 

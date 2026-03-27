@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
-import { fetchInbox, fetchPipelineStatus, fetchBlocked, unblockUrl } from '../api';
+import { fetchInbox, fetchPipelineStatus, fetchPipelineHistory, fetchBlocked, unblockUrl } from '../api';
 import StoryCard from '../components/StoryCard';
 import ActivityLog from '../components/ActivityLog';
 import { useProcessTracker } from '../App';
 
-type SubTab = 'review' | 'discover' | 'blocked';
+type SubTab = 'review' | 'discover' | 'blocked' | 'pipeline';
 
 export default function IntelligenceTab() {
   const [subTab, setSubTab] = useState<SubTab>('review');
@@ -214,6 +214,7 @@ export default function IntelligenceTab() {
           { id: 'review' as SubTab, label: 'Review', badge: items.length > 0 ? items.length : null, badgeColor: '#990F3D' },
           { id: 'discover' as SubTab, label: 'Discover', badge: null, badgeColor: '' },
           { id: 'blocked' as SubTab, label: 'Blocked', badge: blockedCount > 0 ? blockedCount : null, badgeColor: '#B91C1C' },
+          { id: 'pipeline' as SubTab, label: 'Pipeline', badge: null, badgeColor: '' },
         ]).map((tab) => (
           <button
             key={tab.id}
@@ -309,6 +310,8 @@ export default function IntelligenceTab() {
             </>
           ) : subTab === 'blocked' ? (
             <BlockedPanel />
+          ) : subTab === 'pipeline' ? (
+            <PipelinePanel pipelineLog={pipelineLog} running={running} />
           ) : (
             <DiscoverPanel />
           )}
@@ -650,6 +653,113 @@ function BlockedPanel() {
           </div>
         );
       })}
+    </div>
+  );
+}
+
+// ── Pipeline Control panel ───────────────────────────────────────────────────
+
+function PipelinePanel({ pipelineLog, running }: { pipelineLog: string[]; running: boolean }) {
+  const { data: historyData, isLoading } = useQuery({
+    queryKey: ['pipeline-history'],
+    queryFn: fetchPipelineHistory,
+    refetchInterval: 60_000,
+  });
+
+  const runs = historyData?.runs ?? [];
+
+  const formatDate = (iso: string) => {
+    try {
+      const d = new Date(iso);
+      return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short' }) +
+        ', ' + d.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
+    } catch { return iso; }
+  };
+
+  return (
+    <div style={{ maxWidth: 900 }}>
+      {/* Live log (visible during/after a run) */}
+      {pipelineLog.length > 0 && (
+        <div style={{ marginBottom: 24 }}>
+          <div style={{
+            fontSize: 10, fontWeight: 700, letterSpacing: '0.1em',
+            textTransform: 'uppercase', color: running ? '#15803D' : '#9CA3AF',
+            marginBottom: 8, display: 'flex', alignItems: 'center', gap: 6,
+          }}>
+            {running && <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#22C55E', display: 'inline-block', animation: 'pulse 2s infinite' }} />}
+            {running ? 'Pipeline Running' : 'Last Run Log'}
+          </div>
+          <div style={{
+            background: '#111827', color: '#D1FAE5', borderRadius: 6,
+            padding: 14, fontFamily: 'monospace', fontSize: 11,
+            maxHeight: 300, overflowY: 'auto', lineHeight: 1.6,
+          }}>
+            {pipelineLog.map((line, i) => (
+              <div key={i} style={{ marginBottom: 2 }}>{line}</div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Run history */}
+      <div style={{
+        fontSize: 10, fontWeight: 700, letterSpacing: '0.1em',
+        textTransform: 'uppercase', color: '#990F3D', marginBottom: 12,
+      }}>
+        Run History ({runs.length} runs)
+      </div>
+
+      {isLoading && <div style={{ color: '#9CA3AF', fontSize: 13 }}>Loading…</div>}
+
+      {runs.length === 0 && !isLoading && (
+        <div style={{ color: '#9CA3AF', fontSize: 13 }}>
+          No pipeline runs recorded yet. History starts accumulating from the next run.
+        </div>
+      )}
+
+      {runs.length > 0 && (
+        <div style={{ border: '1px solid #E5E7EB', borderRadius: 6, overflow: 'hidden' }}>
+          {/* Header */}
+          <div style={{
+            display: 'grid', gridTemplateColumns: '1fr 80px 80px 80px 80px',
+            padding: '8px 14px', background: '#F9FAFB', borderBottom: '1px solid #E5E7EB',
+            fontSize: 10, fontWeight: 700, color: '#6B7280', textTransform: 'uppercase', letterSpacing: '0.05em',
+          }}>
+            <span>Date</span>
+            <span style={{ textAlign: 'center' }}>Found</span>
+            <span style={{ textAlign: 'center' }}>Queued</span>
+            <span style={{ textAlign: 'center' }}>Blocked</span>
+            <span style={{ textAlign: 'center' }}>Errors</span>
+          </div>
+          {/* Rows */}
+          {runs.map((run, i) => (
+            <div
+              key={i}
+              style={{
+                display: 'grid', gridTemplateColumns: '1fr 80px 80px 80px 80px',
+                padding: '10px 14px', borderBottom: i < runs.length - 1 ? '1px solid #F3F4F6' : 'none',
+                fontSize: 12, color: '#374151',
+                background: i === 0 ? '#FFFBEB' : '#fff',
+              }}
+            >
+              <span style={{ fontWeight: i === 0 ? 600 : 400 }}>
+                {formatDate(run.started_at)}
+                {i === 0 && <span style={{ fontSize: 9, color: '#B45309', marginLeft: 8, fontWeight: 700 }}>LATEST</span>}
+              </span>
+              <span style={{ textAlign: 'center', fontWeight: 600 }}>{run.candidates_found}</span>
+              <span style={{ textAlign: 'center', fontWeight: 600, color: run.queued > 0 ? '#15803D' : '#9CA3AF' }}>
+                {run.queued}
+              </span>
+              <span style={{ textAlign: 'center', fontWeight: 600, color: run.blocked > 0 ? '#B91C1C' : '#9CA3AF' }}>
+                {run.blocked}
+              </span>
+              <span style={{ textAlign: 'center', fontWeight: 600, color: run.errors > 0 ? '#DC2626' : '#9CA3AF' }}>
+                {run.errors}
+              </span>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

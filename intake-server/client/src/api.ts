@@ -5,6 +5,7 @@
 import type {
   InboxResponse,
   PipelineStatus,
+  PipelineRun,
   ActivityLogResponse,
   TLCandidate,
   TLPublishedEntry,
@@ -48,6 +49,9 @@ export const approveUrl = (id: string): string =>
 
 export const fetchPipelineStatus = (): Promise<PipelineStatus> =>
   apiFetch('/api/pipeline-status');
+
+export const fetchPipelineHistory = (): Promise<{ runs: PipelineRun[] }> =>
+  apiFetch('/api/pipeline-history');
 
 export const runPipeline = (): Promise<void> =>
   apiFetch('/api/run-pipeline', { method: 'POST' });
