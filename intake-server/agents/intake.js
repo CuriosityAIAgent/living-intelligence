@@ -1,6 +1,81 @@
 import fetch from 'node-fetch';
 import Anthropic from '@anthropic-ai/sdk';
 import slugify from 'slugify';
+import { readdirSync, readFileSync } from 'fs';
+import { join, dirname } from 'path';
+import { fileURLToPath } from 'url';
+
+// ── Company slug normalization ──────────────────────────────────────────────
+// Claude generates company slugs during structuring but doesn't know our
+// landscape IDs. This alias map corrects common variations to the canonical slug.
+// Built dynamically from data/competitors/*.json + hardcoded overrides.
+
+const __dirname_intake = dirname(fileURLToPath(import.meta.url));
+const DATA_ROOT = process.env.DATA_DIR || join(__dirname_intake, '..', '..');
+
+const COMPANY_ALIAS_MAP = new Map();
+
+// Hardcoded aliases for known variations
+const MANUAL_ALIASES = {
+  'arta-finance': 'arta-ai',
+  'arta': 'arta-ai',
+  'citigroup': 'citi-private-bank',
+  'citi': 'citi-private-bank',
+  'citi-wealth': 'citi-private-bank',
+  'fidelity-investments': 'fidelity',
+  'hsbc-private-bank': 'hsbc',
+  'hsbc-wealth': 'hsbc',
+  'public': 'public-com',
+  'bofa': 'bofa-merrill',
+  'bank-of-america': 'bofa-merrill',
+  'merrill': 'bofa-merrill',
+  'merrill-lynch': 'bofa-merrill',
+  'jp-morgan': 'jpmorgan',
+  'j-p-morgan': 'jpmorgan',
+  'rbc': 'rbc-wealth-management',
+  'standard-chartered-bank': 'standard-chartered',
+  'julius-bar': 'julius-baer',
+  'bnp-paribas': 'bnp-paribas-wealth',
+  'jump': 'jump-ai',
+  'societe-generale': 'societe-generale-private-banking',
+  'st-james-place': 'st-jamess-place',
+  'abn-amro': 'abn-amro-private-banking',
+  'lloyds': 'lloyds-wealth',
+  'wells-fargo-advisors': 'wells-fargo',
+  'barclays': 'barclays-private-bank',
+  'santander': 'santander-private-banking',
+};
+
+// Load canonical IDs from landscape
+try {
+  const compDir = join(DATA_ROOT, 'data', 'competitors');
+  const files = readdirSync(compDir).filter(f => f.endsWith('.json'));
+  const canonicalIds = new Set();
+  for (const f of files) {
+    const c = JSON.parse(readFileSync(join(compDir, f), 'utf8'));
+    if (c.id) canonicalIds.add(c.id);
+    // Also map name → id (e.g. "Goldman Sachs" → "goldman-sachs")
+    if (c.name && c.id) {
+      const nameSlug = slugify(c.name, { lower: true, strict: true });
+      if (nameSlug !== c.id) COMPANY_ALIAS_MAP.set(nameSlug, c.id);
+    }
+  }
+  // Add manual aliases (only if target exists in landscape)
+  for (const [alias, canonical] of Object.entries(MANUAL_ALIASES)) {
+    if (canonicalIds.has(canonical)) COMPANY_ALIAS_MAP.set(alias, canonical);
+  }
+} catch (_) {
+  // Fallback: use manual aliases only
+  for (const [alias, canonical] of Object.entries(MANUAL_ALIASES)) {
+    COMPANY_ALIAS_MAP.set(alias, canonical);
+  }
+}
+
+function normalizeCompanySlug(slug) {
+  if (!slug) return slug;
+  const normalized = slug.toLowerCase().replace(/[^a-z0-9-]/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '');
+  return COMPANY_ALIAS_MAP.get(normalized) || normalized;
+}
 
 // ── Jina Reranker — pick best paywall alternative ──────────────────────────
 // Given a list of alternative URLs with title+snippet, reranks them by
@@ -398,6 +473,11 @@ ${INTAKE_SCHEMA}`;
 
   entry.source_url = url;
   entry.source_verified = true;
+
+  // Normalize company slug to match landscape IDs
+  if (entry.company) {
+    entry.company = normalizeCompanySlug(entry.company);
+  }
 
   if (!entry.id || entry.id === 'url-slug-style-id') {
     entry.id = slugify(entry.headline || 'untitled', {
