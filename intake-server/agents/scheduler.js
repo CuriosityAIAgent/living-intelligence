@@ -253,8 +253,9 @@ export async function runDailyPipeline() {
       // Hard block on FAIL fabrication verdict
       if (fabricationResult.verdict === 'FAIL') {
         const reason = `Fabrication detected: ${fabricationResult.issues.join('; ')}`;
-        addBlocked(url, intakeResult.entry.id, reason);
-        blocked.push({ url, title: intakeResult.entry.headline || candidate.title, reason, score: 0 });
+        const title = intakeResult.entry.headline || candidate.title;
+        addBlocked(url, intakeResult.entry.id, reason, { title, score: 0 });
+        blocked.push({ url, title, reason, score: 0 });
         console.log(`[scheduler] FABRICATION FAIL → BLOCK: ${url}`);
         continue;
       }
@@ -301,7 +302,7 @@ export async function runDailyPipeline() {
       // ── BLOCK ──────────────────────────────────────────────────────────────
       if (scored.action === 'BLOCK') {
         const reason = scored.reason || `Score ${scored.score}/100 — below ${REVIEW_THRESHOLD} review threshold`;
-        addBlocked(url, intakeResult.entry.id, reason);
+        addBlocked(url, intakeResult.entry.id, reason, { title: intakeResult.entry.headline, score: scored.score });
         blocked.push({
           url,
           title:  intakeResult.entry.headline || candidate.title,

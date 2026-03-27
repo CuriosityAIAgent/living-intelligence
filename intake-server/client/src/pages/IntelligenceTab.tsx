@@ -549,73 +549,104 @@ function BlockedPanel() {
       )}
 
       {filtered.map((b, i) => {
-        // Extract score from reason string e.g. "Score 41/100 — ..."
+        // Extract score from reason string or from stored score
         const scoreMatch = b.reason?.match(/Score (\d+)\/100/);
-        const score = scoreMatch ? parseInt(scoreMatch[1]) : null;
+        const score = (b as any).score ?? (scoreMatch ? parseInt(scoreMatch[1]) : null);
+        const isFabrication = b.reason?.startsWith('Fabrication');
+        const isNearMiss = score != null && score >= 35 && !isFabrication;
+        // Extract source domain from URL
+        let sourceDomain = '';
+        try { sourceDomain = new URL(b.url).hostname.replace('www.', ''); } catch {}
 
         return (
           <div
             key={i}
             style={{
-              background: '#fff',
-              border: '1px solid #FECACA',
+              background: isNearMiss ? '#FFFBEB' : '#fff',
+              border: `1px solid ${isNearMiss ? '#FDE68A' : '#FECACA'}`,
               borderRadius: 6,
-              padding: '10px 14px',
+              padding: '12px 14px',
               marginBottom: 6,
-              display: 'flex',
-              gap: 12,
-              alignItems: 'center',
             }}
           >
-            {/* Score badge */}
-            {score !== null && (
-              <span style={{
-                fontSize: 14,
-                fontWeight: 800,
-                color: score >= 60 ? '#B45309' : '#B91C1C',
-                minWidth: 32,
-                flexShrink: 0,
-              }}>
-                {score}
-              </span>
-            )}
+            <div style={{ display: 'flex', gap: 12, alignItems: 'flex-start' }}>
+              {/* Score badge */}
+              {score != null && (
+                <span style={{
+                  fontSize: 16,
+                  fontWeight: 800,
+                  color: score >= 45 ? '#B45309' : isFabrication ? '#DC2626' : '#B91C1C',
+                  minWidth: 32,
+                  flexShrink: 0,
+                  lineHeight: 1,
+                  paddingTop: 2,
+                }}>
+                  {score}
+                </span>
+              )}
+              {isFabrication && score == null && (
+                <span style={{ fontSize: 10, fontWeight: 700, color: '#DC2626', padding: '2px 6px', background: '#FEE2E2', borderRadius: 3, flexShrink: 0 }}>
+                  FAB
+                </span>
+              )}
 
-            {/* URL + reason */}
-            <div style={{ flex: 1, minWidth: 0 }}>
-              <div style={{ fontSize: 12, color: '#374151', marginBottom: 2, wordBreak: 'break-all' }}>
-                <a href={b.url} target="_blank" rel="noopener noreferrer"
-                  style={{ color: '#374151', textDecoration: 'none' }}>
-                  {b.url}
-                </a>
+              <div style={{ flex: 1, minWidth: 0 }}>
+                {/* Title — the most important thing */}
+                {(b as any).title && (
+                  <div style={{ fontSize: 13, fontWeight: 600, color: '#111827', marginBottom: 3, lineHeight: 1.4 }}>
+                    {(b as any).title}
+                  </div>
+                )}
+                {/* Source + date row */}
+                <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 3 }}>
+                  {sourceDomain && (
+                    <span style={{ fontSize: 10, fontWeight: 600, color: '#6B7280', background: '#F3F4F6', padding: '1px 6px', borderRadius: 2 }}>
+                      {sourceDomain}
+                    </span>
+                  )}
+                  {b.blocked_at && (
+                    <span style={{ fontSize: 10, color: '#9CA3AF' }}>
+                      Blocked {new Date(b.blocked_at).toLocaleDateString('en-GB', { day: 'numeric', month: 'short' })}
+                    </span>
+                  )}
+                  {isNearMiss && (
+                    <span style={{ fontSize: 9, fontWeight: 700, color: '#B45309', background: '#FEF3C7', padding: '1px 6px', borderRadius: 3 }}>
+                      NEAR MISS
+                    </span>
+                  )}
+                </div>
+                {/* Reason */}
+                <div style={{ fontSize: 11, color: isFabrication ? '#DC2626' : '#6B7280', lineHeight: 1.4 }}>
+                  {b.reason}
+                </div>
+                {/* URL */}
+                <div style={{ fontSize: 10, marginTop: 3 }}>
+                  <a href={b.url} target="_blank" rel="noopener noreferrer" style={{ color: '#990F3D', textDecoration: 'none' }}>
+                    {b.url.length > 80 ? b.url.substring(0, 80) + '…' : b.url} ↗
+                  </a>
+                </div>
               </div>
-              <div style={{ fontSize: 11, color: '#B91C1C' }}>{b.reason}</div>
+
+              {/* Unblock button */}
+              <button
+                onClick={() => handleUnblock(b.url)}
+                disabled={unblocking === b.url}
+                style={{
+                  flexShrink: 0,
+                  alignSelf: 'center',
+                  background: unblocking === b.url ? '#F3F4F6' : '#fff',
+                  border: '1px solid #D1D5DB',
+                  borderRadius: 4,
+                  padding: '4px 10px',
+                  fontSize: 11,
+                  fontWeight: 600,
+                  color: '#374151',
+                  cursor: unblocking === b.url ? 'wait' : 'pointer',
+                }}
+              >
+                {unblocking === b.url ? '…' : 'Unblock'}
+              </button>
             </div>
-
-            {/* Date */}
-            {b.blocked_at && (
-              <div style={{ fontSize: 10, color: '#9CA3AF', flexShrink: 0 }}>
-                {new Date(b.blocked_at).toLocaleDateString('en-GB', { day: 'numeric', month: 'short' })}
-              </div>
-            )}
-
-            {/* Unblock button */}
-            <button
-              onClick={() => handleUnblock(b.url)}
-              disabled={unblocking === b.url}
-              style={{
-                flexShrink: 0,
-                background: unblocking === b.url ? '#F3F4F6' : '#fff',
-                border: '1px solid #D1D5DB',
-                borderRadius: 4,
-                padding: '4px 10px',
-                fontSize: 11,
-                fontWeight: 600,
-                color: '#374151',
-                cursor: unblocking === b.url ? 'wait' : 'pointer',
-              }}
-            >
-              {unblocking === b.url ? '…' : 'Unblock'}
-            </button>
           </div>
         );
       })}

@@ -203,6 +203,8 @@ export interface AuditReport {
 export interface BlockedUrl {
   url: string;
   entry_id?: string;
+  title?: string;
+  score?: number;
   reason: string;
   blocked_at?: string;
 }

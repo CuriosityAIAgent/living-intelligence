@@ -97,9 +97,13 @@ export function getBlocked() {
   return readStore(BLOCKED_FILE);
 }
 
-export function addBlocked(url, id, reason) {
+export function addBlocked(url, id, reason, meta = {}) {
   const store = readStore(BLOCKED_FILE);
-  store[url] = { id, reason, blocked_at: new Date().toISOString() };
+  store[url] = {
+    id, reason, blocked_at: new Date().toISOString(),
+    ...(meta.title && { title: meta.title }),
+    ...(meta.score != null && { score: meta.score }),
+  };
   writeStore(BLOCKED_FILE, store);
 }
 
