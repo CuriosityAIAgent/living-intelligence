@@ -50,39 +50,37 @@ export default async function CompetitorPage({ params }: { params: Promise<{ slu
           <span className="text-gray-600">{competitor.name}</span>
         </nav>
 
-        {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-2xl font-bold text-gray-900 mb-1">{competitor.name}</h1>
+        {/* Company name + segment */}
+        <div className="mb-2">
+          <h1 className="text-2xl font-bold text-gray-900">{competitor.name}</h1>
           <span className="text-xs text-gray-500">
             {SEGMENT_LABELS[competitor.segment] || competitor.segment}
           </span>
         </div>
 
-        {/* AI Strategy — the most important section */}
-        <div className="border-l-2 border-[#990F3D] pl-5 mb-8">
-          <p className="text-[11px] font-semibold uppercase tracking-widest text-[#990F3D] mb-2">AI Strategy</p>
-          <p className="text-[15px] text-gray-800 leading-relaxed">{competitor.ai_strategy_summary}</p>
+        {/* Headline metric — big, bold, first thing after the name */}
+        <div className="mb-6">
+          <p className="text-xl font-extrabold text-[#990F3D] leading-snug">{competitor.headline_metric}</p>
         </div>
 
-        {/* Key metrics row */}
-        <div className="border border-gray-200 rounded p-5 mb-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-            <div>
-              <p className="text-xs text-gray-400 uppercase tracking-wide mb-1.5">Headline Metric</p>
-              <p className="text-lg font-extrabold text-[#990F3D] leading-snug">{competitor.headline_metric}</p>
-            </div>
-            <div>
-              <p className="text-xs text-gray-400 uppercase tracking-wide mb-1.5">Headline Initiative</p>
-              <p className="text-sm font-semibold text-gray-800">{competitor.headline_initiative}</p>
-            </div>
-            {competitor.head_of_ai && (
-              <div>
-                <p className="text-xs text-gray-400 uppercase tracking-wide mb-1.5">AI Leadership</p>
-                <p className="text-sm font-semibold text-gray-800">{competitor.head_of_ai.name}</p>
-                <p className="text-xs text-gray-500">{competitor.head_of_ai.title}</p>
-              </div>
-            )}
+        {/* AI Strategy — bold, prominent */}
+        <div className="mb-8">
+          <p className="text-[15px] font-semibold text-gray-900 leading-relaxed">{competitor.ai_strategy_summary}</p>
+        </div>
+
+        {/* Initiative + AI Leadership */}
+        <div className="border-t border-gray-200 pt-5 mb-8 grid grid-cols-1 md:grid-cols-2 gap-5">
+          <div>
+            <p className="text-xs text-gray-400 uppercase tracking-wide mb-1.5">Headline Initiative</p>
+            <p className="text-sm font-semibold text-gray-800">{competitor.headline_initiative}</p>
           </div>
+          {competitor.head_of_ai && (
+            <div>
+              <p className="text-xs text-gray-400 uppercase tracking-wide mb-1.5">AI Leadership</p>
+              <p className="text-sm font-semibold text-gray-800">{competitor.head_of_ai.name}</p>
+              <p className="text-xs text-gray-500">{competitor.head_of_ai.title}</p>
+            </div>
+          )}
         </div>
 
         {/* Capabilities */}
