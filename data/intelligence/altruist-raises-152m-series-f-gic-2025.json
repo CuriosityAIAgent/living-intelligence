@@ -8,7 +8,7 @@
   "date": "2025-04-22",
   "source_name": "Business Wire",
   "source_url": "https://www.businesswire.com/news/home/20250422747275/en/Altruist-Raises-152M-Series-F-Led-by-GIC-to-Accelerate-Innovation-for-Growth-Oriented-RIAs",
-  "source_verified": false,
+  "source_verified": true,
   "image_url": "/logos/altruist.svg",
   "summary": "Altruist, a modern custodian for independent RIAs, has raised $152 million in Series F funding led by GIC, valuing the company at approximately $1.9 billion. Additional participants include Salesforce Ventures, Geodesic Capital, Baillie Gifford, Carson Family Office, and ICONIQ Growth. The company now serves over 4,700 advisors and has tripled assets under management for two consecutive years, while market share jumped from 2.85% to 6.25% per the 2025 T3 Software Survey. In 2024, Altruist launched new products including a high-yield cash account, automated tax management tools, and a digital fixed-income trading experience, achieving triple-digit growth in revenue, brokerage accounts, and advisors served. The funding will support continued innovation, enterprise market expansion, and third-party trading integration enhancements.",
   "key_stat": {
@@ -53,8 +53,8 @@
     "notes": "Most claims are well-supported by the source article. However, the source article is truncated and the specific T3 Software Survey market share figures (2.85% to 6.25%) cannot be verified from the available text. The source cuts off mid-sentence when referencing the T3 Software Survey link, leaving those statistics unverifiable. This warrants a REVIEW verdict.",
     "paywall_caveat": true,
     "verified_at": "2026-03-11T05:35:31.217Z",
-    "human_approved": false,
-    "approved_at": null,
+    "human_approved": true,
+    "approved_at": "2026-03-27T06:05:12.003Z",
     "backfill": true
   },
   "additional_sources": [
