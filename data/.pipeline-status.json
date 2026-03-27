@@ -1,11 +1,20 @@
 {
-  "started_at": "2026-03-26T05:00:00.315Z",
+  "started_at": "2026-03-27T05:00:00.194Z",
   "candidates_found": 15,
   "queued": 0,
-  "blocked": 9,
+  "blocked": 6,
   "errors": 0,
-  "tl_candidates": 64,
+  "tl_candidates": 31,
   "tl_items": [
+    {
+      "id": "aHR0cHM6Ly93",
+      "title": "Access Denied",
+      "url": "https://www.mckinsey.com/industries/financial-services/our-insights/us-wealth-management-in-2035-a-transformative-decade-begins",
+      "source_name": "mckinsey.com",
+      "pub_date": "Jan 29, 2026",
+      "snippet": "You don't have permission to access \"http://www.mckinsey.com/industries/financial-services/our-insights/us-wealth-management-in-2035-a-transformative-decade-begins\" on this server.\nReference #18.4a0ed217.1774587602.758631af\n\nhttps://errors.edgesuite.net/18.4a0ed217.1774587602.758631af",
+      "via": "layer1_tl"
+    },
     {
       "id": "aHR0cHM6Ly9o",
       "title": "Has AI Ended Thought Leadership?",
@@ -13,15 +22,6 @@
       "source_name": "hbr.org",
       "pub_date": "Mar 9, 2026",
       "snippet": "As generative AI and content platforms make it effortless to sound authoritative, organizations are being overwhelmed by polished insight that rarely translates into real change. The growing gap between those who talk about the future of work and those who actually build it has turned expertise into",
-      "via": "layer1_tl"
-    },
-    {
-      "id": "aHR0cHM6Ly93",
-      "title": "Wealth Management Needs AI: Raymond James CEO",
-      "url": "https://www.thinkadvisor.com/2026/03/03/wealth-management-needs-ai-raymond-james-ceo/",
-      "source_name": "thinkadvisor.com",
-      "pub_date": "Mar 3, 2026",
-      "snippet": "Artificial intelligence tools will help advisors better serve their clients, Paul Shoukry says.",
       "via": "layer1_tl"
     },
     {
@@ -34,66 +34,39 @@
       "via": "layer1_tl"
     },
     {
-      "id": "aHR0cHM6Ly9j",
-      "title": "How Boards Can Lead in a World Remade by AI",
-      "url": "https://corpgov.law.harvard.edu/2026/02/19/how-boards-can-lead-in-a-world-remade-by-ai/",
-      "source_name": "corpgov.law.harvard.edu",
-      "pub_date": "Feb 19, 2026",
-      "snippet": "# How Boards Can Lead in a World Remade by AI\n\nHarvard Law School Forum on Corporate Governance\n\n*   [Home](https://corpgov.law.harvard.edu/)\n*   [About](https://corpgov.law.harvard.edu/about/)\n*   [Archive](https://corpgov.law.harvard.edu/archive/)\n*   [Categories](https://corpgov.law.harvard.edu/c",
-      "via": "layer1_tl"
-    },
-    {
       "id": "aHR0cHM6Ly90",
-      "title": "John O’Connell Featured in Family Wealth Report: AI 2026: Increased Adoption, New Use Cases, Regulatory Concerns And New FPA Initiative",
-      "url": "https://theoasisgrp.com/article/john-oconnell-featured-in-family-wealth-report-ai-2026-increased-adoption-new-use-cases-regulatory-concerns-and-new-fpa-initiative/",
+      "title": "John O’Connell Featured in Wealth Solutions Report: 2026: The Year Of Serious AI Adoption",
+      "url": "https://theoasisgrp.com/article/john-oconnell-featured-in-wealth-solutions-report-2026-the-year-of-serious-ai-adoption/",
       "source_name": "theoasisgrp.com",
-      "pub_date": "Jan 13, 2026",
-      "snippet": "John O'Connell Featured in Family Wealth Report: AI 2026: Increased Adoption, New Use Cases, Regulatory Concerns And New FPA Initiative",
+      "pub_date": "Jan 14, 2026",
+      "snippet": "John O'Connell Featured in Wealth Solutions Report on how 2026 is the year of serious AI adoption in wealth management.",
       "via": "layer1_tl"
     },
     {
       "id": "aHR0cHM6Ly93",
-      "title": "AI AND WEALTH MANAGEMENT: A WORD FROM AMERICAN COLLEGE THOUGHT LEADERS",
-      "url": "https://www.theamericancollege.edu/knowledge-hub/insights/ai-and-wealth-management",
-      "source_name": "theamericancollege.edu",
+      "title": "AI Market Trends 2026: Global Investment, Risks, and Buildout | Morgan Stanley",
+      "url": "https://www.morganstanley.com/insights/articles/ai-market-trends-institute-2026",
+      "source_name": "morganstanley.com",
+      "pub_date": "Mar 9, 2026",
+      "snippet": "Discover key market trends as AI becomes the central force influencing growth, earnings, geopolitics, and investment strategy across global markets in 2026.",
+      "via": "layer1_tl"
+    },
+    {
+      "id": "aHR0cHM6Ly9i",
+      "title": "AI and Wealth Management 2026: Why the Future Is Human-Led",
+      "url": "https://bonanzawealth.com/ai-and-wealth-management-in-2026/",
+      "source_name": "bonanzawealth.com",
+      "pub_date": "Dec 30, 2025",
+      "snippet": "Discover how AI and wealth management are reshaping investing in 2026. Smart algorithms meet human judgment for better, goal-driven decisions.",
+      "via": "layer1_tl"
+    },
+    {
+      "id": "aHR0cHM6Ly9j",
+      "title": "Wealth management trends for 2026: Six questions driven by a wave of change",
+      "url": "https://clearingcustody.fidelity.com/insights/topics/running-your-business/wealth-management-trends-for-2026",
+      "source_name": "clearingcustody.fidelity.com",
       "pub_date": null,
-      "snippet": "The nexus of artificial intelligence (AI) technologies and wealth management is one of the biggest points of discussion in financial services today, and is setting up a quantum leap in how advisors interact with clients, make decisions, and run their businesses.",
-      "via": "layer1_tl"
-    },
-    {
-      "id": "aHR0cHM6Ly93",
-      "title": "How AI will change wealth management in 2026 and beyond",
-      "url": "https://www.investmentnews.com/videos/in-the-nasdaq/how-ai-will-change-wealth-management-in-2026-and-beyond/265219",
-      "source_name": "investmentnews.com",
-      "pub_date": "Feb 10, 2026",
-      "snippet": "Justin Whitehead, CEO and founder of Pebble Finance, sits down with InvestmentNews anchor Gregg Greenberg to explain how AI will change the wealth management industry in 2026 and beyond.",
-      "via": "layer1_tl"
-    },
-    {
-      "id": "aHR0cHM6Ly93",
-      "title": "2026 AI Business Predictions",
-      "url": "https://www.pwc.com/us/en/tech-effect/ai-analytics/ai-predictions.html",
-      "source_name": "pwc.com",
-      "pub_date": null,
-      "snippet": "Explore PwC’s 2026 AI predictions and learn how focused strategies, agentic workflows, and responsible innovation drive transformative business value.",
-      "via": "layer1_tl"
-    },
-    {
-      "id": "aHR0cHM6Ly93",
-      "title": "How artificial intelligence is reshaping the financial services industry",
-      "url": "https://www.ey.com/en_gr/insights/financial-services/how-artificial-intelligence-is-reshaping-the-financial-services-industry",
-      "source_name": "ey.com",
-      "pub_date": null,
-      "snippet": "AI is reshaping the financial services industry, making it more efficient, effective and innovative. Read more.",
-      "via": "layer1_tl"
-    },
-    {
-      "id": "aHR0cHM6Ly93",
-      "title": "Impact of Artificial Intelligence (AI) in Financial Advisory Industry",
-      "url": "https://www.theamericancollege.edu/knowledge-hub/insights/impact-of-artificial-intelligence-ai-in-financial-advisory-industry",
-      "source_name": "theamericancollege.edu",
-      "pub_date": null,
-      "snippet": "Center for Ethics Webcast explores artificial intelligence in the financial services industry.",
+      "snippet": "Explore six questions driven by what may impact wealth managers and their clients in the coming year, including AI, asset classes, M&A activity, and more.",
       "via": "layer1_tl"
     },
     {
@@ -115,6 +88,24 @@
       "via": "layer1_tl"
     },
     {
+      "id": "aHR0cHM6Ly9u",
+      "title": "How Generative AI is Reshaping Investment Strategies | The AI Summit New York",
+      "url": "https://newyork.theaisummit.com/latest-news/how-generative-ai-is-reshaping-investment-strategies/",
+      "source_name": "newyork.theaisummit.com",
+      "pub_date": null,
+      "snippet": "How Generative AI is Reshaping Investment Strategies. The investment landscape is undergoing a profound transformation as generative AI technologies redefine traditional approaches to market analysis, risk assessment, and portfolio management. Read the full article.",
+      "via": "layer1_tl"
+    },
+    {
+      "id": "aHR0cHM6Ly93",
+      "title": "How to Plan AI Investments That Deliver ROI in 2026",
+      "url": "https://www.cloudgeometry.com/blog/planning-ai-investments-that-actually-pay-off-in-2026",
+      "source_name": "cloudgeometry.com",
+      "pub_date": "Dec 30, 2025",
+      "snippet": "Avoid AI budget waste in 2026. Use this practical guide to plan investments that produce measurable business impact.",
+      "via": "layer1_tl"
+    },
+    {
       "id": "aHR0cHM6Ly93",
       "title": "Generative AI Trends 2026: The Ultimate Guide for Founders and Investors",
       "url": "https://wearepresta.com/generative-ai-trends-2026-the-ultimate-guide-for-founders-and-investors/",
@@ -133,70 +124,59 @@
       "via": "layer1_tl"
     },
     {
+      "id": "aHR0cHM6Ly9w",
+      "title": "Fintech Predictions 2026 Report - Read now | Plaid",
+      "url": "https://plaid.com/fintech-predictions-2026-report/",
+      "source_name": "plaid.com",
+      "pub_date": null,
+      "snippet": "Explore Plaid’s 2026 Fintech Predictions report. CEO Zach Perret and product leaders share insights on AI, fraud, credit, and what’s coming next.",
+      "via": "layer1_tl"
+    },
+    {
       "id": "aHR0cHM6Ly93",
-      "title": "AI Market Trends 2026: Global Investment, Risks, and Buildout | Morgan Stanley",
-      "url": "https://www.morganstanley.com/insights/articles/ai-market-trends-institute-2026",
-      "source_name": "morganstanley.com",
-      "pub_date": "Mar 9, 2026",
-      "snippet": "Discover key market trends as AI becomes the central force influencing growth, earnings, geopolitics, and investment strategy across global markets in 2026.",
+      "title": "FIN-2026-Industry-Predictions-Report.pdf",
+      "url": "https://www.bdo.com/getmedia/2db1671f-0450-418e-898d-56800d4d5609/FIN-2026-Industry-Predictions-Report.pdf?ext=.pdf",
+      "source_name": "bdo.com",
+      "pub_date": null,
+      "snippet": "# 2026 Fintech Industry Predictions 2026 is set to be a pivotal year for fintech. After years of uncertainty, the industry is showing signs of clarity and confidence from regulators, consumers, and business partners. Regulatory frameworks have strengthened, markets have stabilized, and bold ideas ar",
       "via": "layer1_tl"
     }
   ],
   "blocked_items": [
     {
-      "url": "https://www.prnewswire.com/news-releases/guardian-announces-strategic-partnership-with-avantos-enhancing-wealth-management-capabilities-and-accelerating-ai-driven-transformation-302697428.html",
-      "title": "Guardian Deploys Avantos AI to Automate Client Onboarding and Servicing Across Wealth Platform",
-      "reason": "the_so_what flagged as weak CXO relevance (4/10) — review before publishing",
-      "score": 48
+      "url": "https://fintech.global/2026/02/20/jump-secures-80m-series-b-to-scale-ai-for-advisors/",
+      "reason": "Topic suppressed: Jump / funding"
     },
     {
-      "url": "https://fintech.global/2026/01/29/wealthai-raises-800k-to-launch-ai-first-os-for-wealth-managers/",
-      "title": "WealthAI Targets Fragmented Tech Stack Problem With AI-Native OS for Wealth Managers",
+      "url": "https://www.thedailyupside.com/advisor/wealthtech/anthropic-bets-big-on-wealth-management-with-new-ai-tools/",
+      "title": "Anthropic Launches Compliance-Controlled Claude Plugins for Wealth Firms, Integrates with LPL and Orion",
       "reason": "Score 32/100 — below 60 review threshold",
       "score": 32
     },
     {
-      "url": "https://fintech.global/2026/03/25/flanks-launches-ai-financial-advisor-for-wealth-managers/",
-      "title": "Flanks Deploys AI Financial Advisor Capability Directly into Wealth Manager Workflows",
-      "reason": "Score 46/100 — below 60 review threshold",
-      "score": 46
+      "url": "https://www.bloomberg.com/news/articles/2026-02-11/charles-schwab-ceo-says-ai-is-poised-to-boost-wealth-managers",
+      "title": "Schwab CEO Positions AI as Advisor Amplifier, Not Replacement, in Wealth Management",
+      "reason": "the_so_what flagged as weak CXO relevance (3/10) — review before publishing",
+      "score": 34
     },
     {
-      "url": "https://www.investmentnews.com/videos/in-the-nasdaq/how-ai-will-change-wealth-management-in-2026-and-beyond/265219",
-      "title": "AI Poised to Reshape Wealth Management Workflows and Client Engagement by 2026",
-      "reason": "Score 48/100 — below 60 review threshold",
-      "score": 48
-    },
-    {
-      "url": "https://www.businesswire.com/news/home/20260219678156/en/Nitrogen-Redefines-the-Client-Meeting-with-Launch-of-Nucleus-Agentic-AI-Tax-Planning-Upgrades",
-      "title": "Nitrogen Embeds Agentic AI Engine Into Advisor Workflow, Automating Pre/During/Post Meeting Tasks",
-      "reason": "Score 47/100 — below 60 review threshold",
-      "score": 47
-    },
-    {
-      "url": "https://www.hubbis.com/article/avaloq-s-paweena-suchattrakoon-on-why-ai-resilience-and-investing-in-digital-capabilities-matter-more-than-ever-in-thailand-s-wealth-market",
-      "title": "Avaloq Positions AI and Digital Infrastructure as Non-Negotiable for Thailand's Wealth Firms",
-      "reason": "Score 40/100 — below 60 review threshold",
-      "score": 40
-    },
-    {
-      "url": "https://aimmediahouse.com/ai-bfsi/ai-just-hit-wealth-managements-core-business",
-      "title": "Altruist's AI Tax Planning Tool Triggers 6–9% Stock Drop at Schwab, LPL and Raymond James",
-      "reason": "Fabrication detected: Quoted phrase 'what-if' scenarios: source uses 'what-if' — PASS, but the summary attributes the phrase to Altruist's press release; source confirms this.; Quoted phrase 'within minutes': source states Altruist said tax plans produced 'within minutes' — PASS.; Quoted phrase 'expands what a single advisor can handle': source attributes this to Jason Wenk — PASS.; Quoted phrase 'makes average advice a lot harder to justify': source attributes this to Jason Wenk — PASS.; Number in 'the so what': '1,600 RIA firms signed in the first month post-launch' — this number does NOT appear in the source text and is NOT supported anywhere in the source. The source only mentions Lifeworks Advisors ($900M RIA) as a single named signing. This specific figure (1,600 RIA firms) is fabricated and not found in the source, with no truncation explanation since the source covers the topic directly.; Number in 'the so what': '5,500 advisors' — PASS, appears in source.; Key stat '6–9%': source states 'fell between roughly 6% and 9%' — this is near-verbatim support for the 6–9% figure — PASS.; The 'so what' claims '1,600 RIA firms signed in the first month post-launch' — the source does not mention this figure anywhere and directly discusses Altruist's scale without referencing 1,600 RIA firms, making this a fabricated specific statistic contradicting the source's omission in a directly relevant passage.",
+      "url": "https://www.investmentnews.com/transformation/ai-native-operating-systems-get-buy-in-from-mega-rias/265345",
+      "title": "AI-Native Workflow Platforms Win Mega-RIA Adoption as Jump and Avantos Raise $105M Combined",
+      "reason": "Fabrication detected: Headline states '$105M Combined' but source shows $25M (Avantos Series A) + $80M (Jump Series B) = $105M total — this arithmetic is consistent, but the headline number '$105M' does not appear verbatim in the source text. However, this is not a contradiction since the components sum correctly.; Summary states Jump 'secured adoption across major RIAs and custodians including Merit and Focus Financial Partners' — source confirms this, no issue.; Summary states 'AI agents that eliminate swivel-chairing' — source text uses 'swivel‑chairing' verbatim, consistent.; Summary claims Jump raised '$80M Series B in the same week' — source confirms '$80 million Series B funding', consistent.; The summary and 'so what' reference 'Focus Financial Partners' as a Jump customer — source confirms this.; KEY ISSUE: The 'so what' section states '$80M raise across Focus Financial and major custodians' — but the source indicates broker-dealers LPL, Cetera, and Osaic have partnerships with Jump, and custodians are not explicitly named for Jump. Focus Financial is an RIA aggregator, not a custodian. This is a mischaracterization but not a direct number contradiction.; QUOTED PHRASE ISSUE: The summary states the capability 'is explicitly expanding toward AI-generated product recommendations for clients' — the source does say Ramadi 'expects will eventually expand into AI-generated product recommendations for clients', but the entry presents this as 'explicitly expanding' which overstates the source's 'expects will eventually expand'.; CRITICAL: The summary states Jump's $80M raise with 'identical AI-native operating system positioning' — source confirms both companies used this phrase, consistent.; The key stat '$96B' does NOT appear verbatim in the source. The source states 'the $96 billion AUM mega-RIA Mercer Advisors' — '$96B' is an abbreviation, not a verbatim match, though it represents the same figure. This is near-verbatim and not a contradiction.; FAIL TRIGGER: Summary states Avantos is 'live with Mercer Advisors ($96B AUM), Vanguard, SEI, and Guardian Life' as if all are clients — but source indicates Vanguard, SEI, and Guardian Life are both investors AND users, while the entry conflates investor/client roles without distinguishing them. This is not a number fabrication but a representational issue.; No outright number contradictions found for headline figures ($25M, $80M, $105M combined, $96B AUM).",
       "score": 0
     },
     {
-      "url": "https://www.moneymanagement.com.au/adviser-ai-tool-hits-market/",
-      "title": "New AI Tool Launched for Financial Advisers in Australian Wealth Market",
-      "reason": "Article is 662 days old — exceeds 90-day freshness limit",
+      "url": "https://www.investmentnews.com/advisor-tech/origin-debuts-low-fee-ai-robo-planner-that-still-wont-threaten-human-advisors/264739",
+      "title": "Origin Launches AI Robo-Planner Targeting the 120M+ Underserved US Households Priced Out of Human Advice",
+      "reason": "Fabrication detected: Headline states '120M+ Underserved US Households' but the source text explicitly states 'more-than-130 million households in the US', contradicting the 120M+ figure in the headline.; Summary states '$2,500–$10,000+ annual minimums' — source says '$2,500-$3,000 per year' minimum with 'many advisors charging annual minimums of $10,000 or more', which is broadly consistent but the framing '–$10,000+' slightly compresses the source's range.; Key stat in entry header says '130M+' which matches the source, but the headline uses '120M+' which contradicts the source's '130 million households' figure.; The summary phrase 'approximately 100,000 CFP professionals can serve only ~10 million households against a US base of 130+ million' is consistent with the source, but the headline's '120M+' directly contradicts the source's '130 million' figure for the same metric.",
       "score": 0
     },
     {
-      "url": "https://www.financial-planning.com/list/10-experts-predict-whats-next-for-ai-in-wealthtech-in-2026",
-      "title": "10 Wealthtech Experts Forecast AI Capability Shifts Reshaping Advisor and Client Workflows in 2026",
-      "reason": "Article is 94 days old — exceeds 90-day freshness limit",
+      "url": "https://www.thinkadvisor.com/2026/02/24/orion-expands-ai-work-with-anthropic/",
+      "title": "Orion Deepens Anthropic Integration as Claude Launches FactSet-Backed Financial Analysis Agent",
+      "reason": "Fabrication detected: The summary and headline refer to 'Claude Cowork platform' — the source text says 'Claude Cowork agent', which is close, but more critically the entry calls it a 'platform' while the source says 'agent'. Minor but worth noting.; The key stat '2000' does NOT appear literally in the source. The source says 'some 2,000 attendees' — this is a near-verbatim match with a comma, so this is acceptable.; The summary states Anthropic 'launched new AI agent tools for its Claude Cowork platform targeting financial analysis and HR workflows' — the source says 'launched new artificial-intelligence tools for its Claude Cowork agent that target work in areas like financial analysis and human resources' — this is a near-verbatim paraphrase and acceptable.; The quoted phrase attributed to Orion's 'stated focus' — 'building a secure, enterprise-grade platform that harnesses these AI advances for its clients' — does NOT appear verbatim in the source. The source quote from Reed Colley is: 'What we're really focused on for our clients is harnessing the power of these [AI] changes and building a platform that's secure, enterprise grade, and built for privacy …' The summary fabricates a condensed paraphrase and presents it as a 'stated focus' with language not matching the source verbatim, but this is a paraphrase rather than a direct quote in quotation marks.; The company name 'Orion Advisor Solutions' does not appear in the source. The source refers only to 'Orion' without the full legal name 'Orion Advisor Solutions'.; '2,000' appears in the source as 'some 2,000 attendees' — the key stat of 2000 is supported.; The 'so what' references '2,000 RIA practitioners' — the source says '2,000 attendees', not specifically 'RIA practitioners'. This is a minor fabrication of specificity.; The 'so what' says 'year-plus Anthropic relationship' — the source says 'working with Orion for over a year', which supports this claim.; CRITICAL: The company name 'Orion Advisor Solutions' does not appear in the source text. The source only uses 'Orion'. While this may be the full legal name, the source does not use it — flagged as a potential fabrication of the full name, though this is a borderline issue.; The headline refers to 'FactSet-Backed Financial Analysis Agent' — the source confirms FactSet Research Systems as a partner and financial analysis as a target area, so this is supported.; No number appears in the headline itself that would fail.",
       "score": 0
     }
   ],
-  "written_at": "2026-03-26T05:09:21.811Z"
+  "written_at": "2026-03-27T05:06:48.915Z"
 }
