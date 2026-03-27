@@ -64,7 +64,7 @@ export default async function CompetitorPage({ params }: { params: Promise<{ slu
         </div>
 
         {/* AI Strategy */}
-        <div className="mb-8">
+        <div className="border-l-2 border-[#990F3D] pl-5 mb-8">
           <p className="text-[11px] font-semibold uppercase tracking-widest text-[#990F3D] mb-3">AI Strategy</p>
           <p className="text-[15px] text-gray-800 leading-relaxed">{competitor.ai_strategy_summary}</p>
         </div>
