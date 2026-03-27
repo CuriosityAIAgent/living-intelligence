@@ -1,8 +1,8 @@
 {
   "id": "webull-vega-ai-assistant-2025-11",
   "type": "product_launch",
-  "headline": "Webull unveils Vega \u2014 AI decision partner with plain-language voice orders, options insights, and personalised real-time alerts",
-  "the_so_what": "Webull offering voice-activated trade execution, options chain analysis, and personalised portfolio alerts at zero cost to all US customers makes the AI-powered trading experience a free commodity in the retail segment \u2014 when five distinct AI capabilities ship simultaneously at no incremental cost, the feature itself ceases to be a differentiator and the underlying data flywheel becomes the moat.",
+  "headline": "Webull unveils Vega — AI decision partner with plain-language voice orders, options insights, and personalised real-time alerts",
+  "the_so_what": "Webull offering voice-activated trade execution, options chain analysis, and personalised portfolio alerts at zero cost to all US customers makes the AI-powered trading experience a free commodity in the retail segment — when five distinct AI capabilities ship simultaneously at no incremental cost, the feature itself ceases to be a differentiator and the underlying data flywheel becomes the moat.",
   "company": "webull",
   "company_name": "Webull",
   "date": "2025-11-10",
@@ -27,7 +27,6 @@
     ]
   },
   "week": "2025-11-10",
-  "featured": false,
   "_governance": {
     "verdict": "PASS",
     "confidence": 92,

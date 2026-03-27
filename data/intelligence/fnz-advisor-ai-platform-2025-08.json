@@ -1,8 +1,8 @@
 {
   "id": "fnz-advisor-ai-platform-2025-08",
   "type": "product_launch",
-  "headline": "FNZ launches Advisor AI \u2014 end-to-end meeting workflow automation for 650+ wealth management institutions",
-  "the_so_what": "FNZ embedding AI across the full advisor meeting lifecycle \u2014 pre-meeting prep, in-meeting portfolio retrieval, post-meeting follow-up \u2014 for 650+ institutions managing $2 trillion turns meeting-intelligence AI into platform-level infrastructure, replicating the pattern where CRM vendors embedded analytics so deeply that standalone BI tools became redundant.",
+  "headline": "FNZ launches Advisor AI — end-to-end meeting workflow automation for 650+ wealth management institutions",
+  "the_so_what": "FNZ embedding AI across the full advisor meeting lifecycle — pre-meeting prep, in-meeting portfolio retrieval, post-meeting follow-up — for 650+ institutions managing $2 trillion turns meeting-intelligence AI into platform-level infrastructure, replicating the pattern where CRM vendors embedded analytics so deeply that standalone BI tools became redundant.",
   "company": "fnz",
   "company_name": "FNZ",
   "date": "2025-08-19",
@@ -10,7 +10,7 @@
   "source_url": "https://www.prnewswire.com/news-releases/fnz-launches-advisor-ai-to-redefine-advisor-productivity-and-scale-personalized-advice-302533281.html",
   "source_verified": false,
   "image_url": "/logos/fnz.svg",
-  "summary": "FNZ, the global wealthtech platform serving over 650 financial institutions with approximately $2 trillion in assets under administration, launched Advisor AI \u2014 an embedded AI layer that automates the full advisor meeting lifecycle. The platform handles pre-meeting research and briefing generation, real-time in-meeting assistance with portfolio data retrieval, and post-meeting action item documentation and follow-up drafting. FNZ's scale means Advisor AI can deploy instantly across hundreds of wealth management firms without individual implementation projects, making it one of the largest AI rollouts in the wealth management infrastructure space.",
+  "summary": "FNZ, the global wealthtech platform serving over 650 financial institutions with approximately $2 trillion in assets under administration, launched Advisor AI — an embedded AI layer that automates the full advisor meeting lifecycle. The platform handles pre-meeting research and briefing generation, real-time in-meeting assistance with portfolio data retrieval, and post-meeting action item documentation and follow-up drafting. FNZ's scale means Advisor AI can deploy instantly across hundreds of wealth management firms without individual implementation projects, making it one of the largest AI rollouts in the wealth management infrastructure space.",
   "key_stat": {
     "number": "$2T",
     "label": "in assets under administration across FNZ's platform"
@@ -27,7 +27,6 @@
     ]
   },
   "week": "2025-08-18",
-  "featured": false,
   "_governance": {
     "verdict": "REVIEW",
     "confidence": 35,

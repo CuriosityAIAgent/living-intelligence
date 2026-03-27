@@ -23,7 +23,6 @@
     ]
   },
   "week": "2025-11-03",
-  "featured": false,
   "_governance": {
     "verdict": "REVIEW",
     "confidence": 62,
@@ -33,7 +32,7 @@
       "The company disclosed it has onboarded new institutional customers as part of this expansion"
     ],
     "unverified_claims": [
-      "The announcement signals Arta's strategic push to extend its AI capabilities beyond individual investors toward serving the broader wealth management and financial advisory market \u2014 this strategic framing/interpretation is not explicitly stated in the visible source content"
+      "The announcement signals Arta's strategic push to extend its AI capabilities beyond individual investors toward serving the broader wealth management and financial advisory market — this strategic framing/interpretation is not explicitly stated in the visible source content"
     ],
     "fabricated_claims": [],
     "notes": "The headline and core claims in the generated entry are directly supported by the PR Newswire headline visible in the source article. However, the source content is heavily truncated (navigation menus and boilerplate dominate; the actual press release body is cut off). The interpretive claim about extending capabilities 'beyond individual investors' cannot be verified from the available source text. The paywall/truncation caveat applies, warranting a REVIEW rather than PASS.",

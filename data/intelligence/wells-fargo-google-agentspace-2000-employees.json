@@ -2,7 +2,7 @@
   "id": "wells-fargo-google-agentspace-2000-employees",
   "type": "partnership",
   "headline": "Wells Fargo becomes early adopter of Google Agentspace with 2,000+ employees already using agentic AI across banking and investment divisions",
-  "the_so_what": "Wells Fargo deploying agentic AI \u2014 not just generative AI \u2014 with AI agents already handling FX post-trade inquiry triage in Corporate & Investment Banking marks the shift from AI that answers questions to AI that executes workflows autonomously, the same architectural transition that separated early web portals from modern SaaS platforms.",
+  "the_so_what": "Wells Fargo deploying agentic AI — not just generative AI — with AI agents already handling FX post-trade inquiry triage in Corporate & Investment Banking marks the shift from AI that answers questions to AI that executes workflows autonomously, the same architectural transition that separated early web portals from modern SaaS platforms.",
   "company": "wells-fargo",
   "company_name": "Wells Fargo",
   "date": "2025-08-05",
@@ -10,10 +10,10 @@
   "source_url": "https://newsroom.wf.com/news-releases/news-details/2025/Wells-Fargo-announces-expansion-of-strategic-relationship-with-Google-Cloud/default.aspx",
   "source_verified": true,
   "image_url": "/logos/wells-fargo.svg",
-  "summary": "Wells Fargo announced on August 5, 2025 that it had become an early adopter of Google Agentspace \u2014 Google Cloud's unified platform for building and deploying AI agents at scale \u2014 with over 2,000 employees already using it and a bank-wide rollout planned. The deployment equips branch bankers, investment bankers, marketers, and corporate teams with Gemini Deep Research and NotebookLM capabilities. In Corporate and Investment Banking, AI agents are already handling foreign exchange post-trade inquiry triage and summarisation. The partnership represents an expansion of Wells Fargo's existing Google Cloud strategic relationship across the firm's approximately $2 trillion in assets under management.",
+  "summary": "Wells Fargo announced on August 5, 2025 that it had become an early adopter of Google Agentspace — Google Cloud's unified platform for building and deploying AI agents at scale — with over 2,000 employees already using it and a bank-wide rollout planned. The deployment equips branch bankers, investment bankers, marketers, and corporate teams with Gemini Deep Research and NotebookLM capabilities. In Corporate and Investment Banking, AI agents are already handling foreign exchange post-trade inquiry triage and summarisation. The partnership represents an expansion of Wells Fargo's existing Google Cloud strategic relationship across the firm's approximately $2 trillion in assets under management.",
   "key_stat": {
     "number": "2,000+",
-    "label": "Wells Fargo employees using Google Agentspace at launch \u2014 bank-wide rollout planned"
+    "label": "Wells Fargo employees using Google Agentspace at launch — bank-wide rollout planned"
   },
   "tags": {
     "capability": "advisor_productivity",
@@ -27,7 +27,6 @@
     ]
   },
   "week": "2025-08-04",
-  "featured": false,
   "_governance": {
     "verdict": "PASS",
     "confidence": 96,

@@ -2,7 +2,7 @@
   "id": "hazel-avantos-and-the-bank-wealth-management-opportunity",
   "type": "market_signal",
   "headline": "AI platforms Hazel and Avantos pressure bank wealth units to modernize as independent channel accelerates",
-  "the_so_what": "Datos Insights identifying three specific investment gaps \u2014 data completeness, compliance architecture, and advisor change management \u2014 frames the competitive response for bank wealth divisions, while the $130B selloff of independent-channel stocks and the structural insulation of bank wealth units reveals a widening divergence between the two channels that AI is accelerating rather than closing.",
+  "the_so_what": "Datos Insights identifying three specific investment gaps — data completeness, compliance architecture, and advisor change management — frames the competitive response for bank wealth divisions, while the $130B selloff of independent-channel stocks and the structural insulation of bank wealth units reveals a widening divergence between the two channels that AI is accelerating rather than closing.",
   "company": "datos-insights",
   "company_name": "Datos Insights",
   "date": "2026-03-11",
@@ -11,11 +11,11 @@
   "source_verified": true,
   "additional_sources": [
     {
-      "name": "Altruist \u2014 Hazel AI tax planning launch (Feb 2026)",
+      "name": "Altruist — Hazel AI tax planning launch (Feb 2026)",
       "url": "https://altruist.com/news/hazel-ai-tax-planning/"
     },
     {
-      "name": "Altruist \u2014 Hazel platform unveil (Sep 2025)",
+      "name": "Altruist — Hazel platform unveil (Sep 2025)",
       "url": "https://altruist.com/news/altruist-unveils-hazel/"
     }
   ],
@@ -39,7 +39,6 @@
     ]
   },
   "week": "2026-03-09",
-  "featured": false,
   "_governance": {
     "verdict": "REVIEW",
     "confidence": 88,
@@ -62,7 +61,7 @@
     ],
     "unverified_claims": [],
     "fabricated_claims": [],
-    "notes": "The entry is largely faithful to the source. The $130B figure, the companies named, the Thyme acquisition, Avantos details, Mercer Advisors deployment, the three investment areas, and the Datos Insights framing all verify accurately. One minor concern: the summary's phrasing 'startup Thyme' is confirmed in the source. The headline references 'independent channel accelerates' which is editorially consistent with the source's themes. No materially fabricated or contradicted claims were identified. The entry is an accurate and tight paraphrase of the source article. fabricated_claims array cleared \u2014 governance notes confirm no actual fabrications; \"managing large, heterogeneous books\" is editorial framing consistent with source, not a fabricated fact. Human-approved 2026-03-12.",
+    "notes": "The entry is largely faithful to the source. The $130B figure, the companies named, the Thyme acquisition, Avantos details, Mercer Advisors deployment, the three investment areas, and the Datos Insights framing all verify accurately. One minor concern: the summary's phrasing 'startup Thyme' is confirmed in the source. The headline references 'independent channel accelerates' which is editorially consistent with the source's themes. No materially fabricated or contradicted claims were identified. The entry is an accurate and tight paraphrase of the source article. fabricated_claims array cleared — governance notes confirm no actual fabrications; \"managing large, heterogeneous books\" is editorial framing consistent with source, not a fabricated fact. Human-approved 2026-03-12.",
     "paywall_caveat": false,
     "verified_at": "2026-03-12T06:49:30.582Z",
     "human_approved": true,

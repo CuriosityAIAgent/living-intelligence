@@ -2,7 +2,7 @@
   "id": "hsbc-jade-ai",
   "type": "product_launch",
   "headline": "HSBC Private Bank deploys Wealth Intelligence gen AI platform for wealth management staff",
-  "the_so_what": "HSBC Private Bank deploying a dedicated generative AI platform called Wealth Intelligence for relationship managers marks another global private bank moving beyond pilot-stage AI into production tools embedded in daily advisor workflows \u2014 alongside Julius Baer's JAI and UBS's AI Assistant, forming a pattern where deployed advisor AI is becoming a baseline capability across the top tier of private banking.",
+  "the_so_what": "HSBC Private Bank deploying a dedicated generative AI platform called Wealth Intelligence for relationship managers marks another global private bank moving beyond pilot-stage AI into production tools embedded in daily advisor workflows — alongside Julius Baer's JAI and UBS's AI Assistant, forming a pattern where deployed advisor AI is becoming a baseline capability across the top tier of private banking.",
   "company": "hsbc-private-bank",
   "company_name": "HSBC Private Bank",
   "date": "2025-09-16",
@@ -30,7 +30,6 @@
     ]
   },
   "week": "2025-09-15",
-  "featured": false,
   "_governance": {
     "verdict": "REVIEW",
     "confidence": 72,
@@ -42,12 +41,12 @@
       "The platform is intended to support relationship managers and advisors in day-to-day workflows (consistent with ABF framing)"
     ],
     "unverified_claims": [
-      "The platform was 'initially reported by Asian Banking & Finance in September 2025 and has now been formally announced by HSBC Private Bank' \u2014 the entry frames this as a sequence (ABF first, then HSBC formal announcement), which is plausible given dates but cannot be fully confirmed from the truncated HSBC source page content",
-      "The rollout reflects HSBC's 'broader push to embed AI-driven tools across its private banking operations globally' \u2014 reasonable inference but not explicitly stated in the visible source text",
-      "Specific mention of 'relationship managers and advisors' \u2014 consistent with ABF headline framing but not confirmed in visible HSBC source body text"
+      "The platform was 'initially reported by Asian Banking & Finance in September 2025 and has now been formally announced by HSBC Private Bank' — the entry frames this as a sequence (ABF first, then HSBC formal announcement), which is plausible given dates but cannot be fully confirmed from the truncated HSBC source page content",
+      "The rollout reflects HSBC's 'broader push to embed AI-driven tools across its private banking operations globally' — reasonable inference but not explicitly stated in the visible source text",
+      "Specific mention of 'relationship managers and advisors' — consistent with ABF headline framing but not confirmed in visible HSBC source body text"
     ],
     "fabricated_claims": [],
-    "notes": "The core facts \u2014 platform name (Wealth Intelligence), deploying entity (HSBC Private Bank), purpose (wealth management staff), and announcement date (16 September 2025) \u2014 are all supported by the sources. However, the HSBC Private Bank source page content is heavily truncated (mostly navigation), so claims about the platform's specific intended users and HSBC's broader AI strategy cannot be fully verified from visible text. No clearly fabricated claims are present. The entry's framing of the chronology (ABF first, then HSBC formal announcement) is accurate based on the published timestamps. Flagging for REVIEW due to limited visible body text in the primary HSBC source.",
+    "notes": "The core facts — platform name (Wealth Intelligence), deploying entity (HSBC Private Bank), purpose (wealth management staff), and announcement date (16 September 2025) — are all supported by the sources. However, the HSBC Private Bank source page content is heavily truncated (mostly navigation), so claims about the platform's specific intended users and HSBC's broader AI strategy cannot be fully verified from visible text. No clearly fabricated claims are present. The entry's framing of the chronology (ABF first, then HSBC formal announcement) is accurate based on the published timestamps. Flagging for REVIEW due to limited visible body text in the primary HSBC source.",
     "paywall_caveat": false,
     "verified_at": "2026-03-11T22:45:16.619Z",
     "human_approved": false,

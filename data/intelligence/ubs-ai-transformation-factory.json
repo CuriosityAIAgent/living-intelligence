@@ -2,7 +2,7 @@
   "id": "ubs-ai-transformation-factory",
   "type": "strategy_move",
   "headline": "UBS Appoints Daniele Magazzeni as Chief AI Officer to Lead Firm-Wide AI Strategy",
-  "the_so_what": "UBS creating a dedicated Chief AI Officer role \u2014 hiring from JPMorgan, reporting to the Group COO, and overseeing 300+ live AI use cases including M365 Copilot and in-house AI Assistant Red \u2014 formalises AI as a C-suite function at the world's largest wealth manager, mirroring the same organisational pattern that saw Chief Digital Officers emerge a decade ago before becoming standard across every major bank.",
+  "the_so_what": "UBS creating a dedicated Chief AI Officer role — hiring from JPMorgan, reporting to the Group COO, and overseeing 300+ live AI use cases including M365 Copilot and in-house AI Assistant Red — formalises AI as a C-suite function at the world's largest wealth manager, mirroring the same organisational pattern that saw Chief Digital Officers emerge a decade ago before becoming standard across every major bank.",
   "company": "ubs",
   "company_name": "UBS Group AG",
   "date": "2025-10-16",
@@ -27,7 +27,6 @@
     ]
   },
   "week": "2025-10-13",
-  "featured": false,
   "_governance": {
     "verdict": "REVIEW",
     "confidence": 78,
@@ -44,8 +43,8 @@
       "AI is described as a top priority for UBS"
     ],
     "unverified_claims": [
-      "UBS currently has over 300 live AI use cases \u2014 source text is cut off before this statistic appears; cannot confirm from available source",
-      "Rolling out M365 Copilot and in-house AI Assistant 'Red' to all employees \u2014 source text is truncated and does not explicitly confirm these named tools in the available excerpt"
+      "UBS currently has over 300 live AI use cases — source text is cut off before this statistic appears; cannot confirm from available source",
+      "Rolling out M365 Copilot and in-house AI Assistant 'Red' to all employees — source text is truncated and does not explicitly confirm these named tools in the available excerpt"
     ],
     "fabricated_claims": [],
     "notes": "The core appointment details are fully verified against the source. However, the source text is truncated (ends mid-sentence about 'Big Rocks' initiatives), preventing verification of the '300+ live AI use cases' statistic and the specific AI tools mentioned (M365 Copilot, 'Red' AI Assistant). These claims may exist further in the article but cannot be confirmed from the available excerpt. No claims directly contradict the source.",

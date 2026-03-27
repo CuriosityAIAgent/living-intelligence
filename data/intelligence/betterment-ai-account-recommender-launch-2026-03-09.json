@@ -24,7 +24,6 @@
     ]
   },
   "week": "2026-03-09",
-  "featured": false,
   "_governance": {
     "verdict": "REVIEW",
     "confidence": 72,
@@ -35,11 +34,11 @@
       "The announcement was made via PR Newswire"
     ],
     "unverified_claims": [
-      "The product is designed to guide users toward appropriate account types based on their financial needs \u2014 this is a reasonable inference from the tool name 'Account Recommender' but is not explicitly confirmed in the visible source text",
-      "The launch represents a step forward in Betterment's ongoing effort to integrate AI capabilities into its platform \u2014 this is implied by the headline but not explicitly stated in the visible source content"
+      "The product is designed to guide users toward appropriate account types based on their financial needs — this is a reasonable inference from the tool name 'Account Recommender' but is not explicitly confirmed in the visible source text",
+      "The launch represents a step forward in Betterment's ongoing effort to integrate AI capabilities into its platform — this is implied by the headline but not explicitly stated in the visible source content"
     ],
     "fabricated_claims": [],
-    "notes": "The core facts (product name, company, date, distribution channel, and enterprise AI strategy framing) are clearly supported by the source headline and publication metadata. However, the source article content is truncated \u2014 only navigation menus and metadata are visible, with no article body text available. Therefore, claims about the product's specific purpose (guiding users toward appropriate account types) and characterization as part of an 'ongoing effort' cannot be fully verified against body text. The verdict is REVIEW due to insufficient source content.",
+    "notes": "The core facts (product name, company, date, distribution channel, and enterprise AI strategy framing) are clearly supported by the source headline and publication metadata. However, the source article content is truncated — only navigation menus and metadata are visible, with no article body text available. Therefore, claims about the product's specific purpose (guiding users toward appropriate account types) and characterization as part of an 'ongoing effort' cannot be fully verified against body text. The verdict is REVIEW due to insufficient source content.",
     "paywall_caveat": true,
     "verified_at": "2026-03-11T05:36:34.194Z",
     "human_approved": false,
@@ -48,7 +47,7 @@
   },
   "additional_sources": [
     {
-      "name": "Betterment \u2014 AI Account Recommender feature page",
+      "name": "Betterment — AI Account Recommender feature page",
       "url": "https://www.betterment.com/help/account-recommender-artificial-intelligence"
     }
   ],

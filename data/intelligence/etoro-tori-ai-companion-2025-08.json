@@ -1,8 +1,8 @@
 {
   "id": "etoro-tori-ai-companion-2025-08",
   "type": "product_launch",
-  "headline": "eToro launches Tori AI companion and Alpha Portfolios \u2014 AI-driven social investing goes mainstream",
-  "the_so_what": "eToro packaging AI-powered quantitative strategies (Alpha Portfolios) alongside a conversational AI companion for 40 million users across 75 countries means hedge-fund-grade analytics are now available to retail investors at platform scale \u2014 a commoditisation of research that took Bloomberg three decades to achieve for institutional clients, delivered here in a single product cycle for retail.",
+  "headline": "eToro launches Tori AI companion and Alpha Portfolios — AI-driven social investing goes mainstream",
+  "the_so_what": "eToro packaging AI-powered quantitative strategies (Alpha Portfolios) alongside a conversational AI companion for 40 million users across 75 countries means hedge-fund-grade analytics are now available to retail investors at platform scale — a commoditisation of research that took Bloomberg three decades to achieve for institutional clients, delivered here in a single product cycle for retail.",
   "company": "etoro",
   "company_name": "eToro",
   "date": "2025-08-07",
@@ -27,7 +27,6 @@
     ]
   },
   "week": "2025-08-04",
-  "featured": false,
   "_governance": {
     "verdict": "PASS",
     "confidence": 91,

@@ -2,7 +2,7 @@
   "id": "bnp-paribas-ai-centre-excellence-singapore-447b",
   "type": "strategy_move",
   "headline": "BNP Paribas Wealth Management launches AI Centre of Excellence in Singapore to build generative and predictive AI across $447 billion Asia business",
-  "the_so_what": "Anchoring an AI Centre of Excellence in Singapore \u2014 rather than retrofitting from Paris \u2014 positions BNP Paribas to build AI capabilities closest to the $447 billion Asia book where the growth is, following the same logic that led global banks to build their electronic trading infrastructure in the markets they wanted to dominate.",
+  "the_so_what": "Anchoring an AI Centre of Excellence in Singapore — rather than retrofitting from Paris — positions BNP Paribas to build AI capabilities closest to the $447 billion Asia book where the growth is, following the same logic that led global banks to build their electronic trading infrastructure in the markets they wanted to dominate.",
   "company": "bnp-paribas-wealth",
   "company_name": "BNP Paribas Wealth Management",
   "date": "2025-11-12",
@@ -10,10 +10,10 @@
   "source_url": "https://www.asianinvestorwealth.net/article/bnp-paribas-wealth-management-launches-ai-centre-in-singapore/505784",
   "source_verified": true,
   "image_url": "/logos/bnp-paribas.svg",
-  "summary": "BNP Paribas Wealth Management Asia launched an AI Centre of Excellence in Singapore in November 2025, focused on co-developing generative and predictive AI solutions for its $447 billion Asia business. The centre is structured around four pillars \u2014 Innovate, Deploy, Accelerate, and Upskill \u2014 and targets portfolio analytics, client onboarding automation, and advisory workflow improvements. It collaborates with BNP Paribas headquarters in Paris and aligns with Singapore's national AI strategy. A dedicated learning and development curriculum equips relationship managers, technology specialists, and designated AI ambassadors with hands-on AI expertise.",
+  "summary": "BNP Paribas Wealth Management Asia launched an AI Centre of Excellence in Singapore in November 2025, focused on co-developing generative and predictive AI solutions for its $447 billion Asia business. The centre is structured around four pillars — Innovate, Deploy, Accelerate, and Upskill — and targets portfolio analytics, client onboarding automation, and advisory workflow improvements. It collaborates with BNP Paribas headquarters in Paris and aligns with Singapore's national AI strategy. A dedicated learning and development curriculum equips relationship managers, technology specialists, and designated AI ambassadors with hands-on AI expertise.",
   "key_stat": {
     "number": "$447B",
-    "label": "BNP Paribas Wealth Management Asia AUM \u2014 AI Centre of Excellence launched Singapore, November 2025"
+    "label": "BNP Paribas Wealth Management Asia AUM — AI Centre of Excellence launched Singapore, November 2025"
   },
   "tags": {
     "capability": "advisor_productivity",
@@ -27,7 +27,6 @@
     ]
   },
   "week": "2025-11-10",
-  "featured": false,
   "_governance": {
     "verdict": "PASS",
     "confidence": 93,

@@ -1,8 +1,8 @@
 {
   "id": "robinhood-cortex-launch",
   "type": "product_launch",
-  "headline": "Robinhood launches Cortex AI \u2014 real-time market analysis and trade rationale for retail investors",
-  "the_so_what": "Robinhood packaging institutional-grade research \u2014 aggregating news, analyst reports, social signals, and options flow into plain-English trade rationale \u2014 for 2M+ Gold subscribers commoditises the research function that traditional wealth firms relied on to justify advisory fees, following the same pattern Robinhood used to commoditise brokerage commissions in 2013.",
+  "headline": "Robinhood launches Cortex AI — real-time market analysis and trade rationale for retail investors",
+  "the_so_what": "Robinhood packaging institutional-grade research — aggregating news, analyst reports, social signals, and options flow into plain-English trade rationale — for 2M+ Gold subscribers commoditises the research function that traditional wealth firms relied on to justify advisory fees, following the same pattern Robinhood used to commoditise brokerage commissions in 2013.",
   "company": "robinhood",
   "company_name": "Robinhood",
   "date": "2026-02-12",
@@ -26,7 +26,6 @@
     ]
   },
   "week": "2026-02-09",
-  "featured": false,
   "_governance": {
     "verdict": "REVIEW",
     "confidence": 0,

@@ -19,10 +19,10 @@ export default function HomePage() {
   const capabilities = getCapabilities();
 
   const latestDate = allEntries[0]?.date ? new Date(allEntries[0].date) : new Date();
-  const monthLabel = latestDate.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+  const updatedLabel = `Updated ${latestDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}`;
 
-  // Lead story = most recent featured entry, fallback to most recent
-  const leadStory = allEntries.find(e => e.featured) || allEntries[0];
+  // Lead story = most recent entry (auto-rotates as new stories are published)
+  const leadStory = allEntries[0];
 
   // Featured grid = 6 most recent entries after lead story
   const featured = allEntries.filter(e => e.id !== leadStory?.id).slice(0, 6);
@@ -37,7 +37,7 @@ export default function HomePage() {
       {/* Date bar */}
       <div className="border-b border-gray-200 bg-gray-50">
         <div className="max-w-6xl mx-auto px-6 h-9 flex items-center gap-4">
-          <span className="text-[11px] font-bold uppercase tracking-widest text-[#990F3D]">{monthLabel}</span>
+          <span className="text-[11px] font-bold uppercase tracking-widest text-[#990F3D]">{updatedLabel}</span>
           <span className="text-gray-300">|</span>
           <span className="text-[11px] text-gray-500">{allEntries.length} developments tracked</span>
         </div>
