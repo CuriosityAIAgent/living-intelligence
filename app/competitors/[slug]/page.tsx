@@ -63,24 +63,16 @@ export default async function CompetitorPage({ params }: { params: Promise<{ slu
           <p className="text-xl font-extrabold text-[#990F3D] leading-snug">{competitor.headline_metric}</p>
         </div>
 
-        {/* AI Strategy — bold, prominent */}
+        {/* AI Strategy */}
         <div className="mb-8">
-          <p className="text-[15px] font-semibold text-gray-900 leading-relaxed">{competitor.ai_strategy_summary}</p>
+          <p className="text-[11px] font-semibold uppercase tracking-widest text-[#990F3D] mb-3">AI Strategy</p>
+          <p className="text-[15px] text-gray-800 leading-relaxed">{competitor.ai_strategy_summary}</p>
         </div>
 
-        {/* Initiative + AI Leadership */}
-        <div className="border-t border-gray-200 pt-5 mb-8 grid grid-cols-1 md:grid-cols-2 gap-5">
-          <div>
-            <p className="text-xs text-gray-400 uppercase tracking-wide mb-1.5">Headline Initiative</p>
-            <p className="text-sm font-semibold text-gray-800">{competitor.headline_initiative}</p>
-          </div>
-          {competitor.head_of_ai && (
-            <div>
-              <p className="text-xs text-gray-400 uppercase tracking-wide mb-1.5">AI Leadership</p>
-              <p className="text-sm font-semibold text-gray-800">{competitor.head_of_ai.name}</p>
-              <p className="text-xs text-gray-500">{competitor.head_of_ai.title}</p>
-            </div>
-          )}
+        {/* Headline Initiative */}
+        <div className="border-t border-gray-200 pt-5 mb-8">
+          <p className="text-xs text-gray-400 uppercase tracking-wide mb-1.5">Headline Initiative</p>
+          <p className="text-sm font-semibold text-gray-800">{competitor.headline_initiative}</p>
         </div>
 
         {/* Capabilities */}
