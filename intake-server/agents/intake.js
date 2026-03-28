@@ -114,7 +114,7 @@ const INTAKE_SCHEMA = `{
   "id": "url-slug-style-id",
   "type": "funding | acquisition | regulatory | partnership | product_launch | milestone | strategy_move | market_signal",
   "headline": "Concise, factual headline under 120 chars — lead with capability/impact, not the event trigger",
-  "the_so_what": "One sentence. What should a CXO in wealth management think or decide differently because of this? Business-decision oriented — not a summary of what happened, not a quote. The strategic implication.",
+  "the_so_what": "One sentence of analytical insight. Choose the best angle: competitive benchmark (scale economics, compounding advantages), cross-landscape context (how this connects to what peers are doing), infrastructure parallel (comparison to historic technology shifts), or business model insight (why the model matters more than the technology). Never use CXO, board, firms should, or any directive language. Never say game-changing, landmark, or revolutionary.",
   "company": "company-slug",
   "company_name": "Full Company Name",
   "date": "YYYY-MM-DD",
@@ -396,14 +396,14 @@ async function fetchEnrichmentMarkdown(altUrl) {
 async function structureEntry(url, markdown, sourceInfo) {
   const hasEnrichment = sourceInfo.enrichment_sources && sourceInfo.enrichment_sources.length > 0;
 
-  const prompt = `You are an editorial analyst for a wealth management intelligence publication read by CXOs and senior executives.
+  const prompt = `You are an editorial analyst for a premium wealth management intelligence publication.
 
-Your job is NOT to summarise what happened. You are writing for a CXO in wealth management who needs to make business decisions. Every entry must answer three questions:
+Your job is NOT to summarise what happened. Every entry must answer three questions:
 1. Which AI capability is advancing and what is the concrete evidence? (the intelligence)
-2. What does this mean for wealth management firms strategically? (the_so_what)
+2. What does this mean across the wealth management landscape? (the_so_what — analytical insight)
 3. What was the triggering event? (context only — funding, launch, partnership)
 
-The event is never the story. The story is always the capability advancing and the business implication.
+The event is never the story. The story is always the capability advancing and the strategic insight.
 
 SOURCE ARTICLE URL: ${url}
 SOURCE NAME: ${sourceInfo.source_name}
@@ -418,12 +418,16 @@ ${markdown.slice(0, 10000)}
 Structure this into the following JSON schema.
 
 CRITICAL RULES:
-1. the_so_what: One sentence answering "what should a wealth management CXO think or decide differently because of this?" This is the editorial product — not a summary, not a quote. It must be a strategic business implication.
-   BAD: "Jump raised $80M to expand its AI meeting assistant platform."
-   BAD: "This shows that AI is growing in wealth management."
-   GOOD: "Advisor productivity tools are now a funded, scaling category — firms without an AI meeting workflow strategy are falling behind 15,000 advisors who already have one."
-   GOOD: "The independent channel is adopting AI faster than the institutional channel — a structural reversal of the historic adoption curve that wirehouse strategy teams need to factor into their 2026 plans."
-   Think: what would a Chief Strategy Officer or Head of Wealth Management need to hear to make a better decision?
+1. the_so_what: One sentence of analytical insight. Choose the best angle for this story:
+   - Competitive benchmark: scale economics, compounding data advantages, cost-to-serve gaps
+   - Cross-landscape context: connect to what peers/competitors are doing, show the pattern
+   - Infrastructure parallel: compare to historic technology shifts (electronic trading, Salesforce CRM, Bloomberg terminals)
+   - Business model insight: why the model matters more than the technology
+   NEVER use: CXO, board, "firms should", "must now decide", "game-changing", "landmark", "revolutionary", "paradigm shift", "It remains to be seen"
+   BAD: "Jump raised $80M to expand its AI meeting assistant platform." (just a summary)
+   BAD: "Any wealth CXO still treating meeting workflow as a roadmap item is falling behind." (directive)
+   GOOD: "Advisor productivity tools are now a funded, scaling category — 15,000 advisors already have an AI meeting workflow, establishing a per-advisor cost advantage that compounds with every client interaction."
+   GOOD: "The independent channel adopting AI faster than the institutional channel is a structural reversal of the historic adoption curve, following the same pattern as discount brokerage adoption in the 1990s."
 
 2. summary: Lead with the CAPABILITY and its EVIDENCE. Then explain the event trigger. Only facts from the source.
    BAD: "Jump raises $80M Series B to expand its AI platform."
