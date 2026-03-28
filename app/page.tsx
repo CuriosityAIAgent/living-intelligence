@@ -17,7 +17,7 @@ export default function LandingPage() {
               See the AI moves your competitors are making.
             </h1>
             <p className="text-[17px] md:text-[19px] text-[#9999BB] leading-relaxed mb-10 max-w-2xl">
-              37 wealth management firms. 7 AI capability dimensions. Every development verified, analysed, and updated weekly.
+              37 wealth management firms monitored daily across 7 AI capability dimensions. AI-powered discovery. Human-verified editorial. A living competitive intelligence platform.
             </p>
             <a
               href="#pricing"
@@ -32,10 +32,10 @@ export default function LandingPage() {
         <div className="border-t border-[#2A2A3E]">
           <div className="max-w-5xl mx-auto px-6 py-5 flex flex-wrap gap-x-8 gap-y-3">
             {[
-              { n: '37', label: 'Institutions Tracked' },
+              { n: '37', label: 'Institutions Monitored' },
               { n: '7', label: 'Capability Dimensions' },
               { n: '43+', label: 'Verified Developments' },
-              { n: '●', label: 'Updated Weekly' },
+              { n: '●', label: 'Daily Monitoring' },
             ].map((s) => (
               <div key={s.label} className="flex items-center gap-2.5">
                 {s.n === '●' ? (
@@ -68,6 +68,56 @@ export default function LandingPage() {
             <p className="text-gray-900 font-semibold">
               Living Intelligence tracks it all, continuously, for a fraction of the cost.
             </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── SECTION 2B: THE PLATFORM ─── */}
+      <section className="py-16 md:py-20 bg-white border-t border-gray-200">
+        <div className="max-w-5xl mx-auto px-6">
+          <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#990F3D] mb-2">
+            The Platform
+          </p>
+          <hr className="border-t-2 border-[#990F3D] mb-4 w-10" />
+          <p className="text-[17px] text-gray-700 leading-relaxed mb-12 max-w-3xl">
+            Living Intelligence is not a newsletter. It is an AI-powered editorial platform with a multi-stage pipeline that discovers, verifies, scores, and publishes intelligence continuously.
+          </p>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            {[
+              {
+                title: 'AI-Powered Discovery',
+                desc: 'Over 60 search queries run daily across Google News, content analysis APIs, and specialist financial publications. Three discovery layers: broad market scans, capability-specific searches, and deep per-company monitoring.',
+              },
+              {
+                title: 'Automated Verification',
+                desc: 'Every article is structured by AI, then independently verified in a second pass that checks every factual claim against the original source. Claims that contradict the source are flagged and blocked automatically.',
+              },
+              {
+                title: 'Multi-Dimensional Scoring',
+                desc: 'Each development is scored across four dimensions: source credibility, claim verification, recency, and capability impact. Scores determine whether a story reaches the editorial inbox or is filtered out.',
+              },
+              {
+                title: 'Human Editorial Gate',
+                desc: 'Nothing publishes automatically. Every story is reviewed and approved by a human editor in the Editorial Studio before it reaches subscribers. The AI surfaces and verifies. The editor decides.',
+              },
+              {
+                title: 'Competitive Landscape Matrix',
+                desc: '37 firms assessed across 7 capability dimensions with maturity ratings: Scaled, Deployed, Piloting, or Announced. Updated continuously as new evidence emerges from the intelligence feed.',
+              },
+              {
+                title: 'Source-Linked Provenance',
+                desc: 'Every claim links to its original source. Every entry carries a verification audit trail. No inference, no fabrication, no unattributed statistics. Built for environments where accuracy is non-negotiable.',
+              },
+            ].map((card) => (
+              <div key={card.title} className="flex gap-4">
+                <div className="w-1 bg-[#990F3D] rounded flex-shrink-0 mt-1" style={{ minHeight: 20 }} />
+                <div>
+                  <h3 className="text-[14px] font-bold text-gray-900 mb-2">{card.title}</h3>
+                  <p className="text-[13px] text-gray-600 leading-relaxed">{card.desc}</p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
