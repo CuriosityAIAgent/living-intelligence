@@ -52,13 +52,13 @@ export default function LandingPage() {
 
       {/* ─── SECTION 2: THE CHALLENGE ─── */}
       <section className="py-16 md:py-20 bg-[#FDF8F2]">
-        <div className="max-w-3xl mx-auto px-6">
+        <div className="max-w-5xl mx-auto px-6">
           <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#990F3D] mb-2">
             The challenge
           </p>
           <hr className="border-t-2 border-[#990F3D] mb-10 w-10" />
 
-          <div className="space-y-6 text-[17px] text-gray-700 leading-relaxed">
+          <div className="space-y-6 text-[17px] text-gray-700 leading-relaxed max-w-3xl">
             <p>
               Last quarter, 14 wealth firms quietly launched or expanded AI capabilities. Most never made it past industry press.
             </p>
@@ -238,14 +238,14 @@ export default function LandingPage() {
 
       {/* ─── SECTION 4: SAMPLE ENTRY ─── */}
       <section className="py-16 md:py-20 bg-[#FDF8F2] border-t border-gray-200">
-        <div className="max-w-4xl mx-auto px-6">
+        <div className="max-w-5xl mx-auto px-6">
           <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#990F3D] mb-2">
             A recent entry
           </p>
           <hr className="border-t-2 border-[#990F3D] mb-10 w-10" />
 
           {/* Sample card */}
-          <div className="border border-gray-200 rounded-lg p-8 md:p-10 bg-white">
+          <div className="border border-gray-200 rounded-lg p-8 md:p-10 bg-white max-w-4xl">
             {/* Card header */}
             <div className="flex flex-wrap items-center gap-3 mb-4">
               <span className="text-[11px] font-bold text-gray-500">BofA / Merrill</span>
@@ -278,13 +278,13 @@ export default function LandingPage() {
 
       {/* ─── SECTION 5: BUILT FOR ─── */}
       <section className="py-16 md:py-20 bg-white border-t border-gray-200">
-        <div className="max-w-3xl mx-auto px-6">
+        <div className="max-w-5xl mx-auto px-6">
           <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#990F3D] mb-2">
             Built for
           </p>
           <hr className="border-t-2 border-[#990F3D] mb-10 w-10" />
 
-          <p className="text-[17px] text-gray-700 leading-relaxed">
+          <p className="text-[17px] text-gray-700 leading-relaxed max-w-3xl">
             People running private banks, wirehouses, and wealth platforms who&apos;d rather spend 5 minutes knowing what happened than 5 hours finding out.
           </p>
         </div>
@@ -292,7 +292,7 @@ export default function LandingPage() {
 
       {/* ─── SECTION 6: PRICING ─── */}
       <section id="pricing" className="py-16 md:py-20 bg-[#FDF8F2] border-t border-gray-200">
-        <div className="max-w-4xl mx-auto px-6">
+        <div className="max-w-5xl mx-auto px-6">
           <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#990F3D] mb-2">
             Pricing
           </p>
