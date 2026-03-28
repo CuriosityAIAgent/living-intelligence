@@ -592,12 +592,15 @@ app.post('/api/tl-candidates/dismiss', (req, res) => {
 app.get('/api/tl-published', (req, res) => {
   try {
     const tlDir = join(DATA_DIR, 'thought-leadership');
+    console.log('[tl-published] Looking in:', tlDir, 'exists:', fs.existsSync(tlDir));
     const files = fs.readdirSync(tlDir).filter(f => f.endsWith('.json'));
+    console.log('[tl-published] Found', files.length, 'files:', files.join(', '));
     const entries = files.map(f => {
       try { return JSON.parse(fs.readFileSync(join(tlDir, f), 'utf8')); } catch { return null; }
     }).filter(Boolean).sort((a, b) => (b.date_published || '').localeCompare(a.date_published || ''));
     res.json({ entries });
   } catch(e) {
+    console.error('[tl-published] Error:', e.message, 'DATA_DIR:', DATA_DIR);
     res.json({ entries: [] });
   }
 });
