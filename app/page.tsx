@@ -1,3 +1,5 @@
+import RotatingHeadline from '@/components/RotatingHeadline';
+
 export default function LandingPage() {
   return (
     <div className="min-h-screen">
@@ -13,11 +15,9 @@ export default function LandingPage() {
 
           {/* Headline block */}
           <div className="max-w-3xl">
-            <h1 className="text-3xl md:text-[48px] font-extrabold text-white leading-[1.12] mb-6">
-              See the AI moves your competitors are making.
-            </h1>
+            <RotatingHeadline />
             <p className="text-[17px] md:text-[19px] text-[#9999BB] leading-relaxed mb-10 max-w-2xl">
-              37 wealth management firms monitored daily &mdash; and growing. 7 AI capability dimensions. AI-powered discovery. Human-verified editorial. A living competitive intelligence platform.
+              37+ wealth management firms monitored daily &mdash; and growing. 7 AI capability dimensions. AI-powered discovery. Human-verified editorial. A living competitive intelligence platform.
             </p>
             <a
               href="#pricing"
