@@ -1,6 +1,7 @@
 import { useQuery, useQueryClient } from '@tanstack/react-query';
-import { fetchLandscapeSuggestions, fetchLandscapeStale, applyLandscapeSuggestion, dismissLandscapeSuggestion, runLandscapeSweep } from '../api';
+import { fetchLandscapeSuggestions, fetchLandscapeStale, applyLandscapeSuggestion, dismissLandscapeSuggestion } from '../api';
 import { useState } from 'react';
+import { useProcessTracker } from '../App';
 
 const MATURITY_COLORS: Record<string, string> = {
   scaled: '#15803D',
@@ -13,6 +14,8 @@ const MATURITY_COLORS: Record<string, string> = {
 export default function LandscapeTab() {
   const queryClient = useQueryClient();
   const [sweeping, setSweeping] = useState(false);
+  const [sweepLog, setSweepLog] = useState<string[]>([]);
+  const { start: startProcess, stop: stopProcess } = useProcessTracker();
 
   const { data: suggestionsData } = useQuery({
     queryKey: ['landscape-suggestions'],
@@ -29,12 +32,38 @@ export default function LandscapeTab() {
 
   const handleSweep = async () => {
     setSweeping(true);
+    setSweepLog([]);
+    startProcess('landscape-sweep', 'Landscape sweep…');
     try {
-      await runLandscapeSweep();
-      queryClient.invalidateQueries({ queryKey: ['landscape-suggestions'] });
-      queryClient.invalidateQueries({ queryKey: ['landscape-stale'] });
+      const res = await fetch('/api/landscape-sweep', { method: 'POST' });
+      if (!res.body) throw new Error('No stream');
+      const reader = res.body.getReader();
+      const decoder = new TextDecoder();
+      let buffer = '';
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        buffer += decoder.decode(value, { stream: true });
+        const lines = buffer.split('\n');
+        buffer = lines.pop() ?? '';
+        for (const line of lines) {
+          if (line.startsWith('data: ')) {
+            try {
+              const data = JSON.parse(line.slice(6));
+              if (data.message) setSweepLog(prev => [...prev, data.message]);
+              if (data.done) {
+                queryClient.invalidateQueries({ queryKey: ['landscape-suggestions'] });
+                queryClient.invalidateQueries({ queryKey: ['landscape-stale'] });
+              }
+            } catch {}
+          }
+        }
+      }
+    } catch (err) {
+      setSweepLog(prev => [...prev, `Error: ${err}`]);
     } finally {
       setSweeping(false);
+      stopProcess('landscape-sweep');
     }
   };
 
@@ -86,6 +115,19 @@ export default function LandscapeTab() {
       </div>
 
       <div style={{ padding: 24, maxWidth: 900 }}>
+        {/* Sweep log */}
+        {sweepLog.length > 0 && (
+          <div style={{
+            background: '#111827', color: '#D1FAE5', borderRadius: 6,
+            padding: 14, fontFamily: 'monospace', fontSize: 11,
+            marginBottom: 20, maxHeight: 200, overflowY: 'auto', lineHeight: 1.6,
+          }}>
+            {sweepLog.map((line, i) => (
+              <div key={i} style={{ marginBottom: 2 }}>{line}</div>
+            ))}
+          </div>
+        )}
+
         {/* Suggestions */}
         {suggestions.length > 0 && (
           <div style={{ marginBottom: 32 }}>
