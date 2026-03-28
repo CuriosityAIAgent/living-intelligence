@@ -98,5 +98,26 @@
     "id": "orion-expands-ai-anthropic-claude-financial-analysis-2026-02-24",
     "reason": "Fabrication detected: The summary and headline refer to 'Claude Cowork platform' — the source text says 'Claude Cowork agent', which is close, but more critically the entry calls it a 'platform' while the source says 'agent'. Minor but worth noting.; The key stat '2000' does NOT appear literally in the source. The source says 'some 2,000 attendees' — this is a near-verbatim match with a comma, so this is acceptable.; The summary states Anthropic 'launched new AI agent tools for its Claude Cowork platform targeting financial analysis and HR workflows' — the source says 'launched new artificial-intelligence tools for its Claude Cowork agent that target work in areas like financial analysis and human resources' — this is a near-verbatim paraphrase and acceptable.; The quoted phrase attributed to Orion's 'stated focus' — 'building a secure, enterprise-grade platform that harnesses these AI advances for its clients' — does NOT appear verbatim in the source. The source quote from Reed Colley is: 'What we're really focused on for our clients is harnessing the power of these [AI] changes and building a platform that's secure, enterprise grade, and built for privacy …' The summary fabricates a condensed paraphrase and presents it as a 'stated focus' with language not matching the source verbatim, but this is a paraphrase rather than a direct quote in quotation marks.; The company name 'Orion Advisor Solutions' does not appear in the source. The source refers only to 'Orion' without the full legal name 'Orion Advisor Solutions'.; '2,000' appears in the source as 'some 2,000 attendees' — the key stat of 2000 is supported.; The 'so what' references '2,000 RIA practitioners' — the source says '2,000 attendees', not specifically 'RIA practitioners'. This is a minor fabrication of specificity.; The 'so what' says 'year-plus Anthropic relationship' — the source says 'working with Orion for over a year', which supports this claim.; CRITICAL: The company name 'Orion Advisor Solutions' does not appear in the source text. The source only uses 'Orion'. While this may be the full legal name, the source does not use it — flagged as a potential fabrication of the full name, though this is a borderline issue.; The headline refers to 'FactSet-Backed Financial Analysis Agent' — the source confirms FactSet Research Systems as a partner and financial analysis as a target area, so this is supported.; No number appears in the headline itself that would fail.",
     "blocked_at": "2026-03-27T05:06:48.915Z"
+  },
+  "https://www.wealthmanagement.com/artificial-intelligence/zocks-raises-45m-series-b-to-expand-ai-capabilities-for-financial-advisors": {
+    "id": "zocks-45m-series-b-agentic-ai-advisors-2026-01",
+    "reason": "Score 45/100 — below 60 review threshold",
+    "blocked_at": "2026-03-28T05:01:34.930Z",
+    "title": "Zocks Scales Agentic AI Automation for Financial Advisors with $45M Series B",
+    "score": 45
+  },
+  "https://www.wealthmanagement.com/artificial-intelligence/wealthstack-roundup-finny-partners-with-osaic": {
+    "id": "finny-osaic-ai-partnership-2026-01",
+    "reason": "Score 32/100 — below 60 review threshold",
+    "blocked_at": "2026-03-28T05:04:48.264Z",
+    "title": "FINNY Deploys AI Capabilities Across Osaic's Advisor Network via New Partnership",
+    "score": 32
+  },
+  "https://www.businesswire.com/news/home/20260226730121/en/Orion-Announces-Denali-AI-Enterprise-Version-Powering-a-New-Era-in-Advisor-Productivity": {
+    "id": "orion-denali-ai-enterprise-launch-2026-02",
+    "reason": "the_so_what flagged as weak CXO relevance (4/10) — review before publishing",
+    "blocked_at": "2026-03-28T05:05:58.466Z",
+    "title": "Orion Deploys Denali AI Enterprise: Single Prompt Screen Replaces Multi-Tab Advisor Workflows",
+    "score": 47
   }
 }
