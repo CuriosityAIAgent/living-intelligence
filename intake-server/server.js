@@ -591,7 +591,7 @@ app.post('/api/tl-candidates/dismiss', (req, res) => {
 
 app.get('/api/tl-published', (req, res) => {
   try {
-    const tlDir = join(__dirname, '..', 'data', 'thought-leadership');
+    const tlDir = join(DATA_DIR, 'thought-leadership');
     const files = fs.readdirSync(tlDir).filter(f => f.endsWith('.json'));
     const entries = files.map(f => {
       try { return JSON.parse(fs.readFileSync(join(tlDir, f), 'utf8')); } catch { return null; }
