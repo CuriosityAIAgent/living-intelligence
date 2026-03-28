@@ -27,8 +27,10 @@ import { commitInboxState } from './publisher.js';
 import { sendDigest } from './notifier.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const DATA_ROOT = join(process.env.DATA_DIR || join(__dirname, '..', '..'), 'data');
-const INTEL_DIR = join(DATA_ROOT, 'intelligence');
+// Content files (intelligence entries) live in the repo clone — always repo-relative.
+// DATA_DIR on Railway points to the persistent volume for state files only.
+const CONTENT_ROOT = join(__dirname, '..', '..', 'data');
+const INTEL_DIR = join(CONTENT_ROOT, 'intelligence');
 
 // ── Review threshold ───────────────────────────────────────────────────────────
 // PUBLISH ≥ 75  |  REVIEW 60–74  |  BLOCK < 60

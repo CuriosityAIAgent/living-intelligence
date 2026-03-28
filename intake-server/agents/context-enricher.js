@@ -26,9 +26,11 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const client = new Anthropic();
 
 // ── Data loading helpers ──────────────────────────────────────────────────────
+// Content files (intelligence, competitors) live in the repo clone — always
+// resolve relative to this file, never from DATA_DIR (Railway persistent volume).
 
 function getDataRoot() {
-  return join(process.env.DATA_DIR || join(__dirname, '..', '..'), 'data');
+  return join(__dirname, '..', '..', 'data');
 }
 
 function loadPublishedEntriesForCompany(companySlug, limit = 3) {

@@ -16,9 +16,12 @@ import { execSync } from 'child_process';
 import Anthropic from '@anthropic-ai/sdk';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const DATA_ROOT = process.env.DATA_DIR || join(__dirname, '..', '..');
-const COMPETITORS_DIR = join(DATA_ROOT, 'data', 'competitors');
-const SUGGESTIONS_FILE = join(DATA_ROOT, 'data', '.landscape-suggestions.json');
+// Content files (competitors) live in the repo clone — always repo-relative.
+// State files (.landscape-suggestions.json) go to the persistent volume if available.
+const CONTENT_ROOT    = join(__dirname, '..', '..', 'data');
+const STATE_DIR       = (process.env.STATE_DIR || process.env.DATA_DIR) ? join(process.env.STATE_DIR || process.env.DATA_DIR, 'data') : CONTENT_ROOT;
+const COMPETITORS_DIR = join(CONTENT_ROOT, 'competitors');
+const SUGGESTIONS_FILE = join(STATE_DIR, '.landscape-suggestions.json');
 
 const MATURITY_ORDER = ['no_activity', 'announced', 'piloting', 'deployed', 'scaled'];
 

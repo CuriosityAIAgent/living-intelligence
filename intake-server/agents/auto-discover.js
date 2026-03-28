@@ -23,13 +23,16 @@ import { fileURLToPath } from 'url';
 import fetch from 'node-fetch';
 
 // ── Path resolution ────────────────────────────────────────────────────────────
+// Content files (intelligence, competitors, TL, capabilities) live in the repo
+// clone — always resolve relative to this file, never from DATA_DIR/STATE_DIR.
+// DATA_DIR on Railway points to the persistent volume for state files only.
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const DATA_ROOT        = join(process.env.DATA_DIR || join(__dirname, '..', '..'), 'data');
-const INTEL_DIR        = join(DATA_ROOT, 'intelligence');
-const COMPETITORS_DIR  = join(DATA_ROOT, 'competitors');
-const TL_DIR           = join(DATA_ROOT, 'thought-leadership');
-const CAPABILITIES_DIR = join(DATA_ROOT, 'capabilities');
+const CONTENT_ROOT     = join(__dirname, '..', '..', 'data');
+const INTEL_DIR        = join(CONTENT_ROOT, 'intelligence');
+const COMPETITORS_DIR  = join(CONTENT_ROOT, 'competitors');
+const TL_DIR           = join(CONTENT_ROOT, 'thought-leadership');
+const CAPABILITIES_DIR = join(CONTENT_ROOT, 'capabilities');
 
 // ── Load landscape data (dynamic — grows as competitor files are added) ────────
 

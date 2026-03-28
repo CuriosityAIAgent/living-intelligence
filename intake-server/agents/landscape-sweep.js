@@ -15,9 +15,12 @@ import { fileURLToPath } from 'url';
 import Anthropic from '@anthropic-ai/sdk';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const DATA_ROOT       = process.env.DATA_DIR || join(__dirname, '..', '..');
-const COMPETITORS_DIR = join(DATA_ROOT, 'data', 'competitors');
-const SUGGESTIONS_FILE = join(DATA_ROOT, 'data', '.landscape-suggestions.json');
+// Content data (competitors, intelligence) lives in the repo clone, not the volume
+const REPO_DATA       = join(__dirname, '..', '..', 'data');
+// State files (.suggestions, etc.) go to the persistent volume if available
+const STATE_DIR       = process.env.DATA_DIR ? join(process.env.DATA_DIR, 'data') : REPO_DATA;
+const COMPETITORS_DIR = join(REPO_DATA, 'competitors');
+const SUGGESTIONS_FILE = join(STATE_DIR, '.landscape-suggestions.json');
 
 const STALE_DAYS = 45;
 const MATURITY_ORDER = ['no_activity', 'announced', 'piloting', 'deployed', 'scaled'];

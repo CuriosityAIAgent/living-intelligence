@@ -11,7 +11,9 @@ import { fileURLToPath } from 'url';
 // Built dynamically from data/competitors/*.json + hardcoded overrides.
 
 const __dirname_intake = dirname(fileURLToPath(import.meta.url));
-const DATA_ROOT = process.env.DATA_DIR || join(__dirname_intake, '..', '..');
+// Content files (competitors) live in the repo clone — always resolve relative
+// to this file, never from DATA_DIR (Railway persistent volume).
+const DATA_ROOT = join(__dirname_intake, '..', '..');
 
 const COMPANY_ALIAS_MAP = new Map();
 

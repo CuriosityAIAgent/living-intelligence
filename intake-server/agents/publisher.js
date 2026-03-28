@@ -5,11 +5,11 @@ import { fileURLToPath } from 'url';
 import { execSync } from 'child_process';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-// Local mode: data/ is two levels up (living-intelligence/data/).
-// Railway mode: overridden by DATA_DIR env var, or falls back to /app/data/
-//   (ephemeral write target — files are then cloned+pushed via GIT_TOKEN).
-const DATA_ROOT = process.env.DATA_DIR || join(__dirname, '..', '..');
-const PORTAL_DATA_DIR = join(DATA_ROOT, 'data', 'intelligence');
+// Content files (intelligence entries) live in the repo clone — always repo-relative.
+// Published entries are written here then git-committed, so they must be in the repo tree.
+// DATA_DIR on Railway points to the persistent volume for state files only.
+const CONTENT_ROOT = join(__dirname, '..', '..', 'data');
+const PORTAL_DATA_DIR = join(CONTENT_ROOT, 'intelligence');
 
 // ── Date integrity ─────────────────────────────────────────────────────────────
 

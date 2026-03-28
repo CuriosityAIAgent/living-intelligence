@@ -19,8 +19,10 @@ import { execSync } from 'child_process';
 import Anthropic from '@anthropic-ai/sdk';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const DATA_ROOT = process.env.DATA_DIR || join(__dirname, '..', '..');
-const TL_DIR    = join(DATA_ROOT, 'data', 'thought-leadership');
+// Content files (thought-leadership entries) live in the repo clone — always repo-relative.
+// Published TL entries are written here then git-committed, so they must be in the repo tree.
+const CONTENT_ROOT = join(__dirname, '..', '..', 'data');
+const TL_DIR       = join(CONTENT_ROOT, 'thought-leadership');
 
 const client = new Anthropic();
 
