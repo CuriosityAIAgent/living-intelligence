@@ -43,7 +43,7 @@ export default function LandingPage() {
                 ) : (
                   <span className="text-[20px] font-extrabold text-white">{s.n}</span>
                 )}
-                <span className="text-[11px] uppercase tracking-wider text-[#555568]">{s.label}</span>
+                <span className="text-[12px] uppercase tracking-wider text-[#8888A0]">{s.label}</span>
               </div>
             ))}
           </div>
@@ -103,6 +103,106 @@ export default function LandingPage() {
                 <p className="text-[15px] text-gray-600 leading-relaxed">{card.desc}</p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─── SECTION 3B: LANDSCAPE COVERAGE ─── */}
+      <section className="py-16 md:py-20 bg-white border-t border-gray-200">
+        <div className="max-w-5xl mx-auto px-6">
+          <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#990F3D] mb-2">
+            The Landscape
+          </p>
+          <hr className="border-t-2 border-[#990F3D] mb-4 w-10" />
+          <p className="text-[17px] text-gray-700 leading-relaxed mb-10 max-w-3xl">
+            37 institutions currently tracked across 8 segments &mdash; and growing. Every company assessed across 7 AI capability dimensions, from advisor productivity to new business models.
+          </p>
+
+          {/* Segments with sample names */}
+          <div className="grid md:grid-cols-2 gap-x-12 gap-y-6 mb-12">
+            {[
+              { segment: 'Wirehouses', names: 'Morgan Stanley, BofA/Merrill, Wells Fargo, JPMorgan' },
+              { segment: 'Global Private Banks', names: 'UBS, Goldman Sachs, HSBC, Julius Baer, BNP Paribas' },
+              { segment: 'Regional Champions', names: 'DBS, BBVA, Standard Chartered, RBC' },
+              { segment: 'Digital Disruptors', names: 'Robinhood, Wealthfront, eToro, Betterment' },
+              { segment: 'AI-Native Wealth', names: 'Arta Finance, Savvy Wealth' },
+              { segment: 'RIA / Independent', names: 'Altruist, LPL Financial' },
+              { segment: 'Advisor Tools', names: 'Jump, Zocks, Holistiplan, Nevis' },
+              { segment: 'Asset Managers', names: 'Fidelity, Vanguard' },
+            ].map((s) => (
+              <div key={s.segment} className="flex items-start gap-3">
+                <span className="text-[11px] font-bold text-[#990F3D] uppercase tracking-wide min-w-[140px] pt-0.5 flex-shrink-0">{s.segment}</span>
+                <span className="text-[13px] text-gray-600">{s.names}</span>
+              </div>
+            ))}
+          </div>
+
+          {/* Capability dimensions */}
+          <p className="text-[11px] font-bold uppercase tracking-[0.15em] text-gray-400 mb-4">
+            7 Capability Dimensions
+          </p>
+          <div className="flex flex-wrap gap-2 mb-12">
+            {[
+              'Advisor Productivity', 'Client Personalisation', 'Investment & Portfolio',
+              'Research & Content', 'Client Acquisition', 'Operations & Compliance', 'New Business Models',
+            ].map((cap) => (
+              <span key={cap} className="text-[12px] text-gray-700 bg-gray-100 px-3 py-1.5 rounded border border-gray-200">
+                {cap}
+              </span>
+            ))}
+          </div>
+
+          {/* Mini matrix snapshot */}
+          <p className="text-[11px] font-bold uppercase tracking-[0.15em] text-gray-400 mb-4">
+            Landscape Snapshot
+          </p>
+          <div className="overflow-x-auto">
+            <table className="w-full text-[12px]" style={{ minWidth: 600 }}>
+              <thead>
+                <tr className="border-b border-gray-200">
+                  <th className="text-left py-2 pr-4 text-gray-400 font-semibold">Company</th>
+                  <th className="text-center px-2 py-2 text-gray-400 font-normal">Advisor Prod.</th>
+                  <th className="text-center px-2 py-2 text-gray-400 font-normal">Client Pers.</th>
+                  <th className="text-center px-2 py-2 text-gray-400 font-normal">Investment</th>
+                  <th className="text-center px-2 py-2 text-gray-400 font-normal">Research</th>
+                  <th className="text-center px-2 py-2 text-gray-400 font-normal">Acquisition</th>
+                </tr>
+              </thead>
+              <tbody>
+                {[
+                  { name: 'Morgan Stanley', caps: ['scaled', 'deployed', 'deployed', 'piloting', 'none'] },
+                  { name: 'JPMorgan', caps: ['scaled', 'deployed', 'piloting', 'deployed', 'announced'] },
+                  { name: 'Goldman Sachs', caps: ['deployed', 'piloting', 'deployed', 'piloting', 'none'] },
+                ].map((row) => (
+                  <tr key={row.name} className="border-b border-gray-100">
+                    <td className="py-2.5 pr-4 font-semibold text-gray-900">{row.name}</td>
+                    {row.caps.map((c, i) => (
+                      <td key={i} className="text-center px-2 py-2.5">
+                        <span className={`inline-block w-2.5 h-2.5 rounded-full ${
+                          c === 'scaled' ? 'bg-green-500' :
+                          c === 'deployed' ? 'bg-blue-500' :
+                          c === 'piloting' ? 'bg-orange-400' :
+                          c === 'announced' ? 'bg-yellow-400' :
+                          'bg-gray-200'
+                        }`} />
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+                <tr>
+                  <td colSpan={6} className="py-3 text-center text-[11px] text-gray-400 italic">
+                    + 34 more institutions across all segments
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div className="flex items-center gap-4 mt-4 text-[11px] text-gray-400">
+            <span className="flex items-center gap-1.5"><span className="inline-block w-2 h-2 rounded-full bg-green-500" /> Scaled</span>
+            <span className="flex items-center gap-1.5"><span className="inline-block w-2 h-2 rounded-full bg-blue-500" /> Deployed</span>
+            <span className="flex items-center gap-1.5"><span className="inline-block w-2 h-2 rounded-full bg-orange-400" /> Piloting</span>
+            <span className="flex items-center gap-1.5"><span className="inline-block w-2 h-2 rounded-full bg-yellow-400" /> Announced</span>
+            <span className="flex items-center gap-1.5"><span className="inline-block w-2 h-2 rounded-full bg-gray-200" /> No Activity</span>
           </div>
         </div>
       </section>
