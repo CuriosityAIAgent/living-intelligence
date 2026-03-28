@@ -76,20 +76,6 @@ export default function Footer() {
           </p>
         </div>
 
-        {/* Corrections */}
-        <div className="mb-6 pb-6 border-b border-gray-100">
-          <p className="text-xs text-gray-500 leading-relaxed max-w-3xl">
-            <span className="font-semibold text-gray-700">Corrections.</span>{' '}
-            While we make every effort to verify information against original sources, errors may
-            occur. If you believe any content on this portal contains a factual error, please
-            contact us at{' '}
-            <a href="mailto:corrections@tigerai.tech" className="text-[#990F3D] hover:underline">
-              corrections@tigerai.tech
-            </a>{' '}
-            and we will investigate promptly.
-          </p>
-        </div>
-
         {/* Footer bottom row */}
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-3">
           <div className="flex items-center gap-4">
