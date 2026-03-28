@@ -67,6 +67,18 @@ export function publish({ entry, candidatePubDate, send }) {
     ? new Date(entry.date).toISOString()
     : new Date().toISOString();
 
+  // Auto-resolve logo if image_url is null and a local logo exists
+  if (!entry.image_url && entry.company) {
+    const logoDir = join(PORTAL_DATA_DIR, '..', 'public', 'logos');
+    const slug = entry.company.toLowerCase();
+    for (const ext of ['svg', 'png']) {
+      if (existsSync(join(logoDir, `${slug}.${ext}`))) {
+        entry.image_url = `/logos/${slug}.${ext}`;
+        break;
+      }
+    }
+  }
+
   const { _governance, ...publicFields } = entry;
   const entryToWrite = {
     ...publicFields,
