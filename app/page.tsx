@@ -17,7 +17,7 @@ export default function LandingPage() {
           <div className="max-w-3xl">
             <RotatingHeadline />
             <p className="text-[17px] md:text-[19px] text-[#9999BB] leading-relaxed mb-10 max-w-2xl">
-              37+ wealth management firms monitored daily &mdash; and growing. 7 AI capability dimensions. AI-powered discovery. Human-verified editorial. A living competitive intelligence platform.
+              37 wealth management firms monitored daily, with more added every month. 7 capability dimensions. AI-sourced. Human-verified.
             </p>
             <a
               href="#pricing"
@@ -32,14 +32,14 @@ export default function LandingPage() {
         <div className="border-t border-[#2A2A3E]">
           <div className="max-w-5xl mx-auto px-6 py-5 flex flex-wrap gap-x-8 gap-y-3">
             {[
-              { n: '37+', label: 'Institutions & Growing' },
+              { n: '37+', label: 'Firms & Growing' },
               { n: '7', label: 'Capability Dimensions' },
               { n: '43+', label: 'Verified Developments' },
-              { n: '●', label: 'Daily Monitoring' },
+              { n: '\u25CF', label: 'Daily Monitoring' },
             ].map((s) => (
               <div key={s.label} className="flex items-center gap-2.5">
-                {s.n === '●' ? (
-                  <span className="text-[10px] text-[#990F3D]">●</span>
+                {s.n === '\u25CF' ? (
+                  <span className="text-[10px] text-[#990F3D]">{s.n}</span>
                 ) : (
                   <span className="text-[20px] font-extrabold text-white">{s.n}</span>
                 )}
@@ -54,19 +54,19 @@ export default function LandingPage() {
       <section className="py-16 md:py-20 bg-[#FDF8F2]">
         <div className="max-w-3xl mx-auto px-6">
           <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#990F3D] mb-2">
-            The Challenge
+            The challenge
           </p>
           <hr className="border-t-2 border-[#990F3D] mb-10 w-10" />
 
           <div className="space-y-6 text-[17px] text-gray-700 leading-relaxed">
             <p>
-              Last quarter, 14 wealth management firms launched or expanded AI capabilities. Most went unreported outside of industry press.
+              Last quarter, 14 wealth firms quietly launched or expanded AI capabilities. Most never made it past industry press.
             </p>
             <p>
-              A competitive landscape analysis covering this ground costs $75,000&ndash;$250,000 from a consulting firm. It&apos;s outdated the week it&apos;s delivered. Analyst subscriptions from Gartner or Forrester start at $25,000 a year.
+              Getting this picture from a consulting firm runs $75,000 to $250,000. By delivery, it&apos;s already stale. Gartner and Forrester start at $25,000 a year.
             </p>
             <p className="text-gray-900 font-semibold">
-              Living Intelligence tracks it all, continuously, for a fraction of the cost.
+              We track it continuously. You get it for a fraction of that.
             </p>
           </div>
         </div>
@@ -76,38 +76,38 @@ export default function LandingPage() {
       <section className="py-16 md:py-20 bg-white border-t border-gray-200">
         <div className="max-w-5xl mx-auto px-6">
           <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#990F3D] mb-2">
-            The Platform
+            The platform
           </p>
           <hr className="border-t-2 border-[#990F3D] mb-4 w-10" />
           <p className="text-[17px] text-gray-700 leading-relaxed mb-12 max-w-3xl">
-            Living Intelligence is not a newsletter. It is an AI-powered editorial platform with a multi-stage pipeline that discovers, verifies, scores, and publishes intelligence continuously.
+            This is not a newsletter. It&apos;s an editorial intelligence system. AI discovers, verifies, and scores. A human editor approves every story before it reaches you.
           </p>
 
           <div className="grid md:grid-cols-2 gap-8">
             {[
               {
-                title: 'AI-Powered Discovery',
-                desc: 'Over 60 search queries run daily across Google News, content analysis APIs, and specialist financial publications. Three discovery layers: broad market scans, capability-specific searches, and deep per-company monitoring.',
+                title: 'Discovery',
+                desc: '60+ queries run daily across news, financial publications, and content APIs. Three layers: broad scans, capability-specific searches, and per-firm deep monitoring.',
               },
               {
-                title: 'Automated Verification',
-                desc: 'Every article is structured by AI, then independently verified in a second pass that checks every factual claim against the original source. Claims that contradict the source are flagged and blocked automatically.',
+                title: 'Verification',
+                desc: 'AI structures each article. A separate pass checks every claim against the original source. Contradictions get flagged and blocked.',
               },
               {
-                title: 'Multi-Dimensional Scoring',
-                desc: 'Each development is scored across four dimensions: source credibility, claim verification, recency, and capability impact. Scores determine whether a story reaches the editorial inbox or is filtered out.',
+                title: 'Scoring',
+                desc: 'Four dimensions: source credibility, claim accuracy, recency, capability impact. Below the bar? Doesn\u2019t reach the inbox.',
               },
               {
-                title: 'Human Editorial Gate',
-                desc: 'Nothing publishes automatically. Every story is reviewed and approved by a human editor in the Editorial Studio before it reaches subscribers. The AI surfaces and verifies. The editor decides.',
+                title: 'Editorial gate',
+                desc: 'Nothing publishes on its own. The AI finds and checks. The editor calls it.',
               },
               {
-                title: 'Competitive Landscape Matrix',
-                desc: '37 firms and growing, assessed across 7 capability dimensions with maturity ratings: Scaled, Deployed, Piloting, or Announced. Updated continuously as new evidence emerges from the intelligence feed.',
+                title: 'Landscape matrix',
+                desc: '37 firms and growing, each mapped across 7 dimensions. Scaled, Deployed, Piloting, or Announced. Updates as evidence comes in.',
               },
               {
-                title: 'Source-Linked Provenance',
-                desc: 'Every claim links to its original source. Every entry carries a verification audit trail. No inference, no fabrication, no unattributed statistics. Built for environments where accuracy is non-negotiable.',
+                title: 'Source trail',
+                desc: 'Every claim links to its source. Every entry has a verification record. No inference, no unattributed numbers. One click to the original.',
               },
             ].map((card) => (
               <div key={card.title} className="flex gap-4">
@@ -126,23 +126,23 @@ export default function LandingPage() {
       <section className="py-16 md:py-20 bg-[#FDF8F2] border-t border-gray-200">
         <div className="max-w-5xl mx-auto px-6">
           <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#990F3D] mb-2">
-            What&apos;s Inside
+            What&apos;s inside
           </p>
           <hr className="border-t-2 border-[#990F3D] mb-10 w-10" />
 
           <div className="grid md:grid-cols-3 gap-8">
             {[
               {
-                title: 'The Intelligence',
-                desc: 'Every significant AI development in wealth management, verified against source. Not a news feed \u2014 an analytical lens on what each move means across the competitive landscape.',
+                title: 'The intelligence',
+                desc: 'AI developments in wealth management, verified against source. Not a feed. A lens on what each move means competitively.',
               },
               {
-                title: 'The Landscape',
-                desc: '37 firms mapped across 7 capability dimensions. Who\u2019s deployed, who\u2019s piloting, who\u2019s announced. A living matrix, not a quarterly slide deck.',
+                title: 'The landscape',
+                desc: '37 firms, 7 dimensions. Who\u2019s live, who\u2019s testing, who\u2019s announced. A matrix that updates, not a slide deck gathering dust.',
               },
               {
-                title: 'The Insight',
-                desc: 'Every entry answers one question: why does this matter? Not a summary \u2014 a strategic interpretation you won\u2019t find in a press release.',
+                title: 'The insight',
+                desc: 'Each entry answers: why does this matter? Not a press release rewrite. Context you won\u2019t get anywhere else.',
               },
             ].map((card) => (
               <div
@@ -161,11 +161,11 @@ export default function LandingPage() {
       <section className="py-16 md:py-20 bg-white border-t border-gray-200">
         <div className="max-w-5xl mx-auto px-6">
           <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#990F3D] mb-2">
-            The Landscape
+            Coverage
           </p>
           <hr className="border-t-2 border-[#990F3D] mb-4 w-10" />
           <p className="text-[17px] text-gray-700 leading-relaxed mb-10 max-w-3xl">
-            37 institutions currently tracked across 8 segments &mdash; and growing. Every company assessed across 7 AI capability dimensions, from advisor productivity to new business models.
+            37 firms across 8 segments. New firms get added as they make credible, trackable moves in AI. Each assessed across 7 capability dimensions, from advisor productivity to new business models.
           </p>
 
           {/* Segments with sample names */}
@@ -189,7 +189,7 @@ export default function LandingPage() {
 
           {/* Capability dimensions */}
           <p className="text-[11px] font-bold uppercase tracking-[0.15em] text-gray-400 mb-4">
-            7 Capability Dimensions
+            7 capability dimensions
           </p>
           <div className="flex flex-wrap gap-2 mb-12">
             {[
@@ -204,7 +204,7 @@ export default function LandingPage() {
 
           {/* Mini matrix snapshot */}
           <p className="text-[11px] font-bold uppercase tracking-[0.15em] text-gray-400 mb-4">
-            Landscape Snapshot
+            Snapshot
           </p>
           <div className="overflow-x-auto">
             <table className="w-full text-[12px]" style={{ minWidth: 600 }}>
@@ -241,7 +241,7 @@ export default function LandingPage() {
                 ))}
                 <tr>
                   <td colSpan={6} className="py-3 text-center text-[11px] text-gray-400 italic">
-                    + 34 more institutions across all segments
+                    + 34 more firms across all segments
                   </td>
                 </tr>
               </tbody>
@@ -252,21 +252,21 @@ export default function LandingPage() {
             <span className="flex items-center gap-1.5"><span className="inline-block w-2 h-2 rounded-full bg-blue-500" /> Deployed</span>
             <span className="flex items-center gap-1.5"><span className="inline-block w-2 h-2 rounded-full bg-orange-400" /> Piloting</span>
             <span className="flex items-center gap-1.5"><span className="inline-block w-2 h-2 rounded-full bg-yellow-400" /> Announced</span>
-            <span className="flex items-center gap-1.5"><span className="inline-block w-2 h-2 rounded-full bg-gray-200" /> No Activity</span>
+            <span className="flex items-center gap-1.5"><span className="inline-block w-2 h-2 rounded-full bg-gray-200" /> No activity</span>
           </div>
         </div>
       </section>
 
       {/* ─── SECTION 4: SAMPLE ENTRY ─── */}
-      <section className="py-16 md:py-20 bg-white border-t border-gray-200">
+      <section className="py-16 md:py-20 bg-[#FDF8F2] border-t border-gray-200">
         <div className="max-w-4xl mx-auto px-6">
           <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#990F3D] mb-2">
-            A Recent Entry
+            A recent entry
           </p>
           <hr className="border-t-2 border-[#990F3D] mb-10 w-10" />
 
           {/* Sample card */}
-          <div className="border border-gray-200 rounded-lg p-8 md:p-10 bg-[#FFFCF8]">
+          <div className="border border-gray-200 rounded-lg p-8 md:p-10 bg-white">
             {/* Card header */}
             <div className="flex flex-wrap items-center gap-3 mb-4">
               <span className="text-[11px] font-bold text-gray-500">BofA / Merrill</span>
@@ -282,8 +282,9 @@ export default function LandingPage() {
 
             {/* Insight callout */}
             <div className="border-l-2 border-[#990F3D] pl-6 mb-8">
+              <p className="text-[14px] font-semibold text-[#990F3D] mb-1">Why it matters</p>
               <p className="text-[15px] text-gray-700 leading-relaxed">
-                At 30 billion digital interactions and $211 billion in AI-linked asset growth, BofA&apos;s consumer AI estate is now larger than most standalone digital wealth platforms &mdash; establishing scale economics that make replication prohibitively expensive for firms still in pilot mode.
+                30 billion interactions and $211 billion in AI-linked asset growth make BofA&apos;s consumer AI estate larger than most standalone digital wealth platforms. The scale economics are now prohibitively expensive to replicate from scratch.
               </p>
             </div>
 
@@ -297,21 +298,21 @@ export default function LandingPage() {
       </section>
 
       {/* ─── SECTION 5: BUILT FOR ─── */}
-      <section className="py-16 md:py-20 bg-[#FDF8F2] border-t border-gray-200">
+      <section className="py-16 md:py-20 bg-white border-t border-gray-200">
         <div className="max-w-3xl mx-auto px-6">
           <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#990F3D] mb-2">
-            Built For
+            Built for
           </p>
           <hr className="border-t-2 border-[#990F3D] mb-10 w-10" />
 
           <p className="text-[17px] text-gray-700 leading-relaxed">
-            Decision makers at private banks, wirehouses, and wealth platforms who would rather spend 5 minutes a week staying informed than 5 hours chasing headlines.
+            People running private banks, wirehouses, and wealth platforms who&apos;d rather spend 5 minutes knowing what happened than 5 hours finding out.
           </p>
         </div>
       </section>
 
       {/* ─── SECTION 6: PRICING ─── */}
-      <section id="pricing" className="py-16 md:py-20 bg-white border-t border-gray-200">
+      <section id="pricing" className="py-16 md:py-20 bg-[#FDF8F2] border-t border-gray-200">
         <div className="max-w-4xl mx-auto px-6">
           <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#990F3D] mb-2">
             Pricing
@@ -319,12 +320,12 @@ export default function LandingPage() {
           <hr className="border-t-2 border-[#990F3D] mb-6 w-10" />
 
           <p className="text-[15px] text-gray-500 mb-10 max-w-2xl">
-            A single competitive landscape analysis from a consulting firm costs $75,000. An analyst subscription starts at $25,000/year.
+            A consulting firm charges $75,000 for a competitive landscape. Analyst subscriptions start at $25,000 a year.
           </p>
 
           <div className="grid md:grid-cols-2 gap-6 max-w-3xl">
             {/* Founding Member */}
-            <div className="border border-gray-200 rounded-lg p-8 relative">
+            <div className="border border-gray-200 rounded-lg p-8 relative bg-white">
               <span className="absolute top-4 right-4 text-[10px] font-bold uppercase tracking-wider bg-amber-100 text-amber-800 px-2 py-0.5 rounded-sm">
                 Limited
               </span>
@@ -346,7 +347,7 @@ export default function LandingPage() {
             </div>
 
             {/* Individual */}
-            <div className="border border-gray-200 rounded-lg p-8">
+            <div className="border border-gray-200 rounded-lg p-8 bg-white">
               <p className="text-[11px] uppercase tracking-widest text-gray-400 mb-5 mt-2">Individual</p>
               <div className="mb-1">
                 <span className="text-4xl font-extrabold text-gray-900">$500</span>
@@ -367,7 +368,7 @@ export default function LandingPage() {
 
           <p className="text-[13px] text-gray-400 mt-6">
             Team pricing available.{' '}
-            <a href="mailto:hello@livingintel.ai" className="text-[#990F3D] hover:underline">Contact us</a>.
+            <a href="mailto:hello@livingintel.ai" className="text-[#990F3D] hover:underline">Get in touch</a>.
           </p>
         </div>
       </section>
@@ -376,7 +377,7 @@ export default function LandingPage() {
       <section className="bg-[#1C1C2E] py-20 md:py-24 text-center">
         <div className="max-w-2xl mx-auto px-6">
           <p className="text-[17px] md:text-[19px] text-[#9999BB] leading-relaxed mb-10">
-            43 developments tracked since launch. The pace is accelerating.
+            43 developments tracked. The pace is picking up.
           </p>
           <a
             href="#pricing"
