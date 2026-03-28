@@ -17,7 +17,7 @@ export default function LandingPage() {
               See the AI moves your competitors are making.
             </h1>
             <p className="text-[17px] md:text-[19px] text-[#9999BB] leading-relaxed mb-10 max-w-2xl">
-              37 wealth management firms monitored daily across 7 AI capability dimensions. AI-powered discovery. Human-verified editorial. A living competitive intelligence platform.
+              37 wealth management firms monitored daily &mdash; and growing. 7 AI capability dimensions. AI-powered discovery. Human-verified editorial. A living competitive intelligence platform.
             </p>
             <a
               href="#pricing"
@@ -32,7 +32,7 @@ export default function LandingPage() {
         <div className="border-t border-[#2A2A3E]">
           <div className="max-w-5xl mx-auto px-6 py-5 flex flex-wrap gap-x-8 gap-y-3">
             {[
-              { n: '37', label: 'Institutions Monitored' },
+              { n: '37+', label: 'Institutions & Growing' },
               { n: '7', label: 'Capability Dimensions' },
               { n: '43+', label: 'Verified Developments' },
               { n: '●', label: 'Daily Monitoring' },
@@ -103,7 +103,7 @@ export default function LandingPage() {
               },
               {
                 title: 'Competitive Landscape Matrix',
-                desc: '37 firms assessed across 7 capability dimensions with maturity ratings: Scaled, Deployed, Piloting, or Announced. Updated continuously as new evidence emerges from the intelligence feed.',
+                desc: '37 firms and growing, assessed across 7 capability dimensions with maturity ratings: Scaled, Deployed, Piloting, or Announced. Updated continuously as new evidence emerges from the intelligence feed.',
               },
               {
                 title: 'Source-Linked Provenance',
