@@ -79,46 +79,25 @@ export default function LandingPage() {
             The platform
           </p>
           <hr className="border-t-2 border-[#990F3D] mb-4 w-10" />
-          <p className="text-[17px] text-gray-700 leading-relaxed mb-12 max-w-3xl">
+          <p className="text-[17px] text-gray-700 leading-relaxed mb-10 max-w-3xl">
             This is not a newsletter. It&apos;s an editorial intelligence system. AI discovers, verifies, and scores. A human editor approves every story before it reaches you.
           </p>
 
-          <div className="grid md:grid-cols-2 gap-8">
+          <ul className="space-y-4 max-w-2xl">
             {[
-              {
-                title: 'Discovery',
-                desc: '60+ queries run daily across news, financial publications, and content APIs. Three layers: broad scans, capability-specific searches, and per-firm deep monitoring.',
-              },
-              {
-                title: 'Verification',
-                desc: 'AI structures each article. A separate pass checks every claim against the original source. Contradictions get flagged and blocked.',
-              },
-              {
-                title: 'Scoring',
-                desc: 'Four dimensions: source credibility, claim accuracy, recency, capability impact. Below the bar? Doesn\u2019t reach the inbox.',
-              },
-              {
-                title: 'Editorial gate',
-                desc: 'Nothing publishes on its own. The AI finds and checks. The editor calls it.',
-              },
-              {
-                title: 'Landscape matrix',
-                desc: '37 firms and growing, each mapped across 7 dimensions. Scaled, Deployed, Piloting, or Announced. Updates as evidence comes in.',
-              },
-              {
-                title: 'Source trail',
-                desc: 'Every claim links to its source. Every entry has a verification record. No inference, no unattributed numbers. One click to the original.',
-              },
-            ].map((card) => (
-              <div key={card.title} className="flex gap-4">
-                <div className="w-1 bg-[#990F3D] rounded flex-shrink-0 mt-1" style={{ minHeight: 20 }} />
-                <div>
-                  <h3 className="text-[14px] font-bold text-gray-900 mb-2">{card.title}</h3>
-                  <p className="text-[13px] text-gray-600 leading-relaxed">{card.desc}</p>
-                </div>
-              </div>
+              '60+ search queries run daily across news sources and financial publications',
+              'Every claim verified against the original source in a separate AI pass',
+              'Scored on four dimensions: source credibility, claim accuracy, recency, capability impact',
+              'Nothing publishes without human editorial approval',
+              '37 firms mapped across 7 capability dimensions, updated as evidence comes in',
+              'Every claim links back to its source. One click to the original.',
+            ].map((item) => (
+              <li key={item} className="flex items-start gap-3">
+                <span className="text-[#990F3D] mt-1 flex-shrink-0">&#x2022;</span>
+                <span className="text-[15px] text-gray-700 leading-relaxed">{item}</span>
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
       </section>
 
