@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "AI in Wealth Management",
-  description: "Curated intelligence on AI across wealth management and financial services. Market developments, thought leadership, and competitive landscape.",
+  title: "Living Intelligence — AI in Wealth Management",
+  description: "37 wealth management firms. 7 AI capability dimensions. Every development verified, analysed, and updated weekly.",
 };
 
 export default function RootLayout({
@@ -19,7 +18,6 @@ export default function RootLayout({
       </head>
       <body className="bg-white text-gray-900 min-h-screen flex flex-col">
         <div className="flex-1">{children}</div>
-        <Footer />
       </body>
     </html>
   );

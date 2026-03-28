@@ -1,239 +1,242 @@
-import Link from 'next/link';
-import Header from '@/components/Header';
-import { getAllIntelligence, getAllCompetitors, getCapabilities, formatDateShort, TYPE_LABELS } from '@/lib/data';
-
-const TYPE_COLORS: Record<string, string> = {
-  partnership: 'bg-blue-50 text-blue-700',
-  product_launch: 'bg-purple-50 text-purple-700',
-  milestone: 'bg-green-50 text-green-700',
-  strategy_move: 'bg-orange-50 text-orange-700',
-  market_signal: 'bg-rose-50 text-rose-700',
-};
-
 export default function LandingPage() {
-  const allEntries = getAllIntelligence();
-  const competitors = getAllCompetitors();
-  const capabilities = getCapabilities();
-  const previewEntries = allEntries.slice(0, 3);
-
   return (
     <div className="min-h-screen">
-      <Header />
 
-      {/* HERO */}
+      {/* ─── SECTION 1: HERO ─── */}
       <section className="bg-[#1C1C2E]">
-        <div className="max-w-6xl mx-auto px-6 py-20 md:py-28">
-          <div className="max-w-2xl">
-            <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#990F3D] mb-5">
-              Living Intelligence
-            </p>
-            <h1 className="text-4xl md:text-[52px] font-extrabold text-white leading-[1.1] mb-6">
-              AI in wealth management.<br />Curated for leaders.
+        <div className="max-w-5xl mx-auto px-6 pt-16 pb-20 md:pt-24 md:pb-28">
+
+          {/* Masthead wordmark */}
+          <p className="text-[13px] font-extrabold uppercase tracking-[0.25em] text-white mb-16 md:mb-20">
+            Living Intelligence
+          </p>
+
+          {/* Headline block */}
+          <div className="max-w-3xl">
+            <h1 className="text-3xl md:text-[48px] font-extrabold text-white leading-[1.12] mb-6">
+              See the AI moves your competitors are making.
             </h1>
-            <p className="text-[17px] text-[#9999BB] leading-relaxed mb-10">
-              Every significant AI move across private banks, wirehouses, RIAs, and digital platforms —
-              tracked, verified, and structured so you can stay ahead in minutes, not hours.
+            <p className="text-[17px] md:text-[19px] text-[#9999BB] leading-relaxed mb-10 max-w-2xl">
+              37 wealth management firms. 7 AI capability dimensions. Every development verified, analysed, and updated weekly.
             </p>
-            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
-              <Link
-                href="/intelligence"
-                className="inline-flex items-center gap-2 bg-[#990F3D] hover:bg-[#7a0c31] text-white text-[15px] font-bold px-7 py-3.5 rounded transition-colors no-underline"
-              >
-                Start reading free →
-              </Link>
-              <span className="text-[12px] text-[#444458]">No sign-up · Updated weekly</span>
-            </div>
+            <a
+              href="#pricing"
+              className="inline-block bg-[#990F3D] hover:bg-[#7a0c31] text-white text-[15px] font-bold px-8 py-4 rounded transition-colors no-underline"
+            >
+              Start your 7-day trial
+            </a>
           </div>
         </div>
+
         {/* Stats strip */}
         <div className="border-t border-[#2A2A3E]">
-          <div className="max-w-6xl mx-auto px-6 py-4 flex flex-wrap gap-x-10 gap-y-2">
+          <div className="max-w-5xl mx-auto px-6 py-5 flex flex-wrap gap-x-8 gap-y-3">
             {[
-              { n: allEntries.length, label: 'Developments tracked' },
-              { n: competitors.length, label: 'Institutions mapped' },
-              { n: capabilities.length, label: 'Capability dimensions' },
-            ].map(s => (
+              { n: '37', label: 'Institutions Tracked' },
+              { n: '7', label: 'Capability Dimensions' },
+              { n: '43+', label: 'Verified Developments' },
+              { n: '●', label: 'Updated Weekly' },
+            ].map((s) => (
               <div key={s.label} className="flex items-center gap-2.5">
-                <span className="text-[22px] font-extrabold text-white">{s.n}</span>
-                <span className="text-[11px] uppercase tracking-wider text-[#444458]">{s.label}</span>
+                {s.n === '●' ? (
+                  <span className="text-[10px] text-[#990F3D]">●</span>
+                ) : (
+                  <span className="text-[20px] font-extrabold text-white">{s.n}</span>
+                )}
+                <span className="text-[11px] uppercase tracking-wider text-[#555568]">{s.label}</span>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* RECENT INTELLIGENCE */}
-      <section className="py-14 bg-[#FDF8F2] border-b border-gray-200">
-        <div className="max-w-6xl mx-auto px-6">
-          <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#990F3D] mb-1">Recent Intelligence</p>
-          <hr className="border-t-2 border-[#990F3D] mb-8 w-10" />
-          <div className="space-y-3 mb-7">
-            {previewEntries.map(entry => (
-              <Link
-                key={entry.id}
-                href={`/intelligence/${entry.id}`}
-                className="flex items-start gap-4 p-5 bg-white border border-gray-100 rounded hover:border-[#990F3D] transition-all no-underline group"
-              >
-                <div className="w-10 h-10 bg-gray-50 border border-gray-100 rounded flex items-center justify-center flex-shrink-0">
-                  {entry.image_url ? (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img src={entry.image_url} alt={entry.company_name} className="max-h-7 max-w-8 object-contain" />
-                  ) : (
-                    <span className="text-[9px] font-bold text-gray-400">{entry.company_name.slice(0, 3)}</span>
-                  )}
-                </div>
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-2 mb-1">
-                    <span className={`text-[10px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded-sm ${TYPE_COLORS[entry.type] || 'bg-gray-100 text-gray-600'}`}>
-                      {TYPE_LABELS[entry.type]}
-                    </span>
-                    <span className="text-xs text-gray-400">{entry.company_name} · {formatDateShort(entry.date)}</span>
-                  </div>
-                  <h3 className="text-[14px] font-bold text-gray-900 leading-snug group-hover:text-[#990F3D] transition-colors">
-                    {entry.headline}
-                  </h3>
-                </div>
-                {entry.key_stat && (
-                  <div className="flex-shrink-0 text-right hidden sm:block min-w-[70px]">
-                    <div className="text-lg font-extrabold text-[#990F3D]">{entry.key_stat.number}</div>
-                    <div className="text-[9px] text-gray-400 leading-tight">{entry.key_stat.label.slice(0, 40)}…</div>
-                  </div>
-                )}
-              </Link>
-            ))}
+      {/* ─── SECTION 2: THE CHALLENGE ─── */}
+      <section className="py-16 md:py-20 bg-[#FDF8F2]">
+        <div className="max-w-3xl mx-auto px-6">
+          <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#990F3D] mb-2">
+            The Challenge
+          </p>
+          <hr className="border-t-2 border-[#990F3D] mb-10 w-10" />
+
+          <div className="space-y-6 text-[17px] text-gray-700 leading-relaxed">
+            <p>
+              Last quarter, 14 wealth management firms launched or expanded AI capabilities. Most went unreported outside of industry press.
+            </p>
+            <p>
+              A competitive landscape analysis covering this ground costs $75,000&ndash;$250,000 from a consulting firm. It&apos;s outdated the week it&apos;s delivered. Analyst subscriptions from Gartner or Forrester start at $25,000 a year.
+            </p>
+            <p className="text-gray-900 font-semibold">
+              Living Intelligence tracks it all, continuously, for a fraction of the cost.
+            </p>
           </div>
-          <Link href="/intelligence" className="text-[12px] font-bold text-[#990F3D] hover:underline uppercase tracking-wider">
-            View all {allEntries.length} developments →
-          </Link>
         </div>
       </section>
 
-      {/* WHAT'S INSIDE */}
-      <section className="py-14 bg-white border-b border-gray-200">
-        <div className="max-w-6xl mx-auto px-6">
-          <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#990F3D] mb-1">What&apos;s Inside</p>
-          <hr className="border-t-2 border-[#990F3D] mb-8 w-10" />
-          <div className="grid md:grid-cols-3 gap-6">
+      {/* ─── SECTION 3: WHAT'S INSIDE ─── */}
+      <section className="py-16 md:py-20 bg-[#FDF8F2] border-t border-gray-200">
+        <div className="max-w-5xl mx-auto px-6">
+          <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#990F3D] mb-2">
+            What&apos;s Inside
+          </p>
+          <hr className="border-t-2 border-[#990F3D] mb-10 w-10" />
+
+          <div className="grid md:grid-cols-3 gap-8">
             {[
               {
-                title: 'Market Intelligence',
-                desc: `${allEntries.length} verified developments. Every AI product launch, partnership, and strategic move — structured and source-linked.`,
-                href: '/intelligence',
-                cta: 'Browse intelligence →',
+                title: 'The Intelligence',
+                desc: 'Every significant AI development in wealth management, verified against source. Not a news feed \u2014 an analytical lens on what each move means across the competitive landscape.',
               },
               {
-                title: 'AI Landscape',
-                desc: `${competitors.length} institutions mapped across ${capabilities.length} capability dimensions. See who leads, who lags, and where the gaps are widening.`,
-                href: '/landscape',
-                cta: 'View landscape →',
+                title: 'The Landscape',
+                desc: '37 firms mapped across 7 capability dimensions. Who\u2019s deployed, who\u2019s piloting, who\u2019s announced. A living matrix, not a quarterly slide deck.',
               },
               {
-                title: 'Thought Leadership',
-                desc: 'Curated essays from Sam Altman, Dario Amodei, and practitioners inside the industry on what AI means for wealth management.',
-                href: '/thought-leadership',
-                cta: 'Read essays →',
+                title: 'The Insight',
+                desc: 'Every entry answers one question: why does this matter? Not a summary \u2014 a strategic interpretation you won\u2019t find in a press release.',
               },
-            ].map(item => (
-              <div key={item.title} className="border-t-2 border-[#990F3D] pt-5">
-                <h3 className="text-[15px] font-bold text-gray-900 mb-2">{item.title}</h3>
-                <p className="text-sm text-gray-500 leading-relaxed mb-4">{item.desc}</p>
-                <Link href={item.href} className="text-[11px] font-bold text-[#990F3D] hover:underline uppercase tracking-wider">
-                  {item.cta}
-                </Link>
+            ].map((card) => (
+              <div
+                key={card.title}
+                className="border-l-2 border-[#990F3D] pl-6 py-1"
+              >
+                <h3 className="text-[16px] font-bold text-gray-900 mb-3">{card.title}</h3>
+                <p className="text-[15px] text-gray-600 leading-relaxed">{card.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* PRICING */}
-      <section className="py-14 bg-[#1C1C2E]">
-        <div className="max-w-6xl mx-auto px-6">
-          <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#990F3D] mb-1">Access</p>
+      {/* ─── SECTION 4: SAMPLE ENTRY ─── */}
+      <section className="py-16 md:py-20 bg-white border-t border-gray-200">
+        <div className="max-w-4xl mx-auto px-6">
+          <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#990F3D] mb-2">
+            A Recent Entry
+          </p>
           <hr className="border-t-2 border-[#990F3D] mb-10 w-10" />
-          <div className="grid md:grid-cols-2 gap-6 max-w-2xl">
 
-            <div className="border border-[#2A2A3E] rounded-lg p-7">
-              <p className="text-[11px] uppercase tracking-widest text-[#555568] mb-5">Individual</p>
-              <div className="mb-1">
-                <span className="text-4xl font-extrabold text-white">$500</span>
-                <span className="text-[#555568] text-sm ml-1.5">/ month</span>
-              </div>
-              <p className="text-[#555568] text-sm mb-6">
-                or <span className="text-white font-semibold">$5,000 / year</span>
-                <span className="ml-2 text-[10px] bg-[#990F3D] text-white px-1.5 py-0.5 rounded-sm font-bold">2 MONTHS FREE</span>
-              </p>
-              <ul className="space-y-2.5 mb-7 text-sm text-[#9999BB]">
-                {['Full intelligence feed', 'AI Landscape matrix', 'Thought Leadership library', 'Weekly notifications', '14-day free trial'].map(f => (
-                  <li key={f} className="flex items-center gap-2">
-                    <span className="text-[#990F3D]">→</span>{f}
-                  </li>
-                ))}
-              </ul>
-              <Link
-                href="/intelligence"
-                className="block text-center bg-[#990F3D] hover:bg-[#7a0c31] text-white text-sm font-bold py-3 rounded transition-colors no-underline"
-              >
-                Start free trial
-              </Link>
+          {/* Sample card */}
+          <div className="border border-gray-200 rounded-lg p-8 md:p-10 bg-[#FFFCF8]">
+            {/* Card header */}
+            <div className="flex flex-wrap items-center gap-3 mb-4">
+              <span className="text-[11px] font-bold text-gray-500">BofA / Merrill</span>
+              <span className="text-[10px] font-bold uppercase tracking-wider bg-[#FFF7ED] text-[#C2410C] px-2 py-0.5 rounded-sm">
+                Milestone
+              </span>
             </div>
 
-            <div className="border border-[#2A2A3E] rounded-lg p-7 flex flex-col justify-between">
-              <div>
-                <p className="text-[11px] uppercase tracking-widest text-[#555568] mb-5">Team</p>
-                <p className="text-4xl font-extrabold text-white mb-1">Custom</p>
-                <p className="text-[#555568] text-sm mb-6">3–10 seats · volume pricing</p>
-                <ul className="space-y-2.5 mb-7 text-sm text-[#9999BB]">
-                  {['Everything in Individual', 'Shared team access', 'Quarterly briefing call', 'Custom onboarding'].map(f => (
-                    <li key={f} className="flex items-center gap-2">
-                      <span className="text-[#990F3D]">→</span>{f}
-                    </li>
-                  ))}
-                </ul>
+            {/* Headline */}
+            <h3 className="text-xl md:text-2xl font-extrabold text-gray-900 leading-snug mb-6">
+              BofA&apos;s AI and digital estate reaches 30 billion client interactions
+            </h3>
+
+            {/* Insight callout */}
+            <div className="border-l-2 border-[#990F3D] pl-6 mb-8">
+              <p className="text-[15px] text-gray-700 leading-relaxed">
+                At 30 billion digital interactions and $211 billion in AI-linked asset growth, BofA&apos;s consumer AI estate is now larger than most standalone digital wealth platforms &mdash; establishing scale economics that make replication prohibitively expensive for firms still in pilot mode.
+              </p>
+            </div>
+
+            {/* Key stat */}
+            <div className="flex items-end gap-3">
+              <span className="text-4xl md:text-5xl font-extrabold text-[#1C1C2E] leading-none">30B</span>
+              <span className="text-[13px] text-gray-500 pb-1">client interactions in 2025</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── SECTION 5: BUILT FOR ─── */}
+      <section className="py-16 md:py-20 bg-[#FDF8F2] border-t border-gray-200">
+        <div className="max-w-3xl mx-auto px-6">
+          <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#990F3D] mb-2">
+            Built For
+          </p>
+          <hr className="border-t-2 border-[#990F3D] mb-10 w-10" />
+
+          <p className="text-[17px] text-gray-700 leading-relaxed">
+            Decision makers at private banks, wirehouses, and wealth platforms who would rather spend 5 minutes a week staying informed than 5 hours chasing headlines.
+          </p>
+        </div>
+      </section>
+
+      {/* ─── SECTION 6: PRICING ─── */}
+      <section id="pricing" className="py-16 md:py-20 bg-white border-t border-gray-200">
+        <div className="max-w-4xl mx-auto px-6">
+          <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#990F3D] mb-2">
+            Pricing
+          </p>
+          <hr className="border-t-2 border-[#990F3D] mb-6 w-10" />
+
+          <p className="text-[15px] text-gray-500 mb-10 max-w-2xl">
+            A single competitive landscape analysis from a consulting firm costs $75,000. An analyst subscription starts at $25,000/year.
+          </p>
+
+          <div className="grid md:grid-cols-2 gap-6 max-w-3xl">
+            {/* Founding Member */}
+            <div className="border border-gray-200 rounded-lg p-8 relative">
+              <span className="absolute top-4 right-4 text-[10px] font-bold uppercase tracking-wider bg-amber-100 text-amber-800 px-2 py-0.5 rounded-sm">
+                Limited
+              </span>
+              <p className="text-[11px] uppercase tracking-widest text-gray-400 mb-5">Founding Member</p>
+              <div className="mb-1">
+                <span className="text-4xl font-extrabold text-gray-900">$400</span>
+                <span className="text-gray-400 text-sm ml-1.5">/ month</span>
               </div>
+              <p className="text-[13px] text-gray-500 mb-1">First 50 subscribers. Locked for life.</p>
+              <p className="text-[13px] text-gray-500 mb-8">
+                <span className="text-gray-900 font-semibold">$4,000 / year</span>
+              </p>
               <a
-                href="mailto:hello@livingintel.ai"
-                className="block text-center border border-[#990F3D] text-[#990F3D] hover:bg-[#990F3D] hover:text-white text-sm font-bold py-3 rounded transition-colors no-underline"
+                href="#"
+                className="block text-center bg-[#990F3D] hover:bg-[#7a0c31] text-white text-[14px] font-bold py-3.5 rounded transition-colors no-underline"
               >
-                Get in touch
+                Start your 7-day trial
               </a>
             </div>
 
+            {/* Individual */}
+            <div className="border border-gray-200 rounded-lg p-8">
+              <p className="text-[11px] uppercase tracking-widest text-gray-400 mb-5 mt-2">Individual</p>
+              <div className="mb-1">
+                <span className="text-4xl font-extrabold text-gray-900">$500</span>
+                <span className="text-gray-400 text-sm ml-1.5">/ month</span>
+              </div>
+              <p className="text-[13px] text-gray-500 mb-8">
+                <span className="text-gray-900 font-semibold">$5,000 / year</span>
+                <span className="text-gray-400 ml-1.5">(save $1,000)</span>
+              </p>
+              <a
+                href="#"
+                className="block text-center bg-[#990F3D] hover:bg-[#7a0c31] text-white text-[14px] font-bold py-3.5 rounded transition-colors no-underline"
+              >
+                Start your 7-day trial
+              </a>
+            </div>
           </div>
+
+          <p className="text-[13px] text-gray-400 mt-6">
+            Team pricing available.{' '}
+            <a href="mailto:hello@livingintel.ai" className="text-[#990F3D] hover:underline">Contact us</a>.
+          </p>
         </div>
       </section>
 
-      {/* FINAL CTA */}
-      <section className="py-16 bg-[#FDF8F2] text-center">
-        <div className="max-w-xl mx-auto px-6">
-          <h2 className="text-2xl font-extrabold text-gray-900 mb-3">
-            Stay ahead of AI in wealth management.
-          </h2>
-          <p className="text-sm text-gray-500 mb-8">Start free. No credit card required.</p>
-          <Link
-            href="/intelligence"
-            className="inline-flex items-center gap-2 bg-[#990F3D] hover:bg-[#7a0c31] text-white text-[14px] font-bold px-8 py-4 rounded transition-colors no-underline"
+      {/* ─── SECTION 7: FINAL CTA ─── */}
+      <section className="bg-[#1C1C2E] py-20 md:py-24 text-center">
+        <div className="max-w-2xl mx-auto px-6">
+          <p className="text-[17px] md:text-[19px] text-[#9999BB] leading-relaxed mb-10">
+            43 developments tracked since launch. The pace is accelerating.
+          </p>
+          <a
+            href="#pricing"
+            className="inline-block bg-[#990F3D] hover:bg-[#7a0c31] text-white text-[15px] font-bold px-8 py-4 rounded transition-colors no-underline mb-10"
           >
-            Start reading free →
-          </Link>
+            Start your 7-day trial
+          </a>
+          <p className="text-[12px] text-[#444458]">By AI of the Tiger</p>
         </div>
       </section>
-
-      {/* FOOTER */}
-      <footer className="bg-[#141420] border-t border-[#2A2A3E] py-7">
-        <div className="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-          <div>
-            <p className="text-[13px] font-bold text-white mb-0.5">Living Intelligence · livingintel.ai</p>
-            <p className="text-[11px] text-[#444458]">AI in Wealth Management. All sources linked. Updated regularly.</p>
-          </div>
-          <div className="flex items-center gap-5">
-            <Link href="/intelligence" className="text-[12px] text-[#555568] hover:text-white transition-colors">Intelligence</Link>
-            <Link href="/thought-leadership" className="text-[12px] text-[#555568] hover:text-white transition-colors">Thought Leadership</Link>
-            <Link href="/landscape" className="text-[12px] text-[#555568] hover:text-white transition-colors">Landscape</Link>
-            <a href="mailto:hello@livingintel.ai" className="text-[12px] text-[#555568] hover:text-white transition-colors">Contact</a>
-          </div>
-        </div>
-      </footer>
 
     </div>
   );
