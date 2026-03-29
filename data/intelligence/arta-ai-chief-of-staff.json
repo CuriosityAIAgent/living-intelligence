@@ -10,7 +10,10 @@
   "source_url": "https://www.prnewswire.com/news-releases/arta-finance-launches-arta-ai-private-wealth-guided-by-ai-302418182.html",
   "source_verified": true,
   "summary": "Arta Finance launched Arta AI, an AI-powered private wealth platform built around three specialized agents: an Investment Planner that creates personalized financial plans, a Product Specialist for platform navigation, and a Research Analyst for stock analysis. The platform supports both voice and text interaction. Pricing starts at $20/month, with free access for clients with $100K or more in assets. CEO Caesar Sengupta leads the company, with Ralph Hamers (former CEO of UBS and ING) as senior advisor. Arta also introduced a 'Wealth as a Service' B2B offering targeting banks. The company reports thousands of accredited investors globally.",
-  "key_stat": "$20/month entry price; free for $100K+ clients",
+  "key_stat": {
+    "number": "$20/mo",
+    "label": "entry price for AI wealth platform (free for $100K+ clients)"
+  },
   "tags": {
     "capability": "client_personalization",
     "region": "us",

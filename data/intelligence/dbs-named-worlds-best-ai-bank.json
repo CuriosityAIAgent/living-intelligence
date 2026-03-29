@@ -11,7 +11,10 @@
   "source_verified": true,
   "image_url": "/logos/dbs.svg",
   "summary": "DBS won the inaugural World's Best AI Bank award from Global Finance's AI In Finance Awards 2025. The bank operates 1,500+ AI models deployed across 370+ use cases. Specific capabilities include hyper-personalized investment nudges, AI-driven fraud protection, relationship manager insights tools, and iCoach, a generative AI system for employee career planning. DBS also won Best Corporate/Institutional AI Bank and Best Enhanced Customer Experience at the same ceremony. This marks the second consecutive year DBS has won Global Finance's Digital Bank Awards.",
-  "key_stat": "1,500+ AI models across 370+ use cases",
+  "key_stat": {
+    "number": "1,500+",
+    "label": "AI models across 370+ use cases in production"
+  },
   "tags": {
     "capability": "research_content",
     "region": "asia",

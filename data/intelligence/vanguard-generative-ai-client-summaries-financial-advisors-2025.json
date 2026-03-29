@@ -11,7 +11,10 @@
   "source_verified": true,
   "image_url": "/logos/vanguard.png",
   "summary": "Vanguard launched Client-Ready Article Summaries, a generative AI tool that produces customized synopses of the firm's market perspectives for financial advisors. Advisors can tailor output by financial acumen level, life stage, and tone. The tool auto-generates required compliance disclosures. It supports Vanguard's network of 50,000+ advisory firms and 150,000 advisors. The product was in beta at the time of announcement in May 2025. Sid Ratna, Head of Digital and Analytics, led the initiative.",
-  "key_stat": "Supports 50,000+ advisory firms / 150,000 advisors",
+  "key_stat": {
+    "number": "150,000",
+    "label": "advisors across 50,000+ firms supported"
+  },
   "tags": {
     "capability": "advisor_productivity",
     "region": "us",

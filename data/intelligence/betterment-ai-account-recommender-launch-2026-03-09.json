@@ -11,7 +11,10 @@
   "source_verified": true,
   "image_url": "/logos/betterment.png",
   "summary": "Betterment launched its AI-enabled Account Recommender, which provides personalized account guidance based on individual financial profiles. The system uses a hybrid approach: advisor-built logic determines the recommendation, while AI generates the natural-language explanation. The company describes the architecture as 'structured prompt governance, guardrails, secure data orchestration.' Internal data showed 73% of customers expressed interest in AI-powered guidance. Betterment now serves 1M+ customers with $65B+ in assets. CEO Sarah Levy called AI the 'most powerful expression' of Betterment's founding principle. The company plans additional AI releases throughout 2026.",
-  "key_stat": "1M+ customers, $65B+ assets; 73% expressed interest in AI guidance",
+  "key_stat": {
+    "number": "1M+",
+    "label": "customers managing $65B+ in assets"
+  },
   "tags": {
     "capability": "client_personalization",
     "region": "us",
