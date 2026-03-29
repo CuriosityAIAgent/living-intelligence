@@ -302,39 +302,22 @@ export default function LandingPage() {
             A consulting firm charges $75,000 for a competitive landscape. Analyst subscriptions start at $25,000 a year.
           </p>
 
-          <div className="grid md:grid-cols-2 gap-6 max-w-3xl">
-            {/* Founding Member */}
+          <div className="max-w-md">
             <div className="border border-gray-200 rounded-lg p-8 relative bg-white">
               <span className="absolute top-4 right-4 text-[10px] font-bold uppercase tracking-wider bg-amber-100 text-amber-800 px-2 py-0.5 rounded-sm">
-                Limited
+                Founding offer
               </span>
               <p className="text-[11px] uppercase tracking-widest text-gray-400 mb-5">Founding Member</p>
               <div className="mb-1">
                 <span className="text-4xl font-extrabold text-gray-900">$400</span>
                 <span className="text-gray-400 text-sm ml-1.5">/ month</span>
               </div>
-              <p className="text-[13px] text-gray-500 mb-1">First 50 subscribers. Locked for life.</p>
-              <p className="text-[13px] text-gray-500 mb-8">
+              <p className="text-[13px] text-gray-500 mb-1">First 50 subscribers. This rate is locked for life.</p>
+              <p className="text-[13px] text-gray-500 mb-2">
                 <span className="text-gray-900 font-semibold">$4,000 / year</span>
               </p>
-              <a
-                href="#"
-                className="block text-center bg-[#990F3D] hover:bg-[#7a0c31] text-white text-[14px] font-bold py-3.5 rounded transition-colors no-underline"
-              >
-                Start your 7-day trial
-              </a>
-            </div>
-
-            {/* Individual */}
-            <div className="border border-gray-200 rounded-lg p-8 bg-white">
-              <p className="text-[11px] uppercase tracking-widest text-gray-400 mb-5 mt-2">Individual</p>
-              <div className="mb-1">
-                <span className="text-4xl font-extrabold text-gray-900">$500</span>
-                <span className="text-gray-400 text-sm ml-1.5">/ month</span>
-              </div>
-              <p className="text-[13px] text-gray-500 mb-8">
-                <span className="text-gray-900 font-semibold">$5,000 / year</span>
-                <span className="text-gray-400 ml-1.5">(save $1,000)</span>
+              <p className="text-[12px] text-gray-400 mb-8">
+                Price moves to $500/month after the first 50.
               </p>
               <a
                 href="#"

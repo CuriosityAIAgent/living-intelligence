@@ -3,9 +3,9 @@
 import { useState, useEffect } from 'react';
 
 const HEADLINES = [
-  'The AI moves you\u2019re not hearing about.',
-  '14 launches last quarter. You heard about 3.',
-  'Less noise. More signal. Fewer surprises.',
+  'AI is reshaping wealth management. Do you know who\u2019s ahead?',
+  'You can\u2019t build a strategy without knowing the competitive landscape.',
+  '14 AI launches last quarter. You heard about 3.',
 ];
 
 export default function RotatingHeadline() {
