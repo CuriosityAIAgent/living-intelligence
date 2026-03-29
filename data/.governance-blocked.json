@@ -119,5 +119,24 @@
     "blocked_at": "2026-03-28T05:05:58.466Z",
     "title": "Orion Deploys Denali AI Enterprise: Single Prompt Screen Replaces Multi-Tab Advisor Workflows",
     "score": 47
+  },
+  "https://www.businesswire.com/news/home/20260309897864/en/Jump-Expands-AI-Operating-System-for-Advisors-With-New-Products-Powering-Growth-and-Operations": {
+    "id": "jump-ai-operating-system-advisors-march-2026",
+    "reason": "Human rejected REVIEW entry",
+    "blocked_at": "2026-03-28T21:04:58.952Z"
+  },
+  "https://www.stocktitan.net/news/NOAH/noah-olive-co-host-2026-ai-outlook-redefining-global-allocation-for-3lnnj6c8qmga.html": {
+    "id": "noah-olive-ai-outlook-2026-hong-kong",
+    "reason": "the_so_what flagged as weak CXO relevance (3/10) — review before publishing",
+    "blocked_at": "2026-03-29T04:01:12.536Z",
+    "title": "Noah and Olive Position AI-Driven Global Allocation as Core Framework for Chinese HNW Investors",
+    "score": 49
+  },
+  "https://www.fintechfutures.com/venture-capital-funding/jump-raises-80m-series-b": {
+    "id": "jump-80m-series-b-ai-advisor-platform-2026",
+    "reason": "Score 50/100 — below 60 review threshold",
+    "blocked_at": "2026-03-29T04:02:30.968Z",
+    "title": "Jump's AI Advisor OS Reaches 15,000 Advisors as $80M Series B Validates Productivity Category",
+    "score": 50
   }
 }
