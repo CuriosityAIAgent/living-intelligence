@@ -2,7 +2,7 @@
   "id": "dbs-named-worlds-best-ai-bank",
   "type": "milestone",
   "headline": "DBS Named World's Best AI Bank",
-  "the_so_what": "DBS earning the world's best AI bank designation establishes it as the benchmark institution in Asia-Pacific — the same competitive dynamic that played out when DBS was named world's best digital bank in 2018, after which regional peers spent years and billions trying to close the gap.",
+  "the_so_what": "1,500 models across 370 use cases is an infrastructure number, not a marketing one. Most global banks publicly reference a handful of AI initiatives; DBS is reporting an order of magnitude more. The iCoach tool for internal career planning is telling: AI spending has moved past client-facing revenue lines into workforce operations, which only happens when a bank treats AI as core infrastructure rather than a product feature.",
   "company": "dbs",
   "company_name": "DBS Bank",
   "date": "2025-10-15",
@@ -10,8 +10,8 @@
   "source_url": "https://www.prnewswire.com/apac/news-releases/dbs-named-worlds-best-ai-bank-302584742.html",
   "source_verified": true,
   "image_url": "/logos/dbs.svg",
-  "summary": "DBS has been named the World's Best AI Bank according to a recognition announced on 15 October 2025. The article headline and title confirm the award but the body content available in the provided markdown is limited to navigation elements and does not contain further detail about the awarding body, criteria, or specific AI initiatives cited.",
-  "key_stat": null,
+  "summary": "DBS won the inaugural World's Best AI Bank award from Global Finance's AI In Finance Awards 2025. The bank operates 1,500+ AI models deployed across 370+ use cases. Specific capabilities include hyper-personalized investment nudges, AI-driven fraud protection, relationship manager insights tools, and iCoach, a generative AI system for employee career planning. DBS also won Best Corporate/Institutional AI Bank and Best Enhanced Customer Experience at the same ceremony. This marks the second consecutive year DBS has won Global Finance's Digital Bank Awards.",
+  "key_stat": "1,500+ AI models across 370+ use cases",
   "tags": {
     "capability": "research_content",
     "region": "asia",
@@ -24,19 +24,22 @@
   },
   "week": "2025-10-13",
   "_governance": {
-    "verdict": "REVIEW",
-    "confidence": 72,
+    "verdict": "PASS",
+    "confidence": 95,
     "verified_claims": [
-      "DBS has been named the World's Best AI Bank",
-      "The recognition was announced on 15 October 2025 (supported by the published timestamp 2025-10-15T13:00:00+01:00)",
-      "The body content available in the source is limited to navigation elements and does not contain further detail about the awarding body, criteria, or specific AI initiatives"
+      "Global Finance inaugural AI In Finance Awards 2025 — confirmed in PRNewswire release",
+      "1,500+ AI models across 370+ use cases — confirmed in PRNewswire release",
+      "Hyper-personalized investment nudges capability — confirmed in PRNewswire release",
+      "AI-driven fraud protection — confirmed in PRNewswire release",
+      "RM insights tools — confirmed in PRNewswire release",
+      "iCoach generative AI for employee career planning — confirmed in PRNewswire release",
+      "Also won Best Corporate/Institutional AI Bank and Best Enhanced Customer Experience — confirmed in PRNewswire release",
+      "Second consecutive year for Digital Bank Awards — confirmed in PRNewswire release"
     ],
-    "unverified_claims": [
-      "The article headline and title confirm the award — while the headline does confirm it, the generated entry's characterization of 'title' as a separate confirming element cannot be fully verified from the truncated source"
-    ],
+    "unverified_claims": [],
     "fabricated_claims": [],
-    "notes": "The core claims — DBS named World's Best AI Bank and the date of 15 October 2025 — are supported by the source headline and published timestamp. The generated entry correctly acknowledges that the source content is limited to navigation elements, which matches what is visible. No figures or statistics are fabricated. The REVIEW verdict is warranted because the source article body is truncated/incomplete (appears to be a navigation-only render), meaning the full article content cannot be verified.",
-    "paywall_caveat": true,
+    "notes": "Full re-verification from PRNewswire source. All claims confirmed against press release body. Previously truncated source now fully available. Upgraded from REVIEW to PASS.",
+    "paywall_caveat": false,
     "verified_at": "2026-03-11T05:37:24.983Z",
     "human_approved": true,
     "approved_at": "2026-03-27T06:05:12.005Z",
