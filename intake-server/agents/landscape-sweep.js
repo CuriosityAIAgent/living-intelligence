@@ -10,19 +10,13 @@
  */
 
 import { readFileSync, writeFileSync, existsSync, readdirSync } from 'fs';
-import { join, dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { join } from 'path';
 import Anthropic from '@anthropic-ai/sdk';
+import { COMPETITORS_DIR, STATE_DIR, THRESHOLDS } from './config.js';
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
-// Content data (competitors, intelligence) lives in the repo clone, not the volume
-const REPO_DATA       = join(__dirname, '..', '..', 'data');
-// State files (.suggestions, etc.) go to the persistent volume if available
-const STATE_DIR       = process.env.DATA_DIR ? join(process.env.DATA_DIR, 'data') : REPO_DATA;
-const COMPETITORS_DIR = join(REPO_DATA, 'competitors');
 const SUGGESTIONS_FILE = join(STATE_DIR, '.landscape-suggestions.json');
 
-const STALE_DAYS = 45;
+const STALE_DAYS = THRESHOLDS.STALENESS_DAYS;
 const MATURITY_ORDER = ['no_activity', 'announced', 'piloting', 'deployed', 'scaled'];
 
 // ── Suggestion store (shared with landscape-trigger.js) ──────────────────────

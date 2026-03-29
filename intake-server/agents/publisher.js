@@ -1,15 +1,10 @@
 import { writeFileSync, existsSync, mkdirSync, copyFileSync } from 'fs';
-import { join, dirname } from 'path';
+import { join } from 'path';
 import { tmpdir } from 'os';
-import { fileURLToPath } from 'url';
 import { execSync } from 'child_process';
+import { REPO_ROOT, INTEL_DIR, LOGOS_DIR } from './config.js';
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
-// Content files (intelligence entries) live in the repo clone — always repo-relative.
-// Published entries are written here then git-committed, so they must be in the repo tree.
-// DATA_DIR on Railway points to the persistent volume for state files only.
-const CONTENT_ROOT = join(__dirname, '..', '..', 'data');
-const PORTAL_DATA_DIR = join(CONTENT_ROOT, 'intelligence');
+const PORTAL_DATA_DIR = INTEL_DIR;
 
 // ── Date integrity ─────────────────────────────────────────────────────────────
 
@@ -137,7 +132,7 @@ export function commitInboxState() {
   const repo     = process.env.GITHUB_REPO || 'CuriosityAIAgent/living-intelligence';
   const branch   = 'intake';
 
-  const defaultPortalDir  = join(__dirname, '..', '..');
+  const defaultPortalDir  = REPO_ROOT;
   const portalDir         = process.env.PORTAL_DIR || defaultPortalDir;
   const hasGitRepo        = existsSync(join(portalDir, '.git'));
 
@@ -216,7 +211,7 @@ export function commitAndPush({ ids, send, branch = 'main' }) {
   const repo    = process.env.GITHUB_REPO || 'CuriosityAIAgent/living-intelligence';
 
   // ── Local mode: PORTAL_DIR is set or a .git repo exists two levels up ────────
-  const defaultPortalDir = join(__dirname, '..', '..');
+  const defaultPortalDir = REPO_ROOT;
   const explicitPortalDir = process.env.PORTAL_DIR;
   const portalDir = explicitPortalDir || defaultPortalDir;
   const hasGitRepo = existsSync(join(portalDir, '.git'));

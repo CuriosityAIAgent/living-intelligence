@@ -18,6 +18,12 @@
  */
 
 import fetch from 'node-fetch';
+import {
+  PRESS_RELEASE_DOMAINS as _PRESS_RELEASE_DOMAINS,
+  TIER1_MEDIA as _TIER1_MEDIA,
+  VALID_CAPABILITIES as _VALID_CAPABILITIES,
+  COMPETITORS_DIR,
+} from './config.js';
 
 // ── DataForSEO Backlinks API — live domain authority ──────────────────────────
 
@@ -57,9 +63,7 @@ async function getDomainAuthority(hostname) {
 
 // ── Fallback manual tier list ─────────────────────────────────────────────────
 
-const PRESS_RELEASE_DOMAINS = new Set([
-  'businesswire.com', 'prnewswire.com', 'globenewswire.com', 'accesswire.com',
-]);
+const PRESS_RELEASE_DOMAINS = _PRESS_RELEASE_DOMAINS;
 
 // Strong newsroom signals — subdomain or explicit path (low false-positive risk)
 const NEWSROOM_PATTERNS_STRONG = [
@@ -71,10 +75,7 @@ const NEWSROOM_PATTERNS_STRONG = [
 // Weaker newsroom signals — only applied AFTER checking the domain is not a known outlet
 const NEWSROOM_PATTERNS_WEAK = ['/news/', '/announcements/', '/blog/'];
 
-const TIER1_MEDIA = new Set([
-  'bloomberg.com', 'reuters.com', 'ft.com', 'wsj.com', 'cnbc.com',
-  'fortune.com', 'businessinsider.com', 'axios.com', 'nytimes.com',
-]);
+const TIER1_MEDIA = _TIER1_MEDIA;
 
 const TIER2_MEDIA = new Set([
   'riabiz.com', 'thinkadvisor.com', 'investmentnews.com', 'wealthmanagement.com',
@@ -180,14 +181,11 @@ let TRACKED_NAMES = new Set();
 try {
   const fs   = await import('fs');
   const path = await import('path');
-  const dataDir = process.env.PORTAL_DATA_DIR
-    || path.default.join(path.default.dirname(new URL(import.meta.url).pathname), '../../data');
-  const dir   = path.default.join(dataDir, 'competitors');
-  const files = fs.default.readdirSync(dir).filter(f => f.endsWith('.json'));
+  const files = fs.default.readdirSync(COMPETITORS_DIR).filter(f => f.endsWith('.json'));
   TRACKED_IDS   = new Set();
   TRACKED_NAMES = new Set();
   for (const f of files) {
-    const c = JSON.parse(fs.default.readFileSync(path.default.join(dir, f), 'utf8'));
+    const c = JSON.parse(fs.default.readFileSync(path.default.join(COMPETITORS_DIR, f), 'utf8'));
     if (c.id)   TRACKED_IDS.add(c.id.toLowerCase());
     if (c.name) TRACKED_NAMES.add(c.name.toLowerCase());
   }
@@ -223,10 +221,7 @@ function isTrackedCompany(entry) {
 //   3. Has quantified or described scale (Scale)
 //   4. Is about a company we track (Competitive Relevance)
 
-const VALID_CAPABILITIES = new Set([
-  'advisor_productivity', 'client_personalization', 'investment_portfolio',
-  'research_content', 'client_acquisition', 'operations_compliance', 'new_business_models',
-]);
+const VALID_CAPABILITIES = _VALID_CAPABILITIES;
 
 const DEPLOYMENT_SIGNALS = [
   'deployed', 'live', 'launched', 'available', 'released', 'rolls out', 'rolled out',

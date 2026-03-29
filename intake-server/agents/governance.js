@@ -16,15 +16,9 @@
  */
 
 import Anthropic from '@anthropic-ai/sdk';
+import { SOURCE_WINDOW, NEVER_PAYWALLED } from './config.js';
 
 const client = new Anthropic();
-const SOURCE_WINDOW = 12_000;
-
-// Press release wires are never paywalled — even if Jina extracts thin content,
-// it's an extraction issue, not a paywall
-const NEVER_PAYWALLED = new Set([
-  'businesswire.com', 'prnewswire.com', 'globenewswire.com', 'accesswire.com',
-]);
 
 function isNeverPaywalled(sourceUrl) {
   try {

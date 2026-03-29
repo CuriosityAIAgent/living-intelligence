@@ -10,17 +10,11 @@
  */
 
 import { readFileSync, writeFileSync, existsSync, readdirSync } from 'fs';
-import { join, dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { join } from 'path';
 import { execSync } from 'child_process';
 import Anthropic from '@anthropic-ai/sdk';
+import { REPO_ROOT, COMPETITORS_DIR, STATE_DIR } from './config.js';
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
-// Content files (competitors) live in the repo clone — always repo-relative.
-// State files (.landscape-suggestions.json) go to the persistent volume if available.
-const CONTENT_ROOT    = join(__dirname, '..', '..', 'data');
-const STATE_DIR       = (process.env.STATE_DIR || process.env.DATA_DIR) ? join(process.env.STATE_DIR || process.env.DATA_DIR, 'data') : CONTENT_ROOT;
-const COMPETITORS_DIR = join(CONTENT_ROOT, 'competitors');
 const SUGGESTIONS_FILE = join(STATE_DIR, '.landscape-suggestions.json');
 
 const MATURITY_ORDER = ['no_activity', 'announced', 'piloting', 'deployed', 'scaled'];
@@ -200,7 +194,7 @@ export function dismissLandscapeSuggestion(suggestionId) {
 function _commitCompetitorUpdate({ filepath, message }) {
   const gitToken = process.env.GIT_TOKEN;
   const repo     = process.env.GITHUB_REPO || 'CuriosityAIAgent/living-intelligence';
-  const portalDir = process.env.PORTAL_DIR || join(__dirname, '..', '..');
+  const portalDir = process.env.PORTAL_DIR || REPO_ROOT;
 
   try {
     execSync(`git config --global --add safe.directory "${portalDir}"`, { stdio: 'pipe' });

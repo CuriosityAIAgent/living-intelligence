@@ -13,16 +13,10 @@
  */
 
 import { writeFileSync, existsSync } from 'fs';
-import { join, dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { join } from 'path';
 import { execSync } from 'child_process';
 import Anthropic from '@anthropic-ai/sdk';
-
-const __dirname = dirname(fileURLToPath(import.meta.url));
-// Content files (thought-leadership entries) live in the repo clone — always repo-relative.
-// Published TL entries are written here then git-committed, so they must be in the repo tree.
-const CONTENT_ROOT = join(__dirname, '..', '..', 'data');
-const TL_DIR       = join(CONTENT_ROOT, 'thought-leadership');
+import { REPO_ROOT, TL_DIR } from './config.js';
 
 const client = new Anthropic();
 
@@ -197,7 +191,7 @@ export async function publishTlEntry({ url, send }) {
 function _commitAndPush({ filepath, slug, send }) {
   const gitToken  = process.env.GIT_TOKEN;
   const repo      = process.env.GITHUB_REPO || 'CuriosityAIAgent/living-intelligence';
-  const portalDir = process.env.PORTAL_DIR  || join(__dirname, '..', '..');
+  const portalDir = process.env.PORTAL_DIR  || REPO_ROOT;
 
   try {
     execSync(`git config --global --add safe.directory "${portalDir}"`, { stdio: 'pipe' });

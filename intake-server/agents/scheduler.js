@@ -13,8 +13,7 @@
  */
 
 import { readFileSync, readdirSync } from 'fs';
-import { join, dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { join } from 'path';
 import { autoDiscover } from './auto-discover.js';
 import { processUrl } from './intake.js';
 import { enrichContext } from './context-enricher.js';
@@ -25,17 +24,12 @@ import { scoreEntry, formatScoreBreakdown } from './scorer.js';
 import { addPending, addBlocked, isBlocked, isTopicSuppressed, writePipelineStatus } from './gov-store.js';
 import { commitInboxState } from './publisher.js';
 import { sendDigest } from './notifier.js';
-
-const __dirname = dirname(fileURLToPath(import.meta.url));
-// Content files (intelligence entries) live in the repo clone — always repo-relative.
-// DATA_DIR on Railway points to the persistent volume for state files only.
-const CONTENT_ROOT = join(__dirname, '..', '..', 'data');
-const INTEL_DIR = join(CONTENT_ROOT, 'intelligence');
+import { INTEL_DIR, THRESHOLDS } from './config.js';
 
 // ── Review threshold ───────────────────────────────────────────────────────────
 // PUBLISH ≥ 75  |  REVIEW 60–74  |  BLOCK < 60
 // Full score breakdown: A: Source (0-25) + B: Claims (0-25) + C: Fresh (0-10) + D: Impact (0-40)
-const REVIEW_THRESHOLD = 60;
+const REVIEW_THRESHOLD = THRESHOLDS.REVIEW;
 
 // ── Entity+event dedup ────────────────────────────────────────────────────────
 // Prevents the same funding round / acquisition / event type from re-surfacing

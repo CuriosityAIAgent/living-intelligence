@@ -2,18 +2,17 @@ import fetch from 'node-fetch';
 import Anthropic from '@anthropic-ai/sdk';
 import slugify from 'slugify';
 import { readdirSync, readFileSync } from 'fs';
-import { join, dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { join } from 'path';
+import {
+  COMPETITORS_DIR,
+  PAYWALLED_DOMAINS as _PAYWALLED_DOMAINS,
+  THIN_CONTENT_THRESHOLD as _THIN_CONTENT_THRESHOLD,
+} from './config.js';
 
 // ── Company slug normalization ──────────────────────────────────────────────
 // Claude generates company slugs during structuring but doesn't know our
 // landscape IDs. This alias map corrects common variations to the canonical slug.
 // Built dynamically from data/competitors/*.json + hardcoded overrides.
-
-const __dirname_intake = dirname(fileURLToPath(import.meta.url));
-// Content files (competitors) live in the repo clone — always resolve relative
-// to this file, never from DATA_DIR (Railway persistent volume).
-const DATA_ROOT = join(__dirname_intake, '..', '..');
 
 const COMPANY_ALIAS_MAP = new Map();
 
@@ -50,7 +49,7 @@ const MANUAL_ALIASES = {
 
 // Load canonical IDs from landscape
 try {
-  const compDir = join(DATA_ROOT, 'data', 'competitors');
+  const compDir = COMPETITORS_DIR;
   const files = readdirSync(compDir).filter(f => f.endsWith('.json'));
   const canonicalIds = new Set();
   for (const f of files) {
@@ -154,13 +153,10 @@ const OPEN_DOMAINS = new Set([
 ]);
 
 // Domains known to be hard paywalled — skip in enrichment search
-const PAYWALLED_DOMAINS = new Set([
-  'ft.com', 'wsj.com', 'bloomberg.com', 'barrons.com',
-  'economist.com', 'hbr.org', 'morningstar.com',
-]);
+const PAYWALLED_DOMAINS = _PAYWALLED_DOMAINS;
 
 // Content is "thin" if below this word count — always triggers enrichment
-const THIN_CONTENT_THRESHOLD = 500;
+const THIN_CONTENT_THRESHOLD = _THIN_CONTENT_THRESHOLD;
 
 async function fetchPageMarkdown(url) {
   const jinaUrl = `https://r.jina.ai/${url}`;

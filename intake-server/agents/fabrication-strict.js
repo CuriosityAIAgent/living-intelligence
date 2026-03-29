@@ -17,10 +17,9 @@
  */
 
 import Anthropic from '@anthropic-ai/sdk';
+import { SOURCE_WINDOW } from './config.js';
 
 const client = new Anthropic();
-
-const SOURCE_WINDOW = 12_000; // chars — same window as governance.js
 
 export async function checkFabrication({ entry, sourceMarkdown }) {
   const sourceSnippet = (sourceMarkdown || '').slice(0, SOURCE_WINDOW);

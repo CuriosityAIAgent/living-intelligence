@@ -19,28 +19,21 @@
 
 import Anthropic from '@anthropic-ai/sdk';
 import { readFileSync, readdirSync } from 'fs';
-import { join, dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { join } from 'path';
+import { INTEL_DIR, COMPETITORS_DIR } from './config.js';
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
 const client = new Anthropic();
 
 // ── Data loading helpers ──────────────────────────────────────────────────────
-// Content files (intelligence, competitors) live in the repo clone — always
-// resolve relative to this file, never from DATA_DIR (Railway persistent volume).
-
-function getDataRoot() {
-  return join(__dirname, '..', '..', 'data');
-}
+// Content files (intelligence, competitors) live in the repo clone — paths from config.js.
 
 function loadPublishedEntriesForCompany(companySlug, limit = 3) {
-  const intelDir = join(getDataRoot(), 'intelligence');
   try {
-    const files = readdirSync(intelDir).filter(f => f.endsWith('.json'));
+    const files = readdirSync(INTEL_DIR).filter(f => f.endsWith('.json'));
     const entries = [];
     for (const file of files) {
       try {
-        const entry = JSON.parse(readFileSync(join(intelDir, file), 'utf8'));
+        const entry = JSON.parse(readFileSync(join(INTEL_DIR, file), 'utf8'));
         if ((entry.company || '').toLowerCase() === companySlug.toLowerCase()) {
           entries.push(entry);
         }
@@ -56,7 +49,7 @@ function loadPublishedEntriesForCompany(companySlug, limit = 3) {
 }
 
 function loadCompetitorFile(companySlug) {
-  const competitorDir = join(getDataRoot(), 'competitors');
+  const competitorDir = COMPETITORS_DIR;
   // Try exact match first, then slug variations
   const candidates = [
     `${companySlug}.json`,
@@ -72,7 +65,7 @@ function loadCompetitorFile(companySlug) {
 }
 
 function loadAllCompetitors() {
-  const competitorDir = join(getDataRoot(), 'competitors');
+  const competitorDir = COMPETITORS_DIR;
   try {
     return readdirSync(competitorDir)
       .filter(f => f.endsWith('.json'))
