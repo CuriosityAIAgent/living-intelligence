@@ -32,11 +32,11 @@
 │                  DATA DIRECTORY (inside this repo)               │
 │                    ./data/  — tracked in git                     │
 │                                                                  │
-│  intelligence/    → IntelligenceEntry JSON files (42 entries)   │
-│  thought-leadership/ → ThoughtLeadershipEntry JSON files (6)    │
+│  intelligence/    → IntelligenceEntry JSON files (43 entries)   │
+│  thought-leadership/ → ThoughtLeadershipEntry JSON files (7)    │
 │  competitors/     → Competitor JSON files (37 companies)         │
 │  capabilities/    → index.json (7 capability dimensions)         │
-│  logos/           → SVG/PNG logos (42 companies, local only)     │
+│  logos/           → SVG/PNG logos (43 companies, local only)     │
 │  .governance-pending.json  → Universal inbox (ALL stories pre-publish) │
 │  .governance-blocked.json  → FAIL URLs permanently blocked      │
 │  .rejection-log.json       → Editorial rejections (reason+notes)│
@@ -92,7 +92,7 @@
 | `scripts/reprocess-failed.js` | Re-run FAIL entries through corrected pipeline |
 | `scripts/test-portal.js` | Health check all URLs + portal pages, auto-fix broken links |
 | `rss-feeds.json` | Archived — RSS removed; DataForSEO two-layer replaces it |
-| `public/index.html` | Intake UI (single-file vanilla JS, includes Review tab) |
+| `client/` | Editorial Studio UI — React (Vite + TS + Tailwind v4), builds to `intake-server/public/` |
 
 ### Intake Server API Routes
 
@@ -127,7 +127,7 @@
 6. Claude structures into IntelligenceEntry JSON with the_so_what field (no inference allowed)
 7. Claude verifies every claim in the entry against the source (governance check)
    ├── PASS  → score ≥ 75 → INBOX (high-confidence, awaits editorial sign-off)
-   ├── REVIEW → score 60–74 → INBOX (flagged for closer look)
+   ├── REVIEW → score 45–74 → INBOX (flagged for closer look)
    └── FAIL   → URL permanently blocked, entry discarded
 8. **UNIVERSAL INBOX**: All stories queue in .governance-pending.json — nothing auto-publishes
    Haresh reviews each item in Editorial Studio (localhost:3003):

@@ -250,12 +250,14 @@ Every intelligence entry that goes through the intake pipeline receives a `_gove
 ```
 
 - **PASS** (score ≥ 75) → queued in Universal Inbox for editorial sign-off
-- **REVIEW** (score 60–74) → queued in Universal Inbox, flagged for closer review
-- **FAIL** (score < 60 or fabricated) → URL permanently blocked in `.governance-blocked.json`
+- **REVIEW** (score 45–74) → queued in Universal Inbox, flagged for closer review
+- **FAIL** (score < 45 or fabricated) → URL permanently blocked in `.governance-blocked.json`
 
 **Nothing auto-publishes.** All stories require Haresh's approval in the Editorial Studio (`localhost:3003`) before going live. Approve → `POST /api/inbox/:id/approve-and-publish` (SSE, git push included). Reject → reason logged to `.rejection-log.json`.
 
 `source_verified` on every entry always reflects the actual governance outcome — never hardcoded.
+
+**Shared config:** `intake-server/agents/config.js` is the single source of truth for all paths, thresholds, and constants. Agents import from here — no agent defines its own paths.
 
 ---
 
@@ -266,5 +268,6 @@ Every intelligence entry that goes through the intake pipeline receives a `_gove
 | `backfill-governance.js` | Run governance check on all existing entries that lack `_governance` | `node --env-file=.env scripts/backfill-governance.js` |
 | `reprocess-failed.js` | Re-fetch + re-structure + re-verify all FAIL entries | `node --env-file=.env scripts/reprocess-failed.js` |
 | `test-portal.js` | Health check all URLs + portal pages, auto-fix broken links | `node scripts/test-portal.js --fast` |
+| `smoke-test.js` | Quick data integrity check (JSON validity, required fields, slug consistency, banned URLs). Run before pushing. | `node scripts/smoke-test.js` |
 
 Run `test-portal.js` after any batch data change to catch broken `document_url`, `image_url`, or `author.photo_url` fields before they reach production.
