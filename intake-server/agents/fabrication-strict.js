@@ -31,7 +31,16 @@ export async function checkFabrication({ entry, sourceMarkdown }) {
 
   const prompt = `You are a fabrication-detection agent for a premium financial intelligence platform.
 
-Your job is STRICTLY different from general fact-checking: you are looking for EXACT TEXT MATCHES, not plausible support or paraphrasing. Every specific number, company name, and quoted phrase must appear VERBATIM (or near-verbatim with only minor grammatical inflection) in the source text below.
+Your job is STRICTLY different from general fact-checking: you verify that key facts in the entry are supported by the source. You check numbers, names, and quoted phrases.
+
+IMPORTANT — what counts as a match:
+- Exact numbers: "5,000" matches "5,000" → PASS
+- Equivalent expressions: "120M+" matches "more than 100 million" → PASS (same order of magnitude, consistent direction)
+- Rounded numbers: "~5,000" matches "nearly 5,000" or "approximately 5,000" → PASS
+- Abbreviation vs full: "$45M" matches "$45 million" → PASS
+- Different numbers for the same metric: "$50M" in entry but "$30M" in source → FAIL (genuine contradiction)
+
+Only FAIL on genuine contradictions — where the entry states a specific number and the source states a DIFFERENT number for the same thing.
 
 ENTRY TO CHECK:
 ---
@@ -51,7 +60,7 @@ ${sourceSnippet}
 
 Answer each of the following six checks precisely:
 
-1. NUMBERS IN HEADLINE — Extract every digit sequence from the headline (e.g. "150", "2.5", "$4B"). For each: does it appear verbatim or near-verbatim in the source text? If the source text is truncated and the number simply isn't present (not contradicted), note it as "not found — possible truncation".
+1. NUMBERS IN HEADLINE — Extract every digit sequence from the headline (e.g. "150", "2.5", "$4B"). For each: does the source contain the same number or an equivalent expression (e.g. "$45M" = "$45 million", "5,000+" = "more than 5,000", "120M" = "more than 100 million")? If equivalent → PASS. If the source has a DIFFERENT number for the same metric → FAIL. If not found at all (possible truncation) → not_found_truncation.
 
 2. COMPANY NAME SPELLING — Is "${entry.company_name}" spelled exactly as it appears in the source? Check the source for the company name and report the exact spelling found. If the source uses a different form (e.g. "JPMorgan Chase" vs "JPMorgan"), flag it only if the forms are substantively different (not just abbreviation vs full name).
 
