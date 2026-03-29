@@ -606,7 +606,8 @@ test('publish() — written JSON does not contain fabricated_claims', () => {
   const { readdirSync: _rds } = await import('fs');
   const { unlinkSync: _ul } = await import('fs');
   try {
-    const files = _rds(realIntelDir).filter(f => f.startsWith(`_testpub_${RUN_ID}`));
+    // Clean ALL _testpub_ files, not just current run — prevents stale artifacts
+    const files = _rds(realIntelDir).filter(f => f.startsWith('_testpub_'));
     files.forEach(f => { try { _ul(join(realIntelDir, f)); } catch (_) {} });
   } catch (_) {}
 }
@@ -1324,6 +1325,20 @@ await test('Unknown slug passes through unchanged', () => {
 await test('Goldman Sachs (already canonical) stays unchanged', () => {
   eq(normalizeCompanySlug('goldman-sachs'), 'goldman-sachs', 'canonical passthrough');
 });
+
+// ═════════════════════════════════════════════════════════════════════════════
+// Final cleanup — delete ALL test artifacts from data/intelligence/
+// ═════════════════════════════════════════════════════════════════════════════
+
+{
+  const { readdirSync: _rds, unlinkSync: _ul } = await import('fs');
+  try {
+    const realIntelDir = join(import.meta.dirname || __dirname, '..', '..', 'data', 'intelligence');
+    const artifacts = _rds(realIntelDir).filter(f => f.startsWith('_testpub_'));
+    artifacts.forEach(f => { try { _ul(join(realIntelDir, f)); } catch (_) {} });
+    if (artifacts.length > 0) console.log(`\n${Y}Cleaned ${artifacts.length} test artifacts${RS}`);
+  } catch (_) {}
+}
 
 // ═════════════════════════════════════════════════════════════════════════════
 // Results

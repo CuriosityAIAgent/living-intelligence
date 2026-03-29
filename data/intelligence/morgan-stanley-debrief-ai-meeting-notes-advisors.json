@@ -2,7 +2,7 @@
   "id": "morgan-stanley-debrief-ai-meeting-notes-advisors",
   "type": "product_launch",
   "headline": "Morgan Stanley launches AI @ Debrief — OpenAI-powered meeting notes tool saves advisors 30 minutes per client meeting",
-  "the_so_what": "When 98% of Morgan Stanley advisor teams adopt an AI tool and it's saving 30 minutes per meeting, every competing firm's advisors are now operating at a structural productivity disadvantage.",
+  "the_so_what": "The gap between Morgan Stanley's 98% adoption and the industry median is no longer a technology lead — it is a compounding data advantage where each interaction trains the next recommendation, and the 30 minutes saved per meeting across thousands of advisors aggregates into a structural cost-to-serve advantage that widens with every client conversation.",
   "company": "morgan-stanley",
   "company_name": "Morgan Stanley",
   "date": "2024-06-26",
@@ -19,10 +19,14 @@
     "capability": "advisor_productivity",
     "region": "us",
     "segment": "wirehouse",
-    "theme": ["openai", "meeting_notes", "salesforce", "advisor_tools"]
+    "theme": [
+      "openai",
+      "meeting_notes",
+      "salesforce",
+      "advisor_tools"
+    ]
   },
   "week": "2024-06-24",
-  "featured": false,
   "_governance": {
     "verdict": "PASS",
     "confidence": 96,

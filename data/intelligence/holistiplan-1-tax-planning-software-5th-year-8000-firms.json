@@ -2,7 +2,7 @@
   "id": "holistiplan-1-tax-planning-software-5th-year-8000-firms",
   "type": "milestone",
   "headline": "Holistiplan named #1 tax planning software for the fifth consecutive year as adoption reaches 8,000+ advisory firms",
-  "the_so_what": "When 51% of advisors now use tax planning software versus 7% in 2019, Holistiplan's five-year dominance shows AI-powered tax analysis has moved from differentiator to table stakes \u2014 firms without it are losing proposals.",
+  "the_so_what": "Tax planning software adoption jumping from 7% of advisors in 2019 to 51% in 2025 — with Holistiplan holding the dominant share across 8,000+ firms — traces the classic adoption curve from differentiator to baseline expectation, compressing what took CRM tools fifteen years into six.",
   "company": "holistiplan",
   "company_name": "Holistiplan",
   "date": "2025-03-05",
@@ -10,10 +10,10 @@
   "source_url": "https://www.holistiplan.com/news/holistiplan-ranked-1-tax-planning-software-for-the-5th-year-in-a-row/",
   "source_verified": true,
   "image_url": "/logos/holistiplan.svg",
-  "summary": "Holistiplan was ranked #1 tax planning software for the fifth consecutive year in the 2025 T3/Inside Information Technology Survey, with over 8,000 advisory firms now on the platform. The software uses AI and OCR to analyse client tax returns in minutes and identify planning opportunities \u2014 Roth conversions, tax-loss harvesting, charitable giving strategies \u2014 that previously required a specialist. Market penetration for tax planning software has grown from 7% of advisors in 2019 to 51% in 2025, with Holistiplan holding the dominant share. Holistiplan also qualified for the survey's '9.00+ user rating club', reflecting the highest customer satisfaction across all tools in the category.",
+  "summary": "Holistiplan was ranked #1 tax planning software for the fifth consecutive year in the 2025 T3/Inside Information Technology Survey, with over 8,000 advisory firms now on the platform. The software uses AI and OCR to analyse client tax returns in minutes and identify planning opportunities — Roth conversions, tax-loss harvesting, charitable giving strategies — that previously required a specialist. Market penetration for tax planning software has grown from 7% of advisors in 2019 to 51% in 2025, with Holistiplan holding the dominant share. Holistiplan also qualified for the survey's '9.00+ user rating club', reflecting the highest customer satisfaction across all tools in the category.",
   "key_stat": {
     "number": "8,000+",
-    "label": "Advisory firms using Holistiplan \u2014 #1 tax planning software 5 consecutive years"
+    "label": "Advisory firms using Holistiplan — #1 tax planning software 5 consecutive years"
   },
   "tags": {
     "capability": "advisor_productivity",
@@ -27,14 +27,13 @@
     ]
   },
   "week": "2025-03-03",
-  "featured": false,
   "_governance": {
     "verdict": "PASS",
     "confidence": 97,
     "verified_claims": [
-      "#1 tax planning software \u2014 2025 T3/Inside Information Technology Survey, 5th consecutive year (Holistiplan official press release March 5, 2025)",
+      "#1 tax planning software — 2025 T3/Inside Information Technology Survey, 5th consecutive year (Holistiplan official press release March 5, 2025)",
       "Over 8,000 advisory firms using Holistiplan (press release)",
-      "Qualified for '9.00+ user rating club' \u2014 highest customer satisfaction in category (press release)",
+      "Qualified for '9.00+ user rating club' — highest customer satisfaction in category (press release)",
       "Market penetration of tax planning software grew from 7% (2019) to 51% (2025) (press release)",
       "Company launched July 2019 (press release)",
       "AI and OCR used to analyse client tax returns in minutes (verified product description)"

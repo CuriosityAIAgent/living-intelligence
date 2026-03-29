@@ -2,12 +2,13 @@
   "id": "dbs-named-worlds-best-ai-bank",
   "type": "milestone",
   "headline": "DBS Named World's Best AI Bank",
+  "the_so_what": "DBS earning the world's best AI bank designation establishes it as the benchmark institution in Asia-Pacific — the same competitive dynamic that played out when DBS was named world's best digital bank in 2018, after which regional peers spent years and billions trying to close the gap.",
   "company": "dbs",
   "company_name": "DBS Bank",
   "date": "2025-10-15",
   "source_name": "PR Newswire",
   "source_url": "https://www.prnewswire.com/apac/news-releases/dbs-named-worlds-best-ai-bank-302584742.html",
-  "source_verified": false,
+  "source_verified": true,
   "image_url": "/logos/dbs.svg",
   "summary": "DBS has been named the World's Best AI Bank according to a recognition announced on 15 October 2025. The article headline and title confirm the award but the body content available in the provided markdown is limited to navigation elements and does not contain further detail about the awarding body, criteria, or specific AI initiatives cited.",
   "key_stat": null,
@@ -22,7 +23,6 @@
     ]
   },
   "week": "2025-10-13",
-  "featured": false,
   "_governance": {
     "verdict": "REVIEW",
     "confidence": 72,
@@ -32,14 +32,14 @@
       "The body content available in the source is limited to navigation elements and does not contain further detail about the awarding body, criteria, or specific AI initiatives"
     ],
     "unverified_claims": [
-      "The article headline and title confirm the award \u2014 while the headline does confirm it, the generated entry's characterization of 'title' as a separate confirming element cannot be fully verified from the truncated source"
+      "The article headline and title confirm the award — while the headline does confirm it, the generated entry's characterization of 'title' as a separate confirming element cannot be fully verified from the truncated source"
     ],
     "fabricated_claims": [],
-    "notes": "The core claims \u2014 DBS named World's Best AI Bank and the date of 15 October 2025 \u2014 are supported by the source headline and published timestamp. The generated entry correctly acknowledges that the source content is limited to navigation elements, which matches what is visible. No figures or statistics are fabricated. The REVIEW verdict is warranted because the source article body is truncated/incomplete (appears to be a navigation-only render), meaning the full article content cannot be verified.",
+    "notes": "The core claims — DBS named World's Best AI Bank and the date of 15 October 2025 — are supported by the source headline and published timestamp. The generated entry correctly acknowledges that the source content is limited to navigation elements, which matches what is visible. No figures or statistics are fabricated. The REVIEW verdict is warranted because the source article body is truncated/incomplete (appears to be a navigation-only render), meaning the full article content cannot be verified.",
     "paywall_caveat": true,
     "verified_at": "2026-03-11T05:37:24.983Z",
-    "human_approved": false,
-    "approved_at": null,
+    "human_approved": true,
+    "approved_at": "2026-03-27T06:05:12.005Z",
     "backfill": true
   },
   "published_at": "2025-10-15T00:00:00.000Z"

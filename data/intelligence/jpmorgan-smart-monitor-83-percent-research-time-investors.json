@@ -2,7 +2,7 @@
   "id": "jpmorgan-smart-monitor-83-percent-research-time-investors",
   "type": "deployment",
   "headline": "JPMorgan's Smart Monitor cuts investor research time by 83% — AI-integrated workflow deployed across wealth and portfolio teams",
-  "the_so_what": "An 83% reduction in research time for investment teams is not a productivity improvement — it is a structural compression of one of wealth management's most expensive workflows, giving JPMorgan's advisors and portfolio managers a pace advantage that manual processes cannot match.",
+  "the_so_what": "An 83% reduction in research time for investment teams is a structural compression of one of wealth management's most expensive workflows — when Smart Monitor sits alongside Connect Coach (90% faster for advisors) and Guidelines (+50% for operations), the combined effect is a firm-wide productivity architecture that widens the gap with each additional tool deployed on the same platform.",
   "company": "jpmorgan",
   "company_name": "JPMorgan Private Bank and Wealth Management",
   "date": "2025-05-20",
@@ -19,10 +19,15 @@
     "capability": "research_content",
     "region": "us",
     "segment": "wirehouse",
-    "theme": ["smart_monitor", "spectrum", "investment_research", "ai_workflow", "investor_day"]
+    "theme": [
+      "smart_monitor",
+      "spectrum",
+      "investment_research",
+      "ai_workflow",
+      "investor_day"
+    ]
   },
   "week": "2025-05-19",
-  "featured": false,
   "_governance": {
     "verdict": "PASS",
     "confidence": 97,

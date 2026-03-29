@@ -2,7 +2,7 @@
   "id": "conquest-planning-80m-series-b-goldman-sachs-1000-firms",
   "type": "funding",
   "headline": "Conquest Planning raises $80M Series B led by Goldman Sachs to bring AI-powered financial planning to 1,000+ advisory firms across North America",
-  "the_so_what": "Goldman Sachs leading an $80M round into AI-powered financial planning software \u2014 used by 60% of Canada's advisors and RBC, Manulife, and BNY Pershing \u2014 is the clearest signal yet that AI financial planning is becoming enterprise infrastructure, not a startup bet.",
+  "the_so_what": "Goldman Sachs leading an $80M round into AI-powered financial planning software already used by 60% of Canada's advisors and clients including RBC, Manulife, and BNY Pershing signals that AI financial planning has crossed from startup bet to enterprise infrastructure — the investor list alone (Citi Ventures, TIAA Ventures, BNY) reads as a roster of institutions buying optionality on the platform they may eventually embed.",
   "company": "conquest-planning",
   "company_name": "Conquest Planning",
   "date": "2025-06-23",
@@ -10,10 +10,10 @@
   "source_url": "https://www.businesswire.com/news/home/20250623802541/en/Conquest-Planning-Raises-$80-Million-Series-B-Led-by-Growth-Equity-at-Goldman-Sachs-Alternatives-to-Bring-Personalized-AI-Powered-Financial-Plans-to-More-Families",
   "source_verified": true,
   "image_url": "/logos/conquest-planning.svg",
-  "summary": "Conquest Planning raised $80M USD ($110M CAD) in a Series B led by Growth Equity at Goldman Sachs Alternatives on June 23, 2025, bringing total funding to over $100M USD. New investors include Canapi Ventures, BDC Capital, Citi Ventures, TIAA Ventures, and USAA, alongside existing investors BNY and Portage. The platform serves over 1,000 financial services organisations \u2014 including RBC, Manulife, BNY Pershing, and Raymond James \u2014 and supports more than 60% of Canada's financial advisor market. Capital is earmarked to accelerate US expansion and develop SAM (Strategic Advice Manager), an AI engine for dynamic plan creation and personalised advice at scale.",
+  "summary": "Conquest Planning raised $80M USD ($110M CAD) in a Series B led by Growth Equity at Goldman Sachs Alternatives on June 23, 2025, bringing total funding to over $100M USD. New investors include Canapi Ventures, BDC Capital, Citi Ventures, TIAA Ventures, and USAA, alongside existing investors BNY and Portage. The platform serves over 1,000 financial services organisations — including RBC, Manulife, BNY Pershing, and Raymond James — and supports more than 60% of Canada's financial advisor market. Capital is earmarked to accelerate US expansion and develop SAM (Strategic Advice Manager), an AI engine for dynamic plan creation and personalised advice at scale.",
   "key_stat": {
     "number": "$80M",
-    "label": "Series B led by Goldman Sachs \u2014 Conquest Planning now serves 1,000+ firms and 60%+ of Canada's advisor market"
+    "label": "Series B led by Goldman Sachs — Conquest Planning now serves 1,000+ firms and 60%+ of Canada's advisor market"
   },
   "tags": {
     "capability": "advisor_productivity",
@@ -27,7 +27,6 @@
     ]
   },
   "week": "2025-06-23",
-  "featured": false,
   "_governance": {
     "verdict": "PASS",
     "confidence": 97,

@@ -1,0 +1,89 @@
+{
+  "id": "bofa-ai-meeting-journey-merrill-private-bank-rollout-2026",
+  "type": "product_launch",
+  "headline": "BofA Deploys AI Meeting Workflow Across Merrill and Private Bank, Targeting Up to 4 Hours Saved Per Client Meeting",
+  "the_so_what": "BofA embedding AI-Powered Meeting Journey across Merrill and the Private Bank as production infrastructure — not a pilot — and claiming four hours recovered per client interaction establishes the first wirehouse-scale benchmark for meeting workflow automation, creating a per-advisor cost advantage that compounds with every client interaction and is structurally expensive for late adopters to close.",
+  "company": "bofa-merrill",
+  "company_name": "Bank of America",
+  "date": "2026-03-27",
+  "source_name": "Simply Wall St",
+  "source_url": "https://simplywall.st/stocks/us/banks/nyse-bac/bank-of-america/news/bank-of-america-expands-ai-meeting-tool-to-reshape-wealth-ma",
+  "source_verified": true,
+  "image_url": "/logos/bofa-merrill.png",
+  "summary": "Bank of America's AI-Powered Meeting Journey tool automates three core advisor workflow steps — pre-meeting client preparation, real-time meeting summarization (with client consent), and post-meeting task organization — and is now in full-scale rollout across Merrill Wealth Management and the Private Bank. Early users report workflow improvements, indicating the system is live in active client settings rather than in testing; the tool originated with approximately 1,500 beta users before this broader deployment. The claimed productivity gain is up to four hours saved per meeting, which at scale could meaningfully increase advisor capacity for high-value planning conversations and fee-based mandate development. The rollout positions this AI layer as embedded infrastructure in front-line advisory processes — comparable to competing deployments at JPMorgan, Morgan Stanley, and Goldman Sachs — rather than a peripheral chatbot application. Key execution risks include advisor adoption breadth, integration reliability with platforms such as Salesforce and Zoom, and regulatory scrutiny over AI-generated summaries in a supervised wealth segment.",
+  "key_stat": {
+    "number": "4",
+    "label": "Hours potentially saved per client meeting at full deployment scale across Merrill and Private Bank"
+  },
+  "capability_evidence": {
+    "capability": "advisor_productivity",
+    "stage": "deployed",
+    "evidence": "Early users of the AI-Powered Meeting Journey tool across Merrill Wealth Management and the Private Bank are already reporting workflow improvements in live client settings, following a beta with approximately 1,500 advisors.",
+    "metric": "Up to 4 hours saved per meeting"
+  },
+  "tags": {
+    "capability": "advisor_productivity",
+    "region": "us",
+    "segment": "wirehouse",
+    "theme": [
+      "meeting_automation",
+      "advisor_workflow",
+      "client_engagement",
+      "ai_deployment_at_scale"
+    ]
+  },
+  "week": "2026-03-23",
+  "featured": false,
+  "_enrichment": {
+    "what_changed": "First coverage of this company.",
+    "landscape_context": {
+      "current_maturity": "Full-scale deployment across two major wealth channels (Merrill Wealth Management and Private Bank), post-beta with approximately 1,500 initial users — indicating production-grade maturity rather than experimentation",
+      "maturity_direction": "up",
+      "competitor_gap": "No peer comparison data available for this capability in this segment"
+    },
+    "confidence": "medium",
+    "notes": "No prior BofA coverage and no peer landscape data available for advisor productivity capability benchmarking; competitive framing (JPMorgan, Morgan Stanley, Goldman Sachs) referenced in summary but not supported by structured landscape data, so competitor gap cannot be quantified."
+  },
+  "_fabrication": {
+    "verdict": "CLEAN",
+    "issues": [],
+    "check_details": {
+      "numbers_in_headline": "pass",
+      "company_name": "pass",
+      "date_year": "pass",
+      "key_stat": "pass",
+      "quoted_phrases": "none",
+      "numbers_in_so_what": "none"
+    },
+    "checked_at": "2026-03-28T05:02:43.079Z"
+  },
+  "published_at": "2026-03-27T00:00:00.000Z",
+  "_governance": {
+    "verdict": "REVIEW",
+    "confidence": 78,
+    "verified_claims": [
+      "Bank of America has begun a full-scale rollout of its AI-Powered Meeting Journey tool across Merrill Wealth Management and the Private Bank",
+      "The tool automates pre-meeting client preparation (meeting materials)",
+      "The tool provides real-time meeting summarization acting as a notetaker with client consent",
+      "The tool organizes post-meeting follow-up tasks for advisors",
+      "Early users are already reporting workflow improvements, suggesting the system is live in active client settings rather than in testing",
+      "The tool originated with approximately 1,500 beta users before broader deployment",
+      "The claimed productivity gain is up to four hours saved per meeting",
+      "The rollout is positioned as an AI layer embedded in core advisory processes rather than a peripheral chatbot application",
+      "Competing deployments exist at JPMorgan, Morgan Stanley, and Goldman Sachs",
+      "Key execution risks include advisor adoption breadth, integration reliability with platforms such as Salesforce and Zoom, and regulatory scrutiny over AI-generated summaries in a supervised wealth segment",
+      "If time savings are achieved, advisors could handle more complex planning conversations supporting deeper relationships and more fee-based mandates",
+      "The tool auto-generates meeting prep, acts as a notetaker with client consent, and turns discussions into tasks"
+    ],
+    "unverified_claims": [
+      "The claim that the productivity baseline for wirehouse-scale wealth management has been 'permanently reset' — this is editorial inference not stated in the source",
+      "The claim that competitors treating meeting workflow automation as a 'roadmap item' are 'structurally more expensive per advisor' — this is analytical inference not supported or contradicted by the source",
+      "The specific framing that this is 'not a pilot' — the source says 'full-scale rollout' but does not explicitly use the word 'pilot' to contrast against"
+    ],
+    "notes": "All core factual claims in the entry are directly supported by the source article; the only unverified claims are editorial/analytical inferences in the 'so what' section that go beyond what the source states but are not contradicted by it, warranting a REVIEW rather than PASS.",
+    "paywall_caveat": false,
+    "verified_at": "2026-03-28T05:02:41.354Z",
+    "human_approved": true,
+    "approved_at": "2026-03-28T20:44:07.452Z"
+  }
+}

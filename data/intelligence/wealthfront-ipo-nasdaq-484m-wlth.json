@@ -2,7 +2,7 @@
   "id": "wealthfront-ipo-nasdaq-484m-wlth",
   "type": "milestone",
   "headline": "Wealthfront raises $484.6M in IPO on Nasdaq at $14 per share, validating the AI-driven robo-advisor model at public market scale",
-  "the_so_what": "A $484M public market debut for a 0.25%-fee automated wealth platform is a direct signal to every full-service institution that the mass affluent market is being permanently repriced by AI — not gradually, but structurally.",
+  "the_so_what": "A $484M public market debut for a 0.25%-fee automated wealth platform — with Goldman Sachs and J.P. Morgan as lead underwriters — validates that the economics of AI-driven portfolio management, automated tax-loss harvesting, and continuous rebalancing can sustain public-market scrutiny, establishing a pricing benchmark that will compress margins across the mass-affluent segment.",
   "company": "wealthfront",
   "company_name": "Wealthfront",
   "date": "2025-12-12",
@@ -19,10 +19,14 @@
     "capability": "new_business_models",
     "region": "us",
     "segment": "digital_disruptor",
-    "theme": ["ipo", "robo_advisor", "automated_investing", "public_markets"]
+    "theme": [
+      "ipo",
+      "robo_advisor",
+      "automated_investing",
+      "public_markets"
+    ]
   },
   "week": "2025-12-08",
-  "featured": false,
   "_governance": {
     "verdict": "PASS",
     "confidence": 97,

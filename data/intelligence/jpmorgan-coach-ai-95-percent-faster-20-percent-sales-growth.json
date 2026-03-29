@@ -2,7 +2,7 @@
   "id": "jpmorgan-coach-ai-95-percent-faster-20-percent-sales-growth",
   "type": "deployment",
   "headline": "JPMorgan CIO: Coach AI lets advisors find client information 95% faster — wealth management posts 20% gross sales growth with AI tools cited",
-  "the_so_what": "A named JPMorgan executive attributing a 20% gross sales increase directly to AI tools across 4,000 private bank advisors is the most concrete evidence yet that advisor AI deployments translate to revenue — not just efficiency.",
+  "the_so_what": "A 95% reduction in information retrieval time correlating with 20% gross sales growth across 4,000 private bank advisors is the most concrete published evidence that advisor AI deployments translate to revenue — not just efficiency — and the 50% client roster expansion target over three to five years implies JPMorgan sees this as a compounding growth engine, not a one-time productivity gain.",
   "company": "jpmorgan",
   "company_name": "JPMorgan Private Bank and Wealth Management",
   "date": "2025-05-05",
@@ -19,10 +19,15 @@
     "capability": "advisor_productivity",
     "region": "us",
     "segment": "wirehouse",
-    "theme": ["coach_ai", "connect_coach", "advisor_tools", "gross_sales", "revenue_impact"]
+    "theme": [
+      "coach_ai",
+      "connect_coach",
+      "advisor_tools",
+      "gross_sales",
+      "revenue_impact"
+    ]
   },
   "week": "2025-05-05",
-  "featured": false,
   "_governance": {
     "verdict": "PASS",
     "confidence": 94,
