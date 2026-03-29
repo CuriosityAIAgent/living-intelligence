@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 
 const HEADLINES = [
-  'The AI moves your competitors won\u2019t brief you on.',
+  'The AI moves you\u2019re not hearing about.',
   '14 launches last quarter. You heard about 3.',
   'Less noise. More signal. Fewer surprises.',
 ];

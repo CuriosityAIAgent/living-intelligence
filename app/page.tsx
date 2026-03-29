@@ -17,7 +17,7 @@ export default function LandingPage() {
           <div className="max-w-3xl">
             <RotatingHeadline />
             <p className="text-[17px] md:text-[19px] text-[#9999BB] leading-relaxed mb-10 max-w-2xl">
-              37 wealth management firms monitored daily, with more added every month. 7 capability dimensions. AI-sourced. Human-verified.
+              37 wealth management firms monitored continuously, with new firms added as they make trackable AI moves. 7 capability dimensions. AI-sourced. Human-verified.
             </p>
             <a
               href="#pricing"
