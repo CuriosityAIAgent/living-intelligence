@@ -20,12 +20,28 @@ import Anthropic from '@anthropic-ai/sdk';
 const client = new Anthropic();
 const SOURCE_WINDOW = 12_000;
 
+// Press release wires are never paywalled — even if Jina extracts thin content,
+// it's an extraction issue, not a paywall
+const NEVER_PAYWALLED = new Set([
+  'businesswire.com', 'prnewswire.com', 'globenewswire.com', 'accesswire.com',
+]);
+
+function isNeverPaywalled(sourceUrl) {
+  try {
+    const hostname = new URL(sourceUrl).hostname.replace(/^www\./, '');
+    return NEVER_PAYWALLED.has(hostname);
+  } catch { return false; }
+}
+
 export async function verify({ entry, sourceMarkdown, send }) {
   send('status', { message: 'Running governance verification...' });
 
-  // Upfront paywall detection — skip Claude if source is too thin to verify anything
+  const sourceUrl = entry.source_url || '';
+  const neverPaywalled = isNeverPaywalled(sourceUrl);
+
+  // Upfront thin content detection — skip Claude if source is too thin to verify
   const sourceLen = (sourceMarkdown || '').length;
-  if (sourceLen < 300) {
+  if (sourceLen < 300 && !neverPaywalled) {
     const result = {
       verdict: 'REVIEW',
       confidence: 30,
@@ -56,9 +72,10 @@ GENERATED ENTRY (what we plan to publish):
 ---
 Headline: ${entry.headline}
 Summary: ${entry.summary}
-The so what: ${entry.the_so_what || 'none'}
 Key stat: ${keyStat}
 ---
+
+NOTE: The entry also has a "the_so_what" editorial field, but DO NOT verify it — it is intentional editorial analysis and interpretation, not a factual claim from the source. Only verify the headline, summary, and key stat.
 
 SOURCE ARTICLE (ground truth — first ${SOURCE_WINDOW.toLocaleString()} chars):
 ---
@@ -155,7 +172,8 @@ Return only valid JSON. No explanation outside the JSON.`;
     unverified_claims: result.unverified_claims || [],
     fabricated_claims: result.fabricated_claims || [],
     notes: result.notes || '',
-    paywall_caveat: result.paywall_caveat || false,
+    // Never flag press release wires as paywalled, even if Claude thinks so
+    paywall_caveat: neverPaywalled ? false : (result.paywall_caveat || false),
     verified_at: new Date().toISOString(),
   };
 
