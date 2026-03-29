@@ -200,8 +200,8 @@ Sits between governance output and publish/review/block routing. Scores each ent
 
 **Routing thresholds (Universal Inbox — nothing auto-publishes):**
 - Score ≥ 75 → **INBOX** (high-confidence story, queued for editorial sign-off)
-- Score 60–74 → **INBOX** (REVIEW verdict, requires closer look)
-- Score < 60 or any fabricated claim → **BLOCK** (URL permanently blocked)
+- Score 45–74 → **INBOX** (REVIEW verdict, requires closer look)
+- Score < 45 or any fabricated claim → **BLOCK** (URL permanently blocked)
 - Paywall caveat → PUBLISH downgraded to REVIEW in inbox
 
 All scored entries go to `addPending()` in gov-store. Haresh reviews and approves in the Editorial Studio before anything publishes.
@@ -253,8 +253,8 @@ Runs at 5am Europe/London:
 4. `scoreEntry()` → 4-dimension scoring
 5. **ROUTING (Universal Inbox — nothing auto-publishes):**
    - Score ≥ 75 → `addPending(entry, govAudit, { score, score_breakdown, fabrication_verdict, format_errors, enrichment })` → INBOX (high confidence)
-   - Score 60–74 → `addPending(...)` → INBOX (REVIEW)
-   - Score < 60 or fabricated → `addBlocked()` → permanently blocked
+   - Score 45–74 → `addPending(...)` → INBOX (REVIEW)
+   - Score < 45 or fabricated → `addBlocked()` → permanently blocked
 6. New company detection: entry.company not in knownCompanyIds → flagged in digest
 7. `writePipelineStatus()` → `.pipeline-status.json`
 8. `sendDigest()` → Telegram (trigger-only: "N stories need review → [link to studio]")
@@ -409,7 +409,7 @@ data/
 5. **Git as publish mechanism** — publisher.js commits and pushes directly. Railway redeploys on push. No separate deploy step.
 6. **Audit as a script** — audit-all.js runs before any CEO presentation. Exit code 1 if critical issues found. Can be wired to CI/CD.
 7. **Search, don't guess** — when finding source URLs, use Jina search or WebFetch with a query term. Never guess URL patterns more than twice.
-8. **Universal Inbox (2026-03-23)** — Nothing auto-publishes. ALL stories (PASS ≥75 and REVIEW 60–74) queue for human sign-off. Editorial Studio (localhost:3003) is the primary review interface. Telegram is trigger-only. Reason: algorithm/scoring is still being calibrated; editorial oversight ensures quality during this phase.
+8. **Universal Inbox (2026-03-23, updated 2026-03-29)** — Nothing auto-publishes. ALL stories (PASS ≥75 and REVIEW 45–74) queue for human sign-off. Editorial Studio (localhost:3003) is the primary review interface. Pipeline v3 lowered REVIEW threshold from 60→45 so more stories reach the editor.
 
 ---
 

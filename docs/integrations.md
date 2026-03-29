@@ -331,7 +331,7 @@ This two-call pattern (structure → verify) is the primary anti-hallucination m
 | Paywalled articles | DataForSEO Google News + Organic in parallel → finds open alternative sources |
 | Structuring articles into typed JSON | Anthropic Claude — strict grounding rules, no inference |
 | Verifying claims aren't fabricated | Anthropic Claude governance check (second call) |
-| Auto-publishing vs human review | scorer.js — 4-dimension scoring (A: Source 0–25, B: Claims 0–25, C: Fresh 0–10, D: Impact 0–40). PUBLISH ≥75 / REVIEW 60–74 / BLOCK <60 |
+| Auto-publishing vs human review | scorer.js — 4-dimension scoring (A: Source 0–25, B: Claims 0–25, C: Fresh 0–10, D: Impact 0–40). PUBLISH ≥75 / REVIEW 45–74 / BLOCK <45 |
 | Source authority verification | DataForSEO Backlinks API — live domain_rank per source domain |
 | Detecting spam/low-quality sources | Backlinks API spam_score ≥ 40 → auto-flag regardless of domain rank |
 | Reliable company logos | DataForSEO Google Images → downloaded to disk as local files |
