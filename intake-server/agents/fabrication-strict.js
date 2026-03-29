@@ -7,7 +7,7 @@
  *
  * Called AFTER governance.js. Both use a 12k source window.
  *
- * Checked fields: headline · summary · the_so_what · key_stat
+ * Checked fields: headline · summary · key_stat (the_so_what excluded — editorial analysis)
  *
  * Returns: { verdict: "CLEAN" | "SUSPECT" | "FAIL", issues: string[], checked_at: ISO string }
  *
@@ -37,11 +37,12 @@ ENTRY TO CHECK:
 ---
 Headline: ${entry.headline}
 Summary: ${entry.summary}
-The so what: ${entry.the_so_what || 'none'}
 Key stat: ${keyStat}
 Company name: ${entry.company_name}
 Date: ${entry.date}
 ---
+
+NOTE: The entry has a "the_so_what" field but it is EXCLUDED from this check. It contains intentional editorial analysis and interpretation — not claims from the source article. Do NOT check it.
 
 SOURCE ARTICLE (first ${SOURCE_WINDOW.toLocaleString()} chars — may be truncated):
 ---
@@ -60,9 +61,7 @@ Answer each of the following six checks precisely:
 
 5. QUOTED PHRASES IN SUMMARY — Identify any phrase in the summary enclosed in quotation marks or attributed with "said", "noted", "announced", "stated". For each: find the verbatim match in the source. Flag any that cannot be found.
 
-6. NUMBERS IN THE SO WHAT — Extract any specific numbers or statistics from the "the so what" field (e.g. "$105M", "27,000 advisors", "6 months"). For each: does it appear verbatim in the source? If absent but not contradicted, note as "not found — possible truncation".
-
-After checking all six, return a JSON object in exactly this format:
+After checking all five, return a JSON object in exactly this format:
 {
   "verdict": "CLEAN" | "SUSPECT" | "FAIL",
   "issues": ["list of specific problems found — empty array if CLEAN"],
@@ -71,15 +70,14 @@ After checking all six, return a JSON object in exactly this format:
     "company_name": "pass | fail",
     "date_year": "pass | fail | not_found_truncation",
     "key_stat": "pass | fail | not_found_truncation | no_stat",
-    "quoted_phrases": "pass | fail | none",
-    "numbers_in_so_what": "pass | fail | not_found_truncation | none"
+    "quoted_phrases": "pass | fail | none"
   }
 }
 
 Verdict rules (strict):
 - CLEAN: All checks pass. No contradictions.
 - SUSPECT: 1-2 checks returned "not_found_truncation" — item absent but not contradicted (source may be cut off). No outright contradictions.
-- FAIL: ANY of the following: a digit sequence in the headline or key stat CONTRADICTS the source (different number present for the same metric); the company name is substantively wrong; a quoted phrase cannot be found and appears to be invented; a number in the_so_what contradicts the source.
+- FAIL: ANY of the following: a digit sequence in the headline or key stat CONTRADICTS the source (different number present for the same metric); the company name is substantively wrong; a quoted phrase cannot be found and appears to be invented.
 
 Critical distinction: "not found because source is truncated" = SUSPECT. "Found but wrong" = FAIL.
 

@@ -203,23 +203,28 @@ export async function enrichContext({ entry, articleMarkdown }) {
     : 'No peer comparison data available for this capability in this segment.';
 
   // ── Build the enrichment prompt ────────────────────────────────────────────
-  const prompt = `You are the editorial intelligence layer for "AI in Wealth Management" — a premium platform read by C-suite executives and board members at wealth management firms.
+  const prompt = `You are the editorial intelligence layer for "AI in Wealth Management" — a premium analytical platform tracking AI adoption across wealth management.
 
 Your task: rewrite the "the_so_what" field for the intelligence entry below, using the full context provided.
 
 The_so_what rules:
 - ONE sentence only — never more
-- Must answer: "What should a wealth management CXO think or decide differently because of this?"
+- Must be analytical insight. Choose the best angle for this story:
+  * Competitive benchmark: scale economics, compounding data advantages, cost-to-serve gaps
+  * Cross-landscape context: connect to what peers/competitors are doing, show the pattern
+  * Infrastructure parallel: compare to historic technology shifts (electronic trading, Salesforce CRM, Bloomberg terminals)
+  * Business model insight: why the model matters more than the technology
 - Must reference the SPECIFIC company and capability dimension — not generic AI commentary
 - Must use the competitive context to add weight — are competitors ahead, behind, or level?
 - Must use our previous coverage to show what has CHANGED — is this an update, acceleration, or reversal?
 - Do NOT restate what happened (that's the summary). State the strategic implication.
-- Do NOT use phrases like "this signals", "this suggests", "wealth managers should consider"
-- Write for a Chief Strategy Officer who already knows the industry deeply
+- NEVER use: CXO, board, "firms should", "must now decide", "this signals", "this suggests", "wealth managers should consider", "game-changing", "landmark", "revolutionary", "paradigm shift", "It remains to be seen"
 
 BAD: "Jump's growth in advisor productivity tools highlights the increasing importance of AI in wealth management."
 BAD: "This signals that AI adoption is accelerating among independent advisors."
-GOOD: "Jump has crossed the threshold where it is no longer a point solution — at 27,000 advisors and $105M raised, it is the default productivity infrastructure for the independent channel, and any wirehouse or RIA aggregator without a comparable deployment strategy is already losing the talent acquisition argument."
+BAD: "Any wealth CXO still treating meeting workflow as a roadmap item is falling behind."
+GOOD: "Jump has crossed the threshold where it is no longer a point solution — at 27,000 advisors and $105M raised, it is the default productivity infrastructure for the independent channel, establishing a per-advisor cost advantage that compounds with every client interaction."
+GOOD: "The independent channel adopting AI faster than the institutional channel is a structural reversal of the historic adoption curve, following the same pattern as discount brokerage adoption in the 1990s."
 
 ---
 
@@ -254,7 +259,7 @@ ${(articleMarkdown || '').slice(0, 4000)}
 
 Return a JSON object in exactly this format:
 {
-  "the_so_what": "One sentence — the enriched, context-aware strategic implication",
+  "the_so_what": "One sentence — the enriched, context-aware analytical insight (competitive benchmark, cross-landscape context, infrastructure parallel, or business model insight)",
   "what_changed": "One sentence — how this differs from our previous coverage, or 'First coverage of this company' if no prior entries",
   "landscape_context": {
     "current_maturity": "the company's current maturity level in this capability, or null if unknown",
