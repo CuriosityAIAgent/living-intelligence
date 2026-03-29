@@ -24,8 +24,16 @@ export default function HomePage() {
   // Lead story = most recent entry (auto-rotates as new stories are published)
   const leadStory = allEntries[0];
 
-  // Featured grid = 6 most recent entries after lead story
-  const featured = allEntries.filter(e => e.id !== leadStory?.id).slice(0, 6);
+  // Featured grid = 6 most recent entries, one per company (latest wins dedup)
+  const seenCompanies = new Set(leadStory ? [leadStory.company] : []);
+  const featured: typeof allEntries = [];
+  for (const e of allEntries) {
+    if (e.id === leadStory?.id) continue;
+    if (seenCompanies.has(e.company)) continue;
+    seenCompanies.add(e.company);
+    featured.push(e);
+    if (featured.length >= 6) break;
+  }
 
   // Featured TL = most recent entry
   const featuredThought = allTL[0] || null;
