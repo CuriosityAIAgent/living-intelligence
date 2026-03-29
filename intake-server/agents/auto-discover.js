@@ -262,7 +262,7 @@ function getPublishedCompanyDates() {
   return map;
 }
 
-function isCompanyDateDuplicate(candidateTitle, companyNames, publishedCompanyDates) {
+export function isCompanyDateDuplicate(candidateTitle, companyNames, publishedCompanyDates) {
   if (!candidateTitle || !companyNames?.length) return false;
   const titleLower = candidateTitle.toLowerCase();
   const today = new Date();

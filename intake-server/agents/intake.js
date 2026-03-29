@@ -73,7 +73,7 @@ try {
   }
 }
 
-function normalizeCompanySlug(slug) {
+export function normalizeCompanySlug(slug) {
   if (!slug) return slug;
   const normalized = slug.toLowerCase().replace(/[^a-z0-9-]/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '');
   return COMPANY_ALIAS_MAP.get(normalized) || normalized;

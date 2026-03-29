@@ -1129,6 +1129,203 @@ await test('short-circuit result has approved_at=null', async () => {
 });
 
 // ═════════════════════════════════════════════════════════════════════════════
+// Suite 10 · scorer.js v3 — Lowered threshold, Tier 1 premium, strategic signals
+// ═════════════════════════════════════════════════════════════════════════════
+
+suite('10 · scorer.js v3 — Threshold 45, Tier 1 premium, strategic signals');
+
+await test('Score 45-59 → REVIEW (was BLOCK under old threshold 60)', async () => {
+  // An entry scoring in the 45-59 range should now reach the editor's inbox
+  const entry = {
+    headline: 'Schwab CEO positions AI as advisor amplifier in wealth management strategy',
+    summary: 'Charles Schwab CEO said AI is poised to boost wealth managers during a Bloomberg interview. The CEO outlined a strategy to integrate AI across advisor workflows.',
+    date: daysAgo(20),
+    type: 'strategy_move',
+    company: 'wells-fargo',
+    company_name: 'Wells Fargo',
+    tags: { capability: 'advisor_productivity', region: 'us' },
+    capability_evidence: { capability: 'advisor_productivity', stage: 'announced', evidence: 'CEO statement' },
+  };
+  // 2 unverified claims → Dim B gets 6 points (not 25), which should push total into 45-59 range
+  const result = await scoreEntry({ entry, governance: gov({ unverified: ['claim1', 'claim2'] }), sourceUrl: 'https://bloomberg.com/article' });
+  assert(result.score >= 45 && result.score < 75, `Score ${result.score} should be 45-74 for REVIEW`);
+  eq(result.action, 'REVIEW', `score ${result.score} should be REVIEW not BLOCK`);
+});
+
+await test('Score 44 → BLOCK (below new threshold 45)', async () => {
+  const entry = {
+    headline: 'Minor AI news from unknown firm',
+    summary: 'A small firm did something with AI.',
+    date: daysAgo(60),
+    type: 'market_signal',
+    company: 'unknown-co',
+    company_name: 'Unknown Co',
+    tags: { capability: 'operations_compliance', region: 'us' },
+  };
+  const result = await scoreEntry({ entry, governance: gov({ unverified: ['claim1', 'claim2', 'claim3'] }), sourceUrl: 'https://example.com/article' });
+  if (result.score < 45) {
+    eq(result.action, 'BLOCK', 'below 45 should BLOCK');
+  }
+});
+
+await test('Strategic signal (CEO) boosts Dim D for tracked company', async () => {
+  const entry = {
+    headline: 'Goldman Sachs CEO says AI is the most important investment since electronic trading',
+    summary: 'CEO of Goldman Sachs positions AI as the most important infrastructure investment since electronic trading.',
+    date: daysAgo(5),
+    type: 'strategy_move',
+    company: 'goldman-sachs',
+    company_name: 'Goldman Sachs',
+    tags: { capability: 'advisor_productivity', region: 'us' },
+    capability_evidence: { capability: 'advisor_productivity' },
+  };
+  const result = await scoreEntry({ entry, governance: gov(), sourceUrl: 'https://cnbc.com/article' });
+  assert(result.breakdown.impact.points >= 8, 'Strategic signal from tracked company should score ≥8 in Dim D');
+});
+
+await test('Tracked company floor: fresh story never silently blocked', async () => {
+  const entry = {
+    headline: 'UBS launches new AI pilot',
+    summary: 'UBS is piloting a new AI tool.',
+    date: daysAgo(10),
+    type: 'product_launch',
+    company: 'ubs',
+    company_name: 'UBS',
+    tags: { capability: 'advisor_productivity', region: 'emea' },
+  };
+  const result = await scoreEntry({ entry, governance: gov({ unverified: ['claim1', 'claim2'] }), sourceUrl: 'https://example.com' });
+  assert(result.action !== 'BLOCK', 'Fresh tracked company story should never be BLOCK');
+});
+
+// ═════════════════════════════════════════════════════════════════════════════
+// Suite 11 · governance.js — the_so_what excluded, press release never paywalled
+// ═════════════════════════════════════════════════════════════════════════════
+
+suite('11 · governance.js — the_so_what excluded, press release paywall fix');
+
+await test('Press release wire (BusinessWire) never gets paywall_caveat even with thin content', async () => {
+  const entry = {
+    headline: 'Orion launches Denali AI',
+    summary: 'Orion launched Denali AI enterprise version.',
+    source_url: 'https://www.businesswire.com/news/home/20260226730121/en/Orion-Announces-Denali-AI',
+  };
+  const result = await governanceVerify({
+    entry,
+    sourceMarkdown: 'Short content.',  // < 300 chars, would normally trigger paywall
+    send: () => {},
+  });
+  eq(result.paywall_caveat, false, 'BusinessWire should never be paywalled');
+});
+
+await test('PRNewswire never gets paywall_caveat', async () => {
+  const entry = {
+    headline: 'FNZ launches Advisor AI',
+    summary: 'FNZ launched Advisor AI.',
+    source_url: 'https://www.prnewswire.com/news-releases/fnz-launches-advisor-ai-302533281.html',
+  };
+  const result = await governanceVerify({
+    entry,
+    sourceMarkdown: 'Tiny.',
+    send: () => {},
+  });
+  eq(result.paywall_caveat, false, 'PRNewswire should never be paywalled');
+});
+
+await test('Non-press-release thin content still gets paywall_caveat', async () => {
+  const entry = {
+    headline: 'Bloomberg article about AI',
+    summary: 'Bloomberg reported on AI.',
+    source_url: 'https://www.bloomberg.com/news/articles/2026-01-21/ai-article',
+  };
+  const result = await governanceVerify({
+    entry,
+    sourceMarkdown: 'Tiny.',
+    send: () => {},
+  });
+  eq(result.paywall_caveat, true, 'Bloomberg with thin content should be paywalled');
+});
+
+// ═════════════════════════════════════════════════════════════════════════════
+// Suite 12 · auto-discover.js — Company-date proximity dedup
+// ═════════════════════════════════════════════════════════════════════════════
+
+suite('12 · auto-discover.js — Company-date proximity dedup');
+
+import { isCompanyDateDuplicate } from '../agents/auto-discover.js';
+
+await test('Same company + overlapping headline words → detected as duplicate', () => {
+  const publishedMap = new Map();
+  publishedMap.set('zocks', [{ date: daysAgo(5), headline: 'zocks raises $45m series b to scale ai for financial advisors' }]);
+
+  const result = isCompanyDateDuplicate(
+    'Zocks Scales Privacy-First AI to 5,000 Advisory Firms After $45M Series B',
+    ['Zocks'],
+    publishedMap
+  );
+  eq(result, true, 'Same company + similar headline should be duplicate');
+});
+
+await test('Same company but completely different headline → not duplicate', () => {
+  const publishedMap = new Map();
+  publishedMap.set('zocks', [{ date: daysAgo(5), headline: 'zocks raises $45m series b funding round' }]);
+
+  const result = isCompanyDateDuplicate(
+    'Zocks Launches New Meeting Transcription Feature for Enterprise',
+    ['Zocks'],
+    publishedMap
+  );
+  eq(result, false, 'Same company but different topic should not be duplicate');
+});
+
+await test('Different company → not duplicate even with similar words', () => {
+  const publishedMap = new Map();
+  publishedMap.set('jump-ai', [{ date: daysAgo(5), headline: 'jump raises $80m series b for ai advisors' }]);
+
+  const result = isCompanyDateDuplicate(
+    'Zocks Raises $45M Series B for AI Financial Advisors',
+    ['Zocks'],
+    publishedMap
+  );
+  eq(result, false, 'Different company should not be duplicate');
+});
+
+// ═════════════════════════════════════════════════════════════════════════════
+// Suite 13 · intake.js — Company slug normalization (alias map)
+// ═════════════════════════════════════════════════════════════════════════════
+
+suite('13 · intake.js — Company slug normalization');
+
+import { normalizeCompanySlug } from '../agents/intake.js';
+
+await test('arta-finance → arta-ai', () => {
+  eq(normalizeCompanySlug('arta-finance'), 'arta-ai', 'arta-finance alias');
+});
+
+await test('citigroup → citi-private-bank', () => {
+  eq(normalizeCompanySlug('citigroup'), 'citi-private-bank', 'citigroup alias');
+});
+
+await test('fidelity-investments → fidelity', () => {
+  eq(normalizeCompanySlug('fidelity-investments'), 'fidelity', 'fidelity-investments alias');
+});
+
+await test('hsbc-private-bank → hsbc', () => {
+  eq(normalizeCompanySlug('hsbc-private-bank'), 'hsbc', 'hsbc alias');
+});
+
+await test('public → public-com', () => {
+  eq(normalizeCompanySlug('public'), 'public-com', 'public alias');
+});
+
+await test('Unknown slug passes through unchanged', () => {
+  eq(normalizeCompanySlug('some-new-company'), 'some-new-company', 'unknown passthrough');
+});
+
+await test('Goldman Sachs (already canonical) stays unchanged', () => {
+  eq(normalizeCompanySlug('goldman-sachs'), 'goldman-sachs', 'canonical passthrough');
+});
+
+// ═════════════════════════════════════════════════════════════════════════════
 // Results
 // ═════════════════════════════════════════════════════════════════════════════
 
