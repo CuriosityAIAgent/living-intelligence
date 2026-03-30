@@ -1327,6 +1327,140 @@ await test('Goldman Sachs (already canonical) stays unchanged', () => {
 });
 
 // ═════════════════════════════════════════════════════════════════════════════
+// Suite 14 · scorer.js — Multi-source scoring bonus
+// ═════════════════════════════════════════════════════════════════════════════
+
+suite('14 · scorer.js — Multi-source scoring bonus');
+
+await test('Entry with 3 sources gets +5 bonus', async () => {
+  const baseEntry = {
+    headline: 'Goldman Sachs deploys AI to 46,000 employees',
+    summary: 'Goldman deployed AI firm-wide to all 46,000 employees.',
+    date: daysAgo(3),
+    type: 'deployment',
+    company: 'goldman-sachs',
+    company_name: 'Goldman Sachs',
+    tags: { capability: 'advisor_productivity', region: 'us' },
+    capability_evidence: { capability: 'advisor_productivity', stage: 'deployed', evidence: 'Firm-wide', metric: '46,000' },
+  };
+
+  const withoutSources = await scoreEntry({ entry: { ...baseEntry }, governance: gov(), sourceUrl: 'https://cnbc.com/test' });
+  const withSources = await scoreEntry({
+    entry: {
+      ...baseEntry,
+      sources: [
+        { name: 'BusinessWire', url: 'https://businesswire.com/1', type: 'primary' },
+        { name: 'CNBC', url: 'https://cnbc.com/2', type: 'coverage' },
+        { name: 'ThinkAdvisor', url: 'https://thinkadvisor.com/3', type: 'coverage' },
+      ],
+      source_count: 3,
+    },
+    governance: gov(),
+    sourceUrl: 'https://cnbc.com/test',
+  });
+
+  // 3 sources = +5, primary source = +3, total bonus = +8
+  const diff = withSources.score - withoutSources.score;
+  assert(diff >= 5, `3 sources + primary should add at least 5 points, got +${diff}`);
+});
+
+await test('Entry with 2 sources gets +3 bonus', async () => {
+  const baseEntry = {
+    headline: 'UBS launches AI pilot',
+    summary: 'UBS piloting new AI tool.',
+    date: daysAgo(5),
+    type: 'product_launch',
+    company: 'ubs',
+    company_name: 'UBS',
+    tags: { capability: 'advisor_productivity', region: 'emea' },
+  };
+
+  const withoutSources = await scoreEntry({ entry: { ...baseEntry }, governance: gov(), sourceUrl: 'https://reuters.com/test' });
+  const withSources = await scoreEntry({
+    entry: {
+      ...baseEntry,
+      sources: [
+        { name: 'Reuters', url: 'https://reuters.com/1', type: 'coverage' },
+        { name: 'WealthBriefing', url: 'https://wealthbriefing.com/2', type: 'discovery' },
+      ],
+      source_count: 2,
+    },
+    governance: gov(),
+    sourceUrl: 'https://reuters.com/test',
+  });
+
+  const diff = withSources.score - withoutSources.score;
+  assert(diff >= 3, `2 sources should add at least 3 points, got +${diff}`);
+});
+
+await test('Entry with 1 source gets no bonus', async () => {
+  const baseEntry = {
+    headline: 'Small AI news',
+    summary: 'Something happened.',
+    date: daysAgo(5),
+    type: 'market_signal',
+    company: 'ubs',
+    company_name: 'UBS',
+    tags: { capability: 'advisor_productivity', region: 'emea' },
+  };
+
+  const withoutSources = await scoreEntry({ entry: { ...baseEntry }, governance: gov(), sourceUrl: 'https://example.com/test' });
+  const with1Source = await scoreEntry({
+    entry: {
+      ...baseEntry,
+      sources: [{ name: 'Example', url: 'https://example.com/1', type: 'discovery' }],
+      source_count: 1,
+    },
+    governance: gov(),
+    sourceUrl: 'https://example.com/test',
+  });
+
+  eq(with1Source.score, withoutSources.score, 'Single source should give no bonus');
+});
+
+await test('Primary source gives +3 bonus on top of source count', async () => {
+  const baseEntry = {
+    headline: 'BofA launches AI meeting tool',
+    summary: 'BofA deployed AI meeting tool across Merrill.',
+    date: daysAgo(2),
+    type: 'product_launch',
+    company: 'bofa-merrill',
+    company_name: 'BofA / Merrill',
+    tags: { capability: 'advisor_productivity', region: 'us' },
+    capability_evidence: { capability: 'advisor_productivity', stage: 'deployed', evidence: 'Deployed across Merrill' },
+  };
+
+  const withCoverageOnly = await scoreEntry({
+    entry: {
+      ...baseEntry,
+      sources: [
+        { name: 'CNBC', url: 'https://cnbc.com/1', type: 'coverage' },
+        { name: 'ThinkAdvisor', url: 'https://thinkadvisor.com/2', type: 'coverage' },
+      ],
+      source_count: 2,
+    },
+    governance: gov(),
+    sourceUrl: 'https://cnbc.com/test',
+  });
+
+  const withPrimary = await scoreEntry({
+    entry: {
+      ...baseEntry,
+      sources: [
+        { name: 'BofA Newsroom', url: 'https://newsroom.bankofamerica.com/1', type: 'primary' },
+        { name: 'CNBC', url: 'https://cnbc.com/2', type: 'coverage' },
+      ],
+      source_count: 2,
+    },
+    governance: gov(),
+    sourceUrl: 'https://cnbc.com/test',
+  });
+
+  const diff = withPrimary.score - withCoverageOnly.score;
+  eq(diff, 3, 'Primary source should add exactly 3 points');
+});
+
+// ═════════════════════════════════════════════════════════════════════════════
 // Final cleanup — delete ALL test artifacts from data/intelligence/
 // ═════════════════════════════════════════════════════════════════════════════
 
