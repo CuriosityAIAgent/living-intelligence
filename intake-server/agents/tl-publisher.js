@@ -103,6 +103,22 @@ Key rule: the_one_insight must be the CORE ARGUMENT — something a CEO would qu
 // ── Main export ───────────────────────────────────────────────────────────────
 
 export async function publishTlEntry({ url, send }) {
+  // 0. Dedup: check if this URL is already published as TL
+  try {
+    const { readdirSync, readFileSync } = await import('fs');
+    const tlFiles = readdirSync(TL_DIR).filter(f => f.endsWith('.json'));
+    const normUrl = url.toLowerCase().replace(/\/$/, '');
+    for (const f of tlFiles) {
+      const existing = JSON.parse(readFileSync(join(TL_DIR, f), 'utf8'));
+      if (existing.source_url && existing.source_url.toLowerCase().replace(/\/$/, '') === normUrl) {
+        throw new Error(`Already published as TL: "${existing.title}" (${f})`);
+      }
+    }
+  } catch (err) {
+    if (err.message.startsWith('Already published')) throw err;
+    // File read errors — proceed (non-fatal)
+  }
+
   // 1. Fetch
   send('status', { message: 'Fetching article...' });
   let content;
