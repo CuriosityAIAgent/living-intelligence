@@ -113,13 +113,6 @@
     "title": "FINNY Deploys AI Capabilities Across Osaic's Advisor Network via New Partnership",
     "score": 32
   },
-  "https://www.businesswire.com/news/home/20260226730121/en/Orion-Announces-Denali-AI-Enterprise-Version-Powering-a-New-Era-in-Advisor-Productivity": {
-    "id": "orion-denali-ai-enterprise-launch-2026-02",
-    "reason": "the_so_what flagged as weak CXO relevance (4/10) — review before publishing",
-    "blocked_at": "2026-03-28T05:05:58.466Z",
-    "title": "Orion Deploys Denali AI Enterprise: Single Prompt Screen Replaces Multi-Tab Advisor Workflows",
-    "score": 47
-  },
   "https://www.businesswire.com/news/home/20260309897864/en/Jump-Expands-AI-Operating-System-for-Advisors-With-New-Products-Powering-Growth-and-Operations": {
     "id": "jump-ai-operating-system-advisors-march-2026",
     "reason": "Human rejected REVIEW entry",
@@ -138,5 +131,17 @@
     "blocked_at": "2026-03-29T04:02:30.968Z",
     "title": "Jump's AI Advisor OS Reaches 15,000 Advisors as $80M Series B Validates Productivity Category",
     "score": 50
+  },
+  "https://www.businesswire.com/news/home/20260226730121/en/Orion-Announces-Denali-AI-Enterprise-Version-Powering-a-New-Era-in-Advisor-Productivity": {
+    "id": "orion-denali-ai-enterprise-version-launch-2026",
+    "reason": "Human rejected REVIEW entry",
+    "blocked_at": "2026-03-29T07:44:14.205Z"
+  },
+  "https://www.wealthmanagement.com/financial-technology/advisors-navigate-ai-innovation-surge-at-t3-conference": {
+    "id": "t3-conference-ai-advisor-tech-2026",
+    "reason": "Score 40/100 — below 45 review threshold",
+    "blocked_at": "2026-03-30T04:03:17.275Z",
+    "title": "T3 Conference Shows AI Embedded Across Advisor Tech Stack as Innovation Pace Accelerates",
+    "score": 40
   }
 }

@@ -1,10 +1,10 @@
 {
-  "started_at": "2026-03-29T04:00:00.403Z",
+  "started_at": "2026-03-30T04:00:00.576Z",
   "candidates_found": 15,
-  "queued": 0,
-  "blocked": 2,
+  "queued": 2,
+  "blocked": 1,
   "errors": 0,
-  "tl_candidates": 30,
+  "tl_candidates": 22,
   "tl_items": [
     {
       "id": "aHR0cHM6Ly9o",
@@ -26,11 +26,11 @@
     },
     {
       "id": "aHR0cHM6Ly90",
-      "title": "John O’Connell Featured in Family Wealth Report: AI 2026: Increased Adoption, New Use Cases, Regulatory Concerns And New FPA Initiative",
-      "url": "https://theoasisgrp.com/article/john-oconnell-featured-in-family-wealth-report-ai-2026-increased-adoption-new-use-cases-regulatory-concerns-and-new-fpa-initiative/",
+      "title": "John O’Connell Featured in Wealth Solutions Report: 2026: The Year Of Serious AI Adoption",
+      "url": "https://theoasisgrp.com/article/john-oconnell-featured-in-wealth-solutions-report-2026-the-year-of-serious-ai-adoption/",
       "source_name": "theoasisgrp.com",
-      "pub_date": "Jan 13, 2026",
-      "snippet": "John O'Connell Featured in Family Wealth Report: AI 2026: Increased Adoption, New Use Cases, Regulatory Concerns And New FPA Initiative",
+      "pub_date": "Jan 14, 2026",
+      "snippet": "John O'Connell Featured in Wealth Solutions Report on how 2026 is the year of serious AI adoption in wealth management.",
       "via": "layer1_tl"
     },
     {
@@ -44,6 +44,15 @@
     },
     {
       "id": "aHR0cHM6Ly93",
+      "title": "10 Wealth Management Trends For 2026",
+      "url": "https://www.oliverwyman.com/our-expertise/insights/2025/dec/wealth-management-trends-2026.html",
+      "source_name": "oliverwyman.com",
+      "pub_date": null,
+      "snippet": "A forward look at key 2026 wealth management trends, including AI-driven advice, tokenized cash, private markets, embedded wealth, and downturn readiness.",
+      "via": "layer1_tl"
+    },
+    {
+      "id": "aHR0cHM6Ly93",
       "title": "Artificial Intelligence and the Future of Investment Management",
       "url": "https://www.sec.gov/newsroom/speeches-statements/daly-020326-artificial-intelligence-future-investment-management",
       "source_name": "sec.gov",
@@ -53,29 +62,20 @@
     },
     {
       "id": "aHR0cHM6Ly93",
+      "title": "Access Denied",
+      "url": "https://www.mckinsey.com/industries/financial-services/our-insights/us-wealth-management-in-2035-a-transformative-decade-begins",
+      "source_name": "mckinsey.com",
+      "pub_date": "Jan 29, 2026",
+      "snippet": "You don't have permission to access \"http://www.mckinsey.com/industries/financial-services/our-insights/us-wealth-management-in-2035-a-transformative-decade-begins\" on this server.\nReference #18.afbbce17.1774843202.8a3525b3\n\nhttps://errors.edgesuite.net/18.afbbce17.1774843202.8a3525b3",
+      "via": "layer1_tl"
+    },
+    {
+      "id": "aHR0cHM6Ly93",
       "title": "AI AND WEALTH MANAGEMENT: A WORD FROM AMERICAN COLLEGE THOUGHT LEADERS",
       "url": "https://www.theamericancollege.edu/knowledge-hub/insights/ai-and-wealth-management",
       "source_name": "theamericancollege.edu",
       "pub_date": null,
       "snippet": "The nexus of artificial intelligence (AI) technologies and wealth management is one of the biggest points of discussion in financial services today, and is setting up a quantum leap in how advisors interact with clients, make decisions, and run their businesses.",
-      "via": "layer1_tl"
-    },
-    {
-      "id": "aHR0cHM6Ly93",
-      "title": "Access Denied",
-      "url": "https://www.mckinsey.com/industries/financial-services/our-insights/us-wealth-management-in-2035-a-transformative-decade-begins",
-      "source_name": "mckinsey.com",
-      "pub_date": "Jan 29, 2026",
-      "snippet": "You don't have permission to access \"http://www.mckinsey.com/industries/financial-services/our-insights/us-wealth-management-in-2035-a-transformative-decade-begins\" on this server.\nReference #18.650ed217.1774756805.58f8f938\n\nhttps://errors.edgesuite.net/18.650ed217.1774756805.58f8f938",
-      "via": "layer1_tl"
-    },
-    {
-      "id": "aHR0cHM6Ly93",
-      "title": "How artificial intelligence is reshaping the financial services industry",
-      "url": "https://www.ey.com/en_gr/insights/financial-services/how-artificial-intelligence-is-reshaping-the-financial-services-industry",
-      "source_name": "ey.com",
-      "pub_date": null,
-      "snippet": "AI is reshaping the financial services industry, making it more efficient, effective and innovative. Read more.",
       "via": "layer1_tl"
     },
     {
@@ -125,36 +125,30 @@
     },
     {
       "id": "aHR0cHM6Ly93",
-      "title": "How to Plan AI Investments That Deliver ROI in 2026",
-      "url": "https://www.cloudgeometry.com/blog/planning-ai-investments-that-actually-pay-off-in-2026",
-      "source_name": "cloudgeometry.com",
-      "pub_date": "Dec 30, 2025",
-      "snippet": "Avoid AI budget waste in 2026. Use this practical guide to plan investments that produce measurable business impact.",
-      "via": "layer1_tl"
-    },
-    {
-      "id": "aHR0cHM6Ly93",
       "title": "Generative AI Trends 2026: The Ultimate Guide for Founders and Investors",
       "url": "https://wearepresta.com/generative-ai-trends-2026-the-ultimate-guide-for-founders-and-investors/",
       "source_name": "wearepresta.com",
       "pub_date": null,
       "snippet": "Master the generative AI trends 2026. Explore agentic AI, vertical specialization, and the shift toward autonomous startup workflows. Your guide to winning in 2026.",
       "via": "layer1_tl"
+    },
+    {
+      "id": "aHR0cHM6Ly93",
+      "title": "How AI is transforming investment management: State Street’s strategic approach",
+      "url": "https://www.ssga.com/us/en/intermediary/insights/how-ai-is-transforming-investment-management-state-street-strategic-approach",
+      "source_name": "ssga.com",
+      "pub_date": "Jan 28, 2026",
+      "snippet": "Learn how State Street uses AI and ML to enhance investment modeling, combining advanced analytics with human expertise for better outcomes.",
+      "via": "layer1_tl"
     }
   ],
   "blocked_items": [
     {
-      "url": "https://www.stocktitan.net/news/NOAH/noah-olive-co-host-2026-ai-outlook-redefining-global-allocation-for-3lnnj6c8qmga.html",
-      "title": "Noah and Olive Position AI-Driven Global Allocation as Core Framework for Chinese HNW Investors",
-      "reason": "the_so_what flagged as weak CXO relevance (3/10) — review before publishing",
-      "score": 49
-    },
-    {
-      "url": "https://www.fintechfutures.com/venture-capital-funding/jump-raises-80m-series-b",
-      "title": "Jump's AI Advisor OS Reaches 15,000 Advisors as $80M Series B Validates Productivity Category",
-      "reason": "Score 50/100 — below 60 review threshold",
-      "score": 50
+      "url": "https://www.wealthmanagement.com/financial-technology/advisors-navigate-ai-innovation-surge-at-t3-conference",
+      "title": "T3 Conference Shows AI Embedded Across Advisor Tech Stack as Innovation Pace Accelerates",
+      "reason": "Score 40/100 — below 45 review threshold",
+      "score": 40
     }
   ],
-  "written_at": "2026-03-29T04:02:30.969Z"
+  "written_at": "2026-03-30T04:03:17.276Z"
 }

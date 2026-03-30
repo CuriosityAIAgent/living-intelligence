@@ -1,1 +1,228 @@
-{}
+{
+  "zocks-series-b-agentic-ai-advisor-automation-2026": {
+    "entry": {
+      "id": "zocks-series-b-agentic-ai-advisor-automation-2026",
+      "type": "funding",
+      "headline": "Zocks Deploys Agentic AI Across 5,000 Firms, Saving Advisors 10+ Hours Weekly as Platform Shifts from Admin Tool to Revenue Engine",
+      "the_so_what": "By embedding conversation-to-action pipelines across 5,000 firms before the enterprise vendor selection cycle has closed — and now reorienting $45M toward revenue generation rather than task automation — Zocks is executing the same system-of-record land-and-expand playbook that made Salesforce irreplaceable in CRM: once every client interaction flows through the platform, displacement requires migrating not just software but institutional memory.",
+      "company": "zocks",
+      "company_name": "Zocks",
+      "date": "2026-01-26",
+      "source_name": "Business Wire",
+      "source_url": "https://www.businesswire.com/news/home/20260126549388/en/Zocks-Raises-%2445M-Series-B-to-Accelerate-AI-Powered-Automation-for-Financial-Advisors",
+      "source_verified": true,
+      "image_url": null,
+      "summary": "Zocks' agentic AI platform converts advisor-client conversations into structured data with two-way integrations across CRM, financial planning, tax, and portfolio management systems — saving advisors 10+ hours per week on administrative tasks and enabling natural-language queries across a book of business to surface clients without college savings plans, unconsolidated 401(k)s, or approaching RMD thresholds, with one-click action on suggested next steps. The platform is already deployed across more than 5,000 financial firms, including enterprise clients Ameritas, Carson Group, Kestra Financial, and Osaic. Zocks raised $45M in Series B funding co-led by Lightspeed Venture Partners and QED Investors, with participation from Illuminate Financial and existing investors including Motive Partners, bringing total funding to $65M. The capital will fund expansion of agentic capabilities, deeper enterprise integrations, and enhanced security and compliance features. The round follows a $13.8M Series A closed in March 2025.",
+      "key_stat": {
+        "number": "5,000+",
+        "label": "financial firms currently deployed on the Zocks platform"
+      },
+      "capability_evidence": {
+        "capability": "advisor_productivity",
+        "stage": "deployed",
+        "evidence": "Zocks is live across 5,000+ financial firms including Ameritas, Carson Group, Kestra Financial, and Osaic, automating workflows including client onboarding, account openings, meeting preparation, follow-ups, and document processing through two-way integrations with CRM, financial planning, tax, and portfolio management systems.",
+        "metric": "10+ hours saved per advisor per week"
+      },
+      "tags": {
+        "capability": "advisor_productivity",
+        "region": "us",
+        "segment": "advisor_tools",
+        "theme": [
+          "agentic_ai",
+          "workflow_automation",
+          "conversation_intelligence",
+          "book_of_business_analytics"
+        ]
+      },
+      "week": "2026-03-30",
+      "featured": false,
+      "_enrichment": {
+        "what_changed": "Previous coverage framed the strategic risk as a closing window for enterprise firms to negotiate terms; this entry shifts the analytical lens to why displacement becomes structurally more costly over time — the compounding data and workflow dependency, not just the vendor selection timing.",
+        "landscape_context": {
+          "current_maturity": "Advanced — agentic AI with two-way system integrations and book-of-business opportunity identification at enterprise scale",
+          "maturity_direction": "up",
+          "competitor_gap": "No peers at this maturity level yet in available data"
+        },
+        "confidence": "medium",
+        "notes": "Zocks not in landscape database; no peer competitor data available for advisor_productivity segment — competitive gap assessment based on summary context only."
+      },
+      "_format_errors": [
+        "headline exceeds 120 chars (130)",
+        "week \"2026-03-30\" is not the Monday of date \"2026-01-26\" (expected \"2026-01-26\")"
+      ],
+      "_governance": {
+        "verdict": "PASS",
+        "confidence": 97,
+        "verified_claims": [
+          "Zocks' agentic AI platform converts advisor-client conversations into structured data",
+          "Two-way integrations across CRM, financial planning, tax, and portfolio management systems",
+          "Saves advisors 10+ hours per week on administrative tasks",
+          "Enables natural-language queries across a book of business to surface clients without college savings plans, unconsolidated 401(k)s, or approaching RMD thresholds",
+          "One-click action on suggested next steps",
+          "Platform deployed across more than 5,000 financial firms",
+          "Enterprise clients include Ameritas, Carson Group, Kestra Financial, and Osaic",
+          "Zocks raised $45M in Series B funding",
+          "Series B co-led by Lightspeed Venture Partners and QED Investors",
+          "Participation from Illuminate Financial",
+          "Existing investors including Motive Partners",
+          "Total funding brought to $65M",
+          "Capital will fund expansion of agentic capabilities, deeper enterprise integrations, and enhanced security and compliance features",
+          "Round follows a $13.8M Series A closed in March 2025",
+          "Platform shifts from admin tool to revenue/growth engine"
+        ],
+        "unverified_claims": [
+          "Expanse Venture Partners, Entrée Capital, and 14Peaks Capital are listed as existing investors in the source but not mentioned in the entry — their omission is not a contradiction, just incomplete"
+        ],
+        "fabricated_claims": [],
+        "notes": "All factual claims in the headline, summary, and key stat are directly and explicitly supported by the source article with no contradictions found.",
+        "paywall_caveat": false,
+        "verified_at": "2026-03-30T04:01:25.160Z",
+        "human_approved": false
+      },
+      "_fabrication": {
+        "verdict": "CLEAN",
+        "issues": [],
+        "check_details": {
+          "numbers_in_headline": "pass",
+          "company_name": "pass",
+          "date_year": "pass",
+          "key_stat": "pass",
+          "quoted_phrases": "pass"
+        },
+        "checked_at": "2026-03-30T04:01:27.547Z"
+      }
+    },
+    "governance": {
+      "verdict": "PASS",
+      "confidence": 97,
+      "verified_claims": [
+        "Zocks' agentic AI platform converts advisor-client conversations into structured data",
+        "Two-way integrations across CRM, financial planning, tax, and portfolio management systems",
+        "Saves advisors 10+ hours per week on administrative tasks",
+        "Enables natural-language queries across a book of business to surface clients without college savings plans, unconsolidated 401(k)s, or approaching RMD thresholds",
+        "One-click action on suggested next steps",
+        "Platform deployed across more than 5,000 financial firms",
+        "Enterprise clients include Ameritas, Carson Group, Kestra Financial, and Osaic",
+        "Zocks raised $45M in Series B funding",
+        "Series B co-led by Lightspeed Venture Partners and QED Investors",
+        "Participation from Illuminate Financial",
+        "Existing investors including Motive Partners",
+        "Total funding brought to $65M",
+        "Capital will fund expansion of agentic capabilities, deeper enterprise integrations, and enhanced security and compliance features",
+        "Round follows a $13.8M Series A closed in March 2025",
+        "Platform shifts from admin tool to revenue/growth engine"
+      ],
+      "unverified_claims": [
+        "Expanse Venture Partners, Entrée Capital, and 14Peaks Capital are listed as existing investors in the source but not mentioned in the entry — their omission is not a contradiction, just incomplete"
+      ],
+      "fabricated_claims": [],
+      "notes": "All factual claims in the headline, summary, and key stat are directly and explicitly supported by the source article with no contradictions found.",
+      "paywall_caveat": false,
+      "verified_at": "2026-03-30T04:01:25.160Z",
+      "human_approved": false
+    },
+    "queued_at": "2026-03-30T04:01:27.551Z",
+    "discovered_at": "2026-03-30T04:01:27.551Z",
+    "score": 81,
+    "score_breakdown": "Score: 81/100 · Source: Press release wire (businesswire.com) (25) · Claims: 1 unverified claim (+15) · Fresh: 63d old (1) · Impact: capability clear: advisor_productivity (+10), deployed+quantified (+15), quantified scale (+10), central tracked company (+5) (40) · CXO: contains specific metric (+2) (7/10)"
+  },
+  "openai-10-billion-venture-pe-firms-2026-03": {
+    "entry": {
+      "id": "openai-10-billion-venture-pe-firms-2026-03",
+      "type": "market_signal",
+      "headline": "No Retrievable Content: OpenAI-PE Venture Report Blocked by Paywall",
+      "the_so_what": "Without source-verified facts on deal structure, participating PE firms, or capital allocation, any analytical framing of OpenAI's reported $10 billion PE venture would be speculation — not intelligence — and this entry is held pending a retrievable primary source.",
+      "company": "openai",
+      "company_name": "OpenAI",
+      "date": "2026-03-16",
+      "source_name": "Bloomberg",
+      "source_url": "https://www.bloomberg.com/news/articles/2026-03-16/openai-discusses-10-billion-venture-with-pe-firms-reuters-says",
+      "source_verified": true,
+      "image_url": null,
+      "summary": "The original Bloomberg article returned a 403 Forbidden error. All three enrichment sources returned Bloomberg bot-detection pages, a 2022 JOLTS jobs data article unrelated to this story, and a security researcher's archived bot-detection page — none containing any information about the reported OpenAI and private equity venture. No facts about the alleged $10 billion venture, the PE firms involved, the structure of the deal, or any AI capability details could be extracted from the available content. This entry cannot be completed with source-verified facts.",
+      "key_stat": null,
+      "capability_evidence": {
+        "capability": "new_business_models",
+        "stage": "announced",
+        "evidence": "No source-verified evidence available — all sources returned paywalled or unrelated content.",
+        "metric": null
+      },
+      "tags": {
+        "capability": "new_business_models",
+        "region": "us",
+        "segment": "ai_native",
+        "theme": [
+          "infrastructure_investment",
+          "private_equity",
+          "unverified_source",
+          "paywall_blocked"
+        ]
+      },
+      "week": "2026-03-30",
+      "featured": false,
+      "_enrichment": {
+        "what_changed": "First coverage of this company",
+        "landscape_context": {
+          "current_maturity": null,
+          "maturity_direction": "unknown",
+          "competitor_gap": null
+        },
+        "confidence": "low",
+        "notes": "Primary source blocked by Bloomberg paywall (403 Forbidden); all three enrichment sources returned bot-detection pages or unrelated content. No facts about the reported venture, deal structure, or PE participants could be extracted. Entry cannot be completed with source-verified facts."
+      },
+      "_format_errors": [
+        "week \"2026-03-30\" is not the Monday of date \"2026-03-16\" (expected \"2026-03-16\")"
+      ],
+      "_governance": {
+        "verdict": "PASS",
+        "confidence": 92,
+        "verified_claims": [
+          "The original Bloomberg article returned a 403 Forbidden error",
+          "All three enrichment sources returned Bloomberg bot-detection pages, a 2022 JOLTS jobs data article unrelated to this story, and a security researcher's archived bot-detection page",
+          "None of the sources contain any information about the reported OpenAI and private equity venture",
+          "No facts about the alleged $10 billion venture, the PE firms involved, the structure of the deal, or any AI capability details could be extracted from the available content",
+          "This entry cannot be completed with source-verified facts"
+        ],
+        "unverified_claims": [],
+        "fabricated_claims": [],
+        "notes": "All claims in the headline and summary accurately describe the retrieval failure conditions visible in the source content — 403 error, bot-detection pages, an unrelated JOLTS article, and a security researcher's archived page — with no contradictions present.",
+        "paywall_caveat": true,
+        "verified_at": "2026-03-30T04:02:17.262Z",
+        "human_approved": false
+      },
+      "_fabrication": {
+        "verdict": "CLEAN",
+        "issues": [],
+        "check_details": {
+          "numbers_in_headline": "none",
+          "company_name": "pass",
+          "date_year": "pass",
+          "key_stat": "no_stat",
+          "quoted_phrases": "none"
+        },
+        "checked_at": "2026-03-30T04:02:19.410Z"
+      }
+    },
+    "governance": {
+      "verdict": "PASS",
+      "confidence": 92,
+      "verified_claims": [
+        "The original Bloomberg article returned a 403 Forbidden error",
+        "All three enrichment sources returned Bloomberg bot-detection pages, a 2022 JOLTS jobs data article unrelated to this story, and a security researcher's archived bot-detection page",
+        "None of the sources contain any information about the reported OpenAI and private equity venture",
+        "No facts about the alleged $10 billion venture, the PE firms involved, the structure of the deal, or any AI capability details could be extracted from the available content",
+        "This entry cannot be completed with source-verified facts"
+      ],
+      "unverified_claims": [],
+      "fabricated_claims": [],
+      "notes": "All claims in the headline and summary accurately describe the retrieval failure conditions visible in the source content — 403 error, bot-detection pages, an unrelated JOLTS article, and a security researcher's archived page — with no contradictions present.",
+      "paywall_caveat": true,
+      "verified_at": "2026-03-30T04:02:17.262Z",
+      "human_approved": false
+    },
+    "queued_at": "2026-03-30T04:02:19.938Z",
+    "discovered_at": "2026-03-30T04:02:19.938Z",
+    "score": null,
+    "score_breakdown": null
+  }
+}
