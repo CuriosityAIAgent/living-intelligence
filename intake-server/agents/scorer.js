@@ -452,6 +452,13 @@ export async function scoreEntry({ entry, governance, sourceUrl }) {
 
   let score = Math.max(0, Math.min(100, dimA.points + dimB.points + dimC.points + dimD.points));
 
+  // Multi-source bonus: stories with multiple sources are higher quality
+  const sourceCount = entry.source_count || entry.sources?.length || 1;
+  const hasPrimarySource = (entry.sources || []).some(s => s.type === 'primary');
+  if (sourceCount >= 3) score = Math.min(100, score + 5);
+  else if (sourceCount >= 2) score = Math.min(100, score + 3);
+  if (hasPrimarySource) score = Math.min(100, score + 3);
+
   // Tracked company floor: never silently block a fresh story about a company we monitor
   const ageDaysNow = entry.date
     ? (Date.now() - new Date(entry.date).getTime()) / (1000 * 60 * 60 * 24) : 999;

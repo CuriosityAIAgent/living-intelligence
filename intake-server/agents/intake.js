@@ -578,6 +578,40 @@ export async function processUrl({ url, source_name, send }) {
     return null;
   }
 
+  // ── Build multi-source array ─────────────────────────────────────────────────
+  // Collect all sources that covered this story: original discovery + enrichment
+  const sources = [];
+
+  for (const s of usable) {
+    const hostname = s.hostname || '';
+    const isPressRelease = ['businesswire.com', 'prnewswire.com', 'globenewswire.com', 'accesswire.com'].includes(hostname);
+    const isCompanyNewsroom = /newsroom\.|\/newsroom|\/press-releases|\/press-release|investor\.|press\./.test(s.url);
+    sources.push({
+      name: isPressRelease ? hostname.replace('.com', '').replace(/^\w/, c => c.toUpperCase())
+           : isCompanyNewsroom ? `${entry.company_name || 'Company'} Newsroom`
+           : hostname.replace('www.', ''),
+      url: s.url,
+      type: isPressRelease || isCompanyNewsroom ? 'primary' : 'coverage',
+    });
+  }
+
+  // Add the original discovery source
+  const discoveryHostname = (() => { try { return new URL(url).hostname.replace('www.', ''); } catch { return ''; } })();
+  if (!sources.some(s => s.url === url)) {
+    sources.push({
+      name: source_name || entry.source_name || discoveryHostname,
+      url,
+      type: 'discovery',
+    });
+  }
+
+  // Sort: primary first, then coverage, then discovery
+  const typeOrder = { primary: 0, coverage: 1, discovery: 2 };
+  sources.sort((a, b) => (typeOrder[a.type] ?? 9) - (typeOrder[b.type] ?? 9));
+
+  entry.sources = sources;
+  entry.source_count = sources.length;
+
   send('structured', {
     entry,
     source_markdown_preview: contentMarkdown.slice(0, 1500),
