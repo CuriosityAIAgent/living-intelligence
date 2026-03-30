@@ -167,7 +167,7 @@ app.post('/api/process-url', async (req, res) => {
     return;
   }
 
-  // Fix 4: Block permanently-failed URLs before wasting any processing
+  // Block permanently-failed URLs
   if (isBlocked(url)) {
     const blocked = getBlocked();
     send('blocked', {
@@ -176,6 +176,23 @@ app.post('/api/process-url', async (req, res) => {
     });
     done();
     return;
+  }
+
+  // Dedup: check if this URL is already published
+  {
+    const { INTEL_DIR } = await import('./agents/config.js');
+    const { readdirSync, readFileSync } = await import('fs');
+    try {
+      const published = readdirSync(INTEL_DIR).filter(f => f.endsWith('.json'));
+      for (const f of published) {
+        const entry = JSON.parse(readFileSync(`${INTEL_DIR}/${f}`, 'utf8'));
+        if (entry.source_url && entry.source_url.toLowerCase().replace(/\/$/, '') === url.toLowerCase().replace(/\/$/, '')) {
+          send('blocked', { message: `Already published: "${entry.headline}" (${f})` });
+          done();
+          return;
+        }
+      }
+    } catch (_) {}
   }
 
   try {
@@ -219,21 +236,48 @@ app.post('/api/process-url', async (req, res) => {
     // Attach governance audit to the entry object
     intakeResult.entry._governance = govAudit;
 
-    // All stories go to inbox — nothing publishes without editorial sign-off
-    if (govResult.verdict === 'REVIEW' || govResult.verdict === 'PASS') {
-      addPending(intakeResult.entry, govAudit);
-      send('review_queued', {
-        message: govResult.verdict === 'REVIEW'
-          ? 'Entry has unverified claims — queued in inbox for review.'
-          : 'Entry looks clean (PASS) — queued in inbox for editorial sign-off.',
-        entry_id: intakeResult.entry.id,
-        governance_verdict: govResult.verdict,
-        unverified_claims: govResult.unverified_claims,
-        notes: govResult.notes,
+    // Step 3: Score the entry (same as scheduler — no bypass)
+    send('status', { message: 'Scoring entry...' });
+    const { scoreEntry, formatScoreBreakdown } = await import('./agents/scorer.js');
+    const scored = await scoreEntry({
+      entry: intakeResult.entry,
+      governance: govAudit,
+      sourceUrl: url,
+    });
+
+    send('status', {
+      message: `Score: ${scored.score}/100 → ${scored.action}. ${formatScoreBreakdown(scored)}`,
+    });
+
+    // Block low-scoring entries (same threshold as scheduler)
+    if (scored.action === 'BLOCK') {
+      const reason = scored.reason || `Score ${scored.score}/100 — below review threshold`;
+      addBlocked(url, intakeResult.entry.id, reason, { title: intakeResult.entry.headline, score: scored.score });
+      send('blocked', {
+        message: `Entry scored ${scored.score}/100 — blocked. ${reason}`,
+        score: scored.score,
       });
       done();
       return;
     }
+
+    // Paywall caveat: downgrade PUBLISH to REVIEW
+    if (scored.action === 'PUBLISH' && govAudit.paywall_caveat) scored.action = 'REVIEW';
+
+    // All PASS and REVIEW stories go to inbox
+    addPending(intakeResult.entry, govAudit, { score: scored.score, score_breakdown: formatScoreBreakdown(scored) });
+    send('review_queued', {
+      message: scored.action === 'PUBLISH'
+        ? `Score ${scored.score}/100 — queued for editorial sign-off.`
+        : `Score ${scored.score}/100 (${scored.action}) — queued in inbox for review.`,
+      entry_id: intakeResult.entry.id,
+      score: scored.score,
+      governance_verdict: govResult.verdict,
+      unverified_claims: govResult.unverified_claims,
+      notes: govResult.notes,
+    });
+    done();
+    return;
 
     // FAIL — already blocked above; this is a safety fallback
     send('complete', {
