@@ -1,5 +1,5 @@
 /**
- * auto-discover.js — Three-layer discovery pipeline
+ * auto-discover.js — Multi-layer discovery pipeline
  *
  * Layer 1 News  : 8 broad thematic DFS Google News queries
  *                 (catches any new entrant / unknown company)
@@ -8,6 +8,9 @@
  *                 Year injected at runtime (Q1-aware: includes prior year too).
  * Layer 2 Cos   : Dynamic DFS Content Analysis queries, one per company in
  *                 data/competitors/*.json — auto-expands as landscape grows
+ * Layer 3 NewsAPI: NewsAPI.ai (Event Registry) — 80K+ sources, catches industry
+ *                 press (ThinkAdvisor, RIABiz, Financial Planning) that Google
+ *                 News editorial selection misses.
  * Layer 1 TL    : 5 broad Jina Search queries for thought leadership
  * Layer 2 Authors: Dynamic Jina Search queries from data/thought-leadership/*.json
  *
@@ -350,6 +353,7 @@ function scoreCandidate(c) {
 
   // Source type bonus
   if (c.via === 'layer2_companies')       baseScore += 5 + Math.min(Math.floor(c.quality_score || 0), 2);
+  else if (c.via === 'layer3_newsapi')    baseScore += 4;
   else if (c.via === 'layer1_capabilities') baseScore += 4;
   else if (c.via === 'layer1_news')         baseScore += 3;
 
@@ -679,6 +683,77 @@ async function discoverFromLayer2Authors(existingUrls, tlEntries) {
   return candidates;
 }
 
+// ── Layer 3 NewsAPI — Event Registry (80K+ sources) ─────────────────────────
+// Catches industry trade press that Google News misses (ThinkAdvisor, RIABiz,
+// Financial Planning, WealthManagement.com, etc). Uses keyword search with
+// date filtering (last 7 days) and dedup skip.
+// API: https://eventregistry.org/api/v1/article/getArticles
+
+const NEWSAPI_QUERIES = [
+  'AI wealth management advisor',
+  'financial advisor artificial intelligence platform',
+  'wealthtech AI fintech',
+  'private banking AI deployment',
+];
+
+async function discoverFromNewsAPI(existingUrls) {
+  if (!process.env.NEWSAPI_KEY) return [];
+
+  const now = new Date();
+  const weekAgo = new Date(now.getTime() - 7 * 86400000);
+  const dateStart = weekAgo.toISOString().slice(0, 10);
+  const dateEnd = now.toISOString().slice(0, 10);
+
+  const results = await Promise.allSettled(
+    NEWSAPI_QUERIES.map(async (keyword) => {
+      try {
+        const res = await fetch('https://eventregistry.org/api/v1/article/getArticles', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            action: 'getArticles',
+            keyword,
+            keywordOper: 'and',
+            lang: 'eng',
+            dateStart,
+            dateEnd,
+            isDuplicateFilter: 'skipDuplicates',
+            resultType: 'articles',
+            articlesSortBy: 'date',
+            articlesCount: 30,
+            articlesPage: 1,
+            apiKey: process.env.NEWSAPI_KEY,
+          }),
+          signal: AbortSignal.timeout(30000),
+        });
+        if (!res.ok) return [];
+        const data = await res.json();
+        return (data?.articles?.results || [])
+          .filter(a => {
+            if (!a.url || existingUrls.has(normalizeUrl(a.url))) return false;
+            return true;
+          })
+          .map(a => ({
+            id: Buffer.from(a.url).toString('base64').slice(0, 12),
+            title: a.title || a.url,
+            url: a.url,
+            source_name: a.source?.title || 'NewsAPI',
+            pub_date: a.dateTime || a.date || null,
+            snippet: (a.body || '').slice(0, 300),
+            selected: true,
+            via: 'layer3_newsapi',
+          }));
+      } catch (_) {
+        return [];
+      }
+    })
+  );
+
+  const candidates = [];
+  results.forEach(r => { if (r.status === 'fulfilled') candidates.push(...r.value); });
+  return candidates.filter(c => isRelevant(`${c.title} ${c.snippet}`));
+}
+
 // ── Test exports — pure functions, no side effects ────────────────────────────
 // Exported so run-tests.js can test them without calling external APIs.
 export { isRelevant, normalizeUrl, buildCompanyQueries, buildCapabilityQueries, buildAuthorQueries };
@@ -699,40 +774,44 @@ export async function autoDiscover({ send }) {
   const knownCompanyNames = new Set(competitors.map(c => (c.name || '').toLowerCase()));
 
   send('status', { message: `Loaded ${competitors.length} companies, ${capabilities.length} capability dimensions + ${tlEntries.length} TL entries` });
-  send('status', { message: `Running three-layer discovery — L1 News: 8 queries; L1 Capabilities: ${capabilities.length} queries; L2 Companies: ${competitors.length} queries...` });
+  const hasNewsAPI = !!process.env.NEWSAPI_KEY;
+  send('status', { message: `Running ${hasNewsAPI ? 'four' : 'three'}-layer discovery — L1 News: 8 queries; L1 Capabilities: ${capabilities.length} queries; L2 Companies: ${competitors.length} queries${hasNewsAPI ? '; L3 NewsAPI: 4 queries' : ''}...` });
 
   const existingUrls = getExistingUrls();
   const publishedCompanyDates = getPublishedCompanyDates();
 
-  // Run all five layers in parallel
-  const [l1NewsResult, l1CapsResult, l2CosResult, l1TlResult, l2AuthResult] = await Promise.allSettled([
+  // Run all layers in parallel (NewsAPI added as L3 if key present)
+  const [l1NewsResult, l1CapsResult, l2CosResult, l3NewsAPIResult, l1TlResult, l2AuthResult] = await Promise.allSettled([
     discoverFromLayer1News(existingUrls),
     discoverFromLayer1Capabilities(existingUrls, capabilities),
     discoverFromLayer2Companies(existingUrls, competitors),
+    discoverFromNewsAPI(existingUrls),
     discoverFromLayer1TL(existingUrls),
     discoverFromLayer2Authors(existingUrls, tlEntries),
   ]);
 
-  const l1News  = l1NewsResult.status  === 'fulfilled' ? l1NewsResult.value  : [];
-  const l1Caps  = l1CapsResult.status  === 'fulfilled' ? l1CapsResult.value  : [];
-  const l2Cos   = l2CosResult.status   === 'fulfilled' ? l2CosResult.value   : [];
-  const l1TL    = l1TlResult.status    === 'fulfilled' ? l1TlResult.value    : [];
-  const l2Auth  = l2AuthResult.status  === 'fulfilled' ? l2AuthResult.value  : [];
+  const l1News   = l1NewsResult.status   === 'fulfilled' ? l1NewsResult.value   : [];
+  const l1Caps   = l1CapsResult.status   === 'fulfilled' ? l1CapsResult.value   : [];
+  const l2Cos    = l2CosResult.status    === 'fulfilled' ? l2CosResult.value    : [];
+  const l3News   = l3NewsAPIResult.status === 'fulfilled' ? l3NewsAPIResult.value : [];
+  const l1TL     = l1TlResult.status     === 'fulfilled' ? l1TlResult.value     : [];
+  const l2Auth   = l2AuthResult.status   === 'fulfilled' ? l2AuthResult.value   : [];
 
   send('progress', {
     layer1_news:          `${l1News.length} found`,
     layer1_capabilities:  `${l1Caps.length} found (${capabilities.length} capability dimensions queried)`,
     layer2_companies:     `${l2Cos.length} found (${competitors.length} companies queried)`,
+    layer3_newsapi:       `${l3News.length} found (${NEWSAPI_QUERIES.length} queries)`,
     layer1_tl:            `${l1TL.length} found`,
     layer2_authors:       `${l2Auth.length} found (${buildAuthorQueries(tlEntries).length} authors queried)`,
   });
 
   // ── Intelligence candidates pipeline ─────────────────────────────────────────
 
-  // Merge L1 News + L1 Capabilities + L2 Companies, URL-dedup + company-date proximity dedup
+  // Merge L1 News + L1 Capabilities + L2 Companies + L3 NewsAPI, URL-dedup + company-date proximity dedup
   const seenIntelUrls = new Set();
   let companyDateDupes = 0;
-  const allIntel = [...l1News, ...l1Caps, ...l2Cos].filter(c => {
+  const allIntel = [...l1News, ...l1Caps, ...l2Cos, ...l3News].filter(c => {
     const norm = normalizeUrl(c.url || '');
     if (!norm || seenIntelUrls.has(norm)) return false;
     seenIntelUrls.add(norm);
@@ -781,6 +860,7 @@ export async function autoDiscover({ send }) {
       layer1_news:           l1News.length,
       layer1_capabilities:   l1Caps.length,
       layer2_companies:      l2Cos.length,
+      layer3_newsapi:        l3News.length,
       layer1_tl:             l1TL.length,
       layer2_authors:        l2Auth.length,
       companies_queried:     competitors.length,
