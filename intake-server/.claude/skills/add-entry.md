@@ -65,6 +65,12 @@ Follow this exact schema. Every field is required unless marked optional:
   "image_url": null,
   "date": "YYYY-MM-DD — use article publication date, not today",
   "source_name": "Publication name",
+  "sources": [
+    { "name": "Company Newsroom", "url": "https://...", "type": "primary" },
+    { "name": "Publication", "url": "https://...", "type": "coverage" },
+    { "name": "Discovery source", "url": "https://...", "type": "discovery" }
+  ],
+  "source_count": 3,
   "author": { "name": null, "title": null, "organization": null },
   "tags": ["ai", "relevant-capability-dimension"],
   "source_verified": true,
