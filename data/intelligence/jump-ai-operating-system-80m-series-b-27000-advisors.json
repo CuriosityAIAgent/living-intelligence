@@ -9,6 +9,13 @@
   "source_name": "Business Wire",
   "source_url": "https://www.businesswire.com/news/home/20260219487440/en/Jump-Raises-%2480-Million-Series-B-Led-by-Insight-Partners-to-Expand-AI-Operating-System-for-Financial-Advisors",
   "source_verified": true,
+  "sources": [
+    { "name": "Business Wire", "url": "https://www.businesswire.com/news/home/20260219487440/en/Jump-Raises-%2480-Million-Series-B-Led-by-Insight-Partners-to-Expand-AI-Operating-System-for-Financial-Advisors", "type": "primary" },
+    { "name": "WealthManagement.com", "url": "https://www.wealthmanagement.com/artificial-intelligence/jump_secures_series_b", "type": "coverage" },
+    { "name": "FinTech Global", "url": "https://fintech.global/2026/02/20/jump-secures-80m-series-b-to-scale-ai-for-advisors/", "type": "coverage" },
+    { "name": "Insight Partners", "url": "https://www.insightpartners.com/ideas/jump-raises-80-million-series-b-led-by-insight-partners-to-expand-ai-operating-system-for-financial-advisors/", "type": "primary" }
+  ],
+  "source_count": 4,
   "summary": "Jump has built an AI operating system for financial advisors that has scaled to 27,000 users across financial advisory firms, growing from zero customers to that base in approximately two years while expanding its team from 3 to 200 employees — concrete evidence of rapid deployed adoption. The platform is positioned as an intelligence and action layer for advisory firms, targeting advisor productivity, insight generation, and organic growth. Jump closed an $80M Series B led by Insight Partners, with strategic participation from Allianz Life Ventures and TIAA Ventures — two institutional wealth and insurance players whose involvement signals validation beyond pure venture capital. The funding will be used to accelerate growth and further develop the platform's capabilities for modern advisory firms.",
   "key_stat": {
     "number": "27,000",

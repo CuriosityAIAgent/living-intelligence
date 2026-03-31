@@ -9,6 +9,12 @@
   "source_name": "Robinhood Newsroom",
   "source_url": "https://robinhood.com/newsroom/introducing-strategies-banking-and-cortex/",
   "source_verified": true,
+  "sources": [
+    { "name": "Robinhood Newsroom", "url": "https://robinhood.com/us/en/newsroom/robinhood-presents-yes-no-event/", "type": "primary" },
+    { "name": "Corporate Insight", "url": "https://corporateinsight.com/robinhood-2-0-how-the-commission-free-pioneer-is-rewriting-the-rules-again/", "type": "coverage" },
+    { "name": "Simply Wall St", "url": "https://simplywall.st/stocks/us/diversified-financials/nasdaq-hood/robinhood-markets/news/robinhoods-ai-tools-and-family-accounts-signal-super-app-amb", "type": "coverage" }
+  ],
+  "source_count": 3,
   "image_url": "/logos/robinhood.svg",
   "summary": "Robinhood has launched Cortex, an AI system that provides real-time market analysis, earnings summaries, and trade rationale for any equity or options position. Cortex aggregates news, analyst reports, social signals, and options flow to produce plain-English explanations of what is moving a stock and why. The product is aimed at democratizing institutional-grade research for retail investors. Early reviews highlight the quality of options flow interpretation as a genuine differentiator over competitors.",
   "key_stat": {

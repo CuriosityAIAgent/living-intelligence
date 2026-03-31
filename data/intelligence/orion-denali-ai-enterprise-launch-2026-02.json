@@ -9,6 +9,13 @@
   "source_name": "Business Wire",
   "source_url": "https://www.businesswire.com/news/home/20260226730121/en/Orion-Announces-Denali-AI-Enterprise-Version-Powering-a-New-Era-in-Advisor-Productivity",
   "source_verified": true,
+  "sources": [
+    { "name": "Business Wire", "url": "https://www.businesswire.com/news/home/20260226730121/en/Orion-Announces-Denali-AI-Enterprise-Version-Powering-a-New-Era-in-Advisor-Productivity", "type": "primary" },
+    { "name": "WealthManagement.com", "url": "https://www.wealthmanagement.com/financial-technology/orion-launches-enterprise-version-of-denali-ai", "type": "coverage" },
+    { "name": "Wealth Solutions Report", "url": "https://www.wealthsolutionsreport.com/orion-introduces-denali-ai-enterprise-intelligence-platform-for-advisors/", "type": "coverage" },
+    { "name": "Orion Product Page", "url": "https://orion.com/advisor-tech/denali-ai", "type": "primary" }
+  ],
+  "source_count": 4,
   "image_url": null,
   "summary": "Orion's Denali AI Enterprise, now live, consolidates advisor workflows into a single integrated prompt screen inside the Orion platform, drawing on permissioned firm data to automate meeting prep and answer generation — directly replacing the multi-tab, swivel-chair workflows that previously required specialized skills and multiple third-party tools. The launch also includes two new AI Assistants — Report Assistant and Query Studio — extending the platform's automated output capabilities. Broader availability to advisors and firms of all sizes is planned for later in 2026. The announcement was made at Orion's Ascent 2026 conference and follows a separately announced expansion of Orion's ongoing collaboration with Anthropic, including a new financial services plug-in.",
   "key_stat": null,

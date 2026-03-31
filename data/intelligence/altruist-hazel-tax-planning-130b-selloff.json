@@ -31,6 +31,16 @@
       "url": "https://www.nickbeim.com/blog/2026/02/17/the-week-altruist-shook-the-markets/"
     }
   ],
+  "sources": [
+    { "name": "Altruist Newsroom", "url": "https://altruist.com/news/hazel-ai-tax-planning/", "type": "primary" },
+    { "name": "Business Wire", "url": "https://www.businesswire.com/news/home/20260210142841/en/Altruist-Introduces-AI-Powered-Tax-Planning-in-Hazel-Helping-Advisors-Deliver-Tax-Planning-in-Minutes", "type": "primary" },
+    { "name": "CNBC", "url": "https://www.cnbc.com/2026/02/10/the-ai-threat-wrecked-software-stocks-now-broker-stocks-look-next-with-lpl-down-11percent.html", "type": "coverage" },
+    { "name": "WealthManagement.com", "url": "https://www.wealthmanagement.com/artificial-intelligence/altruist-ai-agent-launch-triggers-20b-wealth-management-stock-selloff", "type": "coverage" },
+    { "name": "Invezz", "url": "https://invezz.com/news/2026/02/11/ai-fears-trigger-selloff-in-finance-stocks-why-analysts-say-the-threat-is-overstated/", "type": "coverage" },
+    { "name": "Nick Beim / Venrock", "url": "https://www.nickbeim.com/blog/2026/02/17/the-week-altruist-shook-the-markets/", "type": "coverage" },
+    { "name": "PLANADVISER", "url": "https://www.planadviser.com/altruist-includes-tax-planning-on-ai-platform-for-advisers/", "type": "coverage" }
+  ],
+  "source_count": 7,
   "image_url": "/logos/altruist.svg",
   "summary": "Altruist launched AI-powered tax planning inside Hazel on February 10, 2026, enabling advisors to analyse 1040s, paystubs, and account statements to produce fully personalised tax plans in minutes. Because Altruist is simultaneously custodian and advisor platform, Hazel can query live ledger data for real-time embedded gain calculations, tax-loss harvesting modelling, asset location optimisation, and wash sale conflict detection. The announcement triggered an immediate market reaction: Schwab fell 11%, LPL Financial fell 13%, Raymond James fell 8.75%, and Ameriprise fell 13% — an aggregate $130 billion in market capitalisation wiped from wealth management stocks within two trading days. The sell-off reflected investor fear that AI-native platforms could disintermediate traditional custodians and broker-dealers. Hazel is priced at $600 per seat per year (basic) or $1,500 per year with full tax planning, undercutting legacy platform pricing by a wide margin.",
   "key_stat": {

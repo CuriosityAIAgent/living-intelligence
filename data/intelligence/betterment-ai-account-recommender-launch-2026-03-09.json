@@ -54,5 +54,11 @@
       "url": "https://www.betterment.com/help/account-recommender-artificial-intelligence"
     }
   ],
+  "sources": [
+    { "name": "PR Newswire", "url": "https://www.prnewswire.com/news-releases/betterment-launches-ai-enabled-account-recommender-advancing-enterprise-ai-strategy-302707654.html", "type": "primary" },
+    { "name": "Betterment Help", "url": "https://www.betterment.com/help/account-recommender-artificial-intelligence", "type": "primary" },
+    { "name": "The AI Journal", "url": "https://aijourn.com/betterment-launches-ai-enabled-account-recommender-advancing-enterprise-ai-strategy/", "type": "coverage" }
+  ],
+  "source_count": 3,
   "published_at": "2026-03-09T00:00:00.000Z"
 }

@@ -19,6 +19,14 @@
       "url": "https://altruist.com/news/altruist-unveils-hazel/"
     }
   ],
+  "sources": [
+    { "name": "Datos Insights", "url": "https://datos-insights.com/blog/hazel-avantos-and-the-bank-wealth-management-opportunity/", "type": "discovery" },
+    { "name": "Altruist Newsroom", "url": "https://altruist.com/news/hazel-ai-tax-planning/", "type": "primary" },
+    { "name": "Altruist Newsroom", "url": "https://altruist.com/news/altruist-unveils-hazel/", "type": "primary" },
+    { "name": "PR Newswire — Guardian + Avantos", "url": "https://www.prnewswire.com/news-releases/guardian-announces-strategic-partnership-with-avantos-enhancing-wealth-management-capabilities-and-accelerating-ai-driven-transformation-302697428.html", "type": "primary" },
+    { "name": "WealthManagement.com", "url": "https://www.wealthmanagement.com/financial-technology/ai-startup-avantos-raises-25m-led-by-bessemer", "type": "coverage" }
+  ],
+  "source_count": 5,
   "image_url": "/logos/altruist.svg",
   "summary": "Altruist's launch of Hazel, an AI-based tax planning capability built via its 2025 acquisition of startup Thyme, triggered an estimated $130 billion market value wipeout across Raymond James, Charles Schwab, and LPL Financial within two days, while bank wealth divisions were largely spared due to structural insulation. Hazel combines meeting intelligence, live custodial data, and tax planning into a single advisor environment, enabling productivity expansion and proactive next-best-action engagement for advisors managing large, heterogeneous books. Avantos, a recently launched AI-native platform for institutional wealth management, layers a knowledge graph across core systems to enable advisors, servicing teams, and AI agents to operate with shared context, with Mercer Advisors reporting active deployment across tens of thousands of clients. Bank wealth units face three key investment areas to capture this opportunity: data completeness, supervisory workflow with compliance architecture, and change management for captive advisor adoption. Datos Insights positions Hazel as a competitive reference point for bank wealth leaders and Avantos as the more actionable institutional-scale opportunity.",
   "key_stat": {

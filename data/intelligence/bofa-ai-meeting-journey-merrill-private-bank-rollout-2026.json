@@ -9,6 +9,13 @@
   "source_name": "Simply Wall St",
   "source_url": "https://simplywall.st/stocks/us/banks/nyse-bac/bank-of-america/news/bank-of-america-expands-ai-meeting-tool-to-reshape-wealth-ma",
   "source_verified": true,
+  "sources": [
+    { "name": "Bank of America Newsroom", "url": "https://newsroom.bankofamerica.com/content/newsroom/press-releases/2026/03/merrill-and-bank-of-america-private-bank-launch-ai-powered-meeti.html", "type": "primary" },
+    { "name": "WealthManagement.com", "url": "https://www.wealthmanagement.com/artificial-intelligence/bank-of-america-merrill-launches-ai-powered-meeting-journey", "type": "coverage" },
+    { "name": "American Banker", "url": "https://www.americanbanker.com/news/bank-of-america-gives-merrill-lynch-an-ai-makeover", "type": "coverage" },
+    { "name": "Simply Wall St", "url": "https://simplywall.st/stocks/us/banks/nyse-bac/bank-of-america/news/bank-of-america-expands-ai-meeting-tool-to-reshape-wealth-ma", "type": "discovery" }
+  ],
+  "source_count": 4,
   "image_url": "/logos/bofa-merrill.png",
   "summary": "Bank of America's AI-Powered Meeting Journey tool automates three core advisor workflow steps — pre-meeting client preparation, real-time meeting summarization (with client consent), and post-meeting task organization — and is now in full-scale rollout across Merrill Wealth Management and the Private Bank. Early users report workflow improvements, indicating the system is live in active client settings rather than in testing; the tool originated with approximately 1,500 beta users before this broader deployment. The claimed productivity gain is up to four hours saved per meeting, which at scale could meaningfully increase advisor capacity for high-value planning conversations and fee-based mandate development. The rollout positions this AI layer as embedded infrastructure in front-line advisory processes — comparable to competing deployments at JPMorgan, Morgan Stanley, and Goldman Sachs — rather than a peripheral chatbot application. Key execution risks include advisor adoption breadth, integration reliability with platforms such as Salesforce and Zoom, and regulatory scrutiny over AI-generated summaries in a supervised wealth segment.",
   "key_stat": {

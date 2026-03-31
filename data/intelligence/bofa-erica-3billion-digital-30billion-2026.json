@@ -10,6 +10,12 @@
   "source_url": "https://newsroom.bankofamerica.com/content/newsroom/press-releases/2026/03/bofa-ai-and-digital-innovations-fuel-30-billion-client-interacti.html",
   "source_verified": true,
   "additional_sources": [],
+  "sources": [
+    { "name": "Bank of America Newsroom", "url": "https://newsroom.bankofamerica.com/content/newsroom/press-releases/2026/03/bofa-ai-and-digital-innovations-fuel-30-billion-client-interacti.html", "type": "primary" },
+    { "name": "PR Newswire", "url": "https://www.prnewswire.com/news-releases/bofa-ai-and-digital-innovations-fuel-30-billion-client-interactions-302709493.html", "type": "primary" },
+    { "name": "Banking Exchange", "url": "https://www.bankingexchange.com/news-feed/item/10571-ai-tools-drive-30bn-digital-interactions-at-bank-of-america", "type": "coverage" }
+  ],
+  "source_count": 3,
   "image_url": "/logos/bofa-merrill.png",
   "summary": "Bank of America's March 2026 digital report confirms its AI and digital estate logged 30 billion client interactions in 2025 — a 14% year-on-year increase — with 16.6 billion logins and 13.3 billion alerts sent. Erica, the AI virtual assistant, reached 3.2 billion total interactions since its 2018 launch, with 20.6 million active users and 700 million interactions in 2025 alone. 86% of wealth management clients and 81% of consumer households now engage digitally. Life Plans — BofA's AI-driven financial planning tool — have been created by 21.5 million clients since 2020, generating $211 billion in associated asset growth. The figures confirm BofA as the scale leader in deployed consumer AI within financial services.",
   "key_stat": {

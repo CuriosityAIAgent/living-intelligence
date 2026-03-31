@@ -15,6 +15,13 @@
       "url": "https://www.thedailyupside.com/advisor/industry-news/altruist-ceo-jason-wenk-talks-ai-after-unusual-wall-street-selloff/"
     }
   ],
+  "sources": [
+    { "name": "RIABiz", "url": "https://riabiz.com/a/2026/3/18/altruist-again-has-staggering-ai-news-1600-ria-firms-subscribe-to-hazel-in-one-month-and-pipeline-suggests-1500-advisors-will-join-per-month-for-next-nine-months-ceo-says", "type": "discovery" },
+    { "name": "Business Wire", "url": "https://www.businesswire.com/news/home/20260210142841/en/Altruist-Introduces-AI-Powered-Tax-Planning-in-Hazel-Helping-Advisors-Deliver-Tax-Strategies-in-Minutes", "type": "primary" },
+    { "name": "WealthManagement.com", "url": "https://www.wealthmanagement.com/artificial-intelligence/altruist-launches-ai-powered-tax-planning-feature-in-hazel-platform-for-advisors", "type": "coverage" },
+    { "name": "The Daily Upside", "url": "https://www.thedailyupside.com/advisor/industry-news/altruist-ceo-jason-wenk-talks-ai-after-unusual-wall-street-selloff/", "type": "coverage" }
+  ],
+  "source_count": 4,
   "image_url": "/logos/altruist.svg",
   "summary": "One month after Altruist launched AI-powered tax planning in Hazel on February 10, 2026, 1,600 new RIA firms had subscribed to the platform — including 400 existing Altruist custodial clients and 1,200 net-new firms. CEO Jason Wenk told RIABiz that the pipeline suggests 1,500 advisors per month will join for the next nine months. The total Hazel client base stands at approximately 2,000 RIA firms within five weeks of the tax planning launch. Wenk called the market reaction to the February launch 'unusual', noting he woke up the morning after the announcement to 'complete chaos' as incumbent wealth platform stocks sold off sharply. The rapid adoption figures confirm Hazel as the fastest-growing AI platform in the independent RIA channel.",
   "key_stat": {
