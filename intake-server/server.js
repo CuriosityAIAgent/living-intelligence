@@ -345,6 +345,12 @@ app.post('/api/publish', (req, res) => {
   if (publishedIds.length > 0) {
     send('status', { message: `Published ${publishedIds.length} entries. Committing to git...` });
     commitAndPush({ ids: publishedIds, send });
+    // Landscape impact check for each published entry (non-blocking)
+    for (const entry of entries) {
+      if (publishedIds.includes(entry.id)) {
+        setImmediate(() => checkLandscapeImpact(entry).catch(() => {}));
+      }
+    }
   } else {
     send('error', { message: 'No entries passed governance gate — nothing published.' });
   }
@@ -842,6 +848,8 @@ h2{color:#27ae60}</style></head>
         const dummySend = () => {};
         const id = publish({ entry, send: dummySend });
         commitAndPush({ ids: [id], send: dummySend, branch: 'main' });
+        // Landscape impact check (non-blocking)
+        setImmediate(() => checkLandscapeImpact({ ...entry, id }).catch(() => {}));
       } catch (err) {
         console.error('[review] Publish after approve failed:', err.message);
       }
@@ -941,6 +949,8 @@ app.post('/review/:token/approve', (req, res) => {
     const dummySend = () => {};
     const id = publish({ entry, send: dummySend });
     commitAndPush({ ids: [id], send: dummySend, branch: 'main' });
+    // Landscape impact check (non-blocking)
+    setImmediate(() => checkLandscapeImpact({ ...entry, id }).catch(() => {}));
     res.json({ ok: true, message: 'Entry approved, published, and pushed to main', id });
   } catch (err) {
     res.status(500).json({ error: `Publish failed: ${err.message}` });
