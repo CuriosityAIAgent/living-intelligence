@@ -368,6 +368,7 @@ export async function runDailyPipeline() {
     queued:            pending.length,
     blocked:           blocked.length,
     errors:            errors.length,
+    error_details:     errors.slice(0, 10),
     discovery_sources: discoverySources,
     tl_candidates:     tlCandidates.length,
     tl_items:          tlCandidates.slice(0, 15),

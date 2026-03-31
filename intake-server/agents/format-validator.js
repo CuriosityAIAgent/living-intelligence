@@ -174,6 +174,24 @@ export function validateFormat(entry) {
     }
   }
 
+  // ── sources array (optional — validate structure if present) ──────────────
+  if (entry.sources !== undefined && entry.sources !== null) {
+    if (!Array.isArray(entry.sources)) {
+      errors.push('sources must be an array if present');
+    } else {
+      const validTypes = new Set(['primary', 'coverage', 'discovery']);
+      for (let i = 0; i < entry.sources.length; i++) {
+        const s = entry.sources[i];
+        if (!s.name || typeof s.name !== 'string') errors.push(`sources[${i}].name is missing or not a string`);
+        if (!s.url || typeof s.url !== 'string' || !s.url.startsWith('http')) errors.push(`sources[${i}].url is missing or invalid`);
+        if (!s.type || !validTypes.has(s.type)) errors.push(`sources[${i}].type must be primary, coverage, or discovery (got "${s.type}")`);
+      }
+      if (entry.source_count !== undefined && entry.source_count !== entry.sources.length) {
+        errors.push(`source_count (${entry.source_count}) does not match sources array length (${entry.sources.length})`);
+      }
+    }
+  }
+
   // ── source_url ────────────────────────────────────────────────────────────
   if (!entry.source_url || typeof entry.source_url !== 'string' || entry.source_url.trim() === '') {
     errors.push('source_url is missing or empty');
