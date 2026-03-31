@@ -143,5 +143,43 @@
     "blocked_at": "2026-03-30T04:03:17.275Z",
     "title": "T3 Conference Shows AI Embedded Across Advisor Tech Stack as Innovation Pace Accelerates",
     "score": 40
+  },
+  "https://www.businesswire.com/news/home/20260126549388/en/Zocks-Raises-%2445M-Series-B-to-Accelerate-AI-Powered-Automation-for-Financial-Advisors": {
+    "id": "zocks-series-b-agentic-ai-advisor-automation-2026",
+    "reason": "Human rejected REVIEW entry",
+    "blocked_at": "2026-03-30T15:49:36.899Z"
+  },
+  "https://www.bloomberg.com/news/articles/2026-03-16/openai-discusses-10-billion-venture-with-pe-firms-reuters-says": {
+    "id": "openai-10-billion-venture-pe-firms-2026-03",
+    "reason": "Human rejected REVIEW entry",
+    "blocked_at": "2026-03-30T15:49:44.484Z"
+  },
+  "https://www.planadviser.com/ai-product-service-launches-3-30-2026/": {
+    "id": "merrill-bofa-jump-ai-advisor-tools-march-2026",
+    "reason": "Fabricated claims: The entry states Bank of America's '$4 billion annual AI investment budget' is the total technology investment — the source states Bank of America invests '$13.5 billion annually on technology, including $4 billion for AI and other new initiatives.' The entry omits the $13.5 billion total and implies $4 billion is the full annual technology investment, but more critically the entry correctly cites $4 billion for AI, so this is not a direct contradiction. However, the entry describes it as 'backed by Bank of America's $4 billion annual AI investment budget' which is accurate per the source.; The headline states 'Tens of Thousands of Advisors' — Jump has 27,000 advisors, but Merrill and Glia deployment numbers are not specified in the source, making the aggregated 'tens of thousands' claim not directly supported for those firms",
+    "blocked_at": "2026-03-31T04:01:40.590Z",
+    "title": "Merrill, Jump and Glia Deploy AI Meeting and Workflow Agents to Tens of Thousands of Advisors",
+    "score": 0
+  },
+  "https://www.wealthmanagement.com/artificial-intelligence/morgan-stanley-s-wealth-head-addresses-ai-driven-pressures": {
+    "id": "morgan-stanley-wealth-head-ai-stock-fears-2026-02",
+    "reason": "Score 45/100 — below 45 review threshold",
+    "blocked_at": "2026-03-31T04:02:38.831Z",
+    "title": "Morgan Stanley Wealth Head Publicly Addresses AI-Driven Competitive Pressure on Firm's Stock",
+    "score": 45
+  },
+  "https://fintech.global/2026/03/30/ani-tech-launches-free-ai-cash-flow-app-for-advisors/": {
+    "id": "ani-tech-free-ai-cash-flow-app-advisors-2026-03-30",
+    "reason": "Score 46/100 — below 45 review threshold",
+    "blocked_at": "2026-03-31T04:03:26.280Z",
+    "title": "Ani Tech Deploys Free AI Cash Flow App, Targeting Advisor Adoption at Zero Cost-to-Entry",
+    "score": 46
+  },
+  "https://www.barrons.com/advisor/articles/blackrock-ai-tool-morgan-stanley-financial-advisors-772ab402?gaa_at=eafs&gaa_n=AWEtsqch0T1zPOVdjmyZn_io64os3oegEvZQgEThdcHPDwYEtSC3645pAjrU&gaa_ts=69cb4a48&gaa_sig=GUXzGMmYBl9RXI8ZvwNS_qodM8B_3vqwfT0BP6pTbnWJx7pUoYmcePmEfHgRCqanMBX2996DBosnXJxJzwSycQ%3D%3D": {
+    "id": "blackrock-aladdin-auto-commentary-morgan-stanley-2025",
+    "reason": "Article is 180 days old — exceeds 90-day freshness limit",
+    "blocked_at": "2026-03-31T04:04:37.939Z",
+    "title": "BlackRock Embeds AI Commentary Generation in Aladdin, Morgan Stanley First to Deploy",
+    "score": 0
   }
 }
