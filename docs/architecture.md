@@ -83,7 +83,7 @@
 | Path | Purpose |
 |------|---------|
 | `server.js` | Express server, all API routes |
-| `agents/auto-discover.js` | Three-layer discovery: L1 News (8 broad DFS News) + L1 Caps (7 capability-dimension DFS News, dynamic from index.json) + L2 per-company DFS Content Analysis + TL via Jina |
+| `agents/auto-discover.js` | Multi-layer discovery: L1 News (8 DFS News) + L1 Caps (7 DFS News) + L2 Companies (DFS Content Analysis) + L3 NewsAPI.ai (4 queries, 80K+ sources) + TL via Jina |
 | `agents/intake.js` | Fetch article (with paywall fallback) + Claude structuring |
 | `agents/governance.js` | Verify all claims against source → PASS/REVIEW/FAIL |
 | `agents/gov-store.js` | File-backed pending queue + blocked URL list |
@@ -98,7 +98,7 @@
 
 | Route | Method | Description |
 |-------|--------|-------------|
-| `/api/auto-discover` | POST | Three-layer discovery: L1 News + L1 Caps + L2 Companies |
+| `/api/auto-discover` | POST | Multi-layer discovery: L1 News + L1 Caps + L2 Companies |
 | `/api/search` | POST | Jina s.jina.ai search (body: `{query}`) |
 | `/api/process-url` | POST | Fetch + structure + governance for one URL → queues to inbox |
 | `/api/publish` | POST | Write JSON + git commit + push (called by approve-and-publish) |
@@ -118,7 +118,7 @@
 ## Data Flow: New Intelligence Entry
 
 ```
-1. Auto-Discover runs (three-layer: L1 News + L1 Caps + L2 Companies per-company DFS Content Analysis)
+1. Auto-Discover runs (multi-layer: L1 News + L1 Caps + L2 Companies + L3 NewsAPI.ai)
 2. Stories scored by: recency + source quality + tracked company mentions + AI keyword density
 3. Semantic dedup (Jina Embeddings) + reranking (Jina Reranker) → top 15 candidates
 4. Each candidate processed automatically by scheduler (6am daily) OR manually via Discover tab
