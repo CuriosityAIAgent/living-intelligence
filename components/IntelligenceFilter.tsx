@@ -16,6 +16,8 @@ type IntelligenceEntry = {
   summary: string;
   key_stat: { number: string; label: string } | null;
   tags: { capability: string; region: string; segment: string; theme: string[] };
+  sources?: { name: string; url: string; type: string }[];
+  source_count?: number;
 };
 
 const REGIONS = [
@@ -244,6 +246,11 @@ export default function IntelligenceFilter({ entries }: { entries: IntelligenceE
                   </span>
                   <span className="text-xs text-gray-400 truncate min-w-0">{entry.company_name}</span>
                   <span className="text-xs text-gray-400 flex-shrink-0 whitespace-nowrap">· {formatDateShort(entry.date)}</span>
+                  {(entry.source_count ?? entry.sources?.length ?? 0) > 1 && (
+                    <span className="text-[10px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 flex-shrink-0">
+                      {entry.source_count ?? entry.sources?.length} sources
+                    </span>
+                  )}
                 </div>
                 <h3 className="text-base font-bold text-gray-900 leading-snug mb-1.5 group-hover:text-[#990F3D] transition-colors">
                   {entry.headline}

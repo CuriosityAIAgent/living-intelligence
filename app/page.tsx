@@ -99,8 +99,13 @@ export default function HomePage() {
                       </div>
                     )}
                     {leadStory.source_url && (
-                      <div className="mt-4">
+                      <div className="mt-4 flex items-center gap-3">
                         <span className="text-xs text-[#990F3D] font-medium">{leadStory.source_name} ↗</span>
+                        {(leadStory.source_count ?? leadStory.sources?.length ?? 0) > 1 && (
+                          <span className="text-[10px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5">
+                            {leadStory.source_count ?? leadStory.sources?.length} sources
+                          </span>
+                        )}
                       </div>
                     )}
                   </div>
@@ -156,7 +161,11 @@ export default function HomePage() {
                   )}
                   <div className="mt-auto flex items-center justify-between pt-2 border-t border-gray-50">
                     <span className="text-[10px] text-gray-400">{formatDateShort(entry.date)}</span>
-                    <span className="text-[10px] text-gray-400">{entry.source_name}</span>
+                    <span className="text-[10px] text-gray-400">
+                      {(entry.source_count ?? entry.sources?.length ?? 0) > 1
+                        ? `${entry.source_count ?? entry.sources?.length} sources`
+                        : entry.source_name}
+                    </span>
                   </div>
                 </Link>
               ))}
