@@ -690,10 +690,10 @@ async function discoverFromLayer2Authors(existingUrls, tlEntries) {
 // API: https://eventregistry.org/api/v1/article/getArticles
 
 const NEWSAPI_QUERIES = [
-  'AI wealth management advisor',
-  'financial advisor artificial intelligence platform',
-  'wealthtech AI fintech',
-  'private banking AI deployment',
+  'AI wealth management',
+  'financial advisor AI',
+  'private banking artificial intelligence',
+  'robo-advisor AI fintech',
 ];
 
 async function discoverFromNewsAPI(existingUrls) {
