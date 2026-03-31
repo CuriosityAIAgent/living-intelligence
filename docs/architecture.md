@@ -88,6 +88,7 @@
 | `agents/governance.js` | Verify all claims against source → PASS/REVIEW/FAIL |
 | `agents/gov-store.js` | File-backed pending queue + blocked URL list |
 | `agents/publisher.js` | Write entry JSON + `_governance` audit, git commit + push |
+| `agents/landscape-trigger.js` | Post-publish hook: checks if new entry warrants landscape update (maturity upgrade OR evidence update). Creates pending suggestions for editorial approval. |
 | `scripts/backfill-governance.js` | One-time: add `_governance` to all existing entries |
 | `scripts/reprocess-failed.js` | Re-run FAIL entries through corrected pipeline |
 | `scripts/test-portal.js` | Health check all URLs + portal pages, auto-fix broken links |

@@ -10,7 +10,7 @@
   "ai_strategy_summary": "The longest-running AI program in wealth management. Erica has surpassed 3.2 billion total interactions with 20.6 million active users and 700 million interactions in 2025 alone. BofA's 30 billion total digital interactions in 2025 grew 14% YoY — 86% of wealth management clients now engage digitally.",
   "head_of_ai": null,
   "headline_metric": "3.2B Erica interactions total (700M in 2025) across 20.6M users; 23,000 monthly active advisors",
-  "headline_initiative": "Erica + Ask Merrill + Ask Private Bank",
+  "headline_initiative": "AI Meeting Journey + Erica + Ask Merrill + Ask Private Bank",
   "overall_maturity": "scaled",
   "capabilities": {
     "client_personalization": {
@@ -39,23 +39,29 @@
     },
     "advisor_productivity": {
       "maturity": "scaled",
-      "headline": "Ask Merrill: 23,000 advisors, 10,000+ Q&A answers per month",
-      "detail": "Ask Merrill is a knowledge AI for Merrill's ~23 million interactions in 2024 financial advisors, providing instant answers to client and compliance questions, product information, and investment guidance. Ask Private Bank provides a similar capability for the private banking team.",
+      "headline": "AI Meeting Journey: full-scale rollout across Merrill and Private Bank, up to 4 hours saved per meeting",
+      "detail": "BofA deployed AI-Powered Meeting Journey across Merrill Wealth Management and the Private Bank in March 2026. The tool automates pre-meeting client preparation, real-time meeting summarization (with client consent), and post-meeting task organization. Started with 1,500 beta advisors, now in full production rollout. This sits on top of existing Ask Merrill (23,000 monthly active advisors, 10,000+ Q&A answers) and Ask Private Bank.",
       "evidence": [
-        "23,000 monthly active advisors",
-        "10,000+ unique Q&A answers monthly",
-        "Ask Private Bank parallel deployment"
+        "AI Meeting Journey in full-scale rollout across Merrill and Private Bank (BofA Newsroom, March 2026)",
+        "Up to 4 hours saved per client meeting claimed (BofA Newsroom, March 2026)",
+        "1,500 beta users before broader deployment (American Banker, March 2026)",
+        "23,000 monthly active advisors on Ask Merrill (prior capability)",
+        "10,000+ unique Q&A answers monthly on Ask Merrill"
       ],
-      "jpm_implication": "BofA has deployed advisor AI at massive scale. JPM Wealth Management advisor tooling is in direct competition.",
+      "jpm_implication": "BofA has moved from Q&A AI to full meeting workflow automation at wirehouse scale. This is the first production deployment of end-to-end meeting AI in the wirehouse segment.",
       "jpm_segments_affected": [
         "JPMWM",
         "GPB"
       ],
-      "date_assessed": "2026-03-19",
+      "date_assessed": "2026-03-31",
       "sources": [
         {
-          "name": "Bank of America Q3 2025 Earnings — AI tools cited across wealth management",
-          "url": "https://investor.bankofamerica.com/press-releases/detail/701/bank-of-america-reports-third-quarter-2025-financial"
+          "name": "BofA Newsroom — Merrill and Private Bank Launch AI-Powered Meeting Journey (March 27, 2026)",
+          "url": "https://newsroom.bankofamerica.com/content/newsroom/press-releases/2026/03/merrill-and-bank-of-america-private-bank-launch-ai-powered-meeti.html"
+        },
+        {
+          "name": "American Banker — Bank of America gives Merrill Lynch an AI makeover (March 26, 2026)",
+          "url": "https://www.americanbanker.com/news/bank-of-america-gives-merrill-lynch-an-ai-makeover"
         }
       ]
     },
@@ -82,5 +88,5 @@
       ]
     }
   },
-  "last_updated": "2026-03-19"
+  "last_updated": "2026-03-31"
 }

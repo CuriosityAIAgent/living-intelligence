@@ -92,6 +92,7 @@ export async function runDailyPipeline() {
   let tlCandidates    = [];
   let knownCompanyIds   = new Set(); // landscape IDs e.g. "jump-ai"
   let knownCompanyNames = new Set(); // landscape display names lowercased e.g. "jump", "lpl financial"
+  let discoverySources  = {};        // layer breakdown for pipeline status
 
   try {
     const { send, logs } = makeSink();
@@ -103,8 +104,8 @@ export async function runDailyPipeline() {
     knownCompanyIds   = doneEvent?.data?.knownCompanyIds   || new Set();
     knownCompanyNames = doneEvent?.data?.knownCompanyNames || new Set();
 
-    const sources = doneEvent?.data?.sources || {};
-    console.log(`[scheduler] Discovery: L1 news=${sources.layer1_news} L1 caps=${sources.layer1_capabilities} (${sources.capabilities_queried} dims) L2 cos=${sources.layer2_companies} (${sources.companies_queried} cos) L1 TL=${sources.layer1_tl} L2 auth=${sources.layer2_authors}`);
+    discoverySources = doneEvent?.data?.sources || {};
+    console.log(`[scheduler] Discovery: L1 news=${discoverySources.layer1_news} L1 caps=${discoverySources.layer1_capabilities} (${discoverySources.capabilities_queried} dims) L2 cos=${discoverySources.layer2_companies} (${discoverySources.companies_queried} cos) L3 newsapi=${discoverySources.layer3_newsapi || 0} L1 TL=${discoverySources.layer1_tl} L2 auth=${discoverySources.layer2_authors}`);
   } catch (err) {
     console.error('[scheduler] autoDiscover failed:', err.message);
     errors.push({ stage: 'discover', message: err.message });
@@ -367,6 +368,7 @@ export async function runDailyPipeline() {
     queued:            pending.length,
     blocked:           blocked.length,
     errors:            errors.length,
+    discovery_sources: discoverySources,
     tl_candidates:     tlCandidates.length,
     tl_items:          tlCandidates.slice(0, 15),
     blocked_items:     blocked,
