@@ -1,20 +1,23 @@
 {
-  "started_at": "2026-03-31T04:00:01.274Z",
+  "started_at": "2026-04-01T04:00:00.177Z",
   "candidates_found": 15,
-  "queued": 0,
-  "blocked": 4,
+  "queued": 3,
+  "blocked": 0,
   "errors": 0,
-  "tl_candidates": 33,
+  "error_details": [],
+  "discovery_sources": {
+    "layer1_news": 39,
+    "layer1_capabilities": 0,
+    "layer2_companies": 0,
+    "layer3_newsapi": 4,
+    "layer1_tl": 34,
+    "layer2_authors": 0,
+    "companies_queried": 0,
+    "capabilities_queried": 0,
+    "raw_intel_total": 42
+  },
+  "tl_candidates": 31,
   "tl_items": [
-    {
-      "id": "aHR0cHM6Ly9o",
-      "title": "Has AI Ended Thought Leadership?",
-      "url": "https://hbr.org/2026/03/has-ai-ended-thought-leadership",
-      "source_name": "hbr.org",
-      "pub_date": "Mar 9, 2026",
-      "snippet": "As generative AI and content platforms make it effortless to sound authoritative, organizations are being overwhelmed by polished insight that rarely translates into real change. The growing gap between those who talk about the future of work and those who actually build it has turned expertise into",
-      "via": "layer1_tl"
-    },
     {
       "id": "aHR0cHM6Ly93",
       "title": "Wealth Management Needs AI: Raymond James CEO",
@@ -44,20 +47,20 @@
     },
     {
       "id": "aHR0cHM6Ly93",
-      "title": "10 Wealth Management Trends For 2026",
-      "url": "https://www.oliverwyman.com/our-expertise/insights/2025/dec/wealth-management-trends-2026.html",
-      "source_name": "oliverwyman.com",
-      "pub_date": null,
-      "snippet": "A forward look at key 2026 wealth management trends, including AI-driven advice, tokenized cash, private markets, embedded wealth, and downturn readiness.",
+      "title": "Artificial Intelligence and the Future of Investment Management",
+      "url": "https://www.sec.gov/newsroom/speeches-statements/daly-020326-artificial-intelligence-future-investment-management",
+      "source_name": "sec.gov",
+      "pub_date": "Feb 3, 2026",
+      "snippet": "Good morning, everyone. I am pleased to join you this morning, although, I must say I am jealous of the Florida weather you are all enjoying. Here in DC it is still well below freezing.\n\nBefore I begin, I must inform – or remind – you that these remarks are provided in my official capacity as the Se",
       "via": "layer1_tl"
     },
     {
-      "id": "aHR0cHM6Ly9z",
-      "title": "Building Trust in Wealth Management Communications",
-      "url": "https://symphony.com/insights/blog/wealth-management-communications/",
-      "source_name": "symphony.com",
-      "pub_date": "Jan 23, 2026",
-      "snippet": "How Can Wealth Management Firms ✓Build Trust & Transparency ✓Communicate Over WhatsApp ✓Comply with Regulatory Requirements - Read White Paper!",
+      "id": "aHR0cHM6Ly9j",
+      "title": "How Boards Can Lead in a World Remade by AI",
+      "url": "https://corpgov.law.harvard.edu/2026/02/19/how-boards-can-lead-in-a-world-remade-by-ai/",
+      "source_name": "corpgov.law.harvard.edu",
+      "pub_date": "Feb 19, 2026",
+      "snippet": "# How Boards Can Lead in a World Remade by AI\n\nHarvard Law School Forum on Corporate Governance\n\n*   [Home](https://corpgov.law.harvard.edu/)\n*   [About](https://corpgov.law.harvard.edu/about/)\n*   [Archive](https://corpgov.law.harvard.edu/archive/)\n*   [Categories](https://corpgov.law.harvard.edu/c",
       "via": "layer1_tl"
     },
     {
@@ -71,20 +74,20 @@
     },
     {
       "id": "aHR0cHM6Ly93",
-      "title": "Artificial Intelligence and the Future of Investment Management",
-      "url": "https://www.sec.gov/newsroom/speeches-statements/daly-020326-artificial-intelligence-future-investment-management",
-      "source_name": "sec.gov",
-      "pub_date": "Feb 3, 2026",
-      "snippet": "Good morning, everyone. I am pleased to join you this morning, although, I must say I am jealous of the Florida weather you are all enjoying. Here in DC it is still well below freezing.\n\nBefore I begin, I must inform – or remind – you that these remarks are provided in my official capacity as the Se",
+      "title": "2026 AI Business Predictions",
+      "url": "https://www.pwc.com/us/en/tech-effect/ai-analytics/ai-predictions.html",
+      "source_name": "pwc.com",
+      "pub_date": null,
+      "snippet": "Explore PwC’s 2026 AI predictions and learn how focused strategies, agentic workflows, and responsible innovation drive transformative business value.",
       "via": "layer1_tl"
     },
     {
       "id": "aHR0cHM6Ly93",
-      "title": "How artificial intelligence is reshaping the financial services industry",
-      "url": "https://www.ey.com/en_gr/insights/financial-services/how-artificial-intelligence-is-reshaping-the-financial-services-industry",
-      "source_name": "ey.com",
+      "title": "Just a moment...",
+      "url": "https://www.researchgate.net/publication/381277119_Artificial_Intelligence_as_Personal_Financial_Advisor_in_the_Future_-_A_Case_Study_Based_on_Algorithmic_Innovation_Strategies",
+      "source_name": "researchgate.net",
       "pub_date": null,
-      "snippet": "AI is reshaping the financial services industry, making it more efficient, effective and innovative. Read more.",
+      "snippet": "## Security check required\n\nWe've detected unusual activity from your network. To continue, complete the security check below.\n\nRay ID: 9e54af36dbe1dfe8\n\nClient IP: 2600:1900:0:4005::1a00\n\n© 2008-2026 ResearchGate GmbH. All rights reserved.",
       "via": "layer1_tl"
     },
     {
@@ -94,6 +97,15 @@
       "source_name": "theamericancollege.edu",
       "pub_date": null,
       "snippet": "Center for Ethics Webcast explores artificial intelligence in the financial services industry.",
+      "via": "layer1_tl"
+    },
+    {
+      "id": "aHR0cHM6Ly9h",
+      "title": "The State of Generative Media 2026",
+      "url": "https://a16z.com/the-state-of-generative-media-2026/",
+      "source_name": "a16z.com",
+      "pub_date": "Feb 19, 2026",
+      "snippet": "Today, our friends at fal released the State of Generative Media Report, a deep-dive into the remarkable progress we’re seeing in generative media. fal has a particularly  privileged vantage point: their inference engine serves over 600 models to millions of hobbyists, developers, and enterprises wh",
       "via": "layer1_tl"
     },
     {
@@ -107,66 +119,41 @@
     },
     {
       "id": "aHR0cHM6Ly93",
+      "title": "AI in Investment Management: 2026 Outlook (Part I) - Two Sigma",
+      "url": "https://www.twosigma.com/articles/ai-in-investment-management-2026-outlook-part-i/",
+      "source_name": "twosigma.com",
+      "pub_date": "Jan 12, 2026",
+      "snippet": "Two Sigma leaders on AI in investment management: 2026 trends, agentic systems, productivity gains, and why human judgment matters more than ever.",
+      "via": "layer1_tl"
+    },
+    {
+      "id": "aHR0cHM6Ly9t",
+      "title": "Action items for AI decision makers in 2026",
+      "url": "https://mitsloan.mit.edu/ideas-made-to-matter/action-items-ai-decision-makers-2026",
+      "source_name": "mitsloan.mit.edu",
+      "pub_date": "Mar 3, 2026",
+      "snippet": "AI industry watchers Thomas Davenport and Randy Bean expect the AI hype cycle to slow as organizations focus on infrastructure and strategy.",
+      "via": "layer1_tl"
+    },
+    {
+      "id": "aHR0cHM6Ly93",
+      "title": "Access Denied",
+      "url": "https://www.spglobal.com/market-intelligence/en/news-insights/research/2026/01/10-ai-trends-to-shape-your-2026-strategy",
+      "source_name": "spglobal.com",
+      "pub_date": "Jan 30, 2026",
+      "snippet": "You don't have permission to access \"http://www.spglobal.com/market-intelligence/en/news-insights/research/2026/01/10-ai-trends-to-shape-your-2026-strategy\" on this server.\nReference #18.954ddb17.1775016005.3e7ef9d\n\nhttps://errors.edgesuite.net/18.954ddb17.1775016005.3e7ef9d",
+      "via": "layer1_tl"
+    },
+    {
+      "id": "aHR0cHM6Ly93",
       "title": "AI Market Trends 2026: Global Investment, Risks, and Buildout | Morgan Stanley",
       "url": "https://www.morganstanley.com/insights/articles/ai-market-trends-institute-2026",
       "source_name": "morganstanley.com",
       "pub_date": "Mar 9, 2026",
       "snippet": "Discover key market trends as AI becomes the central force influencing growth, earnings, geopolitics, and investment strategy across global markets in 2026.",
       "via": "layer1_tl"
-    },
-    {
-      "id": "aHR0cHM6Ly93",
-      "title": "Algorithmic Revolution: AI Leads Investment Strategies in 2026",
-      "url": "https://www.linkedin.com/pulse/algorithmic-revolution-ai-leads-investment-mif9c",
-      "source_name": "linkedin.com",
-      "pub_date": "Jan 21, 2026",
-      "snippet": "Industry leaders predict AI will revolutionize business by 2026. IBM believes quantum computers will surpass classical computers that year, which could lead to breakthroughs in many industries.",
-      "via": "layer1_tl"
-    },
-    {
-      "id": "aHR0cHM6Ly93",
-      "title": "2026 AI Trends in Financial Management",
-      "url": "https://www.citizensbank.com/corporate-finance/insights/ai-trends-financial-management-2026.aspx",
-      "source_name": "citizensbank.com",
-      "pub_date": null,
-      "snippet": "Discover how agentic AI is transforming financial operations in 2026. Explore key trends, ROI insights, and strategies for CFOs and PE firms to boost efficiency and fraud prevention.",
-      "via": "layer1_tl"
-    },
-    {
-      "id": "aHR0cHM6Ly93",
-      "title": "How the we use AI in practice | AI Summit 2026 | Norges Bank Investment Management",
-      "url": "https://www.youtube.com/watch?v=hBGd3DCgRkM",
-      "source_name": "youtube.com",
-      "pub_date": "7 days ago",
-      "snippet": "Learn more about the fund here: https://www.nbim.no/en/",
-      "via": "layer1_tl"
     }
   ],
-  "blocked_items": [
-    {
-      "url": "https://www.planadviser.com/ai-product-service-launches-3-30-2026/",
-      "title": "Merrill, Jump and Glia Deploy AI Meeting and Workflow Agents to Tens of Thousands of Advisors",
-      "reason": "Fabricated claims: The entry states Bank of America's '$4 billion annual AI investment budget' is the total technology investment — the source states Bank of America invests '$13.5 billion annually on technology, including $4 billion for AI and other new initiatives.' The entry omits the $13.5 billion total and implies $4 billion is the full annual technology investment, but more critically the entry correctly cites $4 billion for AI, so this is not a direct contradiction. However, the entry describes it as 'backed by Bank of America's $4 billion annual AI investment budget' which is accurate per the source.; The headline states 'Tens of Thousands of Advisors' — Jump has 27,000 advisors, but Merrill and Glia deployment numbers are not specified in the source, making the aggregated 'tens of thousands' claim not directly supported for those firms",
-      "score": 0
-    },
-    {
-      "url": "https://www.wealthmanagement.com/artificial-intelligence/morgan-stanley-s-wealth-head-addresses-ai-driven-pressures",
-      "title": "Morgan Stanley Wealth Head Publicly Addresses AI-Driven Competitive Pressure on Firm's Stock",
-      "reason": "Score 45/100 — below 45 review threshold",
-      "score": 45
-    },
-    {
-      "url": "https://fintech.global/2026/03/30/ani-tech-launches-free-ai-cash-flow-app-for-advisors/",
-      "title": "Ani Tech Deploys Free AI Cash Flow App, Targeting Advisor Adoption at Zero Cost-to-Entry",
-      "reason": "Score 46/100 — below 45 review threshold",
-      "score": 46
-    },
-    {
-      "url": "https://www.barrons.com/advisor/articles/blackrock-ai-tool-morgan-stanley-financial-advisors-772ab402?gaa_at=eafs&gaa_n=AWEtsqch0T1zPOVdjmyZn_io64os3oegEvZQgEThdcHPDwYEtSC3645pAjrU&gaa_ts=69cb4a48&gaa_sig=GUXzGMmYBl9RXI8ZvwNS_qodM8B_3vqwfT0BP6pTbnWJx7pUoYmcePmEfHgRCqanMBX2996DBosnXJxJzwSycQ%3D%3D",
-      "title": "BlackRock Embeds AI Commentary Generation in Aladdin, Morgan Stanley First to Deploy",
-      "reason": "Article is 180 days old — exceeds 90-day freshness limit",
-      "score": 0
-    }
-  ],
-  "written_at": "2026-03-31T04:04:37.939Z"
+  "blocked_items": [],
+  "written_at": "2026-04-01T04:03:12.846Z"
 }

@@ -1,1 +1,293 @@
-{}
+{
+  "merrill-bofa-private-bank-ai-meeting-journey-launch": {
+    "entry": {
+      "id": "merrill-bofa-private-bank-ai-meeting-journey-launch",
+      "type": "product_launch",
+      "headline": "Merrill and BofA Private Bank Deploy AI-Powered End-to-End Meeting Workflow Across Advisor Force",
+      "the_so_what": "Bank of America deploying an AI meeting workflow across both Merrill and the Private Bank simultaneously signals that the pre/during/post-meeting automation stack is now a baseline infrastructure expectation at scale — following the same pattern as CRM adoption in the early 2000s, where the wirehouses that embedded workflow tooling earliest compounded productivity advantages that independent channels took a decade to close.",
+      "company": "bofa-merrill",
+      "company_name": "Bank of America / Merrill / Bank of America Private Bank",
+      "date": "2026-03-26",
+      "source_name": "GoLaurens.Com",
+      "source_url": "https://www.golaurens.com/online_features/press_releases/merrill-and-bank-of-america-private-bank-launch-ai-powered-meeting-journey/article_8a60218b-32f9-5ab5-96c3-7eeb31d779a9.html",
+      "source_verified": true,
+      "image_url": null,
+      "summary": "Merrill and Bank of America Private Bank have launched an AI-powered Meeting Journey tool designed to support advisors across the full client meeting lifecycle — preparation, in-meeting assistance, and post-meeting follow-up. The capability spans both the Merrill wealth management platform and the Private Bank, indicating a unified deployment across the firm's primary client-facing advisor channels. The product launch was announced by Bank of America Corporation on March 26, 2026. No specific advisor headcount, AUM affected, or time-savings metric was disclosed in the source article.",
+      "key_stat": null,
+      "capability_evidence": {
+        "capability": "advisor_productivity",
+        "stage": "deployed",
+        "evidence": "Bank of America announced the live launch of an AI-powered Meeting Journey tool across both Merrill and Bank of America Private Bank, covering pre-meeting preparation, in-meeting support, and post-meeting workflow.",
+        "metric": null
+      },
+      "tags": {
+        "capability": "advisor_productivity",
+        "region": "us",
+        "segment": "wirehouse",
+        "theme": [
+          "meeting_workflow",
+          "advisor_tools",
+          "ai_deployment",
+          "private_bank"
+        ]
+      },
+      "week": "2026-03-30",
+      "featured": false,
+      "sources": [
+        {
+          "name": "GoLaurens.Com",
+          "url": "https://www.golaurens.com/online_features/press_releases/merrill-and-bank-of-america-private-bank-launch-ai-powered-meeting-journey/article_8a60218b-32f9-5ab5-96c3-7eeb31d779a9.html",
+          "type": "discovery"
+        }
+      ],
+      "source_count": 1,
+      "_governance": {
+        "verdict": "REVIEW",
+        "confidence": 50,
+        "verified_claims": [],
+        "unverified_claims": [
+          "Possible duplicate: Bank of America / Merrill / Bank of America Private Bank already has a product_launch entry within the last 14 days"
+        ],
+        "fabricated_claims": [],
+        "notes": "Possible duplicate: Bank of America / Merrill / Bank of America Private Bank already has a product_launch entry within the last 14 days",
+        "paywall_caveat": false,
+        "verified_at": "2026-04-01T04:01:12.749Z",
+        "human_approved": false
+      }
+    },
+    "governance": {
+      "verdict": "REVIEW",
+      "confidence": 50,
+      "verified_claims": [],
+      "unverified_claims": [
+        "Possible duplicate: Bank of America / Merrill / Bank of America Private Bank already has a product_launch entry within the last 14 days"
+      ],
+      "fabricated_claims": [],
+      "notes": "Possible duplicate: Bank of America / Merrill / Bank of America Private Bank already has a product_launch entry within the last 14 days",
+      "paywall_caveat": false,
+      "verified_at": "2026-04-01T04:01:12.749Z",
+      "human_approved": false
+    },
+    "queued_at": "2026-04-01T04:01:12.751Z",
+    "discovered_at": "2026-04-01T04:01:12.751Z",
+    "score": null,
+    "score_breakdown": null
+  },
+  "merrill-bofa-private-bank-ai-meeting-journey-launch-2026-03": {
+    "entry": {
+      "id": "merrill-bofa-private-bank-ai-meeting-journey-launch-2026-03",
+      "type": "product_launch",
+      "headline": "Merrill and BofA Private Bank Deploy AI Meeting Journey Across Advisor Workforce",
+      "the_so_what": "Wirehouse-scale deployment of end-to-end AI meeting workflow — spanning pre-meeting prep, in-meeting guidance, and post-meeting follow-up — mirrors the CRM adoption curve of the early 2000s, where institutions that embedded workflow tools first accumulated structural data advantages that independent competitors spent a decade trying to replicate.",
+      "company": "bofa-merrill",
+      "company_name": "Bank of America / Merrill / Bank of America Private Bank",
+      "date": "2026-03-26",
+      "source_name": "Benzinga",
+      "source_url": "https://www.benzinga.com/pressreleases/26/03/n51480463/merrill-and-bank-of-america-private-bank-launch-ai-powered-meeting-journey",
+      "source_verified": true,
+      "image_url": null,
+      "summary": "Merrill and Bank of America Private Bank have launched an AI-powered Meeting Journey that automates and supports the full advisor-client meeting lifecycle — including pre-meeting preparation, real-time in-meeting assistance, and post-meeting follow-up and documentation. The tool is deployed across Merrill's advisor workforce and Bank of America Private Bank's client teams, making it a broad institutional rollout rather than a pilot. The capability is built to surface relevant client data, generate meeting summaries, and automate next-step workflows, reducing the administrative burden on advisors. The launch was announced on March 26, 2026, via Bank of America's official newsroom and distributed through PR Newswire.",
+      "key_stat": null,
+      "capability_evidence": {
+        "capability": "advisor_productivity",
+        "stage": "deployed",
+        "evidence": "The AI-powered Meeting Journey is live across Merrill and Bank of America Private Bank, automating pre-meeting prep, in-meeting guidance, and post-meeting follow-up for advisors.",
+        "metric": null
+      },
+      "tags": {
+        "capability": "advisor_productivity",
+        "region": "us",
+        "segment": "wirehouse",
+        "theme": [
+          "meeting_workflow_automation",
+          "advisor_tools",
+          "client_engagement",
+          "enterprise_ai_deployment"
+        ]
+      },
+      "week": "2026-03-30",
+      "featured": false,
+      "sources": [
+        {
+          "name": "Prnewswire",
+          "url": "https://www.prnewswire.com/news-releases/merrill-and-bank-of-america-private-bank-launch-ai-powered-meeting-journey-302725593.html",
+          "type": "primary"
+        },
+        {
+          "name": "Bank of America / Merrill / Bank of America Private Bank Newsroom",
+          "url": "https://newsroom.bankofamerica.com/content/newsroom/press-releases/2026/03/merrill-and-bank-of-america-private-bank-launch-ai-powered-meeti.html",
+          "type": "primary"
+        },
+        {
+          "name": "wealthtechstrategy.com",
+          "url": "https://www.wealthtechstrategy.com/post/merrill-launches-ai-powered-meeting-journey",
+          "type": "coverage"
+        },
+        {
+          "name": "Benzinga",
+          "url": "https://www.benzinga.com/pressreleases/26/03/n51480463/merrill-and-bank-of-america-private-bank-launch-ai-powered-meeting-journey",
+          "type": "discovery"
+        }
+      ],
+      "source_count": 4,
+      "_governance": {
+        "verdict": "REVIEW",
+        "confidence": 50,
+        "verified_claims": [],
+        "unverified_claims": [
+          "Possible duplicate: Bank of America / Merrill / Bank of America Private Bank already has a product_launch entry within the last 14 days"
+        ],
+        "fabricated_claims": [],
+        "notes": "Possible duplicate: Bank of America / Merrill / Bank of America Private Bank already has a product_launch entry within the last 14 days",
+        "paywall_caveat": false,
+        "verified_at": "2026-04-01T04:02:06.362Z",
+        "human_approved": false
+      }
+    },
+    "governance": {
+      "verdict": "REVIEW",
+      "confidence": 50,
+      "verified_claims": [],
+      "unverified_claims": [
+        "Possible duplicate: Bank of America / Merrill / Bank of America Private Bank already has a product_launch entry within the last 14 days"
+      ],
+      "fabricated_claims": [],
+      "notes": "Possible duplicate: Bank of America / Merrill / Bank of America Private Bank already has a product_launch entry within the last 14 days",
+      "paywall_caveat": false,
+      "verified_at": "2026-04-01T04:02:06.362Z",
+      "human_approved": false
+    },
+    "queued_at": "2026-04-01T04:02:06.362Z",
+    "discovered_at": "2026-04-01T04:02:06.362Z",
+    "score": null,
+    "score_breakdown": null
+  },
+  "ai-personal-finance-wealth-management-robinhood-anthropic-2026": {
+    "entry": {
+      "id": "ai-personal-finance-wealth-management-robinhood-anthropic-2026",
+      "type": "market_signal",
+      "headline": "LLM-Powered Advisors Reach Mass Market as One-Third of Consumers Now Use AI for Investment Guidance",
+      "the_so_what": "Robinhood's Strategies product — 250,000 paying customers at $250/year handling concentrated stock positions and multi-goal planning — establishes a direct-to-consumer AI advice revenue model that incumbent wirehouses structurally cannot replicate without undermining the AUM-fee economics that underpin their entire high-net-worth business, while Anthropic's simultaneous embedding into LPL's advisor channel means AI is now compressing the $100K–$1M segment from both the consumer and the institutional supply side at once.",
+      "company": "robinhood",
+      "company_name": "Robinhood",
+      "date": "2026-03-26",
+      "source_name": "Fortune",
+      "source_url": "https://fortune.com/2026/03/26/ai-personal-finance-investing-services-robinhood-advisors/",
+      "source_verified": true,
+      "image_url": null,
+      "summary": "LLM-based financial tools have moved beyond robo-advisor-era ETF bucketing: Robinhood's Strategies product handles complex personalisation scenarios — concentrated stock option positions, home purchase planning — and has 250,000 paying customers at an average $250 per year. More than one-third of consumers across all age groups are now using tools like Claude and ChatGPT for investment guidance, often before meeting a human advisor, according to McKinsey. Anthropic has accelerated institutional distribution by partnering with LPL Financial (serving ~8 million end clients via tens of thousands of registered advisors) and ingesting financial data from S&P Global, Morningstar, and PitchBook, effectively embedding proprietary data depth into advisor workflows. A projected shortage of 110,000 retiring U.S. advisors by 2034 is compressing the supply of human advice in the $100K–$1M wealth segment, structurally expanding the addressable market for AI-native tools.",
+      "key_stat": {
+        "number": "250,000",
+        "label": "paying customers using Robinhood's AI Strategies tool at ~$250/year average"
+      },
+      "capability_evidence": {
+        "capability": "client_personalization",
+        "stage": "deployed",
+        "evidence": "Robinhood's Strategies product is live with 250,000 paying customers and can personalise portfolios around concentrated stock options and home purchase timelines — scenarios earlier robo-advisors could not handle.",
+        "metric": "250,000 paying users at ~$250/year average annual cost"
+      },
+      "tags": {
+        "capability": "client_personalization",
+        "region": "us",
+        "segment": "digital_disruptor",
+        "theme": [
+          "llm_financial_advice",
+          "advisor_shortage",
+          "mass_affluent",
+          "regulatory_risk"
+        ]
+      },
+      "week": "2026-03-30",
+      "featured": false,
+      "sources": [
+        {
+          "name": "Fortune",
+          "url": "https://fortune.com/2026/03/26/ai-personal-finance-investing-services-robinhood-advisors/",
+          "type": "discovery"
+        }
+      ],
+      "source_count": 1,
+      "_enrichment": {
+        "what_changed": "First coverage of this company.",
+        "landscape_context": {
+          "current_maturity": "scaling",
+          "maturity_direction": "up",
+          "competitor_gap": "No peers at this maturity level yet in direct-to-consumer LLM-native advice at this price point"
+        },
+        "confidence": "medium",
+        "notes": "Company not previously in landscape; peer comparison data unavailable for client_personalization segment; maturity assessment based solely on article-derived signals."
+      },
+      "_format_errors": [
+        "week \"2026-03-30\" is not the Monday of date \"2026-03-26\" (expected \"2026-03-23\")"
+      ],
+      "_governance": {
+        "verdict": "PASS",
+        "confidence": 92,
+        "verified_claims": [
+          "LLM-based financial tools have moved beyond robo-advisor-era ETF bucketing",
+          "Robinhood's Strategies product handles complex personalisation scenarios including concentrated stock option positions and home purchase planning",
+          "Robinhood's Strategies has 250,000 paying customers at an average $250 per year",
+          "More than one-third of consumers across all age groups are now using tools like Claude and ChatGPT for investment guidance",
+          "Consumers often consult AI tools before meeting a human advisor",
+          "The McKinsey statistic is attributed to Vlad Golyk, coauthor of a McKinsey report on AI and wealth management",
+          "Anthropic partnered with LPL Financial",
+          "LPL Financial serves approximately 8 million end clients via tens of thousands of registered advisors",
+          "Anthropic ingested financial data from S&P Global, Morningstar, and PitchBook",
+          "A projected shortage of 110,000 retiring U.S. advisors by 2034",
+          "The $100K–$1M wealth segment is identified as the structural opportunity for AI-native tools"
+        ],
+        "unverified_claims": [
+          "The entry describes the McKinsey stat as from 'McKinsey' without specifying Golyk by name — attribution is slightly simplified but not contradicted",
+          "The entry frames Anthropic as 'embedding proprietary data depth into advisor workflows' — this is an interpretive paraphrase of the data partnerships, not directly contradicted"
+        ],
+        "fabricated_claims": [],
+        "notes": "All key figures and claims in the headline, summary, and key stat are clearly and directly supported by the source article with no contradictions found.",
+        "paywall_caveat": false,
+        "verified_at": "2026-04-01T04:03:10.816Z",
+        "human_approved": false
+      },
+      "_fabrication": {
+        "verdict": "CLEAN",
+        "issues": [],
+        "check_details": {
+          "numbers_in_headline": "pass",
+          "company_name": "pass",
+          "date_year": "pass",
+          "key_stat": "pass",
+          "quoted_phrases": "pass"
+        },
+        "checked_at": "2026-04-01T04:03:12.320Z"
+      }
+    },
+    "governance": {
+      "verdict": "PASS",
+      "confidence": 92,
+      "verified_claims": [
+        "LLM-based financial tools have moved beyond robo-advisor-era ETF bucketing",
+        "Robinhood's Strategies product handles complex personalisation scenarios including concentrated stock option positions and home purchase planning",
+        "Robinhood's Strategies has 250,000 paying customers at an average $250 per year",
+        "More than one-third of consumers across all age groups are now using tools like Claude and ChatGPT for investment guidance",
+        "Consumers often consult AI tools before meeting a human advisor",
+        "The McKinsey statistic is attributed to Vlad Golyk, coauthor of a McKinsey report on AI and wealth management",
+        "Anthropic partnered with LPL Financial",
+        "LPL Financial serves approximately 8 million end clients via tens of thousands of registered advisors",
+        "Anthropic ingested financial data from S&P Global, Morningstar, and PitchBook",
+        "A projected shortage of 110,000 retiring U.S. advisors by 2034",
+        "The $100K–$1M wealth segment is identified as the structural opportunity for AI-native tools"
+      ],
+      "unverified_claims": [
+        "The entry describes the McKinsey stat as from 'McKinsey' without specifying Golyk by name — attribution is slightly simplified but not contradicted",
+        "The entry frames Anthropic as 'embedding proprietary data depth into advisor workflows' — this is an interpretive paraphrase of the data partnerships, not directly contradicted"
+      ],
+      "fabricated_claims": [],
+      "notes": "All key figures and claims in the headline, summary, and key stat are clearly and directly supported by the source article with no contradictions found.",
+      "paywall_caveat": false,
+      "verified_at": "2026-04-01T04:03:10.816Z",
+      "human_approved": false
+    },
+    "queued_at": "2026-04-01T04:03:12.845Z",
+    "discovered_at": "2026-04-01T04:03:12.845Z",
+    "score": null,
+    "score_breakdown": null
+  }
+}
