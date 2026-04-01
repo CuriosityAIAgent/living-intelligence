@@ -84,10 +84,10 @@
 |------|---------|
 | `server.js` | Express server, all API routes |
 | `agents/auto-discover.js` | Multi-layer discovery: L1 News (8 DFS News) + L1 Caps (7 DFS News) + L2 Companies (DFS Content Analysis) + L3 NewsAPI.ai (4 queries, 80K+ sources) + TL via Jina |
-| `agents/intake.js` | Fetch article (with paywall fallback) + Claude structuring |
+| `agents/intake.js` | Fetch article (with paywall fallback) + Claude structuring + post-structuring enrichment (searches for additional sources using company name after Claude identifies the topic) |
 | `agents/governance.js` | Verify all claims against source → PASS/REVIEW/FAIL |
 | `agents/gov-store.js` | File-backed pending queue + blocked URL list |
-| `agents/publisher.js` | Write entry JSON + `_governance` audit, git commit + push |
+| `agents/publisher.js` | Write entry JSON + `_governance` audit, git commit + push. Auto-corrects `week` field to Monday of article date. Auto-resolves company logo from `public/logos/`. Strips unavatar.io URLs. |
 | `agents/landscape-trigger.js` | Post-publish hook: checks if new entry warrants landscape update (maturity upgrade OR evidence update). Creates pending suggestions for editorial approval. |
 | `scripts/backfill-governance.js` | One-time: add `_governance` to all existing entries |
 | `scripts/reprocess-failed.js` | Re-run FAIL entries through corrected pipeline |

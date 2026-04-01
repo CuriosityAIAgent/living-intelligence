@@ -1485,6 +1485,100 @@ await test('NewsAPI candidate with wealth but no AI filtered by isRelevant', () 
 });
 
 // ═════════════════════════════════════════════════════════════════════════════
+// Suite 16 · publisher.js — Auto-correct week + auto-resolve logo
+// ═════════════════════════════════════════════════════════════════════════════
+
+suite('16 · publisher.js — Week auto-correction and logo auto-resolve');
+
+test('Week field auto-corrected to Monday of article date', () => {
+  const id = T('week1');
+  const e = { id, headline: 'Test week', date: '2026-03-26', week: '2026-03-30', company: '_test_co', _governance: pubGov() };
+  publish({ entry: e, send: () => {} });
+  eq(e.week, '2026-03-23', 'Thursday Mar 26 → Monday Mar 23');
+});
+
+test('Week field set when missing', () => {
+  const id = T('week2');
+  const e = { id, headline: 'Test week missing', date: '2026-04-01', company: '_test_co', _governance: pubGov() };
+  publish({ entry: e, send: () => {} });
+  eq(e.week, '2026-03-30', 'Tuesday Apr 1 → Monday Mar 30');
+});
+
+test('Sunday date gets previous Monday as week', () => {
+  const id = T('week3');
+  const e = { id, headline: 'Test Sunday', date: '2026-03-29', company: '_test_co', _governance: pubGov() };
+  publish({ entry: e, send: () => {} });
+  eq(e.week, '2026-03-23', 'Sunday Mar 29 → Monday Mar 23');
+});
+
+test('Logo auto-resolved when image_url is null and logo file exists', () => {
+  const id = T('logo1');
+  const e = { id, headline: 'Test logo', date: daysAgo(1), company: 'robinhood', _governance: pubGov() };
+  publish({ entry: e, send: () => {} });
+  assert(
+    e.image_url === '/logos/robinhood.svg' || e.image_url === '/logos/robinhood.png',
+    `Expected logo path, got ${e.image_url}`
+  );
+});
+
+test('Unavatar.io URL replaced with local logo', () => {
+  const id = T('logo2');
+  const e = { id, headline: 'Test unavatar', date: daysAgo(1), company: 'goldman-sachs', image_url: 'https://unavatar.io/goldman-sachs.com', _governance: pubGov() };
+  publish({ entry: e, send: () => {} });
+  assert(
+    e.image_url === '/logos/goldman-sachs.svg' || e.image_url === '/logos/goldman-sachs.png',
+    `Expected local logo, got ${e.image_url}`
+  );
+});
+
+// ═════════════════════════════════════════════════════════════════════════════
+// Suite 17 · format-validator.js — the_so_what quality checks
+// ═════════════════════════════════════════════════════════════════════════════
+
+suite('17 · format-validator.js — the_so_what quality');
+
+test('Run-on sentence (>50 words) flagged', () => {
+  const e = validEntry({
+    the_so_what: 'The company is doing something that involves a very long sentence that goes on and on and on and on covering multiple topics without any clear punctuation or break which makes it extremely difficult to parse and understand for any executive reading this in a boardroom setting where clarity and conciseness are paramount to effective decision making.',
+  });
+  const result = validateFormat(e);
+  assert(!result.valid, 'Should flag run-on sentence');
+  assert(result.errors.some(e => e.includes('max 50 per sentence')), `Expected sentence length error, got: ${result.errors.join('; ')}`);
+});
+
+test('Generic directive phrase flagged', () => {
+  const tests = [
+    { text: 'This demonstrates the growing importance of AI in wealth management.', phrase: 'This demonstrates' },
+    { text: 'Firms should adopt this approach immediately to remain competitive.', phrase: 'firms should' },
+    { text: 'This is a game-changing development for the industry.', phrase: 'game-changing' },
+    { text: 'CXOs must now decide how to respond to this shift.', phrase: 'CXOs' },
+  ];
+  for (const t of tests) {
+    const e = validEntry({ the_so_what: t.text });
+    const result = validateFormat(e);
+    assert(!result.valid, `Should flag "${t.phrase}"`);
+    assert(result.errors.some(err => err.includes('generic/directive')), `Expected generic phrase error for "${t.phrase}", got: ${result.errors.join('; ')}`);
+  }
+});
+
+test('Good analytical the_so_what passes all quality checks', () => {
+  const e = validEntry({
+    the_so_what: 'The $100K-to-$1M wealth segment is getting squeezed from both ends. Wirehouses can\'t match the price point without cannibalizing AUM-fee economics.',
+  });
+  const result = validateFormat(e);
+  const swErrors = (result.errors || []).filter(err => err.includes('the_so_what'));
+  assert(swErrors.length === 0, `Good the_so_what should have no quality errors, got: ${swErrors.join('; ')}`);
+});
+
+test('Excessively long the_so_what (>80 words) flagged', () => {
+  const words = Array(85).fill('word').join(' ');
+  const e = validEntry({ the_so_what: words + '.' });
+  const result = validateFormat(e);
+  assert(!result.valid, 'Should flag >80 word the_so_what');
+  assert(result.errors.some(err => err.includes('under 80')), `Expected word count error, got: ${result.errors.join('; ')}`);
+});
+
+// ═════════════════════════════════════════════════════════════════════════════
 // Final cleanup — delete ALL test artifacts from data/intelligence/
 // ═════════════════════════════════════════════════════════════════════════════
 

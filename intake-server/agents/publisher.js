@@ -62,15 +62,37 @@ export function publish({ entry, candidatePubDate, send }) {
     ? new Date(entry.date).toISOString()
     : new Date().toISOString();
 
-  // Auto-resolve logo if image_url is null and a local logo exists
-  if (!entry.image_url && entry.company) {
-    const logoDir = join(PORTAL_DATA_DIR, '..', 'public', 'logos');
+  // Auto-correct week field — compute Monday of article date
+  if (entry.date && /^\d{4}-\d{2}-\d{2}$/.test(entry.date)) {
+    const d = new Date(entry.date + 'T12:00:00Z');
+    if (!isNaN(d.getTime())) {
+      const dow = d.getUTCDay(); // 0=Sun, 1=Mon, ..., 6=Sat
+      const daysBack = dow === 0 ? 6 : dow - 1;
+      const monday = new Date(d);
+      monday.setUTCDate(d.getUTCDate() - daysBack);
+      const correctWeek = monday.toISOString().slice(0, 10);
+      if (entry.week !== correctWeek) {
+        console.log(`[publisher] Auto-fixed week: ${entry.week || 'missing'} → ${correctWeek}`);
+        entry.week = correctWeek;
+      }
+    }
+  }
+
+  // Auto-resolve logo if image_url is missing/invalid and a local logo exists
+  const needsLogo = !entry.image_url
+    || entry.image_url === 'null'
+    || (typeof entry.image_url === 'string' && entry.image_url.includes('unavatar.io'));
+  if (needsLogo && entry.company) {
     const slug = entry.company.toLowerCase();
     for (const ext of ['svg', 'png']) {
-      if (existsSync(join(logoDir, `${slug}.${ext}`))) {
+      if (existsSync(join(LOGOS_DIR, `${slug}.${ext}`))) {
         entry.image_url = `/logos/${slug}.${ext}`;
+        console.log(`[publisher] Auto-resolved logo: /logos/${slug}.${ext}`);
         break;
       }
+    }
+    if (needsLogo && (!entry.image_url || entry.image_url.includes('unavatar.io'))) {
+      entry.image_url = null; // clear unavatar.io if no local logo found
     }
   }
 

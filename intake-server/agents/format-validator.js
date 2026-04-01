@@ -70,6 +70,45 @@ export function validateFormat(entry) {
   // ── the_so_what ───────────────────────────────────────────────────────────
   if (!entry.the_so_what || typeof entry.the_so_what !== 'string' || entry.the_so_what.trim() === '') {
     errors.push('the_so_what is missing or empty');
+  } else {
+    const sw = entry.the_so_what.trim();
+    const swWords = sw.split(/\s+/).length;
+
+    // Quality: flag run-on sentences (single sentence > 50 words)
+    const swSentences = sw.split(/(?<!\d)[.!?](?=\s|$)/).filter(s => s.trim().length > 0);
+    for (let i = 0; i < swSentences.length; i++) {
+      const sentWords = swSentences[i].trim().split(/\s+/).length;
+      if (sentWords > 50) {
+        errors.push(`the_so_what sentence ${i + 1} is ${sentWords} words — max 50 per sentence (split or tighten)`);
+      }
+    }
+
+    // Quality: total length check
+    if (swWords > 80) {
+      errors.push(`the_so_what is ${swWords} words — should be under 80 (2 sentences max)`);
+    }
+
+    // Quality: generic phrase detection — these add no analytical value
+    const genericPatterns = [
+      /\bthis demonstrates\b/i,
+      /\bthis shows\b/i,
+      /\bthis highlights\b/i,
+      /\bthis underscores\b/i,
+      /\bgame.changing\b/i,
+      /\blandmark\b/i,
+      /\brevolutionary\b/i,
+      /\bpivotal\b/i,
+      /\btransformative\b/i,
+      /\bCXOs?\b/,
+      /\bboards? should\b/i,
+      /\bfirms should\b/i,
+      /\bmust now\b/i,
+    ];
+    for (const p of genericPatterns) {
+      if (p.test(sw)) {
+        errors.push(`the_so_what contains generic/directive phrase: "${sw.match(p)?.[0]}" — rewrite with specific analytical insight`);
+      }
+    }
   }
 
   // ── company (slug format) ─────────────────────────────────────────────────

@@ -578,6 +578,56 @@ export async function processUrl({ url, source_name, send }) {
     return null;
   }
 
+  // ── Post-structuring enrichment ─────────────────────────────────────────────
+  // After Claude identifies the company and topic, search specifically for
+  // primary sources (press releases, newsroom) and key entity coverage.
+  // Only runs if initial enrichment found ≤1 source.
+  if (usable.length <= 1 && entry.company_name && process.env.JINA_API_KEY) {
+    const companyName = entry.company_name;
+    const headline = entry.headline || '';
+
+    // Build targeted queries from structured data
+    const targetedQueries = [];
+    // Company-specific: press release / newsroom
+    targetedQueries.push(`${companyName} AI ${new Date().getFullYear()}`);
+    // Headline-derived: find other outlets covering the same story
+    const headlineWords = headline.replace(/[^a-zA-Z0-9\s]/g, '').split(/\s+/).filter(w => w.length > 3).slice(0, 6).join(' ');
+    if (headlineWords.length > 10) targetedQueries.push(headlineWords);
+
+    const originalHostname = (() => {
+      try { return new URL(url).hostname.replace(/^www\./, ''); } catch (_) { return ''; }
+    })();
+    const existingUrls = new Set([url, ...usable.map(s => s.url)]);
+
+    for (const query of targetedQueries) {
+      try {
+        const res = await fetch(`https://s.jina.ai/${encodeURIComponent(query)}`, {
+          headers: { 'Accept': 'application/json', 'Authorization': `Bearer ${process.env.JINA_API_KEY}` },
+          signal: AbortSignal.timeout(15000),
+        });
+        if (!res.ok) continue;
+        const data = await res.json();
+        const results = data.data || [];
+        for (const r of results) {
+          if (!r.url || existingUrls.has(r.url)) continue;
+          let hostname = '';
+          try { hostname = new URL(r.url).hostname.replace(/^www\./, ''); } catch (_) { continue; }
+          if (hostname === originalHostname) continue;
+          if (PAYWALLED_DOMAINS.has(hostname)) continue;
+          // Try to fetch and validate
+          const fetched = await fetchEnrichmentMarkdown(r.url);
+          if (fetched) {
+            usable.push(fetched);
+            existingUrls.add(r.url);
+            send('status', { message: `Post-structure enrichment: found ${hostname}` });
+            if (usable.length >= 4) break;
+          }
+        }
+      } catch (_) {}
+      if (usable.length >= 4) break;
+    }
+  }
+
   // ── Build multi-source array ─────────────────────────────────────────────────
   // Collect all sources that covered this story: original discovery + enrichment
   const sources = [];
