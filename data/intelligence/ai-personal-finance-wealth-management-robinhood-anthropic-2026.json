@@ -2,14 +2,14 @@
   "id": "ai-personal-finance-wealth-management-robinhood-anthropic-2026",
   "type": "market_signal",
   "headline": "LLM-Powered Advisors Reach Mass Market as One-Third of Consumers Now Use AI for Investment Guidance",
-  "the_so_what": "Robinhood's Strategies product — 250,000 paying customers at $250/year handling concentrated stock positions and multi-goal planning — establishes a direct-to-consumer AI advice revenue model that incumbent wirehouses structurally cannot replicate without undermining the AUM-fee economics that underpin their entire high-net-worth business, while Anthropic's simultaneous embedding into LPL's advisor channel means AI is now compressing the $100K–$1M segment from both the consumer and the institutional supply side at once.",
+  "the_so_what": "The $100K-to-$1M wealth segment is getting squeezed from both ends: Robinhood's 250,000 paying customers prove consumers will pay $250/year for AI advice that handles stock options and multi-goal planning, while Anthropic's LPL partnership pipes the same capability into 30,000 advisor workflows. Wirehouses can't match either price point without cannibalizing their own AUM-fee economics.",
   "company": "robinhood",
   "company_name": "Robinhood",
   "date": "2026-03-26",
   "source_name": "Fortune",
   "source_url": "https://fortune.com/2026/03/26/ai-personal-finance-investing-services-robinhood-advisors/",
   "source_verified": true,
-  "image_url": null,
+  "image_url": "/logos/robinhood.svg",
   "summary": "LLM-based financial tools have moved beyond robo-advisor-era ETF bucketing: Robinhood's Strategies product handles complex personalisation scenarios — concentrated stock option positions, home purchase planning — and has 250,000 paying customers at an average $250 per year. More than one-third of consumers across all age groups are now using tools like Claude and ChatGPT for investment guidance, often before meeting a human advisor, according to McKinsey. Anthropic has accelerated institutional distribution by partnering with LPL Financial (serving ~8 million end clients via tens of thousands of registered advisors) and ingesting financial data from S&P Global, Morningstar, and PitchBook, effectively embedding proprietary data depth into advisor workflows. A projected shortage of 110,000 retiring U.S. advisors by 2034 is compressing the supply of human advice in the $100K–$1M wealth segment, structurally expanding the addressable market for AI-native tools.",
   "key_stat": {
     "number": "250,000",
@@ -32,16 +32,21 @@
       "regulatory_risk"
     ]
   },
-  "week": "2026-03-30",
+  "week": "2026-03-23",
   "featured": false,
   "sources": [
     {
       "name": "Fortune",
       "url": "https://fortune.com/2026/03/26/ai-personal-finance-investing-services-robinhood-advisors/",
-      "type": "discovery"
+      "type": "primary"
+    },
+    {
+      "name": "Yahoo Finance / McKinsey",
+      "url": "https://finance.yahoo.com/news/wealth-management-talent-crisis-underway-080100432.html",
+      "type": "coverage"
     }
   ],
-  "source_count": 1,
+  "source_count": 2,
   "_enrichment": {
     "what_changed": "First coverage of this company.",
     "landscape_context": {
@@ -52,9 +57,7 @@
     "confidence": "medium",
     "notes": "Company not previously in landscape; peer comparison data unavailable for client_personalization segment; maturity assessment based solely on article-derived signals."
   },
-  "_format_errors": [
-    "week \"2026-03-30\" is not the Monday of date \"2026-03-26\" (expected \"2026-03-23\")"
-  ],
+  "_format_errors": [],
   "_fabrication": {
     "verdict": "CLEAN",
     "issues": [],
