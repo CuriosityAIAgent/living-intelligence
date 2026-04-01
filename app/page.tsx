@@ -17,13 +17,13 @@ export default function LandingPage() {
           <div className="max-w-3xl">
             <RotatingHeadline />
             <p className="text-[17px] md:text-[19px] text-[#9999BB] leading-relaxed mb-10 max-w-2xl">
-              37 wealth management firms monitored continuously, with new firms added as they make trackable AI moves. 7 capability dimensions. AI-sourced. Human-verified.
+              37 wealth management firms tracked continuously across 7 AI capability dimensions. Multi-source verified. Human-edited. Updated daily.
             </p>
             <a
               href="#pricing"
               className="inline-block bg-[#990F3D] hover:bg-[#7a0c31] text-white text-[15px] font-bold px-8 py-4 rounded transition-colors no-underline"
             >
-              Start your 7-day trial
+              Request access
             </a>
           </div>
         </div>
@@ -34,7 +34,7 @@ export default function LandingPage() {
             {[
               { n: '37+', label: 'Firms & Growing' },
               { n: '7', label: 'Capability Dimensions' },
-              { n: '43+', label: 'Verified Developments' },
+              { n: '44+', label: 'Verified Developments' },
               { n: '\u25CF', label: 'Daily Monitoring' },
             ].map((s) => (
               <div key={s.label} className="flex items-center gap-2.5">
@@ -236,41 +236,70 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* ─── SECTION 4: SAMPLE ENTRY ─── */}
+      {/* ─── SECTION 4: SAMPLE ENTRIES ─── */}
       <section className="py-16 md:py-20 bg-[#FDF8F2] border-t border-gray-200">
         <div className="max-w-5xl mx-auto px-6">
           <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#990F3D] mb-2">
-            A recent entry
+            What you get
           </p>
-          <hr className="border-t-2 border-[#990F3D] mb-10 w-10" />
+          <hr className="border-t-2 border-[#990F3D] mb-4 w-10" />
+          <p className="text-[17px] text-gray-700 leading-relaxed mb-10 max-w-3xl">
+            Every entry is verified against the original source, scored for credibility, and includes an editorial insight you won&apos;t find in the headline. Here are two recent examples.
+          </p>
 
-          {/* Sample card */}
-          <div className="border border-gray-200 rounded-lg p-8 md:p-10 bg-white max-w-4xl">
-            {/* Card header */}
-            <div className="flex flex-wrap items-center gap-3 mb-4">
-              <span className="text-[11px] font-bold text-gray-500">BofA / Merrill</span>
-              <span className="text-[10px] font-bold uppercase tracking-wider bg-[#FFF7ED] text-[#C2410C] px-2 py-0.5 rounded-sm">
-                Milestone
-              </span>
+          <div className="grid md:grid-cols-2 gap-6 max-w-5xl">
+            {/* Sample card 1 */}
+            <div className="border border-gray-200 rounded-lg p-7 bg-white">
+              <div className="flex flex-wrap items-center gap-3 mb-3">
+                <span className="text-[11px] font-bold text-gray-500">BofA / Merrill</span>
+                <span className="text-[10px] font-bold uppercase tracking-wider bg-[#FFF7ED] text-[#C2410C] px-2 py-0.5 rounded-sm">
+                  Product Launch
+                </span>
+                <span className="text-[10px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5">3 sources</span>
+              </div>
+
+              <h3 className="text-lg font-extrabold text-gray-900 leading-snug mb-4">
+                BofA Deploys AI Meeting Journey Across Merrill and Private Bank Advisors
+              </h3>
+
+              <div className="border-l-2 border-[#990F3D] pl-5 mb-5">
+                <p className="text-[13px] font-semibold text-[#990F3D] mb-1">Why it matters</p>
+                <p className="text-[14px] text-gray-700 leading-relaxed">
+                  Full-scale AI meeting automation across Merrill and Private Bank, saving up to 4 hours per meeting. The advisor productivity gap between firms with deployed AI and those still piloting is widening every quarter.
+                </p>
+              </div>
+
+              <div className="flex items-end gap-3">
+                <span className="text-3xl font-extrabold text-[#1C1C2E] leading-none">4hrs</span>
+                <span className="text-[12px] text-gray-500 pb-0.5">saved per advisor meeting</span>
+              </div>
             </div>
 
-            {/* Headline */}
-            <h3 className="text-xl md:text-2xl font-extrabold text-gray-900 leading-snug mb-6">
-              BofA&apos;s AI and digital estate reaches 30 billion client interactions
-            </h3>
+            {/* Sample card 2 */}
+            <div className="border border-gray-200 rounded-lg p-7 bg-white">
+              <div className="flex flex-wrap items-center gap-3 mb-3">
+                <span className="text-[11px] font-bold text-gray-500">Robinhood</span>
+                <span className="text-[10px] font-bold uppercase tracking-wider bg-[#EFF6FF] text-[#1D4ED8] px-2 py-0.5 rounded-sm">
+                  Market Signal
+                </span>
+                <span className="text-[10px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5">2 sources</span>
+              </div>
 
-            {/* Insight callout */}
-            <div className="border-l-2 border-[#990F3D] pl-6 mb-8">
-              <p className="text-[14px] font-semibold text-[#990F3D] mb-1">Why it matters</p>
-              <p className="text-[15px] text-gray-700 leading-relaxed">
-                30 billion interactions and $211 billion in AI-linked asset growth make BofA&apos;s consumer AI estate larger than most standalone digital wealth platforms. The scale economics are now prohibitively expensive to replicate from scratch.
-              </p>
-            </div>
+              <h3 className="text-lg font-extrabold text-gray-900 leading-snug mb-4">
+                One-Third of Consumers Now Use AI for Investment Guidance, McKinsey Finds
+              </h3>
 
-            {/* Key stat */}
-            <div className="flex items-end gap-3">
-              <span className="text-4xl md:text-5xl font-extrabold text-[#1C1C2E] leading-none">30B</span>
-              <span className="text-[13px] text-gray-500 pb-1">client interactions in 2025</span>
+              <div className="border-l-2 border-[#990F3D] pl-5 mb-5">
+                <p className="text-[13px] font-semibold text-[#990F3D] mb-1">Why it matters</p>
+                <p className="text-[14px] text-gray-700 leading-relaxed">
+                  The $100K-to-$1M wealth segment is getting squeezed from both ends. Wirehouses can&apos;t match Robinhood&apos;s $250/year AI advice price without cannibalizing their own AUM-fee economics.
+                </p>
+              </div>
+
+              <div className="flex items-end gap-3">
+                <span className="text-3xl font-extrabold text-[#1C1C2E] leading-none">250K</span>
+                <span className="text-[12px] text-gray-500 pb-0.5">paying AI advisory customers</span>
+              </div>
             </div>
           </div>
         </div>
@@ -280,13 +309,32 @@ export default function LandingPage() {
       <section className="py-16 md:py-20 bg-white border-t border-gray-200">
         <div className="max-w-5xl mx-auto px-6">
           <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#990F3D] mb-2">
-            Built for
+            Built for your leadership team
           </p>
-          <hr className="border-t-2 border-[#990F3D] mb-10 w-10" />
+          <hr className="border-t-2 border-[#990F3D] mb-4 w-10" />
 
-          <p className="text-[17px] text-gray-700 leading-relaxed max-w-3xl">
-            People running private banks, wirehouses, and wealth platforms who&apos;d rather spend 5 minutes knowing what happened than 5 hours finding out.
+          <p className="text-[17px] text-gray-700 leading-relaxed max-w-3xl mb-10">
+            One firm license. Up to five people. The executives who need to know what competitors are doing with AI, without spending hours assembling the picture themselves.
           </p>
+
+          <div className="grid md:grid-cols-2 gap-x-12 gap-y-4 max-w-3xl">
+            {[
+              { role: 'Head of Digital / CDO', why: 'Owns the digital transformation agenda' },
+              { role: 'Head of AI / Chief AI Officer', why: 'Needs to benchmark AI capabilities against peers' },
+              { role: 'Head of Strategy', why: 'Feeds competitive intelligence into strategic planning' },
+              { role: 'CTO / CIO', why: 'Makes build-vs-buy decisions on AI infrastructure' },
+              { role: 'CEO / COO', why: 'Needs the 5-minute view of what moved' },
+              { role: 'Head of Innovation', why: 'Scouts new capabilities and emerging entrants' },
+            ].map((p) => (
+              <div key={p.role} className="flex items-start gap-3 py-2">
+                <span className="text-[#990F3D] mt-0.5 flex-shrink-0">&#x2022;</span>
+                <div>
+                  <span className="text-[15px] font-semibold text-gray-900">{p.role}</span>
+                  <span className="text-[13px] text-gray-500 ml-2">{p.why}</span>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -299,37 +347,76 @@ export default function LandingPage() {
           <hr className="border-t-2 border-[#990F3D] mb-6 w-10" />
 
           <p className="text-[15px] text-gray-500 mb-10 max-w-2xl">
-            A consulting firm charges $75,000 for a competitive landscape. Analyst subscriptions start at $25,000 a year.
+            A consulting firm charges $75,000 for a competitive landscape that&apos;s stale by delivery. Analyst subscriptions start at $25,000 a year. We deliver continuous intelligence for a fraction of that.
           </p>
 
-          <div className="max-w-md">
+          <div className="grid md:grid-cols-2 gap-6 max-w-2xl">
+            {/* Founding Member */}
             <div className="border border-gray-200 rounded-lg p-8 relative bg-white">
               <span className="absolute top-4 right-4 text-[10px] font-bold uppercase tracking-wider bg-amber-100 text-amber-800 px-2 py-0.5 rounded-sm">
-                Founding offer
+                First 50 firms
               </span>
               <p className="text-[11px] uppercase tracking-widest text-gray-400 mb-5">Founding Member</p>
-              <div className="mb-1">
-                <span className="text-4xl font-extrabold text-gray-900">$400</span>
-                <span className="text-gray-400 text-sm ml-1.5">/ month</span>
+              <div className="mb-2">
+                <span className="text-4xl font-extrabold text-gray-900">$4,500</span>
+                <span className="text-gray-400 text-sm ml-1.5">/ year</span>
               </div>
-              <p className="text-[13px] text-gray-500 mb-1">First 50 subscribers. This rate is locked for life.</p>
-              <p className="text-[13px] text-gray-500 mb-2">
-                <span className="text-gray-900 font-semibold">$4,000 / year</span>
-              </p>
-              <p className="text-[12px] text-gray-400 mb-8">
-                Price moves to $500/month after the first 50.
-              </p>
+              <p className="text-[13px] text-gray-500 mb-6">Annual contract. This rate is locked for life.</p>
+
+              <ul className="space-y-2 mb-8">
+                {[
+                  'Up to 5 users per firm',
+                  'Full intelligence feed + landscape matrix',
+                  'Multi-source verified entries daily',
+                  'Founding Member Advisory Board status',
+                ].map((f) => (
+                  <li key={f} className="flex items-start gap-2 text-[13px] text-gray-600">
+                    <span className="text-green-500 mt-0.5">&#x2713;</span> {f}
+                  </li>
+                ))}
+              </ul>
+
               <a
-                href="#"
+                href="mailto:hello@livingintel.ai?subject=Founding Member — Living Intelligence&body=I'd like to learn more about founding member access to Living Intelligence."
                 className="block text-center bg-[#990F3D] hover:bg-[#7a0c31] text-white text-[14px] font-bold py-3.5 rounded transition-colors no-underline"
               >
-                Start your 7-day trial
+                Request access
+              </a>
+            </div>
+
+            {/* Standard */}
+            <div className="border border-gray-200 rounded-lg p-8 relative bg-white">
+              <p className="text-[11px] uppercase tracking-widest text-gray-400 mb-5 mt-5">Standard</p>
+              <div className="mb-2">
+                <span className="text-4xl font-extrabold text-gray-900">$5,000</span>
+                <span className="text-gray-400 text-sm ml-1.5">/ year</span>
+              </div>
+              <p className="text-[13px] text-gray-500 mb-6">Annual contract. Firm license.</p>
+
+              <ul className="space-y-2 mb-8">
+                {[
+                  'Up to 5 users per firm',
+                  'Full intelligence feed + landscape matrix',
+                  'Multi-source verified entries daily',
+                  'Standard support',
+                ].map((f) => (
+                  <li key={f} className="flex items-start gap-2 text-[13px] text-gray-600">
+                    <span className="text-green-500 mt-0.5">&#x2713;</span> {f}
+                  </li>
+                ))}
+              </ul>
+
+              <a
+                href="mailto:hello@livingintel.ai?subject=Living Intelligence — Annual Access&body=I'd like to learn more about Living Intelligence for my firm."
+                className="block text-center bg-gray-800 hover:bg-gray-900 text-white text-[14px] font-bold py-3.5 rounded transition-colors no-underline"
+              >
+                Request access
               </a>
             </div>
           </div>
 
-          <p className="text-[13px] text-gray-400 mt-6">
-            Team pricing available.{' '}
+          <p className="text-[13px] text-gray-400 mt-8 max-w-2xl">
+            Enterprise pricing available for larger teams and custom research.{' '}
             <a href="mailto:hello@livingintel.ai" className="text-[#990F3D] hover:underline">Get in touch</a>.
           </p>
         </div>
@@ -339,15 +426,18 @@ export default function LandingPage() {
       <section className="bg-[#1C1C2E] py-20 md:py-24 text-center">
         <div className="max-w-2xl mx-auto px-6">
           <p className="text-[17px] md:text-[19px] text-[#9999BB] leading-relaxed mb-10">
-            43 developments tracked. The pace is picking up.
+            44 developments tracked across 37 firms. New intelligence published daily. The pace is picking up.
           </p>
           <a
-            href="#pricing"
+            href="mailto:hello@livingintel.ai?subject=Living Intelligence — Request Access&body=I'd like to learn more about Living Intelligence for my firm."
             className="inline-block bg-[#990F3D] hover:bg-[#7a0c31] text-white text-[15px] font-bold px-8 py-4 rounded transition-colors no-underline mb-10"
           >
-            Start your 7-day trial
+            Request access
           </a>
-          <p className="text-[12px] text-[#444458]">By AI of the Tiger</p>
+          <p className="text-[12px] text-[#444458]">
+            Founding member spots are limited.{' '}
+            <a href="mailto:hello@livingintel.ai" className="text-[#666680] hover:text-white transition-colors">hello@livingintel.ai</a>
+          </p>
         </div>
       </section>
 
