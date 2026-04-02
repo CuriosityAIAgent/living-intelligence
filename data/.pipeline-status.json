@@ -1,32 +1,29 @@
 {
-  "started_at": "2026-04-01T04:00:00.177Z",
+  "started_at": "2026-04-02T04:00:00.252Z",
   "candidates_found": 15,
-  "queued": 3,
-  "blocked": 0,
-  "errors": 0,
-  "error_details": [],
+  "queued": 0,
+  "blocked": 3,
+  "errors": 1,
+  "error_details": [
+    {
+      "url": "https://citywire.com/wealth-manager/news/schroders-signs-coutts-veteran-for-key-new-ai-wealth-role/a2486995",
+      "stage": "intake",
+      "message": "processUrl returned null"
+    }
+  ],
   "discovery_sources": {
     "layer1_news": 39,
     "layer1_capabilities": 0,
     "layer2_companies": 0,
-    "layer3_newsapi": 4,
-    "layer1_tl": 34,
+    "layer3_newsapi": 2,
+    "layer1_tl": 36,
     "layer2_authors": 0,
     "companies_queried": 0,
     "capabilities_queried": 0,
-    "raw_intel_total": 42
+    "raw_intel_total": 38
   },
-  "tl_candidates": 31,
+  "tl_candidates": 34,
   "tl_items": [
-    {
-      "id": "aHR0cHM6Ly93",
-      "title": "Wealth Management Needs AI: Raymond James CEO",
-      "url": "https://www.thinkadvisor.com/2026/03/03/wealth-management-needs-ai-raymond-james-ceo/",
-      "source_name": "thinkadvisor.com",
-      "pub_date": "Mar 3, 2026",
-      "snippet": "Artificial intelligence tools will help advisors better serve their clients, Paul Shoukry says.",
-      "via": "layer1_tl"
-    },
     {
       "id": "aHR0cHM6Ly93",
       "title": "As AI Investments Surge, CEOs Take the Lead",
@@ -37,21 +34,21 @@
       "via": "layer1_tl"
     },
     {
+      "id": "aHR0cHM6Ly93",
+      "title": "Wealth Management Needs AI: Raymond James CEO",
+      "url": "https://www.thinkadvisor.com/2026/03/03/wealth-management-needs-ai-raymond-james-ceo/",
+      "source_name": "thinkadvisor.com",
+      "pub_date": "Mar 3, 2026",
+      "snippet": "Artificial intelligence tools will help advisors better serve their clients, Paul Shoukry says.",
+      "via": "layer1_tl"
+    },
+    {
       "id": "aHR0cHM6Ly90",
       "title": "John O’Connell Featured in Wealth Solutions Report: 2026: The Year Of Serious AI Adoption",
       "url": "https://theoasisgrp.com/article/john-oconnell-featured-in-wealth-solutions-report-2026-the-year-of-serious-ai-adoption/",
       "source_name": "theoasisgrp.com",
       "pub_date": "Jan 14, 2026",
       "snippet": "John O'Connell Featured in Wealth Solutions Report on how 2026 is the year of serious AI adoption in wealth management.",
-      "via": "layer1_tl"
-    },
-    {
-      "id": "aHR0cHM6Ly93",
-      "title": "Artificial Intelligence and the Future of Investment Management",
-      "url": "https://www.sec.gov/newsroom/speeches-statements/daly-020326-artificial-intelligence-future-investment-management",
-      "source_name": "sec.gov",
-      "pub_date": "Feb 3, 2026",
-      "snippet": "Good morning, everyone. I am pleased to join you this morning, although, I must say I am jealous of the Florida weather you are all enjoying. Here in DC it is still well below freezing.\n\nBefore I begin, I must inform – or remind – you that these remarks are provided in my official capacity as the Se",
       "via": "layer1_tl"
     },
     {
@@ -74,11 +71,38 @@
     },
     {
       "id": "aHR0cHM6Ly93",
-      "title": "2026 AI Business Predictions",
-      "url": "https://www.pwc.com/us/en/tech-effect/ai-analytics/ai-predictions.html",
-      "source_name": "pwc.com",
+      "title": "Artificial Intelligence and the Future of Investment Management",
+      "url": "https://www.sec.gov/newsroom/speeches-statements/daly-020326-artificial-intelligence-future-investment-management",
+      "source_name": "sec.gov",
+      "pub_date": "Feb 3, 2026",
+      "snippet": "Good morning, everyone. I am pleased to join you this morning, although, I must say I am jealous of the Florida weather you are all enjoying. Here in DC it is still well below freezing.\n\nBefore I begin, I must inform – or remind – you that these remarks are provided in my official capacity as the Se",
+      "via": "layer1_tl"
+    },
+    {
+      "id": "aHR0cHM6Ly93",
+      "title": "10 Wealth Management Trends For 2026",
+      "url": "https://www.oliverwyman.com/our-expertise/insights/2025/dec/wealth-management-trends-2026.html",
+      "source_name": "oliverwyman.com",
       "pub_date": null,
-      "snippet": "Explore PwC’s 2026 AI predictions and learn how focused strategies, agentic workflows, and responsible innovation drive transformative business value.",
+      "snippet": "A forward look at key 2026 wealth management trends, including AI-driven advice, tokenized cash, private markets, embedded wealth, and downturn readiness.",
+      "via": "layer1_tl"
+    },
+    {
+      "id": "aHR0cHM6Ly93",
+      "title": "How AI will change wealth management in 2026 and beyond",
+      "url": "https://www.investmentnews.com/videos/in-the-nasdaq/how-ai-will-change-wealth-management-in-2026-and-beyond/265219",
+      "source_name": "investmentnews.com",
+      "pub_date": "Feb 10, 2026",
+      "snippet": "Justin Whitehead, CEO and founder of Pebble Finance, sits down with InvestmentNews anchor Gregg Greenberg to explain how AI will change the wealth management industry in 2026 and beyond.",
+      "via": "layer1_tl"
+    },
+    {
+      "id": "aHR0cHM6Ly93",
+      "title": "How artificial intelligence is reshaping the financial services industry",
+      "url": "https://www.ey.com/en_gr/insights/financial-services/how-artificial-intelligence-is-reshaping-the-financial-services-industry",
+      "source_name": "ey.com",
+      "pub_date": null,
+      "snippet": "AI is reshaping the financial services industry, making it more efficient, effective and innovative. Read more.",
       "via": "layer1_tl"
     },
     {
@@ -87,7 +111,7 @@
       "url": "https://www.researchgate.net/publication/381277119_Artificial_Intelligence_as_Personal_Financial_Advisor_in_the_Future_-_A_Case_Study_Based_on_Algorithmic_Innovation_Strategies",
       "source_name": "researchgate.net",
       "pub_date": null,
-      "snippet": "## Security check required\n\nWe've detected unusual activity from your network. To continue, complete the security check below.\n\nRay ID: 9e54af36dbe1dfe8\n\nClient IP: 2600:1900:0:4005::1a00\n\n© 2008-2026 ResearchGate GmbH. All rights reserved.",
+      "snippet": "## Security check required\n\nWe've detected unusual activity from your network. To continue, complete the security check below.\n\nRay ID: 9e5ceca2a8e44715\n\nClient IP: 2600:1900:0:4006::400\n\n© 2008-2026 ResearchGate GmbH. All rights reserved.",
       "via": "layer1_tl"
     },
     {
@@ -97,6 +121,15 @@
       "source_name": "theamericancollege.edu",
       "pub_date": null,
       "snippet": "Center for Ethics Webcast explores artificial intelligence in the financial services industry.",
+      "via": "layer1_tl"
+    },
+    {
+      "id": "aHR0cHM6Ly93",
+      "title": "AI in Investment Management: 2026 Outlook (Part I) - Two Sigma",
+      "url": "https://www.twosigma.com/articles/ai-in-investment-management-2026-outlook-part-i/",
+      "source_name": "twosigma.com",
+      "pub_date": "Jan 12, 2026",
+      "snippet": "Two Sigma leaders on AI in investment management: 2026 trends, agentic systems, productivity gains, and why human judgment matters more than ever.",
       "via": "layer1_tl"
     },
     {
@@ -118,15 +151,6 @@
       "via": "layer1_tl"
     },
     {
-      "id": "aHR0cHM6Ly93",
-      "title": "AI in Investment Management: 2026 Outlook (Part I) - Two Sigma",
-      "url": "https://www.twosigma.com/articles/ai-in-investment-management-2026-outlook-part-i/",
-      "source_name": "twosigma.com",
-      "pub_date": "Jan 12, 2026",
-      "snippet": "Two Sigma leaders on AI in investment management: 2026 trends, agentic systems, productivity gains, and why human judgment matters more than ever.",
-      "via": "layer1_tl"
-    },
-    {
       "id": "aHR0cHM6Ly9t",
       "title": "Action items for AI decision makers in 2026",
       "url": "https://mitsloan.mit.edu/ideas-made-to-matter/action-items-ai-decision-makers-2026",
@@ -134,26 +158,27 @@
       "pub_date": "Mar 3, 2026",
       "snippet": "AI industry watchers Thomas Davenport and Randy Bean expect the AI hype cycle to slow as organizations focus on infrastructure and strategy.",
       "via": "layer1_tl"
-    },
-    {
-      "id": "aHR0cHM6Ly93",
-      "title": "Access Denied",
-      "url": "https://www.spglobal.com/market-intelligence/en/news-insights/research/2026/01/10-ai-trends-to-shape-your-2026-strategy",
-      "source_name": "spglobal.com",
-      "pub_date": "Jan 30, 2026",
-      "snippet": "You don't have permission to access \"http://www.spglobal.com/market-intelligence/en/news-insights/research/2026/01/10-ai-trends-to-shape-your-2026-strategy\" on this server.\nReference #18.954ddb17.1775016005.3e7ef9d\n\nhttps://errors.edgesuite.net/18.954ddb17.1775016005.3e7ef9d",
-      "via": "layer1_tl"
-    },
-    {
-      "id": "aHR0cHM6Ly93",
-      "title": "AI Market Trends 2026: Global Investment, Risks, and Buildout | Morgan Stanley",
-      "url": "https://www.morganstanley.com/insights/articles/ai-market-trends-institute-2026",
-      "source_name": "morganstanley.com",
-      "pub_date": "Mar 9, 2026",
-      "snippet": "Discover key market trends as AI becomes the central force influencing growth, earnings, geopolitics, and investment strategy across global markets in 2026.",
-      "via": "layer1_tl"
     }
   ],
-  "blocked_items": [],
-  "written_at": "2026-04-01T04:03:12.846Z"
+  "blocked_items": [
+    {
+      "url": "https://www.lanereport.com/186950/2026/04/wealth-management-where-algorithms-meet-advisors/",
+      "title": "AI-Driven Algorithms Reshaping Advisor Workflows Across Wealth Management Landscape",
+      "reason": "Score 43/100 — below 45 review threshold",
+      "score": 43
+    },
+    {
+      "url": "https://www.businesswire.com/news/home/20251009584071/en/Focal-Raises-%245M-to-Redefine-Advisor-Productivity-With-AI-Powered-Meetings-Performance-Coaching-and-Workflow-Automation",
+      "title": "Focal Builds API-Free Workflow Automation Across Advisor Tech Stacks With $5M Seed",
+      "reason": "Article is 175 days old — exceeds 90-day freshness limit",
+      "score": 0
+    },
+    {
+      "url": "https://www.thinkadvisor.com/2026/02/12/altruists-big-reveal-sent-wealth-management-stocks-tumbling-heres-whats-really-going-on/",
+      "title": "Altruist AI Platform Reveal Triggers Wealth Management Stock Selloff, Signaling Fee Compression Fears",
+      "reason": "Score 50/100 — below 45 review threshold",
+      "score": 50
+    }
+  ],
+  "written_at": "2026-04-02T04:03:55.294Z"
 }

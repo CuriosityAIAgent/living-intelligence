@@ -181,5 +181,36 @@
     "blocked_at": "2026-03-31T04:04:37.939Z",
     "title": "BlackRock Embeds AI Commentary Generation in Aladdin, Morgan Stanley First to Deploy",
     "score": 0
+  },
+  "https://www.golaurens.com/online_features/press_releases/merrill-and-bank-of-america-private-bank-launch-ai-powered-meeting-journey/article_8a60218b-32f9-5ab5-96c3-7eeb31d779a9.html": {
+    "id": "merrill-bofa-private-bank-ai-meeting-journey-launch",
+    "reason": "Human rejected REVIEW entry",
+    "blocked_at": "2026-04-01T07:04:54.012Z"
+  },
+  "https://www.benzinga.com/pressreleases/26/03/n51480463/merrill-and-bank-of-america-private-bank-launch-ai-powered-meeting-journey": {
+    "id": "merrill-bofa-private-bank-ai-meeting-journey-launch-2026-03",
+    "reason": "Human rejected REVIEW entry",
+    "blocked_at": "2026-04-01T07:05:07.485Z"
+  },
+  "https://www.lanereport.com/186950/2026/04/wealth-management-where-algorithms-meet-advisors/": {
+    "id": "wealth-management-algorithms-meet-advisors-lanereport-2026-04",
+    "reason": "Score 43/100 — below 45 review threshold",
+    "blocked_at": "2026-04-02T04:01:12.632Z",
+    "title": "AI-Driven Algorithms Reshaping Advisor Workflows Across Wealth Management Landscape",
+    "score": 43
+  },
+  "https://www.businesswire.com/news/home/20251009584071/en/Focal-Raises-%245M-to-Redefine-Advisor-Productivity-With-AI-Powered-Meetings-Performance-Coaching-and-Workflow-Automation": {
+    "id": "focal-5m-seed-advisor-productivity-ai",
+    "reason": "Article is 175 days old — exceeds 90-day freshness limit",
+    "blocked_at": "2026-04-02T04:02:21.206Z",
+    "title": "Focal Builds API-Free Workflow Automation Across Advisor Tech Stacks With $5M Seed",
+    "score": 0
+  },
+  "https://www.thinkadvisor.com/2026/02/12/altruists-big-reveal-sent-wealth-management-stocks-tumbling-heres-whats-really-going-on/": {
+    "id": "altruist-ai-reveal-wealth-management-stocks-tumbling-2026-02",
+    "reason": "Score 50/100 — below 45 review threshold",
+    "blocked_at": "2026-04-02T04:03:55.293Z",
+    "title": "Altruist AI Platform Reveal Triggers Wealth Management Stock Selloff, Signaling Fee Compression Fears",
+    "score": 50
   }
 }
