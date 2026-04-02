@@ -191,8 +191,9 @@ export async function publishTlEntry({ url, send }) {
     document_url:   extracted.document_url || null,
   };
 
-  // 5. Write
+  // 5. Write (ensure directory exists — on Railway, intake branch may not have data/thought-leadership/)
   send('status', { message: `Writing: ${slug}.json` });
+  if (!existsSync(TL_DIR)) mkdirSync(TL_DIR, { recursive: true });
   writeFileSync(filepath, JSON.stringify(entry, null, 2), 'utf-8');
 
   // 6. Git commit + push
