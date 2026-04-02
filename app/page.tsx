@@ -18,15 +18,9 @@ export default function HomePage() {
   const competitors = getAllCompetitors();
   const capabilities = getCapabilities();
 
-  // Most recent date across ALL content types — intelligence + thought leadership
-  const allDates = [
-    ...(allEntries[0]?.date ? [allEntries[0].date] : []),
-    ...(allTL[0]?.date_published ? [allTL[0].date_published] : []),
-  ].map(d => new Date(d)).filter(d => !isNaN(d.getTime()));
-  const latestDate = allDates.length > 0
-    ? new Date(Math.max(...allDates.map(d => d.getTime())))
-    : new Date();
-  const monthLabel = latestDate.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+  // Build date = when the portal was last deployed/rebuilt
+  const buildDate = new Date();
+  const monthLabel = buildDate.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
 
   // Lead story = most recent featured entry, fallback to most recent
   const leadStory = allEntries.find(e => e.featured) || allEntries[0];
