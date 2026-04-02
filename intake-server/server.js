@@ -31,9 +31,9 @@ import {
 import { runLandscapeSweep, getStaleList } from './agents/landscape-sweep.js';
 import { publishTlEntry } from './agents/tl-publisher.js';
 import { runTLDiscover, getTLCandidates, dismissTLCandidate } from './agents/tl-discover.js';
+import { CONTENT_DIR, INTEL_DIR, TL_DIR } from './agents/config.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const DATA_DIR = join(__dirname, '..', 'data');
 const app = express();
 app.use(express.json());
 
@@ -643,7 +643,7 @@ app.get('/api/tl-published', (req, res) => {
   try {
     // TL files are content (in the repo), not state (on the volume).
     // On Railway intake branch, data/thought-leadership/ may not exist — return empty.
-    const tlDir = join(DATA_DIR, 'thought-leadership');
+    const tlDir = TL_DIR;
     if (!fs.existsSync(tlDir)) {
       return res.json({ entries: [] });
     }
@@ -667,12 +667,12 @@ app.get('/api/pipeline-status', (req, res) => {
   // Count entries published today from data/intelligence/
   const today = new Date().toISOString().split('T')[0];
   let publishedToday = 0;
-  const todayFiles = fs.existsSync(DATA_DIR + '/intelligence')
-    ? fs.readdirSync(DATA_DIR + '/intelligence').filter(f => f.endsWith('.json'))
+  const todayFiles = fs.existsSync(INTEL_DIR)
+    ? fs.readdirSync(INTEL_DIR).filter(f => f.endsWith('.json'))
     : [];
   for (const f of todayFiles) {
     try {
-      const e = JSON.parse(fs.readFileSync(DATA_DIR + '/intelligence/' + f, 'utf-8'));
+      const e = JSON.parse(fs.readFileSync(join(INTEL_DIR, f), 'utf-8'));
       if (e._governance?.approved_at && e._governance.approved_at.startsWith(today)) publishedToday++;
     } catch (_) {}
   }
@@ -715,12 +715,12 @@ app.get('/api/pipeline-history', (req, res) => {
 app.get('/api/recent-published', (req, res) => {
   const cutoff = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString();
   const recent = [];
-  const intelFiles = fs.existsSync(DATA_DIR + '/intelligence')
-    ? fs.readdirSync(DATA_DIR + '/intelligence').filter(f => f.endsWith('.json'))
+  const intelFiles = fs.existsSync(INTEL_DIR)
+    ? fs.readdirSync(INTEL_DIR).filter(f => f.endsWith('.json'))
     : [];
   for (const f of intelFiles) {
     try {
-      const e = JSON.parse(fs.readFileSync(DATA_DIR + '/intelligence/' + f, 'utf-8'));
+      const e = JSON.parse(fs.readFileSync(join(INTEL_DIR, f), 'utf-8'));
       if (e.published_at && e.published_at >= cutoff) {
         recent.push({
           id:             e.id,
@@ -759,12 +759,12 @@ app.get('/api/activity-log', (req, res) => {
 
   // Approvals from published entries
   const approvals = [];
-  const intelFiles = fs.existsSync(DATA_DIR + '/intelligence')
-    ? fs.readdirSync(DATA_DIR + '/intelligence').filter(f => f.endsWith('.json'))
+  const intelFiles = fs.existsSync(INTEL_DIR)
+    ? fs.readdirSync(INTEL_DIR).filter(f => f.endsWith('.json'))
     : [];
   for (const f of intelFiles) {
     try {
-      const e = JSON.parse(fs.readFileSync(DATA_DIR + '/intelligence/' + f, 'utf-8'));
+      const e = JSON.parse(fs.readFileSync(join(INTEL_DIR, f), 'utf-8'));
       const approvedAt = e._governance?.approved_at || e.published_at;
       if (approvedAt && approvedAt >= cutoff) {
         approvals.push({
@@ -1073,7 +1073,7 @@ app.get('/api/audit/deep', async (req, res) => {
 
 // GET /api/audit/report — return the last saved audit report
 app.get('/api/audit/report', (req, res) => {
-  const reportPath = join(DATA_DIR, 'audit-report.json');
+  const reportPath = join(CONTENT_DIR, 'audit-report.json');
   try {
     const report = JSON.parse(fs.readFileSync(reportPath, 'utf8'));
     res.json(report);
