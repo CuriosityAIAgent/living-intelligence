@@ -89,6 +89,7 @@
 | `agents/gov-store.js` | File-backed pending queue + blocked URL list |
 | `agents/publisher.js` | Write entry JSON + `_governance` audit, git commit + push. Auto-corrects `week` field to Monday of article date. Auto-resolves company logo from `public/logos/`. Strips unavatar.io URLs. |
 | `agents/tl-publisher.js` | Publish thought leadership entries. Fetches article via Jina, Claude extracts TL schema, quality gate (named author + insight required), writes to `data/thought-leadership/`, git push to main. Supports Railway clone-and-push mode. |
+| `agents/research-agent.js` | **v2 pipeline.** Deep multi-source research: fetches primary source, extracts entities, searches 5-10 additional sources via Jina + NewsAPI, loads landscape context (company file, past entries, peer competitors), determines what's new. Output: Research Brief JSON with full source texts. |
 | `agents/landscape-trigger.js` | Post-publish hook: checks if new entry warrants landscape update (maturity upgrade OR evidence update). Creates pending suggestions for editorial approval. |
 | `scripts/backfill-governance.js` | One-time: add `_governance` to all existing entries |
 | `scripts/reprocess-failed.js` | Re-run FAIL entries through corrected pipeline |

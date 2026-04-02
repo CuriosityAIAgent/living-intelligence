@@ -158,7 +158,10 @@ function crossReferenceCheck(competitorData, capabilityId, entry) {
 
 // ── Exported pure functions (used by tests) ───────────────────────────────────
 
-export { crossReferenceCheck, EVIDENCE_STAGE_TO_MATURITY, MATURITY_RANK };
+export {
+  crossReferenceCheck, EVIDENCE_STAGE_TO_MATURITY, MATURITY_RANK,
+  loadPublishedEntriesForCompany, loadCompetitorFile, loadAllCompetitors, findTopCompetitorsByCapability,
+};
 
 export async function enrichContext({ entry, articleMarkdown }) {
   const companySlug = entry.company || '';
