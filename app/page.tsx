@@ -18,22 +18,21 @@ export default function HomePage() {
   const competitors = getAllCompetitors();
   const capabilities = getCapabilities();
 
-  const latestDate = allEntries[0]?.date ? new Date(allEntries[0].date) : new Date();
-  const updatedLabel = `Updated ${latestDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}`;
+  // Most recent date across ALL content types — intelligence + thought leadership
+  const allDates = [
+    ...(allEntries[0]?.date ? [allEntries[0].date] : []),
+    ...(allTL[0]?.date_published ? [allTL[0].date_published] : []),
+  ].map(d => new Date(d)).filter(d => !isNaN(d.getTime()));
+  const latestDate = allDates.length > 0
+    ? new Date(Math.max(...allDates.map(d => d.getTime())))
+    : new Date();
+  const monthLabel = latestDate.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
 
-  // Lead story = most recent entry (auto-rotates as new stories are published)
-  const leadStory = allEntries[0];
+  // Lead story = most recent featured entry, fallback to most recent
+  const leadStory = allEntries.find(e => e.featured) || allEntries[0];
 
-  // Featured grid = 6 most recent entries, one per company (latest wins dedup)
-  const seenCompanies = new Set(leadStory ? [leadStory.company] : []);
-  const featured: typeof allEntries = [];
-  for (const e of allEntries) {
-    if (e.id === leadStory?.id) continue;
-    if (seenCompanies.has(e.company)) continue;
-    seenCompanies.add(e.company);
-    featured.push(e);
-    if (featured.length >= 6) break;
-  }
+  // Featured grid = 6 most recent entries after lead story
+  const featured = allEntries.filter(e => e.id !== leadStory?.id).slice(0, 6);
 
   // Featured TL = most recent entry
   const featuredThought = allTL[0] || null;
@@ -45,9 +44,9 @@ export default function HomePage() {
       {/* Date bar */}
       <div className="border-b border-gray-200 bg-gray-50">
         <div className="max-w-6xl mx-auto px-6 h-9 flex items-center gap-4">
-          <span className="text-[11px] font-bold uppercase tracking-widest text-[#990F3D]">{updatedLabel}</span>
+          <span className="text-[11px] font-bold uppercase tracking-widest text-[#990F3D]">Updated {monthLabel}</span>
           <span className="text-gray-300">|</span>
-          <span className="text-[11px] text-gray-500">{allEntries.length} developments tracked</span>
+          <span className="text-[11px] text-gray-500">{allEntries.length} developments · {allTL.length} thought leadership</span>
         </div>
       </div>
 
@@ -99,13 +98,8 @@ export default function HomePage() {
                       </div>
                     )}
                     {leadStory.source_url && (
-                      <div className="mt-4 flex items-center gap-3">
+                      <div className="mt-4">
                         <span className="text-xs text-[#990F3D] font-medium">{leadStory.source_name} ↗</span>
-                        {(leadStory.source_count ?? leadStory.sources?.length ?? 0) > 1 && (
-                          <span className="text-[10px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5">
-                            {leadStory.source_count ?? leadStory.sources?.length} sources
-                          </span>
-                        )}
                       </div>
                     )}
                   </div>
@@ -161,18 +155,13 @@ export default function HomePage() {
                   )}
                   <div className="mt-auto flex items-center justify-between pt-2 border-t border-gray-50">
                     <span className="text-[10px] text-gray-400">{formatDateShort(entry.date)}</span>
-                    <span className="text-[10px] text-gray-400">
-                      {(entry.source_count ?? entry.sources?.length ?? 0) > 1
-                        ? `${entry.source_count ?? entry.sources?.length} sources`
-                        : entry.source_name}
-                    </span>
+                    <span className="text-[10px] text-gray-400">{entry.source_name}</span>
                   </div>
                 </Link>
               ))}
             </div>
-            <Link href="/intelligence" className="inline-flex items-center gap-2 px-5 py-2.5 border-2 border-[#990F3D] text-[#990F3D] text-sm font-bold tracking-wide rounded hover:bg-[#990F3D] hover:text-white transition-colors">
-              View all intelligence
-              <span className="text-lg leading-none">→</span>
+            <Link href="/intelligence" className="text-sm font-bold text-[#990F3D] hover:underline">
+              View all intelligence →
             </Link>
           </section>
         )}
@@ -210,9 +199,8 @@ export default function HomePage() {
               </div>
             </Link>
             <div className="mt-4">
-              <Link href="/thought-leadership" className="inline-flex items-center gap-2 px-5 py-2.5 border-2 border-[#990F3D] text-[#990F3D] text-sm font-bold tracking-wide rounded hover:bg-[#990F3D] hover:text-white transition-colors">
-                View all thought leadership
-                <span className="text-lg leading-none">→</span>
+              <Link href="/thought-leadership" className="text-sm font-bold text-[#990F3D] hover:underline">
+                View all thought leadership →
               </Link>
             </div>
           </section>
@@ -239,9 +227,8 @@ export default function HomePage() {
             </div>
           </div>
           <div className="mt-4">
-            <Link href="/landscape" className="inline-flex items-center gap-2 px-5 py-2.5 border-2 border-[#990F3D] text-[#990F3D] text-sm font-bold tracking-wide rounded hover:bg-[#990F3D] hover:text-white transition-colors">
-              View full landscape
-              <span className="text-lg leading-none">→</span>
+            <Link href="/landscape" className="text-sm font-bold text-[#990F3D] hover:underline">
+              View full landscape →
             </Link>
           </div>
         </section>
