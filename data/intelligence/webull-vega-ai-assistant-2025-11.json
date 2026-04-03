@@ -1,8 +1,8 @@
 {
   "id": "webull-vega-ai-assistant-2025-11",
   "type": "product_launch",
-  "headline": "Webull unveils Vega — AI decision partner with plain-language voice orders, options insights, and personalised real-time alerts",
-  "the_so_what": "Webull offering voice-activated trade execution, options chain analysis, and personalised portfolio alerts at zero cost to all US customers makes the AI-powered trading experience a free commodity in the retail segment — when five distinct AI capabilities ship simultaneously at no incremental cost, the feature itself ceases to be a differentiator and the underlying data flywheel becomes the moat.",
+  "headline": "Webull Ships Vega AI Decision Partner to 24M+ Users With Voice Trading and Real-Time Portfolio Analysis — Free",
+  "the_so_what": "Webull giving 24 million users free AI-powered options analysis and voice trading follows the same margin-destruction pattern that free commission trading created in 2019. Robinhood launched Cortex for Gold subscribers at a premium; Webull is giving comparable AI features away. For traditional brokers still selling AI-assisted trading as a premium upsell, the pricing floor just dropped to zero.",
   "company": "webull",
   "company_name": "Webull",
   "date": "2025-11-10",
@@ -10,10 +10,10 @@
   "source_url": "https://www.prnewswire.com/news-releases/webull-unveils-vega-the-next-evolution-of-its-ai-powered-decision-partner-302605998.html",
   "source_verified": true,
   "image_url": "/logos/webull.png",
-  "summary": "Webull launched Vega, the next evolution of its AI-powered decision partner for active retail traders. Vega's five confirmed capabilities: Plain-Language Orders (place trades via natural voice commands, with live interpreted details shown before confirmation); Options Statistics Insights (identifies outliers in options chains and surfaces opportunities); Portfolio Review (evaluates portfolios against investor behaviour to highlight misalignments); Vega Insights (real-time personalised analysis and alerts based on watchlists and holdings); and Data Summary (contextual market analysis in a unified platform). Available at no cost to US Webull customers.",
+  "summary": "Webull launched Vega, an AI-powered decision partner available at no cost to its 24 million+ registered users across 14 markets. The product includes five capabilities: Options Statistics Insights (outlier detection in options chains), Data Summary (unified market context), Portfolio Review (evaluation against investor behaviour), Plain-Language Orders (voice command trading with live interpretation), and Vega Insights (real-time personalised alerts). Group President Anthony Denier framed Vega as consolidating news, earnings, and technical data for traders seeking clarity.",
   "key_stat": {
-    "number": "5",
-    "label": "Confirmed Vega AI capabilities — including voice-activated order placement (PRNewswire, Nov 2025)"
+    "number": "24M+",
+    "label": "registered users globally with free access to Vega AI decision partner"
   },
   "tags": {
     "capability": "investment_portfolio",
@@ -50,5 +50,39 @@
     "human_approved": true,
     "approved_at": "2026-03-24T00:00:00.000Z"
   },
-  "published_at": "2025-11-10T00:00:00.000Z"
+  "published_at": "2025-11-10T00:00:00.000Z",
+  "_final_score": 76,
+  "_research": {
+    "entities": {
+      "company_name": "Webull",
+      "metrics": [
+        "24M+ users",
+        "14 markets",
+        "5 AI capabilities"
+      ]
+    },
+    "source_count": 1,
+    "confidence": "high",
+    "researched_at": "2026-04-03T15:10:45.066Z"
+  },
+  "_fabrication": {
+    "verdict": "CLEAN",
+    "claims_checked": 6,
+    "claims_verified": 6,
+    "claims_unverified": 0,
+    "claims_fabricated": 0,
+    "details": [],
+    "checked_at": "2026-04-03T15:10:45.080Z"
+  },
+  "_iterations": [
+    {
+      "version": 1,
+      "evaluation": {
+        "overall": "PASS",
+        "quality_score": 8
+      },
+      "fabrication_verdict": "CLEAN"
+    }
+  ],
+  "_editor_notes": []
 }
