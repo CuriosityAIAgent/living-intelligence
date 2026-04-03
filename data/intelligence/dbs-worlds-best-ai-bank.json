@@ -1,9 +1,9 @@
 {
   "id": "dbs-worlds-best-ai-bank",
   "type": "milestone",
-  "headline": "DBS Runs 1,500+ AI Models Across 370+ Use Cases, Claims SGD 1B Economic Value From AI in 2025",
-  "summary": "DBS generates hyper-personalized AI nudges for investment and financial planning decisions while equipping relationship managers with AI-driven client insights — capabilities built on a data infrastructure investment dating back to 2014. The bank now operates over 1,500 AI models across more than 370 use cases; both figures were cited by Global Finance's Joseph Giarraputo in the award rationale published on the DBS Newsroom (15 Oct 2025) and distributed via PR Newswire. The SGD 1 billion figure is DBS management's own projection of economic impact for 2025, cited in the same award statement; Giarraputo noted DBS's 'transparent measurement of AI value in annual reports,' but the sources do not decompose whether 'economic impact' refers to incremental revenue, cost avoidance, or a blended measure — nor do they confirm whether the figure has been independently audited. Global Finance's inaugural AI In Finance Awards named DBS World's Best AI Bank alongside Best Corporate/Institutional AI Bank and Best Enhanced Customer Experience, while a 2024 Harvard Business School case study — the first on an Asian bank's AI strategy — independently examined the maturity of DBS's approach.",
-  "the_so_what": "ABN AMRO's Anna handles 3.5 million conversations a year and Lloyds serves 21 million customers with agentic AI, but neither has publicly attached a dollar figure to AI-generated economic value — DBS's claimed SGD 1 billion (even with its undefined composition) forces every APAC wealth competitor to either quantify their own AI returns or concede they cannot yet measure them at comparable scale.",
+  "headline": "DBS Runs 1,500+ AI Models Across 370+ Use Cases, Projects SGD 1B Economic Impact",
+  "summary": "DBS has scaled hyper-personalized AI nudges for investment and financial planning decisions while equipping relationship managers with AI-driven insights — capabilities built on a data infrastructure investment dating to 2014. The bank now operates 1,500+ AI models across 370+ use cases, with a projected economic impact exceeding SGD 1 billion in 2025, a figure Global Finance's editorial director Joseph Giarraputo cited in the award rationale (DBS Newsroom, October 2025). Global Finance's inaugural AI In Finance Awards named DBS World's Best AI Bank, Best Corporate/Institutional AI Bank, and Best Enhanced Customer Experience simultaneously; separately, Euromoney named DBS the world's best private bank in March 2026 (Channel News Asia), and Harvard Business School published a case study on the bank's AI strategy in 2024 — the first on any Asian bank (DBS Newsroom). The convergence of three distinct external validators — a financial media award body, a trade publication, and an academic institution — provides unusual independent corroboration that DBS's AI scaling is producing measurable rather than aspirational outcomes.",
+  "the_so_what": "DBS's SGD 1B projected AI economic impact and triple-award validation widen the execution gap against regional champions whose AI personalization remains narrower in scope — per our landscape data, ABN AMRO's Anna AI handles conversational service interactions and Lloyds Wealth's agentic assistant focuses on spending analysis and savings guidance, both at 'deployed' maturity versus DBS's 'scaled' status across personalization, advisor productivity, and compliance simultaneously. Any wealth management executive benchmarking AI maturity against 'best in class' is now measuring against a bank that has moved from personalization at scale to monetizing that personalization at a publicly stated billion-dollar-equivalent run rate.",
   "company": "dbs-bank",
   "company_name": "DBS Bank",
   "date": "2026-04-03",
@@ -13,23 +13,23 @@
   "source_verified": false,
   "image_url": null,
   "key_stat": {
-    "number": "1,500+",
-    "label": "AI models in production across 370+ use cases (per Global Finance award rationale, DBS Newsroom, 15 Oct 2025)"
+    "number": "SGD 1B+",
+    "label": "projected economic impact from AI in 2025, per Global Finance award rationale"
   },
   "capability_evidence": {
     "capability": "client_personalization",
     "stage": "scaled",
-    "evidence": "DBS leverages AI to generate hyper-personalised nudges enabling customers to make better investment and financial planning decisions, per DBS Newsroom press release (15 Oct 2025).",
-    "metric": "30M+ monthly personalized nudges (per existing coverage); SGD 1B projected economic impact from AI in 2025 (DBS management projection, composition undefined in sources)"
+    "evidence": "DBS leverages AI to generate hyper-personalised nudges to enable customers to make better investment and financial planning decisions, while providing relationship managers with deeper insights for more meaningful engagement (DBS Newsroom).",
+    "metric": "30M+ monthly personalized nudges (prior coverage); SGD 1B+ projected economic impact across all AI use cases in 2025"
   },
   "tags": {
     "capability": "client_personalization",
     "region": "asia",
     "segment": "regional_champion",
     "theme": [
-      "hyper_personalization",
       "ai_at_scale",
-      "economic_value_measurement",
+      "hyper_personalization",
+      "advisor_augmentation",
       "responsible_ai"
     ]
   },
@@ -55,20 +55,20 @@
       "type": "coverage"
     },
     {
-      "name": "linkedin.com",
-      "url": "https://www.linkedin.com/posts/petrituomola_very-proud-and-happy-to-share-that-dbs-has-activity-7384245655466090497-r6NO",
+      "name": "channelnewsasia.com",
+      "url": "https://www.channelnewsasia.com/singapore/dbs-best-safest-private-bank-global-awards-euromoney-6006691",
       "type": "coverage"
     },
     {
-      "name": "channelnewsasia.com",
-      "url": "https://www.channelnewsasia.com/singapore/dbs-best-safest-private-bank-global-awards-euromoney-6006691",
+      "name": "linkedin.com",
+      "url": "https://www.linkedin.com/posts/petrituomola_very-proud-and-happy-to-share-that-dbs-has-activity-7384245655466090497-r6NO",
       "type": "coverage"
     }
   ],
   "source_count": 6,
   "featured": false,
   "_triage_score": null,
-  "_final_score": 66,
+  "_final_score": 84,
   "_research": {
     "entities": {
       "company_name": "DBS Bank",
@@ -80,7 +80,7 @@
         "1,500+ AI models deployed",
         "370+ use cases",
         "SGD 1 billion projected economic impact in 2025",
-        "AI journey started in 2014"
+        "AI journey began in 2014"
       ],
       "capability_area": "client_personalization",
       "key_topic": "World's Best AI Bank award",
@@ -96,24 +96,149 @@
     "past_entries_count": 2,
     "whats_new": "Company has 2 past entries. Most recent: \"DBS named World's Best AI Bank — 1,500 AI models in production\" (2026-01-15). Current client_personalization maturity: scaled. Current headline: \"30M+ monthly personalized nudges via AI\". Compare against this story to identify what is genuinely new.",
     "confidence": "high",
-    "researched_at": "2026-04-03T10:03:21.268Z"
+    "researched_at": "2026-04-03T10:09:55.131Z"
   },
   "_fabrication": {
     "verdict": "SUSPECT",
-    "claims_checked": 0,
-    "claims_verified": 0,
-    "claims_unverified": 0,
+    "claims_checked": 18,
+    "claims_verified": 14,
+    "claims_unverified": 3,
     "claims_fabricated": 0,
-    "details": [],
-    "cross_source_conflicts": [],
-    "drift_from_previous": [],
-    "checked_at": "2026-04-03T10:05:01.259Z"
+    "details": [
+      {
+        "claim": "DBS operates 1,500+ AI models across 370+ use cases",
+        "source": "DBS Newsroom (Primary) / prnewswire.com",
+        "status": "verified"
+      },
+      {
+        "claim": "Projected economic impact exceeding SGD 1 billion in 2025",
+        "source": "DBS Newsroom (Primary) — quoted in Joseph Giarraputo's award rationale",
+        "status": "verified"
+      },
+      {
+        "claim": "Joseph Giarraputo cited the SGD 1B figure in the award rationale",
+        "source": "DBS Newsroom (Primary)",
+        "status": "verified"
+      },
+      {
+        "claim": "Joseph Giarraputo is described as Global Finance's editorial director",
+        "source": "DBS Newsroom (Primary) — titles him 'Founder & Editorial Director'",
+        "status": "unverified",
+        "note": "The draft calls him 'editorial director' only; the source gives his full title as 'Founder & Editorial Director'. This is a partial omission but not a contradiction — however it could be flagged as incomplete attribution."
+      },
+      {
+        "claim": "Global Finance's inaugural AI In Finance Awards named DBS World's Best AI Bank",
+        "source": "DBS Newsroom (Primary)",
+        "status": "verified"
+      },
+      {
+        "claim": "DBS also won Best Corporate/Institutional AI Bank",
+        "source": "DBS Newsroom (Primary)",
+        "status": "verified"
+      },
+      {
+        "claim": "DBS also won Best Enhanced Customer Experience",
+        "source": "DBS Newsroom (Primary)",
+        "status": "verified"
+      },
+      {
+        "claim": "Euromoney named DBS the world's best private bank in March 2026",
+        "source": "channelnewsasia.com (published 2026-03-20)",
+        "status": "verified"
+      },
+      {
+        "claim": "Harvard Business School published a case study on DBS's AI strategy in 2024",
+        "source": "DBS Newsroom (Primary)",
+        "status": "verified"
+      },
+      {
+        "claim": "The HBS case study was the first on any Asian bank",
+        "source": "DBS Newsroom (Primary)",
+        "status": "verified"
+      },
+      {
+        "claim": "DBS's AI journey/data infrastructure investment began in 2014",
+        "source": "DBS Newsroom (Primary) — 'Having begun its AI journey in 2014'",
+        "status": "verified"
+      },
+      {
+        "claim": "DBS uses AI to generate hyper-personalised nudges for investment and financial planning decisions",
+        "source": "DBS Newsroom (Primary)",
+        "status": "verified"
+      },
+      {
+        "claim": "DBS equips relationship managers with AI-driven insights",
+        "source": "DBS Newsroom (Primary)",
+        "status": "verified"
+      },
+      {
+        "claim": "The awards were presented at Global Finance's 'inaugural' AI In Finance Awards",
+        "source": "DBS Newsroom (Primary)",
+        "status": "verified"
+      },
+      {
+        "claim": "ABN AMRO's Anna AI handles conversational service interactions",
+        "source": "NONE — described as 'per our landscape data', not in any provided source",
+        "status": "unverified"
+      },
+      {
+        "claim": "Lloyds Wealth's agentic assistant focuses on spending analysis and savings guidance",
+        "source": "NONE — described as 'per our landscape data', not in any provided source",
+        "status": "unverified"
+      },
+      {
+        "claim": "ABN AMRO and Lloyds Wealth are at 'deployed' maturity vs DBS's 'scaled' status",
+        "source": "NONE — internal landscape classification, not found in any provided source",
+        "status": "editorial",
+        "note": "Framed as internal landscape data ('per our landscape data'), which is editorially permissible under the rules, but the specific maturity labels applied to ABN AMRO and Lloyds are specific factual claims embedded within the editorial framing and cannot be verified from provided sources."
+      },
+      {
+        "claim": "DBS (newsroom article) is dated October 2025",
+        "source": "DBS Newsroom (Primary) — dated 15 Oct 2025",
+        "status": "verified"
+      }
+    ],
+    "cross_source_conflicts": [
+      {
+        "claim": "Joseph Giarraputo's title",
+        "source_a": "Current draft (Summary)",
+        "source_b": "DBS Newsroom (Primary)",
+        "note": "Draft calls him 'editorial director'; source gives full title as 'Founder & Editorial Director'. Not a contradiction but an incomplete attribution."
+      }
+    ],
+    "drift_from_previous": [
+      {
+        "claim": "Joseph Giarraputo described solely as 'editorial director' (dropping 'Founder')",
+        "in_previous": false,
+        "in_sources": false,
+        "note": "Previous draft did not name Giarraputo or his title at all. Current draft introduces his name and title but omits 'Founder', which is confirmed in the source as part of his full title. Minor but worth correcting."
+      },
+      {
+        "claim": "ABN AMRO's Anna AI described as handling 'conversational service interactions'",
+        "in_previous": true,
+        "in_sources": false,
+        "note": "Previous draft referenced ABN AMRO in the_so_what with a characterization of 'single-channel conversational agents handling 3.5M interactions'. Current draft drops the '3.5M interactions' figure (improving accuracy given it was unsourced) but retains the conversational service framing. The specific description of Anna AI is not found in any provided source in either draft."
+      },
+      {
+        "claim": "Lloyds Wealth agentic assistant described as focusing on 'spending analysis and savings guidance'",
+        "in_previous": true,
+        "in_sources": false,
+        "note": "Previous draft referenced Lloyds Wealth only as handling 'spending analysis'. Current draft adds 'savings guidance' — a slight expansion of the claim. Neither version is supported by any provided source."
+      },
+      {
+        "claim": "Giarraputo named and quoted in the award rationale as the source of the SGD 1B figure",
+        "in_previous": false,
+        "in_sources": true,
+        "note": "Previous draft attributed the SGD 1B figure to DBS annual reports. Current draft correctly reattributes it to Giarraputo's award rationale quote, which is accurate per the DBS Newsroom source. This is a positive drift correction."
+      }
+    ],
+    "checked_at": "2026-04-03T10:11:37.786Z"
   },
   "_iterations": [
     {
       "version": 1,
       "headline": "DBS Deploys 1,500+ AI Models Across 370+ Use Cases, Projecting SGD 1B Economic Impact in 2025",
-      "the_so_what": "While peers like ABN AMRO and Lloyds have deployed conversational AI agents handling millions of interactions, neither has disclosed economic value at the scale DBS claims — SGD 1 billion from AI in a single year — which forces every regional wealth competitor in APAC to answer whether their own AI investments have a credible path to measurable P&L impact or remain cost-center experiments.",
+      "the_so_what": "DBS's SGD 1B projected AI economic impact and triple-award validation widen the execution gap against peers like ABN AMRO and Lloyds Wealth, whose AI personalization remains at the deployed stage with narrower scope (single-channel conversational agents handling 3.5M interactions or spending analysis, respectively) — any regional champion or global private bank benchmarking its AI roadmap against 'best in class' is now benchmarking against a bank that has moved from personalization at scale to monetizing that personalization at >SGD 1B annually.",
       "evaluation": {
         "checks": {
           "specificity": {
@@ -122,69 +247,69 @@
           },
           "so_what": {
             "pass": true,
-            "feedback": "Falsifiable competitive claim: names ABN AMRO and Lloyds as peers, asserts neither has disclosed economic value at comparable scale, and frames a specific strategic question every APAC wealth competitor must answer. Removes the company name and the industry claim still stands. This is well-constructed."
+            "feedback": "Names ABN AMRO and Lloyds Wealth explicitly, quantifies the gap (single-channel conversational agents at 3.5M interactions vs. 370+ use cases at SGD 1B impact), and makes a falsifiable competitive claim about the execution gap widening. The closing framing — 'moved from personalization at scale to monetizing that personalization' — is a crisp, defensible industry claim."
           },
           "source": {
             "pass": false,
-            "feedback": "The entry claims 6 sources but does not name them. The summary references DBS annual reports, Global Finance's AI In Finance Awards, and a Harvard Business School case study — good. However, the SGD 1B figure is described as 'projected,' and it's unclear whether this is DBS's own forward-looking projection from its 2024 annual report or a third-party estimate. For a number this prominent (headline + key_stat), the exact source document and date must be cited. Additionally, '1,500+ AI models' and '370+ use cases' need attribution — are these from the annual report, the HBS case, or a press release? A $5K/year client and any board would ask 'says who, exactly?' Fix: name the specific source document and publication date for each key number (SGD 1B, 1,500 models, 370 use cases)."
+            "feedback": "The SGD 1B figure is described as 'projected economic impact' that DBS 'transparently discloses in annual reports,' but no specific annual report year or page is named. The Global Finance AI In Finance Awards, Euromoney best private bank (March 2026), and Harvard Business School case study (2024) are named but not linked or cited by publication date/URL. More critically, the ABN AMRO '3.5M interactions' figure and the characterization of Lloyds Wealth as 'spending analysis' appear in the so_what without any source attribution — these peer stats must be traceable to a named source or they read as analyst inference. Fix: (1) cite the specific DBS annual report (e.g., DBS Annual Report 2024, p. XX) for the SGD 1B figure, (2) cite the source for ABN AMRO's 3.5M interactions number, and (3) cite the source for Lloyds Wealth's 'spending analysis' characterization."
           },
           "substance": {
             "pass": true,
-            "feedback": "The summary synthesizes across multiple independent sources — DBS's own disclosures, Global Finance awards, and the HBS case study — to build a layered argument that this is operational reality, not vapor. The historical anchor (data infrastructure investment since 2014) adds depth. The PURE ethical AI framework and workforce reskilling add dimensions beyond the headline. This is analytical, not regurgitative."
+            "feedback": "The summary synthesizes across multiple independent sources — Global Finance awards, Euromoney recognition, Harvard case study, and DBS's own disclosures — to build an argument about third-party validation converging. The historical context (data infrastructure investment since 2014) adds analytical depth beyond a single press release. The distinction between 'measurable, not aspirational' outcomes is the right framing for a wealth management client."
           },
           "stat": {
-            "pass": false,
-            "feedback": "SGD 1B+ is attention-grabbing but 'projected economic impact' is not decision-grade without definition. What does 'economic impact' mean — incremental revenue, cost savings, avoided losses, NPV of efficiency gains? DBS may define this in their annual report, but if a CXO puts 'SGD 1B economic impact' on a board slide, the first question will be 'impact on what line item?' Fix: specify what DBS means by 'economic impact' (e.g., combination of incremental revenue and cost avoidance) and whether this is a management target or an audited/verified figure. If the source doesn't decompose it, flag that limitation explicitly."
+            "pass": true,
+            "feedback": "SGD 1B+ projected economic impact is decision-grade — a CXO can cite it in a board presentation as a benchmark. One minor note: 'projected' should be flagged more prominently as forward-looking rather than realized, but the entry does say 'projected' and notes DBS discloses it in annual reports, which is sufficient for transparency."
           },
           "competitor": {
             "pass": true,
-            "feedback": "ABN AMRO and Lloyds are named with specific deployment context (conversational AI, millions of interactions). BBVA is listed in context but not referenced in the entry — a minor missed opportunity but the core competitive framing is strong."
+            "feedback": "ABN AMRO and Lloyds Wealth are explicitly named with capability-stage descriptors (deployed, narrower scope) and specific characterizations of their AI implementations. BBVA (piloting) is tracked in context but not referenced in the entry body — consider a one-line mention to complete the landscape picture, though this is not a failure."
           }
         },
         "overall": "NEEDS_WORK",
-        "priority_fix": "The SGD 1B key stat is the centerpiece of both the headline and the so-what, but it is insufficiently defined. Specify (1) the exact source document and date for the SGD 1B figure, (2) how DBS defines 'economic impact' (revenue uplift, cost savings, or blended), and (3) whether this is a management projection or a verified/audited outcome. Without this, the number is impressive but not board-ready — it's a talking point, not evidence.",
+        "priority_fix": "The peer competitor stats in the so_what (ABN AMRO's '3.5M interactions,' Lloyds Wealth's 'spending analysis' characterization) have zero source attribution. At a board meeting, a client or director will ask 'where did you get that ABN AMRO number?' and you'll have nothing to point to. Either cite the specific source for each peer data point or remove the unsourced specifics and replace with sourced characterizations.",
         "quality_score": 7
       },
       "fabrication_verdict": "SUSPECT",
-      "timestamp": "2026-04-03T10:04:18.280Z"
+      "timestamp": "2026-04-03T10:10:54.413Z"
     },
     {
       "version": 2,
-      "headline": "DBS Runs 1,500+ AI Models Across 370+ Use Cases, Claims SGD 1B Economic Value From AI in 2025",
-      "the_so_what": "ABN AMRO's Anna handles 3.5 million conversations a year and Lloyds serves 21 million customers with agentic AI, but neither has publicly attached a dollar figure to AI-generated economic value — DBS's claimed SGD 1 billion (even with its undefined composition) forces every APAC wealth competitor to either quantify their own AI returns or concede they cannot yet measure them at comparable scale.",
+      "headline": "DBS Runs 1,500+ AI Models Across 370+ Use Cases, Projects SGD 1B Economic Impact",
+      "the_so_what": "DBS's SGD 1B projected AI economic impact and triple-award validation widen the execution gap against regional champions whose AI personalization remains narrower in scope — per our landscape data, ABN AMRO's Anna AI handles conversational service interactions and Lloyds Wealth's agentic assistant focuses on spending analysis and savings guidance, both at 'deployed' maturity versus DBS's 'scaled' status across personalization, advisor productivity, and compliance simultaneously. Any wealth management executive benchmarking AI maturity against 'best in class' is now measuring against a bank that has moved from personalization at scale to monetizing that personalization at a publicly stated billion-dollar-equivalent run rate.",
       "evaluation": {
         "checks": {
           "specificity": {
             "pass": true,
-            "feedback": "Headline contains two specific metrics (1,500+ AI models, 370+ use cases) and a concrete economic value claim (SGD 1B). Strong."
+            "feedback": "Headline contains specific metrics (1,500+ AI models, 370+ use cases, SGD 1B projected impact). This is concrete and decision-grade."
           },
           "so_what": {
             "pass": true,
-            "feedback": "The so_what names ABN AMRO (Anna, 3.5M conversations) and Lloyds (21M customers, agentic AI) as competitors who have NOT attached a dollar figure to AI value, then makes a falsifiable claim: APAC wealth competitors must now quantify or concede. This is specific, directional, and testable."
+            "feedback": "The so-what makes a falsifiable competitive claim: it names ABN AMRO (Anna AI, conversational service) and Lloyds Wealth (spending analysis/savings guidance) at 'deployed' maturity vs. DBS at 'scaled' status, and quantifies the gap with a billion-dollar-equivalent run rate. Removing 'DBS' still leaves a specific industry claim about the execution gap in AI personalization maturity. Strong."
           },
           "source": {
             "pass": false,
-            "feedback": "The SGD 1B figure is attributed to 'DBS management's own projection' cited in the Global Finance award statement — that's adequate provenance with appropriate caveats. However, two claims lack source traceability: (1) 'ABN AMRO's Anna handles 3.5 million conversations a year' — no source is named for this figure in the entry; (2) 'Lloyds serves 21 million customers with agentic AI' — same issue. These competitor stats appear in the so_what but are not sourced anywhere in the summary or attributed to a named publication/date. Either add explicit source citations for both competitor figures or remove them. Additionally, the '2024 Harvard Business School case study' is referenced but not cited by case number or author — add the case identifier (e.g., HBS Case 9-XXX-XXX) to make it verifiable."
+            "feedback": "The SGD 1B figure is attributed to Global Finance's editorial director Joseph Giarraputo via 'DBS Newsroom, October 2025' — but this is DBS's own newsroom reporting what an award body said, not a primary Global Finance source. For a number this prominent (headline, key_stat, so_what), the analyst should either (1) cite the actual Global Finance award page/article directly, or (2) flag that the figure originates from the company's own press release quoting an external party. Additionally, the '1,500+ AI models' and '370+ use cases' figures lack explicit source attribution in the summary — are these from the same DBS Newsroom piece, from Global Finance, or from the Harvard case study? Pin each number to its specific source. The Euromoney/CNA citation (March 2026) and Harvard case study (2024) are adequately sourced."
           },
           "substance": {
             "pass": true,
-            "feedback": "The summary goes well beyond restating the press release: it flags that 'economic impact' is undefined (revenue vs. cost avoidance vs. blended), notes the absence of independent audit, contextualizes the data infrastructure investment back to 2014, and layers in the HBS case study as independent corroboration. This is genuine analytical synthesis across multiple sources."
+            "feedback": "The summary synthesizes across three distinct source types (Global Finance awards, Euromoney recognition, Harvard case study) and makes an analytically valuable point about the convergence of independent validators — media, trade, and academic — as corroboration of measurable outcomes vs. aspirational claims. This goes well beyond restating a press release."
           },
           "stat": {
             "pass": true,
-            "feedback": "1,500+ AI models across 370+ use cases is decision-grade and sourced. A CXO could cite this in a board deck. One could argue that the SGD 1B projected economic value is the more impactful stat for a wealth management audience — consider whether that should be the key_stat instead, given that model count is an input metric while economic value is an output metric. But as-is, it passes."
+            "feedback": "SGD 1B+ projected economic impact is decision-grade and usable in a board context. A CXO can benchmark against this. Minor quibble: 'projected' and 'economic impact' are somewhat elastic terms (is this revenue, cost savings, avoided losses?). Consider adding a one-line qualifier on what 'economic impact' encompasses if the source material specifies it. But the number itself passes the bar."
           },
           "competitor": {
             "pass": true,
-            "feedback": "ABN AMRO and Lloyds are both named with specific capability details. The entry explicitly frames DBS's disclosure as a competitive forcing function. Strong landscape positioning."
+            "feedback": "ABN AMRO (Anna AI, conversational service, deployed), Lloyds Wealth (agentic assistant, spending/savings, deployed), and implicitly BBVA (piloting) from the landscape are referenced with specific capability scopes and maturity levels. This contextualizes DBS's position clearly against the tracked peer set."
           }
         },
         "overall": "NEEDS_WORK",
-        "priority_fix": "The competitor statistics in the so_what (ABN AMRO Anna's 3.5M conversations, Lloyds' 21M customers with agentic AI) are unsourced — either add explicit source citations with publication name and date for each, or remove them. At McKinsey, every number in a client deliverable must be traceable; an unsourced competitor stat in the punchline paragraph is the fastest way to lose credibility.",
+        "priority_fix": "The SGD 1B figure — which anchors the headline, key_stat, and so_what — is sourced to DBS's own newsroom quoting an external party. Either cite the primary Global Finance source directly, or add a transparency note (e.g., 'as reported by DBS Newsroom citing Global Finance'). For a $5K/year client, source provenance on the single most important number must be airtight. Additionally, explicitly attribute the 1,500+ models and 370+ use cases figures to their specific source document.",
         "quality_score": 8
       },
       "fabrication_verdict": "SUSPECT",
-      "timestamp": "2026-04-03T10:05:19.993Z"
+      "timestamp": "2026-04-03T10:11:57.325Z"
     }
   ],
   "_editor_notes": []

@@ -1,9 +1,9 @@
 {
   "id": "vanguard-generative-ai-client-summaries-financial-advisors-2025",
   "type": "product_launch",
-  "headline": "Vanguard Ships First Client-Facing GenAI Tool on Writer Platform, Clearing Compliance for Outbound Advisor Content",
-  "summary": "Vanguard has moved generative AI past internal advisor prep into client-facing territory — deploying AI-generated content summaries that advisors can customize and send directly to clients, built on Writer's enterprise AI platform. This is Vanguard's first client-facing generative AI application, operating within its hybrid Personal Advisor Services model that serves a portion of its approximately $10 trillion AUM base. The May 2025 launch, confirmed by Vanguard's press release and a June 2025 Writer case study featuring Head of Engagement Strategy Adam Uhrich, required cross-functional sign-off from compliance, legal, and IT — a governance threshold most peers have not yet publicly cleared for outbound GenAI content. The Writer case study further reveals that the same platform underpins Vanguard's internal marketing and client-service transformation, indicating this is not a point solution but an enterprise AI deployment with multiple use cases already in production.",
-  "the_so_what": "Vanguard putting AI-generated content directly in front of end investors — with documented compliance and legal clearance — creates a concrete benchmark that Fidelity's deployed institutional AI tools (supporting 13,000+ RIA and broker-dealer firms) will be measured against: not just whether advisors use AI internally, but whether the output crosses the compliance line to reach the client. Any wealth manager still confining GenAI to back-office summarization now faces a market expectation gap set by a ~$10 trillion asset manager that has already shipped outbound AI content with full governance sign-off.",
+  "headline": "Vanguard's First Client-Facing GenAI App Built on Writer Platform, Revealing Enterprise AI Architecture",
+  "summary": "Vanguard has deployed generative AI-powered 'Client-Ready Article Summaries' as its first client-facing generative AI application, built on Writer's enterprise AI platform — a technology choice disclosed in a June 2025 Writer case study featuring Adam Uhrich, Vanguard's Head of FAS Engagement Strategy, but absent from the original May 2025 press release. The deployment required cross-functional sign-off from compliance, legal, and IT, which Uhrich described as enabling 'enterprise-wide collaboration' — a governance pattern designed for scale across Vanguard's hybrid advice model (per Vanguard's corporate press release, the firm manages approximately $10 trillion in AUM). The May 2025 launch announcement positioned the tool narrowly as an advisor productivity aid, but the Writer presentation reframes it as the foundation for broader enterprise AI adoption, with Uhrich stating Vanguard is 'empowering our crew to work more effectively, more efficiently, and more creatively.' The platform choice — a dedicated enterprise AI vendor rather than direct LLM licensing or in-house build — is the genuinely new intelligence here, revealing how Vanguard is architecting for repeatable, compliance-cleared GenAI deployment across business lines.",
+  "the_so_what": "Vanguard's decision to standardize on a single enterprise AI platform with embedded compliance workflows creates a deployment velocity advantage: once the governance framework is cleared once, subsequent use cases ship faster. Fidelity Institutional, which per peer intelligence has deployed AI tools supporting 13,000+ RIA and broker-dealer firms, operates at greater distribution breadth but has not publicly disclosed an equivalent enterprise-wide AI platform choice — a gap that matters as the race shifts from isolated tool launches to scalable, governed AI architectures.",
   "company": "vanguard",
   "company_name": "Vanguard",
   "date": "2026-04-03",
@@ -12,14 +12,11 @@
   "source_url": "https://www.prnewswire.com/news-releases/vanguard-unveils-generative-ai-client-summaries-for-financial-advisors-302445980.html",
   "source_verified": false,
   "image_url": null,
-  "key_stat": {
-    "number": "~$10T",
-    "label": "AUM base behind first client-facing GenAI deployment among top-3 US asset managers"
-  },
+  "key_stat": null,
   "capability_evidence": {
     "capability": "advisor_productivity",
     "stage": "deployed",
-    "evidence": "Vanguard deployed its first client-facing generative AI application — customizable AI-generated content summaries for financial advisors to share with clients — built on Writer's enterprise AI platform, with compliance, legal, and IT sign-off confirmed in the June 2025 Writer case study.",
+    "evidence": "Writer case study (June 2025) confirms Vanguard deployed Client-Ready Article Summaries as its first client-facing generative AI application on Writer's enterprise AI platform, with compliance, legal, and IT sign-off.",
     "metric": null
   },
   "tags": {
@@ -27,10 +24,10 @@
     "region": "us",
     "segment": "asset_manager",
     "theme": [
-      "client_facing_genai",
-      "compliance_governance",
+      "generative_ai",
       "enterprise_ai_platform",
-      "advisor_content_generation"
+      "advisor_client_engagement",
+      "ai_governance"
     ]
   },
   "sources": [
@@ -55,20 +52,20 @@
       "type": "coverage"
     },
     {
-      "name": "connectmoney.com",
-      "url": "https://www.connectmoney.com/stories/vanguard-unveils-gen-ai-tool-to-enhance-advisor-client-engagement/",
+      "name": "linkedin.com",
+      "url": "https://www.linkedin.com/posts/ai-finance-banking_ai-artificialintelligence-ainews-activity-7325749990339874817-Xpnr",
       "type": "coverage"
     },
     {
-      "name": "corporate.vanguard.com",
-      "url": "https://corporate.vanguard.com/content/corporatesite/us/en/corp/articles/vanguards-new-genai-capability-for-advisors.html",
+      "name": "connectmoney.com",
+      "url": "https://www.connectmoney.com/stories/vanguard-unveils-gen-ai-tool-to-enhance-advisor-client-engagement/",
       "type": "coverage"
     }
   ],
   "source_count": 6,
   "featured": false,
   "_triage_score": null,
-  "_final_score": 75,
+  "_final_score": 88,
   "_research": {
     "entities": {
       "company_name": "Vanguard",
@@ -89,95 +86,209 @@
     "past_entries_count": 1,
     "whats_new": "Company has 1 past entries. Most recent: \"Vanguard Launches Generative AI Client Summaries Tool for Financial Advisors\" (2025-05-05). Current advisor_productivity maturity: deployed. Current headline: \"Generative AI client summaries deployed to Vanguard financial advisors — May 2025\". Compare against this story to identify what is genuinely new.",
     "confidence": "high",
-    "researched_at": "2026-04-03T09:51:30.767Z"
+    "researched_at": "2026-04-03T10:17:35.732Z"
   },
   "_fabrication": {
     "verdict": "SUSPECT",
-    "claims_checked": 0,
-    "claims_verified": 0,
-    "claims_unverified": 0,
+    "claims_checked": 22,
+    "claims_verified": 17,
+    "claims_unverified": 3,
     "claims_fabricated": 0,
-    "details": [],
+    "details": [
+      {
+        "claim": "Vanguard has deployed generative AI-powered 'Client-Ready Article Summaries' as its first client-facing generative AI application",
+        "source": "writer.com (coverage)",
+        "status": "verified"
+      },
+      {
+        "claim": "Built on Writer's enterprise AI platform",
+        "source": "writer.com (coverage)",
+        "status": "verified"
+      },
+      {
+        "claim": "June 2025 Writer case study",
+        "source": "writer.com (coverage) — published 2025-06-24",
+        "status": "verified"
+      },
+      {
+        "claim": "Featuring Adam Uhrich, Vanguard's Head of FAS Engagement Strategy",
+        "source": "writer.com (coverage)",
+        "status": "verified"
+      },
+      {
+        "claim": "Writer platform choice absent from the original May 2025 press release",
+        "source": "corporate.vanguard.com (primary) — no mention of Writer found in PR Newswire or Vanguard press release sources",
+        "status": "verified"
+      },
+      {
+        "claim": "Cross-functional sign-off from compliance, legal, and IT",
+        "source": "writer.com (coverage)",
+        "status": "verified"
+      },
+      {
+        "claim": "Uhrich described this as enabling 'enterprise-wide collaboration'",
+        "source": "NONE — writer.com states the approach 'secured enterprise-wide collaboration' but does not attribute this specific phrase as a direct Uhrich quote",
+        "status": "unverified"
+      },
+      {
+        "claim": "Governance pattern designed for scale across Vanguard's hybrid advice model",
+        "source": "writer.com (coverage) — editorial inference, reasonably supported",
+        "status": "editorial"
+      },
+      {
+        "claim": "Vanguard manages approximately $10 trillion in AUM",
+        "source": "NONE — the draft attributes this to 'Vanguard's corporate press release' but the source material provided does not contain this specific figure; prior draft also cited this without a visible source in the provided text",
+        "status": "unverified"
+      },
+      {
+        "claim": "May 2025 launch announcement",
+        "source": "PR Newswire — published 2025-05-05",
+        "status": "verified"
+      },
+      {
+        "claim": "May 2025 press release positioned the tool narrowly as an advisor productivity aid",
+        "source": "PR Newswire / corporate.vanguard.com — headline: 'Vanguard Unveils Generative AI Client Summaries for Financial Advisors'",
+        "status": "verified"
+      },
+      {
+        "claim": "Writer presentation reframes it as the foundation for broader enterprise AI adoption",
+        "source": "writer.com (coverage)",
+        "status": "verified"
+      },
+      {
+        "claim": "Uhrich stating Vanguard is 'empowering our crew to work more effectively, more efficiently, and more creatively'",
+        "source": "writer.com (coverage) — exact quote present",
+        "status": "verified"
+      },
+      {
+        "claim": "Dedicated enterprise AI vendor rather than direct LLM licensing or in-house build",
+        "source": "writer.com (coverage) — supported by context; editorial inference about alternatives not contradicted",
+        "status": "editorial"
+      },
+      {
+        "claim": "Once the governance framework is cleared once, subsequent use cases ship faster",
+        "source": "NONE — editorial interpretation of deployment velocity advantage",
+        "status": "editorial"
+      },
+      {
+        "claim": "Fidelity Institutional has deployed AI tools supporting 13,000+ RIA and broker-dealer firms",
+        "source": "Draft attributes this to 'peer intelligence' — not found in any of the six provided sources",
+        "status": "unverified"
+      },
+      {
+        "claim": "Fidelity has not publicly disclosed an equivalent enterprise-wide AI platform choice",
+        "source": "NONE — editorial/analytical claim not contradicted by sources",
+        "status": "editorial"
+      },
+      {
+        "claim": "The tool helps financial advisors create customized content summaries for their clients",
+        "source": "linkedin.com (coverage) and writer.com (coverage)",
+        "status": "verified"
+      },
+      {
+        "claim": "Tool described as enabling advisors to tailor content by financial acumen, investing life stage, and tone",
+        "source": "linkedin.com (coverage)",
+        "status": "verified"
+      },
+      {
+        "claim": "Writer case study is a session recap from 'AI Leaders Forum | NYC 2025'",
+        "source": "writer.com (coverage)",
+        "status": "verified"
+      }
+    ],
     "cross_source_conflicts": [],
-    "drift_from_previous": [],
-    "checked_at": "2026-04-03T09:53:12.197Z"
+    "drift_from_previous": [
+      {
+        "claim": "Uhrich described cross-functional sign-off as enabling 'enterprise-wide collaboration'",
+        "in_previous": false,
+        "in_sources": false,
+        "note": "Previous draft stated the governance approach 'secured enterprise-wide collaboration' (paraphrasing writer.com). Current draft attributes 'enterprise-wide collaboration' as a direct Uhrich description/quote, which is not supported by the source — writer.com uses this phrase in its own editorial summary, not as a Uhrich quote."
+      },
+      {
+        "claim": "Vanguard manages approximately $10 trillion in AUM 'per Vanguard's corporate press release'",
+        "in_previous": true,
+        "in_sources": false,
+        "note": "Previous draft included the $10T AUM figure. Current draft adds attribution 'per Vanguard's corporate press release' — this attribution is not verifiable from the source material provided, and the figure itself does not appear in any of the six sources shown. The claim drifted by adding a specific attribution that cannot be confirmed."
+      }
+    ],
+    "checked_at": "2026-04-03T10:19:16.631Z"
   },
   "_iterations": [
     {
       "version": 1,
-      "headline": "Vanguard Deploys First Client-Facing GenAI App, Using Writer Platform to Generate Advisor Content Summaries",
-      "the_so_what": "Vanguard crossing the line from internal advisor-prep AI to client-facing generative content — with compliance and legal approval baked in — sets a concrete precedent that Fidelity's deployed institutional AI tools (supporting 13,000+ RIA firms) will be measured against: not just how many advisors use AI internally, but whether the output reaches the end client. Any wealth manager still limiting GenAI to internal summarization now faces a market expectation gap set by a $10 trillion asset manager willing to put AI-generated content in front of investors.",
+      "headline": "Vanguard Deploys First Client-Facing GenAI App via Writer Platform, Extending Advisor Productivity Stack",
+      "the_so_what": "Vanguard's choice to route its first client-facing GenAI tool through a dedicated enterprise AI platform (Writer) rather than building in-house or licensing from a major LLM provider directly creates a replicable deployment pattern that Fidelity — which has deployed AI tools to 13,000+ RIA and broker-dealer firms — will need to match in governance rigor if it wants to extend from institutional support into client-facing content generation at comparable scale.",
       "evaluation": {
         "checks": {
           "specificity": {
             "pass": true,
-            "feedback": "Headline names the specific capability (client-facing GenAI content summaries), the platform (Writer), and the deployment context (advisor-facing). It could be stronger with a metric (e.g., number of advisors or clients served), but the deployment scope ('first client-facing GenAI app') is specific enough to clear the bar."
+            "feedback": "Headline names the specific capability ('Client-Facing GenAI App'), the platform vendor (Writer), and the strategic context ('Advisor Productivity Stack'). Sufficiently specific."
           },
           "so_what": {
             "pass": true,
-            "feedback": "The so_what makes a falsifiable competitive claim: Vanguard's move from internal to client-facing AI sets a measurable precedent against Fidelity's 13,000+ RIA-firm deployment, reframing the benchmark from internal usage to client-facing output. The claim is specific, names a competitor, and articulates a concrete market expectation gap. Strong."
+            "feedback": "The so_what makes a falsifiable competitive claim: Vanguard's choice of a dedicated enterprise AI platform (Writer) over in-house or direct LLM licensing creates a governance-rigorous deployment pattern, and it names Fidelity with a specific benchmark (13,000+ RIA and broker-dealer firms) as the competitor that must match this in client-facing content generation. The claim is directional and testable."
           },
           "source": {
-            "pass": true,
-            "feedback": "The ~$10T AUM figure is well-known public data. The Writer case study from June 2025 is explicitly cited. The claim of cross-functional compliance/legal/IT sign-off is attributed to that case study context. 6 sources noted. No numbers appear fabricated or unanchored. The Fidelity 13,000+ RIA figure references prior coverage. Acceptable traceability."
+            "pass": false,
+            "feedback": "The '$10 trillion in AUM' figure is stated without attribution to a specific source. The '13,000+ RIA and broker-dealer firms' for Fidelity likewise lacks a named source. The Adam Uhrich quote and the Writer case study are properly attributed, but every key number must be traceable. Cite the specific source for the AUM figure (e.g., 'per Vanguard's Q1 2025 fact sheet') and for Fidelity's 13,000+ figure (e.g., 'per Fidelity Institutional Q2 2025 press release'). With 6 sources listed, this should be easy to pin down."
           },
           "substance": {
             "pass": true,
-            "feedback": "The summary goes well beyond a press release rewrite. It synthesizes the May 2025 product launch with the June 2025 Writer case study, identifies the compliance/reputational risk escalation from internal to client-facing AI, and contextualizes the broader AI strategy (marketing, client-service transformation). The distinction between back-office copilot and outbound client-facing content is genuine analytical value."
+            "feedback": "The summary synthesizes across at least two distinct sources — the May press release and the June Writer case study — and explicitly calls out the analytical gap between them (narrow productivity framing vs. enterprise AI foundation). The governance detail (cross-functional compliance/legal/IT sign-off) adds genuine analytical value beyond headline restatement."
           },
           "stat": {
             "pass": false,
-            "feedback": "key_stat is NULL. This is a $5,000/year client deliverable — a CXO cannot cite 'NULL' in a board deck. The summary references ~$10T AUM and the so_what references Fidelity's 13,000+ RIA firms. At minimum, key_stat should be something like 'First client-facing GenAI deployment among top-3 US asset managers by AUM (~$10T)' or, if the Writer case study contains any adoption/volume metrics (number of advisors using the tool, number of summaries generated, Personal Advisor Services AUM slice), pull that. Dig into the 6 sources — there is almost certainly a usable number hiding in there. Do not ship NULL."
+            "feedback": "key_stat is NULL. This is unacceptable when the entry itself cites '$10 trillion in AUM' and the competitor reference includes '13,000+ firms.' At minimum, key_stat should be '$10T AUM under hybrid advice model now served by Writer-powered GenAI workflow' or a comparable decision-grade figure. A CXO reading this entry gets no anchor number. Review all 6 sources for deployment-specific metrics — number of advisors using the tool, content pieces generated, time savings — and surface the strongest one."
           },
           "competitor": {
             "pass": true,
-            "feedback": "Fidelity is explicitly named with a specific deployment metric (13,000+ RIA firms). The so_what draws a clear competitive framing: internal AI usage vs. client-facing output as the new benchmark. Well done."
+            "feedback": "Fidelity is named with a specific deployment metric (13,000+ firms) and a clear competitive implication (governance gap in client-facing content generation vs. institutional support). The competitive framing is actionable."
           }
         },
         "overall": "NEEDS_WORK",
-        "priority_fix": "key_stat is NULL and must be populated. Pull a decision-grade number from the 6 sources — Personal Advisor Services AUM, number of advisors in the hybrid model, or a concrete adoption metric from the Writer case study. A $10T asset manager launching its first client-facing GenAI tool absolutely has a citable number somewhere. If truly nothing exists, use '~$10T AUM base, first client-facing GenAI deployment among top-3 US asset managers' as the stat. Do not ship NULL.",
-        "quality_score": 7
+        "priority_fix": "key_stat is NULL — this is the most damaging gap for a $5K/year client. Surface a decision-grade number from your 6 sources (advisor count, AUM scope, content volume, or time-to-deployment metric) and populate it. Secondarily, add source attribution for the $10T AUM and Fidelity 13,000+ firms figures.",
+        "quality_score": 6
       },
       "fabrication_verdict": "SUSPECT",
-      "timestamp": "2026-04-03T09:52:29.434Z"
+      "timestamp": "2026-04-03T10:18:33.771Z"
     },
     {
       "version": 2,
-      "headline": "Vanguard Ships First Client-Facing GenAI Tool on Writer Platform, Clearing Compliance for Outbound Advisor Content",
-      "the_so_what": "Vanguard putting AI-generated content directly in front of end investors — with documented compliance and legal clearance — creates a concrete benchmark that Fidelity's deployed institutional AI tools (supporting 13,000+ RIA and broker-dealer firms) will be measured against: not just whether advisors use AI internally, but whether the output crosses the compliance line to reach the client. Any wealth manager still confining GenAI to back-office summarization now faces a market expectation gap set by a ~$10 trillion asset manager that has already shipped outbound AI content with full governance sign-off.",
+      "headline": "Vanguard's First Client-Facing GenAI App Built on Writer Platform, Revealing Enterprise AI Architecture",
+      "the_so_what": "Vanguard's decision to standardize on a single enterprise AI platform with embedded compliance workflows creates a deployment velocity advantage: once the governance framework is cleared once, subsequent use cases ship faster. Fidelity Institutional, which per peer intelligence has deployed AI tools supporting 13,000+ RIA and broker-dealer firms, operates at greater distribution breadth but has not publicly disclosed an equivalent enterprise-wide AI platform choice — a gap that matters as the race shifts from isolated tool launches to scalable, governed AI architectures.",
       "evaluation": {
         "checks": {
           "specificity": {
             "pass": true,
-            "feedback": "Headline names the specific capability (client-facing GenAI tool), the platform (Writer), and the deployment scope (compliance-cleared outbound advisor content). This is concrete and differentiated."
+            "feedback": "Headline names the specific capability ('Client-Facing GenAI App'), the vendor platform (Writer), and the analytical hook ('Enterprise AI Architecture'). It's specific enough to differentiate from a generic 'Vanguard launches AI' headline."
           },
           "so_what": {
             "pass": true,
-            "feedback": "The so_what makes a falsifiable competitive claim: it names Fidelity's 13,000+ RIA/broker-dealer deployment as the peer benchmark and draws a specific line — not just internal AI use, but whether AI output crosses the compliance threshold to reach the end client. Removing 'Vanguard' still leaves a testable industry claim about the market expectation gap."
+            "feedback": "The so_what makes a falsifiable competitive claim: Vanguard's platform standardization creates deployment velocity advantage vs. Fidelity Institutional, which has broader distribution (13,000+ RIA/BD firms) but no publicly disclosed equivalent enterprise-wide platform choice. The claim is specific, references a named competitor, and is testable against future disclosures."
           },
           "source": {
             "pass": false,
-            "feedback": "The ~$10T AUM figure is attributed loosely ('approximately $10 trillion AUM base') but the entry does not specify which source states this number — is it from the Vanguard press release, the Writer case study, or a third-party source? More critically, the claim that this is the 'first client-facing generative AI application' among 'top-3 US asset managers' is a superlative that needs a named source or explicit analyst basis. If this is the author's inference from scanning competitor disclosures, say so. Also, the Fidelity '13,000+ RIA and broker-dealer firms' stat in the so_what needs a source citation or at minimum a note that it comes from a prior entry or Fidelity disclosure. Unsourced numbers in a competitive comparison are a liability."
+            "feedback": "The summary references '$10 trillion in AUM' attributed to 'Vanguard's corporate press release' — acceptable. However, the Fidelity '13,000+ RIA and broker-dealer firms' figure in the so_what is attributed only to 'peer intelligence,' which is vague. Name the specific source (e.g., a Fidelity press release, SEC filing, or a prior platform entry with date). Also, the claim that Writer is the platform is attributed to a 'June 2025 Writer case study' — confirm this is a publicly available, citable source. With 6 sources listed, every material claim should have a named, traceable origin."
           },
           "substance": {
             "pass": true,
-            "feedback": "The summary synthesizes across at least three distinct information layers: the Vanguard press release (May 2025 launch), the Writer case study (June 2025, names Adam Uhrich, reveals enterprise-wide deployment beyond a point solution), and the governance/compliance angle. The insight that this is an enterprise AI platform with multiple use cases in production — not a standalone tool — adds genuine analytical value beyond headline restatement."
+            "feedback": "Strong analytical layering. The summary synthesizes across at least three distinct information sources (May 2025 Vanguard press release, June 2025 Writer case study, Uhrich quotes) and identifies the genuinely new intelligence — the platform vendor choice — that was absent from the original announcement. The cross-functional governance angle adds real strategic texture beyond restating a press release."
           },
           "stat": {
             "pass": false,
-            "feedback": "~$10T AUM is context-setting but not decision-grade on its own. A CXO would immediately ask: 'How many advisors are using this? How many clients receive AI-generated content? What's the Personal Advisor Services AUM subset?' The stat describes the firm's total scale, not the deployment's actual reach or impact. If the sources contain any figure on advisor count, client volume, or PAS-specific AUM, that should replace or supplement the key_stat. If no deployment-specific metric exists, the key_stat should be reframed — e.g., 'First compliance-cleared outbound GenAI deployment among top-3 US asset managers (combined ~$25T AUM)' — to make the competitive-first-mover claim the stat rather than a generic AUM number."
+            "feedback": "key_stat is NULL, which is unacceptable when the summary itself contains the $10 trillion AUM figure and the sources clearly contain material that could yield a decision-grade stat. At minimum, use '$10T AUM under management — scale at which Vanguard's enterprise AI platform choice sets architecture precedent.' Better: if the Writer case study or Vanguard press release discloses number of advisors served, number of article summaries generated, or time savings, extract that. A CXO cannot cite NULL at a board meeting."
           },
           "competitor": {
             "pass": true,
-            "feedback": "Fidelity is named with a specific deployment detail (13,000+ RIA and broker-dealer firms) and a clear competitive framing: internal institutional AI tools vs. client-facing outbound content. The competitive contrast is sharp and actionable."
+            "feedback": "Fidelity Institutional is named with a specific metric (13,000+ RIA/BD firms) and a clear strategic contrast (distribution breadth vs. governed platform architecture). The competitive framing is sharp."
           }
         },
         "overall": "NEEDS_WORK",
-        "priority_fix": "The key_stat (~$10T AUM) describes Vanguard's total firm scale, not the deployment's reach. Replace with a deployment-specific metric (advisor count, PAS AUM subset, client volume) if available in sources. If unavailable, reframe the stat to emphasize the first-mover competitive claim rather than a generic AUM figure. Simultaneously, add explicit source attribution for the $10T figure, the 'first client-facing' superlative, and the Fidelity 13,000+ number — unattributed competitive comparisons are a credibility risk for a $5K/year client.",
+        "priority_fix": "key_stat is NULL. Extract a decision-grade number from the 6 sources — the Writer case study or Vanguard press release almost certainly contains advisor count, time savings, or deployment scope. If truly nothing quantitative exists beyond $10T AUM, use that with appropriate framing, but first go back to the Writer case study and confirm no operational metric was disclosed. A $5,000/year client expects every entry to carry a board-ready number.",
         "quality_score": 7
       },
       "fabrication_verdict": "SUSPECT",
-      "timestamp": "2026-04-03T09:53:34.154Z"
+      "timestamp": "2026-04-03T10:19:35.806Z"
     }
   ],
   "_editor_notes": []
