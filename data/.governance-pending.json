@@ -1,1 +1,139 @@
-{}
+{
+  "revolution-ai-enterprise-asset-management-infrastructure-retail-launch": {
+    "entry": {
+      "id": "revolution-ai-enterprise-asset-management-infrastructure-retail-launch",
+      "type": "product_launch",
+      "headline": "Revolution AI Brings Institutional-Style Quantitative Execution Infrastructure to Retail Investors",
+      "the_so_what": "Revolution AI's launch follows the same infrastructure democratization arc as electronic trading platforms in the late 1990s — but the critical unresolved tension is whether retail-packaged quant execution delivers genuine systematic edge or merely replicates rule sets that institutional managers have already arbitraged into obsolescence, a question that no AUM figure, user count, or performance data yet answers.",
+      "company": "revolution-ai",
+      "company_name": "Revolution AI",
+      "date": "2026-04-02",
+      "source_name": "Morningstar (via ACCESS Newswire)",
+      "source_url": "https://www.morningstar.com/news/accesswire/1154604msn/revolution-ai-introduces-enterprise-grade-intelligent-asset-management-infrastructure-for-individual-investors",
+      "source_verified": true,
+      "image_url": null,
+      "summary": "Revolution AI has launched an asset management platform that processes multiple financial data streams simultaneously, executing predefined quantitative strategies without manual intervention, applying risk parameter adherence and continuous asset allocation logic previously available only to institutional managers. The platform adapts enterprise software frameworks — built by a founding team with backgrounds in large-scale, mission-critical AI deployments for global corporations — for direct retail consumer use. The triggering event is the platform's public availability for user onboarding, announced April 2, 2026. No user counts, AUM figures, or quantified performance metrics are provided in the source material.",
+      "key_stat": null,
+      "capability_evidence": {
+        "capability": "investment_portfolio",
+        "stage": "deployed",
+        "evidence": "The platform is live for user onboarding and processes multiple financial data streams simultaneously, executing predefined strategies with continuous risk parameter adherence and quantitative asset allocation, per the company announcement.",
+        "metric": null
+      },
+      "tags": {
+        "capability": "investment_portfolio",
+        "region": "us",
+        "segment": "digital_disruptor",
+        "theme": [
+          "retail_democratization",
+          "autonomous_execution",
+          "quantitative_infrastructure",
+          "behavioral_finance"
+        ]
+      },
+      "week": "2026-03-30",
+      "featured": false,
+      "sources": [
+        {
+          "name": "airevolutionsummit.com",
+          "url": "https://airevolutionsummit.com/",
+          "type": "coverage"
+        },
+        {
+          "name": "aiml.events",
+          "url": "https://aiml.events/events/ai-revolution-summit-2026",
+          "type": "coverage"
+        },
+        {
+          "name": "medium.com",
+          "url": "https://medium.com/@theabhishek.040/the-silent-revolution-why-2026-is-the-year-ai-changes-everything-and-how-to-thrive-4924a6896f94",
+          "type": "coverage"
+        },
+        {
+          "name": "youtube.com",
+          "url": "https://www.youtube.com/watch?v=DEqJoVjXSCI",
+          "type": "coverage"
+        },
+        {
+          "name": "morningstar.com",
+          "url": "https://www.morningstar.com/news/accesswire/1154604msn/revolution-ai-introduces-enterprise-grade-intelligent-asset-management-infrastructure-for-individual-investors",
+          "type": "discovery"
+        }
+      ],
+      "source_count": 5,
+      "_enrichment": {
+        "what_changed": "First coverage of this company.",
+        "landscape_context": {
+          "current_maturity": null,
+          "maturity_direction": "unknown",
+          "competitor_gap": "No peers at this maturity level yet"
+        },
+        "confidence": "low",
+        "notes": "Company not in landscape; no user counts, AUM, or performance metrics provided in source material; no peer comparison data available for investment_portfolio segment; analytical insight necessarily relies on structural inference rather than validated competitive or financial data."
+      },
+      "_format_errors": [
+        "the_so_what sentence 1 is 58 words — max 50 per sentence (split or tighten)"
+      ],
+      "_governance": {
+        "verdict": "PASS",
+        "confidence": 95,
+        "verified_claims": [
+          "Revolution AI has launched an asset management platform",
+          "The platform processes multiple financial data streams simultaneously",
+          "The platform executes predefined quantitative strategies without manual intervention",
+          "The platform applies risk parameter adherence and continuous asset allocation logic",
+          "These capabilities were previously available only to institutional managers",
+          "The platform adapts enterprise software frameworks for retail consumer use",
+          "The founding team has backgrounds in large-scale, mission-critical AI deployments for global corporations",
+          "The platform is currently available for user onboarding",
+          "The announcement was published April 2, 2026",
+          "No user counts, AUM figures, or quantified performance metrics are provided in the source material"
+        ],
+        "unverified_claims": [],
+        "fabricated_claims": [],
+        "notes": "All factual claims in the headline and summary are directly supported by the source article; the entry accurately paraphrases the press release without introducing any contradictions.",
+        "paywall_caveat": false,
+        "verified_at": "2026-04-03T04:01:54.006Z",
+        "human_approved": false
+      },
+      "_fabrication": {
+        "verdict": "CLEAN",
+        "issues": [],
+        "check_details": {
+          "numbers_in_headline": "none",
+          "company_name": "pass",
+          "date_year": "pass",
+          "key_stat": "no_stat",
+          "quoted_phrases": "none"
+        },
+        "checked_at": "2026-04-03T04:01:55.804Z"
+      }
+    },
+    "governance": {
+      "verdict": "PASS",
+      "confidence": 95,
+      "verified_claims": [
+        "Revolution AI has launched an asset management platform",
+        "The platform processes multiple financial data streams simultaneously",
+        "The platform executes predefined quantitative strategies without manual intervention",
+        "The platform applies risk parameter adherence and continuous asset allocation logic",
+        "These capabilities were previously available only to institutional managers",
+        "The platform adapts enterprise software frameworks for retail consumer use",
+        "The founding team has backgrounds in large-scale, mission-critical AI deployments for global corporations",
+        "The platform is currently available for user onboarding",
+        "The announcement was published April 2, 2026",
+        "No user counts, AUM figures, or quantified performance metrics are provided in the source material"
+      ],
+      "unverified_claims": [],
+      "fabricated_claims": [],
+      "notes": "All factual claims in the headline and summary are directly supported by the source article; the entry accurately paraphrases the press release without introducing any contradictions.",
+      "paywall_caveat": false,
+      "verified_at": "2026-04-03T04:01:54.006Z",
+      "human_approved": false
+    },
+    "queued_at": "2026-04-03T04:01:56.333Z",
+    "discovered_at": "2026-04-03T04:01:56.333Z",
+    "score": 79,
+    "score_breakdown": "Score: 79/100 · Source: Company news page (morningstar.com) (20) · Claims: All claims verified (+25) · Fresh: 1d old (8) · Impact: capability clear: investment_portfolio (+10), deployed (+10), general industry (+1) (21) · CXO: contains specific metric (+2) (7/10)"
+  }
+}
