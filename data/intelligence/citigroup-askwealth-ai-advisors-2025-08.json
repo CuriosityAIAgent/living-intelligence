@@ -6,8 +6,8 @@
   "the_so_what": "Goldman Sachs completed firmwide AI platform deployment to all 46,500 employees by June 2025 (per peer landscape data provided); Citi's AskWealth is now global but Advisor Insights remains in North America pilot, creating a visible execution gap on the push-based proactive intelligence layer that will not close until Q1 2026 at the earliest — any wealth competitor evaluating AI-assisted outreach should benchmark whether their own tools actively surface portfolio-relevant content to advisors or merely respond to queries.",
   "company": "citi-wealth",
   "company_name": "Citigroup Inc.",
-  "date": "2026-04-03",
-  "week": "2026-03-30",
+  "date": "2025-08-25",
+  "week": "2025-08-25",
   "source_name": "Citigroup",
   "source_url": "https://www.citigroup.com/global/news/press-release/2025/citi-wealth-launches-advisor-insights-askwealth",
   "source_verified": false,
@@ -183,5 +183,6 @@
       "timestamp": "2026-04-03T07:50:51.722Z"
     }
   ],
-  "_editor_notes": []
+  "_editor_notes": [],
+  "published_at": "2025-08-25T00:00:00.000Z"
 }

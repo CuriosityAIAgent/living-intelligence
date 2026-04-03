@@ -6,8 +6,8 @@
   "the_so_what": "By embedding AI into the same platform that handles custody and trade execution, FNZ is attempting to collapse the front-office productivity layer into the back-office infrastructure stack — a move that pressures standalone advisor-productivity vendors and forces platform peers like Pershing and SS&C to either ship their own embedded-AI capabilities or accept that a back-office competitor is gaining front-office influence with the same client base.",
   "company": "fnz",
   "company_name": "FNZ",
-  "date": "2026-04-03",
-  "week": "2026-03-30",
+  "date": "2025-08-19",
+  "week": "2025-08-18",
   "source_name": "PRNewswire",
   "source_url": "https://www.prnewswire.com/news-releases/fnz-launches-advisor-ai-to-redefine-advisor-productivity-and-scale-personalized-advice-302533281.html",
   "source_verified": false,
@@ -180,5 +180,6 @@
       "timestamp": "2026-04-03T11:25:43.110Z"
     }
   ],
-  "_editor_notes": []
+  "_editor_notes": [],
+  "published_at": "2025-08-19T00:00:00.000Z"
 }

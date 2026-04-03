@@ -6,8 +6,8 @@
   "the_so_what": "DBS's SGD 1B economic value projection from AI remains the only publicly quantified, decision-grade figure from any major APAC wealth bank — neither OCBC, UOB, nor Standard Chartered has published a comparable AI production model count or economic value estimate, making it impossible for regional peers to claim parity without equivalent disclosure. Until a competitor puts a number on the board, DBS owns the APAC AI benchmark by default, and any wealth executive in the region benchmarking AI ROI has exactly one public data point to reference.",
   "company": "dbs-bank",
   "company_name": "DBS Bank",
-  "date": "2026-04-03",
-  "week": "2026-03-30",
+  "date": "2025-10-15",
+  "week": "2025-10-13",
   "source_name": "PR Newswire",
   "source_url": "https://www.prnewswire.com/apac/news-releases/dbs-named-worlds-best-ai-bank-302584742.html",
   "source_verified": false,
@@ -180,5 +180,6 @@
       "timestamp": "2026-04-03T10:26:42.830Z"
     }
   ],
-  "_editor_notes": []
+  "_editor_notes": [],
+  "published_at": "2025-10-15T00:00:00.000Z"
 }

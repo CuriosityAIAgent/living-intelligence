@@ -6,8 +6,8 @@
   "the_so_what": "Vanguard's decision to standardize on a single enterprise AI platform with embedded compliance workflows creates a deployment velocity advantage: once the governance framework is cleared once, subsequent use cases ship faster. Fidelity Institutional, which per peer intelligence has deployed AI tools supporting 13,000+ RIA and broker-dealer firms, operates at greater distribution breadth but has not publicly disclosed an equivalent enterprise-wide AI platform choice — a gap that matters as the race shifts from isolated tool launches to scalable, governed AI architectures.",
   "company": "vanguard",
   "company_name": "Vanguard",
-  "date": "2026-04-03",
-  "week": "2026-03-30",
+  "date": "2025-05-05",
+  "week": "2025-05-05",
   "source_name": "PR Newswire",
   "source_url": "https://www.prnewswire.com/news-releases/vanguard-unveils-generative-ai-client-summaries-for-financial-advisors-302445980.html",
   "source_verified": false,
@@ -291,5 +291,6 @@
       "timestamp": "2026-04-03T10:19:35.806Z"
     }
   ],
-  "_editor_notes": []
+  "_editor_notes": [],
+  "published_at": "2025-05-05T00:00:00.000Z"
 }

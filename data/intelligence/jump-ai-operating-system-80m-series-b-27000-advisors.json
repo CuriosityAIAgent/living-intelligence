@@ -6,8 +6,8 @@
   "the_so_what": "Jump claims 27,000 advisors versus Zocks' self-reported 5,000+ firms (per Zocks' own marketing materials referenced in our landscape data), a roughly 5x gap in distribution footprint that compounds as Jump layers active workflow execution — CRM writes, email drafting, planning-system actions — that neither Zocks nor Holistiplan have publicly matched. Any wealth management firm running a build-vs-buy evaluation on advisor AI workflow automation now needs to weigh whether a proprietary effort can close a data advantage built on ~10% of US advisor conversations and backed by $105M in capital, or whether partnering with the emerging default platform is the faster path.",
   "company": "jump-ai",
   "company_name": "Jump",
-  "date": "2026-04-03",
-  "week": "2026-03-30",
+  "date": "2026-02-19",
+  "week": "2026-02-16",
   "source_name": "Business Wire",
   "source_url": "https://www.businesswire.com/news/home/20260219487440/en/Jump-Raises-%2480-Million-Series-B-Led-by-Insight-Partners-to-Expand-AI-Operating-System-for-Financial-Advisors",
   "source_verified": false,
@@ -182,5 +182,6 @@
       "timestamp": "2026-04-03T10:27:47.759Z"
     }
   ],
-  "_editor_notes": []
+  "_editor_notes": [],
+  "published_at": "2026-02-19T00:00:00.000Z"
 }

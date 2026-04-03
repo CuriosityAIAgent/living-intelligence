@@ -6,8 +6,8 @@
   "the_so_what": "Altruist's Hazel is already a deployed, integrated AI platform with live custodial data and tax planning natively embedded in the custodial workflow; LPL's plugin approach gives advisors building blocks but not a finished product, which means the 30,000-advisor network must still close the integration gap before Anthropic's tooling translates into measurable productivity gains. Any firm weighing LPL's platform commitment versus Altruist's vertical integration should ask how quickly LPL can convert a plugin framework into end-to-end advisor workflows — and whether Anthropic's simultaneous Orion partnership dilutes LPL's differentiation.",
   "company": "lpl-financial",
   "company_name": "LPL Financial",
-  "date": "2026-04-03",
-  "week": "2026-03-30",
+  "date": "2026-02-24",
+  "week": "2026-02-23",
   "source_name": "ThinkAdvisor",
   "source_url": "https://www.thinkadvisor.com/2026/02/24/lpl-expands-partnership-with-anthropic/",
   "source_verified": false,
@@ -180,5 +180,6 @@
       "timestamp": "2026-04-03T10:31:26.499Z"
     }
   ],
-  "_editor_notes": []
+  "_editor_notes": [],
+  "published_at": "2026-02-24T00:00:00.000Z"
 }

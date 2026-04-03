@@ -6,8 +6,8 @@
   "the_so_what": "UBS is the first global private bank to stand up a dedicated C-suite AI office with an explicit agentic-AI scaling mandate — an organisational step that neither Citi Private Bank (still piloting compliance AI) nor Barclays Private Bank (whose GenAI CoE lacks a named C-suite leader) has matched. Any wealth management firm benchmarking its own KYC or compliance-automation roadmap now faces a concrete structural comparison: if your AI governance still reports two levels below the COO, the gap is not just technological but organisational.",
   "company": "ubs",
   "company_name": "UBS",
-  "date": "2026-04-03",
-  "week": "2026-03-30",
+  "date": "2025-10-16",
+  "week": "2025-10-13",
   "source_name": "UBS Global Media",
   "source_url": "https://www.ubs.com/global/en/media/display-page-ndp/en-20251016-ai-strategy.html",
   "source_verified": false,
@@ -310,5 +310,6 @@
       "timestamp": "2026-04-03T11:22:49.942Z"
     }
   ],
-  "_editor_notes": []
+  "_editor_notes": [],
+  "published_at": "2025-10-16T00:00:00.000Z"
 }

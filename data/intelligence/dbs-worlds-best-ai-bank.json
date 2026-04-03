@@ -6,8 +6,8 @@
   "the_so_what": "DBS's SGD 1B projected AI economic impact and triple-award validation widen the execution gap against regional champions whose AI personalization remains narrower in scope — per our landscape data, ABN AMRO's Anna AI handles conversational service interactions and Lloyds Wealth's agentic assistant focuses on spending analysis and savings guidance, both at 'deployed' maturity versus DBS's 'scaled' status across personalization, advisor productivity, and compliance simultaneously. Any wealth management executive benchmarking AI maturity against 'best in class' is now measuring against a bank that has moved from personalization at scale to monetizing that personalization at a publicly stated billion-dollar-equivalent run rate.",
   "company": "dbs-bank",
   "company_name": "DBS Bank",
-  "date": "2026-04-03",
-  "week": "2026-03-30",
+  "date": "2025-09-15",
+  "week": "2025-09-15",
   "source_name": "DBS Newsroom",
   "source_url": "https://www.dbs.com/newsroom/DBS_named_Worlds_Best_AI_Bank_2025",
   "source_verified": false,
@@ -312,5 +312,6 @@
       "timestamp": "2026-04-03T10:11:57.325Z"
     }
   ],
-  "_editor_notes": []
+  "_editor_notes": [],
+  "published_at": "2025-09-15T00:00:00.000Z"
 }

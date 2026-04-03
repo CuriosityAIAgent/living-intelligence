@@ -6,8 +6,8 @@
   "the_so_what": "Julius Baer's JAI remains at the internal-productivity stage with no disclosed path to client-facing or agentic AI, while UBS GWM and DBS Private Bank are actively deploying client-facing AI capabilities across Asia — if Julius Baer's new Global Wealth Management Committee does not accelerate JAI beyond RM documentation into advisory or portfolio construction workflows, the firm risks falling behind peers who are already moving AI closer to the end client.",
   "company": "julius-baer",
   "company_name": "Julius Baer",
-  "date": "2026-04-03",
-  "week": "2026-03-30",
+  "date": "2025-12-01",
+  "week": "2025-12-01",
   "source_name": "Asian Private Banker",
   "source_url": "https://asianprivatebanker.com/final-word-2025/jimmy-lee-julius-baer/",
   "source_verified": false,
@@ -189,5 +189,6 @@
       "timestamp": "2026-04-03T11:31:10.767Z"
     }
   ],
-  "_editor_notes": []
+  "_editor_notes": [],
+  "published_at": "2025-12-01T00:00:00.000Z"
 }

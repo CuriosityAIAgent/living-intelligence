@@ -6,8 +6,8 @@
   "the_so_what": "Arta is scaling its agent taxonomy faster than it is publishing outcome data — a gap that matters because Savvy Wealth, the closest AI-native peer in advisor productivity, already claims 19 hours/week reclaimed per advisor (company-claimed figure from Savvy's own positioning; not independently verified) and is classified as 'deployed.' Until Arta publishes comparable quantified impact from its institutional pilots, procurement teams evaluating AI co-pilots have a materially thinner evidence base for shortlisting Arta against peers that have crossed from piloting to deployment with measurable results.",
   "company": "arta-finance",
   "company_name": "Arta Finance",
-  "date": "2026-04-03",
-  "week": "2026-03-30",
+  "date": "2025-11-05",
+  "week": "2025-11-03",
   "source_name": "PR Newswire",
   "source_url": "https://www.prnewswire.com/news-releases/arta-announces-expansion-of-arta-ai-aiming-to-empower-every-financial-advisor-and-wealth-manager-with-an-ai-sidekick-onboards-new-institutional-customers-302605798.html",
   "source_verified": false,
@@ -182,5 +182,6 @@
       "timestamp": "2026-04-03T09:50:17.613Z"
     }
   ],
-  "_editor_notes": []
+  "_editor_notes": [],
+  "published_at": "2025-11-05T00:00:00.000Z"
 }

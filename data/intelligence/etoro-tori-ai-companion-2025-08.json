@@ -6,8 +6,8 @@
   "the_so_what": "Robinhood charges $5/month for Cortex and Public.com's agentic features remain pre-launch, so eToro's deployed API is — if adoption materializes — the first digital disruptor offering third parties programmable access to retail sentiment data for AI strategy construction; any wealth manager evaluating embedded-finance or alternative data partnerships should demand eToro disclose developer count and API call volume before treating this as a viable data source, because without those metrics this remains an infrastructure bet with unproven demand.",
   "company": "etoro",
   "company_name": "eToro",
-  "date": "2026-04-03",
-  "week": "2026-03-30",
+  "date": "2025-08-07",
+  "week": "2025-08-04",
   "source_name": "GlobeNewswire",
   "source_url": "https://www.globenewswire.com/news-release/2025/08/07/3129203/0/en/eToro-Leverages-AI-to-Redefine-Social-Investing.html",
   "source_verified": false,
@@ -284,5 +284,6 @@
       "timestamp": "2026-04-03T11:34:04.026Z"
     }
   ],
-  "_editor_notes": []
+  "_editor_notes": [],
+  "published_at": "2025-08-07T00:00:00.000Z"
 }

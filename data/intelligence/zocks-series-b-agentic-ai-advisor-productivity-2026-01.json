@@ -6,8 +6,8 @@
   "the_so_what": "Zocks' 5,000-firm footprint and agentic expansion into forms, emails, and document processing puts it on a collision course with Jump, which per our platform's prior coverage has scaled to 27,000 advisors across similar end-to-end workflows — the next 12 months will test whether meeting-intelligence vendors consolidate around one or two platforms or whether enterprise wealth managers retain enough switching leverage to sustain multiple vendors. Any bank benchmarking internal advisor-tooling spend should pressure-test its build-vs-buy economics against both Zocks' agentic roadmap and Jump's reported scale advantage before committing further development budget.",
   "company": "zocks",
   "company_name": "Zocks",
-  "date": "2026-04-03",
-  "week": "2026-03-30",
+  "date": "2026-01-27",
+  "week": "2026-01-26",
   "source_name": "The SaaS News",
   "source_url": "https://www.thesaasnews.com/news/zocks-raises-45-million-in-series-b",
   "source_verified": false,
@@ -193,5 +193,6 @@
       "timestamp": "2026-04-03T11:16:49.901Z"
     }
   ],
-  "_editor_notes": []
+  "_editor_notes": [],
+  "published_at": "2026-01-27T00:00:00.000Z"
 }

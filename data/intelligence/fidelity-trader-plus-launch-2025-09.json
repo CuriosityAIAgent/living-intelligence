@@ -6,8 +6,8 @@
   "the_so_what": "For Schwab, Interactive Brokers, and other self-directed platforms still delivering advanced trading tools through separate desktop applications or tiered pricing, Fidelity's ability to ship a fully integrated, commission-free, cross-device experience to 40M+ accounts in a single release raises the baseline expectation for what active traders receive for free — any competitor still fragmenting the workflow or gating features behind fees faces measurable attrition risk at the high-activity segment where lifetime value concentrates.",
   "company": "fidelity-investments",
   "company_name": "Fidelity Investments",
-  "date": "2026-04-03",
-  "week": "2026-03-30",
+  "date": "2025-09-25",
+  "week": "2025-09-22",
   "source_name": "Business Wire",
   "source_url": "https://www.businesswire.com/news/home/20250925431422/en/Fidelity-Investments-Introduces-Fidelity-TraderTM-Powerful-Advanced-Trading-Platform",
   "source_verified": false,
@@ -184,5 +184,6 @@
       "timestamp": "2026-04-03T11:04:31.171Z"
     }
   ],
-  "_editor_notes": []
+  "_editor_notes": [],
+  "published_at": "2025-09-25T00:00:00.000Z"
 }

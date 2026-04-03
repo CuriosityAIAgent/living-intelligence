@@ -6,8 +6,8 @@
   "the_so_what": "Betterment and Wealthfront both charge 0.25% on every dollar with no cap (publicly listed pricing, confirmed by Bankrate's competitive comparison), which means a $500k client pays ~$1,250/year versus Robinhood's $250 — that 5:1 pricing gap sits precisely at the portfolio size where robo clients become most profitable, and any incumbent charging percentage-of-assets fees on managed accounts now faces a pricing anchor that will compress margins even if Robinhood never directly serves HNW segments.",
   "company": "robinhood",
   "company_name": "Robinhood",
-  "date": "2026-04-03",
-  "week": "2026-03-30",
+  "date": "2026-02-12",
+  "week": "2026-02-09",
   "source_name": "Robinhood Newsroom",
   "source_url": "https://robinhood.com/newsroom/introducing-strategies-banking-and-cortex/",
   "source_verified": false,
@@ -194,5 +194,6 @@
       "timestamp": "2026-04-03T11:13:42.074Z"
     }
   ],
-  "_editor_notes": []
+  "_editor_notes": [],
+  "published_at": "2026-02-12T00:00:00.000Z"
 }

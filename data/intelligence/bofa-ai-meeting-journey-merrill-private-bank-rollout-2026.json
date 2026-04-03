@@ -6,8 +6,8 @@
   "the_so_what": "BofA is the first wirehouse to ship an integrated AI meeting workflow — prep, transcription, and follow-up — as default infrastructure across its full advisor base, while JPMorgan's Connect Coach is still rolling out to ~17,000 advisors through year-end and Wells Fargo's Google Agentspace deployment covers only ~2,000 employees. Any wealth management competitor treating AI meeting automation as an opt-in pilot is now explaining a structural productivity gap that compounds with every client interaction BofA's 23,000 advisors conduct.",
   "company": "bank-of-america",
   "company_name": "Bank of America",
-  "date": "2026-04-03",
-  "week": "2026-03-30",
+  "date": "2026-03-27",
+  "week": "2026-03-23",
   "source_name": "Simply Wall St",
   "source_url": "https://simplywall.st/stocks/us/banks/nyse-bac/bank-of-america/news/bank-of-america-expands-ai-meeting-tool-to-reshape-wealth-ma",
   "source_verified": false,
@@ -159,5 +159,6 @@
       "timestamp": "2026-04-03T10:36:49.040Z"
     }
   ],
-  "_editor_notes": []
+  "_editor_notes": [],
+  "published_at": "2026-03-27T00:00:00.000Z"
 }
