@@ -2,7 +2,7 @@
   "id": "rbc-wealth-tifin-ag-ai-insights-2100-advisors",
   "type": "product_launch",
   "headline": "RBC Wealth Management rolls out AI-Powered Insights to all 2,100+ US advisors — detecting clients with money in motion using behavioural AI",
-  "the_so_what": "TIFIN AG's behavioural model — trained on billions of transactions to identify clients most likely to consolidate outside assets — deployed to all 2,100+ RBC US advisors via Salesforce represents the shift from advisor intuition to algorithmic client acquisition, the same pattern that transformed marketing from creative-led to data-led over the past decade.",
+  "the_so_what": "TIFIN AG's behavioural model — trained on billions of transactions to detect money-in-motion signals — gives RBC's 2,100 advisors a client acquisition capability that Morgan Stanley and JPMorgan are building internally. The distinction is the data source: Morgan Stanley's AI works from CRM and meeting notes; TIFIN AG works from actual transaction flows. For firms without the engineering resources to build behavioural models, TIFIN AG's partnership model offers a shortcut.",
   "company": "rbc-wealth-management",
   "company_name": "RBC Wealth Management",
   "date": "2024-02-28",

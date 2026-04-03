@@ -3,8 +3,8 @@
   "type": "product_launch",
   "headline": "Arta Broadens AI Advisor Platform to 4 Wealth Agents Targeting 3 Institution Types",
   "summary": "Arta Finance has evolved its institutional AI offering from the single 'AI Sidekick' announced in November 2025 (per PR Newswire) into a four-capability 'Wealth Agents' platform — client servicing, trust-building intelligence, growth-oriented product insights, and bespoke specialist agents — each framed around scaling human expertise so 'every client feels like a top client' (per arta.ai). The institutional site now explicitly targets three institution types — private banks, digital banks, and brokerages — broadening the addressable market beyond the private bank pilots disclosed in the November 2025 press release, which named 'new institutional customers' without specifying segment breadth (per PR Newswire). In parallel, the consumer platform lists an Investment Specialist and Product Specialist agent as 'coming early 2026,' indicating the multi-agent architecture is being extended to B2C simultaneously (per artafinance.com). No new performance metrics, client counts, or quantified advisor-impact data have been disclosed across any source reviewed, which limits independent verification of traction beyond piloting.",
-  "the_so_what": "Arta is scaling its agent taxonomy faster than it is publishing outcome data — a gap that matters because Savvy Wealth, the closest AI-native peer in advisor productivity, already claims 19 hours/week reclaimed per advisor (company-claimed figure from Savvy's own positioning; not independently verified) and is classified as 'deployed.' Until Arta publishes comparable quantified impact from its institutional pilots, procurement teams evaluating AI co-pilots have a materially thinner evidence base for shortlisting Arta against peers that have crossed from piloting to deployment with measurable results.",
-  "company": "arta-finance",
+  "the_so_what": "Arta expanding from consumer to B2B (Wealth as a Service) with Ralph Hamers on the board follows the same playbook as Altruist — build direct-to-consumer traction, then sell the infrastructure to institutions. Savvy Wealth raised $72M on a similar dual thesis. The competitive question is whether Arta's agent-based architecture (4 specialised agents at $20/month) can scale institutionally against platforms like Jump and Zocks that were built enterprise-first.",
+  "company": "arta-ai",
   "company_name": "Arta Finance",
   "date": "2025-11-05",
   "week": "2025-11-03",
@@ -13,8 +13,8 @@
   "source_verified": false,
   "image_url": null,
   "key_stat": {
-    "number": "4",
-    "label": "distinct Wealth Agent capability types on Arta's institutional platform (client servicing, intelligence, growth, specialist — per arta.ai); note this is a product-scope metric, not an outcome metric"
+    "number": "$20/mo",
+    "label": "entry price for AI wealth platform (free for $100K+ clients)"
   },
   "capability_evidence": {
     "capability": "advisor_productivity",
