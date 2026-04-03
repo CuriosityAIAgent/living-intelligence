@@ -59,5 +59,38 @@
       "url": "https://public.com/agentic"
     }
   ],
-  "published_at": "2025-11-17T00:00:00.000Z"
+  "published_at": "2025-11-17T00:00:00.000Z",
+  "_final_score": 85,
+  "_research": {
+    "entities": {
+      "company_name": "Public.com",
+      "capability_area": "new_business_models"
+    },
+    "source_count": 1,
+    "landscape_context": {
+      "is_tracked": true
+    },
+    "confidence": "high",
+    "researched_at": "2026-04-03T20:00:09.286Z"
+  },
+  "_fabrication": {
+    "verdict": "CLEAN",
+    "claims_checked": 8,
+    "claims_verified": 8,
+    "claims_unverified": 0,
+    "claims_fabricated": 0,
+    "details": [],
+    "checked_at": "2026-04-03T20:00:09.286Z"
+  },
+  "_iterations": [
+    {
+      "version": 1,
+      "evaluation": {
+        "overall": "PASS",
+        "quality_score": 9
+      },
+      "fabrication_verdict": "CLEAN"
+    }
+  ],
+  "_editor_notes": []
 }

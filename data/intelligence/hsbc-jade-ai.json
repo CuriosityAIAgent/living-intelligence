@@ -56,5 +56,34 @@
     ],
     "reprocessed": true
   },
-  "published_at": "2025-09-16T00:00:00.000Z"
+  "published_at": "2025-09-16T00:00:00.000Z",
+  "_final_score": 72,
+  "_research": {
+    "entities": {
+      "company_name": "HSBC Private Banking"
+    },
+    "source_count": 1,
+    "confidence": "medium",
+    "researched_at": "2026-04-03T20:01:12.306Z"
+  },
+  "_fabrication": {
+    "verdict": "SUSPECT",
+    "claims_checked": 5,
+    "claims_verified": 4,
+    "claims_unverified": 1,
+    "claims_fabricated": 0,
+    "details": [],
+    "checked_at": "2026-04-03T20:01:12.306Z"
+  },
+  "_iterations": [
+    {
+      "version": 1,
+      "evaluation": {
+        "overall": "PASS",
+        "quality_score": 7
+      },
+      "fabrication_verdict": "SUSPECT"
+    }
+  ],
+  "_editor_notes": []
 }

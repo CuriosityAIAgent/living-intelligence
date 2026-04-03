@@ -16,10 +16,26 @@
     }
   ],
   "sources": [
-    { "name": "RIABiz", "url": "https://riabiz.com/a/2026/3/18/altruist-again-has-staggering-ai-news-1600-ria-firms-subscribe-to-hazel-in-one-month-and-pipeline-suggests-1500-advisors-will-join-per-month-for-next-nine-months-ceo-says", "type": "discovery" },
-    { "name": "Business Wire", "url": "https://www.businesswire.com/news/home/20260210142841/en/Altruist-Introduces-AI-Powered-Tax-Planning-in-Hazel-Helping-Advisors-Deliver-Tax-Strategies-in-Minutes", "type": "primary" },
-    { "name": "WealthManagement.com", "url": "https://www.wealthmanagement.com/artificial-intelligence/altruist-launches-ai-powered-tax-planning-feature-in-hazel-platform-for-advisors", "type": "coverage" },
-    { "name": "The Daily Upside", "url": "https://www.thedailyupside.com/advisor/industry-news/altruist-ceo-jason-wenk-talks-ai-after-unusual-wall-street-selloff/", "type": "coverage" }
+    {
+      "name": "RIABiz",
+      "url": "https://riabiz.com/a/2026/3/18/altruist-again-has-staggering-ai-news-1600-ria-firms-subscribe-to-hazel-in-one-month-and-pipeline-suggests-1500-advisors-will-join-per-month-for-next-nine-months-ceo-says",
+      "type": "discovery"
+    },
+    {
+      "name": "Business Wire",
+      "url": "https://www.businesswire.com/news/home/20260210142841/en/Altruist-Introduces-AI-Powered-Tax-Planning-in-Hazel-Helping-Advisors-Deliver-Tax-Strategies-in-Minutes",
+      "type": "primary"
+    },
+    {
+      "name": "WealthManagement.com",
+      "url": "https://www.wealthmanagement.com/artificial-intelligence/altruist-launches-ai-powered-tax-planning-feature-in-hazel-platform-for-advisors",
+      "type": "coverage"
+    },
+    {
+      "name": "The Daily Upside",
+      "url": "https://www.thedailyupside.com/advisor/industry-news/altruist-ceo-jason-wenk-talks-ai-after-unusual-wall-street-selloff/",
+      "type": "coverage"
+    }
   ],
   "source_count": 4,
   "image_url": "/logos/altruist.svg",
@@ -60,5 +76,34 @@
     "human_approved": true,
     "approved_at": "2026-03-19T12:00:00.000Z"
   },
-  "published_at": "2026-03-18T00:00:00.000Z"
+  "published_at": "2026-03-18T00:00:00.000Z",
+  "_final_score": 82,
+  "_research": {
+    "entities": {
+      "company_name": "Altruist"
+    },
+    "source_count": 4,
+    "confidence": "high",
+    "researched_at": "2026-04-03T20:00:26.363Z"
+  },
+  "_fabrication": {
+    "verdict": "CLEAN",
+    "claims_checked": 8,
+    "claims_verified": 8,
+    "claims_unverified": 0,
+    "claims_fabricated": 0,
+    "details": [],
+    "checked_at": "2026-04-03T20:00:26.363Z"
+  },
+  "_iterations": [
+    {
+      "version": 1,
+      "evaluation": {
+        "overall": "PASS",
+        "quality_score": 9
+      },
+      "fabrication_verdict": "CLEAN"
+    }
+  ],
+  "_editor_notes": []
 }

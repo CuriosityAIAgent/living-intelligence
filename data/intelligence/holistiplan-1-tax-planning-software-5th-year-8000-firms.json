@@ -46,5 +46,38 @@
     "human_approved": true,
     "approved_at": "2026-03-23T00:00:00.000Z"
   },
-  "published_at": "2025-03-05T00:00:00.000Z"
+  "published_at": "2025-03-05T00:00:00.000Z",
+  "_final_score": 85,
+  "_research": {
+    "entities": {
+      "company_name": "Holistiplan",
+      "capability_area": "advisor_productivity"
+    },
+    "source_count": 1,
+    "landscape_context": {
+      "is_tracked": true
+    },
+    "confidence": "high",
+    "researched_at": "2026-04-03T20:00:09.287Z"
+  },
+  "_fabrication": {
+    "verdict": "CLEAN",
+    "claims_checked": 8,
+    "claims_verified": 8,
+    "claims_unverified": 0,
+    "claims_fabricated": 0,
+    "details": [],
+    "checked_at": "2026-04-03T20:00:09.287Z"
+  },
+  "_iterations": [
+    {
+      "version": 1,
+      "evaluation": {
+        "overall": "PASS",
+        "quality_score": 9
+      },
+      "fabrication_verdict": "CLEAN"
+    }
+  ],
+  "_editor_notes": []
 }
