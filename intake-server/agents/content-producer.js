@@ -302,8 +302,8 @@ export async function produceEntry({ url, title, source_name, triage_score, send
     the_so_what: finalDraft.the_so_what,
     company: finalDraft.company || researchBrief.entities?.company_slug || '',
     company_name: finalDraft.company_name || researchBrief.entities?.company_name || '',
-    date: finalDraft.date || new Date().toISOString().slice(0, 10),
-    week: getMondayOf(finalDraft.date || new Date().toISOString().slice(0, 10)),
+    date: finalDraft.date || researchBrief.entities?.date || '1970-01-01', // NEVER default to today — 1970 flags missing date for review
+    week: getMondayOf(finalDraft.date || researchBrief.entities?.date || '1970-01-01'),
     source_name: source_name || researchBrief.candidate_source,
     source_url: url,
     source_verified: finalFab.verdict === 'CLEAN',
