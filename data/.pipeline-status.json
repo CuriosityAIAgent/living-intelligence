@@ -1,8 +1,8 @@
 {
-  "started_at": "2026-04-02T04:00:00.252Z",
+  "started_at": "2026-04-03T04:00:00.665Z",
   "candidates_found": 15,
-  "queued": 0,
-  "blocked": 3,
+  "queued": 1,
+  "blocked": 0,
   "errors": 1,
   "error_details": [
     {
@@ -13,17 +13,35 @@
   ],
   "discovery_sources": {
     "layer1_news": 39,
-    "layer1_capabilities": 0,
+    "layer1_capabilities": 17,
     "layer2_companies": 0,
-    "layer3_newsapi": 2,
-    "layer1_tl": 36,
-    "layer2_authors": 0,
-    "companies_queried": 0,
-    "capabilities_queried": 0,
-    "raw_intel_total": 38
+    "layer3_newsapi": 1,
+    "layer1_tl": 35,
+    "layer2_authors": 26,
+    "companies_queried": 37,
+    "capabilities_queried": 7,
+    "raw_intel_total": 53
   },
-  "tl_candidates": 34,
+  "tl_candidates": 58,
   "tl_items": [
+    {
+      "id": "aHR0cHM6Ly9o",
+      "title": "Has AI Ended Thought Leadership?",
+      "url": "https://hbr.org/2026/03/has-ai-ended-thought-leadership",
+      "source_name": "hbr.org",
+      "pub_date": "Mar 9, 2026",
+      "snippet": "As generative AI and content platforms make it effortless to sound authoritative, organizations are being overwhelmed by polished insight that rarely translates into real change. The growing gap between those who talk about the future of work and those who actually build it has turned expertise into",
+      "via": "layer1_tl"
+    },
+    {
+      "id": "aHR0cHM6Ly93",
+      "title": "AI-Augmented Wealth Management: Advisor's Role Evolves in 2026 | Chris DeBrusk posted on the topic | LinkedIn",
+      "url": "https://www.linkedin.com/posts/chrisdebrusk_our-ten-ideas-for-wealth-management-are-back-activity-7409270111049805826-ZGL6",
+      "source_name": "linkedin.com",
+      "pub_date": "3 months ago",
+      "snippet": "Our ten ideas for Wealth Management are back and we're excited to share what we see as being in store for 2026 later in the month 📣\n\nSharing some spoilers ahead of that below with our first idea, on the topic of the moment: AI.\n\nThe AI-Augmented Last Mile Human 🤖\n\nThe role of the advisor is being ",
+      "via": "layer1_tl"
+    },
     {
       "id": "aHR0cHM6Ly93",
       "title": "As AI Investments Surge, CEOs Take the Lead",
@@ -52,6 +70,15 @@
       "via": "layer1_tl"
     },
     {
+      "id": "aHR0cHM6Ly93",
+      "title": "AI AND WEALTH MANAGEMENT: A WORD FROM AMERICAN COLLEGE THOUGHT LEADERS",
+      "url": "https://www.theamericancollege.edu/knowledge-hub/insights/ai-and-wealth-management",
+      "source_name": "theamericancollege.edu",
+      "pub_date": null,
+      "snippet": "The nexus of artificial intelligence (AI) technologies and wealth management is one of the biggest points of discussion in financial services today, and is setting up a quantum leap in how advisors interact with clients, make decisions, and run their businesses.",
+      "via": "layer1_tl"
+    },
+    {
       "id": "aHR0cHM6Ly9j",
       "title": "How Boards Can Lead in a World Remade by AI",
       "url": "https://corpgov.law.harvard.edu/2026/02/19/how-boards-can-lead-in-a-world-remade-by-ai/",
@@ -62,38 +89,20 @@
     },
     {
       "id": "aHR0cHM6Ly93",
-      "title": "AI AND WEALTH MANAGEMENT: A WORD FROM AMERICAN COLLEGE THOUGHT LEADERS",
-      "url": "https://www.theamericancollege.edu/knowledge-hub/insights/ai-and-wealth-management",
-      "source_name": "theamericancollege.edu",
-      "pub_date": null,
-      "snippet": "The nexus of artificial intelligence (AI) technologies and wealth management is one of the biggest points of discussion in financial services today, and is setting up a quantum leap in how advisors interact with clients, make decisions, and run their businesses.",
+      "title": "Instagram",
+      "url": "https://www.instagram.com/reel/DWEQfXJk5T-/",
+      "source_name": "instagram.com",
+      "pub_date": "2 weeks ago",
+      "snippet": "Create an account or log in to Instagram - Share what you're into with the people who get you.",
       "via": "layer1_tl"
     },
     {
       "id": "aHR0cHM6Ly93",
-      "title": "Artificial Intelligence and the Future of Investment Management",
-      "url": "https://www.sec.gov/newsroom/speeches-statements/daly-020326-artificial-intelligence-future-investment-management",
-      "source_name": "sec.gov",
-      "pub_date": "Feb 3, 2026",
-      "snippet": "Good morning, everyone. I am pleased to join you this morning, although, I must say I am jealous of the Florida weather you are all enjoying. Here in DC it is still well below freezing.\n\nBefore I begin, I must inform – or remind – you that these remarks are provided in my official capacity as the Se",
-      "via": "layer1_tl"
-    },
-    {
-      "id": "aHR0cHM6Ly93",
-      "title": "10 Wealth Management Trends For 2026",
-      "url": "https://www.oliverwyman.com/our-expertise/insights/2025/dec/wealth-management-trends-2026.html",
-      "source_name": "oliverwyman.com",
-      "pub_date": null,
-      "snippet": "A forward look at key 2026 wealth management trends, including AI-driven advice, tokenized cash, private markets, embedded wealth, and downturn readiness.",
-      "via": "layer1_tl"
-    },
-    {
-      "id": "aHR0cHM6Ly93",
-      "title": "How AI will change wealth management in 2026 and beyond",
-      "url": "https://www.investmentnews.com/videos/in-the-nasdaq/how-ai-will-change-wealth-management-in-2026-and-beyond/265219",
-      "source_name": "investmentnews.com",
-      "pub_date": "Feb 10, 2026",
-      "snippet": "Justin Whitehead, CEO and founder of Pebble Finance, sits down with InvestmentNews anchor Gregg Greenberg to explain how AI will change the wealth management industry in 2026 and beyond.",
+      "title": "AI Revolutionizes Wealth Management with Future Proof Citywide 2026 Speakers | Future Proof posted on the topic | LinkedIn",
+      "url": "https://www.linkedin.com/posts/futureproofhq_fpc26-speaker-announcement-10-activity-7431733270976872448-Y_Jw",
+      "source_name": "linkedin.com",
+      "pub_date": "1 month ago",
+      "snippet": "AI is changing wealth management, from how investments are built and portfolios are managed to how firms use data, technology, and new platforms to better serve clients and grow. Join leaders across asset management, data and analytics, fintech, and advisor technology as they share practical insight",
       "via": "layer1_tl"
     },
     {
@@ -107,29 +116,11 @@
     },
     {
       "id": "aHR0cHM6Ly93",
-      "title": "Just a moment...",
-      "url": "https://www.researchgate.net/publication/381277119_Artificial_Intelligence_as_Personal_Financial_Advisor_in_the_Future_-_A_Case_Study_Based_on_Algorithmic_Innovation_Strategies",
-      "source_name": "researchgate.net",
-      "pub_date": null,
-      "snippet": "## Security check required\n\nWe've detected unusual activity from your network. To continue, complete the security check below.\n\nRay ID: 9e5ceca2a8e44715\n\nClient IP: 2600:1900:0:4006::400\n\n© 2008-2026 ResearchGate GmbH. All rights reserved.",
-      "via": "layer1_tl"
-    },
-    {
-      "id": "aHR0cHM6Ly93",
       "title": "Impact of Artificial Intelligence (AI) in Financial Advisory Industry",
       "url": "https://www.theamericancollege.edu/knowledge-hub/insights/impact-of-artificial-intelligence-ai-in-financial-advisory-industry",
       "source_name": "theamericancollege.edu",
       "pub_date": null,
       "snippet": "Center for Ethics Webcast explores artificial intelligence in the financial services industry.",
-      "via": "layer1_tl"
-    },
-    {
-      "id": "aHR0cHM6Ly93",
-      "title": "AI in Investment Management: 2026 Outlook (Part I) - Two Sigma",
-      "url": "https://www.twosigma.com/articles/ai-in-investment-management-2026-outlook-part-i/",
-      "source_name": "twosigma.com",
-      "pub_date": "Jan 12, 2026",
-      "snippet": "Two Sigma leaders on AI in investment management: 2026 trends, agentic systems, productivity gains, and why human judgment matters more than ever.",
       "via": "layer1_tl"
     },
     {
@@ -142,15 +133,6 @@
       "via": "layer1_tl"
     },
     {
-      "id": "aHR0cHM6Ly9o",
-      "title": "7 Factors That Drive Returns on AI Investments, According to a New Survey",
-      "url": "https://hbr.org/2026/03/7-factors-that-drive-returns-on-ai-investments-according-to-a-new-survey",
-      "source_name": "hbr.org",
-      "pub_date": "Mar 17, 2026",
-      "snippet": "Leaders are facing tremendous pressure to deliver on AI. To understand how they are navigating this, researchers surveyed 1,006 global senior executives who had close familiarity with their organizations’ AI initiatives, and interviewed 12 technology, data, and AI leaders at enterprise organizations",
-      "via": "layer1_tl"
-    },
-    {
       "id": "aHR0cHM6Ly9t",
       "title": "Action items for AI decision makers in 2026",
       "url": "https://mitsloan.mit.edu/ideas-made-to-matter/action-items-ai-decision-makers-2026",
@@ -158,27 +140,26 @@
       "pub_date": "Mar 3, 2026",
       "snippet": "AI industry watchers Thomas Davenport and Randy Bean expect the AI hype cycle to slow as organizations focus on infrastructure and strategy.",
       "via": "layer1_tl"
-    }
-  ],
-  "blocked_items": [
-    {
-      "url": "https://www.lanereport.com/186950/2026/04/wealth-management-where-algorithms-meet-advisors/",
-      "title": "AI-Driven Algorithms Reshaping Advisor Workflows Across Wealth Management Landscape",
-      "reason": "Score 43/100 — below 45 review threshold",
-      "score": 43
     },
     {
-      "url": "https://www.businesswire.com/news/home/20251009584071/en/Focal-Raises-%245M-to-Redefine-Advisor-Productivity-With-AI-Powered-Meetings-Performance-Coaching-and-Workflow-Automation",
-      "title": "Focal Builds API-Free Workflow Automation Across Advisor Tech Stacks With $5M Seed",
-      "reason": "Article is 175 days old — exceeds 90-day freshness limit",
-      "score": 0
+      "id": "aHR0cHM6Ly93",
+      "title": "AI in Investment Management: 2026 Outlook (Part I) - Two Sigma",
+      "url": "https://www.twosigma.com/articles/ai-in-investment-management-2026-outlook-part-i/",
+      "source_name": "twosigma.com",
+      "pub_date": "Jan 12, 2026",
+      "snippet": "Two Sigma leaders on AI in investment management: 2026 trends, agentic systems, productivity gains, and why human judgment matters more than ever.",
+      "via": "layer1_tl"
     },
     {
-      "url": "https://www.thinkadvisor.com/2026/02/12/altruists-big-reveal-sent-wealth-management-stocks-tumbling-heres-whats-really-going-on/",
-      "title": "Altruist AI Platform Reveal Triggers Wealth Management Stock Selloff, Signaling Fee Compression Fears",
-      "reason": "Score 50/100 — below 45 review threshold",
-      "score": 50
+      "id": "aHR0cHM6Ly9o",
+      "title": "7 Factors That Drive Returns on AI Investments, According to a New Survey",
+      "url": "https://hbr.org/2026/03/7-factors-that-drive-returns-on-ai-investments-according-to-a-new-survey",
+      "source_name": "hbr.org",
+      "pub_date": "Mar 17, 2026",
+      "snippet": "Leaders are facing tremendous pressure to deliver on AI. To understand how they are navigating this, researchers surveyed 1,006 global senior executives who had close familiarity with their organizations’ AI initiatives, and interviewed 12 technology, data, and AI leaders at enterprise organizations",
+      "via": "layer1_tl"
     }
   ],
-  "written_at": "2026-04-02T04:03:55.294Z"
+  "blocked_items": [],
+  "written_at": "2026-04-03T04:01:59.652Z"
 }
