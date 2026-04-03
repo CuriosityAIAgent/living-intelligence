@@ -8,10 +8,10 @@
   "company_name": "Zocks",
   "date": "2026-01-27",
   "week": "2026-01-26",
-  "source_name": "The SaaS News",
+  "source_name": "businesswire.com",
   "source_url": "https://www.thesaasnews.com/news/zocks-raises-45-million-in-series-b",
   "source_verified": false,
-  "image_url": null,
+  "image_url": "/logos/zocks.svg",
   "key_stat": {
     "number": "5,000+",
     "label": "advisory firms using Zocks' AI platform"

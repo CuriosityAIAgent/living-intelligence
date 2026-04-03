@@ -8,10 +8,10 @@
   "company_name": "DBS Bank",
   "date": "2025-09-15",
   "week": "2025-09-15",
-  "source_name": "DBS Newsroom",
+  "source_name": "prnewswire.com",
   "source_url": "https://www.dbs.com/newsroom/DBS_named_Worlds_Best_AI_Bank_2025",
   "source_verified": false,
-  "image_url": null,
+  "image_url": "/logos/dbs.svg",
   "key_stat": {
     "number": "SGD 1B+",
     "label": "projected economic impact from AI in 2025, per Global Finance award rationale"

@@ -1,7 +1,7 @@
 {
   "id": "altruist-hazel-custodial-integration-real-time-account-data",
   "type": "product_launch",
-  "headline": "Altruist Wires Live Custodial Data Into Hazel AI — First Platform With Real-Time Holdings, Cost Basis, and RMDs in Advisor Conversations",
+  "headline": "Altruist Wires Live Custodial Data Into Hazel AI — First With Real-Time Holdings and RMDs in Advisor Conversations",
   "summary": "Altruist has connected its custodial records — live holdings, balances, beneficiaries, cost basis, and RMD data — directly into its AI platform Hazel, creating the first wealth management system where an advisor can query real-time account data inside an AI conversation layer. Over 1,000 wealth managers have adopted Hazel since its September 2025 launch. The platform unifies CRM, email, meeting notes, and now live custodial data to enable capabilities like household-level concentration analysis in seconds, automatic identification of clients behind on RMDs, unrealised loss harvesting, and fully personalised tax strategies generated from 1040s and pay stubs. CEO Jason Wenk framed the custodian as 'the ultimate system of record' and positioned Hazel as 'setting the standard for what AI in wealth management should be.'",
   "the_so_what": "This is the architectural moat that Nick Beim described in his Venrock essay. Every other AI assistant in wealth management — Morgan Stanley's Debrief, Jump's AI Associate, Schwab's internal tools — operates on data imported or synced from somewhere else. Hazel is the only one reading live from the custodial system of record. That difference compounds: an advisor on Hazel asking 'which clients are behind on RMDs' gets a real-time answer from actual account data, while competitors get a stale snapshot. Until another custodian builds this integration natively, Altruist has a structural advantage that partnership-based AI tools cannot close.",
   "company": "altruist",
@@ -26,24 +26,37 @@
     "capability": "advisor_productivity",
     "region": "us",
     "segment": "ai_native",
-    "theme": ["custodial_integration", "real_time_data", "advisor_ai", "competitive_moat"]
+    "theme": [
+      "custodial_integration",
+      "real_time_data",
+      "advisor_ai",
+      "competitive_moat"
+    ]
   },
   "sources": [
-    { "name": "Business Wire", "url": "https://www.businesswire.com/news/home/20251118149396/en/Altruist-Debuts-Industry-First-Custodial-Integration-for-its-Transformative-AI-Platform-Hazel-Bringing-Real-Time-Account-Data-Into-Every-Advisor-Conversation", "type": "primary" }
+    {
+      "name": "Business Wire",
+      "url": "https://www.businesswire.com/news/home/20251118149396/en/Altruist-Debuts-Industry-First-Custodial-Integration-for-its-Transformative-AI-Platform-Hazel-Bringing-Real-Time-Account-Data-Into-Every-Advisor-Conversation",
+      "type": "primary"
+    }
   ],
   "source_count": 1,
   "featured": false,
   "published_at": "2025-11-18T00:00:00.000Z",
-
   "_triage_score": null,
   "_final_score": 82,
-
   "_research": {
     "entities": {
       "company_name": "Altruist",
       "company_slug": "altruist",
-      "people": ["Jason Wenk — Founder & CEO, Altruist"],
-      "metrics": ["1,000+ wealth managers", "Gerber Kawasaki $4B AUM", "Launched September 2025"],
+      "people": [
+        "Jason Wenk — Founder & CEO, Altruist"
+      ],
+      "metrics": [
+        "1,000+ wealth managers",
+        "Gerber Kawasaki $4B AUM",
+        "Launched September 2025"
+      ],
       "capability_area": "advisor_productivity",
       "key_topic": "Live custodial data integration into AI platform",
       "event_type": "product_launch"
@@ -59,7 +72,6 @@
     "confidence": "high",
     "researched_at": "2026-04-03T13:30:00.000Z"
   },
-
   "_fabrication": {
     "verdict": "CLEAN",
     "claims_checked": 9,
@@ -67,21 +79,56 @@
     "claims_unverified": 0,
     "claims_fabricated": 0,
     "details": [
-      { "claim": "Live custodial data wired into Hazel AI", "source": "Business Wire", "status": "verified" },
-      { "claim": "First platform with real-time holdings in AI conversations", "source": "Business Wire", "status": "verified" },
-      { "claim": "1,000+ wealth managers since September 2025", "source": "Business Wire", "status": "verified" },
-      { "claim": "Cost basis, RMDs, beneficiaries accessible live", "source": "Business Wire", "status": "verified" },
-      { "claim": "Household-level concentration analysis in seconds", "source": "Business Wire", "status": "verified" },
-      { "claim": "Gerber Kawasaki manages $4B on platform", "source": "Business Wire", "status": "verified" },
-      { "claim": "Jason Wenk: custodian is the ultimate system of record", "source": "Business Wire (direct quote)", "status": "verified" },
-      { "claim": "Nick Beim described this architectural moat", "source": "Our TL library (beim-week-altruist-shook-markets)", "status": "verified" },
-      { "claim": "Morgan Stanley Debrief, Jump AI Associate operate on imported/synced data", "source": "Our landscape data", "status": "verified" }
+      {
+        "claim": "Live custodial data wired into Hazel AI",
+        "source": "Business Wire",
+        "status": "verified"
+      },
+      {
+        "claim": "First platform with real-time holdings in AI conversations",
+        "source": "Business Wire",
+        "status": "verified"
+      },
+      {
+        "claim": "1,000+ wealth managers since September 2025",
+        "source": "Business Wire",
+        "status": "verified"
+      },
+      {
+        "claim": "Cost basis, RMDs, beneficiaries accessible live",
+        "source": "Business Wire",
+        "status": "verified"
+      },
+      {
+        "claim": "Household-level concentration analysis in seconds",
+        "source": "Business Wire",
+        "status": "verified"
+      },
+      {
+        "claim": "Gerber Kawasaki manages $4B on platform",
+        "source": "Business Wire",
+        "status": "verified"
+      },
+      {
+        "claim": "Jason Wenk: custodian is the ultimate system of record",
+        "source": "Business Wire (direct quote)",
+        "status": "verified"
+      },
+      {
+        "claim": "Nick Beim described this architectural moat",
+        "source": "Our TL library (beim-week-altruist-shook-markets)",
+        "status": "verified"
+      },
+      {
+        "claim": "Morgan Stanley Debrief, Jump AI Associate operate on imported/synced data",
+        "source": "Our landscape data",
+        "status": "verified"
+      }
     ],
     "cross_source_conflicts": [],
     "drift_from_previous": [],
     "checked_at": "2026-04-03T13:30:00.000Z"
   },
-
   "_iterations": [
     {
       "version": 1,
@@ -101,9 +148,7 @@
       "timestamp": "2026-04-03T13:30:00.000Z"
     }
   ],
-
   "_editor_notes": [],
-
   "_governance": {
     "verdict": "PASS",
     "confidence": 96,

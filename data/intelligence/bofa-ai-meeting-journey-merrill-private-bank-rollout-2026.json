@@ -8,10 +8,10 @@
   "company_name": "Bank of America",
   "date": "2026-03-27",
   "week": "2026-03-23",
-  "source_name": "Simply Wall St",
+  "source_name": "prnewswire.com",
   "source_url": "https://simplywall.st/stocks/us/banks/nyse-bac/bank-of-america/news/bank-of-america-expands-ai-meeting-tool-to-reshape-wealth-ma",
   "source_verified": false,
-  "image_url": null,
+  "image_url": "/logos/bofa-merrill.png",
   "key_stat": {
     "number": "23,000",
     "label": "advisors now in production on AI-Powered Meeting Journey (per BofA press release, March 26, 2026)"

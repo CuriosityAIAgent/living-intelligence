@@ -8,10 +8,10 @@
   "company_name": "Fidelity Investments",
   "date": "2025-09-25",
   "week": "2025-09-22",
-  "source_name": "Business Wire",
+  "source_name": "newsroom.fidelity.com",
   "source_url": "https://www.businesswire.com/news/home/20250925431422/en/Fidelity-Investments-Introduces-Fidelity-TraderTM-Powerful-Advanced-Trading-Platform",
   "source_verified": false,
-  "image_url": null,
+  "image_url": "/logos/fidelity.svg",
   "key_stat": {
     "number": "40M+",
     "label": "individual investor accounts with access to the integrated Trader+ platform at $0 commissions"

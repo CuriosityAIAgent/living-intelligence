@@ -8,10 +8,10 @@
   "company_name": "Vanguard",
   "date": "2025-05-05",
   "week": "2025-05-05",
-  "source_name": "PR Newswire",
+  "source_name": "corporate.vanguard.com",
   "source_url": "https://www.prnewswire.com/news-releases/vanguard-unveils-generative-ai-client-summaries-for-financial-advisors-302445980.html",
   "source_verified": false,
-  "image_url": null,
+  "image_url": "/logos/vanguard.png",
   "key_stat": null,
   "capability_evidence": {
     "capability": "advisor_productivity",

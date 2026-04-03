@@ -11,7 +11,7 @@
   "source_name": "Robinhood Newsroom",
   "source_url": "https://robinhood.com/newsroom/introducing-strategies-banking-and-cortex/",
   "source_verified": false,
-  "image_url": null,
+  "image_url": "/logos/robinhood.svg",
   "key_stat": {
     "number": "$250",
     "label": "annual management fee cap for Gold members regardless of portfolio size (per Robinhood March 27 newsroom announcement)"

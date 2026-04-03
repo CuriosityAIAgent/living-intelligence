@@ -8,10 +8,10 @@
   "company_name": "Altruist / Avantos",
   "date": "2026-03-10",
   "week": "2026-03-09",
-  "source_name": "Datos Insights",
+  "source_name": "Datos Insights (William Trout)",
   "source_url": "https://datos-insights.com/blog/hazel-avantos-and-the-bank-wealth-management-opportunity/",
   "source_verified": true,
-  "image_url": null,
+  "image_url": "/logos/altruist.svg",
   "key_stat": {
     "number": "$130B",
     "label": "market value wiped from Raymond James, Schwab, LPL in two days after Hazel launch — bank wealth units were spared"
@@ -26,24 +26,36 @@
     "capability": "advisor_productivity",
     "region": "us",
     "segment": "ai_native",
-    "theme": ["bank_wealth_gap", "independent_channel", "ai_native_platforms", "analyst_research"]
+    "theme": [
+      "bank_wealth_gap",
+      "independent_channel",
+      "ai_native_platforms",
+      "analyst_research"
+    ]
   },
   "sources": [
-    { "name": "Datos Insights (William Trout)", "url": "https://datos-insights.com/blog/hazel-avantos-and-the-bank-wealth-management-opportunity/", "type": "primary" }
+    {
+      "name": "Datos Insights (William Trout)",
+      "url": "https://datos-insights.com/blog/hazel-avantos-and-the-bank-wealth-management-opportunity/",
+      "type": "primary"
+    }
   ],
   "source_count": 1,
   "featured": false,
   "published_at": "2026-03-10T00:00:00.000Z",
-
   "_triage_score": null,
   "_final_score": 82,
-
   "_research": {
     "entities": {
       "company_name": "Altruist / Avantos",
       "company_slug": "altruist",
-      "people": ["William Trout — Director, Securities & Investments, Datos Insights"],
-      "metrics": ["$130B market value loss", "tens of thousands of clients (Mercer/Avantos)"],
+      "people": [
+        "William Trout — Director, Securities & Investments, Datos Insights"
+      ],
+      "metrics": [
+        "$130B market value loss",
+        "tens of thousands of clients (Mercer/Avantos)"
+      ],
       "capability_area": "advisor_productivity",
       "key_topic": "Bank wealth units vs independent channel AI deployment gap",
       "event_type": "market_signal"
@@ -59,7 +71,6 @@
     "confidence": "high",
     "researched_at": "2026-04-03T13:15:00.000Z"
   },
-
   "_fabrication": {
     "verdict": "CLEAN",
     "claims_checked": 8,
@@ -67,20 +78,51 @@
     "claims_unverified": 0,
     "claims_fabricated": 0,
     "details": [
-      { "claim": "$130B selloff from Hazel launch", "source": "Datos Insights", "status": "verified" },
-      { "claim": "Bank wealth divisions largely spared", "source": "Datos Insights", "status": "verified" },
-      { "claim": "Bank advisors are captive employees", "source": "Datos Insights", "status": "verified" },
-      { "claim": "Three gaps: data, compliance, change management", "source": "Datos Insights", "status": "verified" },
-      { "claim": "Avantos deployed at Mercer across tens of thousands of clients", "source": "Datos Insights", "status": "verified" },
-      { "claim": "Banks see full household picture vs RIA investment-only", "source": "Datos Insights", "status": "verified" },
-      { "claim": "Competitive dynamic will not wait for bank wealth culture", "source": "Datos Insights (direct quote)", "status": "verified" },
-      { "claim": "Hazel built via Altruist's 2025 acquisition of Thyme", "source": "Datos Insights", "status": "verified" }
+      {
+        "claim": "$130B selloff from Hazel launch",
+        "source": "Datos Insights",
+        "status": "verified"
+      },
+      {
+        "claim": "Bank wealth divisions largely spared",
+        "source": "Datos Insights",
+        "status": "verified"
+      },
+      {
+        "claim": "Bank advisors are captive employees",
+        "source": "Datos Insights",
+        "status": "verified"
+      },
+      {
+        "claim": "Three gaps: data, compliance, change management",
+        "source": "Datos Insights",
+        "status": "verified"
+      },
+      {
+        "claim": "Avantos deployed at Mercer across tens of thousands of clients",
+        "source": "Datos Insights",
+        "status": "verified"
+      },
+      {
+        "claim": "Banks see full household picture vs RIA investment-only",
+        "source": "Datos Insights",
+        "status": "verified"
+      },
+      {
+        "claim": "Competitive dynamic will not wait for bank wealth culture",
+        "source": "Datos Insights (direct quote)",
+        "status": "verified"
+      },
+      {
+        "claim": "Hazel built via Altruist's 2025 acquisition of Thyme",
+        "source": "Datos Insights",
+        "status": "verified"
+      }
     ],
     "cross_source_conflicts": [],
     "drift_from_previous": [],
     "checked_at": "2026-04-03T13:15:00.000Z"
   },
-
   "_iterations": [
     {
       "version": 1,
@@ -100,9 +142,7 @@
       "timestamp": "2026-04-03T13:15:00.000Z"
     }
   ],
-
   "_editor_notes": [],
-
   "_governance": {
     "verdict": "PASS",
     "confidence": 95,
