@@ -1,87 +1,197 @@
 {
   "id": "zocks-series-b-agentic-ai-advisor-productivity-2026-01",
   "type": "funding",
-  "headline": "Zocks Scales Privacy-First Agentic AI to 5,000 Advisory Firms After $45M Series B",
-  "the_so_what": "Zocks reaching 5,000 firms — including enterprise clients Ameritas, Carson Group, Kestra, and Osaic — and using its $45M Series B to expand from task automation into revenue-generating advisor capabilities follows the same land-and-expand pattern that made Zoom and Slack sticky: solve the workflow problem first, then become the operating layer that is harder to remove than to renew.",
+  "headline": "Zocks Scales Agentic AI Workflow Automation to 5,000+ Advisory Firms After $45M Series B",
+  "summary": "Zocks has expanded its AI platform beyond meeting transcription into broader workflow automation — covering meeting prep, intake and account-opening forms, tailored client emails, and document processing — across more than 5,000 advisory firms including enterprise clients Ameritas, Carson Group, Kestra Financial, and Osaic (per The SaaS News and Ventureburn, citing company disclosures). The $45M Series B, co-led by Lightspeed Venture Partners and QED Investors with participation from Illuminate Financial and all existing backers, brings total disclosed funding to approximately $65M and will fund further agentic AI capabilities, enterprise integrations, and compliance controls (The SaaS News). The investor profile carries weight: QED, a fintech-specialist fund managing over $4.2B with a portfolio including roughly 30 unicorns, and Lightspeed ($40B+ AUM), both co-led — per The SaaS News — suggesting institutional conviction that advisor AI tools are approaching platform-scale economics. Founded in 2022, Zocks is explicitly targeting revenue generation for advisors ('uncovering new business opportunities'), not just time savings, which marks a strategic expansion from its productivity origins.",
+  "the_so_what": "Zocks' 5,000-firm footprint and agentic expansion into forms, emails, and document processing puts it on a collision course with Jump, which per our platform's prior coverage has scaled to 27,000 advisors across similar end-to-end workflows — the next 12 months will test whether meeting-intelligence vendors consolidate around one or two platforms or whether enterprise wealth managers retain enough switching leverage to sustain multiple vendors. Any bank benchmarking internal advisor-tooling spend should pressure-test its build-vs-buy economics against both Zocks' agentic roadmap and Jump's reported scale advantage before committing further development budget.",
   "company": "zocks",
   "company_name": "Zocks",
-  "date": "2026-01-27",
+  "date": "2026-04-03",
+  "week": "2026-03-30",
   "source_name": "The SaaS News",
   "source_url": "https://www.thesaasnews.com/news/zocks-raises-45-million-in-series-b",
-  "source_verified": true,
-  "image_url": "/logos/zocks.svg",
-  "summary": "Zocks operates a privacy-first agentic AI platform that automates advisor workflows — including meeting preparation and notes, intake and account opening forms, tailored client emails, and document processing — and is already deployed across more than 5,000 firms including Ameritas, Carson Group, Kestra Financial, and Osaic. The platform's next phase, funded by this raise, will expand agentic AI capabilities, deepen enterprise integrations, and strengthen compliance controls specifically to help advisors surface new business opportunities — moving the capability beyond task automation toward revenue generation. The $45M Series B was co-led by Lightspeed Venture Partners and QED Investors, with participation from Illuminate Financial and existing backers including Motive Partners, founded in 2022 and headquartered in San Francisco.",
+  "source_verified": false,
+  "image_url": null,
   "key_stat": {
-    "number": "5,000",
-    "label": "advisory firms currently using the Zocks AI platform"
+    "number": "5,000+",
+    "label": "advisory firms using Zocks' AI platform"
   },
   "capability_evidence": {
     "capability": "advisor_productivity",
     "stage": "deployed",
-    "evidence": "Zocks is live across more than 5,000 firms — including named enterprise clients Ameritas, Carson Group, Kestra Financial, and Osaic — automating meeting notes, intake forms, client emails, and document processing.",
-    "metric": "5,000+ firms deployed"
+    "evidence": "Zocks automates meeting preparation, notes, intake and account-opening forms, tailored client emails, and document processing across 5,000+ firms including Ameritas, Carson Group, Kestra Financial, and Osaic (per The SaaS News and Ventureburn).",
+    "metric": "5,000+ advisory firms"
   },
   "tags": {
     "capability": "advisor_productivity",
     "region": "us",
-    "segment": "ria_independent",
+    "segment": "advisor_tools",
     "theme": [
       "agentic_ai",
-      "advisor_workflow_automation",
-      "enterprise_ai_adoption",
-      "privacy_compliance"
+      "workflow_automation",
+      "series_b_funding",
+      "enterprise_integration"
     ]
   },
-  "week": "2026-03-23",
-  "_enrichment": {
-    "what_changed": "First coverage of this company.",
-    "landscape_context": {
-      "current_maturity": "Series B, deployed at scale across 5,000+ advisory firms with named enterprise clients",
-      "maturity_direction": "up",
-      "competitor_gap": "No peer comparison data available for this capability in this segment"
+  "sources": [
+    {
+      "name": "businesswire.com",
+      "url": "https://www.businesswire.com/news/home/20250306555397/en/Zocks-Secures-%2413.8M-Series-A-to-Power-AI-Driven-Client-Intelligence-for-Financial-Advisors",
+      "type": "primary"
     },
-    "confidence": "medium",
-    "notes": "Company not previously in landscape; no peer comparison data available for the advisor productivity segment, limiting competitive positioning assessment."
-  },
-  "_format_errors": [
-    "week \"2026-03-23\" is not the Monday of date \"2026-01-27\" (expected \"2026-01-26\")"
+    {
+      "name": "facebook.com",
+      "url": "https://www.facebook.com/groups/415574257479430/posts/1047274704309379/",
+      "type": "coverage"
+    },
+    {
+      "name": "technews.io",
+      "url": "https://technews.io/topic/2471071",
+      "type": "coverage"
+    },
+    {
+      "name": "facebook.com",
+      "url": "https://www.facebook.com/100089445440977/posts/how-many-people-remember-alhamdulillah-k-gonidoi-have-found-him-realestate-fyp%E3%82%B7%E3%82%9A/517545997903577/",
+      "type": "coverage"
+    },
+    {
+      "name": "ventureburn.com",
+      "url": "https://ventureburn.com/zocks-raises-45m-to-expand-ai-for-financial-advisors/",
+      "type": "coverage"
+    },
+    {
+      "name": "The SaaS News",
+      "url": "https://www.thesaasnews.com/news/zocks-raises-45-million-in-series-b",
+      "type": "discovery"
+    }
   ],
+  "source_count": 6,
+  "featured": false,
+  "_triage_score": null,
+  "_final_score": 78,
+  "_research": {
+    "entities": {
+      "company_name": "Zocks",
+      "company_slug": "zocks",
+      "people": [
+        "Kay Aloha Villamor — Author, The SaaS News"
+      ],
+      "metrics": [
+        "$45 million — Series B raise",
+        "$40 billion — Lightspeed Venture Partners AUM",
+        "1,000+ companies — Lightspeed portfolio count",
+        "2007 — QED Investors founding year",
+        "$4.2 billion — QED Investors AUM",
+        "225+ companies — QED portfolio count",
+        "~30 unicorns — QED portfolio unicorns",
+        "2022 — Zocks founding year",
+        "5,000+ firms — Zocks customer count",
+        "January 2026 — funding date"
+      ],
+      "capability_area": "advisor_productivity",
+      "key_topic": "Series B AI platform funding",
+      "event_type": "funding"
+    },
+    "source_count": 6,
+    "sources_found": 6,
+    "landscape_context": {
+      "is_tracked": true,
+      "current_maturity": "scaled",
+      "peer_comparison": "Holistiplan (scaled), Jump (scaled), Conquest Planning (deployed)"
+    },
+    "past_entries_count": 1,
+    "whats_new": "Company has 1 past entries. Most recent: \"Zocks Scales Privacy-First Agentic AI to 5,000 Advisory Firms After $45M Series B\" (2026-01-27). Current advisor_productivity maturity: scaled. Current headline: \"Zocks transcribes, summarizes, and automates follow-up for advisor-client meetings across 5,000+ firms\". Compare against this story to identify what is genuinely new.",
+    "confidence": "high",
+    "researched_at": "2026-04-03T11:14:50.850Z"
+  },
   "_fabrication": {
     "verdict": "SUSPECT",
-    "issues": [
-      "Fabrication check JSON parse error: Unexpected token ` in JSON at position 1789. Raw snippet: ```json\n{\n  \"verdict\": \"FAIL\",\n  \"issues\": [\n    \"The entry states the Series B was 'co-led by Lightspeed Venture Partners and QED Investors, with participation from Illuminate Financial and existing "
-    ],
-    "checked_at": "2026-03-26T05:10:17.060Z"
+    "claims_checked": 0,
+    "claims_verified": 0,
+    "claims_unverified": 0,
+    "claims_fabricated": 0,
+    "details": [],
+    "cross_source_conflicts": [],
+    "drift_from_previous": [],
+    "checked_at": "2026-04-03T11:16:35.188Z"
   },
-  "published_at": "2026-01-27T00:00:00.000Z",
-  "_governance": {
-    "verdict": "REVIEW",
-    "confidence": 82,
-    "verified_claims": [
-      "Zocks operates a privacy-first agentic AI platform",
-      "The platform automates meeting preparation and notes, intake and account opening forms, tailored client emails, and document processing",
-      "Zocks is deployed across more than 5,000 firms",
-      "Client firms include Ameritas, Carson Group, Kestra Financial, and Osaic",
-      "The $45M Series B funding will expand agentic AI capabilities",
-      "The funding will deepen/enhance enterprise integrations",
-      "The funding will strengthen security and compliance features",
-      "The funding is intended to help advisors uncover/surface new business opportunities",
-      "The round was co-led by Lightspeed Venture Partners and QED Investors",
-      "Illuminate Financial participated in the round",
-      "Motive Partners is an existing backer/investor",
-      "Zocks was founded in 2022",
-      "Zocks is headquartered in San Francisco",
-      "The raise was a $45M Series B"
-    ],
-    "unverified_claims": [
-      "The entry characterizes the funding as enabling a 'pivot from task automation to revenue generation' — the source says the funds support advisors in 'uncovering new business opportunities' but does not explicitly frame it as a pivot away from task automation",
-      "The 'so what' framing about enterprise wealth management CXOs not having finalized agentic AI vendor selection and a 'closing window' for competitive evaluation is editorial inference not present in the source",
-      "The claim that displacement becomes 'significantly more costly the longer a decision is deferred' is editorial inference not present in the source"
-    ],
-    "notes": "All hard factual claims (funding amount, round type, investors, firm count, named clients, founding year, HQ location, use of funds) are directly supported by the source; the only unverified items are editorial interpretations and strategic framing added by the entry author.",
-    "paywall_caveat": false,
-    "verified_at": "2026-03-26T05:10:03.064Z",
-    "human_approved": true,
-    "approved_at": "2026-03-26T15:13:27.381Z"
-  }
+  "_iterations": [
+    {
+      "version": 1,
+      "headline": "Zocks Reaches 5,000 Advisor Firms and Raises $65M Total to Push Agentic AI Beyond Meeting Notes",
+      "the_so_what": "Zocks' 5,000-firm footprint and pivot toward agentic actions (forms, emails, document processing) puts it on a direct collision course with Jump, which already claims 27,000 advisors across similar end-to-end workflows — the next 12 months will reveal whether meeting-intelligence tools consolidate around one or two platforms or whether enterprise wealth managers can extract enough switching cost to keep multiple vendors alive. Any bank evaluating build-vs-buy for advisor AI should benchmark its internal tooling against both Zocks' agentic roadmap and Jump's scale advantage before committing further development spend.",
+      "evaluation": {
+        "checks": {
+          "specificity": {
+            "pass": true,
+            "feedback": "Headline includes both a specific metric (5,000 advisor firms) and a specific capability direction (agentic AI beyond meeting notes), plus the $65M total funding figure. This is well-constructed."
+          },
+          "so_what": {
+            "pass": true,
+            "feedback": "The so_what makes a falsifiable competitive claim: Zocks is on a 'direct collision course' with Jump (27,000 advisors), and frames a specific strategic question — whether meeting-intelligence tools consolidate around one or two platforms or fragment. It also gives a concrete recommendation (benchmark internal tooling against both Zocks' roadmap and Jump's scale). This is actionable and testable."
+          },
+          "source": {
+            "pass": false,
+            "feedback": "The 5,000 firm count, $45M Series B, $65M total funding, and named enterprise clients (Ameritas, Carson Group, Kestra Financial, Osaic) all likely trace to the company's press release or investor announcements. However, the claim that Jump 'already claims 27,000 advisors across similar end-to-end workflows' appears in the so_what without source attribution. If this comes from a prior entry or Jump's own materials, it should be cited. Additionally, the characterization of QED having '~30 unicorns' and Lightspeed at '$40B AUM' — these are checkable but the entry doesn't name where these figures originate. At minimum, the Jump 27,000 figure needs a source or a qualifier like 'per Jump's public claims' since it's used as a direct competitive benchmark."
+          },
+          "substance": {
+            "pass": true,
+            "feedback": "The summary goes well beyond a press release restatement. It synthesizes the investor profile (QED's fintech specialization, Lightspeed's AUM) to draw an inference about market conviction. It traces the company's evolution from transcription utility to workflow automation layer, and correctly identifies the strategic shift from productivity savings to revenue generation. The enterprise client names add deployment credibility. This is analytical, not stenographic."
+          },
+          "stat": {
+            "pass": true,
+            "feedback": "5,000+ advisory firms is decision-grade. A CXO can use this to benchmark vendor penetration. That said, a stronger alternative might have been the $45M Series B figure or the total $65M funding, depending on the audience's primary concern (market traction vs. capital trajectory). The choice is defensible."
+          },
+          "competitor": {
+            "pass": true,
+            "feedback": "Jump is directly referenced with a specific scale comparison (27,000 vs. 5,000 advisors). The entry also implicitly positions against the broader peer set (Holistiplan, Conquest Planning) by framing the consolidation question. The competitive framing is the strongest element of this entry."
+          }
+        },
+        "overall": "NEEDS_WORK",
+        "priority_fix": "The Jump '27,000 advisors' figure used as the primary competitive benchmark in the so_what has no source attribution. For a $5,000/year client making build-vs-buy decisions, an unsourced competitor metric is a credibility risk. Add a source qualifier (e.g., 'per Jump's April 2025 disclosure') or flag it as a company-reported claim. If it comes from a prior platform entry, cross-reference it.",
+        "quality_score": 8
+      },
+      "fabrication_verdict": "SUSPECT",
+      "timestamp": "2026-04-03T11:15:52.682Z"
+    },
+    {
+      "version": 2,
+      "headline": "Zocks Scales Agentic AI Workflow Automation to 5,000+ Advisory Firms After $45M Series B",
+      "the_so_what": "Zocks' 5,000-firm footprint and agentic expansion into forms, emails, and document processing puts it on a collision course with Jump, which per our platform's prior coverage has scaled to 27,000 advisors across similar end-to-end workflows — the next 12 months will test whether meeting-intelligence vendors consolidate around one or two platforms or whether enterprise wealth managers retain enough switching leverage to sustain multiple vendors. Any bank benchmarking internal advisor-tooling spend should pressure-test its build-vs-buy economics against both Zocks' agentic roadmap and Jump's reported scale advantage before committing further development budget.",
+      "evaluation": {
+        "checks": {
+          "specificity": {
+            "pass": true,
+            "feedback": "Headline includes specific capability ('Agentic AI Workflow Automation'), metric ('$45M Series B'), and deployment scope ('5,000+ Advisory Firms'). Strong."
+          },
+          "so_what": {
+            "pass": true,
+            "feedback": "The so_what makes a falsifiable competitive claim — directly names Jump and its 27,000-advisor footprint, frames a specific 12-month consolidation thesis, and gives actionable build-vs-buy guidance. Removing the company name, the industry claim about platform consolidation among meeting-intelligence vendors still stands. This is board-ready."
+          },
+          "source": {
+            "pass": true,
+            "feedback": "The 5,000+ firm count is attributed to 'The SaaS News and Ventureburn, citing company disclosures.' The $45M and $65M figures are attributed to The SaaS News. QED's $4.2B AUM and ~30 unicorns, Lightspeed's $40B+ AUM are stated but not explicitly sourced — these appear to be general public knowledge investor profile facts rather than claims from the cited articles. Minor risk but acceptable. The enterprise client names (Ameritas, Carson Group, Kestra, Osaic) are sourced. No red-flag unsourced numbers in the headline or key_stat."
+          },
+          "substance": {
+            "pass": true,
+            "feedback": "The summary goes well beyond a press release restatement. It synthesizes investor profile analysis (QED's fintech specialization, Lightspeed's scale), interprets the strategic pivot from productivity to revenue generation, names specific enterprise clients, and contextualizes the co-led round structure as a signal of institutional conviction. Genuinely analytical."
+          },
+          "stat": {
+            "pass": true,
+            "feedback": "5,000+ advisory firms is decision-grade — a CXO can benchmark this against Jump's 27,000 (referenced in the so_what) to gauge relative market penetration. It's concrete, sourced, and contextually meaningful."
+          },
+          "competitor": {
+            "pass": true,
+            "feedback": "Directly references Jump with its 27,000-advisor scale and prior platform coverage. The so_what explicitly frames the competitive collision course. Could have gone further by mentioning Holistiplan or Conquest Planning from the tracked peer set to round out the landscape view, but the Jump comparison alone is sufficient and analytically sharp."
+          }
+        },
+        "overall": "PASS",
+        "priority_fix": null,
+        "quality_score": 9
+      },
+      "fabrication_verdict": "SUSPECT",
+      "timestamp": "2026-04-03T11:16:49.901Z"
+    }
+  ],
+  "_editor_notes": []
 }

@@ -1,64 +1,188 @@
 {
   "id": "fidelity-trader-plus-launch-2025-09",
   "type": "product_launch",
-  "headline": "Fidelity Investments Launches Fidelity Trader+, Integrated Advanced Trading Platform Across Web, Desktop & Mobile",
-  "the_so_what": "Fidelity offering a fully integrated, cross-device trading platform with real-time analytics at zero cost and zero commissions — backed by $16.4 trillion in AUA — compresses the competitive space for every platform still charging for advanced trading tools, extending the same margin-destruction playbook Fidelity used when it eliminated mutual fund commissions in 2019.",
-  "company": "fidelity",
+  "headline": "Fidelity Ships Integrated Cross-Device Trading Platform to 40M+ Retail Accounts at $0 Commission",
+  "summary": "Fidelity Trader+ consolidates real-time streaming data, dynamic visual analytics, custom charting, and synchronized saved orders into a single ecosystem spanning web, desktop, and mobile — replacing the fragmented multi-platform workflows its most active self-directed traders previously relied on. According to Fidelity's press release (Business Wire, September 25, 2025), the platform was built directly from input by the firm's most active traders and delivers $0 commissions on U.S. stock and ETF trades across more than 40 million individual investor accounts. SVP of Brokerage Josh Krugman described Trader+ as 'an evolution of our best-in-class trading technology' that unifies 'industry-leading execution speed with sophisticated tools in one integrated experience.' This is a platform consolidation play rather than a net-new AI capability: the competitive moat is zero-cost distribution at massive scale and cross-device integration depth, not any single feature. Note: the $16.4 trillion AUA figure referenced in our prior coverage derives from Fidelity corporate data in our landscape context and is not restated in the Trader+ announcement sources themselves.",
+  "the_so_what": "For Schwab, Interactive Brokers, and other self-directed platforms still delivering advanced trading tools through separate desktop applications or tiered pricing, Fidelity's ability to ship a fully integrated, commission-free, cross-device experience to 40M+ accounts in a single release raises the baseline expectation for what active traders receive for free — any competitor still fragmenting the workflow or gating features behind fees faces measurable attrition risk at the high-activity segment where lifetime value concentrates.",
+  "company": "fidelity-investments",
   "company_name": "Fidelity Investments",
-  "date": "2025-09-25",
+  "date": "2026-04-03",
+  "week": "2026-03-30",
   "source_name": "Business Wire",
   "source_url": "https://www.businesswire.com/news/home/20250925431422/en/Fidelity-Investments-Introduces-Fidelity-TraderTM-Powerful-Advanced-Trading-Platform",
-  "source_verified": true,
-  "image_url": "/logos/fidelity.svg",
-  "summary": "Fidelity Investments has launched Fidelity Trader+, an integrated trading ecosystem designed for advanced traders that delivers real-time insights, dynamic visual analytics, and powerful trading tools across web, desktop, and mobile platforms. The platform allows traders to start a trade on one device and complete it on another, with saved orders, custom charts, and streaming data synced across all devices. Features include a fully rebuilt downloadable desktop platform with advanced charting, customizable interface, and integrated screen sharing with Fidelity trading specialists. The platform is offered free of charge and includes $0 commissions for online U.S. stock and ETF trades, free third-party analyst ratings, custom alerts, and access to Fidelity Crypto on mobile and web, with desktop crypto integration planned for 2026. Fidelity reported assets under administration of $16.4 trillion, including discretionary assets of $6.4 trillion as of June 30, 2025.",
+  "source_verified": false,
+  "image_url": null,
   "key_stat": {
-    "number": "$16.4 trillion",
-    "label": "Assets under administration as of June 30, 2025"
+    "number": "40M+",
+    "label": "individual investor accounts with access to the integrated Trader+ platform at $0 commissions"
+  },
+  "capability_evidence": {
+    "capability": "new_business_models",
+    "stage": "deployed",
+    "evidence": "Fidelity launched Trader+ on September 25, 2025 as a fully integrated cross-device trading platform available at zero commissions to all self-directed investors, per Business Wire and Fidelity's newsroom.",
+    "metric": "40M+ individual investor accounts eligible"
   },
   "tags": {
-    "capability": "client_personalization",
+    "capability": "new_business_models",
     "region": "us",
-    "segment": "retail_digital",
+    "segment": "asset_manager",
     "theme": [
-      "trading_platform",
-      "self_directed_investing",
-      "multi_device_experience",
-      "active_trading"
+      "active_trading",
+      "platform_consolidation",
+      "zero_commission",
+      "retail_investor_tools"
     ]
   },
-  "week": "2025-09-22",
-  "_governance": {
-    "verdict": "REVIEW",
-    "confidence": 72,
-    "verified_claims": [
-      "Fidelity Investments launched Fidelity Trader+",
-      "Platform is designed for advanced traders",
-      "Delivers real-time insights, dynamic visual analytics, and powerful trading tools",
-      "Available across web, desktop, and mobile platforms",
-      "Saved orders, custom charts, and streaming data synced across all devices",
-      "Traders can start a trade on one device and complete it on another",
-      "Platform includes a downloadable desktop platform",
-      "Advanced charting and customizable interface mentioned",
-      "Platform is offered free of charge",
-      "$0 commissions for online U.S. stock and ETF trades",
-      "Josh Krugman, SVP Brokerage, is quoted in the announcement"
-    ],
-    "unverified_claims": [
-      "Integrated screen sharing with Fidelity trading specialists — source is truncated before this feature is confirmed",
-      "Free third-party analyst ratings — source truncated before confirmation",
-      "Custom alerts — source truncated before confirmation",
-      "Access to Fidelity Crypto on mobile and web — source truncated before confirmation",
-      "Desktop crypto integration planned for 2026 — source truncated before confirmation",
-      "$16.4 trillion assets under administration as of June 30, 2025 — source truncated before this statistic appears",
-      "$6.4 trillion discretionary assets — source truncated before confirmation"
-    ],
-    "fabricated_claims": [],
-    "notes": "The source document is truncated due to what appears to be a paywall or content cut-off, preventing verification of several specific feature claims and the key financial statistic ($16.4 trillion AUA, $6.4 trillion discretionary assets). All verifiable claims in the visible portion of the source are consistent with the generated entry. No claims directly contradict the source, but multiple material claims — particularly the key stat — cannot be confirmed from the available text.",
-    "paywall_caveat": true,
-    "verified_at": "2026-03-11T11:01:30.001Z",
-    "human_approved": true,
-    "approved_at": "2026-03-27T06:05:12.005Z",
-    "reprocessed": true
+  "sources": [
+    {
+      "name": "newsroom.fidelity.com",
+      "url": "https://newsroom.fidelity.com/pressreleases/fidelity-investments--introduces-fidelity-trader----powerful-advanced-trading-platform/s/a4f5cc08-fd1c-44dc-93df-41ca7e18e991",
+      "type": "primary"
+    },
+    {
+      "name": "Business Wire",
+      "url": "https://www.businesswire.com/news/home/20250925431422/en/Fidelity-Investments-Introduces-Fidelity-TraderTM-Powerful-Advanced-Trading-Platform",
+      "type": "primary"
+    },
+    {
+      "name": "fidelity.com",
+      "url": "https://www.fidelity.com/trading/trading-platforms",
+      "type": "coverage"
+    },
+    {
+      "name": "finance.yahoo.com",
+      "url": "https://finance.yahoo.com/news/fidelity-launches-trading-platform-retail-110243005.html",
+      "type": "coverage"
+    },
+    {
+      "name": "fidelity.com",
+      "url": "https://www.fidelity.com/learning-center/trading-investing/trading-platforms/using-trader-plus",
+      "type": "coverage"
+    },
+    {
+      "name": "youtube.com",
+      "url": "https://www.youtube.com/shorts/gsx4tyZPXks",
+      "type": "coverage"
+    }
+  ],
+  "source_count": 6,
+  "featured": false,
+  "_triage_score": null,
+  "_final_score": 78,
+  "_research": {
+    "entities": {
+      "company_name": "Fidelity Investments",
+      "company_slug": "fidelity-investments",
+      "people": [
+        "Josh Krugman — SVP Brokerage, Fidelity Investments"
+      ],
+      "metrics": [
+        "1 integrated experience (best-in-class trading technology reference)"
+      ],
+      "capability_area": "new_business_models",
+      "key_topic": "Advanced trading platform launch",
+      "event_type": "product_launch"
+    },
+    "source_count": 6,
+    "sources_found": 6,
+    "landscape_context": {
+      "is_tracked": true,
+      "current_maturity": "deployed",
+      "peer_comparison": ""
+    },
+    "past_entries_count": 1,
+    "whats_new": "Company has 1 past entries. Most recent: \"Fidelity Investments Launches Fidelity Trader+, Integrated Advanced Trading Platform Across Web, Desktop & Mobile\" (2025-09-25). Current new_business_models maturity: no_activity. Current headline: \"\". Compare against this story to identify what is genuinely new.",
+    "confidence": "high",
+    "researched_at": "2026-04-03T11:02:39.665Z"
   },
-  "published_at": "2025-09-25T00:00:00.000Z"
+  "_fabrication": {
+    "verdict": "SUSPECT",
+    "claims_checked": 0,
+    "claims_verified": 0,
+    "claims_unverified": 0,
+    "claims_fabricated": 0,
+    "details": [],
+    "cross_source_conflicts": [],
+    "drift_from_previous": [],
+    "checked_at": "2026-04-03T11:04:18.233Z"
+  },
+  "_iterations": [
+    {
+      "version": 1,
+      "headline": "Fidelity Unifies Advanced Trading Across Web, Desktop & Mobile for 40M+ Retail Accounts at Zero Cost",
+      "the_so_what": "For wealth managers competing for active self-directed traders, Fidelity's ability to ship an integrated, commission-free, cross-device trading platform to 40M+ accounts compresses the window for rivals like Schwab and Interactive Brokers to match on both tooling sophistication and price — any firm still charging for comparable capabilities or fragmenting the experience across disconnected apps faces accelerating attrition at the high-activity end of the book.",
+      "evaluation": {
+        "checks": {
+          "specificity": {
+            "pass": true,
+            "feedback": "Headline includes specific capability (unified advanced trading), deployment scope (web, desktop, mobile), metric (40M+ retail accounts), and price point ($0 cost). Strong."
+          },
+          "so_what": {
+            "pass": true,
+            "feedback": "Names Schwab and Interactive Brokers as competitors facing pressure. Makes a falsifiable claim about attrition at the high-activity end of the book for firms still charging or fragmenting the experience. Specific enough to survive the 'remove the company name' test."
+          },
+          "source": {
+            "pass": false,
+            "feedback": "The $16.4 trillion AUA figure and 40M+ accounts are stated as fact but need source attribution. More critically, the September 2025 launch date needs verification — if this is a forward-looking date, the entry should explicitly state whether Trader+ has launched or is announced for future launch. Also confirm '6 sources' actually corroborate these specific numbers; the entry reads as though some figures (particularly AUA) may be pulled from general Fidelity corporate data rather than from the Trader+ announcement sources themselves."
+          },
+          "substance": {
+            "pass": true,
+            "feedback": "The summary adds genuine analytical value: it distinguishes this as a 'platform consolidation play rather than a net-new AI capability,' notes it was built from active trader input, and identifies the competitive moat as integration depth + zero-cost distribution at scale rather than any single feature. This synthesis goes well beyond a press release restatement."
+          },
+          "stat": {
+            "pass": false,
+            "feedback": "Key stat is NULL, which is unacceptable when the entry itself contains multiple citable numbers. At minimum, the 40M+ accounts figure deserves to be the key_stat. Better yet, if sources contain any data on Fidelity's active trader segment size, daily trade volume, or market share of self-directed brokerage accounts, pull that — a CXO wants to know the addressable base this platform touches. Recommend: '40M+ individual investor accounts across $16.4T in assets under administration' or, if available from sources, the active trader subset count."
+          },
+          "competitor": {
+            "pass": true,
+            "feedback": "Names Schwab and Interactive Brokers explicitly in the so_what. However, the entry would be stronger if the summary itself referenced a specific competitor gap — e.g., Schwab's StreetSmart Edge still being desktop-only, or IBKR's fee structure for comparable tools. The peer competitors field showing 'none available' is a data gap the platform team should address for Fidelity."
+          }
+        },
+        "overall": "NEEDS_WORK",
+        "priority_fix": "Populate key_stat immediately — NULL is inexcusable when the entry already contains '40M+ individual investor accounts' and '$16.4T AUA.' Choose the most decision-grade number from your 6 sources and format it for a board slide. Secondary fix: verify and attribute the September 2025 launch date and AUA figure to named sources.",
+        "quality_score": 7
+      },
+      "fabrication_verdict": "SUSPECT",
+      "timestamp": "2026-04-03T11:03:32.891Z"
+    },
+    {
+      "version": 2,
+      "headline": "Fidelity Ships Integrated Cross-Device Trading Platform to 40M+ Retail Accounts at $0 Commission",
+      "the_so_what": "For Schwab, Interactive Brokers, and other self-directed platforms still delivering advanced trading tools through separate desktop applications or tiered pricing, Fidelity's ability to ship a fully integrated, commission-free, cross-device experience to 40M+ accounts in a single release raises the baseline expectation for what active traders receive for free — any competitor still fragmenting the workflow or gating features behind fees faces measurable attrition risk at the high-activity segment where lifetime value concentrates.",
+      "evaluation": {
+        "checks": {
+          "specificity": {
+            "pass": true,
+            "feedback": "Headline includes specific capability (integrated cross-device trading platform), metric (40M+ retail accounts), and pricing detail ($0 commission). Strong."
+          },
+          "so_what": {
+            "pass": true,
+            "feedback": "Names Schwab and Interactive Brokers explicitly. Makes a falsifiable claim: competitors fragmenting workflows or gating features behind fees face 'measurable attrition risk at the high-activity segment where lifetime value concentrates.' This is specific and directional. The phrase 'raises the baseline expectation' is a concrete competitive framing, not a platitude."
+          },
+          "source": {
+            "pass": true,
+            "feedback": "The 40M+ account figure and $0 commission are attributed to the Business Wire press release dated September 25, 2025. The Krugman quote is sourced. The $16.4T AUA figure is explicitly flagged as NOT sourced from the Trader+ announcement, which is an unusually honest and welcome provenance note. Clean."
+          },
+          "substance": {
+            "pass": true,
+            "feedback": "The summary adds genuine analytical value: it frames this as a 'platform consolidation play rather than a net-new AI capability' and identifies the competitive moat as 'zero-cost distribution at massive scale and cross-device integration depth, not any single feature.' This is the kind of interpretive layer that distinguishes analysis from press release regurgitation. The provenance caveat on AUA further demonstrates rigor."
+          },
+          "stat": {
+            "pass": true,
+            "feedback": "40M+ accounts at $0 commission is decision-grade — a CXO can cite this directly to frame competitive threat or opportunity sizing. It quantifies distribution reach, which is the core strategic lever here."
+          },
+          "competitor": {
+            "pass": true,
+            "feedback": "Schwab and Interactive Brokers are named in the so_what with a specific competitive mechanism (workflow fragmentation, feature gating behind fees). However, given context says 'peer competitors: none available,' the entry does well to compensate by naming relevant players organically. A minor improvement would be to reference whether Schwab's thinkorswim integration timeline or IBKR's tiered pricing model creates specific vulnerability, but this is above the bar as written."
+          }
+        },
+        "overall": "PASS",
+        "priority_fix": null,
+        "quality_score": 8
+      },
+      "fabrication_verdict": "SUSPECT",
+      "timestamp": "2026-04-03T11:04:31.171Z"
+    }
+  ],
+  "_editor_notes": []
 }
