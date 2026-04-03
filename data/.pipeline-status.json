@@ -1,5 +1,5 @@
 {
-  "started_at": "2026-04-03T04:00:00.665Z",
+  "started_at": "2026-04-03T04:00:00.587Z",
   "candidates_found": 15,
   "queued": 1,
   "blocked": 0,
@@ -13,44 +13,17 @@
   ],
   "discovery_sources": {
     "layer1_news": 39,
-    "layer1_capabilities": 17,
+    "layer1_capabilities": 0,
     "layer2_companies": 0,
     "layer3_newsapi": 1,
-    "layer1_tl": 35,
-    "layer2_authors": 26,
-    "companies_queried": 37,
-    "capabilities_queried": 7,
-    "raw_intel_total": 53
+    "layer1_tl": 37,
+    "layer2_authors": 6,
+    "companies_queried": 0,
+    "capabilities_queried": 0,
+    "raw_intel_total": 39
   },
-  "tl_candidates": 58,
+  "tl_candidates": 43,
   "tl_items": [
-    {
-      "id": "aHR0cHM6Ly9o",
-      "title": "Has AI Ended Thought Leadership?",
-      "url": "https://hbr.org/2026/03/has-ai-ended-thought-leadership",
-      "source_name": "hbr.org",
-      "pub_date": "Mar 9, 2026",
-      "snippet": "As generative AI and content platforms make it effortless to sound authoritative, organizations are being overwhelmed by polished insight that rarely translates into real change. The growing gap between those who talk about the future of work and those who actually build it has turned expertise into",
-      "via": "layer1_tl"
-    },
-    {
-      "id": "aHR0cHM6Ly93",
-      "title": "AI-Augmented Wealth Management: Advisor's Role Evolves in 2026 | Chris DeBrusk posted on the topic | LinkedIn",
-      "url": "https://www.linkedin.com/posts/chrisdebrusk_our-ten-ideas-for-wealth-management-are-back-activity-7409270111049805826-ZGL6",
-      "source_name": "linkedin.com",
-      "pub_date": "3 months ago",
-      "snippet": "Our ten ideas for Wealth Management are back and we're excited to share what we see as being in store for 2026 later in the month 📣\n\nSharing some spoilers ahead of that below with our first idea, on the topic of the moment: AI.\n\nThe AI-Augmented Last Mile Human 🤖\n\nThe role of the advisor is being ",
-      "via": "layer1_tl"
-    },
-    {
-      "id": "aHR0cHM6Ly93",
-      "title": "As AI Investments Surge, CEOs Take the Lead",
-      "url": "https://www.bcg.com/publications/2026/as-ai-investments-surge-ceos-take-the-lead",
-      "source_name": "bcg.com",
-      "pub_date": "Jan 15, 2026",
-      "snippet": "Nearly three-quarters of CEOs are their company’s chief decision maker on AI. Most of them remain bullish on the technology.",
-      "via": "layer1_tl"
-    },
     {
       "id": "aHR0cHM6Ly93",
       "title": "Wealth Management Needs AI: Raymond James CEO",
@@ -62,20 +35,29 @@
     },
     {
       "id": "aHR0cHM6Ly90",
-      "title": "John O’Connell Featured in Wealth Solutions Report: 2026: The Year Of Serious AI Adoption",
-      "url": "https://theoasisgrp.com/article/john-oconnell-featured-in-wealth-solutions-report-2026-the-year-of-serious-ai-adoption/",
+      "title": "John O’Connell Featured in Family Wealth Report: AI 2026: Increased Adoption, New Use Cases, Regulatory Concerns And New FPA Initiative",
+      "url": "https://theoasisgrp.com/article/john-oconnell-featured-in-family-wealth-report-ai-2026-increased-adoption-new-use-cases-regulatory-concerns-and-new-fpa-initiative/",
       "source_name": "theoasisgrp.com",
-      "pub_date": "Jan 14, 2026",
-      "snippet": "John O'Connell Featured in Wealth Solutions Report on how 2026 is the year of serious AI adoption in wealth management.",
+      "pub_date": "Jan 13, 2026",
+      "snippet": "John O'Connell Featured in Family Wealth Report: AI 2026: Increased Adoption, New Use Cases, Regulatory Concerns And New FPA Initiative",
+      "via": "layer1_tl"
+    },
+    {
+      "id": "aHR0cHM6Ly9o",
+      "title": "Has AI Ended Thought Leadership?",
+      "url": "https://hbr.org/2026/03/has-ai-ended-thought-leadership",
+      "source_name": "hbr.org",
+      "pub_date": "Mar 9, 2026",
+      "snippet": "As generative AI and content platforms make it effortless to sound authoritative, organizations are being overwhelmed by polished insight that rarely translates into real change. The growing gap between those who talk about the future of work and those who actually build it has turned expertise into",
       "via": "layer1_tl"
     },
     {
       "id": "aHR0cHM6Ly93",
-      "title": "AI AND WEALTH MANAGEMENT: A WORD FROM AMERICAN COLLEGE THOUGHT LEADERS",
-      "url": "https://www.theamericancollege.edu/knowledge-hub/insights/ai-and-wealth-management",
-      "source_name": "theamericancollege.edu",
-      "pub_date": null,
-      "snippet": "The nexus of artificial intelligence (AI) technologies and wealth management is one of the biggest points of discussion in financial services today, and is setting up a quantum leap in how advisors interact with clients, make decisions, and run their businesses.",
+      "title": "As AI Investments Surge, CEOs Take the Lead",
+      "url": "https://www.bcg.com/publications/2026/as-ai-investments-surge-ceos-take-the-lead",
+      "source_name": "bcg.com",
+      "pub_date": "Jan 15, 2026",
+      "snippet": "Nearly three-quarters of CEOs are their company’s chief decision maker on AI. Most of them remain bullish on the technology.",
       "via": "layer1_tl"
     },
     {
@@ -89,20 +71,29 @@
     },
     {
       "id": "aHR0cHM6Ly93",
-      "title": "Instagram",
-      "url": "https://www.instagram.com/reel/DWEQfXJk5T-/",
-      "source_name": "instagram.com",
-      "pub_date": "2 weeks ago",
-      "snippet": "Create an account or log in to Instagram - Share what you're into with the people who get you.",
+      "title": "AI AND WEALTH MANAGEMENT: A WORD FROM AMERICAN COLLEGE THOUGHT LEADERS",
+      "url": "https://www.theamericancollege.edu/knowledge-hub/insights/ai-and-wealth-management",
+      "source_name": "theamericancollege.edu",
+      "pub_date": null,
+      "snippet": "The nexus of artificial intelligence (AI) technologies and wealth management is one of the biggest points of discussion in financial services today, and is setting up a quantum leap in how advisors interact with clients, make decisions, and run their businesses.",
+      "via": "layer1_tl"
+    },
+    {
+      "id": "aHR0cHM6Ly9j",
+      "title": "Wealth management trends for 2026: Six questions driven by a wave of change",
+      "url": "https://clearingcustody.fidelity.com/insights/topics/running-your-business/wealth-management-trends-for-2026",
+      "source_name": "clearingcustody.fidelity.com",
+      "pub_date": null,
+      "snippet": "Explore six questions driven by what may impact wealth managers and their clients in the coming year, including AI, asset classes, M&A activity, and more.",
       "via": "layer1_tl"
     },
     {
       "id": "aHR0cHM6Ly93",
-      "title": "AI Revolutionizes Wealth Management with Future Proof Citywide 2026 Speakers | Future Proof posted on the topic | LinkedIn",
-      "url": "https://www.linkedin.com/posts/futureproofhq_fpc26-speaker-announcement-10-activity-7431733270976872448-Y_Jw",
-      "source_name": "linkedin.com",
-      "pub_date": "1 month ago",
-      "snippet": "AI is changing wealth management, from how investments are built and portfolios are managed to how firms use data, technology, and new platforms to better serve clients and grow. Join leaders across asset management, data and analytics, fintech, and advisor technology as they share practical insight",
+      "title": "How AI will change wealth management in 2026 and beyond",
+      "url": "https://www.investmentnews.com/videos/in-the-nasdaq/how-ai-will-change-wealth-management-in-2026-and-beyond/265219",
+      "source_name": "investmentnews.com",
+      "pub_date": "Feb 10, 2026",
+      "snippet": "Justin Whitehead, CEO and founder of Pebble Finance, sits down with InvestmentNews anchor Gregg Greenberg to explain how AI will change the wealth management industry in 2026 and beyond.",
       "via": "layer1_tl"
     },
     {
@@ -121,6 +112,15 @@
       "source_name": "theamericancollege.edu",
       "pub_date": null,
       "snippet": "Center for Ethics Webcast explores artificial intelligence in the financial services industry.",
+      "via": "layer1_tl"
+    },
+    {
+      "id": "aHR0cHM6Ly93",
+      "title": "Just a moment...",
+      "url": "https://www.researchgate.net/publication/381277119_Artificial_Intelligence_as_Personal_Financial_Advisor_in_the_Future_-_A_Case_Study_Based_on_Algorithmic_Innovation_Strategies",
+      "source_name": "researchgate.net",
+      "pub_date": null,
+      "snippet": "## Security check required\n\nWe've detected unusual activity from your network. To continue, complete the security check below.\n\nRay ID: 9e6529fd389376d4\n\nClient IP: 2600:1900:0:4006::1301\n\n© 2008-2026 ResearchGate GmbH. All rights reserved.",
       "via": "layer1_tl"
     },
     {
@@ -161,5 +161,5 @@
     }
   ],
   "blocked_items": [],
-  "written_at": "2026-04-03T04:01:59.652Z"
+  "written_at": "2026-04-03T04:01:56.336Z"
 }
