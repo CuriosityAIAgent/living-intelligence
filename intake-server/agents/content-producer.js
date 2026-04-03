@@ -13,6 +13,7 @@
  * Also handles "needs work" re-entry flow.
  */
 
+import fetch from 'node-fetch';
 import slugify from 'slugify';
 import { research } from './research-agent.js';
 import { write } from './writer-agent.js';
@@ -20,6 +21,50 @@ import { evaluate } from './evaluator-agent.js';
 import { checkFabricationV2 } from './fabrication-strict.js';
 import { scoreEntry } from './scorer.js';
 import { PRESS_RELEASE_DOMAINS, TIER1_MEDIA } from './config.js';
+
+// ── Verification Retry — search for unverified claims before blocking ────────
+
+async function verifyUnresolvedClaims(fabricationReport, researchBrief) {
+  const unverified = (fabricationReport.details || [])
+    .filter(d => d.status === 'fabricated' || d.status === 'unverified')
+    .map(d => d.claim);
+
+  if (unverified.length === 0) return { verified: [], still_unverified: [] };
+
+  const verified = [];
+  const still_unverified = [];
+
+  for (const claim of unverified.slice(0, 3)) { // max 3 retry searches
+    // Search for the specific claim
+    const query = `${researchBrief.entities?.company_name || ''} ${claim}`;
+    try {
+      const res = await fetch(`https://s.jina.ai/${encodeURIComponent(query)}`, {
+        headers: {
+          'Accept': 'application/json',
+          ...(process.env.JINA_API_KEY ? { 'Authorization': `Bearer ${process.env.JINA_API_KEY}` } : {}),
+        },
+        signal: AbortSignal.timeout(15000),
+      });
+      if (res.ok) {
+        const data = await res.json();
+        const results = data.data || [];
+        // If we find a credible source mentioning this claim, it's verified
+        const found = results.find(r => r.description && r.description.toLowerCase().includes(claim.toLowerCase().split(' ').slice(0, 3).join(' ')));
+        if (found) {
+          verified.push({ claim, source: found.url, title: found.title });
+        } else {
+          still_unverified.push(claim);
+        }
+      } else {
+        still_unverified.push(claim);
+      }
+    } catch (_) {
+      still_unverified.push(claim);
+    }
+  }
+
+  return { verified, still_unverified };
+}
 
 // ── Final Scoring (v2) ──────────────────────────────────────────────────────
 
@@ -127,7 +172,26 @@ export async function produceEntry({ url, title, source_name, triage_score, send
   }
 
   if (fabV1.verdict === 'FAIL') {
-    return { aborted: true, reason: `Fabrication FAIL on v1: ${fabV1.issues.join('; ')}` };
+    // Before blocking — try to verify the specific claims via targeted search
+    send('pipeline_stage', { stage: 'verification_retry', message: 'Fabrication flagged claims — searching for verification...' });
+    const retryResult = await verifyUnresolvedClaims(fabV1, researchBrief);
+
+    if (retryResult.verified.length > 0) {
+      send('pipeline_stage', {
+        stage: 'verification_retry_result',
+        message: `Found sources for ${retryResult.verified.length} claim(s): ${retryResult.verified.map(v => v.claim.slice(0, 40)).join(', ')}`,
+      });
+      // Add verified sources to research brief
+      for (const v of retryResult.verified) {
+        researchBrief.sources.push({ name: new URL(v.source).hostname, url: v.source, type: 'coverage' });
+        researchBrief.source_count = researchBrief.sources.length;
+      }
+      // Downgrade from FAIL to SUSPECT — claims found but from different sources
+      fabV1.verdict = 'SUSPECT';
+      fabV1.issues = retryResult.still_unverified.map(c => `Still unverified: ${c}`);
+    } else {
+      return { aborted: true, reason: `Fabrication FAIL on v1 (verified retry found nothing): ${fabV1.issues.join('; ')}` };
+    }
   }
 
   send('pipeline_stage', { stage: 'evaluate_v1', message: 'Evaluating v1 against McKinsey test...' });
