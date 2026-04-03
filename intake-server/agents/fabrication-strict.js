@@ -142,3 +142,138 @@ Return only valid JSON. No explanation outside the JSON.`;
     checked_at: new Date().toISOString(),
   };
 }
+
+// ── v2 Fabrication Check — Multi-source, drift detection ──────────────────────
+
+/**
+ * Enhanced fabrication check for v2 pipeline.
+ * - Checks claims against ALL sources (not just primary)
+ * - Detects drift between iterations (claims added during refinement)
+ * - Handles the_so_what: editorial insight OK, factual claims must be sourced
+ *
+ * @param {Object} params
+ * @param {Object} params.draft - Current draft entry
+ * @param {Object} params.researchBrief - Full research brief with source texts
+ * @param {Object} [params.previousDraft] - Previous draft (for drift detection)
+ * @returns {Object} Fabrication report
+ */
+export async function checkFabricationV2({ draft, researchBrief, previousDraft }) {
+  // Build combined source text from ALL sources (FULL TEXT)
+  const sourceTexts = [
+    `=== PRIMARY: ${researchBrief.primary_source.name} ===\n${researchBrief.primary_source.content.slice(0, 8000)}`,
+    ...(researchBrief.additional_sources || []).map(s =>
+      `=== ${s.name} (${s.type}) ===\n${s.content.slice(0, 4000)}`
+    ),
+  ].join('\n\n');
+
+  const keyStat = draft.key_stat
+    ? `${draft.key_stat.number} — ${draft.key_stat.label}`
+    : 'none';
+
+  // Build drift section if we have a previous draft
+  let driftSection = '';
+  if (previousDraft) {
+    driftSection = `
+DRIFT DETECTION — Compare current draft against previous version. Flag any claims that:
+- Appear in the current draft but NOT in the previous draft AND NOT in any source
+- Changed a qualifier (e.g., "potentially 4 hours" became "4 hours")
+- Strengthened a claim (e.g., "piloting" became "deployed")
+
+PREVIOUS DRAFT:
+Headline: ${previousDraft.headline}
+Summary: ${previousDraft.summary}
+the_so_what: ${previousDraft.the_so_what}
+Key stat: ${previousDraft.key_stat ? `${previousDraft.key_stat.number} — ${previousDraft.key_stat.label}` : 'none'}
+`;
+  }
+
+  const prompt = `You are a fabrication-detection agent for a premium financial intelligence platform that charges $5,000/year. Your job: verify every factual claim in the entry against the source material below.
+
+CURRENT DRAFT:
+Headline: ${draft.headline}
+Summary: ${draft.summary}
+the_so_what: ${draft.the_so_what}
+Key stat: ${keyStat}
+Company: ${draft.company_name}
+
+SOURCE MATERIAL (${researchBrief.source_count} sources):
+${sourceTexts}
+${driftSection}
+RULES:
+1. Check EVERY factual claim in headline, summary, AND the_so_what against the sources.
+2. the_so_what HANDLING: editorial interpretation is ALLOWED ("the gap is widening", "this sets a benchmark"). But specific factual claims WITHIN the_so_what must be sourced. Example:
+   - ALLOWED (editorial): "This makes BofA the competitive benchmark for meeting automation"
+   - MUST BE SOURCED: "Morgan Stanley's 98% adoption rate" — this is a specific fact that needs a source
+3. Match rules: exact numbers pass, equivalent expressions pass (e.g., "$45M" = "$45 million"), rounded numbers pass. FAIL only on genuine contradictions.
+4. For EACH claim, identify which specific source supports it.
+
+Return ONLY valid JSON:
+{
+  "verdict": "CLEAN" | "SUSPECT" | "FAIL",
+  "claims_checked": <number>,
+  "claims_verified": <number>,
+  "claims_unverified": <number>,
+  "claims_fabricated": <number>,
+  "details": [
+    { "claim": "specific claim text", "source": "source name that verifies it or 'NONE'", "status": "verified" | "unverified" | "fabricated" | "editorial" }
+  ],
+  "cross_source_conflicts": [
+    { "claim": "what differs", "source_a": "name", "source_b": "name", "note": "how they differ" }
+  ],
+  "drift_from_previous": [
+    { "claim": "what was added or changed", "in_previous": false, "in_sources": false, "note": "..." }
+  ],
+  "issues": ["any problems found — empty if CLEAN"]
+}
+
+Verdict rules:
+- CLEAN: All factual claims verified. No contradictions. No drift issues.
+- SUSPECT: 1-2 claims not found (source may be truncated). No contradictions. Flag but don't block.
+- FAIL: Any claim contradicted by a source. Any number that conflicts. Any drift that introduced unsourced facts.`;
+
+  try {
+    const response = await client.messages.create({
+      model: 'claude-sonnet-4-6',
+      max_tokens: 2000,
+      messages: [{ role: 'user', content: prompt }],
+    });
+
+    const raw = response.content[0].text.trim();
+    const jsonMatch = raw.match(/\{[\s\S]*\}/);
+    if (!jsonMatch) {
+      return {
+        verdict: 'SUSPECT',
+        claims_checked: 0, claims_verified: 0, claims_unverified: 0, claims_fabricated: 0,
+        details: [], cross_source_conflicts: [], drift_from_previous: [],
+        issues: ['Fabrication v2: no JSON in response'],
+        checked_at: new Date().toISOString(),
+      };
+    }
+
+    const result = JSON.parse(jsonMatch[0]);
+
+    // Normalise verdict
+    const verdict = ['CLEAN', 'SUSPECT', 'FAIL'].includes(result.verdict) ? result.verdict : 'SUSPECT';
+
+    return {
+      verdict,
+      claims_checked: result.claims_checked || 0,
+      claims_verified: result.claims_verified || 0,
+      claims_unverified: result.claims_unverified || 0,
+      claims_fabricated: result.claims_fabricated || 0,
+      details: Array.isArray(result.details) ? result.details : [],
+      cross_source_conflicts: Array.isArray(result.cross_source_conflicts) ? result.cross_source_conflicts : [],
+      drift_from_previous: Array.isArray(result.drift_from_previous) ? result.drift_from_previous : [],
+      issues: Array.isArray(result.issues) ? result.issues : [],
+      checked_at: new Date().toISOString(),
+    };
+  } catch (err) {
+    return {
+      verdict: 'SUSPECT',
+      claims_checked: 0, claims_verified: 0, claims_unverified: 0, claims_fabricated: 0,
+      details: [], cross_source_conflicts: [], drift_from_previous: [],
+      issues: [`Fabrication v2 API error: ${err.message}`],
+      checked_at: new Date().toISOString(),
+    };
+  }
+}
