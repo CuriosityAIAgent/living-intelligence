@@ -28,6 +28,39 @@
         { "name": "InvestmentNews", "url": "https://www.investmentnews.com/transformation/lpl-orion-add-anthropics-new-ai-for-advisors/265438" },
         { "name": "RIABiz", "url": "https://riabiz.com/a/2026/2/25/lpl-finally-stops-largely-anthropic-fueled-stock-price-skid-by-confirming-something-big-with-anthropic-a-new-morningstar-report-pounding-the-table-to-buy-lpl-shares-didnt-hurt" }
       ]
+    },
+    "operations_compliance": {
+      "maturity": "piloting",
+      "headline": "Anthropic plug-ins include compliance-controlled AI tool building for regulated advisor workflows",
+      "detail": "LPL's Anthropic partnership specifically enables compliance-controlled AI plug-in development — firms build private plug-ins customised to their workflows, powered by their data, controlled by their compliance teams. This addresses the unique regulatory challenge of the independent channel where 30,000+ advisors operate under varying compliance frameworks.",
+      "evidence": [
+        "Compliance-controlled plug-in architecture (Anthropic/Peter Nolan LinkedIn post)",
+        "Private, firm-data-powered, compliance-team-controlled (WealthTech Strategy coverage)"
+      ],
+      "date_assessed": "2026-04-04",
+      "sources": [
+        { "name": "WealthTech Strategy", "url": "https://www.wealthtechstrategy.com/post/anthropic-launches-wealth-management-specific-plug-ins-partners-with-lpl-and-orion" }
+      ]
+    },
+    "client_personalization": {
+      "maturity": "no_activity",
+      "headline": "No client-facing AI disclosed; focus is on advisor-facing tools via Anthropic partnership",
+      "detail": "LPL has not disclosed client-facing AI capabilities. The Anthropic partnership is focused on advisor tools and workflow automation, not end-client experiences. This contrasts with wirehouses (BofA Erica, Morgan Stanley Next Best Action) that have deployed consumer-facing AI at scale.",
+      "evidence": [
+        "No client-facing AI in Anthropic partnership coverage"
+      ],
+      "date_assessed": "2026-04-04",
+      "sources": []
+    },
+    "research_content": {
+      "maturity": "no_activity",
+      "headline": "No AI research tools disclosed; Anthropic plug-ins may enable this in future",
+      "detail": "LPL has not publicly deployed AI-powered research tools for its advisors. The Anthropic plug-in framework could enable research synthesis capabilities, but no specific deployment has been announced.",
+      "evidence": [
+        "No research AI tools in current Anthropic partnership scope"
+      ],
+      "date_assessed": "2026-04-04",
+      "sources": []
     }
   },
   "last_updated": "2026-04-04"

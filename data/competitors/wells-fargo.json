@@ -43,6 +43,39 @@
         { "name": "American Banker — Agentic AI", "url": "https://www.americanbanker.com/news/how-wells-fargo-is-building-agentic-ai-into-its-workflows" },
         { "name": "Banking Dive", "url": "https://www.bankingdive.com/news/wells-fargo-google-cloud-agentic-AI/757057/" }
       ]
+    },
+    "client_personalization": {
+      "maturity": "piloting",
+      "headline": "Fargo virtual assistant for consumer banking; agentic AI for proactive client service planned",
+      "detail": "Wells Fargo's Fargo virtual assistant handles consumer banking queries. The Google Agentspace deployment is expected to expand into personalised client interactions — AI agents that proactively surface opportunities, anticipate questions, and route complex inquiries to the right specialist. This represents a shift from reactive chatbots to proactive agentic client service, though wealth-specific personalisation is not yet publicly deployed.",
+      "evidence": [
+        "Fargo virtual assistant for consumer banking (Wells Fargo product page)",
+        "Agentspace expected to expand into client-facing applications (Google Cloud Blog)"
+      ],
+      "date_assessed": "2026-04-04",
+      "sources": [
+        { "name": "Google Cloud Blog", "url": "https://cloud.google.com/blog/topics/financial-services/wells-fargo-agentic-ai-agentspace-empowering-workers" }
+      ]
+    },
+    "investment_portfolio": {
+      "maturity": "no_activity",
+      "headline": "No public evidence of AI-driven portfolio construction or investment analytics",
+      "detail": "Wells Fargo has not publicly disclosed AI capabilities specific to investment portfolio management, rebalancing, or AI-driven investment analytics. The firm's AI focus is on operational efficiency (Agentspace) and customer service rather than investment decision support.",
+      "evidence": [
+        "No portfolio AI capabilities disclosed in Google Agentspace announcement or coverage"
+      ],
+      "date_assessed": "2026-04-04",
+      "sources": []
+    },
+    "research_content": {
+      "maturity": "no_activity",
+      "headline": "No public evidence of AI-powered research tools for wealth advisors",
+      "detail": "Unlike JPMorgan (Smart Monitor, 83% research time reduction) and Morgan Stanley (AskResearchGPT), Wells Fargo has not publicly disclosed AI-powered research synthesis tools for its wealth advisors. The Agentspace deployment focuses on operational and customer service use cases.",
+      "evidence": [
+        "No research AI tools disclosed in public coverage"
+      ],
+      "date_assessed": "2026-04-04",
+      "sources": []
     }
   },
   "last_updated": "2026-04-04"

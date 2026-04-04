@@ -27,6 +27,42 @@
         { "name": "Hubbis", "url": "https://www.hubbis.com/article/unique-ai-s-vision-for-the-future-of-wealth-management-asia-specialist-damien-piper-shines-a-light" },
         { "name": "Private Banker International", "url": "https://www.privatebankerinternational.com/news/julius-baer-overhauls-structure-to-drive-growth-and-digital-transformation/" }
       ]
+    },
+    "client_personalization": {
+      "maturity": "deployed",
+      "headline": "JAI automates multilingual client communications across Swiss, Asian, and European jurisdictions",
+      "detail": "JAI's multilingual communication capabilities are critical for Julius Baer's cross-jurisdictional private banking model. The platform drafts client communications in multiple languages, maintaining consistency and compliance across Swiss, Asian, and European regulatory environments. This addresses a specific pain point for global private banks that local/regional competitors don't face.",
+      "evidence": [
+        "Multilingual client communications automated (Hubbis coverage)",
+        "Cross-jurisdictional compliance maintained (Asian Private Banker interview)"
+      ],
+      "date_assessed": "2026-04-04",
+      "sources": [
+        { "name": "Hubbis", "url": "https://www.hubbis.com/article/unique-ai-s-vision-for-the-future-of-wealth-management-asia-specialist-damien-piper-shines-a-light" }
+      ]
+    },
+    "operations_compliance": {
+      "maturity": "deployed",
+      "headline": "AI-automated documentation and meeting summaries driving consistency across jurisdictions",
+      "detail": "JAI automates meeting summaries and documentation — driving consistency across Julius Baer's global operations. The platform's adoption pattern (4,000 weekly users, fastest-adopted tool) suggests that relationship managers in private banking adopt AI for documentation and compliance tasks more readily than for client-facing advice.",
+      "evidence": [
+        "4,000 weekly active users on documentation and meeting summaries (Asian Private Banker)",
+        "CHF 1B tech investment 2023-2025 (Private Banker International)"
+      ],
+      "date_assessed": "2026-04-04",
+      "sources": [
+        { "name": "Asian Private Banker", "url": "https://asianprivatebanker.com/final-word-2025/jimmy-lee-julius-baer/" }
+      ]
+    },
+    "research_content": {
+      "maturity": "no_activity",
+      "headline": "No public evidence of AI-powered research tools for relationship managers",
+      "detail": "Julius Baer has not disclosed AI-powered research synthesis tools. JAI focuses on documentation and communication automation, not investment research.",
+      "evidence": [
+        "No research AI capabilities disclosed"
+      ],
+      "date_assessed": "2026-04-04",
+      "sources": []
     }
   },
   "last_updated": "2026-04-04"

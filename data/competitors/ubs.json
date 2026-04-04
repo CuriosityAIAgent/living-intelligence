@@ -45,6 +45,41 @@
         { "name": "Financial Content Analysis", "url": "https://markets.financialcontent.com/wral/article/tokenring-2025-12-24-ubs-signals-ai-dominance-daniele-magazzeni-appointed-as-first-chief-ai-officer-to-lead-global-wealth-management-transformation" },
         { "name": "Technology Magazine", "url": "https://technologymagazine.com/news/people-moves-daniele-magazzeni" }
       ]
+    },
+    "investment_portfolio": {
+      "maturity": "announced",
+      "headline": "Autonomous Finance roadmap: AI-managed liquidity, tax-loss harvesting, estate planning",
+      "detail": "UBS's long-term 'Autonomous Finance' vision targets AI that proactively manages portfolio liquidity, executes tax-loss harvesting, and handles estate planning with minimal human intervention. This would represent the most ambitious use of AI in portfolio management if delivered — moving beyond advisory support into autonomous portfolio actions. Currently announced, not deployed.",
+      "evidence": [
+        "'Autonomous Finance' vision disclosed in technology analysis coverage (Financial Content, Dec 2025)"
+      ],
+      "date_assessed": "2026-04-04",
+      "sources": [
+        { "name": "Financial Content Analysis", "url": "https://markets.financialcontent.com/wral/article/tokenring-2025-12-24-ubs-signals-ai-dominance-daniele-magazzeni-appointed-as-first-chief-ai-officer-to-lead-global-wealth-management-transformation" }
+      ]
+    },
+    "operations_compliance": {
+      "maturity": "deployed",
+      "headline": "Credit Suisse integration driving AI-powered operational efficiencies at scale",
+      "detail": "UBS is using AI to drive operational efficiencies required for the multi-year Credit Suisse integration — the largest banking merger in European history. AI is deployed for process automation, risk management, and operational streamlining across the combined entity.",
+      "evidence": [
+        "AI-driven efficiencies in Credit Suisse integration (Banking Dive coverage)",
+        "Chief AI Office responsible for standards and deployment at scale (UBS press release)"
+      ],
+      "date_assessed": "2026-04-04",
+      "sources": [
+        { "name": "Banking Dive", "url": "https://www.bankingdive.com/news/ubs-revamps-leadership-tech-ai-daniele-magazzeni-mike-dargan/803848/" }
+      ]
+    },
+    "research_content": {
+      "maturity": "no_activity",
+      "headline": "No public evidence of AI-powered research tools for wealth advisors — CIO insights team produces traditional research",
+      "detail": "Unlike Morgan Stanley (AskResearchGPT) and JPMorgan (Smart Monitor), UBS has not disclosed AI-powered research synthesis tools for its wealth advisors. The firm's CIO team produces investment insights but there is no public evidence of AI automation in this workflow.",
+      "evidence": [
+        "No AI research tools disclosed in Chief AI Officer or restructuring coverage"
+      ],
+      "date_assessed": "2026-04-04",
+      "sources": []
     }
   },
   "last_updated": "2026-04-04"
