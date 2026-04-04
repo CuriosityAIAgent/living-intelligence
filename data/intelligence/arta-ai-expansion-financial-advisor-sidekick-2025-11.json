@@ -50,22 +50,12 @@
       "type": "coverage"
     },
     {
-      "name": "google.com",
-      "url": "https://www.google.com/sorry/index?continue=https://www.youtube.com/watch%3Fv%3DpITwcVru268&q=EhAmABkAAAAhBAAAAAAAABQAGN34vc4GIjB6pVOdAgc1yw39ej4FOAKi_sKnbmBSHrNlC-K6iInOarBpvd1fXiQzRiKvKgT4WSsyAnJSWgFD",
-      "type": "coverage"
-    },
-    {
       "name": "arta.ai",
       "url": "https://arta.ai/",
       "type": "coverage"
-    },
-    {
-      "name": "google.com",
-      "url": "https://www.google.com/sorry/index?continue=https://www.youtube.com/watch%3Fv%3DKSO_8vcT4sA&q=EhAmABkAAAAhAAAAAAAAAB0AGN34vc4GIjDHe94Wt_MiFsq9Z33mboey6q7DHg9ayfLYyqtE4ScAx9UDUi8ciUCqL2dO-6AIfv4yAnJSWgFD",
-      "type": "coverage"
     }
   ],
-  "source_count": 6,
+  "source_count": 4,
   "featured": false,
   "_triage_score": null,
   "_final_score": 70,

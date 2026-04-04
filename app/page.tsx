@@ -92,8 +92,13 @@ export default function HomePage() {
                       </div>
                     )}
                     {leadStory.source_url && (
-                      <div className="mt-4">
+                      <div className="mt-4 flex items-center gap-3">
                         <span className="text-xs text-[#990F3D] font-medium">{leadStory.source_name} ↗</span>
+                        {(leadStory.source_count ?? leadStory.sources?.length ?? 0) > 1 && (
+                          <span className="text-[10px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5">
+                            {leadStory.source_count ?? leadStory.sources?.length} sources
+                          </span>
+                        )}
                       </div>
                     )}
                   </div>
@@ -149,12 +154,19 @@ export default function HomePage() {
                   )}
                   <div className="mt-auto flex items-center justify-between pt-2 border-t border-gray-50">
                     <span className="text-[10px] text-gray-400">{formatDateShort(entry.date)}</span>
-                    <span className="text-[10px] text-gray-400">{entry.source_name}</span>
+                    <div className="flex items-center gap-2">
+                      <span className="text-[10px] text-gray-400">{entry.source_name}</span>
+                      {(entry.source_count ?? entry.sources?.length ?? 0) > 1 && (
+                        <span className="text-[9px] text-gray-400 border border-gray-200 rounded px-1 py-0.5">
+                          {entry.source_count ?? entry.sources?.length} sources
+                        </span>
+                      )}
+                    </div>
                   </div>
                 </Link>
               ))}
             </div>
-            <Link href="/intelligence" className="text-sm font-bold text-[#990F3D] hover:underline">
+            <Link href="/intelligence" className="inline-block mt-4 text-sm font-bold text-[#990F3D] border border-[#990F3D] rounded px-5 py-2.5 hover:bg-[#990F3D] hover:text-white transition-colors">
               View all intelligence →
             </Link>
           </section>
@@ -193,7 +205,7 @@ export default function HomePage() {
               </div>
             </Link>
             <div className="mt-4">
-              <Link href="/thought-leadership" className="text-sm font-bold text-[#990F3D] hover:underline">
+              <Link href="/thought-leadership" className="inline-block text-sm font-bold text-[#990F3D] border border-[#990F3D] rounded px-5 py-2.5 hover:bg-[#990F3D] hover:text-white transition-colors">
                 View all thought leadership →
               </Link>
             </div>
