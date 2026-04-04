@@ -2,96 +2,68 @@
   "id": "altruist",
   "name": "Altruist",
   "segment": "ria_independent",
-  "regions": [
-    "us"
-  ],
-  "color": "#0F172A",
-  "ai_strategy_summary": "Altruist's launch of Hazel — the first AI agent dedicated to tax planning for advisors — triggered a $130 billion wealth management stock sell-off in February 2026. The market's reaction signals investor belief that AI will structurally commoditize high-fee advisory services.",
-  "head_of_ai": null,
-  "headline_metric": "Hazel AI onboards 1,600 new RIA firms in month 1; $152M Series F funds AI-first custodian expansion",
-  "headline_initiative": "Hazel AI — first dedicated AI tax planning agent for advisors",
-  "overall_maturity": "deployed",
+  "regions": ["us"],
+  "color": "#1B1B1B",
+  "ai_strategy_summary": "Altruist is the most disruptive AI-native custodian in wealth management. Its AI platform Hazel — launched September 2025, built on the 2025 acquisition of AI startup Thyme — signed 1,600 RIA firms in its first month alone, with a pipeline suggesting 1,500 new advisors per month for the next nine months. The February 2026 launch of Hazel's tax planning capability triggered a $130 billion sell-off across Schwab, LPL, Raymond James, and Ameriprise stocks — the market's clearest signal that AI-native platforms are repricing the independent channel. Hazel's architectural moat is custodial integration: it reads live from Altruist's custodial system of record (holdings, balances, cost basis, RMDs, beneficiaries), enabling advisors to query real-time account data in AI conversations. No partnership-based AI tool can replicate this — they all operate on imported or synced data. The $152M Series F (led by GIC) valued Altruist at $1.9B. CEO Jason Wenk frames the custodian as 'the ultimate system of record' for advisor AI.",
+  "head_of_ai": {
+    "name": "Jason Wenk",
+    "title": "Founder & CEO"
+  },
+  "headline_metric": "1,600 RIA firms in month 1; $130B stock sell-off triggered; $1.9B valuation; 1,000+ wealth managers on Hazel",
+  "headline_initiative": "Hazel: AI-native custodial platform with live account data integration + tax planning",
+  "overall_maturity": "scaled",
   "capabilities": {
     "advisor_productivity": {
-      "maturity": "deployed",
-      "headline": "Hazel: AI platform for wealth professionals — meeting intelligence, live custodial data, and tax planning in one environment",
-      "detail": "Altruist launched Hazel in September 2025 (platform) and February 2026 (AI tax planning). Hazel unifies real-time custodial data with CRM, emails, and meeting notes — the first AI platform to combine a major custodian integration with advisor workflow. Tax planning features analyse tax returns and generate personalised strategies in minutes. Hazel is live and in production for RIA advisors on the Altruist platform.",
+      "maturity": "scaled",
+      "headline": "Hazel: 1,600 RIA firms in 30 days, live custodial data in every AI conversation, 1,000+ wealth managers",
+      "detail": "Hazel unifies CRM, email, meeting notes, and live custodial data (holdings, balances, cost basis, RMDs, beneficiaries) in a single AI conversation layer — the first platform to do so. Advisors can run household-level concentration analysis in seconds, identify clients behind on RMDs, harvest unrealised losses, and generate personalised tax strategies from 1040s and pay stubs. Over 1,000 wealth managers adopted Hazel within months of its September 2025 launch. The February 2026 addition of AI tax planning triggered $130B in market value loss across legacy custodians.",
       "evidence": [
-        "Hazel platform launched September 2025 — first AI platform to unify custodial data with advisor workflow (Altruist)",
-        "AI tax planning launched February 2026 — analyses 1040s, paystubs, account statements to generate personalised tax plans in minutes (Altruist)",
-        "Live for RIA advisors on Altruist custodial platform",
-        "$152M Series F (GIC, April 2025) — explicitly to fund AI platform expansion"
+        "1,600 RIA firms subscribed in first month, pipeline of 1,500/month for 9 months (RIABiz, March 2026)",
+        "1,000+ wealth managers using Hazel since September 2025 launch (Business Wire, Nov 2025)",
+        "$130B sell-off across Schwab, LPL, Raymond James, Ameriprise (CNBC, Feb 2026)",
+        "First custodian with live account data in AI conversation layer (Business Wire)",
+        "Household-level analysis, RMD tracking, tax-loss harvesting in seconds (Altruist Newsroom)",
+        "Gerber Kawasaki ($4B AUM) on platform (Business Wire)"
       ],
-      "jpm_implication": "If tax planning is commoditized by AI, the value proposition of human financial advisors narrows further. JPM advisor value articulation must evolve.",
-      "jpm_segments_affected": [
-        "JPMWM",
-        "GPB"
-      ],
-      "date_assessed": "2026-03-07",
+      "date_assessed": "2026-04-04",
       "sources": [
-        {
-          "name": "Altruist — Hazel platform launch (Sep 2025)",
-          "url": "https://altruist.com/news/altruist-unveils-hazel/"
-        },
-        {
-          "name": "Altruist — Hazel AI tax planning (Feb 2026)",
-          "url": "https://altruist.com/news/hazel-ai-tax-planning/"
-        },
-        {
-          "name": "Altruist — real-time custodial integration (Nov 2025)",
-          "url": "https://altruist.com/news/altruist-debuts-industry-first-custodial-integration/"
-        }
+        { "name": "RIABiz — 1,600 RIAs", "url": "https://riabiz.com/a/2026/3/18/altruist-again-has-staggering-ai-news-1600-ria-firms-subscribe-to-hazel-in-one-month-and-pipeline-suggests-1500-advisors-will-join-per-month-for-next-nine-months-ceo-says" },
+        { "name": "Business Wire — Custodial Integration", "url": "https://www.businesswire.com/news/home/20251118149396/en/Altruist-Debuts-Industry-First-Custodial-Integration-for-its-Transformative-AI-Platform-Hazel-Bringing-Real-Time-Account-Data-Into-Every-Advisor-Conversation" },
+        { "name": "InvestmentNews", "url": "https://www.investmentnews.com/fintech/altruist-expands-hazel-ai-platform-with-real-time-custodial-integration/263117" },
+        { "name": "Altruist Newsroom — Hazel Launch", "url": "https://altruist.com/news/altruist-unveils-hazel/" }
       ]
     },
-    "operations_compliance": {
+    "client_personalization": {
       "maturity": "deployed",
-      "headline": "Wash sale conflict detection and real-time tax compliance built into Hazel",
-      "detail": "Hazel's tax planning engine includes automated wash sale conflict detection, embedded gain calculations, and asset location optimisation — all run against live custodial ledger data. This makes Hazel the first advisor platform to deliver compliance-aware tax operations in real time without manual reconciliation.",
+      "headline": "AI-generated personalised tax strategies from 1040s and pay stubs in minutes",
+      "detail": "Hazel reads and interprets 1040 tax returns, pay stubs, and account statements to generate fully personalised tax strategies. The AI creates interactive graphs for analysis and incorporates meeting prep, email drafting, and firm-wide reporting. This capability directly addresses the cross-sell visibility gap that Datos Insights identified as the key opportunity for advisor AI.",
       "evidence": [
-        "Wash sale conflict detection confirmed at Hazel AI tax planning launch (Altruist, Feb 2026)",
-        "Real-time embedded gain calculations from live custodial ledger (Altruist press release)",
-        "Asset location optimisation and tax-loss harvesting modelling (BusinessWire, Feb 2026)"
+        "Tax planning from 1040s, pay stubs, account statements (Business Wire, Feb 2026)",
+        "Interactive graphs for richer analysis (Altruist product documentation)",
+        "Datos Insights analysis: cross-sell gap is the key AI opportunity (our intelligence entry)"
       ],
-      "jpm_implication": "Automated compliance-aware tax execution reduces advisor error risk and regulatory exposure. This is a structural operational advantage for RIAs using Altruist over those relying on manual tax workflows.",
-      "jpm_segments_affected": [
-        "JPMWM",
-        "CWM"
-      ],
-      "date_assessed": "2026-03-19",
+      "date_assessed": "2026-04-04",
       "sources": [
-        {
-          "name": "Altruist — Hazel AI tax planning (Feb 2026)",
-          "url": "https://altruist.com/news/hazel-ai-tax-planning/"
-        },
-        {
-          "name": "BusinessWire — Altruist AI tax planning press release",
-          "url": "https://www.businesswire.com/news/home/20260210142841/en/Altruist-Introduces-AI-Powered-Tax-Planning-in-Hazel-Helping-Advisors-Deliver-Tax-Planning-in-Minutes"
-        }
+        { "name": "Business Wire — Tax Planning Launch", "url": "https://www.businesswire.com/news/home/20260210142841/en/Altruist-Introduces-AI-Powered-Tax-Planning-in-Hazel-Helping-Advisors-Deliver-Tax-Planning-in-Minutes" },
+        { "name": "Datos Insights", "url": "https://datos-insights.com/blog/hazel-avantos-and-the-bank-wealth-management-opportunity/" }
       ]
     },
     "new_business_models": {
       "maturity": "deployed",
-      "headline": "Hazel SaaS subscription: 1,600 net-new RIA firms in first month at $600–$1,500/seat/year",
-      "detail": "Hazel is priced as a standalone SaaS subscription ($600/seat/year basic; $1,500/seat/year with full tax planning) — a first for Altruist, which historically charged only custodial fees. Within one month of the February 2026 AI tax planning launch, 1,600 new RIA firms had subscribed, including 1,200 net-new firms not previously on Altruist's custodial platform. CEO Jason Wenk projects 1,500 new advisors per month for the next nine months.",
+      "headline": "AI-native custodian model at $600-$1,500/seat disrupting legacy custodians valued on AUM-fee economics",
+      "detail": "Altruist's pricing model ($600-$1,500 per seat for full custodial + AI capabilities) structurally undercuts legacy custodians. The $130B stock sell-off proved the market has priced in the thesis that AI-native platforms can disintermediate legacy custodians. The architectural advantage — AI reading directly from the custodial system of record — cannot be replicated by partnerships or bolt-on integrations. Nick Beim (Venrock partner) described this as the competitive moat: 'Hazel is different because it sits inside the custodial system.'",
       "evidence": [
-        "1,600 new RIA firms in first month post-launch (RIABiz, March 18 2026)",
-        "1,200 net-new firms not previously on Altruist custodial platform (RIABiz)",
-        "$600/seat/year basic; $1,500/seat/year full tax planning (RIABiz confirmed pricing)",
-        "CEO projects 1,500 advisors/month for next 9 months (RIABiz)"
+        "$130B sell-off across legacy custodian stocks (CNBC, Invezz, Feb 2026)",
+        "$152M Series F, $1.9B valuation (Business Wire, April 2025)",
+        "Nick Beim thesis on custodial moat (our TL entry: beim-week-altruist-shook-markets)",
+        "Sowell Management enterprise agreement adding Altruist as custodian (InvestmentNews, 2026)"
       ],
-      "jpm_implication": "Hazel's subscription model decouples revenue from custodial AUM — enabling Altruist to monetise across the full RIA market, not just its custodial clients. This is a structurally new revenue model for custodian-adjacent platforms.",
-      "jpm_segments_affected": [
-        "JPMWM",
-        "CWM"
-      ],
-      "date_assessed": "2026-03-19",
+      "date_assessed": "2026-04-04",
       "sources": [
-        {
-          "name": "RIABiz — 1,600 RIA firms subscribe to Hazel in one month (March 18 2026)",
-          "url": "https://riabiz.com/a/2026/3/18/altruist-again-has-staggering-ai-news-1600-ria-firms-subscribe-to-hazel-in-one-month-and-pipeline-suggests-1500-advisors-will-join-per-month-for-next-nine-months-ceo-says"
-        }
+        { "name": "CNBC — Stock Selloff", "url": "https://www.cnbc.com/2026/02/10/the-ai-threat-wrecked-software-stocks-now-broker-stocks-look-next-with-lpl-down-11percent.html" },
+        { "name": "Nick Beim / Venrock", "url": "https://www.nickbeim.com/blog/2026/02/17/the-week-altruist-shook-the-markets/" }
       ]
     }
   },
-  "last_updated": "2026-03-18"
+  "last_updated": "2026-04-04"
 }

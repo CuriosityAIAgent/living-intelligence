@@ -2,38 +2,33 @@
   "id": "lpl-financial",
   "name": "LPL Financial",
   "segment": "ria_independent",
-  "regions": [
-    "us"
-  ],
-  "color": "#003087",
-  "ai_strategy_summary": "LPL expanded its Anthropic partnership in February 2026 to deploy Claude AI plugins to its 30,000+ financial advisors. The compliance-governed, data-controlled plugin architecture is designed specifically for regulated wealth management — a notable contrast to general-purpose AI tools.",
+  "regions": ["us"],
+  "color": "#003366",
+  "ai_strategy_summary": "LPL Financial — the largest independent broker-dealer with 30,000+ advisors and ~8 million end clients — expanded its partnership with Anthropic in February 2026 to build Claude-powered AI tools for advisors. The timing was deliberate: the announcement came weeks after Altruist's Hazel launch triggered a 13% drop in LPL's stock and a $130B sell-off across the independent channel. Anthropic's new wealth management plug-ins give LPL (and other firms) building blocks to create private, compliance-controlled AI tools — customised to their advisors, powered by their data, controlled by their compliance teams. LPL chose a platform partner approach (Anthropic) rather than building from scratch, paralleling Wells Fargo's choice of Google Agentspace. The partnership puts LPL in the same infrastructure camp as Orion ($5.8T AUA, also partnering with Anthropic), creating a de facto Claude-powered layer across a significant share of the independent channel.",
   "head_of_ai": null,
-  "headline_metric": "Claude AI plugins in development for 30,000+ advisors; expanded Anthropic partnership announced Feb 2026",
-  "headline_initiative": "Claude AI plugins for advisor workflows",
-  "overall_maturity": "announced",
+  "headline_metric": "30,000+ advisors; ~8M end clients; Anthropic/Claude partnership for compliance-controlled AI plug-ins",
+  "headline_initiative": "Anthropic Claude plug-ins for advisor AI — private, compliance-controlled, built on firm data",
+  "overall_maturity": "piloting",
   "capabilities": {
     "advisor_productivity": {
-      "maturity": "announced",
-      "headline": "Claude AI plugins deploying to 30,000+ LPL advisors",
-      "detail": "LPL expanded its Anthropic partnership in late February 2026 to deploy Claude AI plugins across its advisor network. The plugins are customizable, data-controlled, and compliance-governed — allowing advisors to build custom AI workflows with their own client data.",
+      "maturity": "piloting",
+      "headline": "Anthropic Claude plug-ins for 30,000+ advisors — compliance-controlled, private, built on LPL data",
+      "detail": "LPL's expanded Anthropic partnership provides building blocks for private AI plug-ins customised to LPL's advisor workflows, powered by LPL data, and controlled by compliance teams. Peter Nolan (Anthropic, Head of Asset & Wealth Management) described the approach: 'They own what they build. We're providing the building blocks.' This platform approach means LPL can iterate on AI capabilities without building AI infrastructure from scratch — but it also means LPL's AI timeline depends on Anthropic's financial services roadmap.",
       "evidence": [
-        "Expanded Anthropic partnership announced Feb 24, 2026",
-        "30,000+ financial advisors in network",
-        "Compliance-first architecture"
+        "Expanded partnership announced February 24, 2026 (ThinkAdvisor, WealthManagement.com)",
+        "30,000+ advisors, ~8M end clients (Fortune article, our intelligence entry)",
+        "Claude plug-ins: private, compliance-controlled, built on firm data (Anthropic LinkedIn post)",
+        "Announced same day as Anthropic's broader financial services plug-in launch with Orion (InvestmentNews)",
+        "Partnership came weeks after Hazel-triggered 13% stock drop (RIABiz)"
       ],
-      "jpm_implication": "LPL deploying compliance-grade AI to 30K advisors creates competitive pressure on wirehouse advisor productivity. Independent advisors are no longer AI-disadvantaged.",
-      "jpm_segments_affected": [
-        "JPMWM",
-        "GPB"
-      ],
-      "date_assessed": "2026-03-07",
+      "date_assessed": "2026-04-04",
       "sources": [
-        {
-          "name": "ThinkAdvisor — LPL expands partnership with Anthropic to deploy Claude",
-          "url": "https://www.thinkadvisor.com/2026/02/24/lpl-expands-partnership-with-anthropic/"
-        }
+        { "name": "ThinkAdvisor", "url": "https://www.thinkadvisor.com/2026/02/24/lpl-expands-partnership-with-anthropic/" },
+        { "name": "WealthManagement.com", "url": "https://www.wealthmanagement.com/artificial-intelligence/lpl-and-anthropic-of-claude-fame-have-expanded-relationship-on-ai-integrations" },
+        { "name": "InvestmentNews", "url": "https://www.investmentnews.com/transformation/lpl-orion-add-anthropics-new-ai-for-advisors/265438" },
+        { "name": "RIABiz", "url": "https://riabiz.com/a/2026/2/25/lpl-finally-stops-largely-anthropic-fueled-stock-price-skid-by-confirming-something-big-with-anthropic-a-new-morningstar-report-pounding-the-table-to-buy-lpl-shares-didnt-hurt" }
       ]
     }
   },
-  "last_updated": "2026-03-18"
+  "last_updated": "2026-04-04"
 }
