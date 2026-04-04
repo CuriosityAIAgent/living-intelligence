@@ -2,71 +2,48 @@
   "id": "wells-fargo",
   "name": "Wells Fargo Advisors",
   "segment": "wirehouse",
-  "regions": [
-    "us"
-  ],
+  "regions": ["us"],
   "color": "#C0392B",
-  "ai_strategy_summary": "Wells Fargo is deploying AI across its advisor workforce through its Fargo virtual assistant and advisor productivity tools, while piloting AI-powered client intelligence and compliance automation across its ~12,000-advisor wealth network.",
+  "ai_strategy_summary": "Wells Fargo is the first major bank to comprehensively adopt Google's agentic AI platform (Agentspace) for bank-wide deployment. Starting with 2,000 employees using Agentspace, the bank plans to expand across all 215,000 employees. The strategy marks a deliberate shift from generative AI (content production) to agentic AI (autonomous workflow execution) — where AI agents take actions across systems rather than just answering questions. Key use cases include FX post-trade inquiry triage in the Corporate Investment Bank, customer service automation across digital, branch, and call centres, and contract management for 250,000 vendor agreements. Wells Fargo chose a platform partner approach (Google) over building custom solutions (as JPMorgan and Morgan Stanley did), trading customisation for deployment speed.",
   "head_of_ai": null,
-  "headline_metric": "Google Agentspace deploying bank-wide across ~12,000 advisors managing ~$2T in client assets; Fargo AI assistant in production",
-  "headline_initiative": "Fargo AI assistant + advisor productivity AI rollout",
+  "headline_metric": "2,000+ employees on Google Agentspace (expanding to 215,000); first major bank with comprehensive agentic AI platform adoption",
+  "headline_initiative": "Google Agentspace for bank-wide agentic AI + Fargo virtual assistant",
   "overall_maturity": "deployed",
   "capabilities": {
     "advisor_productivity": {
       "maturity": "deployed",
-      "headline": "Wells Fargo deploys Google Agentspace to ~2,000 employees including wealth management roles, with bank-wide rollout to 215,000 employees planned",
-      "detail": "Wells Fargo deployed Google Agentspace to approximately 2,000 employees in initial rollout, covering wealth management, risk, and operations roles. Bank-wide expansion to all 215,000 employees announced. Fargo digital assistant already live across retail banking providing personalized guidance.",
+      "headline": "Google Agentspace deployment to 2,000+ employees with bank-wide expansion planned",
+      "detail": "Wells Fargo is deploying Google Agentspace to enable AI agents across advisor and operations workflows. The initial 2,000-employee deployment is focused on proving the agentic AI model before expanding to all 215,000 employees. The platform enables employees to ask questions in natural language and have AI agents take autonomous actions across connected systems — a fundamentally different model from the chatbot-style AI deployed by Morgan Stanley and BofA.",
       "evidence": [
-        "Google Cloud Blog: Wells Fargo deploying Agentspace to ~2,000 employees — https://cloud.google.com/blog/topics/financial-services/wells-fargo-agentic-ai-agentspace-empowering-workers",
-        "American Banker: Wells Fargo plans Google agentic AI bank-wide — https://www.americanbanker.com/news/wells-fargo-plans-to-unleash-googles-agentic-ai-bank-wide"
+        "2,000+ employees using Google Agentspace (Wells Fargo Newsroom, 2025)",
+        "Plans to expand to all 215,000 employees (American Banker)",
+        "Agentic AI model: agents take actions across systems, not just answer questions (Google Cloud Blog)",
+        "First major commercial bank to comprehensively adopt AI agents across operations (PYMNTS)"
       ],
-      "jpm_implication": "Wells Fargo's slower pace of advisor AI deployment relative to Morgan Stanley and Merrill represents a competitive window for JPM to widen its advantage in advisor productivity tooling.",
-      "jpm_segments_affected": [
-        "JPMWM",
-        "CWM"
-      ],
-      "date_assessed": "2026-03-19",
+      "date_assessed": "2026-04-04",
       "sources": [
-        {
-          "name": "Google Cloud Blog — Wells Fargo deploying Agentspace to ~2,000 employees",
-          "url": "https://cloud.google.com/blog/topics/financial-services/wells-fargo-agentic-ai-agentspace-empowering-workers"
-        },
-        {
-          "name": "American Banker — Wells Fargo plans Google agentic AI bank-wide",
-          "url": "https://www.americanbanker.com/news/wells-fargo-plans-to-unleash-googles-agentic-ai-bank-wide"
-        }
+        { "name": "Wells Fargo Newsroom", "url": "https://newsroom.wf.com/news-releases/news-details/2025/Wells-Fargo-announces-expansion-of-strategic-relationship-with-Google-Cloud/default.aspx" },
+        { "name": "Google Cloud Blog", "url": "https://cloud.google.com/blog/topics/financial-services/wells-fargo-agentic-ai-agentspace-empowering-workers" },
+        { "name": "American Banker", "url": "https://www.americanbanker.com/news/wells-fargo-plans-to-unleash-googles-agentic-ai-bank-wide" },
+        { "name": "PYMNTS", "url": "https://www.pymnts.com/news/artificial-intelligence/2025/wells-fargo-deploys-ai-agents-business-wide/" }
       ]
     },
     "operations_compliance": {
       "maturity": "deployed",
-      "headline": "Google Agentspace deployed for compliance and risk workflows",
-      "detail": "Wells Fargo's Google Agentspace deployment explicitly covers risk analysis and compliance automation workflows per American Banker reporting.",
+      "headline": "FX post-trade triage + contract management for 250,000 vendor agreements via agentic AI",
+      "detail": "Wells Fargo is building AI agents for FX post-trade inquiry triage in the Corporate Investment Bank — automating answering, triaging, and summarising complex foreign exchange inquiries and navigating policies across internal data sources. A separate agent handles contract management across 250,000 vendor agreements. Customer service automation spans digital, branch, and call centre channels for routine tasks like balance inquiries and debit card replacements.",
       "evidence": [
-        "American Banker: Wells Fargo Agentspace covers compliance/risk — https://www.americanbanker.com/news/wells-fargo-plans-to-unleash-googles-agentic-ai-bank-wide"
+        "FX post-trade inquiry triage agent in CIB (American Banker, Banking Dive)",
+        "Contract management agent for 250,000 vendor documents (American Banker)",
+        "Customer service automation across all channels (PYMNTS)",
+        "Automated balance inquiries and debit card replacements reducing wait times (Google Cloud Blog)"
       ],
-      "date_assessed": "2026-03-19",
+      "date_assessed": "2026-04-04",
       "sources": [
-        {
-          "name": "American Banker — Wells Fargo plans Google agentic AI bank-wide",
-          "url": "https://www.americanbanker.com/news/wells-fargo-plans-to-unleash-googles-agentic-ai-bank-wide"
-        }
-      ]
-    },
-    "client_personalization": {
-      "maturity": "piloting",
-      "headline": "Fargo assistant provides AI-personalised financial guidance for retail and mass affluent clients",
-      "detail": "Fargo digital assistant is live across retail banking offering personalised financial insights and guidance. Wealth management personalisation tools in development.",
-      "evidence": [
-        "J.D. Power 2025 digital satisfaction rankings — Fargo tops app satisfaction"
-      ],
-      "date_assessed": "2026-03-19",
-      "sources": [
-        {
-          "name": "American Banker — Wells Fargo plans Google agentic AI bank-wide",
-          "url": "https://www.americanbanker.com/news/wells-fargo-plans-to-unleash-googles-agentic-ai-bank-wide"
-        }
+        { "name": "American Banker — Agentic AI", "url": "https://www.americanbanker.com/news/how-wells-fargo-is-building-agentic-ai-into-its-workflows" },
+        { "name": "Banking Dive", "url": "https://www.bankingdive.com/news/wells-fargo-google-cloud-agentic-AI/757057/" }
       ]
     }
   },
-  "last_updated": "2026-03-19"
+  "last_updated": "2026-04-04"
 }
