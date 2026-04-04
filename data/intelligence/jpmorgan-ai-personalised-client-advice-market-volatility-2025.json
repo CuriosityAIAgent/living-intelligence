@@ -80,5 +80,23 @@
       "fabrication_verdict": "CLEAN"
     }
   ],
-  "_editor_notes": []
+  "_editor_notes": [],
+  "sources": [
+    {
+      "name": "Reuters",
+      "url": "https://www.reuters.com/business/finance/jpmorgan-says-ai-helped-boost-sales-add-clients-market-turmoil-2025-05-05/",
+      "type": "primary"
+    },
+    {
+      "name": "The AI Insider",
+      "url": "https://theaiinsider.tech/2025/05/07/jpmorgan-chase-taps-ai-to-navigate-market-turbulence-and-deepen-client-engagement/",
+      "type": "coverage"
+    },
+    {
+      "name": "AInvest",
+      "url": "https://www.ainvest.com/news/jpmorgan-ai-driven-edge-thriving-volatility-technology-2505/",
+      "type": "coverage"
+    }
+  ],
+  "source_count": 3
 }

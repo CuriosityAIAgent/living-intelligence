@@ -84,5 +84,23 @@
       "fabrication_verdict": "CLEAN"
     }
   ],
-  "_editor_notes": []
+  "_editor_notes": [],
+  "sources": [
+    {
+      "name": "PR Newswire",
+      "url": "https://www.prnewswire.com/news-releases/webull-unveils-vega-the-next-evolution-of-its-ai-powered-decision-partner-302605998.html",
+      "type": "primary"
+    },
+    {
+      "name": "Nasdaq",
+      "url": "https://www.nasdaq.com/press-release/webull-unveils-vega-next-evolution-its-ai-powered-decision-partner-2025-11-10",
+      "type": "coverage"
+    },
+    {
+      "name": "Traders Magazine",
+      "url": "https://www.tradersmagazine.com/featured_articles/webull-launches-ai-powered-decision-partner-for-smarter-investing/",
+      "type": "coverage"
+    }
+  ],
+  "source_count": 3
 }

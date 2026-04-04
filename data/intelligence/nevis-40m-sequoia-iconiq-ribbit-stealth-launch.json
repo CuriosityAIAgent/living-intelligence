@@ -80,5 +80,28 @@
       "fabrication_verdict": "CLEAN"
     }
   ],
-  "_editor_notes": []
+  "_editor_notes": [],
+  "sources": [
+    {
+      "name": "Business Wire",
+      "url": "https://www.businesswire.com/news/home/20251201734348/en/Nevis-Announces-40M-From-Sequoia-Capital-ICONIQ-and-Ribbit-as-It-Emerges-From-Stealth-to-Build-AI-for-Wealth-Management",
+      "type": "primary"
+    },
+    {
+      "name": "Nevis",
+      "url": "https://www.neviswealth.com/news/nevis-raised-40m/",
+      "type": "primary"
+    },
+    {
+      "name": "WealthManagement.com",
+      "url": "https://www.wealthmanagement.com/artificial-intelligence/sequoia-bets-on-ai-startup-to-ease-wealth-advisors-grunt-work",
+      "type": "coverage"
+    },
+    {
+      "name": "WealthTech Strategy",
+      "url": "https://www.wealthtechstrategy.com/post/nevis-raises-40m-to-launch-unified-ai-platform-for-wealth-management",
+      "type": "coverage"
+    }
+  ],
+  "source_count": 4
 }

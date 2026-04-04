@@ -45,11 +45,6 @@
       "type": "primary"
     },
     {
-      "name": "sg.finance.yahoo.com",
-      "url": "https://sg.finance.yahoo.com/news/dbs-named-world-best-ai-191541600.html",
-      "type": "coverage"
-    },
-    {
       "name": "en.prnasia.com",
       "url": "https://en.prnasia.com/releases/apac/dbs-named-global-bank-of-the-year-2025-by-the-banker-515825.shtml",
       "type": "coverage"
@@ -65,7 +60,7 @@
       "type": "coverage"
     }
   ],
-  "source_count": 6,
+  "source_count": 5,
   "featured": false,
   "_triage_score": null,
   "_final_score": 71,

@@ -45,11 +45,6 @@
       "type": "coverage"
     },
     {
-      "name": "finance.yahoo.com",
-      "url": "https://finance.yahoo.com/news/lpl-anthropic-expand-relationship-ai-183717915.html",
-      "type": "coverage"
-    },
-    {
       "name": "investmentnews.com",
       "url": "https://www.investmentnews.com/transformation/lpl-orion-add-anthropics-new-ai-for-advisors/265438",
       "type": "coverage"
@@ -65,7 +60,7 @@
       "type": "discovery"
     }
   ],
-  "source_count": 6,
+  "source_count": 5,
   "featured": false,
   "_triage_score": null,
   "_final_score": 60,

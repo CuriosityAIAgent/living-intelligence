@@ -26,24 +26,59 @@
     "capability": "advisor_productivity",
     "region": "us",
     "segment": "advisor_tools",
-    "theme": ["agentic_ai", "workflow_execution", "crm_automation", "advisor_platform"]
+    "theme": [
+      "agentic_ai",
+      "workflow_execution",
+      "crm_automation",
+      "advisor_platform"
+    ]
   },
   "sources": [
-    { "name": "Business Wire", "url": "https://www.businesswire.com/news/home/20260326150532/en/Jump-Launches-AI-Associate-an-Intelligent-Agent-Bringing-Action-to-Its-AI-OS-for-Advisors", "type": "primary" }
+    {
+      "name": "Business Wire",
+      "url": "https://www.businesswire.com/news/home/20260326150532/en/Jump-Launches-AI-Associate-an-Intelligent-Agent-Bringing-Action-to-Its-AI-OS-for-Advisors",
+      "type": "primary"
+    },
+    {
+      "name": "Jump Blog",
+      "url": "https://jump.ai/blog/introducing-AI-associate",
+      "type": "primary"
+    },
+    {
+      "name": "IT Digest",
+      "url": "https://itdigest.com/fintech/jump-launches-ai-associate-an-intelligent-agent-bringing-action-to-its-ai-os-for-advisors/",
+      "type": "coverage"
+    },
+    {
+      "name": "Morningstar",
+      "url": "https://www.morningstar.com/news/business-wire/20260326150532/jump-launches-ai-associate-an-intelligent-agent-bringing-action-to-its-ai-os-for-advisors",
+      "type": "coverage"
+    },
+    {
+      "name": "Destination CRM",
+      "url": "https://www.destinationcrm.com/Articles/CRM-News/CRM-Across-the-Wire/Jump-Launches-AI-Associate-174081.aspx",
+      "type": "coverage"
+    }
   ],
-  "source_count": 1,
+  "source_count": 5,
   "featured": false,
   "published_at": "2026-03-26T00:00:00.000Z",
-
   "_triage_score": null,
   "_final_score": 82,
-
   "_research": {
     "entities": {
       "company_name": "Jump",
       "company_slug": "jump-ai",
-      "people": ["Tim Chaves — President & COO, Jump"],
-      "metrics": ["27,000+ advisors", "#1 T3 Survey 2025 & 2026", "20+ AI features", "$80M Series B", "Founded 2023"],
+      "people": [
+        "Tim Chaves — President & COO, Jump"
+      ],
+      "metrics": [
+        "27,000+ advisors",
+        "#1 T3 Survey 2025 & 2026",
+        "20+ AI features",
+        "$80M Series B",
+        "Founded 2023"
+      ],
       "capability_area": "advisor_productivity",
       "key_topic": "Agentic AI execution layer for advisors",
       "event_type": "product_launch"
@@ -59,7 +94,6 @@
     "confidence": "high",
     "researched_at": "2026-04-03T13:45:00.000Z"
   },
-
   "_fabrication": {
     "verdict": "CLEAN",
     "claims_checked": 8,
@@ -67,33 +101,71 @@
     "claims_unverified": 0,
     "claims_fabricated": 0,
     "details": [
-      { "claim": "27,000+ advisors on platform", "source": "Business Wire", "status": "verified" },
-      { "claim": "#1 advisor satisfaction T3/Inside Information Survey 2025 & 2026", "source": "Business Wire", "status": "verified" },
-      { "claim": "AI Associate updates CRM, drafts emails, schedules follow-ups", "source": "Business Wire", "status": "verified" },
-      { "claim": "Three categories: Meet, Grow, Operate", "source": "Business Wire", "status": "verified" },
-      { "claim": "20+ AI-powered features", "source": "Business Wire", "status": "verified" },
-      { "claim": "Tim Chaves: industry needs execution not just insights", "source": "Business Wire (direct quote)", "status": "verified" },
-      { "claim": "Morgan Stanley Debrief captures notes at 98% adoption", "source": "Our landscape data (morgan-stanley)", "status": "verified" },
-      { "claim": "Altruist Hazel queries custodial data", "source": "Our intelligence entry (altruist-hazel-custodial)", "status": "verified" }
+      {
+        "claim": "27,000+ advisors on platform",
+        "source": "Business Wire",
+        "status": "verified"
+      },
+      {
+        "claim": "#1 advisor satisfaction T3/Inside Information Survey 2025 & 2026",
+        "source": "Business Wire",
+        "status": "verified"
+      },
+      {
+        "claim": "AI Associate updates CRM, drafts emails, schedules follow-ups",
+        "source": "Business Wire",
+        "status": "verified"
+      },
+      {
+        "claim": "Three categories: Meet, Grow, Operate",
+        "source": "Business Wire",
+        "status": "verified"
+      },
+      {
+        "claim": "20+ AI-powered features",
+        "source": "Business Wire",
+        "status": "verified"
+      },
+      {
+        "claim": "Tim Chaves: industry needs execution not just insights",
+        "source": "Business Wire (direct quote)",
+        "status": "verified"
+      },
+      {
+        "claim": "Morgan Stanley Debrief captures notes at 98% adoption",
+        "source": "Our landscape data (morgan-stanley)",
+        "status": "verified"
+      },
+      {
+        "claim": "Altruist Hazel queries custodial data",
+        "source": "Our intelligence entry (altruist-hazel-custodial)",
+        "status": "verified"
+      }
     ],
     "cross_source_conflicts": [],
     "drift_from_previous": [],
     "checked_at": "2026-04-03T13:45:00.000Z"
   },
-
   "_iterations": [
     {
       "version": 1,
       "headline": "Jump Launches AI Associate: Agentic Execution Across CRM, Email, and Planning Systems for 27,000+ Advisors",
       "the_so_what": "Jump is the first advisor AI platform to cross from passive intelligence into agentic execution. Morgan Stanley's Debrief captures notes but doesn't act. Altruist's Hazel queries data but doesn't write to external systems. Jump does both.",
-      "evaluation": { "specificity": true, "so_what": true, "source": true, "substance": true, "stat": true, "competitor": true, "overall": "PASS", "quality_score": 9 },
+      "evaluation": {
+        "specificity": true,
+        "so_what": true,
+        "source": true,
+        "substance": true,
+        "stat": true,
+        "competitor": true,
+        "overall": "PASS",
+        "quality_score": 9
+      },
       "fabrication_verdict": "CLEAN",
       "timestamp": "2026-04-03T13:45:00.000Z"
     }
   ],
-
   "_editor_notes": [],
-
   "_governance": {
     "verdict": "PASS",
     "confidence": 96,

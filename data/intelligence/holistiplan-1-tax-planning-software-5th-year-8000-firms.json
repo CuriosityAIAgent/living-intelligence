@@ -79,5 +79,18 @@
       "fabrication_verdict": "CLEAN"
     }
   ],
-  "_editor_notes": []
+  "_editor_notes": [],
+  "sources": [
+    {
+      "name": "Holistiplan",
+      "url": "https://www.holistiplan.com/news/holistiplan-ranked-1-tax-planning-software-for-the-5th-year-in-a-row/",
+      "type": "primary"
+    },
+    {
+      "name": "PressRelease.com",
+      "url": "https://www.pressrelease.com/news/holistiplan-leads-tax-planning-software-category-with-39-market-share-22746279",
+      "type": "coverage"
+    }
+  ],
+  "source_count": 2
 }

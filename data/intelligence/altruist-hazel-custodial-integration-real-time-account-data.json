@@ -38,9 +38,24 @@
       "name": "Business Wire",
       "url": "https://www.businesswire.com/news/home/20251118149396/en/Altruist-Debuts-Industry-First-Custodial-Integration-for-its-Transformative-AI-Platform-Hazel-Bringing-Real-Time-Account-Data-Into-Every-Advisor-Conversation",
       "type": "primary"
+    },
+    {
+      "name": "Altruist Newsroom",
+      "url": "https://altruist.com/news/altruist-debuts-industry-first-custodial-integration/",
+      "type": "primary"
+    },
+    {
+      "name": "InvestmentNews",
+      "url": "https://www.investmentnews.com/fintech/altruist-expands-hazel-ai-platform-with-real-time-custodial-integration/263117",
+      "type": "coverage"
+    },
+    {
+      "name": "WealthManagement.com",
+      "url": "https://www.wealthmanagement.com/artificial-intelligence/altruist-s-hazel-ai-can-now-deliver-real-time-account-and-other-data",
+      "type": "coverage"
     }
   ],
-  "source_count": 1,
+  "source_count": 4,
   "featured": false,
   "published_at": "2025-11-18T00:00:00.000Z",
   "_triage_score": null,

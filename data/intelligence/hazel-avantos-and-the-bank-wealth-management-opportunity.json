@@ -38,9 +38,14 @@
       "name": "Datos Insights (William Trout)",
       "url": "https://datos-insights.com/blog/hazel-avantos-and-the-bank-wealth-management-opportunity/",
       "type": "primary"
+    },
+    {
+      "name": "Datos Insights",
+      "url": "https://datos-insights.com/",
+      "type": "coverage"
     }
   ],
-  "source_count": 1,
+  "source_count": 2,
   "featured": false,
   "published_at": "2026-03-10T00:00:00.000Z",
   "_triage_score": null,

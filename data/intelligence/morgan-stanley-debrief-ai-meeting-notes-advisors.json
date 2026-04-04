@@ -81,5 +81,33 @@
       "fabrication_verdict": "CLEAN"
     }
   ],
-  "_editor_notes": []
+  "_editor_notes": [],
+  "sources": [
+    {
+      "name": "Morgan Stanley",
+      "url": "https://www.morganstanley.com/press-releases/ai-at-morgan-stanley-debrief-launch",
+      "type": "primary"
+    },
+    {
+      "name": "CDO Magazine",
+      "url": "https://www.cdomagazine.tech/aiml/98-of-morgan-stanley-wealth-management-advisors-use-its-ai-chatbot-with-improved-productivity-cao-explains-how",
+      "type": "coverage"
+    },
+    {
+      "name": "OpenAI",
+      "url": "https://openai.com/index/morgan-stanley/",
+      "type": "coverage"
+    },
+    {
+      "name": "InvestmentNews",
+      "url": "https://www.investmentnews.com/fintech/morgan-stanleys-open-ai-powered-solution-for-advisors-has-expanded/254880",
+      "type": "coverage"
+    },
+    {
+      "name": "Quartz",
+      "url": "https://qz.com/morgan-stanley-openai-debrief-ai-chatbot-genai-1851561076",
+      "type": "coverage"
+    }
+  ],
+  "source_count": 5
 }

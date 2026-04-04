@@ -81,5 +81,23 @@
       "fabrication_verdict": "CLEAN"
     }
   ],
-  "_editor_notes": []
+  "_editor_notes": [],
+  "sources": [
+    {
+      "name": "JPMorgan Investor Day",
+      "url": "https://privatebank.jpmorgan.com/nam/en/about-us/investor-day-2025",
+      "type": "primary"
+    },
+    {
+      "name": "HyperAI",
+      "url": "https://hyper.ai/en/stories/9be8e3581fda4e0beeb14f59087d522d",
+      "type": "coverage"
+    },
+    {
+      "name": "Chief AI Officer",
+      "url": "https://chiefaiofficer.com/why-jpmorgans-ai-transformation-makes-every-other-bank-look-like-theyre-operating-in-slow-motion/",
+      "type": "coverage"
+    }
+  ],
+  "source_count": 3
 }

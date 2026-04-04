@@ -26,24 +26,61 @@
     "capability": "advisor_productivity",
     "region": "us",
     "segment": "ai_native",
-    "theme": ["ai_augmented_advice", "full_stack_ria", "funding_round", "advisor_platform"]
+    "theme": [
+      "ai_augmented_advice",
+      "full_stack_ria",
+      "funding_round",
+      "advisor_platform"
+    ]
   },
   "sources": [
-    { "name": "Business Wire", "url": "https://www.businesswire.com/news/home/20250702795194/en/Savvy-Wealth-Raises-72-Million-to-Drive-the-Shift-Toward-AI-Augmented-Human-Centered-Financial-Advice", "type": "primary" }
+    {
+      "name": "Business Wire",
+      "url": "https://www.businesswire.com/news/home/20250702795194/en/Savvy-Wealth-Raises-72-Million-to-Drive-the-Shift-Toward-AI-Augmented-Human-Centered-Financial-Advice",
+      "type": "primary"
+    },
+    {
+      "name": "Savvy Wealth",
+      "url": "https://www.savvywealth.com/series-b-page",
+      "type": "primary"
+    },
+    {
+      "name": "Fintech Global",
+      "url": "https://fintech.global/2025/07/02/wealthtech-savvy-wealth-bags-72m-series-b-funding/",
+      "type": "coverage"
+    },
+    {
+      "name": "The AI Insider",
+      "url": "https://theaiinsider.tech/2025/07/07/savvy-wealth-raises-72m-to-drive-the-shift-toward-ai-augmented-human-centered-financial-advice/",
+      "type": "coverage"
+    }
   ],
-  "source_count": 1,
+  "source_count": 4,
   "featured": false,
   "published_at": "2025-07-02T00:00:00.000Z",
-
   "_triage_score": null,
   "_final_score": 78,
-
   "_research": {
     "entities": {
       "company_name": "Savvy Wealth",
       "company_slug": "savvy-wealth",
-      "people": ["Ritik Malhotra — Founder & CEO", "Eric Hurkman — CTO (former founding CTO of Carta)", "David Weiner — Chief Growth Officer (former Compass)", "Mark Casady — Board (former LPL CEO)", "Anshul Sharma — CIO"],
-      "metrics": ["$72M Series B", "$100M+ total funding", "$3B+ AUM", "500% growth", "100 wealth managers", "$500M added in 2025 YTD", "4.5x YoY", "Top decile A-to-B speed (Carta)"],
+      "people": [
+        "Ritik Malhotra — Founder & CEO",
+        "Eric Hurkman — CTO (former founding CTO of Carta)",
+        "David Weiner — Chief Growth Officer (former Compass)",
+        "Mark Casady — Board (former LPL CEO)",
+        "Anshul Sharma — CIO"
+      ],
+      "metrics": [
+        "$72M Series B",
+        "$100M+ total funding",
+        "$3B+ AUM",
+        "500% growth",
+        "100 wealth managers",
+        "$500M added in 2025 YTD",
+        "4.5x YoY",
+        "Top decile A-to-B speed (Carta)"
+      ],
       "capability_area": "advisor_productivity",
       "key_topic": "AI advisor platform Series B + AUM milestone",
       "event_type": "funding"
@@ -59,7 +96,6 @@
     "confidence": "high",
     "researched_at": "2026-04-03T13:00:00.000Z"
   },
-
   "_fabrication": {
     "verdict": "CLEAN",
     "claims_checked": 10,
@@ -67,22 +103,61 @@
     "claims_unverified": 0,
     "claims_fabricated": 0,
     "details": [
-      { "claim": "$3B+ AUM", "source": "Business Wire", "status": "verified" },
-      { "claim": "500% growth since early 2024", "source": "Business Wire", "status": "verified" },
-      { "claim": "100 wealth managers", "source": "Business Wire", "status": "verified" },
-      { "claim": "$72M Series B led by Industry Ventures", "source": "Business Wire", "status": "verified" },
-      { "claim": "Total funding past $100M", "source": "Business Wire", "status": "verified" },
-      { "claim": "Mark Casady former LPL CEO joins board", "source": "Business Wire", "status": "verified" },
-      { "claim": "Eric Hurkman founding CTO of Carta", "source": "Business Wire", "status": "verified" },
-      { "claim": "Top decile A-to-B speed per Carta", "source": "Business Wire", "status": "verified" },
-      { "claim": "~$500M added in 2025 YTD", "source": "Business Wire", "status": "verified" },
-      { "claim": "Altruist reached 1,600 RIA firms in first month", "source": "Landscape data (our platform)", "status": "verified" }
+      {
+        "claim": "$3B+ AUM",
+        "source": "Business Wire",
+        "status": "verified"
+      },
+      {
+        "claim": "500% growth since early 2024",
+        "source": "Business Wire",
+        "status": "verified"
+      },
+      {
+        "claim": "100 wealth managers",
+        "source": "Business Wire",
+        "status": "verified"
+      },
+      {
+        "claim": "$72M Series B led by Industry Ventures",
+        "source": "Business Wire",
+        "status": "verified"
+      },
+      {
+        "claim": "Total funding past $100M",
+        "source": "Business Wire",
+        "status": "verified"
+      },
+      {
+        "claim": "Mark Casady former LPL CEO joins board",
+        "source": "Business Wire",
+        "status": "verified"
+      },
+      {
+        "claim": "Eric Hurkman founding CTO of Carta",
+        "source": "Business Wire",
+        "status": "verified"
+      },
+      {
+        "claim": "Top decile A-to-B speed per Carta",
+        "source": "Business Wire",
+        "status": "verified"
+      },
+      {
+        "claim": "~$500M added in 2025 YTD",
+        "source": "Business Wire",
+        "status": "verified"
+      },
+      {
+        "claim": "Altruist reached 1,600 RIA firms in first month",
+        "source": "Landscape data (our platform)",
+        "status": "verified"
+      }
     ],
     "cross_source_conflicts": [],
     "drift_from_previous": [],
     "checked_at": "2026-04-03T13:00:00.000Z"
   },
-
   "_iterations": [
     {
       "version": 1,
@@ -102,9 +177,7 @@
       "timestamp": "2026-04-03T13:00:00.000Z"
     }
   ],
-
   "_editor_notes": [],
-
   "_governance": {
     "verdict": "PASS",
     "confidence": 95,

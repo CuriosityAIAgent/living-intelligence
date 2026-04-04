@@ -37,11 +37,6 @@
       "type": "coverage"
     },
     {
-      "name": "finance.yahoo.com",
-      "url": "https://finance.yahoo.com/news/ai-story-remains-intact-ubs-110219345.html",
-      "type": "coverage"
-    },
-    {
       "name": "technologymagazine.com",
       "url": "https://technologymagazine.com/news/people-moves-daniele-magazzeni",
       "type": "coverage"
@@ -52,7 +47,7 @@
       "type": "discovery"
     }
   ],
-  "source_count": 4,
+  "source_count": 3,
   "featured": false,
   "_triage_score": null,
   "_final_score": 77,

@@ -79,5 +79,28 @@
       "fabrication_verdict": "CLEAN"
     }
   ],
-  "_editor_notes": []
+  "_editor_notes": [],
+  "sources": [
+    {
+      "name": "Standard Chartered",
+      "url": "https://www.sc.com/en/press-release/standard-chartered-rolls-out-sc-gpt-advancing-ai-driven-innovation-in-banking/",
+      "type": "primary"
+    },
+    {
+      "name": "SightsIn Plus",
+      "url": "https://sightsinplus.com/news/technology/sc-gpt-transforming-operations-for-70000-standard-chartered-employees/",
+      "type": "coverage"
+    },
+    {
+      "name": "Computer Weekly",
+      "url": "https://www.computerweekly.com/news/366622934/Standard-Chartered-grounds-AI-ambitions-in-data-governance",
+      "type": "coverage"
+    },
+    {
+      "name": "The Asian Banker",
+      "url": "https://www.theasianbanker.com/updates-and-articles/standard-chartered-moves-into-its-next-phase-of-disciplined-ai-execution",
+      "type": "coverage"
+    }
+  ],
+  "source_count": 4
 }

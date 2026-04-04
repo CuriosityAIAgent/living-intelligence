@@ -81,5 +81,33 @@
       "fabrication_verdict": "CLEAN"
     }
   ],
-  "_editor_notes": []
+  "_editor_notes": [],
+  "sources": [
+    {
+      "name": "Wells Fargo Newsroom",
+      "url": "https://newsroom.wf.com/news-releases/news-details/2025/Wells-Fargo-announces-expansion-of-strategic-relationship-with-Google-Cloud/default.aspx",
+      "type": "primary"
+    },
+    {
+      "name": "Google Cloud Blog",
+      "url": "https://cloud.google.com/blog/topics/financial-services/wells-fargo-agentic-ai-agentspace-empowering-workers",
+      "type": "primary"
+    },
+    {
+      "name": "American Banker",
+      "url": "https://www.americanbanker.com/news/wells-fargo-plans-to-unleash-googles-agentic-ai-bank-wide",
+      "type": "coverage"
+    },
+    {
+      "name": "PYMNTS",
+      "url": "https://www.pymnts.com/news/artificial-intelligence/2025/wells-fargo-deploys-ai-agents-business-wide/",
+      "type": "coverage"
+    },
+    {
+      "name": "Banking Dive",
+      "url": "https://www.bankingdive.com/news/wells-fargo-google-cloud-agentic-AI/757057/",
+      "type": "coverage"
+    }
+  ],
+  "source_count": 5
 }

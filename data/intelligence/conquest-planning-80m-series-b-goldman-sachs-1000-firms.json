@@ -85,5 +85,28 @@
       "fabrication_verdict": "CLEAN"
     }
   ],
-  "_editor_notes": []
+  "_editor_notes": [],
+  "sources": [
+    {
+      "name": "Business Wire",
+      "url": "https://www.businesswire.com/news/home/20250623802541/en/Conquest-Planning-Raises-80-Million-Series-B-Led-by-Growth-Equity-at-Goldman-Sachs-Alternatives-to-Bring-Personalized-AI-Powered-Financial-Plans-to-More-Families",
+      "type": "primary"
+    },
+    {
+      "name": "Conquest Planning",
+      "url": "https://conquestplanning.com/media/conquest-planning-raises-80-million-series-b-led-by-growth-equity-at-goldman-sachs-alternatives-to-bring-personalized-ai-powered-financial-plans-to-more-families",
+      "type": "primary"
+    },
+    {
+      "name": "WealthManagement.com",
+      "url": "https://www.wealthmanagement.com/artificial-intelligence/conquest-planning-raises-80-million-to-grow-and-accelerate-us-expansion",
+      "type": "coverage"
+    },
+    {
+      "name": "BetaKit",
+      "url": "https://betakit.com/conquest-planning-raises-110-million-series-b-to-fuel-us-expansion-of-its-financial-management-platform/",
+      "type": "coverage"
+    }
+  ],
+  "source_count": 4
 }

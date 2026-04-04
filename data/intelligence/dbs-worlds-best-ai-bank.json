@@ -45,11 +45,6 @@
       "type": "primary"
     },
     {
-      "name": "sg.finance.yahoo.com",
-      "url": "https://sg.finance.yahoo.com/news/dbs-named-world-best-ai-191541600.html",
-      "type": "coverage"
-    },
-    {
       "name": "gfmag.com",
       "url": "https://gfmag.com/award/winner-insights/dbs-nimish-panchmatia-ai-banking/",
       "type": "coverage"
@@ -65,7 +60,7 @@
       "type": "coverage"
     }
   ],
-  "source_count": 6,
+  "source_count": 5,
   "featured": false,
   "_triage_score": null,
   "_final_score": 84,

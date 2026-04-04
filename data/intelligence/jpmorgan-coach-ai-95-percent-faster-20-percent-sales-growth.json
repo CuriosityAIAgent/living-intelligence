@@ -85,5 +85,28 @@
       "fabrication_verdict": "CLEAN"
     }
   ],
-  "_editor_notes": []
+  "_editor_notes": [],
+  "sources": [
+    {
+      "name": "Reuters",
+      "url": "https://www.reuters.com/business/finance/jpmorgan-says-ai-helped-boost-sales-add-clients-market-turmoil-2025-05-05/",
+      "type": "primary"
+    },
+    {
+      "name": "The Bridge Chronicle",
+      "url": "https://www.thebridgechronicle.com/tech/ai-sales-manager-jpmorgan-wealthy-clients-market-turmoil",
+      "type": "coverage"
+    },
+    {
+      "name": "The AI Insider",
+      "url": "https://theaiinsider.tech/2025/05/07/jpmorgan-chase-taps-ai-to-navigate-market-turbulence-and-deepen-client-engagement/",
+      "type": "coverage"
+    },
+    {
+      "name": "Complete AI Training",
+      "url": "https://completeaitraining.com/news/how-jpmorgans-ai-tools-boosted-sales-and-client-growth-amid/",
+      "type": "coverage"
+    }
+  ],
+  "source_count": 4
 }

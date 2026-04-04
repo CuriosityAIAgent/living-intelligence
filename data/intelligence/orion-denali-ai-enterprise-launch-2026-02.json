@@ -38,9 +38,24 @@
       "name": "Business Wire",
       "url": "https://www.businesswire.com/news/home/20260226730121/en/Orion-Announces-Denali-AI-Enterprise-Version-Powering-a-New-Era-in-Advisor-Productivity",
       "type": "primary"
+    },
+    {
+      "name": "Orion",
+      "url": "https://orion.com/advisor-tech/denali-ai",
+      "type": "primary"
+    },
+    {
+      "name": "WealthManagement.com",
+      "url": "https://www.wealthmanagement.com/financial-technology/orion-launches-enterprise-version-of-denali-ai",
+      "type": "coverage"
+    },
+    {
+      "name": "Wealth Solutions Report",
+      "url": "https://www.wealthsolutionsreport.com/orion-introduces-denali-ai-enterprise-intelligence-platform-for-advisors/",
+      "type": "coverage"
     }
   ],
-  "source_count": 1,
+  "source_count": 4,
   "featured": false,
   "published_at": "2026-02-26T00:00:00.000Z",
   "_triage_score": null,

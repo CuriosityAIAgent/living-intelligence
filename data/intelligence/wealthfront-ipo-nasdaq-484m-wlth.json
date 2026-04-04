@@ -82,5 +82,33 @@
       "fabrication_verdict": "CLEAN"
     }
   ],
-  "_editor_notes": []
+  "_editor_notes": [],
+  "sources": [
+    {
+      "name": "Wealthfront IR",
+      "url": "https://ir.wealthfront.com/news-releases/news-release-details/wealthfront-announces-pricing-initial-public-offering",
+      "type": "primary"
+    },
+    {
+      "name": "GlobeNewsWire",
+      "url": "https://www.globenewswire.com/news-release/2025/12/12/3204421/0/en/Wealthfront-Announces-Pricing-of-Initial-Public-Offering.html",
+      "type": "primary"
+    },
+    {
+      "name": "Morningstar",
+      "url": "https://www.morningstar.com/stocks/wealthfront-notches-26b-valuation-uneventful-public-debut",
+      "type": "coverage"
+    },
+    {
+      "name": "IPO Scoop",
+      "url": "https://www.iposcoop.com/the-ipo-buzz-wealthfront-wlth-prices-its-ipo-at-14-top-of-the-range/",
+      "type": "coverage"
+    },
+    {
+      "name": "Latham & Watkins",
+      "url": "https://www.lw.com/en/news/2025/12/latham-watkins-advises-on-wealthfront-ipo",
+      "type": "coverage"
+    }
+  ],
+  "source_count": 5
 }

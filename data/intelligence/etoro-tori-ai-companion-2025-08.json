@@ -32,12 +32,27 @@
   },
   "sources": [
     {
-      "name": "GlobeNewswire",
-      "url": "https://www.globenewswire.com/news-release/2025/08/07/3129203/0/en/eToro-Leverages-AI-to-Redefine-Social-Investing.html",
+      "name": "eToro IR",
+      "url": "https://investors.etoro.com/news-releases/news-release-details/etoro-leverages-ai-redefine-social-investing",
       "type": "primary"
+    },
+    {
+      "name": "Nasdaq",
+      "url": "https://www.nasdaq.com/press-release/etoro-leverages-ai-redefine-social-investing-2025-08-07",
+      "type": "coverage"
+    },
+    {
+      "name": "Finance Magnates",
+      "url": "https://www.financemagnates.com/fintech/retail-traders-gain-quant-level-tools-as-etoro-launches-public-api-and-ai-assistant-tori/",
+      "type": "coverage"
+    },
+    {
+      "name": "Fintech Global",
+      "url": "https://fintech.global/2025/08/08/etoro-unveils-ai-tools-to-power-social-investing/",
+      "type": "coverage"
     }
   ],
-  "source_count": 1,
+  "source_count": 4,
   "featured": false,
   "_triage_score": null,
   "_final_score": 71,

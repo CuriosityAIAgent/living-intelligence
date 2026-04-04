@@ -82,5 +82,33 @@
       "fabrication_verdict": "CLEAN"
     }
   ],
-  "_editor_notes": []
+  "_editor_notes": [],
+  "sources": [
+    {
+      "name": "PR Newswire",
+      "url": "https://www.prnewswire.com/news-releases/tifin-ag-announces-collaboration-with-rbc-wealth-management-us-to-deepen-advisor-client-relationships-302073511.html",
+      "type": "primary"
+    },
+    {
+      "name": "American Banker",
+      "url": "https://www.americanbanker.com/news/rbc-rolls-out-ai-based-tools-to-financial-advisors",
+      "type": "coverage"
+    },
+    {
+      "name": "Financial Advisor Magazine",
+      "url": "https://www.fa-mag.com/news/rbc-adopts-tifin-ai-wealth-management-tool-77165.html",
+      "type": "coverage"
+    },
+    {
+      "name": "Financial Planning",
+      "url": "https://www.financial-planning.com/news/rbc-turns-to-ai-to-capture-more-of-clients-wallet-share",
+      "type": "coverage"
+    },
+    {
+      "name": "InvestmentNews",
+      "url": "https://www.investmentnews.com/fintech/tifin-ag-bolsters-partnership-with-rbcs-us-wealth-arm/250146",
+      "type": "coverage"
+    }
+  ],
+  "source_count": 5
 }

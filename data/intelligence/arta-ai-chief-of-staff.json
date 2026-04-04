@@ -87,5 +87,23 @@
       "fabrication_verdict": "CLEAN"
     }
   ],
-  "_editor_notes": []
+  "_editor_notes": [],
+  "sources": [
+    {
+      "name": "Arta Finance",
+      "url": "https://artafinance.com/insights/meet-arta-ai-private-wealth-guided-by-ai-agents",
+      "type": "primary"
+    },
+    {
+      "name": "PR Newswire",
+      "url": "https://www.prnewswire.com/news-releases/arta-finance-launches-sophisticated-wealth-management-for-finance-professionals-302380622.html",
+      "type": "primary"
+    },
+    {
+      "name": "Arta Finance (AI for Wealth)",
+      "url": "https://artafinance.com/global/ai-for-wealth",
+      "type": "coverage"
+    }
+  ],
+  "source_count": 3
 }

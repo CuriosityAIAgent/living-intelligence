@@ -78,5 +78,28 @@
       "fabrication_verdict": "SUSPECT"
     }
   ],
-  "_editor_notes": []
+  "_editor_notes": [],
+  "sources": [
+    {
+      "name": "BlackRock Aladdin",
+      "url": "https://www.blackrock.com/aladdin/discover/aladdin-wealth-launches-ai-enabled-commentary-tool-at-morgan-stanley",
+      "type": "primary"
+    },
+    {
+      "name": "Business Wire",
+      "url": "https://www.businesswire.com/news/home/20251002577295/en/Aladdin-Wealth-Launches-AI-Enabled-Commentary-Tool-for-Wealth-Advisors-Morgan-Stanleys-Portfolio-Risk-Platform-First-to-Implement",
+      "type": "primary"
+    },
+    {
+      "name": "InvestmentNews",
+      "url": "https://www.investmentnews.com/alternatives/blackrock-debuts-ai-powered-commentary-tool-for-advisors-lands-morgan-stanley-as-first-client/262370",
+      "type": "coverage"
+    },
+    {
+      "name": "ThinkAdvisor",
+      "url": "https://www.thinkadvisor.com/2025/10/03/blackrocks-aladdin-launches-ai-commentary-tool-for-advisors-morgan-stanley-signs-on/",
+      "type": "coverage"
+    }
+  ],
+  "source_count": 4
 }

@@ -79,5 +79,13 @@
       "fabrication_verdict": "CLEAN"
     }
   ],
-  "_editor_notes": []
+  "_editor_notes": [],
+  "sources": [
+    {
+      "name": "Asian Investor Wealth",
+      "url": "https://www.asianinvestorwealth.net/article/bnp-paribas-wealth-management-launches-ai-centre-in-singapore/505784",
+      "type": "primary"
+    }
+  ],
+  "source_count": 1
 }

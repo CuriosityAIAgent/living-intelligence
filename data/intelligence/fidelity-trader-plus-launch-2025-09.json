@@ -50,11 +50,6 @@
       "type": "coverage"
     },
     {
-      "name": "finance.yahoo.com",
-      "url": "https://finance.yahoo.com/news/fidelity-launches-trading-platform-retail-110243005.html",
-      "type": "coverage"
-    },
-    {
       "name": "fidelity.com",
       "url": "https://www.fidelity.com/learning-center/trading-investing/trading-platforms/using-trader-plus",
       "type": "coverage"
@@ -65,7 +60,7 @@
       "type": "coverage"
     }
   ],
-  "source_count": 6,
+  "source_count": 5,
   "featured": false,
   "_triage_score": null,
   "_final_score": 78,

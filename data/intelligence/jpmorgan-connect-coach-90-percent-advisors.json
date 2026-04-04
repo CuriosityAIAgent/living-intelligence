@@ -81,5 +81,23 @@
       "fabrication_verdict": "CLEAN"
     }
   ],
-  "_editor_notes": []
+  "_editor_notes": [],
+  "sources": [
+    {
+      "name": "JPMorgan Investor Day",
+      "url": "https://privatebank.jpmorgan.com/nam/en/about-us/investor-day-2025",
+      "type": "primary"
+    },
+    {
+      "name": "Klover.ai",
+      "url": "https://www.klover.ai/jpmorgan-uses-ai-agents-10-ways-to-use-ai-in-depth-analysis-2025/",
+      "type": "coverage"
+    },
+    {
+      "name": "The Bridge Chronicle",
+      "url": "https://www.thebridgechronicle.com/tech/ai-sales-manager-jpmorgan-wealthy-clients-market-turmoil",
+      "type": "coverage"
+    }
+  ],
+  "source_count": 3
 }

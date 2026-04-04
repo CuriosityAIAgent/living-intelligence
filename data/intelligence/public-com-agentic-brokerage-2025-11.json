@@ -92,5 +92,28 @@
       "fabrication_verdict": "CLEAN"
     }
   ],
-  "_editor_notes": []
+  "_editor_notes": [],
+  "sources": [
+    {
+      "name": "Public.com",
+      "url": "https://public.com/ai-agents",
+      "type": "primary"
+    },
+    {
+      "name": "PR Newswire",
+      "url": "https://www.prnewswire.com/news-releases/public-becomes-the-first-brokerage-to-introduce-ai-agents-for-your-portfolio-302729050.html",
+      "type": "primary"
+    },
+    {
+      "name": "Axios",
+      "url": "https://www.axios.com/2025/11/17/ai-stock-market-public",
+      "type": "coverage"
+    },
+    {
+      "name": "AdvisorHub",
+      "url": "https://www.advisorhub.com/new-york-brokerage-public-pitches-stock-trading-ai-agents/",
+      "type": "coverage"
+    }
+  ],
+  "source_count": 4
 }

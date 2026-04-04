@@ -39,14 +39,9 @@
       "name": "Fortune",
       "url": "https://fortune.com/2026/03/26/ai-personal-finance-investing-services-robinhood-advisors/",
       "type": "primary"
-    },
-    {
-      "name": "Yahoo Finance / McKinsey",
-      "url": "https://finance.yahoo.com/news/wealth-management-talent-crisis-underway-080100432.html",
-      "type": "coverage"
     }
   ],
-  "source_count": 2,
+  "source_count": 1,
   "_enrichment": {
     "what_changed": "First coverage of this company.",
     "landscape_context": {

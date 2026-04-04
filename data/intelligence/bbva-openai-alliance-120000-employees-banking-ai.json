@@ -81,5 +81,33 @@
       "fabrication_verdict": "CLEAN"
     }
   ],
-  "_editor_notes": []
+  "_editor_notes": [],
+  "sources": [
+    {
+      "name": "BBVA",
+      "url": "https://www.bbva.com/en/innovation/bbva-and-openai-seal-a-strategic-alliance-to-redefine-banking-with-artificial-intelligence/",
+      "type": "primary"
+    },
+    {
+      "name": "OpenAI",
+      "url": "https://openai.com/index/bbva-collaboration-expansion/",
+      "type": "primary"
+    },
+    {
+      "name": "Bloomberg",
+      "url": "https://www.bloomberg.com/news/articles/2025-12-12/bbva-rolls-out-chatgpt-to-almost-all-employees-in-openai-deal",
+      "type": "coverage"
+    },
+    {
+      "name": "PYMNTS",
+      "url": "https://www.pymnts.com/artificial-intelligence-2/2025/no-more-pilots-bbva-deploys-ai-across-the-bank-with-openais-partnership/",
+      "type": "coverage"
+    },
+    {
+      "name": "Fintech Global",
+      "url": "https://fintech.global/2025/12/12/bbva-rolls-out-chatgpt-enterprise-in-global-ai-banking-push/",
+      "type": "coverage"
+    }
+  ],
+  "source_count": 5
 }

@@ -85,5 +85,13 @@
       "fabrication_verdict": "SUSPECT"
     }
   ],
-  "_editor_notes": []
+  "_editor_notes": [],
+  "sources": [
+    {
+      "name": "Asian Banking & Finance",
+      "url": "https://asianbankingandfinance.net/wealth-management/news/hsbc-private-bank-rolls-out-gen-ai-platform-wealth-management-staff",
+      "type": "primary"
+    }
+  ],
+  "source_count": 1
 }
