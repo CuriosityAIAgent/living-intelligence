@@ -159,8 +159,32 @@ export async function writeLandscape({ researchBrief, previousDraft, evaluatorFe
   });
 
   const raw = response.content[0].text.trim();
-  const match = raw.match(/\{[\s\S]*\}/);
-  if (!match) throw new Error('Landscape Writer: no JSON in response');
 
-  return JSON.parse(match[0]);
+  // Extract JSON — handle large responses with potential markdown wrapping
+  let jsonStr = raw;
+  // Strip markdown code block if present
+  jsonStr = jsonStr.replace(/^```json\n?/, '').replace(/\n?```$/, '');
+  // Find the outermost JSON object
+  const firstBrace = jsonStr.indexOf('{');
+  const lastBrace = jsonStr.lastIndexOf('}');
+  if (firstBrace === -1 || lastBrace === -1) throw new Error('Landscape Writer: no JSON in response');
+  jsonStr = jsonStr.slice(firstBrace, lastBrace + 1);
+
+  // Clean common JSON issues from LLM output
+  jsonStr = jsonStr
+    .replace(/,\s*}/g, '}')  // trailing commas before }
+    .replace(/,\s*]/g, ']'); // trailing commas before ]
+
+  try {
+    return JSON.parse(jsonStr);
+  } catch (parseErr) {
+    // Try to salvage — sometimes there's a truncated field at the end
+    const truncIdx = jsonStr.lastIndexOf('",');
+    if (truncIdx > jsonStr.length * 0.8) {
+      // Truncated near the end — try closing it
+      const salvaged = jsonStr.slice(0, truncIdx + 1) + '}}}}';
+      try { return JSON.parse(salvaged); } catch {}
+    }
+    throw new Error(`Landscape Writer: JSON parse failed at position ${parseErr.message.match(/position (\d+)/)?.[1] || 'unknown'}`);
+  }
 }
