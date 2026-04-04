@@ -73,5 +73,47 @@
     "id": "jump-ai-operating-system-80m-series-b-27000-advisors",
     "reason": "Human rejected REVIEW entry",
     "blocked_at": "2026-03-24T15:17:28.191Z"
+  },
+  "https://www.fintechfutures.com/venture-capital-funding/jump-raises-80m-series-b": {
+    "id": "jump-ai-meeting-assistant-80m-series-b-2026-02",
+    "reason": "Score 37/100 — below 45 review threshold",
+    "blocked_at": "2026-04-04T04:02:13.751Z",
+    "title": "Jump's AI Meeting Assistant Scales Across Advisor Workflows After $80M Series B",
+    "score": 37
+  },
+  "https://www.wealthmanagement.com/artificial-intelligence/wealthstack-roundup-finny-partners-with-osaic": {
+    "id": "finny-osaic-ai-prospecting-11000-advisors",
+    "reason": "Score 59/100 — below 45 review threshold",
+    "blocked_at": "2026-04-04T04:03:26.657Z",
+    "title": "Finny Deploys AI Prospecting Tools Across Osaic's 11,000-Advisor Network",
+    "score": 59
+  },
+  "https://rbj.net/2026/04/03/how-ai-complements-financial-advisors-in-wealth-management/": {
+    "id": "ai-complements-wealth-management-rbj-2026-04-03",
+    "reason": "Score 38/100 — below 45 review threshold",
+    "blocked_at": "2026-04-04T04:04:47.353Z",
+    "title": "AI Adoption in Wealth Management Framed as Advisor Complement, Not Replacement",
+    "score": 38
+  },
+  "https://www.investmentnews.com/fintech/finny-lands-osaic-deal-to-put-ai-prospecting-in-front-of-11000-advisors/265053": {
+    "id": "finny-osaic-ai-prospecting-11000-advisors",
+    "reason": "Score 59/100 — below 45 review threshold",
+    "blocked_at": "2026-04-04T04:07:06.631Z",
+    "title": "Finny Deploys AI Prospecting Tools Across Osaic's 11,000-Advisor Network",
+    "score": 59
+  },
+  "https://fintech.global/2026/03/25/flanks-launches-ai-financial-advisor-for-wealth-managers/": {
+    "id": "flanks-ai-financial-advisor-wealth-managers-2026-03-25",
+    "reason": "Score 53/100 — below 45 review threshold",
+    "blocked_at": "2026-04-04T04:08:19.253Z",
+    "title": "Flanks Launches AI Financial Advisor Tool Embedded in Wealth Manager Workflows",
+    "score": 53
+  },
+  "https://www.investmentnews.com/videos/in-the-nasdaq/how-ai-will-change-wealth-management-in-2026-and-beyond/265219": {
+    "id": "pebble-finance-ai-wealth-management-2026",
+    "reason": "Score 50/100 — below 45 review threshold",
+    "blocked_at": "2026-04-04T04:11:47.709Z",
+    "title": "Pebble Finance CEO Outlines AI Capability Shifts Reshaping Wealth Management Through 2026",
+    "score": 50
   }
 }

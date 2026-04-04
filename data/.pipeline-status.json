@@ -1,9 +1,202 @@
 {
-  "started_at": "2026-03-24T06:00:00.844Z",
+  "started_at": "2026-04-04T04:00:00.169Z",
   "candidates_found": 15,
-  "queued": 1,
-  "blocked": 5,
-  "errors": 0,
-  "tl_candidates": 69,
-  "written_at": "2026-03-24T06:05:28.107Z"
+  "queued": 4,
+  "blocked": 6,
+  "errors": 1,
+  "error_details": [
+    {
+      "url": "https://citywire.com/wealth-manager/news/schroders-signs-coutts-veteran-for-key-new-ai-wealth-role/a2486995",
+      "stage": "intake",
+      "message": "processUrl returned null"
+    }
+  ],
+  "discovery_sources": {
+    "layer1_news": 40,
+    "layer1_capabilities": 14,
+    "layer2_companies": 0,
+    "layer3_newsapi": 2,
+    "layer1_tl": 34,
+    "layer2_authors": 55,
+    "companies_queried": 37,
+    "capabilities_queried": 7,
+    "raw_intel_total": 51
+  },
+  "tl_candidates": 85,
+  "tl_items": [
+    {
+      "id": "aHR0cHM6Ly93",
+      "title": "Wealth Management Needs AI: Raymond James CEO",
+      "url": "https://www.thinkadvisor.com/2026/03/03/wealth-management-needs-ai-raymond-james-ceo/",
+      "source_name": "thinkadvisor.com",
+      "pub_date": "Mar 3, 2026",
+      "snippet": "Artificial intelligence tools will help advisors better serve their clients, Paul Shoukry says.",
+      "via": "layer1_tl"
+    },
+    {
+      "id": "aHR0cHM6Ly9o",
+      "title": "Has AI Ended Thought Leadership?",
+      "url": "https://hbr.org/2026/03/has-ai-ended-thought-leadership",
+      "source_name": "hbr.org",
+      "pub_date": "Mar 9, 2026",
+      "snippet": "As generative AI and content platforms make it effortless to sound authoritative, organizations are being overwhelmed by polished insight that rarely translates into real change. The growing gap between those who talk about the future of work and those who actually build it has turned expertise into",
+      "via": "layer1_tl"
+    },
+    {
+      "id": "aHR0cHM6Ly93",
+      "title": "As AI Investments Surge, CEOs Take the Lead",
+      "url": "https://www.bcg.com/publications/2026/as-ai-investments-surge-ceos-take-the-lead",
+      "source_name": "bcg.com",
+      "pub_date": "Jan 15, 2026",
+      "snippet": "Nearly three-quarters of CEOs are their company’s chief decision maker on AI. Most of them remain bullish on the technology.",
+      "via": "layer1_tl"
+    },
+    {
+      "id": "aHR0cHM6Ly90",
+      "title": "John O’Connell Featured in Wealth Solutions Report: 2026: The Year Of Serious AI Adoption",
+      "url": "https://theoasisgrp.com/article/john-oconnell-featured-in-wealth-solutions-report-2026-the-year-of-serious-ai-adoption/",
+      "source_name": "theoasisgrp.com",
+      "pub_date": "Jan 14, 2026",
+      "snippet": "John O'Connell Featured in Wealth Solutions Report on how 2026 is the year of serious AI adoption in wealth management.",
+      "via": "layer1_tl"
+    },
+    {
+      "id": "aHR0cHM6Ly93",
+      "title": "AI AND WEALTH MANAGEMENT: A WORD FROM AMERICAN COLLEGE THOUGHT LEADERS",
+      "url": "https://www.theamericancollege.edu/knowledge-hub/insights/ai-and-wealth-management",
+      "source_name": "theamericancollege.edu",
+      "pub_date": null,
+      "snippet": "The nexus of artificial intelligence (AI) technologies and wealth management is one of the biggest points of discussion in financial services today, and is setting up a quantum leap in how advisors interact with clients, make decisions, and run their businesses.",
+      "via": "layer1_tl"
+    },
+    {
+      "id": "aHR0cHM6Ly93",
+      "title": "AI Revolutionizes Wealth Management with Future Proof Citywide 2026 Speakers | Future Proof posted on the topic | LinkedIn",
+      "url": "https://www.linkedin.com/posts/futureproofhq_fpc26-speaker-announcement-10-activity-7431733270976872448-Y_Jw",
+      "source_name": "linkedin.com",
+      "pub_date": "Feb 23, 2026",
+      "snippet": "AI is changing wealth management, from how investments are built and portfolios are managed to how firms use data, technology, and new platforms to better serve clients and grow. Join leaders across asset management, data and analytics, fintech, and advisor technology as they share practical insight",
+      "via": "layer1_tl"
+    },
+    {
+      "id": "aHR0cHM6Ly93",
+      "title": "10 Wealth Management Trends For 2026",
+      "url": "https://www.oliverwyman.com/our-expertise/insights/2025/dec/wealth-management-trends-2026.html",
+      "source_name": "oliverwyman.com",
+      "pub_date": null,
+      "snippet": "A forward look at key 2026 wealth management trends, including AI-driven advice, tokenized cash, private markets, embedded wealth, and downturn readiness.",
+      "via": "layer1_tl"
+    },
+    {
+      "id": "aHR0cHM6Ly93",
+      "title": "Instagram",
+      "url": "https://www.instagram.com/reel/DWEQfXJk5T-/",
+      "source_name": "instagram.com",
+      "pub_date": "Mar 19, 2026",
+      "snippet": "Create an account or log in to Instagram - Share what you're into with the people who get you.",
+      "via": "layer1_tl"
+    },
+    {
+      "id": "aHR0cHM6Ly93",
+      "title": "How artificial intelligence is reshaping the financial services industry",
+      "url": "https://www.ey.com/en_gr/insights/financial-services/how-artificial-intelligence-is-reshaping-the-financial-services-industry",
+      "source_name": "ey.com",
+      "pub_date": null,
+      "snippet": "AI is reshaping the financial services industry, making it more efficient, effective and innovative. Read more.",
+      "via": "layer1_tl"
+    },
+    {
+      "id": "aHR0cHM6Ly93",
+      "title": "Impact of Artificial Intelligence (AI) in Financial Advisory Industry",
+      "url": "https://www.theamericancollege.edu/knowledge-hub/insights/impact-of-artificial-intelligence-ai-in-financial-advisory-industry",
+      "source_name": "theamericancollege.edu",
+      "pub_date": null,
+      "snippet": "Center for Ethics Webcast explores artificial intelligence in the financial services industry.",
+      "via": "layer1_tl"
+    },
+    {
+      "id": "aHR0cHM6Ly93",
+      "title": "Just a moment...",
+      "url": "https://www.researchgate.net/publication/381277119_Artificial_Intelligence_as_Personal_Financial_Advisor_in_the_Future_-_A_Case_Study_Based_on_Algorithmic_Innovation_Strategies",
+      "source_name": "researchgate.net",
+      "pub_date": null,
+      "snippet": "## Security check required\n\nWe've detected unusual activity from your network. To continue, complete the security check below.\n\nRay ID: 9e6d6784793ca177\n\nClient IP: 2600:1900:0:2105::1c00\n\n© 2008-2026 ResearchGate GmbH. All rights reserved.",
+      "via": "layer1_tl"
+    },
+    {
+      "id": "aHR0cHM6Ly9o",
+      "title": "7 Factors That Drive Returns on AI Investments, According to a New Survey",
+      "url": "https://hbr.org/2026/03/7-factors-that-drive-returns-on-ai-investments-according-to-a-new-survey",
+      "source_name": "hbr.org",
+      "pub_date": "Mar 17, 2026",
+      "snippet": "Leaders are facing tremendous pressure to deliver on AI. To understand how they are navigating this, researchers surveyed 1,006 global senior executives who had close familiarity with their organizations’ AI initiatives, and interviewed 12 technology, data, and AI leaders at enterprise organizations",
+      "via": "layer1_tl"
+    },
+    {
+      "id": "aHR0cHM6Ly93",
+      "title": "Access Denied",
+      "url": "https://www.spglobal.com/market-intelligence/en/news-insights/research/2026/01/10-ai-trends-to-shape-your-2026-strategy",
+      "source_name": "spglobal.com",
+      "pub_date": "Jan 30, 2026",
+      "snippet": "You don't have permission to access \"http://www.spglobal.com/market-intelligence/en/news-insights/research/2026/01/10-ai-trends-to-shape-your-2026-strategy\" on this server.\nReference #18.8f813217.1775275209.ad96cdda\n\nhttps://errors.edgesuite.net/18.8f813217.1775275209.ad96cdda",
+      "via": "layer1_tl"
+    },
+    {
+      "id": "aHR0cHM6Ly93",
+      "title": "AI Market Trends 2026: Global Investment, Risks, and Buildout | Morgan Stanley",
+      "url": "https://www.morganstanley.com/insights/articles/ai-market-trends-institute-2026",
+      "source_name": "morganstanley.com",
+      "pub_date": "Mar 9, 2026",
+      "snippet": "Discover key market trends as AI becomes the central force influencing growth, earnings, geopolitics, and investment strategy across global markets in 2026.",
+      "via": "layer1_tl"
+    },
+    {
+      "id": "aHR0cHM6Ly9u",
+      "title": "How Generative AI is Reshaping Investment Strategies | The AI Summit New York",
+      "url": "https://newyork.theaisummit.com/latest-news/how-generative-ai-is-reshaping-investment-strategies/",
+      "source_name": "newyork.theaisummit.com",
+      "pub_date": null,
+      "snippet": "How Generative AI is Reshaping Investment Strategies. The investment landscape is undergoing a profound transformation as generative AI technologies redefine traditional approaches to market analysis, risk assessment, and portfolio management. Read the full article.",
+      "via": "layer1_tl"
+    }
+  ],
+  "blocked_items": [
+    {
+      "url": "https://www.fintechfutures.com/venture-capital-funding/jump-raises-80m-series-b",
+      "title": "Jump's AI Meeting Assistant Scales Across Advisor Workflows After $80M Series B",
+      "reason": "Score 37/100 — below 45 review threshold",
+      "score": 37
+    },
+    {
+      "url": "https://www.wealthmanagement.com/artificial-intelligence/wealthstack-roundup-finny-partners-with-osaic",
+      "title": "Finny Deploys AI Prospecting Tools Across Osaic's 11,000-Advisor Network",
+      "reason": "Score 59/100 — below 45 review threshold",
+      "score": 59
+    },
+    {
+      "url": "https://rbj.net/2026/04/03/how-ai-complements-financial-advisors-in-wealth-management/",
+      "title": "AI Adoption in Wealth Management Framed as Advisor Complement, Not Replacement",
+      "reason": "Score 38/100 — below 45 review threshold",
+      "score": 38
+    },
+    {
+      "url": "https://www.investmentnews.com/fintech/finny-lands-osaic-deal-to-put-ai-prospecting-in-front-of-11000-advisors/265053",
+      "title": "Finny Deploys AI Prospecting Tools Across Osaic's 11,000-Advisor Network",
+      "reason": "Score 59/100 — below 45 review threshold",
+      "score": 59
+    },
+    {
+      "url": "https://fintech.global/2026/03/25/flanks-launches-ai-financial-advisor-for-wealth-managers/",
+      "title": "Flanks Launches AI Financial Advisor Tool Embedded in Wealth Manager Workflows",
+      "reason": "Score 53/100 — below 45 review threshold",
+      "score": 53
+    },
+    {
+      "url": "https://www.investmentnews.com/videos/in-the-nasdaq/how-ai-will-change-wealth-management-in-2026-and-beyond/265219",
+      "title": "Pebble Finance CEO Outlines AI Capability Shifts Reshaping Wealth Management Through 2026",
+      "reason": "Score 50/100 — below 45 review threshold",
+      "score": 50
+    }
+  ],
+  "written_at": "2026-04-04T04:12:44.641Z"
 }
