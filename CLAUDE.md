@@ -1,9 +1,11 @@
 # AI in Wealth Management — Intelligence Portal
 
-Executive intelligence platform tracking AI adoption across wealth management.
+Premium executive intelligence platform ($4,500-$5,000/year) tracking AI adoption across 37+ wealth management firms.
 Two systems: **Portal** (this repo, Next.js) + **Intake Server** (`../intake-server`, Node.js port 3003).
 
-See @docs/architecture.md for full system design and @docs/integrations.md for all external APIs.
+**v2 Content Pipeline (Sessions 14-17):** Research Agent → Writer Agent (Opus) → Evaluator Agent (McKinsey 6-check test) → Fabrication Agent (multi-source, drift detection) → Content Producer orchestrator. All 44 intelligence entries upgraded to consulting quality with multi-source verification.
+
+See @docs/architecture.md for full system design, @docs/integrations.md for all external APIs, @docs/pipeline-v2-plan.md for the v2 pipeline architecture.
 
 ---
 
@@ -75,12 +77,14 @@ After any significant session, update `/Users/haresh/.claude/projects/-Users-har
 ### The check before committing
 
 Before every `git commit`, mentally verify:
-1. Does `docs/agents-and-architecture.md` describe the current state of all 8 agents?
+1. Does `docs/agents-and-architecture.md` describe the current state of all agents (including v2: research-agent, writer-agent, evaluator-agent, content-producer)?
 2. Does `docs/integrations.md` list every external API currently in use?
-3. Does `docs/architecture.md` show the correct company/entry counts?
+3. Does `docs/architecture.md` show the correct company/entry counts (44 intelligence, 8 TL, 37 landscape)?
 4. Does the memory file reflect what was built this session?
 
 If any answer is no — update before committing.
+
+**Current data counts (April 2026):** 44 intelligence entries (41 multi-source) · 8 thought leadership · 37 landscape companies · 42 logos
 
 ---
 
