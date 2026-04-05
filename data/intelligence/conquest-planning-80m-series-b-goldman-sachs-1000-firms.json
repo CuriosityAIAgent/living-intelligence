@@ -1,0 +1,112 @@
+{
+  "id": "conquest-planning-80m-series-b-goldman-sachs-1000-firms",
+  "type": "funding",
+  "headline": "Conquest Planning Raises $80M Led by Goldman: 60% of Canadian Advisors, 1.5M Plans",
+  "the_so_what": "The investor list alone reads as a roster of institutions buying optionality on AI-powered planning: Goldman, Citi, TIAA, USAA, and BNY are all clients or potential clients of the technology they are funding. With 60% of Canadian advisors already on the platform, Conquest has proven distribution at national scale — the US and UK expansion, backed by $100M+ in total capital, puts it in direct competition with Altruist (custodial AI) and Jump (meeting AI) for the advisor productivity stack.",
+  "company": "conquest-planning",
+  "company_name": "Conquest Planning",
+  "date": "2025-06-23",
+  "source_name": "BusinessWire",
+  "source_url": "https://www.businesswire.com/news/home/20250623802541/en/Conquest-Planning-Raises-$80-Million-Series-B-Led-by-Growth-Equity-at-Goldman-Sachs-Alternatives-to-Bring-Personalized-AI-Powered-Financial-Plans-to-More-Families",
+  "source_verified": true,
+  "image_url": "/logos/conquest-planning.svg",
+  "summary": "Conquest Planning raised $80 million (USD) led by Growth Equity at Goldman Sachs Alternatives, with new investors Canapi Ventures, BDC Capital, Citi Ventures, TIAA Ventures, and USAA joining existing backers BNY and Portage. Total funding exceeds $100 million. The AI-powered financial planning platform — built around Strategic Advice Manager (SAM) — serves 60%+ of the Canadian financial advisor market across 1,000+ organisations, with nearly 1.5 million plans created. Major clients include RBC, Manulife, BNY Pershing, and Raymond James. CEO Mark Evans declared the era of trial-and-error financial planning over.",
+  "key_stat": {
+    "number": "60%+",
+    "label": "of Canadian financial advisor market using Conquest, approaching 1.5M plans"
+  },
+  "tags": {
+    "capability": "advisor_productivity",
+    "region": "us",
+    "segment": "advisor_tools",
+    "theme": [
+      "funding",
+      "financial_planning",
+      "ai_planning",
+      "goldman_sachs"
+    ]
+  },
+  "week": "2025-06-23",
+  "_governance": {
+    "verdict": "PASS",
+    "confidence": 97,
+    "verified_claims": [
+      "$80M USD ($110M CAD) Series B closed June 23, 2025 (BusinessWire official press release)",
+      "Led by Growth Equity at Goldman Sachs Alternatives (press release)",
+      "Total funding now exceeds $100M USD (press release)",
+      "New investors: Canapi Ventures, BDC Capital, Citi Ventures, TIAA Ventures, USAA (press release)",
+      "Existing investors BNY and Portage also participated (press release)",
+      "Over 1,000 financial services organisations on platform (press release)",
+      "Clients include RBC, Manulife, BNY Pershing, Raymond James (press release)",
+      "Supports more than 60% of Canada's financial advisor market (press release)",
+      "SAM (Strategic Advice Manager) AI engine in development (press release)"
+    ],
+    "unverified_claims": [],
+    "fabricated_claims": [],
+    "notes": "All claims sourced from BusinessWire official press release dated June 23, 2025. Official Conquest Planning press page confirms identical facts. human_approved: Track 2 entry written directly from verified source.",
+    "paywall_caveat": false,
+    "verified_at": "2026-03-23T00:00:00.000Z",
+    "human_approved": true,
+    "approved_at": "2026-03-23T00:00:00.000Z"
+  },
+  "published_at": "2025-06-23T00:00:00.000Z",
+  "_final_score": 82,
+  "_research": {
+    "entities": {
+      "company_name": "Conquest Planning",
+      "metrics": [
+        "$80M Series B",
+        "60% Canadian market",
+        "1000+ orgs",
+        "1.5M plans",
+        "$100M+ total"
+      ]
+    },
+    "source_count": 1,
+    "confidence": "high",
+    "researched_at": "2026-04-03T15:11:07.630Z"
+  },
+  "_fabrication": {
+    "verdict": "CLEAN",
+    "claims_checked": 8,
+    "claims_verified": 8,
+    "claims_unverified": 0,
+    "claims_fabricated": 0,
+    "details": [],
+    "checked_at": "2026-04-03T15:11:07.635Z"
+  },
+  "_iterations": [
+    {
+      "version": 1,
+      "evaluation": {
+        "overall": "PASS",
+        "quality_score": 9
+      },
+      "fabrication_verdict": "CLEAN"
+    }
+  ],
+  "_editor_notes": [],
+  "sources": [
+    {
+      "name": "Business Wire",
+      "url": "https://www.businesswire.com/news/home/20250623802541/en/Conquest-Planning-Raises-80-Million-Series-B-Led-by-Growth-Equity-at-Goldman-Sachs-Alternatives-to-Bring-Personalized-AI-Powered-Financial-Plans-to-More-Families",
+      "type": "primary"
+    },
+    {
+      "name": "Conquest Planning",
+      "url": "https://conquestplanning.com/media/conquest-planning-raises-80-million-series-b-led-by-growth-equity-at-goldman-sachs-alternatives-to-bring-personalized-ai-powered-financial-plans-to-more-families",
+      "type": "primary"
+    },
+    {
+      "name": "WealthManagement.com",
+      "url": "https://www.wealthmanagement.com/artificial-intelligence/conquest-planning-raises-80-million-to-grow-and-accelerate-us-expansion",
+      "type": "coverage"
+    },
+    {
+      "name": "BetaKit",
+      "url": "https://betakit.com/conquest-planning-raises-110-million-series-b-to-fuel-us-expansion-of-its-financial-management-platform/",
+      "type": "coverage"
+    }
+  ],
+  "source_count": 4
+}

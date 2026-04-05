@@ -1,0 +1,53 @@
+{
+  "id": "handelsbanken",
+  "name": "Handelsbanken Wealth & Asset Management",
+  "segment": "regional_champion",
+  "regions": [
+    "emea"
+  ],
+  "color": "#003087",
+  "ai_strategy_summary": "Handelsbanken takes the most deliberate AI posture among Nordic banks — deploying AI only where it demonstrably enhances human relationships, not as an end in itself. The bank internally describes the technology as 'Augmented Intelligence.' An IBM Watson-based AI compliance tool enabled a 40%+ surge in investment advice meetings with no headcount increase. An AI investment-advice system in Sweden drove 70%+ more customer meetings year-on-year. CDO Stephan Erne: 'You have to filter out what is really creating value for your customers or employees, not just push out a technology because it is cool.'",
+  "head_of_ai": {
+    "name": "Stephan Erne",
+    "title": "Chief Digital Officer"
+  },
+  "headline_metric": "70%+ more investment-advice meetings YoY with no headcount increase; IBM Watson handles 40%+ surge in compliance documents",
+  "headline_initiative": "AI investment-advice system (Sweden) + IBM Watson compliance AI — 'Augmented Intelligence' philosophy",
+  "overall_maturity": "piloting",
+  "capabilities": {
+    "advisor_productivity": {
+      "maturity": "deployed",
+      "headline": "AI investment-advice system delivers 70%+ more customer meetings YoY in Sweden — IBM Watson compliance tool handles surge in documentation with no headcount increase",
+      "detail": "Handelsbanken deployed an AI-assisted investment-advice system for Swedish private customers that digitises and streamlines the advisory process. Year-to-date customer meeting volumes increased 70%+ versus the prior period with no increase in advisory headcount. Separately, an IBM Watson-based AI compliance tool handles the document review workload from a 40%+ increase in investment advice meetings — using NLP and text assessment alongside human review of complex cases.",
+      "evidence": [
+        "AI investment-advice system: 70%+ more customer meetings YoY in Sweden with no headcount increase — PA Consulting case study",
+        "IBM Watson compliance tool: handles 40%+ surge in investment advice compliance documents — PA Consulting case study",
+        "Handelsbanken internally describes AI as 'Augmented Intelligence' — PA Consulting case study"
+      ],
+      "date_assessed": "2026-03-24",
+      "sources": [
+        {
+          "name": "PA Consulting — Balancing relationships and technology at Handelsbanken",
+          "url": "https://www.paconsulting.com/insights/balancing-relationships-and-technology-at-handelsbanken"
+        }
+      ]
+    },
+    "operations_compliance": {
+      "maturity": "deployed",
+      "headline": "IBM Watson-based NLP compliance review deployed — AI handles document assessment load; complex cases escalated to humans",
+      "detail": "Handelsbanken implemented an IBM Watson-based AI tool for compliance document review resulting from the 40%+ increase in investment advice meetings. The system uses NLP and text assessment for standard cases, while complex cases are escalated to human reviewers. The federated learning AML detection research project with AI Sweden and Swedbank is also in progress.",
+      "evidence": [
+        "IBM Watson NLP compliance tool deployed — handles standard compliance document review — PA Consulting case study",
+        "Complex cases escalated to human review — PA Consulting case study"
+      ],
+      "date_assessed": "2026-03-24",
+      "sources": [
+        {
+          "name": "PA Consulting — Balancing relationships and technology at Handelsbanken",
+          "url": "https://www.paconsulting.com/insights/balancing-relationships-and-technology-at-handelsbanken"
+        }
+      ]
+    }
+  },
+  "last_updated": "2026-03-24"
+}

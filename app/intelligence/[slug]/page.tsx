@@ -22,7 +22,10 @@ function boldKey(text: string): React.ReactNode {
 
 // Split into sentences; bold opening clause (lede) + key figures + proper nouns
 function FormattedSummary({ text }: { text: string }) {
-  const sentences = (text.match(/[^.!?]+[.!?]+(?:\s|$)/g) || [text])
+  // Split on sentence-ending punctuation — but NOT on periods inside numbers (e.g. $14.00, 0.25%)
+  const normalized = text.replace(/(\d)\.(\d)/g, '$1·$2'); // temp-replace decimal points
+  const sentences = (normalized.match(/[^.!?]+[.!?]+(?:\s|$)/g) || [normalized])
+    .map(s => s.replace(/(\d)·(\d)/g, '$1.$2')) // restore decimal points
     .map(s => s.trim())
     .filter(s => s.length > 10);
 
@@ -30,7 +33,25 @@ function FormattedSummary({ text }: { text: string }) {
     <ul className="space-y-4">
       {sentences.map((s, i) => {
         // Bold the opening clause — text before first comma/semicolon/colon (chars 15–85)
-        const candidates = [s.indexOf(',', 15), s.indexOf(';', 15), s.indexOf(':', 15)]
+        const findNonNumericComma = (str: string): number => {
+          let idx = str.indexOf(',', 15);
+          while (idx > 0 && idx < 85) {
+            // Skip commas between digits (e.g. 23,000)
+            if (/\d/.test(str[idx - 1] || '') && /\d/.test(str[idx + 1] || '')) {
+              idx = str.indexOf(',', idx + 1);
+              continue;
+            }
+            // Skip commas inside parentheses (e.g. "(March 26, 2026)")
+            const before = str.slice(0, idx);
+            if ((before.split('(').length - before.split(')').length) > 0) {
+              idx = str.indexOf(',', idx + 1);
+              continue;
+            }
+            break;
+          }
+          return idx >= 15 && idx < 85 ? idx : -1;
+        };
+        const candidates = [findNonNumericComma(s), s.indexOf(';', 15), s.indexOf(':', 15)]
           .filter(p => p > 0 && p < 85);
         const cut = candidates.length ? Math.min(...candidates) : -1;
 
@@ -110,6 +131,14 @@ export default async function IntelligenceArticlePage({
           {entry.headline}
         </h1>
 
+        {/* Why this matters — the_so_what editorial callout */}
+        {entry.the_so_what && (
+          <div className="border-l-4 border-[#990F3D] pl-5 mb-8 py-1">
+            <p className="text-[11px] font-bold uppercase tracking-widest text-[#990F3D] mb-2">Why this matters</p>
+            <p className="text-[15px] text-gray-800 leading-relaxed font-medium">{entry.the_so_what}</p>
+          </div>
+        )}
+
         {/* Key stat */}
         {entry.key_stat && (
           <div className="bg-gray-50 border border-gray-100 rounded p-5 mb-8 flex items-center gap-6">
@@ -136,23 +165,47 @@ export default async function IntelligenceArticlePage({
         {/* Sources */}
         <div className="border-t border-gray-100 pt-6 mb-8">
           <p className="text-xs text-gray-400 uppercase tracking-wide mb-3">
-            {entry.additional_sources?.length ? 'Sources' : 'Source'}
+            {entry.sources?.length
+              ? `Sources (${entry.sources.length})`
+              : entry.additional_sources?.length ? 'Sources' : 'Source'}
           </p>
           <div className="flex flex-col gap-2">
-            {entry.source_url ? (
-              <a href={entry.source_url} target="_blank" rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-sm font-medium text-[#990F3D] hover:underline">
-                {entry.source_name}<span className="text-gray-400">↗</span>
-              </a>
+            {entry.sources && entry.sources.length > 0 ? (
+              // New multi-source display
+              entry.sources.map((s, i) => (
+                <div key={i} className="flex items-center gap-2">
+                  <a href={s.url} target="_blank" rel="noopener noreferrer"
+                    className={`inline-flex items-center gap-2 text-sm hover:underline ${
+                      s.type === 'primary' ? 'font-semibold text-[#990F3D]' : 'text-gray-600 hover:text-[#990F3D]'
+                    }`}>
+                    {s.name} <span className="text-gray-400">↗</span>
+                  </a>
+                  {s.type === 'primary' && (
+                    <span className="text-[9px] font-bold uppercase tracking-wider text-green-700 bg-green-50 px-1.5 py-0.5 rounded">
+                      Primary
+                    </span>
+                  )}
+                </div>
+              ))
             ) : (
-              <span className="text-sm text-gray-700">{entry.source_name}</span>
+              // Fallback: old single source + additional_sources display
+              <>
+                {entry.source_url ? (
+                  <a href={entry.source_url} target="_blank" rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 text-sm font-medium text-[#990F3D] hover:underline">
+                    {entry.source_name}<span className="text-gray-400">↗</span>
+                  </a>
+                ) : (
+                  <span className="text-sm text-gray-700">{entry.source_name}</span>
+                )}
+                {entry.additional_sources?.map((s, i) => (
+                  <a key={i} href={s.url} target="_blank" rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 text-sm text-gray-600 hover:text-[#990F3D] hover:underline">
+                    {s.name}<span className="text-gray-400">↗</span>
+                  </a>
+                ))}
+              </>
             )}
-            {entry.additional_sources?.map((s, i) => (
-              <a key={i} href={s.url} target="_blank" rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-sm text-gray-600 hover:text-[#990F3D] hover:underline">
-                {s.name}<span className="text-gray-400">↗</span>
-              </a>
-            ))}
           </div>
         </div>
 

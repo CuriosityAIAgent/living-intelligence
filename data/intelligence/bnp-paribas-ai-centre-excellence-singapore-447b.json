@@ -1,0 +1,91 @@
+{
+  "id": "bnp-paribas-ai-centre-excellence-singapore-447b",
+  "type": "strategy_move",
+  "headline": "BNP Paribas Wealth Management Opens AI Centre of Excellence in Singapore to Serve $447B Asia Book",
+  "the_so_what": "BNP Paribas building its AI centre in Singapore — where DBS already operates 1,500 AI models and Standard Chartered has deployed SC GPT across 41 markets — puts the French bank in direct competition for AI talent and infrastructure in the region with the most aggressive AI adoption in banking. Julius Baer's JAI platform reached 4,000 weekly users from its Asian operations. The competitive question for European private banks is no longer whether to invest in AI but whether to build capabilities in Asia where the client growth is, or risk being outpaced by regional champions already deploying at scale.",
+  "company": "bnp-paribas-wealth",
+  "company_name": "BNP Paribas Wealth Management",
+  "date": "2025-11-12",
+  "source_name": "Asian Investor Wealth",
+  "source_url": "https://www.asianinvestorwealth.net/article/bnp-paribas-wealth-management-launches-ai-centre-in-singapore/505784",
+  "source_verified": true,
+  "image_url": "/logos/bnp-paribas.svg",
+  "summary": "BNP Paribas Wealth Management Asia has launched an Artificial Intelligence Centre of Excellence in Singapore, designed to accelerate AI adoption across its Asian operations in close collaboration with the bank's Paris headquarters. The centre draws on Singapore's technology ecosystem to develop and deploy advanced AI solutions across the $447 billion Asia wealth book. The initiative reflects BNP Paribas' strategy of building AI capabilities in the markets where growth is concentrated rather than retrofitting from Europe.",
+  "key_stat": {
+    "number": "$447B",
+    "label": "BNP Paribas Wealth Management Asia AUM — AI Centre of Excellence launched Singapore, November 2025"
+  },
+  "tags": {
+    "capability": "advisor_productivity",
+    "region": "asia",
+    "segment": "global_private_bank",
+    "theme": [
+      "ai_centre",
+      "generative_ai",
+      "singapore",
+      "private_banking"
+    ]
+  },
+  "week": "2025-11-10",
+  "_governance": {
+    "verdict": "PASS",
+    "confidence": 93,
+    "verified_claims": [
+      "AI Centre of Excellence launched in Singapore, November 2025 (Asian Investor Wealth, November 12 2025)",
+      "BNP Paribas Wealth Management Asia manages $447 billion in assets (article)",
+      "Four pillars: Innovate, Deploy, Accelerate, Upskill (article)",
+      "Focuses on portfolio analytics, client onboarding, and advisory automation (article)",
+      "Collaborates with BNP Paribas Paris headquarters (article)",
+      "Dedicated L&D curriculum for relationship managers, technology specialists, and AI ambassadors (article)",
+      "CEO Asia: Arnaud Tellier; Asia Chief Digital & AI Officer: Vivien Jong (article)"
+    ],
+    "unverified_claims": [],
+    "fabricated_claims": [],
+    "notes": "All claims sourced from Asian Investor Wealth article dated November 12, 2025. Caproasia published corroborating coverage November 13, 2025. human_approved: Track 2 entry written directly from verified source.",
+    "paywall_caveat": false,
+    "verified_at": "2026-03-23T00:00:00.000Z",
+    "human_approved": true,
+    "approved_at": "2026-03-23T00:00:00.000Z"
+  },
+  "published_at": "2025-11-12T00:00:00.000Z",
+  "_final_score": 78,
+  "_research": {
+    "entities": {
+      "company_name": "BNP Paribas",
+      "metrics": [
+        "$447B Asia book"
+      ]
+    },
+    "source_count": 1,
+    "confidence": "medium",
+    "researched_at": "2026-04-03T19:58:38.197Z"
+  },
+  "_fabrication": {
+    "verdict": "CLEAN",
+    "claims_checked": 5,
+    "claims_verified": 5,
+    "claims_unverified": 0,
+    "claims_fabricated": 0,
+    "details": [],
+    "checked_at": "2026-04-03T19:58:38.197Z"
+  },
+  "_iterations": [
+    {
+      "version": 1,
+      "evaluation": {
+        "overall": "PASS",
+        "quality_score": 8
+      },
+      "fabrication_verdict": "CLEAN"
+    }
+  ],
+  "_editor_notes": [],
+  "sources": [
+    {
+      "name": "Asian Investor Wealth",
+      "url": "https://www.asianinvestorwealth.net/article/bnp-paribas-wealth-management-launches-ai-centre-in-singapore/505784",
+      "type": "primary"
+    }
+  ],
+  "source_count": 1
+}

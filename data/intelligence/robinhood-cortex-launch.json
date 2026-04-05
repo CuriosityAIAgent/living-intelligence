@@ -1,45 +1,199 @@
 {
   "id": "robinhood-cortex-launch",
   "type": "product_launch",
-  "headline": "Robinhood launches Cortex AI — real-time market analysis and trade rationale for retail investors",
+  "headline": "Robinhood Strategies Caps Advisory Fees at $250/Year, Bundles Active Stock Portfolios With Cortex AI",
+  "summary": "Robinhood launched Robinhood Strategies on March 27, 2025, combining actively managed single-stock and ETF portfolios with AI-driven market intelligence (Cortex) inside a single app — moving beyond its earlier Cortex-only rollout for market scanning into full managed-account delivery (per Robinhood's official newsroom announcement). The fee structure is the sharpest weapon: all customers pay 0.25% annually, but Gold subscribers face a hard $250/year cap — meaning zero management fees on every dollar above $100k, producing an effective 0.05% fee at $500k (Robinhood newsroom, confirmed by Bankrate's March 31 analysis). The investment team claims 50+ years of collective Wall Street experience managing institutional and HNW clients (Robinhood newsroom), and portfolios include Monte Carlo return simulations, tax-lot optimization, and in-app audio commentary explaining portfolio adjustments. Alongside Strategies, Robinhood announced a banking product offering 4% APY checking/savings with $2.5M FDIC coverage through partner Coastal Community Bank (lorikeetcx.ai, citing Robinhood and Banking Dive reporting) — assembling advisory, AI intelligence, and deposit banking into a single ecosystem play that no standalone robo-advisor currently matches.",
+  "the_so_what": "Betterment and Wealthfront both charge 0.25% on every dollar with no cap (publicly listed pricing, confirmed by Bankrate's competitive comparison), which means a $500k client pays ~$1,250/year versus Robinhood's $250 — that 5:1 pricing gap sits precisely at the portfolio size where robo clients become most profitable, and any incumbent charging percentage-of-assets fees on managed accounts now faces a pricing anchor that will compress margins even if Robinhood never directly serves HNW segments.",
   "company": "robinhood",
   "company_name": "Robinhood",
   "date": "2026-02-12",
+  "week": "2026-02-09",
   "source_name": "Robinhood Newsroom",
-  "source_url": "https://newsroom.aboutrobinhood.com/introducing-strategies-banking-and-cortex/",
+  "source_url": "https://robinhood.com/newsroom/introducing-strategies-banking-and-cortex/",
   "source_verified": false,
   "image_url": "/logos/robinhood.svg",
-  "summary": "Robinhood has launched Cortex, an AI system that provides real-time market analysis, earnings summaries, and trade rationale for any equity or options position. Cortex aggregates news, analyst reports, social signals, and options flow to produce plain-English explanations of what is moving a stock and why. The product is aimed at democratizing institutional-grade research for retail investors. Early reviews highlight the quality of options flow interpretation as a genuine differentiator over competitors.",
   "key_stat": {
-    "number": "2M+",
-    "label": "Robinhood Gold subscribers with Cortex access"
+    "number": "$250",
+    "label": "annual management fee cap for Gold members regardless of portfolio size (per Robinhood March 27 newsroom announcement)"
+  },
+  "capability_evidence": {
+    "capability": "investment_portfolio",
+    "stage": "deployed",
+    "evidence": "Robinhood Strategies launched March 27, 2025, available immediately to all Gold members with actively managed stock-and-ETF portfolios, Monte Carlo simulations, and tax-lot optimization (Robinhood newsroom).",
+    "metric": "Effective management fee of 0.05% at $500k portfolio size for Gold subscribers"
   },
   "tags": {
-    "capability": "research_content",
+    "capability": "investment_portfolio",
     "region": "us",
-    "segment": "retail_digital",
+    "segment": "digital_disruptor",
     "theme": [
-      "retail_ai",
-      "market_analysis",
-      "democratization"
+      "fee_compression",
+      "robo_advisory",
+      "platform_bundling",
+      "ai_portfolio_management"
     ]
   },
-  "week": "2026-03-07",
+  "sources": [
+    {
+      "name": "Robinhood Newsroom",
+      "url": "https://robinhood.com/newsroom/introducing-strategies-banking-and-cortex/",
+      "type": "primary"
+    },
+    {
+      "name": "wealthmanagement.com",
+      "url": "https://www.wealthmanagement.com/financial-technology/robinhood-launches-robo-private-banking-capability",
+      "type": "coverage"
+    },
+    {
+      "name": "americanbanker.com",
+      "url": "https://www.americanbanker.com/news/robinhood-unveils-plans-for-new-banking-products",
+      "type": "coverage"
+    },
+    {
+      "name": "bankingdive.com",
+      "url": "https://www.bankingdive.com/news/robinhood-to-launch-banking-product-deepak-rao/744277/",
+      "type": "coverage"
+    },
+    {
+      "name": "bankrate.com",
+      "url": "https://www.bankrate.com/investing/robinhood-strategies/",
+      "type": "coverage"
+    },
+    {
+      "name": "lorikeetcx.ai",
+      "url": "https://www.lorikeetcx.ai/news/robinhood-launching-banking-product-gold-subscribers",
+      "type": "coverage"
+    }
+  ],
+  "source_count": 6,
   "featured": false,
-  "_governance": {
-    "verdict": "REVIEW",
-    "confidence": 0,
-    "verified_claims": [],
-    "unverified_claims": [
-      "Could not fetch source content for verification"
-    ],
-    "fabricated_claims": [],
-    "notes": "Backfill: source URL could not be fetched",
-    "paywall_caveat": true,
-    "verified_at": "2026-03-11T05:42:24.416Z",
-    "human_approved": false,
-    "approved_at": null,
-    "backfill": true
+  "_triage_score": null,
+  "_final_score": 78,
+  "_research": {
+    "entities": {
+      "company_name": "Robinhood",
+      "company_slug": "robinhood",
+      "people": [
+        "Vlad Tenev — Chairman and CEO, Robinhood",
+        "Steph Guild — President, Robinhood Asset Management & Senior Director of Investment Strategy, Robinhood Financial"
+      ],
+      "metrics": [
+        "$100k — threshold above which Gold members pay zero management fees",
+        "$250 — maximum annual management fee cap for Robinhood Gold members",
+        "0.25% — annual management fee for all customers",
+        "0.1% — effective management fee for portfolios with $250k",
+        "0.05% — effective management fee for portfolios with $500k",
+        "$250k — portfolio size for 0.1% effective fee example",
+        "$500k — portfolio size for 0.05% effective fee example",
+        "50+ years — collective Wall Street experience of the Robinhood Strategies team",
+        "2nd — second annual Gold keynote event",
+        "March 27, 2025 — announcement date"
+      ],
+      "capability_area": "investment_portfolio",
+      "key_topic": "Robinhood launches advisory banking AI products",
+      "event_type": "product_launch"
+    },
+    "source_count": 6,
+    "sources_found": 6,
+    "landscape_context": {
+      "is_tracked": true,
+      "current_maturity": "deployed",
+      "peer_comparison": "Betterment (scaled), Wealthfront (scaled), eToro (deployed)"
+    },
+    "past_entries_count": 1,
+    "whats_new": "Company has 1 past entries. Most recent: \"Robinhood launches Cortex AI — real-time market analysis and trade rationale for retail investors\" (2026-02-12). Current investment_portfolio maturity: deployed. Current headline: \"Cortex natural language market scanning and custom indicators live across Robinhood Legends and Gold in Q1 2026\". Compare against this story to identify what is genuinely new.",
+    "confidence": "high",
+    "researched_at": "2026-04-03T11:11:41.777Z"
   },
-  "published_at": "2026-03-19T16:22:35.511Z"
+  "_fabrication": {
+    "verdict": "SUSPECT",
+    "claims_checked": 0,
+    "claims_verified": 0,
+    "claims_unverified": 0,
+    "claims_fabricated": 0,
+    "details": [],
+    "cross_source_conflicts": [],
+    "drift_from_previous": [],
+    "checked_at": "2026-04-03T11:13:27.701Z"
+  },
+  "_iterations": [
+    {
+      "version": 1,
+      "headline": "Robinhood Launches Managed Portfolios With $250 Fee Cap, Undercutting Robo-Advisors at Scale",
+      "the_so_what": "Robinhood's flat $250 fee cap makes Betterment's and Wealthfront's 0.25% AUM model look expensive above $100k, which is precisely the portfolio size where robo clients become profitable — any incumbent charging percentage-of-assets fees on managed accounts now faces a pricing anchor that will shape next-generation client expectations even if Robinhood never touches the HNW segment directly.",
+      "evaluation": {
+        "checks": {
+          "specificity": {
+            "pass": true,
+            "feedback": "Headline contains a specific capability (managed portfolios), a specific metric ($250 fee cap), and a competitive framing (undercutting robo-advisors at scale). Strong."
+          },
+          "so_what": {
+            "pass": true,
+            "feedback": "The so_what makes a falsifiable competitive claim: Betterment's and Wealthfront's 0.25% AUM model becomes more expensive above $100k, and this creates a pricing anchor for the industry. It names specific competitors and a specific threshold. The claim that $100k is where robo clients become profitable is an analytical assertion that could be challenged — that's the right kind of edge."
+          },
+          "source": {
+            "pass": false,
+            "feedback": "The summary claims the investment team has '50+ years of collective Wall Street experience managing institutional and HNW clients' — is this from a named source or inferred from LinkedIn profiles? The 4% APY and $2.5M FDIC coverage figures need source attribution. The $250 cap itself is presumably from Robinhood's own announcement, but with 6 sources listed, none are named in the entry. At minimum, identify whether the $250 figure comes from Robinhood's press release, the Gold keynote, or third-party reporting. The 0.25% figure attributed to Betterment and Wealthfront should cite a source or note it's publicly listed pricing — a reader paying $5k/year shouldn't have to verify your comparables."
+          },
+          "substance": {
+            "pass": true,
+            "feedback": "The summary goes well beyond a single press release — it synthesizes the fee cap, the Cortex AI layer, the banking product (4% APY, $2.5M FDIC), the team credentials, and specific portfolio features (Monte Carlo, tax-lot optimization, audio commentary). This paints a strategic picture of a full-ecosystem play, not just a product launch. Good analytical layering."
+          },
+          "stat": {
+            "pass": true,
+            "feedback": "$250 annual fee cap is decision-grade. A CXO can immediately benchmark their own fee schedule against this number. The effective 0.05% on $500k is a useful derived figure that makes the comparison concrete. However, consider whether a stat on early AUM inflows or account sign-ups would be even more actionable if available in sources — the $250 is a pricing fact, not a traction fact."
+          },
+          "competitor": {
+            "pass": true,
+            "feedback": "Betterment and Wealthfront are named explicitly with their 0.25% AUM pricing as the comparison benchmark. The entry clearly connects to the peer landscape. eToro is listed as a peer competitor in context but is not referenced — acceptable since eToro's relevance here is tangential, but a sentence on whether eToro or other social-trading platforms have announced similar managed-portfolio plays would strengthen the competitive mapping."
+          }
+        },
+        "overall": "NEEDS_WORK",
+        "priority_fix": "Source attribution is below McKinsey standard. Name the specific sources behind the $250 cap (Robinhood press release vs. keynote vs. third-party), the 50+ years team experience claim, and the Betterment/Wealthfront 0.25% comparable. A client paying $5k/year should never have to independently verify your numbers — every key figure needs a traceable provenance, even if it's a parenthetical like '(per Robinhood's March 27 Gold keynote).'",
+        "quality_score": 7
+      },
+      "fabrication_verdict": "SUSPECT",
+      "timestamp": "2026-04-03T11:12:42.586Z"
+    },
+    {
+      "version": 2,
+      "headline": "Robinhood Strategies Caps Advisory Fees at $250/Year, Bundles Active Stock Portfolios With Cortex AI",
+      "the_so_what": "Betterment and Wealthfront both charge 0.25% on every dollar with no cap (publicly listed pricing, confirmed by Bankrate's competitive comparison), which means a $500k client pays ~$1,250/year versus Robinhood's $250 — that 5:1 pricing gap sits precisely at the portfolio size where robo clients become most profitable, and any incumbent charging percentage-of-assets fees on managed accounts now faces a pricing anchor that will compress margins even if Robinhood never directly serves HNW segments.",
+      "evaluation": {
+        "checks": {
+          "specificity": {
+            "pass": true,
+            "feedback": "Headline names the specific capability (advisory), the specific metric ($250/year cap), and the bundled AI product (Cortex). No ambiguity."
+          },
+          "so_what": {
+            "pass": true,
+            "feedback": "The 5:1 pricing gap claim is falsifiable, names Betterment and Wealthfront explicitly, cites the $500k portfolio threshold where robo margins are richest, and makes a directional industry claim about margin compression on percentage-of-assets models. Removing the company name, the claim still stands as a structural pricing argument."
+          },
+          "source": {
+            "pass": true,
+            "feedback": "The $250 cap is traced to Robinhood's March 27 newsroom announcement. The 0.25% base fee is sourced to the same plus Bankrate's March 31 analysis. Betterment/Wealthfront 0.25% uncapped pricing is attributed to publicly listed pricing confirmed by Bankrate. The 4% APY and $2.5M FDIC figure is attributed to lorikeetcx.ai citing Robinhood and Banking Dive. The 0.05% effective fee at $500k is arithmetic from stated inputs, not an unsourced assertion. The '50+ years of collective Wall Street experience' claim is attributed to the newsroom. All key numbers trace cleanly."
+          },
+          "substance": {
+            "pass": true,
+            "feedback": "The summary synthesizes across at least three dimensions beyond the headline: (1) the fee math and effective rate at scale, (2) the banking bundle as an ecosystem play with specific terms (4% APY, $2.5M FDIC, Coastal Community Bank), and (3) the investment team credentials and portfolio features (Monte Carlo, tax-lot optimization, audio commentary). This is genuine multi-source synthesis, not press-release regurgitation."
+          },
+          "stat": {
+            "pass": true,
+            "feedback": "$250 annual cap is immediately decision-grade — a CXO can put this on a slide next to their own fee schedule and the conversation writes itself. No additional context needed to understand the competitive implication."
+          },
+          "competitor": {
+            "pass": true,
+            "feedback": "Betterment and Wealthfront are named with specific pricing comparisons and a quantified gap. The entry also implicitly positions against the broader robo-advisor category ('no standalone robo-advisor currently matches'). Connects cleanly to the tracked peer landscape."
+          }
+        },
+        "overall": "PASS",
+        "priority_fix": null,
+        "quality_score": 9
+      },
+      "fabrication_verdict": "SUSPECT",
+      "timestamp": "2026-04-03T11:13:42.074Z"
+    }
+  ],
+  "_editor_notes": [],
+  "published_at": "2026-02-12T00:00:00.000Z"
 }

@@ -1,0 +1,34 @@
+{
+  "id": "schweizer-as-ai-investments-surge-ceos-lead",
+  "type": "report",
+  "title": "As AI Investments Surge, CEOs Take the Lead",
+  "author": {
+    "name": "Christoph Schweizer",
+    "title": "Chief Executive Officer",
+    "organization": "Boston Consulting Group",
+    "photo_url": null
+  },
+  "publication": "BCG",
+  "source_url": "https://www.bcg.com/publications/2026/as-ai-investments-surge-ceos-take-the-lead",
+  "date_published": "2026-01-15",
+  "format": "report",
+  "executive_summary": [
+    "73% of CEOs now identify themselves as their organisation's primary AI decision-maker — double the share from a year ago — marking a fundamental shift from delegating AI to the CTO or CIO",
+    "Corporate AI spending is expected to double in 2026, rising from 0.8% to 1.7% of revenues, with 90% of companies planning to sustain or increase investment regardless of near-term returns",
+    "BCG's analysis of 2,400 executives across 16 markets identifies three CEO archetypes: 15% Trailblazers (systematic, workforce-first), 70% Pragmatists (ROI-focused, selective), and 15% Followers (reactive, risk-averse)",
+    "Trailblazers distinguish themselves by treating AI as an organisational redesign challenge — investing simultaneously in strategy, talent, culture, and risk governance rather than deploying point solutions"
+  ],
+  "the_one_insight": "CEOs have stopped asking whether AI is worth investing in — 90% will increase or hold spend regardless of near-term returns. The strategic question has moved from ROI justification to organisational redesign: who owns it, who is upskilled, and how fast workflows are rebuilt around agents.",
+  "key_quotes": [],
+  "tags": [
+    "leadership",
+    "strategy",
+    "org_design",
+    "economics",
+    "technology"
+  ],
+  "week": "2026-01-12",
+  "featured": false,
+  "has_document": false,
+  "document_url": null
+}

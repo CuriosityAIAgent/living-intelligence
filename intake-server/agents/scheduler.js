@@ -19,8 +19,8 @@ import { autoDiscover } from './auto-discover.js';
 import { processUrl } from './intake.js';
 import { verify } from './governance.js';
 import { scoreEntry, formatScoreBreakdown } from './scorer.js';
-import { publish, commitAndPush } from './publisher.js';
-import { addPending, addBlocked, isBlocked } from './gov-store.js';
+import { addPending, addBlocked, isBlocked, isTopicSuppressed, writePipelineStatus } from './gov-store.js';
+import { commitInboxState } from './publisher.js';
 import { sendDigest } from './notifier.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -73,15 +73,20 @@ function makeSink() {
 /**
  * Run the full daily pipeline.
  * Returns a summary object: { published, pending, blocked, errors, newCompanies, tlCandidates }
+ *
+ * NOTE: Nothing auto-publishes. All scored stories (PASS and REVIEW) go to the
+ * editorial inbox for human sign-off. 'published' array will always be empty
+ * from this function — it's kept for interface compatibility with sendDigest.
  */
 export async function runDailyPipeline() {
-  console.log(`[scheduler] Daily pipeline started at ${new Date().toISOString()}`);
+  const startedAt = new Date().toISOString();
+  console.log(`[scheduler] Daily pipeline started at ${startedAt}`);
 
-  const published    = [];
+  const published    = []; // always empty — nothing auto-publishes
   const pending      = [];
   const blocked      = [];
   const errors       = [];
-  const newCompanies = []; // companies discovered but not in the landscape
+  const newCompanies = [];
 
   // ── 1. Discover candidates ─────────────────────────────────────────────────
   let intelCandidates = [];
@@ -113,7 +118,6 @@ export async function runDailyPipeline() {
   console.log(`[scheduler] ${top15.length} intel candidates to process, ${tlCandidates.length} TL candidates`);
 
   // ── 2. Process each intelligence candidate ─────────────────────────────────
-  const publishedIds = [];
 
   for (const candidate of top15) {
     const url = candidate.url;
@@ -137,6 +141,16 @@ export async function runDailyPipeline() {
 
       if (!intakeResult) {
         errors.push({ url, stage: 'intake', message: 'processUrl returned null' });
+        continue;
+      }
+
+      // Topic suppression — company+type rejected 2+ times with same reason → skip
+      const entryCompanyId = intakeResult.entry.company;
+      const entryType = intakeResult.entry.type;
+      if (entryCompanyId && entryType && isTopicSuppressed(entryCompanyId, entryType)) {
+        console.log(`[scheduler] Skipping suppressed topic ${entryCompanyId}:${entryType}`);
+        blocked.push({ url, reason: `Topic suppressed: ${intakeResult.entry.company_name || entryCompanyId} / ${entryType}` });
+        addBlocked(url, intakeResult.entry.id || url, `Topic suppressed: ${entryCompanyId}:${entryType}`);
         continue;
       }
 
@@ -210,20 +224,20 @@ export async function runDailyPipeline() {
 
       // ── New company detection ──────────────────────────────────────────────
       // If the entry references a company not in our landscape, flag it.
-      const entryCompanyId   = (intakeResult.entry.company      || '').toLowerCase().replace(/[^a-z0-9-]/g, '-');
+      const normalizedCompanyId = (intakeResult.entry.company      || '').toLowerCase().replace(/[^a-z0-9-]/g, '-');
       const entryCompanyName = (intakeResult.entry.company_name || '').toLowerCase();
       // Match by ID, by name, or by partial ID (e.g. "jump" matches "jump-ai")
-      const isKnown = knownCompanyIds.has(entryCompanyId)
+      const isKnown = knownCompanyIds.has(normalizedCompanyId)
         || knownCompanyNames.has(entryCompanyName)
-        || [...knownCompanyIds].some(id => id.length >= 3 && (id.startsWith(entryCompanyId) || entryCompanyId.startsWith(id)));
-      if (entryCompanyId && !isKnown) {
-        const companyName = intakeResult.entry.company_name || intakeResult.entry.company || entryCompanyId;
+        || [...knownCompanyIds].some(id => id.length >= 3 && (id.startsWith(normalizedCompanyId) || normalizedCompanyId.startsWith(id)));
+      if (normalizedCompanyId && !isKnown) {
+        const companyName = intakeResult.entry.company_name || intakeResult.entry.company || normalizedCompanyId;
         // Only flag if it's not a generic catch-all ID
-        if (entryCompanyId.length > 2 && !['unknown', 'other', 'various'].includes(entryCompanyId)) {
-          const alreadyFlagged = newCompanies.some(c => c.id === entryCompanyId);
+        if (normalizedCompanyId.length > 2 && !['unknown', 'other', 'various'].includes(normalizedCompanyId)) {
+          const alreadyFlagged = newCompanies.some(c => c.id === normalizedCompanyId);
           if (!alreadyFlagged) {
             newCompanies.push({
-              id:   entryCompanyId,
+              id:   normalizedCompanyId,
               name: companyName,
               url,
               headline: intakeResult.entry.headline,
@@ -263,19 +277,25 @@ export async function runDailyPipeline() {
         continue;
       }
 
-      // ── PUBLISH ────────────────────────────────────────────────────────────
-      const { send: pubSend } = makeSink();
-      const entryId = publish({ entry: intakeResult.entry, candidatePubDate: candidate.pub_date, send: pubSend });
-      publishedIds.push(entryId);
-      published.push({
-        id:                entryId,
+      // ── INBOX (was PUBLISH) ────────────────────────────────────────────────
+      // All stories — including high-scoring PASS entries — go to the editorial
+      // inbox for human review. Nothing publishes automatically.
+      addPending(intakeResult.entry, govAudit, {
+        score:           scored.score,
+        score_breakdown: formatScoreBreakdown(scored),
+      });
+      pending.push({
+        id:                intakeResult.entry.id,
         title:             intakeResult.entry.headline || candidate.title,
         company_name:      intakeResult.entry.company_name,
         score:             scored.score,
-        capability:        intakeResult.entry.capability_evidence?.capability || intakeResult.entry.tags?.capability || null,
-        capability_stage:  intakeResult.entry.capability_evidence?.stage || null,
+        score_breakdown:   formatScoreBreakdown(scored),
+        unverified_claims: govResult.unverified_claims || [],
+        paywall_caveat:    govAudit.paywall_caveat,
+        notes:             govResult.notes || '',
+        governance_verdict: govAudit.verdict,
       });
-      console.log(`[scheduler] PUBLISH → auto-published: ${entryId}`);
+      console.log(`[scheduler] INBOX → queued for editorial review (score ${scored.score}): ${intakeResult.entry.id}`);
 
     } catch (err) {
       console.error(`[scheduler] Error processing ${url}:`, err.message);
@@ -283,24 +303,20 @@ export async function runDailyPipeline() {
     }
   }
 
-  // ── 3. Commit + push published entries to main ─────────────────────────────
-  if (publishedIds.length > 0) {
-    let gitError = null;
-    const gitSend = (type, data) => {
-      if (type === 'error') gitError = data.message;
-    };
-    try {
-      commitAndPush({ ids: publishedIds, send: gitSend, branch: 'main' });
-      if (gitError) throw new Error(gitError);
-      console.log(`[scheduler] Pushed ${publishedIds.length} entries to main`);
-    } catch (err) {
-      console.error('[scheduler] Git push failed:', err.message);
-      errors.push({
-        stage:   'git_push',
-        message: `⚠️ Git push FAILED — ${publishedIds.length} entries written but NOT deployed. Check GIT_TOKEN. IDs: ${publishedIds.join(', ')}. Error: ${err.message}`,
-      });
-    }
-  }
+  // ── 3. Write pipeline status (for inbox dashboard) ────────────────────────
+  writePipelineStatus({
+    started_at:        startedAt,
+    candidates_found:  top15.length,
+    queued:            pending.length,
+    blocked:           blocked.length,
+    errors:            errors.length,
+    tl_candidates:     tlCandidates.length,
+    tl_items:          tlCandidates.slice(0, 15),
+    blocked_items:     blocked,
+  });
+
+  // ── 3b. Persist inbox state to git so it survives Railway redeployments ───
+  commitInboxState();
 
   // ── 4. Send daily digest ───────────────────────────────────────────────────
   const results = { published, pending, blocked, errors, newCompanies, tlCandidates };

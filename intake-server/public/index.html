@@ -8,32 +8,238 @@
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: #F9FAFB;
+      background: #FDF8F2;
       color: #111827;
       font-size: 14px;
       min-height: 100vh;
     }
 
-    /* Header */
-    header {
-      background: #fff;
-      border-bottom: 1px solid #E5E7EB;
-      padding: 0 24px;
+    /* ── Two-tier header (matches portal) ── */
+    .masthead {
+      background: #1C1C2E;
       height: 52px;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      padding: 0 24px;
       position: sticky;
       top: 0;
       z-index: 100;
     }
-    .header-title { font-size: 14px; font-weight: 700; color: #1B2E5E; }
-    .header-sub { font-size: 12px; color: #9CA3AF; margin-left: 12px; }
+    .masthead-title { font-size: 14px; font-weight: 700; color: #fff; }
+    .masthead-sub { font-size: 12px; color: #6B7280; margin-left: 12px; }
     .header-badge {
       font-size: 10px; font-weight: 700; letter-spacing: 0.08em;
       text-transform: uppercase; padding: 3px 8px; border-radius: 3px;
-      background: #EEF2FF; color: #3730A3;
+      background: #990F3D; color: #fff;
     }
+
+    .nav-bar {
+      background: #141420;
+      height: 40px;
+      display: flex;
+      align-items: stretch;
+      padding: 0 24px;
+      position: sticky;
+      top: 52px;
+      z-index: 99;
+      border-bottom: 1px solid #2D2D44;
+    }
+    .nav-tab {
+      background: none;
+      border: none;
+      border-bottom: 2px solid transparent;
+      color: #9CA3AF;
+      font-size: 13px;
+      font-weight: 500;
+      padding: 0 16px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: color .15s;
+      white-space: nowrap;
+    }
+    .nav-tab:hover { color: #fff; }
+    .nav-tab.active { color: #fff; border-bottom-color: #990F3D; font-weight: 600; }
+    .nav-badge {
+      background: #990F3D; color: #fff; font-size: 9px; font-weight: 700;
+      padding: 1px 5px; border-radius: 8px;
+    }
+
+    /* ── Section layout ── */
+    .section { display: none; min-height: calc(100vh - 92px); }
+    .section.active { display: block; }
+
+    /* Intelligence section header bar */
+    .intel-header {
+      background: #fff;
+      border-bottom: 1px solid #E5E7EB;
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .intel-kpis { display: flex; align-items: center; gap: 0; }
+    .kpi { display: flex; flex-direction: column; align-items: center; padding: 0 16px; }
+    .kpi:first-child { padding-left: 0; }
+    .kpi-num { font-size: 20px; font-weight: 700; color: #111827; line-height: 1; }
+    .kpi-num.green { color: #15803D; }
+    .kpi-num.amber { color: #B45309; }
+    .kpi-num.red { color: #B91C1C; }
+    .kpi-label { font-size: 10px; color: #9CA3AF; margin-top: 2px; text-transform: uppercase; letter-spacing: .05em; }
+    .kpi-div { width: 1px; background: #E5E7EB; height: 28px; margin: 0 4px; flex-shrink: 0; }
+    .kpi.clickable { cursor: pointer; }
+    .intel-header-right { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+    .last-run-label { font-size: 11px; color: #9CA3AF; }
+    .btn-run { background: #990F3D; color: #fff; border: none; border-radius: 4px; padding: 7px 14px; font-size: 12px; font-weight: 600; cursor: pointer; white-space: nowrap; }
+    .btn-run:hover { background: #7a0c31; }
+    .btn-run:disabled { background: #9CA3AF; cursor: not-allowed; }
+    .btn-icon { background: #fff; color: #374151; border: 1px solid #D1D5DB; border-radius: 4px; padding: 6px 10px; font-size: 13px; cursor: pointer; }
+    .btn-icon:hover { background: #F9FAFB; }
+
+    /* Sub-nav (Review | Discover inside Intelligence) */
+    .sub-nav {
+      background: #fff;
+      border-bottom: 1px solid #E5E7EB;
+      padding: 0 24px;
+      display: flex;
+      align-items: stretch;
+      height: 36px;
+    }
+    .sub-tab {
+      background: none; border: none; border-bottom: 2px solid transparent;
+      color: #6B7280; font-size: 12px; font-weight: 500;
+      padding: 0 14px; cursor: pointer;
+      display: flex; align-items: center; gap: 5px;
+    }
+    .sub-tab:hover { color: #111827; }
+    .sub-tab.active { color: #111827; border-bottom-color: #990F3D; font-weight: 600; }
+
+    /* Section content area */
+    .section-content { padding: 24px; }
+    .section-content.wide { max-width: 960px; margin: 0 auto; }
+
+    /* Discover two-panel layout */
+    .discover-layout {
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 0;
+      min-height: calc(100vh - 128px);
+    }
+    .discover-left {
+      background: #fff;
+      border-right: 1px solid #E5E7EB;
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      overflow: hidden;
+    }
+    .discover-right { padding: 24px; overflow-y: auto; background: #FDF8F2; }
+    .url-input {
+      flex: 1; font-size: 12px; padding: 7px 10px;
+      border: 1px solid #D1D5DB; border-radius: 4px; background: #fff;
+    }
+    .btn-secondary {
+      background: #fff; color: #374151; border: 1px solid #D1D5DB;
+      border-radius: 4px; padding: 7px 12px; font-size: 12px; cursor: pointer; white-space: nowrap;
+    }
+    .btn-secondary:hover { background: #F9FAFB; }
+
+    /* TL section cards */
+    .tl-section-header {
+      background: #fff;
+      border-bottom: 1px solid #E5E7EB;
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .tl-card {
+      background: #fff; border: 1px solid #E5E7EB; border-radius: 6px;
+      padding: 16px 20px; margin-bottom: 8px;
+      display: flex; align-items: flex-start; justify-content: space-between; gap: 16px;
+      transition: border-color .15s;
+    }
+    .tl-card:hover { border-color: #D1D5DB; }
+    .tl-card-title { font-size: 14px; font-weight: 600; color: #111827; line-height: 1.4; margin-bottom: 3px; }
+    .tl-card-meta { font-size: 11px; color: #6B7280; }
+    .tl-card-url { margin-top: 4px; font-size: 11px; }
+    .tl-card-url a { color: #990F3D; text-decoration: none; }
+    .tl-card-url a:hover { text-decoration: underline; }
+    .tl-card-actions { display: flex; gap: 6px; flex-shrink: 0; padding-top: 2px; }
+    .tl-card-log { display: none; margin-top: 8px; font-size: 11px; color: #6B7280; }
+    .tl-published-row {
+      display: flex; align-items: baseline; justify-content: space-between;
+      padding: 9px 0; border-bottom: 1px solid #F3F4F6; font-size: 13px;
+    }
+    .tl-published-row:last-child { border-bottom: none; }
+    .section-label-sm {
+      font-size: 10px; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; color: #990F3D; margin-bottom: 12px;
+    }
+
+    /* Activity log */
+    .activity-date-group { margin-bottom: 20px; }
+    .activity-date-label {
+      font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+      color: #9CA3AF; margin-bottom: 8px; padding-bottom: 6px; border-bottom: 1px solid #E5E7EB;
+    }
+    .activity-row {
+      display: flex; align-items: baseline; gap: 10px;
+      padding: 7px 0; border-bottom: 1px solid #F9FAFB; font-size: 13px;
+    }
+    .activity-row:last-child { border-bottom: none; }
+    .activity-pill {
+      font-size: 9px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+      padding: 2px 7px; border-radius: 3px; flex-shrink: 0;
+    }
+    .activity-pill.approved { background: #DCFCE7; color: #15803D; }
+    .activity-pill.rejected { background: #FEE2E2; color: #B91C1C; }
+    .activity-headline { flex: 1; color: #374151; line-height: 1.4; }
+    .activity-company { font-size: 11px; color: #9CA3AF; flex-shrink: 0; }
+    .activity-time { font-size: 11px; color: #9CA3AF; flex-shrink: 0; }
+
+    /* Inbox date groups */
+    .inbox-date-header {
+      font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+      color: #9CA3AF; padding: 20px 0 10px;
+      display: flex; align-items: center; gap: 8px;
+      max-width: 900px; margin: 0 auto;
+    }
+    .inbox-date-header:first-child { padding-top: 8px; }
+    .inbox-date-header-count {
+      font-weight: 400; color: #D1D5DB;
+    }
+    .inbox-date-divider {
+      flex: 1; height: 1px; background: #E5E7EB;
+    }
+
+    /* Archive trigger */
+    #archiveTrigger {
+      max-width: 900px; margin: 24px auto 0; padding: 16px 0; text-align: center;
+    }
+    .archive-link {
+      font-size: 12px; color: #9CA3AF; cursor: pointer; text-decoration: underline;
+      background: none; border: none; padding: 0;
+    }
+    .archive-link:hover { color: #6B7280; }
+    .archive-section { max-width: 900px; margin: 0 auto; padding-top: 8px; }
+    .archive-item-row {
+      display: flex; align-items: center; gap: 10px; padding: 8px 12px;
+      background: #fff; border: 1px solid #E5E7EB; border-radius: 6px;
+      margin-bottom: 6px; font-size: 12px; color: #6B7280;
+    }
+    .archive-item-headline { flex: 1; color: #374151; font-weight: 500; }
+    .archive-item-meta { flex-shrink: 0; font-size: 11px; color: #9CA3AF; }
+    .archive-score-pill {
+      font-size: 9px; font-weight: 700; padding: 2px 6px; border-radius: 3px;
+      flex-shrink: 0; background: #F3F4F6; color: #6B7280;
+    }
+    .archive-score-pill.high { background: #DCFCE7; color: #15803D; }
+    .archive-score-pill.mid { background: #FEF3C7; color: #B45309; }
 
     /* Layout */
     .layout {
@@ -301,12 +507,85 @@
       font-size: 9px; font-weight: 700; border-radius: 8px;
       padding: 1px 5px; margin-left: 4px; vertical-align: middle;
     }
-    .pending-item {
-      border: 1px solid #FDE68A; border-radius: 6px;
-      padding: 10px 12px; margin-bottom: 8px; background: #FFFBEB;
+    /* Editorial card */
+    .eq-card {
+      border: 1px solid #E5E7EB; border-radius: 8px;
+      margin-bottom: 20px; background: #fff; overflow: hidden;
+      cursor: default;
     }
-    .pending-item-headline { font-size: 12px; font-weight: 700; color: #111827; margin-bottom: 4px; }
-    .pending-item-meta { font-size: 10px; color: #9CA3AF; margin-bottom: 6px; }
+    .eq-card-active {
+      border-color: #990F3D; box-shadow: 0 0 0 2px rgba(153,15,61,0.12);
+    }
+    .eq-card-header {
+      padding: 10px 16px; background: #FFFBEB; border-bottom: 1px solid #FDE68A;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .eq-card-status {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.06em; color: #B45309;
+    }
+    .eq-card-counter { font-size: 10px; color: #9CA3AF; margin-left: auto; }
+    .eq-card-body { padding: 16px; }
+    .eq-headline { font-size: 15px; font-weight: 700; color: #111827; line-height: 1.4; margin-bottom: 8px; }
+    .eq-meta { font-size: 10px; color: #9CA3AF; margin-bottom: 14px; display: flex; gap: 10px; flex-wrap: wrap; }
+    .eq-so-what {
+      border-left: 4px solid #990F3D; padding: 10px 14px; margin-bottom: 14px;
+      background: #FFF5F7;
+    }
+    .eq-so-what-label {
+      font-size: 9px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+      color: #990F3D; margin-bottom: 5px;
+    }
+    .eq-so-what-text { font-size: 13px; color: #1F2937; line-height: 1.5; font-weight: 500; }
+    .eq-so-what-missing { font-size: 11px; color: #9CA3AF; font-style: italic; }
+    .eq-section-label {
+      font-size: 9px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+      color: #9CA3AF; margin-bottom: 6px;
+    }
+    .eq-summary { font-size: 12px; color: #374151; line-height: 1.6; margin-bottom: 14px; }
+    .eq-key-stat {
+      display: inline-flex; align-items: baseline; gap: 6px; margin-bottom: 14px;
+      padding: 6px 12px; background: #F9FAFB; border: 1px solid #E5E7EB; border-radius: 4px;
+    }
+    .eq-key-stat-number { font-size: 20px; font-weight: 800; color: #990F3D; }
+    .eq-key-stat-label { font-size: 11px; color: #6B7280; }
+    .eq-warning {
+      background: #FFFBEB; border: 1px solid #FDE68A; border-radius: 4px;
+      padding: 8px 12px; margin-bottom: 12px;
+    }
+    .eq-claim { font-size: 11px; color: #B45309; padding: 2px 0; }
+    .eq-claim::before { content: '⚠ '; }
+    .eq-source { font-size: 11px; margin-bottom: 14px; }
+    .eq-source a { color: #1B2E5E; text-decoration: none; }
+    .eq-source a:hover { text-decoration: underline; }
+    .eq-confidence {
+      display: inline-block; font-size: 10px; font-weight: 700; padding: 2px 8px;
+      border-radius: 10px; margin-bottom: 14px;
+    }
+    .eq-confidence-high { background: #DCFCE7; color: #15803D; }
+    .eq-confidence-mid { background: #FEF3C7; color: #B45309; }
+    .eq-confidence-low { background: #FEE2E2; color: #B91C1C; }
+    .eq-actions { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; padding-top: 14px; border-top: 1px solid #F3F4F6; }
+    .eq-btn-approve { background: #15803D; color: #fff; border: none; border-radius: 4px; padding: 8px 16px; font-size: 12px; font-weight: 700; cursor: pointer; }
+    .eq-btn-approve:hover { background: #166534; }
+    .eq-btn-edit { background: #1B2E5E; color: #fff; border: none; border-radius: 4px; padding: 8px 16px; font-size: 12px; font-weight: 700; cursor: pointer; }
+    .eq-btn-edit:hover { background: #162548; }
+    .eq-btn-reject { background: #fff; color: #B91C1C; border: 1px solid #FECACA; border-radius: 4px; padding: 8px 16px; font-size: 12px; font-weight: 700; cursor: pointer; }
+    .eq-btn-reject:hover { background: #FEE2E2; }
+    .eq-shortcuts { font-size: 10px; color: #9CA3AF; margin-left: auto; }
+    .eq-shortcuts kbd { background: #F3F4F6; border: 1px solid #D1D5DB; border-radius: 3px; padding: 1px 5px; font-size: 9px; }
+    /* Inline editor */
+    .eq-editor { display: none; background: #F9FAFB; border: 1px solid #E5E7EB; border-radius: 6px; padding: 14px; margin-top: 14px; }
+    .eq-editor.visible { display: block; }
+    .eq-editor label { display: block; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #6B7280; margin-bottom: 4px; margin-top: 12px; }
+    .eq-editor label:first-child { margin-top: 0; }
+    .eq-editor input, .eq-editor textarea { width: 100%; box-sizing: border-box; border: 1px solid #D1D5DB; border-radius: 4px; padding: 6px 8px; font-size: 12px; font-family: inherit; line-height: 1.5; }
+    .eq-editor textarea { resize: vertical; }
+    .eq-editor-actions { display: flex; gap: 8px; margin-top: 12px; }
+    .eq-btn-save { background: #990F3D; color: #fff; border: none; border-radius: 4px; padding: 7px 16px; font-size: 12px; font-weight: 700; cursor: pointer; }
+    .eq-btn-save:hover { background: #7A0C31; }
+    .eq-btn-cancel { background: #fff; color: #6B7280; border: 1px solid #D1D5DB; border-radius: 4px; padding: 7px 12px; font-size: 12px; cursor: pointer; }
+    /* Legacy compat */
+    .pending-item { display: none; }
     .pending-claim { font-size: 11px; color: #B45309; padding: 2px 0; }
     .pending-actions { display: flex; gap: 6px; margin-top: 8px; }
     .pending-approve { background: #15803D; color: #fff; border: none; border-radius: 4px; padding: 5px 12px; font-size: 11px; font-weight: 700; cursor: pointer; }
@@ -347,14 +626,7 @@
     /* Legacy badge classes kept for manual search results */
     .via-jina_search { background: #EDE9FE; color: #6D28D9; }
 
-    /* ── Audit panel ── */
-    .audit-panel {
-      display: none;
-      padding: 24px;
-      overflow-y: auto;
-      height: calc(100vh - 52px);
-    }
-    .audit-panel.visible { display: block; }
+    /* audit-panel is now inside .section — no separate show/hide needed */
 
     .audit-score-block {
       display: flex; align-items: center; gap: 20px;
@@ -481,125 +753,268 @@
     }
     .audit-empty-state .icon { font-size: 36px; margin-bottom: 12px; }
     .audit-empty-state .title { font-size: 15px; font-weight: 600; color: #6B7280; margin-bottom: 6px; }
+
+    /* Pipeline status strip */
+    .pipeline-strip {
+      background: #F9FAFB; border: 1px solid #E5E7EB; border-radius: 6px;
+      padding: 10px 14px; margin-bottom: 14px;
+      display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+    }
+    .pipeline-stat { display: flex; flex-direction: column; align-items: center; min-width: 50px; }
+    .pipeline-stat-num { font-size: 18px; font-weight: 800; color: #1B2E5E; line-height: 1; }
+    .pipeline-stat-label { font-size: 9px; color: #9CA3AF; text-transform: uppercase; letter-spacing: 0.06em; margin-top: 2px; }
+    .pipeline-stat-num.green { color: #15803D; }
+    .pipeline-stat-num.amber { color: #B45309; }
+    .pipeline-stat-num.red { color: #B91C1C; }
+    .pipeline-divider { width: 1px; height: 32px; background: #E5E7EB; flex-shrink: 0; }
+    .pipeline-run-time { font-size: 10px; color: #9CA3AF; flex: 1; min-width: 120px; }
+    .pipeline-run-btn {
+      background: #1B2E5E; color: #fff; border: none; border-radius: 4px;
+      padding: 6px 12px; font-size: 11px; font-weight: 700; cursor: pointer;
+      white-space: nowrap; flex-shrink: 0;
+    }
+    .pipeline-run-btn:hover { background: #2A4080; }
+    .pipeline-run-btn:disabled { background: #9CA3AF; cursor: not-allowed; }
+
+    /* Score badge */
+    .score-badge {
+      display: inline-flex; align-items: baseline; gap: 2px;
+      font-size: 11px; font-weight: 800; padding: 2px 8px; border-radius: 10px;
+      flex-shrink: 0;
+    }
+    .score-high { background: #DCFCE7; color: #15803D; }
+    .score-mid  { background: #FEF3C7; color: #B45309; }
+    .score-low  { background: #FEE2E2; color: #B91C1C; }
+
+    /* Type badges (portal-consistent) */
+    .type-badge { font-size: 9px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 2px 7px; border-radius: 3px; }
+    .badge-market_signal   { background: #DBEAFE; color: #1D4ED8; }
+    .badge-product_launch  { background: #D1FAE5; color: #065F46; }
+    .badge-milestone       { background: #EDE9FE; color: #6D28D9; }
+    .badge-research        { background: #FEF3C7; color: #92400E; }
+    .badge-acquisition     { background: #FEE2E2; color: #991B1B; }
+    .badge-partnership     { background: #E0F2FE; color: #0369A1; }
+
+    /* Summary bullets (portal FormattedSummary style) */
+    .eq-bullets { list-style: none; padding: 0; margin: 0 0 14px 0; }
+    .eq-bullet { display: flex; gap: 10px; font-size: 13px; color: #374151; line-height: 1.6; margin-bottom: 10px; }
+    .eq-bullet-arrow { color: #990F3D; font-weight: 700; font-size: 11px; margin-top: 3px; flex-shrink: 0; }
+
+    /* Rejection modal */
+    .rejection-modal-overlay {
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,0.5); z-index: 300;
+      align-items: center; justify-content: center;
+    }
+    .rejection-modal-overlay.visible { display: flex; }
+    .rejection-modal {
+      background: #fff; border-radius: 8px; padding: 24px;
+      width: 420px; box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+    }
+    .rejection-modal-title { font-size: 15px; font-weight: 700; color: #111827; margin-bottom: 4px; }
+    .rejection-modal-sub { font-size: 12px; color: #6B7280; margin-bottom: 16px; }
+    .rejection-modal label { display: block; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #6B7280; margin-bottom: 6px; }
+    .rejection-modal select, .rejection-modal textarea {
+      width: 100%; border: 1px solid #D1D5DB; border-radius: 4px;
+      padding: 7px 10px; font-size: 13px; font-family: inherit; margin-bottom: 14px; outline: none;
+    }
+    .rejection-modal select:focus, .rejection-modal textarea:focus { border-color: #990F3D; }
+    .rejection-modal textarea { resize: vertical; min-height: 60px; }
+    .rejection-modal-actions { display: flex; gap: 8px; justify-content: flex-end; }
+    .btn-confirm-reject { background: #B91C1C; color: #fff; border: none; border-radius: 4px; padding: 8px 16px; font-size: 13px; font-weight: 700; cursor: pointer; }
+    .btn-confirm-reject:hover { background: #991B1B; }
+    .btn-cancel-reject { background: #fff; color: #6B7280; border: 1px solid #D1D5DB; border-radius: 4px; padding: 8px 16px; font-size: 13px; cursor: pointer; }
+    .btn-cancel-reject:hover { background: #F9FAFB; }
   </style>
 </head>
 <body>
 
-<header>
+<header class="masthead">
   <div style="display:flex;align-items:center;">
-    <span class="header-title">AI in Wealth Management</span>
-    <span class="header-sub">Content Intake</span>
+    <span class="masthead-title">Editorial Studio</span>
+    <span class="masthead-sub">AI in Wealth Management</span>
   </div>
-  <span class="header-badge">Internal Tool</span>
+  <span class="header-badge">Internal</span>
 </header>
 
-<div class="layout">
+<nav class="nav-bar">
+  <button class="nav-tab active" id="navIntelligence" onclick="switchSection('intelligence')">
+    Intelligence
+    <span class="nav-badge" id="navIntelBadge" style="display:none;">0</span>
+  </button>
+  <button class="nav-tab" id="navTl" onclick="switchSection('tl')">Thought Leadership</button>
+  <button class="nav-tab" id="navLandscape" onclick="switchSection('landscape')">
+    Landscape
+    <span class="nav-badge" id="navLandscapeBadge" style="display:none;">0</span>
+  </button>
+  <button class="nav-tab" id="navAudit" onclick="switchSection('audit')">Data Audit</button>
+</nav>
 
-  <!-- Left panel: candidates + controls -->
-  <div class="left-panel">
-    <div class="panel-header">
-      <div class="panel-title">Discovery</div>
+<!-- ── Intelligence Section ── -->
+<div id="sectionIntelligence" class="section active">
 
-      <!-- Mode tabs -->
-      <div class="mode-tabs">
-        <button class="mode-tab active" id="tabAuto" onclick="switchMode('auto')">Auto-Discover</button>
-        <button class="mode-tab" id="tabSearch" onclick="switchMode('search')">Search</button>
-        <button class="mode-tab" id="tabUrl" onclick="switchMode('url')">URL</button>
-        <button class="mode-tab" id="tabPending" onclick="switchMode('pending')">Review<span class="pending-badge" id="pendingBadge" style="display:none;">0</span></button>
-        <button class="mode-tab" id="tabAudit" onclick="switchMode('audit')">Audit</button>
-      </div>
-
-      <!-- Auto-Discover mode (default) -->
-      <div id="modeAuto">
-        <button class="action-btn" id="btnAutoDiscover" onclick="runAutoDiscover()">
-          Find New Stories
-        </button>
-        <div class="source-progress" id="sourceProgress" style="display:none;">
-          <div class="source-pill" id="pillL1News">
-            <span class="source-pill-label">L1 News</span>
-            <span id="pillL1NewsVal">—</span>
-          </div>
-          <div class="source-pill" id="pillL2Cos">
-            <span class="source-pill-label">L2 Companies</span>
-            <span id="pillL2CosVal">—</span>
-          </div>
-          <div class="source-pill" id="pillTL">
-            <span class="source-pill-label">TL Candidates</span>
-            <span id="pillTLVal">—</span>
-          </div>
-        </div>
-        <div style="margin-top:8px;font-size:10px;color:#9CA3AF;line-height:1.5;">
-          Layer 1: 8 broad news queries. Layer 2: one query per company in the landscape (auto-expands).
-          TL candidates surfaced in Telegram for manual review.
-        </div>
-      </div>
-
-      <!-- Manual Search mode (Jina) -->
-      <div id="modeSearch" style="display:none;">
-        <div class="query-chips">
-          <span class="query-chip" onclick="setQuery('AI wealth management news 2025')">AI wealth management</span>
-          <span class="query-chip" onclick="setQuery('financial advisor AI product launch 2025')">advisor AI launch</span>
-          <span class="query-chip" onclick="setQuery('Goldman Sachs AI 2025')">Goldman Sachs AI</span>
-          <span class="query-chip" onclick="setQuery('Morgan Stanley AI advisor 2025')">Morgan Stanley AI</span>
-          <span class="query-chip" onclick="setQuery('Anthropic wealth management partnership')">Anthropic + wealth</span>
-          <span class="query-chip" onclick="setQuery('wealthtech AI funding 2025')">wealthtech funding</span>
-        </div>
-        <div style="display:flex;gap:6px;">
-          <input type="text" id="searchQuery" placeholder="e.g. AI wealth management news 2025" />
-          <button class="action-btn" id="btnSearch" style="width:auto;flex-shrink:0;padding:7px 14px;" onclick="runSearch()">Search</button>
-        </div>
-        <div style="margin-top:6px;font-size:10px;color:#9CA3AF;">
-          Powered by Jina AI — full article text from top results
-        </div>
-      </div>
-
-      <!-- Paste URL mode -->
-      <div id="modeUrl" style="display:none;">
-        <div style="display:flex;gap:6px;">
-          <input type="text" id="manualUrl" placeholder="https://..." />
-          <button class="action-btn secondary" style="width:auto;flex-shrink:0;padding:7px 12px;" onclick="addManualUrl()">Add</button>
-        </div>
-      </div>
-
-      <!-- Pending queue mode -->
-      <div id="modePending" style="display:none;">
-        <div style="font-size:10px;color:#B45309;font-weight:700;margin-bottom:8px;">
-          REVIEW ENTRIES — require human sign-off before publishing
-        </div>
-        <button class="action-btn secondary" style="margin-bottom:8px;" onclick="loadPendingQueue()">Refresh Queue</button>
-        <div id="pendingList">
-          <div style="font-size:12px;color:#9CA3AF;text-align:center;padding:16px;">Loading...</div>
-        </div>
-      </div>
+  <!-- Stats + Run Pipeline bar -->
+  <div class="intel-header">
+    <div class="intel-kpis">
+      <div class="kpi"><span class="kpi-num" id="pipelineQueued">—</span><span class="kpi-label">In Inbox</span></div>
+      <div class="kpi-div"></div>
+      <div class="kpi"><span class="kpi-num green" id="pipelinePublished">—</span><span class="kpi-label">Published Today</span></div>
+      <div class="kpi-div"></div>
+      <div class="kpi clickable" onclick="showBlockedModal()" title="Click to see blocked URLs"><span class="kpi-num amber" id="pipelineBlocked">—</span><span class="kpi-label" style="text-decoration:underline dotted;text-underline-offset:2px;">Blocked</span></div>
+      <div class="kpi-div"></div>
+      <div class="kpi"><span class="kpi-num red" id="pipelineErrors">—</span><span class="kpi-label">Errors</span></div>
     </div>
-
-    <!-- Candidate list -->
-    <div class="candidates-scroll" id="candidateList">
-      <div style="padding:16px;color:#9CA3AF;text-align:center;font-size:12px;">
-        Click "Find New Stories" to auto-discover,<br/>or use Search / URL tabs above.
-      </div>
-    </div>
-
-    <div class="status-bar" id="statusBar">
-      <div class="status-dot" id="statusDot"></div>
-      <span id="statusText">Ready</span>
+    <div class="intel-header-right">
+      <span class="last-run-label" id="pipelineRunTime">Last run: —</span>
+      <button class="btn-run" id="btnRunPipeline" onclick="runPipelineNow()">▶ Run Pipeline</button>
+      <button class="btn-icon" onclick="loadInbox()" title="Refresh">↺</button>
     </div>
   </div>
 
-  <!-- Right panel: entry preview + governance -->
-  <div class="right-panel" id="rightPanel">
-    <div class="empty-state">
-      <div class="empty-icon">📰</div>
-      <div class="empty-title">No story selected</div>
-      <div style="font-size:13px;">Select a story from the left to process and review it</div>
+  <!-- Sub-nav: Review | Discover -->
+  <div class="sub-nav">
+    <button class="sub-tab active" id="tabPending" onclick="switchMode('pending')">
+      Review
+      <span class="pending-badge" id="pendingBadge" style="display:none;">0</span>
+    </button>
+    <button class="sub-tab" id="tabAuto" onclick="switchMode('auto')">Discover</button>
+  </div>
+
+  <!-- Review content -->
+  <div id="modePending" class="section-content">
+    <div id="pendingList" style="max-width:900px;margin:0 auto;">
+      <div style="font-size:12px;color:#9CA3AF;text-align:center;padding:24px;">Loading...</div>
+    </div>
+
+    <!-- Archive trigger -->
+    <div id="archiveTrigger" style="display:none;">
+      <button class="archive-link" onclick="loadArchive()">Show older stories →</button>
+    </div>
+    <div id="archiveSection" style="display:none;"></div>
+
+    <!-- 7-day activity log -->
+    <div id="activityLog" style="max-width:900px;margin:32px auto 0;"></div>
+  </div>
+
+  <!-- Discover content (two-panel) -->
+  <div id="modeAuto" class="discover-layout" style="display:none;">
+    <div class="discover-left">
+      <button class="btn-run" style="width:100%;" id="btnAutoDiscover" onclick="runAutoDiscover()">Find New Stories</button>
+      <div style="display:flex;gap:6px;">
+        <input type="text" id="manualUrl" class="url-input" placeholder="Or paste a specific URL..." />
+        <button class="btn-secondary" onclick="addManualUrl()">Add</button>
+      </div>
+      <div class="candidates-scroll" id="candidateList" style="flex:1;overflow-y:auto;margin:0 -14px;padding:0 8px;">
+        <div style="padding:16px;color:#9CA3AF;text-align:center;font-size:12px;">
+          Click "Find New Stories" to discover stories,<br/>or paste a specific URL above.
+        </div>
+      </div>
+      <div class="status-bar" id="statusBar">
+        <div class="status-dot" id="statusDot"></div>
+        <span id="statusText">Ready</span>
+      </div>
+    </div>
+    <div class="discover-right" id="rightPanel">
+      <div class="empty-state">
+        <div class="empty-icon">📰</div>
+        <div class="empty-title">No story selected</div>
+        <div style="font-size:13px;color:#9CA3AF;">Click a story on the left to process it</div>
+      </div>
     </div>
   </div>
+
+  <!-- Hidden compat inputs -->
+  <div id="modeSearch" style="display:none;"><input type="text" id="searchQuery" /><button id="btnSearch" onclick="runSearch()" style="display:none;"></button></div>
+  <div id="modeUrl" style="display:none;"></div>
 
 </div>
 
-<!-- ── Audit Panel (full-width overlay, shown when Audit tab is active) ──── -->
-<div class="audit-panel" id="auditPanel">
+<!-- ── Thought Leadership Section ── -->
+<div id="sectionTl" class="section">
+
+  <div class="tl-section-header">
+    <div style="display:flex;align-items:center;gap:12px;">
+      <span style="font-size:13px;font-weight:600;color:#111827;">Thought Leadership</span>
+      <span style="font-size:12px;color:#9CA3AF;" id="tlLastRun">Last discovery: —</span>
+    </div>
+    <div style="display:flex;gap:8px;">
+      <button class="btn-run" id="btnTLDiscover" onclick="runTLDiscover()">▶ Run TL Discovery</button>
+      <button class="btn-icon" onclick="loadTLCandidates()" title="Refresh">↺</button>
+    </div>
+  </div>
+
+  <div id="tlDiscoverLog" style="display:none;background:#111827;border-radius:6px;padding:12px 16px;margin:16px 24px 0;max-height:140px;overflow-y:auto;font-family:monospace;font-size:12px;color:#D1D5DB;"></div>
+
+  <div class="section-content" style="max-width:900px;margin:0 auto;">
+
+    <div style="margin-bottom:32px;">
+      <div class="section-label-sm" style="margin-bottom:12px;">
+        Candidates
+        <span id="tlCandidateCount" style="color:#6B7280;font-weight:400;text-transform:none;letter-spacing:0;font-size:12px;"> (loading…)</span>
+      </div>
+      <div id="tlCandidateList">
+        <div style="color:#9CA3AF;font-size:13px;text-align:center;padding:32px;">Run TL Discovery to find candidates.</div>
+      </div>
+    </div>
+
+    <div>
+      <div class="section-label-sm" style="margin-bottom:12px;">Published</div>
+      <div id="tlPublishedList">
+        <div style="color:#9CA3AF;font-size:13px;padding:12px;">Loading…</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ── Landscape Section ── -->
+<div id="sectionLandscape" class="section">
+<div style="padding:24px;" id="landscapePanel">
   <div style="max-width:960px;margin:0 auto;">
+
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;">
+      <div>
+        <div style="font-size:18px;font-weight:700;color:#1B2E5E;">Landscape Intelligence</div>
+        <div style="font-size:12px;color:#9CA3AF;margin-top:2px;">Maturity upgrade suggestions + staleness tracking across 37 companies × 7 capabilities</div>
+      </div>
+      <button onclick="runSweepNow()" id="btnRunSweep"
+        style="background:#1B2E5E;color:#fff;border:none;border-radius:5px;padding:8px 16px;font-size:13px;font-weight:600;cursor:pointer;">
+        Run Staleness Sweep
+      </button>
+    </div>
+
+    <!-- Sweep status log -->
+    <div id="sweepLog" style="display:none;background:#111827;border-radius:6px;padding:12px 16px;margin-bottom:20px;max-height:180px;overflow-y:auto;font-family:monospace;font-size:12px;color:#D1D5DB;"></div>
+
+    <!-- Pending upgrade suggestions -->
+    <div style="margin-bottom:28px;">
+      <div style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#990F3D;margin-bottom:12px;">
+        Pending Maturity Upgrades <span id="suggestionsCount" style="color:#6B7280;font-weight:400;text-transform:none;letter-spacing:0;">(loading…)</span>
+      </div>
+      <div id="suggestionsList">
+        <div style="font-size:13px;color:#9CA3AF;text-align:center;padding:32px;">Loading suggestions…</div>
+      </div>
+    </div>
+
+    <!-- Stale capabilities -->
+    <div>
+      <div style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#6B7280;margin-bottom:12px;">
+        Stale Capabilities <span id="staleCount" style="font-weight:400;text-transform:none;letter-spacing:0;">(loading…)</span>
+      </div>
+      <div id="staleList">
+        <div style="font-size:13px;color:#9CA3AF;text-align:center;padding:32px;">Loading…</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</div><!-- /sectionLandscape -->
+
+<!-- ── Audit Section ── -->
+<div id="sectionAudit" class="section">
+<div style="padding:24px;max-width:960px;margin:0 auto;" id="auditPanel">
+  <div>
 
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;">
       <div>
@@ -668,6 +1083,7 @@
 
   </div>
 </div>
+</div><!-- /sectionAudit -->
 
 <!-- Publish bar -->
 <div class="publish-bar" id="publishBar">
@@ -678,6 +1094,40 @@
   <div style="display:flex;gap:8px;">
     <button class="action-btn secondary" style="background:transparent;color:#fff;border-color:#fff;width:auto;" onclick="clearApproved()">Clear</button>
     <button class="action-btn success" style="width:auto;" onclick="publishApproved()">Publish to Portal →</button>
+  </div>
+</div>
+
+<!-- Rejection reason modal -->
+<div class="rejection-modal-overlay" id="rejectionModal">
+  <div class="rejection-modal" onclick="event.stopPropagation()">
+    <div class="rejection-modal-title">Reject Story</div>
+    <div class="rejection-modal-sub" id="rejectionModalSub">This will block the source URL permanently.</div>
+    <label>Reason</label>
+    <select id="rejectionReason">
+      <option value="not_relevant">Not relevant to wealth management AI</option>
+      <option value="already_covered">Already covered — duplicate story</option>
+      <option value="wrong_framing">Wrong framing — needs different angle</option>
+      <option value="low_quality">Low quality — insufficient evidence</option>
+      <option value="too_old">Too old — not timely enough</option>
+      <option value="other">Other</option>
+    </select>
+    <label>Notes (optional)</label>
+    <textarea id="rejectionNotes" placeholder="Any additional context for algorithm tuning..."></textarea>
+    <div class="rejection-modal-actions">
+      <button class="btn-cancel-reject" onclick="closeRejectionModal()">Cancel</button>
+      <button class="btn-confirm-reject" onclick="confirmReject()">Reject &amp; Block</button>
+    </div>
+  </div>
+</div>
+
+<!-- Blocked items modal -->
+<div class="rejection-modal-overlay" id="blockedModal" onclick="closeBlockedModal()">
+  <div class="rejection-modal" onclick="event.stopPropagation()" style="max-width:660px;max-height:80vh;overflow-y:auto;">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+      <span style="font-weight:700;font-size:15px;color:#F9FAFB;">🚫 Blocked this run</span>
+      <button onclick="closeBlockedModal()" style="background:none;border:none;color:#9CA3AF;cursor:pointer;font-size:16px;">✕</button>
+    </div>
+    <div id="blockedModalList" style="display:flex;flex-direction:column;gap:10px;"></div>
   </div>
 </div>
 
@@ -853,6 +1303,16 @@ function renderEntryPreview(id) {
             <div class="field-value">${entry.tags?.region || '—'}</div>
           </div>
         </div>
+
+        ${entry.the_so_what ? `
+        <div style="border-left:4px solid #990F3D;padding:8px 12px;margin-bottom:14px;background:#FFF5F7;">
+          <div style="font-size:9px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#990F3D;margin-bottom:4px;">Why this matters</div>
+          <div style="font-size:13px;color:#1F2937;line-height:1.5;font-weight:500;">${entry.the_so_what}</div>
+        </div>` : `
+        <div style="border-left:4px solid #F59E0B;padding:8px 12px;margin-bottom:14px;background:#FEF9F0;">
+          <div style="font-size:9px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#B45309;margin-bottom:4px;">Why this matters</div>
+          <div style="font-size:11px;color:#9CA3AF;font-style:italic;">Not generated — edit before publishing</div>
+        </div>`}
 
         <div class="field-label">Summary</div>
         <div class="field-value">${entry.summary}</div>
@@ -1033,7 +1493,7 @@ async function processStory(id) {
       </div>`;
       processedEntries.delete(id);
       renderCandidateList();
-      loadPendingQueue(); // refresh badge count
+      loadInbox(); // refresh inbox badge count
     },
     skipped: (d) => {
       setStatus('Article not relevant — skipped', 'error');
@@ -1129,34 +1589,39 @@ function closeLog() {
 
 // ── Mode switching ─────────────────────────────────────────────────────────────
 
-function switchMode(mode) {
-  const intakeModes = ['auto', 'search', 'url', 'pending'];
+let currentSection = 'intelligence';
+let currentMode = 'pending';
 
-  // Show/hide intake left-panel sections
-  intakeModes.forEach(m => {
-    const el = document.getElementById(`mode${m.charAt(0).toUpperCase() + m.slice(1)}`);
-    if (el) el.style.display = m === mode ? '' : 'none';
+function switchSection(section) {
+  currentSection = section;
+  // Nav tab active states
+  ['intelligence', 'tl', 'landscape', 'audit'].forEach(s => {
+    const btn = document.getElementById(`nav${s.charAt(0).toUpperCase() + s.slice(1)}`);
+    if (btn) btn.classList.toggle('active', s === section);
+  });
+  // Show/hide sections
+  document.querySelectorAll('.section').forEach(el => el.classList.remove('active'));
+  const target = document.getElementById(`section${section.charAt(0).toUpperCase() + section.slice(1)}`);
+  if (target) target.classList.add('active');
+  // Load data for section
+  if (section === 'intelligence') { loadInbox(); loadPipelineStatus(); loadActivityLog(); }
+  else if (section === 'tl') { loadTLCandidates(); loadTLPublished(); }
+  else if (section === 'landscape') { loadLandscapeData(); }
+}
+
+function switchMode(mode) {
+  currentMode = mode;
+  // Sub-tab active states
+  ['pending', 'auto'].forEach(m => {
     const tab = document.getElementById(`tab${m.charAt(0).toUpperCase() + m.slice(1)}`);
     if (tab) tab.classList.toggle('active', m === mode);
   });
-
-  // Handle Audit tab
-  const tabAudit = document.getElementById('tabAudit');
-  if (tabAudit) tabAudit.classList.toggle('active', mode === 'audit');
-
-  const auditPanel = document.getElementById('auditPanel');
-  const layout = document.querySelector('.layout');
-  const publishBar = document.getElementById('publishBar');
-
-  if (mode === 'audit') {
-    if (layout) layout.style.display = 'none';
-    if (publishBar) publishBar.style.display = 'none';
-    if (auditPanel) auditPanel.classList.add('visible');
-  } else {
-    if (layout) layout.style.display = '';
-    if (auditPanel) auditPanel.classList.remove('visible');
-    if (mode === 'pending') loadPendingQueue();
-  }
+  // Show/hide mode panels inside intelligence section
+  ['pending', 'auto', 'search', 'url'].forEach(m => {
+    const el = document.getElementById(`mode${m.charAt(0).toUpperCase() + m.slice(1)}`);
+    if (el) el.style.display = m === mode ? '' : 'none';
+  });
+  if (mode === 'pending') { loadInbox(); loadPipelineStatus(); loadActivityLog(); }
 }
 
 // ── Auto-Discover (Two-layer: L1 News + L2 Companies) ─────────────────────────
@@ -1175,7 +1640,7 @@ async function runAutoDiscover() {
   btn.innerHTML = '<span class="spinner">Discovering</span>';
 
   const prog = document.getElementById('sourceProgress');
-  prog.style.display = 'grid';
+  if (prog) prog.style.display = 'grid';
   setSourcePill('pillL1News', 'pillL1NewsVal', 'running', 'scanning…');
   setSourcePill('pillL2Cos',  'pillL2CosVal',  'running', 'querying…');
   setSourcePill('pillTL',     'pillTLVal',     'running', 'searching…');
@@ -1219,104 +1684,737 @@ function setQuery(q) {
   document.getElementById('searchQuery').focus();
 }
 
-// ── Pending queue ──────────────────────────────────────────────────────────────
+// ── Pending / Review Queue ─────────────────────────────────────────────────────
 
-async function loadPendingQueue() {
+// Store pending items in memory for keyboard navigation
+let _pendingItems = [];
+let _activePendingIdx = 0;
+let _rejectingId = null;
+
+function confidenceClass(c) {
+  if (c >= 85) return 'eq-confidence-high';
+  if (c >= 65) return 'eq-confidence-mid';
+  return 'eq-confidence-low';
+}
+
+function scoreClass(s) {
+  if (s == null) return '';
+  if (s >= 75) return 'score-high';
+  if (s >= 60) return 'score-mid';
+  return 'score-low';
+}
+
+function typeBadge(type) {
+  const labels = {
+    market_signal: 'Market Signal',
+    product_launch: 'Product Launch',
+    milestone: 'Milestone',
+    research: 'Research',
+    acquisition: 'Acquisition',
+    partnership: 'Partnership',
+  };
+  return `<span class="type-badge badge-${type || 'market_signal'}">${labels[type] || (type || '').replace(/_/g,' ')}</span>`;
+}
+
+// Format summary as → bullet sentences (mirrors portal FormattedSummary)
+function formatSummaryBullets(text) {
+  if (!text) return '';
+  const sentences = (text.match(/[^.!?]+[.!?]+(?:\s|$)/g) || [text])
+    .map(s => s.trim()).filter(s => s.length > 10);
+  return `<ul class="eq-bullets">${sentences.map(s => `
+    <li class="eq-bullet">
+      <span class="eq-bullet-arrow">→</span>
+      <span>${escapeHtml(s)}</span>
+    </li>`).join('')}</ul>`;
+}
+
+function renderEditorialCard(item, idx, total) {
+  const urlDisplay = (item.source_url || '').length > 80
+    ? item.source_url.slice(0, 77) + '...'
+    : (item.source_url || '');
+  const queuedDate = new Date(item.queued_at).toLocaleString('en-GB', { day:'numeric', month:'short', hour:'2-digit', minute:'2-digit' });
+  const capStage = item.capability_evidence
+    ? `${(item.capability_evidence.capability || '').replace(/_/g,' ')} · ${item.capability_evidence.stage}`
+    : '';
+  const isReview = item.governance_verdict === 'REVIEW';
+  const score = item.score;
+  const scoreStr = score != null ? `${score}/100` : '—/100';
+  const scoreBreakdown = item.score_breakdown || '';
+
+  return `
+    <div class="eq-card${_activePendingIdx === idx ? ' eq-card-active' : ''}" id="eq-${escapeAttr(item.id)}" onclick="setActiveCard(${idx})">
+      <div class="eq-card-header" style="${isReview ? '' : 'background:#F0FDF4;border-color:#BBF7D0;'}">
+        <span class="eq-card-status" style="${isReview ? '' : 'color:#15803D;'}">${isReview ? '⚠ REVIEW' : '✓ HIGH CONFIDENCE'}</span>
+        ${typeBadge(item.type)}
+        ${capStage ? `<span style="font-size:10px;color:#6B7280;background:#F3F4F6;padding:2px 8px;border-radius:10px;">${escapeHtml(capStage)}</span>` : ''}
+        ${score != null ? `<span class="score-badge ${scoreClass(score)}" title="${escapeAttr(scoreBreakdown)}">${scoreStr}</span>` : ''}
+        <span class="eq-card-counter">${idx + 1} of ${total}</span>
+      </div>
+      <div class="eq-card-body">
+
+        <div class="eq-headline">${escapeHtml(item.headline)}</div>
+        <div class="eq-meta">
+          <span style="font-weight:600;">${escapeHtml(item.company_name)}</span>
+          <span>·</span>
+          <span>${escapeHtml(item.source_name)}</span>
+          <span>·</span>
+          <span>${escapeHtml(item.date)}</span>
+          <span>·</span>
+          <span>${queuedDate}</span>
+        </div>
+
+        ${item.the_so_what ? `
+          <div class="eq-so-what">
+            <div class="eq-so-what-label">Why this matters</div>
+            <div class="eq-so-what-text">${escapeHtml(item.the_so_what)}</div>
+          </div>
+        ` : `
+          <div class="eq-so-what" style="background:#FEF9F0;border-color:#F59E0B;">
+            <div class="eq-so-what-label" style="color:#B45309;">Why this matters</div>
+            <div class="eq-so-what-missing">⚠ Not generated — add before publishing</div>
+          </div>
+        `}
+
+        ${item.key_stat ? `
+          <div class="eq-key-stat">
+            <span class="eq-key-stat-number">${escapeHtml(item.key_stat.number)}</span>
+            <span class="eq-key-stat-label">${escapeHtml(item.key_stat.label)}</span>
+          </div>
+        ` : ''}
+
+        ${item.summary ? `
+          <div>
+            <div class="eq-section-label">AI Summary</div>
+            ${formatSummaryBullets(item.summary)}
+          </div>
+        ` : ''}
+
+        ${item.unverified_claims?.length ? `
+          <div class="eq-warning">
+            <div style="font-size:10px;font-weight:700;color:#B45309;margin-bottom:4px;">UNVERIFIED CLAIMS</div>
+            ${item.unverified_claims.map(c => `<div class="eq-claim">${escapeHtml(c)}</div>`).join('')}
+          </div>
+        ` : ''}
+
+        ${item.paywall_caveat ? `<div style="font-size:11px;color:#B45309;margin-bottom:12px;">⚠ Limited source content — possible paywall</div>` : ''}
+        ${item.notes ? `<div style="font-size:11px;color:#6B7280;margin-bottom:12px;">${escapeHtml(item.notes)}</div>` : ''}
+
+        <div class="eq-source">
+          ${item.confidence != null ? `<span class="eq-confidence ${confidenceClass(item.confidence)}">${item.confidence}% confidence</span>&nbsp;` : ''}
+          ${item.source_url ? `<a href="${escapeAttr(item.source_url)}" target="_blank">${escapeHtml(urlDisplay)} ↗</a>` : ''}
+        </div>
+
+        <div class="eq-actions">
+          <button class="eq-btn-approve" onclick="approvePendingEntry('${escapeAttr(item.id)}');event.stopPropagation()">✓ Publish</button>
+          <button class="eq-btn-edit" onclick="toggleEditMode('${escapeAttr(item.id)}');event.stopPropagation()">✏ Edit then Publish</button>
+          <button class="eq-btn-reject" onclick="showInlineReject('${escapeAttr(item.id)}');event.stopPropagation()">✕ Reject</button>
+          <span class="eq-shortcuts"><kbd>J</kbd>/<kbd>K</kbd> nav &nbsp; <kbd>P</kbd> Publish &nbsp; <kbd>E</kbd> Edit &nbsp; <kbd>R</kbd> Reject</span>
+        </div>
+        <!-- Inline reject bar -->
+        <div id="inline-reject-${escapeAttr(item.id)}" style="display:none;padding:10px 16px;background:#FEF2F2;border-top:1px solid #FECACA;display:none;align-items:center;gap:8px;flex-wrap:wrap;">
+          <select id="inline-reason-${escapeAttr(item.id)}" style="font-size:12px;border:1px solid #D1D5DB;border-radius:4px;padding:4px 8px;background:#fff;color:#374151;" onclick="event.stopPropagation()">
+            <option value="not_relevant">Not relevant</option>
+            <option value="already_covered">Already covered</option>
+            <option value="low_quality">Low quality source</option>
+            <option value="unverifiable">Unverifiable claims</option>
+            <option value="too_old">Too old</option>
+            <option value="other">Other</option>
+          </select>
+          <button onclick="doInstantReject('${escapeAttr(item.id)}');event.stopPropagation()" style="background:#B91C1C;color:#fff;border:none;border-radius:4px;padding:5px 12px;font-size:12px;font-weight:700;cursor:pointer;">Confirm Reject</button>
+          <button onclick="hideInlineReject('${escapeAttr(item.id)}');event.stopPropagation()" style="background:#fff;color:#6B7280;border:1px solid #D1D5DB;border-radius:4px;padding:5px 10px;font-size:12px;cursor:pointer;">Cancel</button>
+        </div>
+
+        <!-- Inline editor -->
+        <div class="eq-editor" id="editor-${item.id}">
+          <label>Headline</label>
+          <input type="text" id="edit-headline-${item.id}" value="${escapeAttr(item.headline)}" />
+          <label>Why this matters (the_so_what) — one sentence, CXO decision-oriented</label>
+          <textarea id="edit-sowhat-${item.id}" rows="2">${escapeHtml(item.the_so_what || '')}</textarea>
+          <label>Summary</label>
+          <textarea id="edit-summary-${item.id}" rows="4">${escapeHtml(item.summary || '')}</textarea>
+          ${item.key_stat ? `
+            <label>Key Stat Number</label>
+            <input type="text" id="edit-statnum-${item.id}" value="${escapeAttr(item.key_stat.number)}" />
+            <label>Key Stat Label</label>
+            <input type="text" id="edit-statlabel-${item.id}" value="${escapeAttr(item.key_stat.label)}" />
+          ` : ''}
+          <div class="eq-editor-actions">
+            <button class="eq-btn-save" onclick="saveAndPublish('${item.id}')">Save & Publish</button>
+            <button class="eq-btn-cancel" onclick="toggleEditMode('${item.id}')">Cancel</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  `;
+}
+
+function escapeHtml(str) {
+  return String(str || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+function escapeAttr(str) {
+  return String(str || '').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+}
+
+function toggleEditMode(id) {
+  const ed = document.getElementById(`editor-${id}`);
+  if (ed) ed.classList.toggle('visible');
+}
+
+async function loadInbox() {
   try {
-    const res = await fetch('/api/pending');
+    const res = await fetch('/api/inbox');
     const data = await res.json();
+    const count = data.count || 0;
 
-    // Update badge
+    // Update tab badge
     const badge = document.getElementById('pendingBadge');
-    if (data.count > 0) {
-      badge.textContent = data.count;
-      badge.style.display = 'inline-block';
-    } else {
-      badge.style.display = 'none';
+    if (count > 0) { badge.textContent = count; badge.style.display = 'inline-block'; }
+    else { badge.style.display = 'none'; }
+
+    // Update nav badge
+    const navBadge = document.getElementById('navIntelBadge');
+    if (navBadge) {
+      navBadge.textContent = count;
+      navBadge.style.display = count > 0 ? 'inline-block' : 'none';
     }
+
+    // Update pipeline strip inbox count
+    const pipelineQueued = document.getElementById('pipelineQueued');
+    if (pipelineQueued) pipelineQueued.textContent = count;
 
     const list = document.getElementById('pendingList');
     if (!list) return;
 
-    if (data.count === 0) {
-      list.innerHTML = '<div style="font-size:12px;color:#9CA3AF;text-align:center;padding:16px;">No entries awaiting review</div>';
+    if (count === 0) {
+      list.innerHTML = `
+        <div style="text-align:center;padding:48px 24px;color:#9CA3AF;">
+          <div style="font-size:36px;margin-bottom:12px;">✓</div>
+          <div style="font-size:15px;font-weight:600;color:#6B7280;margin-bottom:6px;">Inbox clear</div>
+          <div style="font-size:13px;">No stories waiting for review. Run the pipeline to discover new content.</div>
+          <button class="pipeline-run-btn" style="margin-top:16px;" onclick="runPipelineNow()">▶ Run Pipeline Now</button>
+        </div>`;
+      _pendingItems = [];
+      _activePendingIdx = 0;
       return;
     }
 
-    list.innerHTML = data.items.map(item => `
-      <div class="pending-item" id="pending-${item.id}">
-        <div class="pending-item-headline">${item.headline}</div>
-        <div class="pending-item-meta">
-          ${item.company_name} · Queued ${new Date(item.queued_at).toLocaleString()}
-          · Confidence: ${item.confidence}%
-        </div>
-        ${item.unverified_claims?.length ? `
-          <div style="margin-bottom:4px;">
-            ${item.unverified_claims.map(c => `<div class="pending-claim">⚠ ${c}</div>`).join('')}
-          </div>` : ''}
-        ${item.notes ? `<div style="font-size:11px;color:#6B7280;margin-bottom:4px;">${item.notes}</div>` : ''}
-        <div style="font-size:11px;margin-bottom:6px;">
-          <a href="${item.source_url}" target="_blank" style="color:#1B2E5E;">${item.source_url.slice(0,70)}... ↗</a>
-        </div>
-        <div class="pending-actions">
-          <button class="pending-approve" onclick="approvePendingEntry('${item.id}')">✓ Approve & Publish</button>
-          <button class="pending-reject" onclick="rejectPendingEntry('${item.id}')">✕ Reject</button>
-        </div>
+    _pendingItems = data.items;
+    if (_activePendingIdx >= _pendingItems.length) _activePendingIdx = 0;
+    list.innerHTML = renderGroupedInbox(data.items, count);
+
+    // Show archive trigger only if there are actually archived items
+    const archiveTrigger = document.getElementById('archiveTrigger');
+    if (archiveTrigger) archiveTrigger.style.display = (data.archive_count > 0) ? 'block' : 'none';
+
+    // Scroll active card into view
+    const activeCard = document.querySelector('.eq-card-active');
+    if (activeCard) activeCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  } catch (err) {
+    console.error('Failed to load inbox:', err);
+  }
+}
+
+// Render inbox items grouped by discovered_at date
+function renderGroupedInbox(items, total) {
+  const today = new Date();
+  const yesterday = new Date(today);
+  yesterday.setDate(yesterday.getDate() - 1);
+
+  function dateLabel(ts) {
+    if (!ts) return 'EARLIER';
+    const d = new Date(ts);
+    const shortDate = d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short' }).toUpperCase();
+    if (d.toDateString() === today.toDateString()) return `TODAY — ${shortDate}`;
+    if (d.toDateString() === yesterday.toDateString()) return `YESTERDAY — ${shortDate}`;
+    return shortDate;
+  }
+
+  // Build ordered groups (preserve insertion order = newest first after sort)
+  const groups = [];
+  const groupMap = {};
+  items.forEach(item => {
+    const label = dateLabel(item.discovered_at || item.queued_at || null);
+    if (!groupMap[label]) { groupMap[label] = []; groups.push(label); }
+    groupMap[label].push(item);
+  });
+
+  let html = '';
+  let flatIdx = 0;
+  for (const label of groups) {
+    const groupItems = groupMap[label];
+    const countStr = groupItems.length === 1 ? '1 story' : `${groupItems.length} stories`;
+    html += `
+      <div class="inbox-date-header">
+        <span>${esc(label)}</span>
+        <span class="inbox-date-header-count">${countStr}</span>
+        <span class="inbox-date-divider"></span>
+      </div>`;
+    for (const item of groupItems) {
+      html += renderEditorialCard(item, flatIdx, total);
+      flatIdx++;
+    }
+  }
+  return html;
+}
+
+// Legacy alias (called from Discover tab when story is processed)
+function loadPendingQueue() { return loadInbox(); }
+
+async function loadArchive() {
+  const trigger = document.getElementById('archiveTrigger');
+  const section = document.getElementById('archiveSection');
+  if (!section) return;
+
+  if (trigger) trigger.style.display = 'none';
+  section.style.display = 'block';
+  section.innerHTML = '<div class="archive-section"><div style="font-size:12px;color:#9CA3AF;padding:12px 0;">Loading older stories…</div></div>';
+
+  try {
+    const res = await fetch('/api/inbox/archive');
+    const data = await res.json();
+    const items = data.items || [];
+
+    if (!items.length) {
+      section.innerHTML = '<div class="archive-section"><div style="font-size:12px;color:#9CA3AF;padding:12px 0;">No archived stories.</div></div>';
+      return;
+    }
+
+    // Group by date
+    const today = new Date();
+    const groups = {};
+    items.forEach(item => {
+      const ts = item.discovered_at || null;
+      const d = ts ? new Date(ts) : null;
+      const label = d ? d.toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short' }).toUpperCase() : 'EARLIER';
+      if (!groups[label]) groups[label] = [];
+      groups[label].push(item);
+    });
+
+    let html = '<div class="archive-section">';
+    html += `<div class="inbox-date-header" style="padding-top:4px;"><span style="color:#B45309;">OLDER STORIES</span><span class="inbox-date-header-count">${items.length} archived</span><span class="inbox-date-divider"></span></div>`;
+    for (const [label, groupItems] of Object.entries(groups)) {
+      html += `<div style="font-size:10px;font-weight:700;color:#D1D5DB;letter-spacing:.08em;text-transform:uppercase;margin:12px 0 6px;">${esc(label)}</div>`;
+      for (const item of groupItems) {
+        const scoreClass = item.score >= 75 ? 'high' : item.score >= 60 ? 'mid' : '';
+        html += `
+          <div class="archive-item-row">
+            <span class="archive-score-pill ${scoreClass}">${item.score != null ? item.score : '—'}</span>
+            <span class="archive-item-headline">${esc(item.headline || '')}</span>
+            <span class="archive-item-meta">${esc(item.company_name || '')} · ${esc(item.source_name || '')}</span>
+            ${item.source_url ? `<a href="${escapeAttr(item.source_url)}" target="_blank" style="font-size:11px;color:#9CA3AF;text-decoration:none;flex-shrink:0;">↗</a>` : ''}
+          </div>`;
+      }
+    }
+    html += '</div>';
+    section.innerHTML = html;
+  } catch (e) {
+    section.innerHTML = '<div class="archive-section"><div style="font-size:12px;color:#9CA3AF;padding:12px 0;">Failed to load archive.</div></div>';
+  }
+}
+
+async function loadPipelineStatus() {
+  try {
+    const res = await fetch('/api/pipeline-status');
+    if (!res.ok) return;
+    const data = await res.json();
+
+    if (data.last_run_at) {
+      const dt = new Date(data.last_run_at);
+      const timeStr = dt.toLocaleString('en-GB', { day:'numeric', month:'short', hour:'2-digit', minute:'2-digit' });
+      const el = document.getElementById('pipelineRunTime');
+      if (el) el.textContent = `Last run: ${timeStr} · ${data.last_run_found || 0} candidates`;
+    }
+    if (data.published_today != null) {
+      const el = document.getElementById('pipelinePublished');
+      if (el) el.textContent = data.published_today;
+    }
+    if (data.last_run_blocked != null) {
+      const el = document.getElementById('pipelineBlocked');
+      if (el) el.textContent = data.last_run_blocked;
+    }
+    // errors not in current status; show inbox_count in queued (already set by loadInbox)
+    const errEl = document.getElementById('pipelineErrors');
+    if (errEl && errEl.textContent === '—') errEl.textContent = '0';
+
+    // Store blocked_items and tl_items for display
+    window._blockedItems = data.blocked_items || [];
+    window._tlItems = data.tl_items || [];
+    renderTlCandidates(window._tlItems);
+  } catch (_) {}
+}
+
+function showBlockedModal() {
+  const items = window._blockedItems || [];
+  const list = document.getElementById('blockedModalList');
+  if (!list) return;
+  if (!items.length) {
+    list.innerHTML = '<div style="color:#9CA3AF;font-size:13px;padding:8px 0;">No blocked items from last run.</div>';
+  } else {
+    list.innerHTML = items.map(item => `
+      <div style="background:#1C1C2E;border-radius:6px;padding:10px 12px;border-left:3px solid #F59E0B;">
+        <div style="font-size:13px;font-weight:600;color:#F9FAFB;margin-bottom:3px;">${item.title || item.url}</div>
+        <div style="font-size:11px;color:#9CA3AF;">${item.reason || '—'}</div>
+        ${item.score != null ? `<div style="font-size:10px;color:#F59E0B;margin-top:3px;">Score: ${item.score}/100</div>` : ''}
       </div>
     `).join('');
+  }
+  document.getElementById('blockedModal').classList.add('visible');
+}
+
+function closeBlockedModal() {
+  document.getElementById('blockedModal').classList.remove('visible');
+}
+
+function renderTlCandidates(items) {
+  const section = document.getElementById('tlSection');
+  const list = document.getElementById('tlList');
+  if (!section || !list || !items.length) {
+    if (section) section.style.display = 'none';
+    return;
+  }
+  section.style.display = 'block';
+  list.innerHTML = items.map((item, idx) => `
+    <div id="tlCard_${idx}" style="background:#F9FAFB;border:1px solid #E5E7EB;border-radius:6px;padding:10px 14px;display:flex;justify-content:space-between;align-items:flex-start;gap:12px;">
+      <div style="flex:1;min-width:0;">
+        <div style="font-size:13px;font-weight:600;color:#111827;margin-bottom:2px;">${esc(item.title || item.url)}</div>
+        ${item.snippet ? `<div style="font-size:12px;color:#6B7280;margin-top:3px;line-height:1.4;">${esc(item.snippet.slice(0, 180))}${item.snippet.length > 180 ? '…' : ''}</div>` : ''}
+        <div id="tlCardStatus_${idx}" style="font-size:11px;color:#6B7280;margin-top:4px;display:none;"></div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:6px;align-items:flex-end;flex-shrink:0;">
+        <a href="${item.url}" target="_blank" style="font-size:11px;color:#990F3D;white-space:nowrap;text-decoration:none;">Open →</a>
+        <button
+          id="tlApproveBtn_${idx}"
+          onclick="approveTlCandidate('${esc(item.url)}', ${idx})"
+          style="font-size:10px;font-weight:700;background:#990F3D;color:#fff;border:none;border-radius:3px;padding:3px 8px;cursor:pointer;white-space:nowrap;">
+          Approve as TL
+        </button>
+      </div>
+    </div>
+  `).join('');
+}
+
+async function approveTlCandidate(url, idx) {
+  const btn    = document.getElementById(`tlApproveBtn_${idx}`);
+  const status = document.getElementById(`tlCardStatus_${idx}`);
+  if (!btn || !status) return;
+
+  btn.disabled = true;
+  btn.textContent = '⏳ Processing...';
+  status.style.display = 'block';
+  status.style.color = '#6B7280';
+  status.textContent = 'Fetching article...';
+
+  try {
+    await sseStream('/api/tl-publish', { url }, {
+      status:    (d) => { status.textContent = d.message || ''; },
+      published: (d) => {
+        status.style.color = '#15803D';
+        status.textContent = `✓ Published: "${d.title}" by ${d.author}`;
+        btn.style.display = 'none';
+        document.getElementById(`tlCard_${idx}`).style.opacity = '0.5';
+      },
+      pushed:    (d) => { status.textContent = d.message || 'Pushed to portal'; },
+      error:     (d) => {
+        status.style.color = '#B91C1C';
+        status.textContent = `✗ ${d.message}`;
+        btn.disabled = false;
+        btn.textContent = 'Approve as TL';
+      },
+    });
   } catch (err) {
-    console.error('Failed to load pending queue:', err);
+    status.style.color = '#B91C1C';
+    status.textContent = `✗ ${err.message}`;
+    btn.disabled = false;
+    btn.textContent = 'Approve as TL';
+  }
+}
+
+async function runPipelineNow() {
+  const btn = document.getElementById('btnRunPipeline');
+  if (btn) { btn.disabled = true; btn.textContent = '⏳ Running...'; }
+
+  const logBox = document.getElementById('logLines');
+  logBox.innerHTML = '';
+  document.getElementById('logOverlay').classList.add('visible');
+  const addLog = (text, type = 'default') => {
+    const div = document.createElement('div');
+    div.className = `log-line ${type}`;
+    div.textContent = text;
+    logBox.appendChild(div);
+    logBox.scrollTop = logBox.scrollHeight;
+  };
+  addLog('Starting pipeline...');
+
+  try {
+    await sseStream('/api/run-pipeline', {}, {
+      status: (d) => addLog(d.message || d.stage || JSON.stringify(d)),
+      done: (d) => addLog(`Done. Published: ${d.published || 0} · Pending: ${d.pending || 0} · Blocked: ${d.blocked || 0}`, 'success'),
+      error: (d) => addLog(`Error: ${d.message}`, 'error'),
+    });
+    addLog('Pipeline complete. Refreshing inbox...', 'success');
+    await Promise.all([loadInbox(), loadPipelineStatus()]);
+    addLog('Inbox updated. ✓', 'success');
+    setTimeout(() => document.getElementById('logOverlay').classList.remove('visible'), 1800);
+  } catch (err) {
+    addLog(`Failed: ${err.message}`, 'error');
+  }
+
+  if (btn) { btn.disabled = false; btn.textContent = '▶ Run Pipeline'; }
+}
+
+function setActiveCard(idx) {
+  _activePendingIdx = idx;
+  // Re-render to update active highlight
+  if (_pendingItems.length > 0) {
+    const list = document.getElementById('pendingList');
+    if (list) list.innerHTML = renderGroupedInbox(_pendingItems, _pendingItems.length);
+  }
+}
+
+// Keyboard shortcuts for review queue
+document.addEventListener('keydown', (e) => {
+  // Close rejection modal on Escape
+  if (e.key === 'Escape') {
+    if (document.getElementById('rejectionModal')?.classList.contains('visible')) {
+      closeRejectionModal(); return;
+    }
+    if (document.getElementById('blockedModal')?.classList.contains('visible')) {
+      closeBlockedModal(); return;
+    }
+    if (document.getElementById('logOverlay')?.classList.contains('visible')) {
+      closeLog(); return;
+    }
+  }
+
+  if (currentMode !== 'pending') return;
+  if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.tagName === 'SELECT') return;
+  if (_pendingItems.length === 0) return;
+
+  // J/K navigation
+  if (e.key === 'j' || e.key === 'J') {
+    e.preventDefault();
+    setActiveCard(Math.min(_activePendingIdx + 1, _pendingItems.length - 1));
+    document.querySelector('.eq-card-active')?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    return;
+  }
+  if (e.key === 'k' || e.key === 'K') {
+    e.preventDefault();
+    setActiveCard(Math.max(_activePendingIdx - 1, 0));
+    document.querySelector('.eq-card-active')?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    return;
+  }
+
+  const item = _pendingItems[_activePendingIdx];
+  if (!item) return;
+  if (e.key === 'p' || e.key === 'P') { e.preventDefault(); approvePendingEntry(item.id); }
+  if (e.key === 'e' || e.key === 'E') { e.preventDefault(); toggleEditMode(item.id); }
+  if (e.key === 'r' || e.key === 'R') { e.preventDefault(); rejectPendingEntry(item.id, item.headline); }
+});
+
+async function saveAndPublish(id) {
+  const headline    = document.getElementById(`edit-headline-${id}`)?.value?.trim();
+  const the_so_what = document.getElementById(`edit-sowhat-${id}`)?.value?.trim();
+  const summary     = document.getElementById(`edit-summary-${id}`)?.value?.trim();
+  const statNum     = document.getElementById(`edit-statnum-${id}`)?.value?.trim();
+  const statLabel   = document.getElementById(`edit-statlabel-${id}`)?.value?.trim();
+
+  const edits = {};
+  if (headline) edits.headline = headline;
+  if (the_so_what) edits.the_so_what = the_so_what;
+  if (summary) edits.summary = summary;
+  if (statNum && statLabel) edits.key_stat = { number: statNum, label: statLabel };
+
+  const logBox = document.getElementById('logLines');
+  logBox.innerHTML = '';
+  document.getElementById('logOverlay').classList.add('visible');
+  const addLog = (text, type = 'default') => {
+    const div = document.createElement('div');
+    div.className = `log-line ${type}`;
+    div.textContent = text;
+    logBox.appendChild(div);
+    logBox.scrollTop = logBox.scrollHeight;
+  };
+  addLog(`Saving edits and publishing: ${id}...`);
+
+  try {
+    await sseStream(`/api/inbox/${id}/approve-and-publish`, edits, {
+      status:    (d) => addLog(d.message),
+      published: (d) => addLog(`✓ Published: ${d.id}`, 'success'),
+      pushed:    (d) => addLog(`✓ ${d.message}`, 'success'),
+      error:     (d) => addLog(`✕ ${d.message}`, 'error'),
+    });
+    addLog('Done.', 'success');
+    loadInbox();
+    loadPipelineStatus();
+    setStatus(`✓ Edited and published: ${id}`);
+  } catch (err) {
+    addLog(`✕ ${err.message}`, 'error');
+    setStatus(`Error: ${err.message}`, 'error');
   }
 }
 
 async function approvePendingEntry(id) {
-  const btn = document.querySelector(`#pending-${id} .pending-approve`);
-  if (btn) { btn.disabled = true; btn.textContent = 'Approving...'; }
+  const card = document.getElementById(`eq-${id}`);
+  const btn = card?.querySelector('.eq-btn-approve');
+  if (btn) { btn.disabled = true; btn.textContent = 'Publishing...'; }
+
+  const logBox = document.getElementById('logLines');
+  logBox.innerHTML = '';
+  document.getElementById('logOverlay').classList.add('visible');
+  const addLog = (text, type = 'default') => {
+    const div = document.createElement('div');
+    div.className = `log-line ${type}`;
+    div.textContent = text;
+    logBox.appendChild(div);
+    logBox.scrollTop = logBox.scrollHeight;
+  };
+  addLog(`Approving and publishing: ${id}...`);
 
   try {
-    const res = await fetch(`/api/pending/${id}/approve`, { method: 'POST' });
-    const data = await res.json();
-    if (!data.ok) throw new Error(data.error);
-
-    // Immediately publish the approved entry
-    const logBox = document.getElementById('logLines');
-    logBox.innerHTML = '';
-    document.getElementById('logOverlay').classList.add('visible');
-    const addLog = (text, type = 'default') => {
-      const div = document.createElement('div');
-      div.className = `log-line ${type}`;
-      div.textContent = text;
-      logBox.appendChild(div);
-      logBox.scrollTop = logBox.scrollHeight;
-    };
-
-    addLog(`Publishing approved entry: ${data.entry.id}...`);
-    await sseStream('/api/publish', { entries: [data.entry] }, {
+    await sseStream(`/api/inbox/${id}/approve-and-publish`, {}, {
+      status:    (d) => addLog(d.message),
       published: (d) => addLog(`✓ Published: ${d.id}`, 'success'),
-      pushed: (d) => addLog(`✓ ${d.message}`, 'success'),
-      status: (d) => addLog(d.message),
-      rejected: (d) => d.items.forEach(i => addLog(`✕ ${i.reason}`, 'error')),
-      error: (d) => addLog(`✕ ${d.message}`, 'error'),
+      pushed:    (d) => addLog(`✓ ${d.message}`, 'success'),
+      error:     (d) => addLog(`✕ ${d.message}`, 'error'),
     });
     addLog('Done.', 'success');
-
-    loadPendingQueue();
-    setStatus(`✓ Approved and published: ${id}`);
+    loadInbox();
+    loadPipelineStatus();
+    loadActivityLog();
+    setStatus(`✓ Published: ${id}`);
   } catch (err) {
+    addLog(`✕ ${err.message}`, 'error');
     setStatus(`Error: ${err.message}`, 'error');
-    if (btn) { btn.disabled = false; btn.textContent = '✓ Approve & Publish'; }
+    if (btn) { btn.disabled = false; btn.textContent = '✓ Publish'; }
   }
 }
 
-async function rejectPendingEntry(id) {
-  if (!confirm('Reject this entry? The source URL will be permanently blocked.')) return;
+function rejectPendingEntry(id, headline) {
+  // Keyboard shortcut path — use inline reject bar
+  showInlineReject(id);
+}
+
+function showInlineReject(id) {
+  // Hide any other open inline reject bars first
+  document.querySelectorAll('[id^="inline-reject-"]').forEach(el => el.style.display = 'none');
+  const bar = document.getElementById(`inline-reject-${id}`);
+  if (bar) bar.style.display = 'flex';
+}
+
+function hideInlineReject(id) {
+  const bar = document.getElementById(`inline-reject-${id}`);
+  if (bar) bar.style.display = 'none';
+}
+
+async function doInstantReject(id) {
+  const reason = document.getElementById(`inline-reason-${id}`)?.value || 'not_relevant';
+
+  // Immediately remove card
+  const card = document.getElementById(`eq-${id}`);
+  if (card) card.remove();
+  _pendingItems = _pendingItems.filter(i => i.id !== id);
+  if (_activePendingIdx >= _pendingItems.length) _activePendingIdx = Math.max(0, _pendingItems.length - 1);
+
+  const list = document.getElementById('pendingList');
+  if (list) {
+    if (_pendingItems.length === 0) {
+      list.innerHTML = `
+        <div style="text-align:center;padding:48px 24px;color:#9CA3AF;">
+          <div style="font-size:36px;margin-bottom:12px;">✓</div>
+          <div style="font-size:15px;font-weight:600;color:#6B7280;margin-bottom:6px;">Inbox clear</div>
+          <div style="font-size:13px;">No stories waiting for review. Run the pipeline to discover new content.</div>
+          <button class="pipeline-run-btn" style="margin-top:16px;" onclick="runPipelineNow()">▶ Run Pipeline Now</button>
+        </div>`;
+    } else {
+      list.innerHTML = renderGroupedInbox(_pendingItems, _pendingItems.length);
+    }
+  }
+
+  // Update badges
+  const n = _pendingItems.length;
+  const badge = document.getElementById('pendingBadge');
+  if (badge) { badge.textContent = n; badge.style.display = n > 0 ? 'inline-block' : 'none'; }
+  const navBadge = document.getElementById('navIntelBadge');
+  if (navBadge) { navBadge.textContent = n; navBadge.style.display = n > 0 ? 'inline-block' : 'none'; }
+  const pipelineQueued = document.getElementById('pipelineQueued');
+  if (pipelineQueued) pipelineQueued.textContent = n;
+
+  // Scroll to activity log
+  setTimeout(() => {
+    document.getElementById('activityLog')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 150);
 
   try {
-    const res = await fetch(`/api/pending/${id}/reject`, { method: 'POST' });
-    const data = await res.json();
-    if (!data.ok) throw new Error(data.error);
-    setStatus(`✕ Rejected and blocked: ${id}`);
-    loadPendingQueue();
+    await fetch(`/api/inbox/${id}/reject-with-reason`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ reason, notes: '' }),
+    });
+    loadActivityLog();
+  } catch (err) {
+    setStatus(`Error: ${err.message}`, 'error');
+  }
+}
+
+function closeRejectionModal() {
+  _rejectingId = null;
+  document.getElementById('rejectionModal').classList.remove('visible');
+}
+
+async function confirmReject() {
+  const id = _rejectingId;
+  if (!id) return;
+
+  const reason = document.getElementById('rejectionReason')?.value || 'other';
+  const notes = document.getElementById('rejectionNotes')?.value?.trim() || '';
+
+  closeRejectionModal();
+
+  // Immediately remove card from DOM and pending list (optimistic)
+  const card = document.getElementById(`eq-${id}`);
+  if (card) card.remove();
+  _pendingItems = _pendingItems.filter(i => i.id !== id);
+  if (_activePendingIdx >= _pendingItems.length) _activePendingIdx = Math.max(0, _pendingItems.length - 1);
+
+  // Re-render remaining cards with updated indices
+  const list = document.getElementById('pendingList');
+  if (list) {
+    if (_pendingItems.length === 0) {
+      list.innerHTML = `
+        <div style="text-align:center;padding:48px 24px;color:#9CA3AF;">
+          <div style="font-size:36px;margin-bottom:12px;">✓</div>
+          <div style="font-size:15px;font-weight:600;color:#6B7280;margin-bottom:6px;">Inbox clear</div>
+          <div style="font-size:13px;">No stories waiting for review. Run the pipeline to discover new content.</div>
+          <button class="pipeline-run-btn" style="margin-top:16px;" onclick="runPipelineNow()">▶ Run Pipeline Now</button>
+        </div>`;
+    } else {
+      list.innerHTML = renderGroupedInbox(_pendingItems, _pendingItems.length);
+    }
+  }
+
+  // Update badge counts
+  const badge = document.getElementById('pendingBadge');
+  if (badge) { badge.textContent = _pendingItems.length; badge.style.display = _pendingItems.length > 0 ? 'inline-block' : 'none'; }
+  const navBadge = document.getElementById('navIntelBadge');
+  if (navBadge) { navBadge.textContent = _pendingItems.length; navBadge.style.display = _pendingItems.length > 0 ? 'inline-block' : 'none'; }
+  const pipelineQueued = document.getElementById('pipelineQueued');
+  if (pipelineQueued) pipelineQueued.textContent = _pendingItems.length;
+
+  // Scroll to activity log so user sees the rejection appear
+  setTimeout(() => {
+    const actEl = document.getElementById('activityLog');
+    if (actEl) actEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 100);
+
+  try {
+    await fetch(`/api/inbox/${id}/reject-with-reason`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ reason, notes }),
+    });
+    // Refresh activity log to show the rejection
+    loadActivityLog();
   } catch (err) {
     setStatus(`Error: ${err.message}`, 'error');
   }
@@ -1617,8 +2715,341 @@ function escAuditHtml(str) {
     .replace(/"/g, '&quot;');
 }
 
-// Initialise pending badge on page load
-document.addEventListener('DOMContentLoaded', () => { loadPendingQueue(); });
+// ── Shared escape helper (used by landscape + TL render functions) ────────────
+function esc(s) { return escAuditHtml(s); }
+
+// ── Landscape tab ─────────────────────────────────────────────────────────────
+
+const MATURITY_COLOURS = {
+  scaled:    { bg: '#DCFCE7', text: '#15803D' },
+  deployed:  { bg: '#DBEAFE', text: '#1D4ED8' },
+  piloting:  { bg: '#FEF3C7', text: '#B45309' },
+  announced: { bg: '#F3F4F6', text: '#6B7280' },
+  no_activity: { bg: '#F9FAFB', text: '#D1D5DB' },
+};
+
+function maturityBadge(m) {
+  const c = MATURITY_COLOURS[m] || MATURITY_COLOURS.no_activity;
+  return `<span style="font-size:10px;font-weight:700;padding:2px 7px;border-radius:3px;background:${c.bg};color:${c.text};">${m}</span>`;
+}
+
+async function loadLandscapeData() {
+  await Promise.all([loadSuggestions(), loadStaleList()]);
+}
+
+async function loadSuggestions() {
+  const listEl   = document.getElementById('suggestionsList');
+  const countEl  = document.getElementById('suggestionsCount');
+  const badgeEl  = document.getElementById('landscadgeBadge');
+  try {
+    const res   = await fetch('/api/landscape-suggestions');
+    const items = await res.json();
+    countEl.textContent = `(${items.length})`;
+
+    // Update header badge
+    if (items.length > 0) {
+      if (badgeEl) { badgeEl.style.display = 'inline'; badgeEl.textContent = items.length; }
+    } else {
+      if (badgeEl) badgeEl.style.display = 'none';
+    }
+
+    if (!items.length) {
+      listEl.innerHTML = '<div style="font-size:13px;color:#9CA3AF;text-align:center;padding:24px;">No pending suggestions — all maturity ratings look current.</div>';
+      return;
+    }
+
+    listEl.innerHTML = items.map(s => `
+      <div id="sug_${s.id}" style="background:#fff;border:1px solid #E5E7EB;border-radius:6px;padding:14px 16px;margin-bottom:8px;display:flex;align-items:flex-start;gap:14px;">
+        <div style="flex:1;min-width:0;">
+          <div style="font-size:13px;font-weight:700;color:#111827;margin-bottom:4px;">${esc(s.company_name)} · <span style="font-weight:400;color:#6B7280;">${s.capability.replace(/_/g,' ')}</span></div>
+          <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px;">
+            ${maturityBadge(s.current_maturity)}
+            <span style="color:#9CA3AF;font-size:12px;">→</span>
+            ${maturityBadge(s.suggested_maturity)}
+            ${s.source === 'staleness_sweep' ? '<span style="font-size:10px;color:#9CA3AF;margin-left:4px;">· sweep</span>' : '<span style="font-size:10px;color:#9CA3AF;margin-left:4px;">· post-publish</span>'}
+          </div>
+          <div style="font-size:12px;color:#374151;">${esc(s.reason)}</div>
+          ${s.triggered_by_headline ? `<div style="font-size:11px;color:#9CA3AF;margin-top:4px;">Triggered by: ${esc(s.triggered_by_headline)}</div>` : ''}
+          ${s.source_hint ? `<div style="font-size:11px;color:#9CA3AF;margin-top:2px;">Source: ${esc(s.source_hint)}</div>` : ''}
+          <div id="sugStatus_${s.id}" style="font-size:11px;margin-top:6px;display:none;"></div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:6px;flex-shrink:0;">
+          <button onclick="applySuggestion('${s.id}')" style="background:#15803D;color:#fff;border:none;border-radius:4px;padding:6px 12px;font-size:12px;font-weight:700;cursor:pointer;">Apply</button>
+          <button onclick="dismissSuggestion('${s.id}')" style="background:#fff;color:#6B7280;border:1px solid #D1D5DB;border-radius:4px;padding:6px 12px;font-size:12px;cursor:pointer;">Dismiss</button>
+        </div>
+      </div>
+    `).join('');
+  } catch (err) {
+    listEl.innerHTML = `<div style="color:#B91C1C;font-size:13px;">Failed to load: ${esc(err.message)}</div>`;
+  }
+}
+
+async function applySuggestion(id) {
+  const statusEl = document.getElementById(`sugStatus_${id}`);
+  if (statusEl) { statusEl.style.display = 'block'; statusEl.style.color = '#6B7280'; statusEl.textContent = 'Applying…'; }
+  try {
+    const res = await fetch(`/api/landscape-suggestions/${id}/apply`, { method: 'POST' });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error);
+    const card = document.getElementById(`sug_${id}`);
+    if (card) {
+      card.style.opacity = '0.4';
+      if (statusEl) { statusEl.style.color = '#15803D'; statusEl.textContent = `✓ Applied — ${data.capability} updated to ${data.new_maturity}`; }
+    }
+    await loadSuggestions(); // refresh count
+  } catch (err) {
+    if (statusEl) { statusEl.style.color = '#B91C1C'; statusEl.textContent = `✗ ${err.message}`; }
+  }
+}
+
+async function dismissSuggestion(id) {
+  try {
+    await fetch(`/api/landscape-suggestions/${id}/dismiss`, { method: 'POST' });
+    const card = document.getElementById(`sug_${id}`);
+    if (card) card.remove();
+    await loadSuggestions();
+  } catch { /* ignore */ }
+}
+
+async function loadStaleList() {
+  const listEl  = document.getElementById('staleList');
+  const countEl = document.getElementById('staleCount');
+  try {
+    const res   = await fetch('/api/landscape-stale');
+    const items = await res.json();
+    countEl.textContent = `(${items.length} capabilities >${45} days old)`;
+
+    if (!items.length) {
+      listEl.innerHTML = '<div style="font-size:13px;color:#9CA3AF;text-align:center;padding:24px;">All capabilities assessed within 45 days — nothing stale.</div>';
+      return;
+    }
+
+    // Group by company
+    const byCompany = {};
+    for (const item of items) {
+      if (!byCompany[item.company_name]) byCompany[item.company_name] = [];
+      byCompany[item.company_name].push(item);
+    }
+
+    listEl.innerHTML = Object.entries(byCompany).map(([company, caps]) => `
+      <div style="background:#fff;border:1px solid #E5E7EB;border-radius:6px;padding:12px 16px;margin-bottom:6px;">
+        <div style="font-size:13px;font-weight:700;color:#111827;margin-bottom:8px;">${esc(company)}</div>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;">
+          ${caps.map(c => `
+            <span style="font-size:11px;display:inline-flex;align-items:center;gap:5px;background:#F9FAFB;border:1px solid #E5E7EB;border-radius:4px;padding:3px 8px;">
+              ${maturityBadge(c.current_maturity)}
+              <span style="color:#374151;">${c.capability.replace(/_/g,' ')}</span>
+              <span style="color:#EF4444;font-weight:700;">${c.days_stale}d</span>
+            </span>
+          `).join('')}
+        </div>
+      </div>
+    `).join('');
+  } catch (err) {
+    listEl.innerHTML = `<div style="color:#B91C1C;font-size:13px;">Failed to load: ${esc(err.message)}</div>`;
+  }
+}
+
+async function runSweepNow() {
+  const btn    = document.getElementById('btnRunSweep');
+  const logEl  = document.getElementById('sweepLog');
+  btn.disabled = true;
+  btn.textContent = '⏳ Sweeping…';
+  logEl.style.display = 'block';
+  logEl.innerHTML = '';
+
+  const addLog = (text, colour = '#D1D5DB') => {
+    const div = document.createElement('div');
+    div.style.color = colour;
+    div.textContent = text;
+    logEl.appendChild(div);
+    logEl.scrollTop = logEl.scrollHeight;
+  };
+
+  addLog('Starting staleness sweep…');
+
+  try {
+    await sseStream('/api/landscape-sweep', {}, {
+      status: (d) => addLog(d.message),
+      done:   (d) => {
+        addLog(`✓ Done. Checked: ${d.checked} · New suggestions: ${d.suggestions}`, '#22C55E');
+        loadLandscapeData();
+      },
+      error:  (d) => addLog(`✗ ${d.message}`, '#EF4444'),
+    });
+  } catch (err) {
+    addLog(`Failed: ${err.message}`, '#EF4444');
+  }
+
+  btn.disabled = false;
+  btn.textContent = 'Run Staleness Sweep';
+}
+
+// ── Thought Leadership ────────────────────────────────────────────────────────
+
+// ── Activity Log (7-day history) ─────────────────────────────────────────────
+
+async function loadActivityLog() {
+  const el = document.getElementById('activityLog');
+  if (!el) return;
+  try {
+    const res = await fetch('/api/activity-log');
+    const data = await res.json();
+    const log = data.log || [];
+    if (!log.length) { el.innerHTML = ''; return; }
+
+    const groups = {};
+    log.forEach(item => {
+      const d = new Date(item.timestamp);
+      const key = d.toLocaleDateString('en-GB', { weekday:'short', day:'numeric', month:'short' });
+      if (!groups[key]) groups[key] = [];
+      groups[key].push(item);
+    });
+
+    const REASON_LABELS = {
+      not_relevant: 'Not relevant', already_covered: 'Duplicate', wrong_framing: 'Wrong framing',
+      low_quality: 'Low quality', too_old: 'Too old', other: 'Other',
+    };
+
+    el.innerHTML = `
+      <div style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#9CA3AF;padding-bottom:10px;border-top:1px solid #E5E7EB;padding-top:24px;margin-bottom:12px;">
+        Recent Activity — Last 7 Days
+      </div>
+      ${Object.entries(groups).map(([date, items]) => `
+        <div class="activity-date-group">
+          <div class="activity-date-label">${esc(date)}</div>
+          ${items.map(item => `
+            <div class="activity-row">
+              <span class="activity-pill ${item.action}">${item.action === 'approved' ? '✓ Approved' : '✕ Rejected'}</span>
+              <span class="activity-headline">${esc(item.headline)}</span>
+              ${item.company ? `<span class="activity-company">${esc(item.company)}</span>` : ''}
+              ${item.reason && item.action === 'rejected' ? `<span class="activity-time" style="color:#B91C1C;">${esc(REASON_LABELS[item.reason] || item.reason)}</span>` : ''}
+              <span class="activity-time">${new Date(item.timestamp).toLocaleTimeString('en-GB', {hour:'2-digit',minute:'2-digit'})}</span>
+            </div>
+          `).join('')}
+        </div>
+      `).join('')}`;
+  } catch(e) {
+    el.innerHTML = '';
+  }
+}
+
+async function runTLDiscover() {
+  const btn = document.getElementById('btnTLDiscover');
+  const logEl = document.getElementById('tlDiscoverLog');
+  btn.disabled = true;
+  btn.textContent = '⏳ Discovering…';
+  logEl.style.display = 'block';
+  logEl.innerHTML = '';
+  const addLog = msg => { logEl.innerHTML += `<div>${esc(String(msg))}</div>`; logEl.scrollTop = logEl.scrollHeight; };
+  try {
+    await sseStream('/api/tl-discover', {}, {
+      status: d => addLog(d.message || JSON.stringify(d)),
+      done:   d => addLog(`✓ Done — ${d.found || 0} candidates found`),
+      error:  d => addLog(`✗ ${d.message || d}`),
+    });
+    document.getElementById('tlLastRun').textContent = `Last discovery: ${new Date().toLocaleDateString('en-GB', {day:'numeric',month:'short',year:'numeric'})}`;
+    await loadTLCandidates();
+  } catch(e) {
+    addLog(`✗ ${e.message}`);
+  } finally {
+    btn.disabled = false;
+    btn.textContent = '▶ Run TL Discovery';
+  }
+}
+
+async function loadTLCandidates() {
+  const list = document.getElementById('tlCandidateList');
+  const countEl = document.getElementById('tlCandidateCount');
+  try {
+    const res = await fetch('/api/tl-candidates');
+    const data = await res.json();
+    const items = data.candidates || [];
+    if (countEl) countEl.textContent = `(${items.length})`;
+    if (items.length === 0) {
+      list.innerHTML = '<div style="color:#9CA3AF;font-size:13px;text-align:center;padding:32px;">No candidates — run TL Discovery to find thought leadership pieces.</div>';
+      return;
+    }
+    list.innerHTML = items.map((c, i) => `
+      <div class="tl-card" id="tlcard-${i}">
+        <div style="flex:1;min-width:0;">
+          <div class="tl-card-title">${esc(c.title || c.url)}</div>
+          <div class="tl-card-meta">${c.author ? esc(c.author) + ' · ' : ''}${esc(c.publication || '')}${c.date ? ' · ' + esc(c.date) : ''}</div>
+          <div class="tl-card-url"><a href="${esc(c.url)}" target="_blank">${esc(c.url)}</a></div>
+          <div class="tl-card-log" id="tlcard-log-${i}"></div>
+        </div>
+        <div class="tl-card-actions">
+          <a href="${esc(c.url)}" target="_blank" class="btn-secondary" style="text-decoration:none;font-size:11px;padding:5px 10px;">Open →</a>
+          <button class="btn-run" style="font-size:11px;padding:5px 12px;" onclick="approveTLCandidate('${esc(c.url)}',${i})">Approve as TL</button>
+          <button class="btn-secondary" style="font-size:11px;padding:5px 10px;color:#B91C1C;border-color:#FECACA;" onclick="dismissTLCandidate('${esc(c.url)}',${i})">Dismiss</button>
+        </div>
+      </div>`).join('');
+  } catch(e) {
+    if (list) list.innerHTML = `<div style="color:#EF4444;padding:16px;">${esc(e.message)}</div>`;
+  }
+}
+
+async function loadTLPublished() {
+  const list = document.getElementById('tlPublishedList');
+  try {
+    const res = await fetch('/api/tl-published');
+    const data = await res.json();
+    const entries = data.entries || [];
+    if (!entries.length) { list.innerHTML = '<div style="color:#9CA3AF;font-size:13px;">None published yet.</div>'; return; }
+    list.innerHTML = entries.map(e => `
+      <div class="tl-published-row">
+        <div><span style="font-weight:600;">${esc(e.author?.name || '—')}</span><span style="color:#6B7280;"> — ${esc(e.title || '')}</span></div>
+        <span style="font-size:11px;color:#9CA3AF;">${esc(e.date_published || '')}</span>
+      </div>`).join('');
+  } catch(e) {
+    if (list) list.innerHTML = '<div style="color:#9CA3AF;font-size:13px;">Could not load.</div>';
+  }
+}
+
+async function approveTLCandidate(url, idx) {
+  const logEl = document.getElementById(`tlcard-log-${idx}`);
+  const card = document.getElementById(`tlcard-${idx}`);
+  logEl.style.display = 'block';
+  logEl.textContent = 'Fetching article…';
+  card.querySelectorAll('button').forEach(b => b.disabled = true);
+  try {
+    await sseStream('/api/tl-publish', { url }, {
+      status: d => { logEl.textContent = d.message || JSON.stringify(d); },
+      done:   () => {
+        logEl.textContent = '✓ Published to thought-leadership';
+        logEl.style.color = '#15803D';
+        setTimeout(() => {
+          card.style.transition = 'opacity .3s'; card.style.opacity = '0';
+          setTimeout(() => { card.remove(); loadTLCandidates(); loadTLPublished(); }, 300);
+        }, 800);
+      },
+      error:  d => {
+        logEl.textContent = `✗ ${d.message || d}`;
+        logEl.style.color = '#B91C1C';
+        card.querySelectorAll('button').forEach(b => b.disabled = false);
+      },
+    });
+  } catch(e) {
+    logEl.textContent = `✗ ${e.message}`;
+    logEl.style.color = '#B91C1C';
+    card.querySelectorAll('button').forEach(b => b.disabled = false);
+  }
+}
+
+async function dismissTLCandidate(url, idx) {
+  const card = document.getElementById(`tlcard-${idx}`);
+  card.style.opacity = '0.4';
+  try {
+    await fetch('/api/tl-candidates/dismiss', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({url}) });
+    card.remove();
+    loadTLCandidates();
+  } catch(e) { card.style.opacity = '1'; }
+}
+
+// ── Init ──────────────────────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  switchSection('intelligence');
+});
 </script>
 
 </body>

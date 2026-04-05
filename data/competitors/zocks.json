@@ -2,11 +2,13 @@
   "id": "zocks",
   "name": "Zocks",
   "segment": "advisor_tools",
-  "regions": ["us"],
+  "regions": [
+    "us"
+  ],
   "color": "#2D6BE4",
-  "ai_strategy_summary": "Zocks is the leading AI meeting intelligence platform for financial advisors with 5,000+ firms, $65M raised (Lightspeed, QED), and deep integrations into Holistiplan, Commonwealth Financial, Ameritas, and Carson Group.",
+  "ai_strategy_summary": "Zocks is an AI meeting intelligence platform for financial advisors with 5,000+ firms, $65M raised (Lightspeed, QED), and deep integrations into Holistiplan, Commonwealth Financial, Ameritas, and Carson Group.",
   "head_of_ai": null,
-  "headline_metric": "5,000+ advisory firms; 1,000+ RIA firms since Feb 2024; $65M raised",
+  "headline_metric": "AI meeting notes live at 5,000+ advisory firms including Ameritas, Carson Group, Kestra; $65M raised",
   "headline_initiative": "AI meeting notes, CRM automation, and client intelligence with Holistiplan tax integration",
   "overall_maturity": "scaled",
   "capabilities": {
@@ -21,7 +23,10 @@
         "Enterprise clients: Ameritas, Carson Group, Kestra, Commonwealth, Osaic"
       ],
       "jpm_implication": "Zocks's penetration of major broker-dealer networks (Commonwealth, Osaic) indicates that meeting AI is becoming infrastructure. JPM wealth advisors operating without comparable tools face a productivity disadvantage.",
-      "jpm_segments_affected": ["JPMWM", "CWM"],
+      "jpm_segments_affected": [
+        "JPMWM",
+        "CWM"
+      ],
       "date_assessed": "2026-03-10",
       "sources": [
         {
@@ -44,7 +49,10 @@
         "CRM integrations: Salesforce, Redtail, Wealthbox"
       ],
       "jpm_implication": "The integration of meeting AI with tax planning data creates a compound productivity gain that point solutions cannot match. JPM's technology stack should enable similar workflow continuity.",
-      "jpm_segments_affected": ["JPMWM", "CWM"],
+      "jpm_segments_affected": [
+        "JPMWM",
+        "CWM"
+      ],
       "date_assessed": "2026-03-10",
       "sources": [
         {

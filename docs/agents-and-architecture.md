@@ -116,7 +116,10 @@ Returns top 20 candidates with `via` badge (RSS / Jina / DFS / Content Analysis)
 
 1. Fetches article via `r.jina.ai` (cleans HTML → markdown)
 2. **Paywall bypass:** If paywall/thin content detected → extracts headline from teaser → runs **DataForSEO Google News + Google Organic in parallel** (up to 8 candidates) → **Jina Reranker** picks the alternative closest to the original teaser → fetches top alternatives via Jina → combines content. Non-paywalled articles use Jina keyword search for supplementary context.
-3. Calls **Claude `claude-sonnet-4-6`** with strict grounding prompt → structured `IntelligenceEntry` JSON
+3. Calls **Claude `claude-sonnet-4-6`** with three-layer editorial prompt → structured `IntelligenceEntry` JSON
+   - Layer 1: Which AI capability is advancing?
+   - Layer 2: What is the triggering event?
+   - Layer 3: `the_so_what` — why this matters strategically (CXO-facing, one sentence)
 4. No inference allowed — Claude only extracts what is in the source
 
 ### `governance.js` — Claim Verification
@@ -141,21 +144,31 @@ Sits between governance output and publish/review/block routing. Scores each ent
 | **C: Freshness** | 10 | ≤1d = 10, ≤3d = 8, ≤7d = 6, ≤14d = 4, ≤30d = 2, ≤90d = 1, older = hard BLOCK |
 | **D: Capability Impact** | 40 | Which of 7 capability dimensions is advancing, what evidence, at what scale. `capability_evidence` populated → 15–40pts. Tracked company without capability_evidence → floor at 20pts. |
 
-**Routing thresholds:**
-- Score ≥ 75 → **PUBLISH** (auto-publish, no Telegram)
-- Score 60–74 → **REVIEW** (Telegram with score breakdown + each unverified claim)
+**Routing thresholds (Universal Inbox — nothing auto-publishes):**
+- Score ≥ 75 → **INBOX** (high-confidence story, queued for editorial sign-off)
+- Score 60–74 → **INBOX** (REVIEW verdict, requires closer look)
 - Score < 60 or any fabricated claim → **BLOCK** (URL permanently blocked)
-- Paywall caveat → PUBLISH downgraded to REVIEW
+- Paywall caveat → PUBLISH downgraded to REVIEW in inbox
+
+All scored entries go to `addPending()` in gov-store. Haresh reviews and approves in the Editorial Studio before anything publishes.
 
 Domain authority results cached in-process — one Backlinks API call per domain per pipeline run.
 
 ### `gov-store.js` — Governance State
 
 File-backed stores (in `data/`):
-- `.governance-pending.json` — REVIEW entries awaiting human approval
+- `.governance-pending.json` — all inbox entries awaiting human sign-off (both PASS and REVIEW)
 - `.governance-blocked.json` — permanently blocked URLs (cannot be resubmitted)
+- `.rejection-log.json` — editorial rejection records with reason + notes (for algorithm tuning)
+- `.pipeline-status.json` — last pipeline run summary (started_at, candidates_found, queued, blocked, errors)
 
-Operations: `getPending`, `addPending`, `approvePending`, `rejectPending`, `getBlocked`, `addBlocked`, `isBlocked`
+Operations:
+- `getPending`, `addPending(entry, governance, metadata={})`, `approvePending`, `rejectPending`
+- `getBlocked`, `addBlocked`, `isBlocked`
+- `addRejectionLog(entry)`, `getRejectionLog()`
+- `writePipelineStatus(status)`, `readPipelineStatus()`
+
+`addPending` stores optional `metadata.score` and `metadata.score_breakdown` alongside each entry.
 
 ### `publisher.js` — Write + Commit
 
@@ -174,11 +187,16 @@ Review links use HMAC-SHA256 token signing (`REVIEW_SECRET`) — one-tap approve
 ### `scheduler.js` — Daily Pipeline Orchestration
 
 Runs at 6am Europe/London:
-1. `autoDiscover()` → find new candidates
-2. Score + filter → top candidates
-3. `processUrl()` + `verify()` for each → governance gate
-4. `publish()` for PASSed entries
-5. `sendDigest()` → Telegram summary
+1. `autoDiscover()` → find new candidates (intelCandidates + tlCandidates + knownCompanyIds)
+2. Build entity+event dedup map (same company + same type within 14 days → REVIEW with note)
+3. For each of top 15 candidates: `processUrl()` + `verify()` + `scoreEntry()`
+4. **ROUTING (Universal Inbox — nothing auto-publishes):**
+   - Score ≥ 75 → `addPending(entry, govAudit, { score, score_breakdown })` → INBOX (high confidence)
+   - Score 60–74 → `addPending(entry, govAudit)` → INBOX (REVIEW)
+   - Score < 60 or fabricated → `addBlocked()` → permanently blocked
+5. New company detection: entry.company not in knownCompanyIds → flagged in digest
+6. `writePipelineStatus()` → `.pipeline-status.json`
+7. `sendDigest()` → Telegram (trigger-only: "N stories need review → [link to studio]")
 
 ### `auditor.js` — Data Quality Audit Engine *(new)*
 
@@ -218,22 +236,26 @@ Run: `node --env-file=.env scripts/run-tests.js`
 
 | Method | Route | Purpose |
 |---|---|---|
-| POST | `/api/auto-discover` | Parallel RSS + Jina + DataForSEO discovery |
+| POST | `/api/auto-discover` | Parallel L1 News + L1 Caps + L2 Companies discovery |
 | POST | `/api/search` | Jina web search |
-| POST | `/api/discover` | RSS-only discovery |
-| POST | `/api/process-url` | Fetch + structure + governance for one URL |
-| POST | `/api/publish` | Publish (enforces governance gate) |
-| GET | `/api/pending` | List REVIEW entries awaiting approval |
-| POST | `/api/pending/:id/approve` | Approve REVIEW entry |
-| POST | `/api/pending/:id/reject` | Reject + permanently block |
-| GET | `/api/blocked` | View all blocked URLs |
+| POST | `/api/process-url` | Fetch + structure + governance for one URL → queues to inbox |
+| POST | `/api/publish` | Write entry JSON + git commit + push (called by approve-and-publish) |
+| GET | `/api/pending` | Legacy: list pending entries (use `/api/inbox` instead) |
+| POST | `/api/pending/:id/approve` | Legacy approve (use `/api/inbox/:id/approve-and-publish` instead) |
+| POST | `/api/pending/:id/reject` | Legacy reject (use `/api/inbox/:id/reject-with-reason` instead) |
+| **GET** | **`/api/inbox`** | **All queued items, REVIEW-first then score desc — Universal Inbox** |
+| **POST** | **`/api/inbox/:id/approve-and-publish`** | **SSE stream: approve → publish → git push (rollback on failure)** |
+| **POST** | **`/api/inbox/:id/reject-with-reason`** | **Log reason + notes → .rejection-log.json → rejectPending** |
+| **GET** | **`/api/pipeline-status`** | **Last pipeline run summary from .pipeline-status.json** |
+| **GET** | **`/api/recent-published`** | **Last 7 days of published entries for editorial audit** |
+| GET | `/api/blocked` | View all permanently blocked URLs |
 | GET | `/api/health` | Server health + queue counts |
 | GET | `/api/audit` | Run fast audit (SSE stream) |
 | GET | `/api/audit/deep` | Run deep audit with Claude (SSE stream) |
 | GET | `/api/audit/report` | Fetch last saved audit report |
 | POST | `/api/run-pipeline` | Manually trigger daily pipeline |
 | POST | `/api/test-digest` | Send sample Telegram digest |
-| GET | `/review/:token` | Mobile review page (approve/reject) |
+| GET | `/review/:token` | Mobile review page (approve/reject via HMAC token) |
 
 ---
 
@@ -241,14 +263,16 @@ Run: `node --env-file=.env scripts/run-tests.js`
 
 ```
 data/
-├── intelligence/       ← ~32 IntelligenceEntry JSON files
-├── thought-leadership/ ← 6 ThoughtLeadershipEntry JSON files (all URLs verified)
-├── competitors/        ← 27 Competitor JSON files (7 segments)
-├── capabilities/       ← index.json (7 capability dimensions)
-├── logos/              ← Local SVG/PNG logos (never use external URLs)
-├── audit-report.json   ← Latest audit output (auto-generated)
-├── .governance-pending.json
-└── .governance-blocked.json
+├── intelligence/             ← 25 IntelligenceEntry JSON files (audited, 2026-03-22)
+├── thought-leadership/       ← 6 ThoughtLeadershipEntry JSON files (all URLs verified)
+├── competitors/              ← 27 Competitor JSON files (7 segments)
+├── capabilities/             ← index.json (7 capability dimensions)
+├── logos/                    ← Local SVG/PNG logos (never use external URLs)
+├── audit-report.json         ← Latest audit output (auto-generated)
+├── .governance-pending.json  ← Universal inbox (ALL stories pre-publish)
+├── .governance-blocked.json  ← Permanently blocked URLs
+├── .rejection-log.json       ← Editorial rejection records (reason + notes)
+└── .pipeline-status.json     ← Last pipeline run summary
 ```
 
 ### Intelligence Entry Schema (key fields)
@@ -257,6 +281,7 @@ data/
   "id": "slug",
   "type": "market_signal | product_launch | milestone | research",
   "headline": "...",
+  "the_so_what": "One sentence — why this matters to a CXO. Business-decision oriented.",
   "company": "slug",
   "date": "YYYY-MM-DD",
   "week": "YYYY-MM-DD (Monday of week)",
@@ -323,6 +348,7 @@ data/
 5. **Git as publish mechanism** — publisher.js commits and pushes directly. Railway redeploys on push. No separate deploy step.
 6. **Audit as a script** — audit-all.js runs before any CEO presentation. Exit code 1 if critical issues found. Can be wired to CI/CD.
 7. **Search, don't guess** — when finding source URLs, use Jina search or WebFetch with a query term. Never guess URL patterns more than twice.
+8. **Universal Inbox (2026-03-23)** — Nothing auto-publishes. ALL stories (PASS ≥75 and REVIEW 60–74) queue for human sign-off. Editorial Studio (localhost:3003) is the primary review interface. Telegram is trigger-only. Reason: algorithm/scoring is still being calibrated; editorial oversight ensures quality during this phase.
 
 ---
 

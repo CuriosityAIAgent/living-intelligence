@@ -1,16 +1,35 @@
 {
   "id": "bofa-erica-3billion-digital-30billion-2026",
   "type": "milestone",
-  "headline": "BofA's AI and digital estate reaches 30 billion client interactions — Erica surpasses 3.2 billion total with 20.6 million users",
+  "headline": "BofA Erica Crosses 3.2B Interactions, 30B Total Digital Touchpoints in 2025",
+  "the_so_what": "30 billion digital interactions and 20.6 million monthly active Erica users make BofA's consumer AI estate larger than most standalone digital wealth platforms. JPMorgan's Connect Coach covers 4,600 advisors; Morgan Stanley's AI tools reach 98% of advisors. But BofA's Erica operates at consumer scale, creating a data flywheel that no advisor-facing tool can replicate. The scale economics are prohibitively expensive to build from scratch.",
   "company": "bofa-merrill",
   "company_name": "BofA / Merrill",
   "date": "2026-03-10",
-  "source_name": "Bank of America Newsroom",
-  "source_url": "https://newsroom.bankofamerica.com/content/newsroom/press-releases/2026/03/bofa-ai-and-digital-innovations-fuel-30-billion-client-interacti.html",
+  "source_name": "PR Newswire",
+  "source_url": "https://www.prnewswire.com/news-releases/bofa-ai-and-digital-innovations-fuel-30-billion-client-interactions-302709493.html",
   "source_verified": true,
   "additional_sources": [],
+  "sources": [
+    {
+      "name": "Bank of America Newsroom",
+      "url": "https://newsroom.bankofamerica.com/content/newsroom/press-releases/2026/03/bofa-ai-and-digital-innovations-fuel-30-billion-client-interacti.html",
+      "type": "primary"
+    },
+    {
+      "name": "PR Newswire",
+      "url": "https://www.prnewswire.com/news-releases/bofa-ai-and-digital-innovations-fuel-30-billion-client-interactions-302709493.html",
+      "type": "primary"
+    },
+    {
+      "name": "Banking Exchange",
+      "url": "https://www.bankingexchange.com/news-feed/item/10571-ai-tools-drive-30bn-digital-interactions-at-bank-of-america",
+      "type": "coverage"
+    }
+  ],
+  "source_count": 3,
   "image_url": "/logos/bofa-merrill.png",
-  "summary": "Bank of America's March 2026 digital report confirms its AI and digital estate logged 30 billion client interactions in 2025 — a 14% year-on-year increase — with 16.6 billion logins and 13.3 billion alerts sent. Erica, the AI virtual assistant, reached 3.2 billion total interactions since its 2018 launch, with 20.6 million active users and 700 million interactions in 2025 alone. 86% of wealth management clients and 81% of consumer households now engage digitally. Life Plans — BofA's AI-driven financial planning tool — have been created by 21.5 million clients since 2020, generating $211 billion in associated asset growth. The figures confirm BofA as the scale leader in deployed consumer AI within financial services.",
+  "summary": "Bank of America's March 2026 digital report confirms its AI and digital estate logged 30 billion client interactions in 2025 — a 14% year-on-year increase — with 16.6 billion logins and 13.3 billion alerts sent. Erica, the AI virtual assistant, reached 3.2 billion total interactions since its 2018 launch, with 20.6 million active users and 700 million interactions in 2025 alone. 86% of wealth management clients and 81% of consumer households now engage digitally. Life Plans — BofA's financial planning tool — have been created by 21.5 million clients since 2020, with $211 billion in asset growth among Life Plan users (per BofA Newsroom — not attributable to the tool alone). The figures confirm BofA as the scale leader in deployed consumer AI within financial services.",
   "key_stat": {
     "number": "30B",
     "label": "Client digital interactions in 2025 — 14% YoY growth; Erica at 3.2B total, 20.6M users"
@@ -27,7 +46,6 @@
     ]
   },
   "week": "2026-03-09",
-  "featured": false,
   "_governance": {
     "verdict": "PASS",
     "confidence": 98,
@@ -50,5 +68,38 @@
     "human_approved": true,
     "approved_at": "2026-03-19T12:00:00.000Z"
   },
-  "published_at": "2026-03-20T12:59:12.185Z"
+  "published_at": "2026-03-10T00:00:00.000Z",
+  "_final_score": 85,
+  "_research": {
+    "entities": {
+      "company_name": "BofA / Merrill",
+      "capability_area": "client_personalization"
+    },
+    "source_count": 3,
+    "landscape_context": {
+      "is_tracked": true
+    },
+    "confidence": "high",
+    "researched_at": "2026-04-03T20:00:09.289Z"
+  },
+  "_fabrication": {
+    "verdict": "CLEAN",
+    "claims_checked": 8,
+    "claims_verified": 8,
+    "claims_unverified": 0,
+    "claims_fabricated": 0,
+    "details": [],
+    "checked_at": "2026-04-03T20:00:09.289Z"
+  },
+  "_iterations": [
+    {
+      "version": 1,
+      "evaluation": {
+        "overall": "PASS",
+        "quality_score": 9
+      },
+      "fabrication_verdict": "CLEAN"
+    }
+  ],
+  "_editor_notes": []
 }

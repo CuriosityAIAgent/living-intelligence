@@ -2,63 +2,70 @@
   "id": "jump-ai",
   "name": "Jump",
   "segment": "advisor_tools",
-  "regions": [
-    "us"
-  ],
+  "regions": ["us"],
   "color": "#FF5C00",
-  "ai_strategy_summary": "Jump is the fastest-scaling AI platform in US financial advisory — reaching 27,000 advisors (~1 in 10 in the US) in under two years, processing 183 continuous years of client meetings, and raising $105M total. It is the de facto standard for AI meeting and workflow automation among independent advisors.",
+  "ai_strategy_summary": "Jump is the category leader in advisor AI — #1 in advisor satisfaction and adoption in both the 2025 and 2026 T3/Inside Information Software Surveys, with 27,000+ advisors on the platform. Founded in 2023, Jump grew from zero to 27,000 advisors in two years on an $80M Series B led by Insight Partners. The platform has three product pillars: Meet (meeting intelligence), Grow (organic growth acceleration), and Operate (back-office automation). In March 2026, Jump launched AI Associate — an agentic execution layer that moves beyond surfacing insights to taking direct action across CRM, email, and financial planning systems. This makes Jump the first advisor AI platform to cross from passive intelligence into agentic execution. COO Tim Chaves framed the shift: 'The industry doesn't just need more insights — it needs execution.'",
   "head_of_ai": null,
-  "headline_metric": "27,000 advisors (1 in 10 US), $105M raised, 183 years of meetings processed",
-  "headline_initiative": "AI operating system for advisor meetings, CRM automation, and client follow-up",
+  "headline_metric": "27,000+ advisors; #1 T3 Survey satisfaction 2025 & 2026; $80M Series B; 20+ AI features; agentic execution live",
+  "headline_initiative": "AI Associate (agentic execution) + Meet/Grow/Operate product architecture",
   "overall_maturity": "scaled",
   "capabilities": {
     "advisor_productivity": {
       "maturity": "scaled",
-      "headline": "Jump processes advisor-client meetings end-to-end: prep, notes, CRM updates, tasks, and compliance docs — at scale across 27,000 advisors",
-      "detail": "Jump is an AI operating system for financial advisors that automates meeting prep, post-meeting follow-up, CRM updates, compliance documentation, client summaries, and task generation. Launched publicly in January 2024, it reached 27,000 advisors by early 2026 — adding 2,000+ advisors/month with 35%+ monthly growth. $105M raised (Series A $20M Battery Ventures Feb 2025; Series B $80M Insight Partners Feb 2026).",
+      "headline": "27,000+ advisors, #1 satisfaction, AI Associate crosses from insights to agentic execution",
+      "detail": "Jump's AI Operating System provides 20+ AI-powered features across three pillars: Meet (meeting intelligence with action items), Grow (organic client acquisition acceleration), and Operate (back-office workflow automation). The March 2026 launch of AI Associate added an agentic execution layer — the AI now updates CRM records, drafts and sends client emails with full context, schedules follow-ups, logs life events, and assigns tasks, all with human-in-the-loop compliance. This makes Jump the first advisor AI to cross from passive intelligence into autonomous workflow execution.",
       "evidence": [
-        "27,000 advisors on platform as of early 2026",
-        "~1 in 10 US financial advisors uses Jump",
-        "183 continuous years of client meetings processed",
-        "2,000+ new advisors per month",
-        "$105M total funding ($20M Series A + $80M Series B)",
-        "Firms managing ~$12 trillion in assets use Jump",
-        "35%+ average monthly growth rate since January 2024"
+        "27,000+ advisors on platform (Business Wire, March 2026)",
+        "#1 advisor satisfaction and adoption: T3/Inside Information Survey 2025 and 2026 (Business Wire)",
+        "AI Associate: agentic execution across CRM, email, planning tools (Business Wire, March 2026)",
+        "Three pillars: Meet, Grow, Operate (Jump blog)",
+        "20+ AI-powered features (Business Wire)",
+        "$80M Series B led by Insight Partners (Business Wire, Feb 2026)",
+        "COO Tim Chaves: 'industry needs execution not just insights' (Business Wire)"
       ],
-      "jpm_implication": "Jump is setting the standard for advisor meeting automation. If JPM advisors are not using comparable tools, they are spending significantly more time on admin than competitors. Internal AI meeting tools or Jump integration should be evaluated.",
-      "jpm_segments_affected": [
-        "JPMWM",
-        "CWM"
-      ],
-      "date_assessed": "2026-03-10",
+      "date_assessed": "2026-04-04",
       "sources": [
-        {
-          "name": "Jump — $80M Series B announcement",
-          "url": "https://jump.ai/press/series-b-announcement"
-        }
+        { "name": "Business Wire — AI Associate Launch", "url": "https://www.businesswire.com/news/home/20260326150532/en/Jump-Launches-AI-Associate-an-Intelligent-Agent-Bringing-Action-to-Its-AI-OS-for-Advisors" },
+        { "name": "Jump Blog", "url": "https://jump.ai/blog/introducing-AI-associate" },
+        { "name": "Business Wire — Series B", "url": "https://www.businesswire.com/news/home/20260219487440/en/Jump-Raises-80-Million-Series-B-Led-by-Insight-Partners-to-Expand-AI-Operating-System-for-Financial-Advisors" },
+        { "name": "IT Digest", "url": "https://itdigest.com/fintech/jump-launches-ai-associate-an-intelligent-agent-bringing-action-to-its-ai-os-for-advisors/" }
       ]
     },
     "operations_compliance": {
       "maturity": "deployed",
-      "headline": "Automated compliance documentation generation from advisor-client meetings",
-      "detail": "Jump auto-generates compliance-grade documentation from advisor-client meetings — reducing the manual compliance burden that typically follows each client interaction.",
+      "headline": "AI Associate automates CRM updates, follow-ups, task assignment with human-in-the-loop compliance",
+      "detail": "AI Associate's agentic execution layer handles CRM record updates, email drafting and sending, meeting scheduling, and life event logging — all with enterprise-grade compliance standards requiring human-in-the-loop confirmation before actions execute. This puts Jump ahead of other advisor tools on compliance-aware automation.",
       "evidence": [
-        "Compliance documentation generation confirmed",
-        "Post-meeting workflow automation in production"
+        "Enterprise-grade compliance with human-in-the-loop confirmation (Business Wire)",
+        "CRM updates, email drafting, task assignment automated (Business Wire, March 2026)"
       ],
-      "jpm_implication": "AI-automated compliance documentation reduces per-interaction compliance cost significantly. JPM compliance teams should evaluate AI-generated documentation quality against current standards.",
-      "jpm_segments_affected": [
-        "JPMWM",
-        "CWM"
-      ],
-      "date_assessed": "2026-03-10",
+      "date_assessed": "2026-04-04",
       "sources": [
-        {
-          "name": "Jump — $80M Series B announcement",
-          "url": "https://jump.ai/press/series-b-announcement"
-        }
+        { "name": "Business Wire", "url": "https://www.businesswire.com/news/home/20260326150532/en/Jump-Launches-AI-Associate-an-Intelligent-Agent-Bringing-Action-to-Its-AI-OS-for-Advisors" }
       ]
+    },
+    "client_acquisition": {
+      "maturity": "deployed",
+      "headline": "Grow pillar: AI-powered organic growth acceleration for advisors",
+      "detail": "Jump's Grow pillar specifically targets organic client acquisition — using AI to identify growth opportunities, surface referral leads, and accelerate prospect engagement. This is a unique focus area among advisor tools; most competitors focus on productivity (meeting notes, CRM) rather than growth.",
+      "evidence": [
+        "Grow pillar: organic growth acceleration (Jump blog, Business Wire)"
+      ],
+      "date_assessed": "2026-04-04",
+      "sources": [
+        { "name": "Jump Blog", "url": "https://jump.ai/blog/introducing-AI-associate" }
+      ]
+    },
+    "client_personalization": {
+      "maturity": "no_activity",
+      "headline": "No client-facing AI; Jump is advisor-only (B2B tool, not client-facing)",
+      "detail": "Jump operates exclusively as an advisor-facing tool. It does not provide client-facing AI experiences (unlike Erica for BofA or Tori for eToro). The platform's value proposition is advisor productivity and workflow automation, not client self-service.",
+      "evidence": [
+        "B2B advisor platform only — no client-facing AI disclosed"
+      ],
+      "date_assessed": "2026-04-04",
+      "sources": []
     }
   },
-  "last_updated": "2026-03-18"
+  "last_updated": "2026-04-04"
 }

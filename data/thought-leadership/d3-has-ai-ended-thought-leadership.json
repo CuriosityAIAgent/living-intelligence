@@ -1,0 +1,51 @@
+{
+  "id": "d3-has-ai-ended-thought-leadership",
+  "type": "essay",
+  "title": "Has AI Ended Thought Leadership?",
+  "author": {
+    "name": "Harvard Business School / Digital Data Design Institute (D^3)",
+    "title": "Executive Fellow",
+    "organization": "Harvard Business School / Digital Data Design Institute (D^3)",
+    "photo_url": null
+  },
+  "publication": "Harvard Business Review",
+  "source_url": "https://hbr.org/2026/03/has-ai-ended-thought-leadership",
+  "date_published": "2026-03-09",
+  "format": "essay",
+  "executive_summary": [
+    "Generative AI has collapsed the barrier to producing expert-sounding content, flooding organizations with polished but hollow insight and creating a faux-expertise crisis that poses a genuine strategic risk.",
+    "The author argues that 'thought doership'—embedding with teams to design, run, and learn from real experiments with skin in the game—is replacing the safer, stage-bound model of thought leadership.",
+    "Leaders can distinguish genuine operators from performers by probing for granular failure narratives, the ability to move between strategic altitude and operational detail, and evidence of evolving mental models.",
+    "Organizations making real progress on AI transformation are reallocating time from keynote consumption to structured build-and-learn sprints with experienced operators who stay through the mess."
+  ],
+  "the_one_insight": "When generative AI makes it trivially easy to perform expertise, the only authority that remains meaningful is scar tissue—the kind earned by building something that broke.",
+  "key_quotes": [
+    {
+      "text": "The barrier to entry for expertise theater has dropped to zero. And when everyone can perform authority, authority itself loses meaning.",
+      "context": "The author's core diagnosis of why AI has structurally devalued conventional thought leadership."
+    },
+    {
+      "text": "A thought leader tells you that AI will transform your workforce. A thought doer builds a pilot with your team in 10 days, figures out what breaks, and iterates.",
+      "context": "The clearest articulation of the thought leader vs. thought doer distinction."
+    },
+    {
+      "text": "If the person you're considering can't give you a detailed account of something that didn't work, they haven't done enough real work to be useful to you.",
+      "context": "A practical hiring filter for CEOs evaluating advisors and speakers."
+    },
+    {
+      "text": "The future won't belong to the people who describe it best. It will belong to the people who build it first.",
+      "context": "The closing provocation, summarizing the entire argument in two sentences."
+    }
+  ],
+  "tags": [
+    "leadership",
+    "future_of_work",
+    "talent",
+    "strategy",
+    "technology"
+  ],
+  "week": "2026-03-09",
+  "featured": false,
+  "has_document": false,
+  "document_url": null
+}

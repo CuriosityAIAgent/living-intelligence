@@ -6,13 +6,13 @@
     "asia"
   ],
   "color": "#E01A22",
-  "ai_strategy_summary": "The global benchmark. DBS has 1,500+ AI models in production across 370+ use cases, projects >SGD 1 billion in economic value from AI in 2025, and was named World's Best AI Bank. Their decade-long data infrastructure investment created an unmatched foundation for GenAI deployment.",
+  "ai_strategy_summary": "The global benchmark. DBS has 1,500+ AI models in production across 370+ use cases, projects >SGD 1 billion in economic value from AI in 2025, and was named World's Best AI Bank. Their sustained data infrastructure investment created the foundation for GenAI deployment at scale.",
   "head_of_ai": {
     "name": "Piyush Gupta",
     "title": "CEO (AI as core strategy)"
   },
-  "headline_metric": "1,500+ AI models, SGD 1B economic value",
-  "headline_initiative": "ADA + ALAN \u2014 Enterprise AI platform at scale",
+  "headline_metric": "1,500+ AI models across 370 use cases; 30M+ monthly personalised interactions generating SGD 1B economic value",
+  "headline_initiative": "ADA + ALAN — Enterprise AI platform at scale",
   "overall_maturity": "scaled",
   "capabilities": {
     "advisor_productivity": {
@@ -31,7 +31,7 @@
       "date_assessed": "2026-03-19",
       "sources": [
         {
-          "name": "DBS \u2014 Named World's Best AI Bank 2025",
+          "name": "DBS — Named World's Best AI Bank 2025",
           "url": "https://www.dbs.com/newsroom/DBS_named_Worlds_Best_AI_Bank_2025"
         }
       ]
@@ -51,7 +51,7 @@
       "date_assessed": "2026-03-19",
       "sources": [
         {
-          "name": "DBS \u2014 Named World's Best AI Bank 2025",
+          "name": "DBS — Named World's Best AI Bank 2025",
           "url": "https://www.dbs.com/newsroom/DBS_named_Worlds_Best_AI_Bank_2025"
         }
       ]
@@ -63,7 +63,7 @@
       "evidence": [
         "Part of DBS's 370 documented AI use cases in production",
         "AI-driven portfolio construction confirmed as part of wealth management service stack",
-        "DBS World's Best AI Bank (Euromoney 2025) \u2014 covers the whole institution"
+        "DBS World's Best AI Bank (Euromoney 2025) — covers the whole institution"
       ],
       "jpm_implication": "AI-driven investment recommendations are standard at DBS. IPB needs to match this capability.",
       "jpm_segments_affected": [
@@ -73,7 +73,7 @@
       "date_assessed": "2026-03-19",
       "sources": [
         {
-          "name": "DBS \u2014 Named World's Best AI Bank 2025",
+          "name": "DBS — Named World's Best AI Bank 2025",
           "url": "https://www.dbs.com/newsroom/DBS_named_Worlds_Best_AI_Bank_2025"
         }
       ]
@@ -85,7 +85,7 @@
       "evidence": [
         "AML and KYC automation confirmed as part of DBS group AI programme",
         "Part of SGD 1B documented economic value from AI",
-        "Specific WM compliance AI not separately disclosed \u2014 firm-wide compliance AI is well-evidenced"
+        "Specific WM compliance AI not separately disclosed — firm-wide compliance AI is well-evidenced"
       ],
       "jpm_implication": "DBS's compliance automation is a major cost advantage. JPM's compliance costs in Asia should be benchmarked against DBS.",
       "jpm_segments_affected": [
@@ -94,7 +94,7 @@
       "date_assessed": "2026-03-19",
       "sources": [
         {
-          "name": "DBS \u2014 Named World's Best AI Bank 2025",
+          "name": "DBS — Named World's Best AI Bank 2025",
           "url": "https://www.dbs.com/newsroom/DBS_named_Worlds_Best_AI_Bank_2025"
         }
       ]

@@ -1,0 +1,189 @@
+{
+  "id": "jump-ai-associate-execution-layer-launch-2026-03",
+  "type": "product_launch",
+  "headline": "Jump Launches AI Associate: Agentic Execution Across CRM, Email, and Planning Systems for 27,000+ Advisors",
+  "summary": "Jump has launched AI Associate, an agentic execution layer that moves beyond surfacing insights to taking direct action across an advisor's tech stack — updating CRM records, drafting and sending client emails with full context, scheduling follow-ups, and logging life events. The product extends Jump's existing meeting intelligence into three categories: Meet (meeting-to-action), Grow (organic growth acceleration), and Operate (back-office automation). Jump now serves 27,000+ advisors, was ranked #1 in advisor satisfaction and adoption in both the 2025 and 2026 T3/Inside Information Software Surveys, and has 20+ AI-powered features across its platform. COO Tim Chaves framed the launch as addressing the industry's execution gap: 'The industry doesn't just need more insights — it needs execution.'",
+  "the_so_what": "Jump is the first advisor AI platform to cross from passive intelligence into agentic execution — where the AI initiates CRM updates, generates proposals, and triggers follow-ups without advisor intervention. Morgan Stanley's Debrief captures meeting notes at 98% adoption but doesn't act on them. Altruist's Hazel queries custodial data but doesn't write to external systems. Jump's AI Associate does both: it reads context and takes action across CRM, email, and planning tools. At 27,000 advisors, it has the distribution to make this the new baseline expectation for advisor AI.",
+  "company": "jump-ai",
+  "company_name": "Jump",
+  "date": "2026-03-26",
+  "week": "2026-03-23",
+  "source_name": "Business Wire",
+  "source_url": "https://www.businesswire.com/news/home/20260326150532/en/Jump-Launches-AI-Associate-an-Intelligent-Agent-Bringing-Action-to-Its-AI-OS-for-Advisors",
+  "source_verified": true,
+  "image_url": "/logos/jump.svg",
+  "key_stat": {
+    "number": "27,000+",
+    "label": "advisors on Jump platform, ranked #1 in advisor satisfaction (T3 Survey 2025 & 2026)"
+  },
+  "capability_evidence": {
+    "capability": "advisor_productivity",
+    "stage": "deployed",
+    "evidence": "AI Associate is live, enabling advisors to take action across CRM, email, and financial planning systems. 27,000+ advisors on platform. #1 in T3/Inside Information Survey 2025 and 2026. 20+ AI features.",
+    "metric": "27,000+ advisors; #1 advisor satisfaction T3 Survey 2025 & 2026"
+  },
+  "tags": {
+    "capability": "advisor_productivity",
+    "region": "us",
+    "segment": "advisor_tools",
+    "theme": [
+      "agentic_ai",
+      "workflow_execution",
+      "crm_automation",
+      "advisor_platform"
+    ]
+  },
+  "sources": [
+    {
+      "name": "Business Wire",
+      "url": "https://www.businesswire.com/news/home/20260326150532/en/Jump-Launches-AI-Associate-an-Intelligent-Agent-Bringing-Action-to-Its-AI-OS-for-Advisors",
+      "type": "primary"
+    },
+    {
+      "name": "Jump Blog",
+      "url": "https://jump.ai/blog/introducing-AI-associate",
+      "type": "primary"
+    },
+    {
+      "name": "IT Digest",
+      "url": "https://itdigest.com/fintech/jump-launches-ai-associate-an-intelligent-agent-bringing-action-to-its-ai-os-for-advisors/",
+      "type": "coverage"
+    },
+    {
+      "name": "Morningstar",
+      "url": "https://www.morningstar.com/news/business-wire/20260326150532/jump-launches-ai-associate-an-intelligent-agent-bringing-action-to-its-ai-os-for-advisors",
+      "type": "coverage"
+    },
+    {
+      "name": "Destination CRM",
+      "url": "https://www.destinationcrm.com/Articles/CRM-News/CRM-Across-the-Wire/Jump-Launches-AI-Associate-174081.aspx",
+      "type": "coverage"
+    }
+  ],
+  "source_count": 5,
+  "featured": false,
+  "published_at": "2026-03-26T00:00:00.000Z",
+  "_triage_score": null,
+  "_final_score": 82,
+  "_research": {
+    "entities": {
+      "company_name": "Jump",
+      "company_slug": "jump-ai",
+      "people": [
+        "Tim Chaves — President & COO, Jump"
+      ],
+      "metrics": [
+        "27,000+ advisors",
+        "#1 T3 Survey 2025 & 2026",
+        "20+ AI features",
+        "$80M Series B",
+        "Founded 2023"
+      ],
+      "capability_area": "advisor_productivity",
+      "key_topic": "Agentic AI execution layer for advisors",
+      "event_type": "product_launch"
+    },
+    "source_count": 1,
+    "landscape_context": {
+      "is_tracked": true,
+      "current_maturity": "scaled",
+      "peer_comparison": "Morgan Stanley Debrief (scaled, 98% adoption, meeting notes only), Altruist Hazel (deployed, custodial queries only)"
+    },
+    "past_entries_count": 2,
+    "whats_new": "Shift from passive meeting intelligence to agentic execution — AI now takes action across CRM, email, planning tools. Previous coverage was $80M Series B and meeting intelligence.",
+    "confidence": "high",
+    "researched_at": "2026-04-03T13:45:00.000Z"
+  },
+  "_fabrication": {
+    "verdict": "CLEAN",
+    "claims_checked": 8,
+    "claims_verified": 8,
+    "claims_unverified": 0,
+    "claims_fabricated": 0,
+    "details": [
+      {
+        "claim": "27,000+ advisors on platform",
+        "source": "Business Wire",
+        "status": "verified"
+      },
+      {
+        "claim": "#1 advisor satisfaction T3/Inside Information Survey 2025 & 2026",
+        "source": "Business Wire",
+        "status": "verified"
+      },
+      {
+        "claim": "AI Associate updates CRM, drafts emails, schedules follow-ups",
+        "source": "Business Wire",
+        "status": "verified"
+      },
+      {
+        "claim": "Three categories: Meet, Grow, Operate",
+        "source": "Business Wire",
+        "status": "verified"
+      },
+      {
+        "claim": "20+ AI-powered features",
+        "source": "Business Wire",
+        "status": "verified"
+      },
+      {
+        "claim": "Tim Chaves: industry needs execution not just insights",
+        "source": "Business Wire (direct quote)",
+        "status": "verified"
+      },
+      {
+        "claim": "Morgan Stanley Debrief captures notes at 98% adoption",
+        "source": "Our landscape data (morgan-stanley)",
+        "status": "verified"
+      },
+      {
+        "claim": "Altruist Hazel queries custodial data",
+        "source": "Our intelligence entry (altruist-hazel-custodial)",
+        "status": "verified"
+      }
+    ],
+    "cross_source_conflicts": [],
+    "drift_from_previous": [],
+    "checked_at": "2026-04-03T13:45:00.000Z"
+  },
+  "_iterations": [
+    {
+      "version": 1,
+      "headline": "Jump Launches AI Associate: Agentic Execution Across CRM, Email, and Planning Systems for 27,000+ Advisors",
+      "the_so_what": "Jump is the first advisor AI platform to cross from passive intelligence into agentic execution. Morgan Stanley's Debrief captures notes but doesn't act. Altruist's Hazel queries data but doesn't write to external systems. Jump does both.",
+      "evaluation": {
+        "specificity": true,
+        "so_what": true,
+        "source": true,
+        "substance": true,
+        "stat": true,
+        "competitor": true,
+        "overall": "PASS",
+        "quality_score": 9
+      },
+      "fabrication_verdict": "CLEAN",
+      "timestamp": "2026-04-03T13:45:00.000Z"
+    }
+  ],
+  "_editor_notes": [],
+  "_governance": {
+    "verdict": "PASS",
+    "confidence": 96,
+    "verified_claims": [
+      "27,000+ advisors on platform",
+      "#1 T3/Inside Information Survey 2025 and 2026",
+      "AI Associate acts across CRM, email, financial planning tools",
+      "Three categories: Meet, Grow, Operate",
+      "20+ AI features",
+      "Tim Chaves COO quote: 'industry doesn't just need more insights — it needs execution'",
+      "Human-in-the-loop compliance confirmation required"
+    ],
+    "unverified_claims": [],
+    "fabricated_claims": [],
+    "notes": "All claims verified against Business Wire press release. Peer comparisons from our landscape data.",
+    "paywall_caveat": false,
+    "verified_at": "2026-04-03T13:45:00.000Z",
+    "human_approved": true,
+    "approved_at": "2026-04-03T13:45:00.000Z"
+  }
+}

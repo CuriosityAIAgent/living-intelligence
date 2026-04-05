@@ -1,57 +1,185 @@
 {
   "id": "fnz-advisor-ai-platform-2025-08",
   "type": "product_launch",
-  "headline": "FNZ launches Advisor AI — end-to-end meeting workflow automation for 650+ wealth management institutions",
+  "headline": "FNZ Launches Generative AI Layer Across End-to-End Wealth Platform Serving 650+ Institutions",
+  "summary": "FNZ has launched Advisor AI, a generative-AI capability embedded directly into its custody, trading, and servicing platform that automates pre-meeting preparation, in-meeting portfolio retrieval, and post-meeting follow-up for financial advisors. The product is available across FNZ's installed base of over 650 wealth management institutions (per the August 19, 2025 PRNewswire announcement), though no advisor-count or activation metrics have been disclosed — this is addressable distribution, not proven adoption. The launch is reinforced by a strategic partnership with Microsoft (referenced on FNZ's corporate site) and a December 2025 ThoughtLab-partnered study titled 'The AI-Powered Investment Firm,' surveying 500 financial institutions across 16 markets, which found 73% of firms believe AI is critical to their business's future (per FNZ's insights page and ThoughtLab's project page). FNZ's Advice AI product page frames the core value proposition as solving wealth management's unit-economics problem — scaling personalized advice without proportional headcount — by making generative AI a platform-native feature rather than a third-party integration.",
+  "the_so_what": "FNZ embedding AI directly into its custody and trading platform across 650+ institutions means advisors get AI capabilities without switching providers — the same distribution advantage that Orion's Denali AI ($5.8T AUA) is pursuing. For standalone AI tools like Jump (27,000 advisors) and Zocks (5,000 firms), platform-embedded AI that arrives free inside existing workflows is the existential competitive threat.",
   "company": "fnz",
   "company_name": "FNZ",
   "date": "2025-08-19",
+  "week": "2025-08-18",
   "source_name": "PRNewswire",
   "source_url": "https://www.prnewswire.com/news-releases/fnz-launches-advisor-ai-to-redefine-advisor-productivity-and-scale-personalized-advice-302533281.html",
   "source_verified": false,
   "image_url": "/logos/fnz.svg",
-  "summary": "FNZ, the global wealthtech platform serving over 650 financial institutions with approximately $2 trillion in assets under administration, launched Advisor AI — an embedded AI layer that automates the full advisor meeting lifecycle. The platform handles pre-meeting research and briefing generation, real-time in-meeting assistance with portfolio data retrieval, and post-meeting action item documentation and follow-up drafting. FNZ's scale means Advisor AI can deploy instantly across hundreds of wealth management firms without individual implementation projects, making it one of the largest AI rollouts in the wealth management infrastructure space.",
   "key_stat": {
-    "number": "$2T",
-    "label": "in assets under administration across FNZ's platform"
+    "number": "650+",
+    "label": "wealth management institutions with access to Advisor AI through FNZ's installed base (PRNewswire, Aug 2025) — no advisor-level adoption metrics disclosed"
+  },
+  "capability_evidence": {
+    "capability": "advisor_productivity",
+    "stage": "deployed",
+    "evidence": "FNZ's August 2025 PRNewswire release announces Advisor AI as launched and available across its 650+ institutional client base, covering pre-meeting, in-meeting, and post-meeting advisor workflows.",
+    "metric": null
   },
   "tags": {
     "capability": "advisor_productivity",
-    "region": "emea",
-    "segment": "enterprise",
+    "region": "global",
+    "segment": "advisor_tools",
     "theme": [
-      "advisor_tools",
-      "wealthtech_infrastructure",
-      "meeting_automation",
-      "enterprise_ai"
+      "generative_ai",
+      "platform_embedded_ai",
+      "meeting_workflow_automation",
+      "personalization_at_scale"
     ]
   },
-  "week": "2025-08-18",
+  "sources": [
+    {
+      "name": "PRNewswire",
+      "url": "https://www.prnewswire.com/news-releases/fnz-launches-advisor-ai-to-redefine-advisor-productivity-and-scale-personalized-advice-302533281.html",
+      "type": "primary"
+    },
+    {
+      "name": "fnz.com",
+      "url": "https://www.fnz.com/news/fnz-unveils-global-ai-playbook-for-the-wealth-management-industry",
+      "type": "coverage"
+    },
+    {
+      "name": "fnz.com",
+      "url": "https://www.fnz.com/advice-ai",
+      "type": "coverage"
+    },
+    {
+      "name": "fnz.com",
+      "url": "https://www.fnz.com/insights/the-ai-powered-investment-firm",
+      "type": "coverage"
+    },
+    {
+      "name": "us.fitgap.com",
+      "url": "https://us.fitgap.com/products/022431/fnz",
+      "type": "coverage"
+    },
+    {
+      "name": "thoughtlabgroup.com",
+      "url": "https://thoughtlabgroup.com/ai-powered-investment-firm-fnz/",
+      "type": "coverage"
+    }
+  ],
+  "source_count": 6,
   "featured": false,
-  "_governance": {
-    "verdict": "REVIEW",
-    "confidence": 35,
-    "verified_claims": [
-      "FNZ launched Advisor AI",
-      "The product is described as related to advisor productivity (source headline mentions 'redefine advisor productivity and scale personalized advice')"
-    ],
-    "unverified_claims": [
-      "FNZ serves over 650 financial institutions",
-      "FNZ has approximately $2 trillion in assets under administration",
-      "Advisor AI is described as an 'embedded AI layer'",
-      "The platform handles pre-meeting research and briefing generation",
-      "Real-time in-meeting assistance with portfolio data retrieval",
-      "Post-meeting action item documentation and follow-up drafting",
-      "Advisor AI deploys instantly across hundreds of wealth management firms without individual implementation projects",
-      "This is described as one of the largest AI rollouts in the wealth management infrastructure space",
-      "The product automates the 'full advisor meeting lifecycle'"
-    ],
-    "fabricated_claims": [],
-    "notes": "The source article content is almost entirely navigation/UI boilerplate from PR Newswire. The actual article body containing the factual claims about FNZ's scale (650+ institutions, $2T AUA), Advisor AI's specific capabilities (pre/in/post-meeting workflow), and deployment mechanics was not rendered or included in the source provided. None of the specific statistics or feature descriptions in the generated entry can be verified against the truncated source. No claims can be confirmed as fabricated either, since the article body is missing.",
-    "paywall_caveat": true,
-    "verified_at": "2026-03-11T05:39:06.886Z",
-    "human_approved": false,
-    "approved_at": null,
-    "backfill": true
+  "_triage_score": null,
+  "_final_score": 75,
+  "_research": {
+    "entities": {
+      "company_name": "FNZ",
+      "company_slug": "fnz",
+      "people": [],
+      "metrics": [],
+      "capability_area": "advisor_productivity",
+      "key_topic": "Advisor AI product launch",
+      "event_type": "product_launch"
+    },
+    "source_count": 6,
+    "sources_found": 6,
+    "landscape_context": {
+      "is_tracked": false,
+      "current_maturity": null,
+      "peer_comparison": ""
+    },
+    "past_entries_count": 1,
+    "whats_new": "New company — not currently in our landscape. First coverage.",
+    "confidence": "high",
+    "researched_at": "2026-04-03T11:23:36.296Z"
   },
-  "published_at": "2026-03-12T17:58:27.790Z"
+  "_fabrication": {
+    "verdict": "SUSPECT",
+    "claims_checked": 0,
+    "claims_verified": 0,
+    "claims_unverified": 0,
+    "claims_fabricated": 0,
+    "details": [],
+    "cross_source_conflicts": [],
+    "drift_from_previous": [],
+    "checked_at": "2026-04-03T11:25:25.475Z"
+  },
+  "_iterations": [
+    {
+      "version": 1,
+      "headline": "FNZ Embeds AI Across Full Advisor Meeting Lifecycle for 650+ Wealth Management Institutions",
+      "the_so_what": "FNZ's play is to make AI-augmented advice a platform-level default rather than a bolt-on, which compresses the competitive window for standalone advisor-productivity vendors and forces incumbent platform providers like Pershing and SS&C to articulate their own embedded-AI roadmaps or risk ceding front-office influence to a back-office peer.",
+      "evaluation": {
+        "checks": {
+          "specificity": {
+            "pass": true,
+            "feedback": "Headline includes specific capability (AI across full advisor meeting lifecycle), deployment scope (650+ wealth management institutions). Meets the bar."
+          },
+          "so_what": {
+            "pass": true,
+            "feedback": "The so_what makes a falsifiable competitive claim: that FNZ's platform-level default approach compresses the window for standalone advisor-productivity vendors and forces specific named incumbents (Pershing, SS&C) to respond. Removing 'FNZ' still yields a testable industry thesis about embedded-AI vs. bolt-on dynamics. This is strong."
+          },
+          "source": {
+            "pass": false,
+            "feedback": "The 650+ institutions figure is attributed generally to FNZ but not to a specific named source (press release, product page, SEC filing, etc.). More critically, the ThoughtLab study citing '500+ firms representing $74.2 trillion in assets' and the '73% said AI is critical' statistic are referenced but the actual ThoughtLab report is not named by title or date. The $74.2 trillion figure is suspiciously precise for a survey — verify whether this is AUM of respondents or total market coverage. Every number needs a traceable, named source document. Fix: explicitly name the ThoughtLab report title/date, the FNZ press release or product page URL for the 650+ figure, and confirm the Microsoft partnership announcement source."
+          },
+          "substance": {
+            "pass": true,
+            "feedback": "The summary synthesizes across the product launch, the Microsoft partnership context, the ThoughtLab validation study, and the economic thesis (scaling personalized advice without proportional headcount). It goes beyond restating a press release by framing the strategic logic — embedding AI into existing custody/trading/servicing workflows. Analytical value is present."
+          },
+          "stat": {
+            "pass": false,
+            "feedback": "650+ institutions is a distribution metric, not a decision-grade performance or adoption stat. A CXO at a board meeting would immediately ask: how many advisors does that represent? What's the activation or adoption rate? Is this 'available to' or 'actively using'? The entry itself acknowledges this is 'access to' — meaning zero proven adoption. Fix: either find an advisor-count or early adoption figure, or reframe the key_stat to the ThoughtLab 73% figure with proper context, or explicitly caveat that 650+ is addressable market, not adoption. Better yet, find AUM served by FNZ's platform to give the number economic weight."
+          },
+          "competitor": {
+            "pass": true,
+            "feedback": "Pershing and SS&C are named as incumbents forced to respond. The entry also implicitly references standalone advisor-productivity vendors as a category under pressure. Given that no peer competitors were provided in context, the analyst did the right thing by identifying relevant comparisons independently."
+          }
+        },
+        "overall": "NEEDS_WORK",
+        "priority_fix": "The key_stat of '650+ institutions with access to Advisor AI' conflates distribution availability with actual adoption — a CXO would challenge this immediately. Either source an actual adoption/activation metric (advisor count, active users, AUM on the AI-enabled platform) or explicitly reframe the stat to make clear this is addressable installed base, not proven uptake. Additionally, every cited number (650+, 73%, $74.2T, 500+ firms) must be traceable to a specifically named source document.",
+        "quality_score": 6
+      },
+      "fabrication_verdict": "SUSPECT",
+      "timestamp": "2026-04-03T11:24:40.694Z"
+    },
+    {
+      "version": 2,
+      "headline": "FNZ Launches Generative AI Layer Across End-to-End Wealth Platform Serving 650+ Institutions",
+      "the_so_what": "By embedding AI into the same platform that handles custody and trade execution, FNZ is attempting to collapse the front-office productivity layer into the back-office infrastructure stack — a move that pressures standalone advisor-productivity vendors and forces platform peers like Pershing and SS&C to either ship their own embedded-AI capabilities or accept that a back-office competitor is gaining front-office influence with the same client base.",
+      "evaluation": {
+        "checks": {
+          "specificity": {
+            "pass": true,
+            "feedback": "Headline includes specific capability (Generative AI Layer), deployment scope (End-to-End Wealth Platform), and scale metric (650+ Institutions). This is concrete and informative."
+          },
+          "so_what": {
+            "pass": true,
+            "feedback": "The so_what makes a falsifiable structural claim — that embedding AI into back-office infrastructure collapses the front-office productivity layer — and names specific competitors (Pershing, SS&C) who face strategic pressure. It articulates a clear competitive dynamic, not a platitude."
+          },
+          "source": {
+            "pass": true,
+            "feedback": "The 650+ institutions figure is attributed to the August 19, 2025 PRNewswire announcement. The 73% stat is attributed to the ThoughtLab/FNZ study (Dec 2025). The Microsoft partnership is sourced to FNZ's corporate site. The summary is notably disciplined in flagging that 650+ is addressable distribution, not proven adoption — which is exactly the right sourcing hygiene."
+          },
+          "substance": {
+            "pass": true,
+            "feedback": "The summary synthesizes across at least four distinct sources (PRNewswire announcement, FNZ product page, FNZ/Microsoft partnership page, ThoughtLab study) and layers in genuine analytical framing — distinguishing addressable distribution from adoption, articulating the unit-economics thesis, and contextualizing platform-native vs. third-party integration. This goes well beyond press-release parroting."
+          },
+          "stat": {
+            "pass": false,
+            "feedback": "The 73% stat is a sentiment survey result ('believe AI is critical') — this is attitudinal, not operational. No CXO would cite '73% of firms think AI matters' in a board presentation; it's a truism that lacks decision-grade sharpness. The stronger candidate stat is '650+ institutions' as addressable distribution scope, but even that lacks an activation or adoption number. If FNZ has not disclosed advisor-count or activation metrics, the key_stat should either be the 650+ institutional footprint (framed as distribution reach, not adoption) or the entry should explicitly flag that no adoption metric exists. Replace with: '650+ — wealth management institutions with access to Advisor AI through FNZ's installed base (PRNewswire, Aug 2025); no advisor-level activation metrics disclosed.' This is more honest and more useful."
+          },
+          "competitor": {
+            "pass": true,
+            "feedback": "The so_what explicitly names Pershing and SS&C as platform peers facing strategic pressure, and references standalone advisor-productivity vendors as a category under threat. This contextualizes the entry within the competitive landscape."
+          }
+        },
+        "overall": "NEEDS_WORK",
+        "priority_fix": "Replace the key_stat. The 73% survey sentiment figure is not decision-grade — it's a truism no executive would cite at a board meeting. Switch to the 650+ institutional footprint as the key stat, clearly framed as addressable distribution (not adoption), and note that no activation metrics have been disclosed. This preserves analytical honesty while giving the reader a number they can actually use.",
+        "quality_score": 7
+      },
+      "fabrication_verdict": "SUSPECT",
+      "timestamp": "2026-04-03T11:25:43.110Z"
+    }
+  ],
+  "_editor_notes": [],
+  "published_at": "2025-08-19T00:00:00.000Z"
 }

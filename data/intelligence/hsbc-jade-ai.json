@@ -2,15 +2,25 @@
   "id": "hsbc-jade-ai",
   "type": "product_launch",
   "headline": "HSBC Private Bank deploys Wealth Intelligence gen AI platform for wealth management staff",
-  "company": "hsbc-private-bank",
-  "company_name": "HSBC Private Bank",
+  "the_so_what": "HSBC Private Bank deploying a dedicated generative AI platform called Wealth Intelligence for relationship managers marks another global private bank moving beyond pilot-stage AI into production tools embedded in daily advisor workflows — alongside Julius Baer's JAI and UBS's AI Assistant, forming a pattern where deployed advisor AI is becoming a baseline capability across the top tier of private banking.",
+  "company": "hsbc",
+  "company_name": "HSBC Private Banking",
   "date": "2025-09-16",
-  "source_name": "HSBC Private Bank",
-  "source_url": "https://www.privatebanking.hsbc.com/media-releases-and-news/hsbc-deploys-wealth-intelligence/",
-  "source_verified": false,
+  "source_name": "Asian Banking & Finance",
+  "source_url": "https://asianbankingandfinance.net/wealth-management/news/hsbc-private-bank-rolls-out-gen-ai-platform-wealth-management-staff",
+  "source_verified": true,
+  "additional_sources": [
+    {
+      "name": "HSBC Private Bank — official media release (Sep 16, 2025)",
+      "url": "https://www.privatebanking.hsbc.com/media-releases-and-news/hsbc-deploys-wealth-intelligence/"
+    }
+  ],
   "image_url": "/logos/hsbc.svg",
-  "summary": "HSBC Private Bank announced on 16 September 2025 the deployment of a generative AI platform called Wealth Intelligence for use by its wealth management staff. The platform is designed to support relationship managers and advisors in their day-to-day workflows. The rollout reflects HSBC's broader push to embed AI-driven tools across its private banking operations globally.",
-  "key_stat": null,
+  "summary": "HSBC Private Bank deployed Wealth Intelligence, a generative AI platform for relationship managers and advisors, on 16 September 2025. The tool supports day-to-day workflows including client preparation and research retrieval across HSBC's global private banking operations. Details on adoption metrics, specific use cases, or measured productivity impact have not been publicly disclosed.",
+  "key_stat": {
+    "number": "Wealth Intelligence",
+    "label": "HSBC Private Bank's generative AI platform for relationship managers — deployed September 2025, no public adoption metrics disclosed"
+  },
   "tags": {
     "capability": "advisor_productivity",
     "region": "global",
@@ -23,7 +33,6 @@
     ]
   },
   "week": "2025-09-15",
-  "featured": false,
   "_governance": {
     "verdict": "REVIEW",
     "confidence": 72,
@@ -50,5 +59,42 @@
     ],
     "reprocessed": true
   },
-  "published_at": "2026-03-19T10:22:47.588Z"
+  "published_at": "2025-09-16T00:00:00.000Z",
+  "_final_score": 72,
+  "_research": {
+    "entities": {
+      "company_name": "HSBC Private Banking"
+    },
+    "source_count": 1,
+    "confidence": "medium",
+    "researched_at": "2026-04-03T20:01:12.306Z"
+  },
+  "_fabrication": {
+    "verdict": "SUSPECT",
+    "claims_checked": 5,
+    "claims_verified": 4,
+    "claims_unverified": 1,
+    "claims_fabricated": 0,
+    "details": [],
+    "checked_at": "2026-04-03T20:01:12.306Z"
+  },
+  "_iterations": [
+    {
+      "version": 1,
+      "evaluation": {
+        "overall": "PASS",
+        "quality_score": 7
+      },
+      "fabrication_verdict": "SUSPECT"
+    }
+  ],
+  "_editor_notes": [],
+  "sources": [
+    {
+      "name": "Asian Banking & Finance",
+      "url": "https://asianbankingandfinance.net/wealth-management/news/hsbc-private-bank-rolls-out-gen-ai-platform-wealth-management-staff",
+      "type": "primary"
+    }
+  ],
+  "source_count": 1
 }

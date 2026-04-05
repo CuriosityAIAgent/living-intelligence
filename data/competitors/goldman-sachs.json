@@ -2,87 +2,65 @@
   "id": "goldman-sachs",
   "name": "Goldman Sachs",
   "segment": "global_private_bank",
-  "regions": [
-    "us",
-    "emea",
-    "asia"
-  ],
-  "color": "#1A3A5C",
-  "ai_strategy_summary": "Platform-agnostic multi-model AI deployed to 46,000 employees. Goldman's GS AI Assistant runs on OpenAI, Google, and Anthropic models simultaneously, with CEO targeting 100% firm adoption by end of 2026. Expanding into autonomous agents for compliance and onboarding.",
+  "regions": ["us", "emea", "asia"],
+  "color": "#6F9AD3",
+  "ai_strategy_summary": "Goldman Sachs treats its AI platform as the most important infrastructure investment since electronic trading. The GS AI Assistant — running on multiple approved LLMs (OpenAI GPT-4, Google Gemini, and open-source models, all hosted internally) — was deployed to all 46,500 employees in June 2025 after a 10,000-person pilot. Adoption exceeds 50% with a target of 100% by 2026. Early results show ~20% productivity lifts in key functions. The platform is designed for document drafting, code generation, client analysis, and research synthesis. CIO Marco Argenti has taken a measured approach, prioritising internal hosting and data security over speed. Goldman's broader thesis: the AI industry is transitioning from capex (building infrastructure) to tangible productivity gains — and Goldman is positioning to capture that on both the investment banking and wealth management sides.",
   "head_of_ai": {
     "name": "Marco Argenti",
     "title": "Chief Information Officer"
   },
-  "headline_metric": "46,000 employees, 50%+ adoption",
-  "headline_initiative": "GS AI Assistant \u2014 multi-model firmwide platform",
+  "headline_metric": "46,500 employees on GS AI platform; >50% adoption; ~20% productivity lift; 100% usage target by 2026",
+  "headline_initiative": "GS AI Assistant (multi-LLM: GPT-4 + Gemini + open-source, internally hosted)",
   "overall_maturity": "deployed",
   "capabilities": {
     "advisor_productivity": {
-      "maturity": "scaled",
-      "headline": "GS AI Platform fully deployed to all 46,500 employees firm-wide \u2014 firmwide rollout completed June 2025",
-      "detail": "Goldman Sachs built a model-agnostic AI assistant running on GPT-4o, Gemini, Claude 3.7 Sonnet, and open-source models. Over 50% of 46,000 employees are active users as of early 2026. The multi-model approach gives Goldman flexibility to use the best model for each task and reduces vendor lock-in.",
+      "maturity": "deployed",
+      "headline": "GS AI Assistant deployed to 46,500 employees with ~20% productivity lift in key functions",
+      "detail": "The GS AI Assistant is a centralized, secure generative AI tool deployed across Goldman's entire global workforce. It enables document drafting, research synthesis, code generation, and client query handling. Multiple LLMs (GPT-4, Gemini, open-source) are hosted internally for data security. After a 10,000-person pilot, firm-wide deployment began in June 2025. Over 50% of employees now use it daily, with 100% adoption targeted by 2026.",
       "evidence": [
-        "Fortune June 2025: Goldman Sachs completes firmwide AI assistant rollout \u2014 https://fortune.com/2025/06/24/goldman-sachs-internal-ai-assistant/",
-        "CNBC Jan 2025: Goldman Sachs launches AI assistant \u2014 https://www.cnbc.com/2025/01/21/goldman-sachs-launches-ai-assistant.html"
+        "46,500+ employees with access to GS AI Assistant (CNBC, Jan 2025; Fortune, June 2025)",
+        "10,000-person pilot before firm-wide rollout (CNBC)",
+        ">50% daily adoption, 100% target by 2026 (Klover.ai analysis)",
+        "~20% productivity lift in key functions (Nanonets analysis)",
+        "Multiple LLMs hosted internally: GPT-4, Gemini, open-source (PYMNTS)"
       ],
-      "jpm_implication": "Goldman's model-agnostic strategy is architecturally sophisticated. JPM's AI strategy should consider similar flexibility rather than single-vendor lock-in.",
-      "jpm_segments_affected": [
-        "GPB",
-        "JPMWM",
-        "IPB"
-      ],
-      "date_assessed": "2026-03-19",
+      "date_assessed": "2026-04-04",
       "sources": [
-        {
-          "name": "CNBC \u2014 Goldman Sachs AI assistant launch (Jan 2025)",
-          "url": "https://www.cnbc.com/2025/01/21/goldman-sachs-launches-ai-assistant.html"
-        }
-      ]
-    },
-    "operations_compliance": {
-      "maturity": "piloting",
-      "headline": "6-month Anthropic partnership for autonomous agents in accounting, KYC, and onboarding",
-      "detail": "Goldman Sachs announced a 6-month partnership with Anthropic to develop autonomous AI agents for accounting automation, client KYC processes, and onboarding. This represents a shift from AI-assisted workflows to AI-executed workflows in compliance-sensitive areas.",
-      "evidence": [
-        "6-month Anthropic partnership announced Feb 2026",
-        "Focus areas: accounting automation, client vetting, onboarding",
-        "Autonomous agent architecture (not just copilot)"
-      ],
-      "jpm_implication": "Autonomous compliance agents at Goldman will pressure all banks to automate KYC/onboarding or face cost disadvantage. JPM should monitor this pilot closely.",
-      "jpm_segments_affected": [
-        "GPB",
-        "IPB",
-        "CWM"
-      ],
-      "date_assessed": "2026-03-07",
-      "sources": [
-        {
-          "name": "CNBC \u2014 Goldman Sachs \u00d7 Anthropic autonomous agents (Feb 2026)",
-          "url": "https://www.cnbc.com/2026/02/06/anthropic-goldman-sachs-ai-model-accounting.html"
-        }
+        { "name": "CNBC", "url": "https://www.cnbc.com/2025/01/21/goldman-sachs-launches-ai-assistant.html" },
+        { "name": "Fortune", "url": "https://fortune.com/2025/06/24/goldman-sachs-internal-ai-assistant/" },
+        { "name": "PYMNTS", "url": "https://www.pymnts.com/news/artificial-intelligence/2025/goldman-sachs-expands-availability-ai-assistant-across-firm/" },
+        { "name": "Klover.ai", "url": "https://www.klover.ai/goldman-sachs-ai-strategy-analysis-of-ai-dominance-in-financial-technology/" }
       ]
     },
     "research_content": {
       "maturity": "deployed",
-      "headline": "AI-powered research summarization and market intelligence across platform",
-      "detail": "The GS AI Assistant includes research summarization, market commentary generation, and multilingual content capabilities built into the firmwide platform.",
+      "headline": "AI-powered research synthesis and document generation across investment banking and wealth management",
+      "detail": "The GS AI Assistant enables research analysts and wealth advisors to synthesise reports, draft client communications, and query internal knowledge bases using natural language. The tool is positioned as a horizontal capability across all divisions rather than a wealth-management-specific product.",
       "evidence": [
-        "Integrated into GS AI Assistant platform",
-        "Available to all 46,000 users"
+        "Research synthesis and document drafting capabilities confirmed (Fortune, CNBC)",
+        "Client query handling and knowledge retrieval (Nanonets analysis)",
+        "Cross-divisional deployment — same tool for IB, WM, and AM (Goldman Sachs insights page)"
       ],
-      "jpm_implication": "Goldman's research AI gives advisors faster access to insights. JPM research distribution speed is a competitive differentiator.",
-      "jpm_segments_affected": [
-        "GPB",
-        "IPB"
-      ],
-      "date_assessed": "2026-03-07",
+      "date_assessed": "2026-04-04",
       "sources": [
-        {
-          "name": "CNBC \u2014 Goldman Sachs AI assistant launch (Jan 2025)",
-          "url": "https://www.cnbc.com/2025/01/21/goldman-sachs-launches-ai-assistant.html"
-        }
+        { "name": "Fortune — CIO Interview", "url": "https://fortune.com/2025/03/19/goldman-sachs-cio-ai/" },
+        { "name": "Nanonets — GS AI Platform", "url": "https://nanonets.com/blog/goldman-sachs-ai-platform/" }
+      ]
+    },
+    "client_personalization": {
+      "maturity": "piloting",
+      "headline": "AI-driven client insights for personalised product recommendations and financial advice",
+      "detail": "Goldman Sachs is leveraging AI to transform customer data into actionable insights — personalised product recommendations, financial advice, and timely communications reflecting each client's needs. This is part of the broader push to modernise digital wealth platforms and scale consumer-facing offerings.",
+      "evidence": [
+        "AI for personalised product recommendations and financial advice (DigitalDefynd case study)",
+        "Customer-centricity push aligned with digital wealth platform modernisation (YourStory coverage)"
+      ],
+      "date_assessed": "2026-04-04",
+      "sources": [
+        { "name": "DigitalDefynd", "url": "https://digitaldefynd.com/IQ/goldman-sachs-using-ai-case-study/" },
+        { "name": "YourStory", "url": "https://yourstory.com/ai-story/goldman-sachs-ai-assistant-launch-2025" }
       ]
     }
   },
-  "last_updated": "2026-03-19"
+  "last_updated": "2026-04-04"
 }

@@ -1,0 +1,106 @@
+{
+  "id": "standard-chartered-sc-gpt-41-markets-70000-employees",
+  "type": "product_launch",
+  "headline": "Standard Chartered Deploys SC GPT to 70,000 Employees Across 41 Markets",
+  "the_so_what": "Standard Chartered deploying to 70,000 employees across 41 markets simultaneously makes this the widest cross-border AI deployment in banking — most peers (HSBC, Citi, BNP Paribas) are still rolling by region or division. Bill Winters calling GenAI an operational imperative puts this in the same strategic category as electronic trading and cloud migration: infrastructure that every bank will need, where the question is speed of execution, not whether to invest.",
+  "company": "standard-chartered",
+  "company_name": "Standard Chartered",
+  "date": "2025-03-27",
+  "source_name": "Standard Chartered Press Release",
+  "source_url": "https://www.sc.com/en/press-release/standard-chartered-rolls-out-sc-gpt-advancing-ai-driven-innovation-in-banking/",
+  "source_verified": true,
+  "image_url": "/logos/standard-chartered.svg",
+  "summary": "Standard Chartered has rolled out SC GPT to 70,000+ employees across 41 markets, with plans to expand to 10 more. The platform enhances operational efficiency, client engagement, sales and marketing personalisation, software engineering automation, and risk management. CEO Bill Winters framed GenAI adoption as an operational imperative for all banks, positioning SC GPT as differentiating strategy for cross-border and affluent banking. Group CDO Mohammed Rahim emphasised the people-focused and responsible AI approach. A customised version leveraging Standard Chartered-specific data is in development, with local teams building market-specific solutions.",
+  "key_stat": {
+    "number": "70,000+",
+    "label": "employees across 41 markets with SC GPT access"
+  },
+  "tags": {
+    "capability": "advisor_productivity",
+    "region": "asia",
+    "segment": "regional_champion",
+    "theme": [
+      "genai_platform",
+      "enterprise_ai",
+      "global_rollout"
+    ]
+  },
+  "week": "2025-03-24",
+  "_governance": {
+    "verdict": "PASS",
+    "confidence": 97,
+    "verified_claims": [
+      "SC GPT launched March 27, 2025 (Standard Chartered official press release)",
+      "Deployed across 41 markets (press release)",
+      "Over 70,000 employees covered (press release)",
+      "Four use cases: operational productivity, sales/marketing, software engineering, risk management (press release)",
+      "10 additional markets planned (press release)",
+      "Quote from Group CEO Bill Winters confirmed (press release)"
+    ],
+    "unverified_claims": [],
+    "fabricated_claims": [],
+    "notes": "All claims sourced directly from Standard Chartered official press release dated March 27, 2025. human_approved: Track 2 entry written directly from verified landscape source.",
+    "paywall_caveat": false,
+    "verified_at": "2026-03-23T00:00:00.000Z",
+    "human_approved": true,
+    "approved_at": "2026-03-23T00:00:00.000Z"
+  },
+  "published_at": "2025-03-27T00:00:00.000Z",
+  "_final_score": 82,
+  "_research": {
+    "entities": {
+      "company_name": "Standard Chartered",
+      "metrics": [
+        "70,000+ employees",
+        "41 markets",
+        "10 more planned"
+      ]
+    },
+    "source_count": 1,
+    "confidence": "high",
+    "researched_at": "2026-04-03T19:58:38.183Z"
+  },
+  "_fabrication": {
+    "verdict": "CLEAN",
+    "claims_checked": 7,
+    "claims_verified": 7,
+    "claims_unverified": 0,
+    "claims_fabricated": 0,
+    "details": [],
+    "checked_at": "2026-04-03T19:58:38.188Z"
+  },
+  "_iterations": [
+    {
+      "version": 1,
+      "evaluation": {
+        "overall": "PASS",
+        "quality_score": 9
+      },
+      "fabrication_verdict": "CLEAN"
+    }
+  ],
+  "_editor_notes": [],
+  "sources": [
+    {
+      "name": "Standard Chartered",
+      "url": "https://www.sc.com/en/press-release/standard-chartered-rolls-out-sc-gpt-advancing-ai-driven-innovation-in-banking/",
+      "type": "primary"
+    },
+    {
+      "name": "SightsIn Plus",
+      "url": "https://sightsinplus.com/news/technology/sc-gpt-transforming-operations-for-70000-standard-chartered-employees/",
+      "type": "coverage"
+    },
+    {
+      "name": "Computer Weekly",
+      "url": "https://www.computerweekly.com/news/366622934/Standard-Chartered-grounds-AI-ambitions-in-data-governance",
+      "type": "coverage"
+    },
+    {
+      "name": "The Asian Banker",
+      "url": "https://www.theasianbanker.com/updates-and-articles/standard-chartered-moves-into-its-next-phase-of-disciplined-ai-execution",
+      "type": "coverage"
+    }
+  ],
+  "source_count": 4
+}

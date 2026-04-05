@@ -1,9 +1,59 @@
 # AI in Wealth Management — Intelligence Portal
 
-Executive intelligence platform tracking AI adoption across wealth management.
+Premium executive intelligence platform ($4,500-$5,000/year) tracking AI adoption across 37+ wealth management firms.
 Two systems: **Portal** (this repo, Next.js) + **Intake Server** (`../intake-server`, Node.js port 3003).
 
-See @docs/architecture.md for full system design and @docs/integrations.md for all external APIs.
+**v2 Content Pipeline (Sessions 14-17):** Research Agent → Writer Agent (Opus) → Evaluator Agent (McKinsey 6-check test) → Fabrication Agent (multi-source, drift detection) → Content Producer orchestrator. All 43 intelligence entries upgraded to consulting quality with multi-source verification.
+
+See @docs/architecture.md for full system design, @docs/integrations.md for all external APIs, @docs/pipeline-v2-plan.md for the v2 pipeline architecture.
+
+---
+
+## CONTENT STANDARDS — NON-NEGOTIABLE
+
+This is a **premium, CEO-facing platform**. Every number, every claim, every quote that appears on this site has been seen in boardrooms and senior leadership meetings. A single fabricated or unverified statistic destroys the credibility of the entire platform.
+
+### The Prime Directive
+
+**Never write a claim you have not personally read in the source during this session.**
+
+Not from memory. Not from a previous session. Not from the landscape competitor file. Not from another intelligence entry. Only from the actual source document, fetched and read right now.
+
+### Track 2 Entry Rules (direct JSON writes — no pipeline)
+
+Track 2 entries bypass governance.js and scorer.js entirely. That makes the human writing them the only check. These rules are therefore absolute:
+
+1. **WebFetch the source URL before writing a single claim.** If the URL is a PDF, fetch it. If it 404s, find the correct URL before proceeding. If it's paywalled, note it explicitly and find an open alternative. There are no exceptions.
+
+2. **Every item in `verified_claims` must include the exact location** — slide number, paragraph, section heading, or verbatim quote. "Investor Day PDF" is not acceptable. "Investor Day slide 12 — confirmed in source by Haresh" is acceptable.
+
+3. **`source_verified: true` only if the URL was fetched and read in this session.** If you cannot fetch the source, set `source_verified: false` and explain why in the governance notes.
+
+4. **`human_approved: true` only after Haresh has confirmed the key stat.** Read the headline number back to Haresh with the exact source quote before setting this field.
+
+5. **Never copy claims from `data/competitors/*.json` into an intelligence entry without first re-verifying them against the original source.** The competitor file may itself contain unverified claims from a previous session.
+
+6. **Never use a stat from a PDF you have not fetched in this session**, even if you believe it to be correct from prior knowledge.
+
+### What happens when a claim cannot be verified
+
+- Omit it entirely. A shorter, fully verified entry is always better than a longer entry with one fabricated number.
+- If a key stat is the only thing in doubt, write the entry without it and flag it to Haresh.
+- Do not round up, interpolate, or extrapolate from related figures. "~20%" when the source says "approximately 20%" is fine. "~20%" when the source says nothing is fabrication.
+
+### Attribution Discipline
+
+**Never attribute broad business metrics to specific AI tools unless the source explicitly makes that causal claim.** See `feedback_attribution_discipline.md` for the full rule and examples.
+
+- "20% gross sales growth linked to Connect Coach" is WRONG if the source said "GenAI tools helped teams focus on high-impact work"
+- "€200M in AI savings" is WRONG if the source said "efficiency gains including AI, automation, and operational improvements"
+- "$211B in AI-linked asset growth" is WRONG if it means "AUM in accounts where Erica is used"
+
+Proximity implies causation. A metric and an AI tool in the same sentence — without explicit causal language from the source — is fabrication by implication.
+
+### The cost of a miss
+
+A wrong number in a CEO presentation is not a typo. It is a trust failure that can end the platform's credibility. Every piece of content on this site should be something you would stand behind in a room full of senior executives who have read the primary source.
 
 ---
 
@@ -37,12 +87,14 @@ After any significant session, update `/Users/haresh/.claude/projects/-Users-har
 ### The check before committing
 
 Before every `git commit`, mentally verify:
-1. Does `docs/agents-and-architecture.md` describe the current state of all 8 agents?
+1. Does `docs/agents-and-architecture.md` describe the current state of all agents (including v2: research-agent, writer-agent, evaluator-agent, content-producer)?
 2. Does `docs/integrations.md` list every external API currently in use?
-3. Does `docs/architecture.md` show the correct company/entry counts?
+3. Does `docs/architecture.md` show the correct company/entry counts (43 intelligence, 8 TL, 37 landscape)?
 4. Does the memory file reflect what was built this session?
 
 If any answer is no — update before committing.
+
+**Current data counts (April 2026):** 43 intelligence entries (41 multi-source) · 8 thought leadership · 37 landscape companies · 42 logos
 
 ---
 
@@ -61,7 +113,46 @@ cd ../intake-server
 node --env-file=.env server.js   # localhost:3003
 ```
 
-**Git workflow:** all changes → `dev` branch. Merge `dev` → `main` to deploy (Railway auto-deploys on push to main).
+**Git workflow — branching strategy:**
+
+| Branch | Purpose | Railway deploys? |
+|--------|---------|-----------------|
+| `main` | Stable production — what subscribers and CXOs see | ✅ Portal (`living-intelligence` service) auto-deploys on push |
+| `intake` | Active development — all code changes go here first (renamed from `dev` 2026-03-23) | ✅ Intake server (`proud-reflection`) deploys from `intake` |
+| `feature/landing-page` | Public landing page `livingintel.ai` (`profound-wonder` service) | ✅ Separate Railway service |
+
+**Version tags (semantic versioning — major milestones only):**
+| Tag | What it is |
+|-----|-----------|
+| `v1.0` | Portal launch — intelligence feed, landscape, intake pipeline, Telegram digest |
+| `v1.1` | Algorithm v2 — capability-led scoring, three-layer discovery, 25 audited entries |
+| `v2.0` | Universal Inbox — editorial sign-off on everything, Editorial Studio UI revamp |
+
+**Tagging convention:** Tag `main` after every significant stable milestone with `git tag -a vX.Y HEAD -m "vX.Y: short description" && git push origin vX.Y`
+- Major version (v1→v2): architecture changes, new editorial workflow
+- Minor version (v1.0→v1.1): significant new feature or algorithm upgrade
+
+**To roll back to a previous version** (e.g. if v2.0 breaks):
+```bash
+git checkout v1.1          # inspect what v1.1 looks like
+git checkout main
+git revert HEAD            # safer: revert the bad commit, keep history
+# OR for emergency rollback:
+git reset --hard v1.1      # nuclear: resets main to v1.1 state
+git push origin main --force
+```
+
+**Rules:**
+1. **Never push untested code directly to `main`** — it immediately redeploys the public portal
+2. **All code changes start on `intake`**: `git checkout intake` → develop → commit → push → test on Railway intake server
+3. **Merge to `main` only when tested**: `git checkout main && git merge intake && git push origin main`
+4. **Content publishing (approved stories)** always pushes to `main` directly — this is intentional, it triggers portal rebuild with new content
+5. **`feature/landing-page`** is independent — developed separately, merged to `main` when landing page is ready to go live
+
+**Railway deployment config (all confirmed):**
+- Portal service (`living-intelligence`): deploys from `main` ✓
+- Intake server (`proud-reflection`): deploys from `intake` ✓
+- Landing page (`profound-wonder`): deploys from `feature/landing-page` ✓
 
 ---
 
@@ -90,7 +181,7 @@ node --env-file=.env server.js   # localhost:3003
 | Section label | `text-[11px] font-semibold uppercase tracking-widest text-[#990F3D]` |
 
 **Header structure (two-tier):**
-- Top tier (56px, `#1C1C2E`): wordmark "AI in Wealth Management" left; "Living Intelligence" + "AI of the Tiger" stacked top-right
+- Top tier (56px, `#1C1C2E`): wordmark "AI in Wealth Management" left; "LIVING INTELLIGENCE" bold right (15px, font-bold, uppercase, tracking-widest, white) — no subtitle
 - Bottom tier (40px, `#141420`): nav tabs left-flush (`pl-0 pr-6`) with `border-b-2` active underline
 
 ---
@@ -125,12 +216,13 @@ To add a new landscape company: create a JSON file in `data/competitors/` with a
 
 ## Segments (landscape)
 
-`wirehouse` · `global_private_bank` · `regional_champion` · `digital_disruptor` · `ai_native` · `ria_independent` · `advisor_tools`
+`wirehouse` · `global_private_bank` · `regional_champion` · `asset_manager` · `digital_disruptor` · `ai_native` · `ria_independent` · `advisor_tools`
 
 **Classification rules:**
 - Large US advisor-network broker-dealers (Morgan Stanley, Merrill, Wells Fargo) → `wirehouse`
 - HNW/UHNW focused institutions globally, whether standalone or bank division → `global_private_bank` (UBS, Goldman, Citi PB, HSBC PB, Julius Baer, BNP Paribas)
 - Dominant in their home region, full-service banking + wealth → `regional_champion` (DBS, BBVA, StanChart, RBC)
+- Large-scale fund managers with direct-to-investor and/or advisor-facing wealth platforms → `asset_manager` (Vanguard, Fidelity) — NOT `digital_disruptor`
 - AI tools used BY advisors (Jump, Nevis, Zocks, Holistiplan) → `advisor_tools`, NOT `ai_native`
 - AI-native wealth platforms built from scratch (Arta, Savvy) → `ai_native`
 
@@ -171,9 +263,11 @@ Every intelligence entry that goes through the intake pipeline receives a `_gove
 }
 ```
 
-- **PASS** → `source_verified: true`, publish immediately
-- **REVIEW** → held in pending queue at `/api/pending`, requires human approval at `localhost:3003`
-- **FAIL** → URL permanently blocked in `.governance-blocked.json`, cannot be resubmitted
+- **PASS** (score ≥ 75) → queued in Universal Inbox for editorial sign-off
+- **REVIEW** (score 60–74) → queued in Universal Inbox, flagged for closer review
+- **FAIL** (score < 60 or fabricated) → URL permanently blocked in `.governance-blocked.json`
+
+**Nothing auto-publishes.** All stories require Haresh's approval in the Editorial Studio (`localhost:3003`) before going live. Approve → `POST /api/inbox/:id/approve-and-publish` (SSE, git push included). Reject → reason logged to `.rejection-log.json`.
 
 `source_verified` on every entry always reflects the actual governance outcome — never hardcoded.
 

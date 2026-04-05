@@ -17,10 +17,20 @@ import { publish, commitAndPush } from './agents/publisher.js';
 import {
   getPending, addPending, approvePending, rejectPending,
   getBlocked, addBlocked, isBlocked,
+  getRejectionLog, addRejectionLog, readPipelineStatus,
+  getArchive, archiveStaleItems,
+  isTopicSuppressed, suppressTopic, getSuppressedTopics,
 } from './agents/gov-store.js';
 import { runDailyPipeline } from './agents/scheduler.js';
 import { signToken, verifyToken } from './agents/notifier.js';
 import { runFastAudit, runDeepAudit } from './agents/auditor.js';
+import {
+  checkLandscapeImpact, getLandscapeSuggestions,
+  applyLandscapeSuggestion, dismissLandscapeSuggestion,
+} from './agents/landscape-trigger.js';
+import { runLandscapeSweep, getStaleList } from './agents/landscape-sweep.js';
+import { publishTlEntry } from './agents/tl-publisher.js';
+import { runTLDiscover, getTLCandidates, dismissTLCandidate } from './agents/tl-discover.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const DATA_DIR = join(__dirname, '..', 'data');
@@ -191,12 +201,15 @@ app.post('/api/process-url', async (req, res) => {
     // Attach governance audit to the entry object
     intakeResult.entry._governance = govAudit;
 
-    // Fix 1: REVIEW → hold in pending queue, do NOT allow direct publish
-    if (govResult.verdict === 'REVIEW') {
+    // All stories go to inbox — nothing publishes without editorial sign-off
+    if (govResult.verdict === 'REVIEW' || govResult.verdict === 'PASS') {
       addPending(intakeResult.entry, govAudit);
       send('review_queued', {
-        message: 'Entry has unverified claims and requires human approval before publishing.',
+        message: govResult.verdict === 'REVIEW'
+          ? 'Entry has unverified claims — queued in inbox for review.'
+          : 'Entry looks clean (PASS) — queued in inbox for editorial sign-off.',
         entry_id: intakeResult.entry.id,
+        governance_verdict: govResult.verdict,
         unverified_claims: govResult.unverified_claims,
         notes: govResult.notes,
       });
@@ -204,11 +217,11 @@ app.post('/api/process-url', async (req, res) => {
       return;
     }
 
-    // PASS — return entry ready to publish (with audit attached)
+    // FAIL — already blocked above; this is a safety fallback
     send('complete', {
       entry: intakeResult.entry,
       governance: govAudit,
-      can_publish: true,
+      can_publish: false,
     });
   } catch (err) {
     send('error', { message: err.message });
@@ -284,13 +297,25 @@ app.get('/api/pending', (req, res) => {
   const pending = getPending();
   const items = Object.entries(pending).map(([id, item]) => ({
     id,
+    // Full entry fields for editorial review
     headline: item.entry.headline,
+    the_so_what: item.entry.the_so_what || null,
+    summary: item.entry.summary || null,
+    type: item.entry.type,
+    date: item.entry.date,
     company_name: item.entry.company_name,
+    source_name: item.entry.source_name,
     source_url: item.entry.source_url,
+    key_stat: item.entry.key_stat || null,
+    capability_evidence: item.entry.capability_evidence || null,
+    tags: item.entry.tags || null,
+    // Governance fields
     unverified_claims: item.governance.unverified_claims,
     notes: item.governance.notes,
     confidence: item.governance.confidence,
     queued_at: item.queued_at,
+    // Full entry for approve flow
+    _entry: item.entry,
   }));
   res.json({ count: items.length, items });
 });
@@ -313,7 +338,361 @@ app.post('/api/pending/:id/reject', (req, res) => {
   res.json({ ok: true, message: 'Entry rejected and URL permanently blocked' });
 });
 
+// ─── Editorial Inbox ──────────────────────────────────────────────────────────
+
+// All stories queued for editorial review (PASS + REVIEW, nothing auto-publishes)
+app.get('/api/inbox', (req, res) => {
+  // Move stale items (>7 days) to archive before returning inbox
+  archiveStaleItems();
+
+  const pending = getPending();
+  let items = Object.entries(pending).map(([id, item]) => ({
+    id,
+    headline:           item.entry.headline,
+    the_so_what:        item.entry.the_so_what || null,
+    summary:            item.entry.summary || null,
+    type:               item.entry.type,
+    date:               item.entry.date,
+    company_name:       item.entry.company_name,
+    source_name:        item.entry.source_name,
+    source_url:         item.entry.source_url,
+    image_url:          item.entry.image_url || null,
+    key_stat:           item.entry.key_stat || null,
+    capability_evidence: item.entry.capability_evidence || null,
+    tags:               item.entry.tags || null,
+    governance_verdict: item.governance.verdict,
+    confidence:         item.governance.confidence,
+    unverified_claims:  item.governance.unverified_claims || [],
+    notes:              item.governance.notes || '',
+    paywall_caveat:     item.governance.paywall_caveat || false,
+    score:              item.score ?? null,
+    score_breakdown:    item.score_breakdown ?? null,
+    queued_at:          item.queued_at,
+    discovered_at:      item.discovered_at || item.queued_at || null,
+    _entry:             item.entry,
+  }));
+
+  // REVIEW items first (need attention), then by score descending
+  items.sort((a, b) => {
+    if (a.governance_verdict === 'REVIEW' && b.governance_verdict !== 'REVIEW') return -1;
+    if (b.governance_verdict === 'REVIEW' && a.governance_verdict !== 'REVIEW') return 1;
+    return (b.score || 0) - (a.score || 0);
+  });
+
+  const archiveCount = Object.keys(getArchive()).length;
+  res.json({ count: items.length, items, archive_count: archiveCount });
+});
+
+// Archived stories (>7 days old, read-only history)
+app.get('/api/inbox/archive', (req, res) => {
+  const archive = getArchive();
+  const items = Object.entries(archive).map(([id, item]) => ({
+    id,
+    headline:      item.entry.headline,
+    company_name:  item.entry.company_name,
+    source_name:   item.entry.source_name,
+    source_url:    item.entry.source_url,
+    date:          item.entry.date,
+    type:          item.entry.type,
+    score:         item.score ?? null,
+    governance_verdict: item.governance?.verdict || null,
+    discovered_at: item.discovered_at || item.queued_at || null,
+  }));
+  // Newest first
+  items.sort((a, b) => (b.discovered_at || '').localeCompare(a.discovered_at || ''));
+  res.json({ count: items.length, items });
+});
+
+// Approve + publish in one server-side call (SSE streaming)
+app.post('/api/inbox/:id/approve-and-publish', (req, res) => {
+  const { send, done } = createSSE(res);
+  const edits = req.body || {};
+
+  // 1. Pull entry from inbox (removes from pending store)
+  const entry = approvePending(req.params.id);
+  if (!entry) {
+    send('error', { message: 'Entry not found in inbox' });
+    done();
+    return;
+  }
+
+  // 2. Apply any inline edits from the editor
+  if (edits.headline)    entry.headline    = edits.headline.trim();
+  if (edits.the_so_what) entry.the_so_what = edits.the_so_what.trim();
+  if (edits.summary)     entry.summary     = edits.summary.trim();
+  if (edits.key_stat)    entry.key_stat    = edits.key_stat;
+
+  // 3. Publish (write JSON to data/intelligence/)
+  let entryId;
+  try {
+    send('status', { message: `Publishing: ${entry.headline}` });
+    entryId = publish({ entry, send });
+    send('published', { id: entryId });
+  } catch (pubErr) {
+    // Rollback — put entry back in inbox
+    addPending(entry, entry._governance || {});
+    send('error', { message: `Publish failed — entry returned to inbox. ${pubErr.message}` });
+    done();
+    return;
+  }
+
+  // 4. Git commit + push
+  try {
+    commitAndPush({ ids: [entryId], send, branch: 'main' });
+  } catch (gitErr) {
+    send('error', { message: `Published but git push failed: ${gitErr.message}` });
+  }
+
+  // 5. Non-blocking landscape impact check — runs after response is sent
+  const publishedEntry = { ...entry, id: entryId };
+  setImmediate(() => checkLandscapeImpact(publishedEntry).catch(() => {}));
+
+  done();
+});
+
+// Reject with editorial reason — logs feedback for algorithm tuning
+app.post('/api/inbox/:id/reject-with-reason', (req, res) => {
+  const { reason = 'other', notes = '' } = req.body || {};
+  const pending = getPending();
+  const item = pending[req.params.id];
+  if (!item) return res.status(404).json({ error: 'Entry not found in inbox' });
+
+  const companyId  = item.entry.company;
+  const entryType  = item.entry.type;
+
+  addRejectionLog({
+    id:                req.params.id,
+    url:               item.entry.source_url,
+    headline:          item.entry.headline,
+    company:           item.entry.company_name,
+    company_id:        companyId,
+    entry_type:        entryType,
+    reason,
+    notes,
+    score:             item.score ?? null,
+    governance_verdict: item.governance.verdict,
+    rejected_at:       new Date().toISOString(),
+  });
+
+  // Auto-suppress this company+type topic after 2+ rejections with same reason
+  // (e.g. jump-ai:funding rejected twice → suppress jump-ai:funding for 60 days)
+  // A different entry type for the same company still gets through.
+  if (companyId && entryType) {
+    const log = getRejectionLog();
+    const topicRejections = log.filter(
+      r => r.company_id === companyId && r.entry_type === entryType && r.reason === reason
+    ).length;
+    if (topicRejections >= 1 && !isTopicSuppressed(companyId, entryType)) {
+      suppressTopic(companyId, entryType, item.entry.company_name,
+        `Auto-suppressed: ${reason} (${topicRejections + 1}x)`, 60);
+      console.log(`[inbox] Suppressed topic ${companyId}:${entryType} for 60 days (${reason})`);
+    }
+  }
+
+  rejectPending(req.params.id);
+  res.json({ ok: true });
+});
+
+// ─── Landscape suggestions ────────────────────────────────────────────────────
+
+// All pending landscape maturity upgrade suggestions
+app.get('/api/landscape-suggestions', (req, res) => {
+  res.json(getLandscapeSuggestions());
+});
+
+// Apply a suggestion: updates competitor JSON + git push to main
+app.post('/api/landscape-suggestions/:id/apply', (req, res) => {
+  const result = applyLandscapeSuggestion(req.params.id);
+  if (!result) return res.status(404).json({ error: 'Suggestion not found or already actioned' });
+  res.json({ ok: true, ...result });
+});
+
+// Dismiss a suggestion without applying
+app.post('/api/landscape-suggestions/:id/dismiss', (req, res) => {
+  const ok = dismissLandscapeSuggestion(req.params.id);
+  if (!ok) return res.status(404).json({ error: 'Suggestion not found' });
+  res.json({ ok: true });
+});
+
+// Stale capability list (fast — no search, just reads date_assessed fields)
+app.get('/api/landscape-stale', (req, res) => {
+  res.json(getStaleList());
+});
+
+// Run staleness sweep — searches for recent news on all stale capabilities (slow, SSE)
+app.post('/api/landscape-sweep', async (req, res) => {
+  const { send, done } = createSSE(res);
+  try {
+    await runLandscapeSweep({ send });
+  } catch (err) {
+    send('error', { message: err.message });
+  }
+  done();
+});
+
+// ─── Thought Leadership publish ───────────────────────────────────────────────
+
+// Approve a TL candidate: fetch + Claude extract + write JSON + push to main
+app.post('/api/tl-publish', async (req, res) => {
+  const { url } = req.body;
+  const { send, done } = createSSE(res);
+
+  if (!url) {
+    send('error', { message: 'URL is required' });
+    done();
+    return;
+  }
+
+  try {
+    await publishTlEntry({ url, send });
+  } catch (err) {
+    send('error', { message: err.message });
+  }
+  done();
+});
+
+// ── TL Discovery routes ───────────────────────────────────────────────────────
+
+app.post('/api/tl-discover', (req, res) => {
+  const { send, done } = createSSE(res);
+  runTLDiscover({ send })
+    .then(() => done())
+    .catch(e => { send('error', { message: e.message }); done(); });
+});
+
+app.get('/api/tl-candidates', (req, res) => {
+  res.json({ candidates: getTLCandidates() });
+});
+
+app.post('/api/tl-candidates/dismiss', (req, res) => {
+  const { url } = req.body;
+  if (!url) return res.status(400).json({ error: 'url required' });
+  dismissTLCandidate(url);
+  res.json({ ok: true });
+});
+
+app.get('/api/tl-published', (req, res) => {
+  try {
+    const tlDir = join(__dirname, '..', 'data', 'thought-leadership');
+    const files = fs.readdirSync(tlDir).filter(f => f.endsWith('.json'));
+    const entries = files.map(f => {
+      try { return JSON.parse(fs.readFileSync(join(tlDir, f), 'utf8')); } catch { return null; }
+    }).filter(Boolean).sort((a, b) => (b.date_published || '').localeCompare(a.date_published || ''));
+    res.json({ entries });
+  } catch(e) {
+    res.json({ entries: [] });
+  }
+});
+
+// Pipeline status — last run summary for inbox dashboard
+app.get('/api/pipeline-status', (req, res) => {
+  const status = readPipelineStatus();
+  const pending = getPending();
+  const blocked = getBlocked();
+
+  // Count entries published today from data/intelligence/
+  const today = new Date().toISOString().split('T')[0];
+  let publishedToday = 0;
+  const todayFiles = fs.existsSync(DATA_DIR + '/intelligence')
+    ? fs.readdirSync(DATA_DIR + '/intelligence').filter(f => f.endsWith('.json'))
+    : [];
+  for (const f of todayFiles) {
+    try {
+      const e = JSON.parse(fs.readFileSync(DATA_DIR + '/intelligence/' + f, 'utf-8'));
+      if (e._governance?.approved_at && e._governance.approved_at.startsWith(today)) publishedToday++;
+    } catch (_) {}
+  }
+
+  // Count rejections today
+  const log = getRejectionLog();
+  const rejectedToday = log.filter(r => r.rejected_at && r.rejected_at.startsWith(today)).length;
+
+  res.json({
+    last_run_at:       status?.started_at || null,
+    last_run_found:    status?.candidates_found || 0,
+    last_run_queued:   status?.queued || 0,
+    last_run_blocked:  status?.blocked || 0,
+    inbox_count:       Object.keys(pending).length,
+    published_today:   publishedToday,
+    rejected_today:    rejectedToday,
+    blocked_total:     Object.keys(blocked).length,
+    blocked_items:     status?.blocked_items || [],
+    tl_items:          status?.tl_items || [],
+  });
+});
+
+// Recent published — entries from last 7 days for editorial audit
+app.get('/api/recent-published', (req, res) => {
+  const cutoff = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString();
+  const recent = [];
+  const intelFiles = fs.existsSync(DATA_DIR + '/intelligence')
+    ? fs.readdirSync(DATA_DIR + '/intelligence').filter(f => f.endsWith('.json'))
+    : [];
+  for (const f of intelFiles) {
+    try {
+      const e = JSON.parse(fs.readFileSync(DATA_DIR + '/intelligence/' + f, 'utf-8'));
+      if (e.published_at && e.published_at >= cutoff) {
+        recent.push({
+          id:             e.id,
+          headline:       e.headline,
+          the_so_what:    e.the_so_what || null,
+          company_name:   e.company_name,
+          date:           e.date,
+          published_at:   e.published_at,
+          human_approved: e._governance?.human_approved || false,
+          score:          e._governance?.confidence || null,
+        });
+      }
+    } catch (_) {}
+  }
+  recent.sort((a, b) => b.published_at.localeCompare(a.published_at));
+  res.json({ count: recent.length, items: recent });
+});
+
 // ─── Governance audit endpoints ───────────────────────────────────────────────
+
+// Activity log — last 7 days of approvals + rejections combined
+app.get('/api/activity-log', (req, res) => {
+  const cutoff = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString();
+
+  // Rejections from rejection log
+  const rejections = (getRejectionLog() || [])
+    .filter(r => r.rejected_at && r.rejected_at >= cutoff)
+    .map(r => ({
+      id:         r.id,
+      headline:   r.headline || r.id,
+      company:    r.company_name || null,
+      action:     'rejected',
+      reason:     r.reason || null,
+      timestamp:  r.rejected_at,
+    }));
+
+  // Approvals from published entries
+  const approvals = [];
+  const intelFiles = fs.existsSync(DATA_DIR + '/intelligence')
+    ? fs.readdirSync(DATA_DIR + '/intelligence').filter(f => f.endsWith('.json'))
+    : [];
+  for (const f of intelFiles) {
+    try {
+      const e = JSON.parse(fs.readFileSync(DATA_DIR + '/intelligence/' + f, 'utf-8'));
+      const approvedAt = e._governance?.approved_at || e.published_at;
+      if (approvedAt && approvedAt >= cutoff) {
+        approvals.push({
+          id:        e.id,
+          headline:  e.headline,
+          company:   e.company_name || null,
+          action:    'approved',
+          timestamp: approvedAt,
+        });
+      }
+    } catch {}
+  }
+
+  const combined = [...rejections, ...approvals]
+    .sort((a, b) => b.timestamp.localeCompare(a.timestamp));
+
+  res.json({ log: combined });
+});
 
 // View all permanently blocked URLs
 app.get('/api/blocked', (req, res) => {
@@ -495,10 +874,10 @@ app.post('/review/:token/reject', (req, res) => {
   res.json({ ok: true, message: 'Entry rejected and URL permanently blocked' });
 });
 
-// ─── Cron: daily pipeline at 6:00 AM ─────────────────────────────────────────
+// ─── Cron: daily pipeline at 5:00 AM UK time ─────────────────────────────────
 
-cron.schedule('0 6 * * *', () => {
-  console.log('[cron] 6:00 AM Europe/London — starting daily pipeline');
+cron.schedule('0 5 * * *', () => {
+  console.log('[cron] 5:00 AM Europe/London — starting daily pipeline');
   runDailyPipeline().catch(err => {
     console.error('[cron] Daily pipeline failed:', err.message);
   });
@@ -507,11 +886,23 @@ cron.schedule('0 6 * * *', () => {
 // ─── POST /api/run-pipeline — manually trigger full pipeline + digest ─────────
 
 app.post('/api/run-pipeline', async (req, res) => {
+  const { send, done } = createSSE(res);
   console.log('[manual] Pipeline triggered via API');
-  res.json({ ok: true, message: 'Pipeline started — check server logs' });
-  runDailyPipeline().catch(err => {
+  send('status', { message: 'Pipeline starting — discovery + processing (~4-6 min)...' });
+  try {
+    const results = await runDailyPipeline();
+    send('done', {
+      published: results.published.length,
+      pending:   results.pending.length,
+      blocked:   results.blocked.length,
+      errors:    results.errors.length,
+      message:   `Done. ${results.pending.length} queued for review · ${results.blocked.length} blocked · ${results.errors.length} errors`,
+    });
+  } catch (err) {
     console.error('[manual] Pipeline failed:', err.message);
-  });
+    send('error', { message: err.message });
+  }
+  done();
 });
 
 // ─── POST /api/test-digest — send a sample digest email immediately ───────────
@@ -602,6 +993,6 @@ app.listen(PORT, () => {
   console.log(`\n✦ Living Intelligence Intake Server`);
   console.log(`  Running at: http://localhost:${PORT}`);
   console.log(`  Portal data: data/intelligence/`);
-  console.log(`  Governance: PASS-only publish gate active`);
+  console.log(`  Editorial: ALL stories queue for human review — nothing auto-publishes`);
   console.log(`  Cron: daily pipeline at 06:00 Europe/London\n`);
 });

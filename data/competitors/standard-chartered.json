@@ -2,60 +2,124 @@
   "id": "standard-chartered",
   "name": "Standard Chartered",
   "segment": "regional_champion",
-  "regions": [
-    "asia",
-    "emea"
-  ],
+  "regions": ["asia", "emea", "middle_east"],
   "color": "#0A4E8F",
-  "ai_strategy_summary": "Standard Chartered launched SC GPT across 41 markets for 70,000+ employees in March 2025 and debuted the world's first AI-generated video FX advisory product for wealth clients — setting a new bar for advisor-facing and client-facing AI simultaneously.",
+  "ai_strategy_summary": "Standard Chartered is executing a two-front AI strategy: enterprise-wide productivity (SC GPT, 70,000+ employees across 41 markets) and wealth-specific client engagement (GenAI Client Engagement Assistant in myWealth Advisor, FX Intelligent Expert AI video). The productivity deployment spans 41 markets, though active usage (~20,000 of 70,000) shows the firm is in early-stage adoption. The wealth application is more distinctive — reducing client communication drafting from 30 minutes to seconds and winning Best Gen-AI Initiative at the Digital Banker Awards 2025. The competitive question is whether breadth of deployment (41 markets) converts into depth of adoption.",
   "head_of_ai": null,
-  "headline_metric": "SC GPT live across 41 markets, 70,000+ employees; FX AI video advisory for clients",
-  "headline_initiative": "SC GPT global rollout + FX Intelligent Expert AI video advisory",
+  "headline_metric": "SC GPT across 70,000+ employees in 41 markets; ~20,000 active users; client drafting reduced from 30 min to seconds",
+  "headline_initiative": "SC GPT + GenAI Client Engagement Assistant (myWealth Advisor) + FX Intelligent Expert",
   "overall_maturity": "deployed",
   "capabilities": {
     "advisor_productivity": {
       "maturity": "deployed",
-      "headline": "SC GPT deployed across 41 markets for 70,000+ employees covering advisory, sales, and risk",
-      "detail": "Standard Chartered launched SC GPT on March 27, 2025 — a proprietary GenAI platform covering sales, client advisory, and risk management across 70,000 employees in 41 markets.",
+      "headline": "SC GPT deployed to 70,000+ employees across 41 markets; ~20,000 active users — broad access, early-stage adoption",
+      "detail": "Standard Chartered launched SC GPT on 27 March 2025 as a secure enterprise AI assistant covering sales, client advisory, software engineering, and risk management across 41 markets. Access extends to 70,000+ employees with approximately 20,000 active users — a 29% active adoption rate. Local teams can create market-specific AI solutions on the platform. A customised version leveraging Standard Chartered's internal data is in development for tailored problem-solving. The deployment is the widest cross-border AI rollout in banking by market count, though adoption intensity lags Morgan Stanley (98% of 15,000 advisors) and BBVA (80% of 120,000 employees actively using AI tools). The gap between access (70,000) and active usage (20,000) suggests the firm is in the early-to-mid stage of driving habitual adoption — a common pattern where deployment speed outpaces behavioural change.",
       "evidence": [
-        "SC GPT live across 41 markets as of March 2025",
-        "70,000+ employees using SC GPT",
-        "Covers sales, advisory, and risk management workflows"
+        "SC GPT launched 27 March 2025 across 41 markets (Standard Chartered press release)",
+        "70,000+ employees with access (Standard Chartered press release)",
+        "~20,000 active users (Living Intelligence verified intelligence entry)",
+        "Customised SC GPT with internal data in development (SC private banking AI article)",
+        "Local teams building market-specific AI solutions (Standard Chartered press release)",
+        "Won Best Gen-AI Personalised Assistant at Digital Banker Awards 2025 (The Digital Banker)"
       ],
-      "jpm_implication": "SC GPT's 41-market deployment shows that global AI rollout at scale is achievable. JPM's global advisory network should be targeting comparable coverage.",
-      "jpm_segments_affected": [
-        "GPB",
-        "JPMWM"
-      ],
-      "date_assessed": "2026-03-10",
+      "date_assessed": "2026-04-04",
       "sources": [
-        {
-          "name": "Standard Chartered — SC GPT rollout across 41 markets",
-          "url": "https://www.sc.com/en/press-release/standard-chartered-rolls-out-sc-gpt-advancing-ai-driven-innovation-in-banking/"
-        }
+        { "name": "Standard Chartered Press Release — SC GPT rollout", "url": "https://www.sc.com/en/press-release/standard-chartered-rolls-out-sc-gpt-advancing-ai-driven-innovation-in-banking/" },
+        { "name": "Standard Chartered — AI and hyper-personalisation in wealth", "url": "https://www.sc.com/en/news/private-bank/ai-and-the-dawn-of-hyper-personalisation-in-wealth-management/" },
+        { "name": "The Digital Banker — AI advisory and mobile upgrade", "url": "https://thedigitalbanker.com/standard-chartered-strengthens-digital-wealth-offering-with-upgraded-mobile-app-and-ai-advisory/" }
+      ]
+    },
+    "client_personalization": {
+      "maturity": "deployed",
+      "headline": "GenAI Client Engagement Assistant in myWealth Advisor: 30-minute drafting reduced to seconds, award-winning deployment",
+      "detail": "Standard Chartered integrated a GenAI Client Engagement Assistant into its myWealth Advisor platform in September 2024, targeting wealth relationship managers. The tool reduces manual drafting of personalised client communications from approximately 30 minutes to seconds — a step-change in advisor responsiveness. The deployment won Best Gen-AI Initiative (Wealth Management) at the Digital Banker Awards 2025. Unlike broad enterprise AI tools, this is a purpose-built wealth application embedded directly in the advisor workflow. ABN AMRO's virtual assistant has handled 3.5 million client conversations, while DBS delivers 30 million monthly personalised nudges — Standard Chartered's personalisation is narrower in scope (advisor-facing, not client-facing) but deeper in workflow integration.",
+      "evidence": [
+        "GenAI Client Engagement Assistant integrated into myWealth Advisor platform, September 2024 (The Digital Banker)",
+        "Reduced manual drafting from 30 minutes to seconds (SC private banking AI article)",
+        "Won Best Gen-AI Initiative (Wealth Management) at Digital Banker Awards 2025 (The Digital Banker)",
+        "Won Best Gen-AI Personalised Assistant at Digital Banker Awards 2025 (The Digital Banker)"
+      ],
+      "date_assessed": "2026-04-04",
+      "sources": [
+        { "name": "Standard Chartered — AI and hyper-personalisation in wealth", "url": "https://www.sc.com/en/news/private-bank/ai-and-the-dawn-of-hyper-personalisation-in-wealth-management/" },
+        { "name": "The Digital Banker — AI advisory and mobile upgrade", "url": "https://thedigitalbanker.com/standard-chartered-strengthens-digital-wealth-offering-with-upgraded-mobile-app-and-ai-advisory/" }
       ]
     },
     "research_content": {
-      "maturity": "deployed",
-      "headline": "FX Intelligent Expert: first AI-generated video market insights for wealth clients",
-      "detail": "FX Intelligent Expert delivers dynamic AI-generated video insights on FX markets to private wealth clients — debuted in mainland China (December 2024), expanding to Singapore, Hong Kong, and Taiwan.",
+      "maturity": "piloting",
+      "headline": "FX Intelligent Expert: AI-generated video market insights for wealth clients, rolling globally from China pilot",
+      "detail": "Standard Chartered launched FX Intelligent Expert — an AI system that generates video market insights on foreign exchange for private wealth clients. The product was piloted in mainland China in December 2024, with global rollout to Singapore, Hong Kong, and Taiwan announced. This is a distinctive format play: most peers deliver AI insights as text or dashboards, while Standard Chartered is betting on AI-generated video as a higher-engagement medium for affluent clients. Morgan Stanley's AskResearchGPT synthesises research as text; Goldman Sachs uses AI to augment analyst workflows. Standard Chartered is the first major bank to deploy AI-generated video as a client-facing research delivery format.",
       "evidence": [
-        "First-of-kind AI video advisory product",
-        "FX Intelligent Expert piloted in mainland China December 2024",
-        "Expanding to Singapore, Hong Kong, Taiwan"
+        "FX Intelligent Expert piloted in mainland China, December 2024 (SC private banking AI article)",
+        "AI-generated video format for FX market insights (SC private banking AI article)",
+        "Global rollout to Singapore, Hong Kong, Taiwan announced (SC private banking AI article)",
+        "Won recognition as part of Digital Banker Awards 2025 AI programme (The Digital Banker)"
       ],
-      "jpm_implication": "AI-generated video market insights represent a new format for client engagement that JPM Private Bank has not yet deployed. First-mover advantage is available.",
-      "jpm_segments_affected": [
-        "GPB"
-      ],
-      "date_assessed": "2026-03-10",
+      "date_assessed": "2026-04-04",
       "sources": [
-        {
-          "name": "Standard Chartered — SC GPT rollout across 41 markets",
-          "url": "https://www.sc.com/en/press-release/standard-chartered-rolls-out-sc-gpt-advancing-ai-driven-innovation-in-banking/"
-        }
+        { "name": "Standard Chartered — AI and hyper-personalisation in wealth", "url": "https://www.sc.com/en/news/private-bank/ai-and-the-dawn-of-hyper-personalisation-in-wealth-management/" },
+        { "name": "Private Banker International — SC GPT platform", "url": "https://www.privatebankerinternational.com/news/standard-chartered-unveils-ai-platform-sc-gpt/" }
+      ]
+    },
+    "operations_compliance": {
+      "maturity": "piloting",
+      "headline": "FX post-trade enquiry agents in development; SC GPT customisation with internal data underway",
+      "detail": "Standard Chartered is building FX post-trade enquiry agents to automate client queries on trade status and settlement — a common pain point in cross-border wealth operations. Separately, a customised SC GPT version leveraging Standard Chartered-specific internal data is in development, which would enable compliance and operational workflows trained on the firm's own policies and procedures. Both initiatives are pre-production. DBS has fully automated KYC and AML surveillance contributing to SGD 1B in AI-driven economic value. Lloyds is deploying agentic AI to its 21 million customers. Standard Chartered's compliance and operations AI capability is behind the regional peer set.",
+      "evidence": [
+        "FX post-trade enquiry agents being built (SC private banking AI article)",
+        "Customised SC GPT with internal data in development (SC private banking AI article)",
+        "Both capabilities are pre-production — no live deployment confirmed"
+      ],
+      "date_assessed": "2026-04-04",
+      "sources": [
+        { "name": "Standard Chartered — AI and hyper-personalisation in wealth", "url": "https://www.sc.com/en/news/private-bank/ai-and-the-dawn-of-hyper-personalisation-in-wealth-management/" },
+        { "name": "Standard Chartered Press Release — SC GPT rollout", "url": "https://www.sc.com/en/press-release/standard-chartered-rolls-out-sc-gpt-advancing-ai-driven-innovation-in-banking/" }
+      ]
+    },
+    "investment_portfolio": {
+      "maturity": "no_activity",
+      "headline": "No public evidence of AI-driven portfolio construction, rebalancing, or investment recommendation tools",
+      "detail": "Standard Chartered has not disclosed any AI capabilities for portfolio construction, automated rebalancing, or AI-driven investment recommendations. This is a notable gap given that the firm's AI investments in wealth (GenAI Client Engagement Assistant, FX Intelligent Expert) focus on communication and content delivery rather than investment decision support. Morgan Stanley has deployed BlackRock's Aladdin Wealth Auto Commentary for AI-personalised portfolio narratives. DBS uses AI across 370 use cases including portfolio construction. The absence of investment AI leaves Standard Chartered's wealth proposition dependent on human-only portfolio management in a market where AI-assisted decisions are becoming table stakes.",
+      "evidence": [
+        "No portfolio AI capability mentioned in any public disclosure reviewed",
+        "SC GPT covers sales, advisory, engineering, risk — not investment management",
+        "Wealth AI focus is on communication tools (Client Engagement Assistant) and content (FX Intelligent Expert)"
+      ],
+      "no_activity_explanation": "Standard Chartered's AI investment in wealth is concentrated on advisor communication and client-facing content. Portfolio construction and investment decision support have not been addressed publicly, creating a gap relative to peers with AI-driven investment capabilities.",
+      "date_assessed": "2026-04-04",
+      "sources": [
+        { "name": "Standard Chartered — AI and hyper-personalisation in wealth", "url": "https://www.sc.com/en/news/private-bank/ai-and-the-dawn-of-hyper-personalisation-in-wealth-management/" },
+        { "name": "Standard Chartered Press Release — SC GPT rollout", "url": "https://www.sc.com/en/press-release/standard-chartered-rolls-out-sc-gpt-advancing-ai-driven-innovation-in-banking/" }
+      ]
+    },
+    "client_acquisition": {
+      "maturity": "no_activity",
+      "headline": "No public evidence of AI-powered lead generation, prospecting, or client acquisition tools",
+      "detail": "Standard Chartered has not disclosed any AI capabilities for client acquisition, prospect identification, or lead scoring in wealth management. The firm's AI deployments are focused on serving existing clients (myWealth Advisor) and internal productivity (SC GPT) rather than growth. This contrasts with digital disruptors like eToro and Robinhood that use AI for targeted acquisition, and with DBS whose 30 million monthly personalised nudges serve both retention and acquisition. For a bank operating across 41 markets with a significant affluent client base, AI-driven acquisition could be a natural extension of the SC GPT platform.",
+      "evidence": [
+        "No client acquisition or lead generation AI mentioned in any public disclosure reviewed",
+        "AI strategy focused on advisor productivity and existing client engagement"
+      ],
+      "no_activity_explanation": "Standard Chartered's wealth AI strategy is oriented toward existing client servicing and advisor productivity, not new client acquisition. No public AI-powered prospecting, lead scoring, or acquisition tools have been disclosed.",
+      "date_assessed": "2026-04-04",
+      "sources": [
+        { "name": "Standard Chartered — AI and hyper-personalisation in wealth", "url": "https://www.sc.com/en/news/private-bank/ai-and-the-dawn-of-hyper-personalisation-in-wealth-management/" }
+      ]
+    },
+    "new_business_models": {
+      "maturity": "no_activity",
+      "headline": "No AI-native wealth products, monetisation models, or platform plays disclosed",
+      "detail": "Standard Chartered has not disclosed any AI-native wealth products, new revenue models enabled by AI, or platform strategies. The firm's AI approach is capability augmentation — making existing advisors faster and existing products more accessible — rather than creating new lines of business. Arta Finance and Savvy Wealth were built from scratch as AI-native wealth platforms. Goldman Sachs is exploring AI-powered alternative investment access. Standard Chartered's 41-market footprint could support an AI-powered cross-border wealth platform, but no such initiative has been announced.",
+      "evidence": [
+        "No AI-native product or new business model mentioned in any public disclosure reviewed",
+        "AI strategy explicitly framed as augmenting existing capabilities, not creating new businesses"
+      ],
+      "no_activity_explanation": "Standard Chartered's AI deployment augments existing wealth workflows. No AI-native products, new revenue streams, or platform business models have been announced.",
+      "date_assessed": "2026-04-04",
+      "sources": [
+        { "name": "Standard Chartered Press Release — SC GPT rollout", "url": "https://www.sc.com/en/press-release/standard-chartered-rolls-out-sc-gpt-advancing-ai-driven-innovation-in-banking/" }
       ]
     }
   },
-  "last_updated": "2026-03-18"
+  "last_updated": "2026-04-04"
 }

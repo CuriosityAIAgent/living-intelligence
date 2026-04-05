@@ -32,13 +32,15 @@
 │                  DATA DIRECTORY (inside this repo)               │
 │                    ./data/  — tracked in git                     │
 │                                                                  │
-│  intelligence/    → IntelligenceEntry JSON files (25 entries)   │
-│  thought-leadership/ → ThoughtLeadershipEntry JSON files (6)    │
-│  competitors/     → Competitor JSON files (27 companies)         │
+│  intelligence/    → IntelligenceEntry JSON files (43 entries)   │
+│  thought-leadership/ → ThoughtLeadershipEntry JSON files (8)    │
+│  competitors/     → Competitor JSON files (37 companies)         │
 │  capabilities/    → index.json (7 capability dimensions)         │
-│  logos/           → SVG/PNG logos (24 companies, local only)     │
-│  .governance-pending.json  → REVIEW entries awaiting approval   │
+│  logos/           → SVG/PNG logos (44 companies, local only)     │
+│  .governance-pending.json  → Universal inbox (ALL stories pre-publish) │
 │  .governance-blocked.json  → FAIL URLs permanently blocked      │
+│  .rejection-log.json       → Editorial rejections (reason+notes)│
+│  .pipeline-status.json     → Last pipeline run summary          │
 └───────────────────────────────┬──────────────────────────────────┘
                                 │ read at build time
                                 ↓
@@ -52,7 +54,7 @@
 │  /intelligence/[slug]    → Article detail page                   │
 │  /thought-leadership     → All thought leadership                │
 │  /thought-leadership/[slug] → Piece detail page                  │
-│  /landscape              → AI capabilities matrix (27 companies) │
+│  /landscape              → AI capabilities matrix (37 companies) │
 │  /competitors/[slug]     → Company detail page                   │
 └──────────────────────────────────────────────────────────────────┘
 ```
@@ -80,55 +82,77 @@
 
 | Path | Purpose |
 |------|---------|
-| `server.js` | Express server, all API routes |
-| `agents/auto-discover.js` | Three-layer discovery: L1 News (8 broad DFS News) + L1 Caps (7 capability-dimension DFS News, dynamic from index.json) + L2 per-company DFS Content Analysis + TL via Jina |
-| `agents/intake.js` | Fetch article (with paywall fallback) + Claude structuring |
+| `server.js` | Express server, all API routes. Uses CONTENT_DIR/INTEL_DIR/TL_DIR from config.js. |
+| `agents/config.js` | Single source of truth for all paths, thresholds, constants. All agents import from here. |
+| `agents/auto-discover.js` | Multi-layer discovery: L1 News (8 DFS) + L1 Caps (7 DFS) + L2 Companies (37 DFS Content Analysis) + L3 NewsAPI.ai (4 queries, 80K+ sources) + TL via Jina |
+| `agents/intake.js` | Fetch article (with paywall fallback) + Claude structuring + post-structuring enrichment |
 | `agents/governance.js` | Verify all claims against source → PASS/REVIEW/FAIL |
+| `agents/scorer.js` | 5-dimension scoring (Source 0-25, Claims 0-25, Freshness 0-10, Impact 0-40, CXO 0-10) + multi-source bonus |
+| `agents/fabrication-strict.js` | Exact-text verification. v2: multi-source, drift detection, the_so_what handling |
+| `agents/context-enricher.js` | Landscape-aware the_so_what regeneration with peer comparison |
+| `agents/publisher.js` | Write entry JSON, auto-correct week, auto-resolve logo, git commit + push |
+| `agents/tl-publisher.js` | Publish TL entries. Railway clone-and-push mode. Quality gate (named author + insight). |
+| `agents/landscape-trigger.js` | Post-publish: check if entry warrants landscape update (maturity upgrade or evidence update) |
+| **v2 Pipeline Agents** | |
+| `agents/research-agent.js` | Deep multi-source research: entity extraction, 5-10 source search (Jina + NewsAPI), landscape context, peer comparison |
+| `agents/writer-agent.js` | Consulting-quality writer (Opus 4.6). Intelligence + TL modes. Refinement support. |
+| `agents/evaluator-agent.js` | McKinsey 6-check test (Opus 4.6): specificity, so-what, source, substance, stat, competitor |
+| `agents/content-producer.js` | v2 orchestrator: Research → Write → Fabrication → Evaluate → Refine → Score. 2 iterations + early exit. |
 | `agents/gov-store.js` | File-backed pending queue + blocked URL list |
-| `agents/publisher.js` | Write entry JSON + `_governance` audit, git commit + push |
-| `scripts/backfill-governance.js` | One-time: add `_governance` to all existing entries |
-| `scripts/reprocess-failed.js` | Re-run FAIL entries through corrected pipeline |
-| `scripts/test-portal.js` | Health check all URLs + portal pages, auto-fix broken links |
-| `rss-feeds.json` | Archived — RSS removed; DataForSEO two-layer replaces it |
-| `public/index.html` | Intake UI (single-file vanilla JS, includes Review tab) |
+| `agents/scheduler.js` | Daily pipeline orchestrator. Discovery → triage → intake → governance → scoring → inbox. |
+| `client/` | Editorial Studio UI — React (Vite + TS + Tailwind v4), builds to `intake-server/public/` |
 
 ### Intake Server API Routes
 
 | Route | Method | Description |
 |-------|--------|-------------|
-| `/api/auto-discover` | POST | Full parallel pipeline: RSS + Jina + DataForSEO |
+| `/api/auto-discover` | POST | Three-layer discovery: L1 News + L1 Caps + L2 Companies |
 | `/api/search` | POST | Jina s.jina.ai search (body: `{query}`) |
-| `/api/discover` | POST | RSS-only discovery |
-| `/api/process-url` | POST | Fetch + structure + governance for one URL |
-| `/api/publish` | POST | Publish entries (enforces governance gate server-side) |
-| `/api/pending` | GET | List REVIEW entries awaiting human approval |
-| `/api/pending/:id/approve` | POST | Approve a REVIEW entry → moves to publishable |
-| `/api/pending/:id/reject` | POST | Reject a REVIEW entry → permanently blocks URL |
+| `/api/process-url` | POST | Fetch + structure + governance for one URL → queues to inbox |
+| `/api/publish` | POST | Write JSON + git commit + push (called by approve-and-publish) |
+| `/api/inbox` | GET | All queued stories, REVIEW-first then score desc |
+| `/api/inbox/:id/approve-and-publish` | POST | SSE: approve → publish → git push (rollback on failure) |
+| `/api/inbox/:id/reject-with-reason` | POST | Rejection with reason → .rejection-log.json |
+| `/api/pipeline-status` | GET | Last pipeline run summary |
+| `/api/recent-published` | GET | Last 7 days of published entries for audit |
+| `/api/pending` | GET | Legacy pending list |
+| `/api/pending/:id/approve` | POST | Legacy approve |
+| `/api/pending/:id/reject` | POST | Legacy reject |
 | `/api/blocked` | GET | View all permanently blocked URLs |
-| `/api/health` | GET | Server health + governance queue counts |
+| `/api/health` | GET | Server health + queue counts |
 
 ---
 
 ## Data Flow: New Intelligence Entry
 
+### v1 Pipeline (automated daily at 5am via scheduler.js)
 ```
-1. Auto-Discover runs (two-layer: L1 broad DFS News + L2 per-company DFS Content Analysis)
-2. Stories scored by: recency + source quality + tracked company mentions + AI keyword density
-3. Top 20 candidates surfaced in intake UI with via badges (L1 News/L1 Caps/L2 Companies)
-4. Human reviews and selects a story
-5. Jina fetches full article from URL
-   └── If paywall detected → searches for open-source alternatives automatically
-       └── Fetches up to 2 open-source alternatives and combines content
-6. Claude structures into IntelligenceEntry JSON (strict grounding rules — no inference)
-7. Claude verifies every claim in the entry against the source (governance check)
-   ├── PASS  → entry ready to publish
-   ├── REVIEW → entry held in pending queue (localhost:3003 Review tab)
-   │           Human approves/rejects before publish allowed
-   └── FAIL  → URL permanently blocked, entry discarded
-8. Human clicks Publish → entry written to data/intelligence/{slug}.json
-   └── _governance audit block written inline to every JSON file
-   └── source_verified = true only if PASS or human_approved
-9. git add + commit + push origin dev → Railway auto-deploys on merge to main
+1. Auto-Discover (4-layer: L1 News + L1 Caps + L2 Companies + L3 NewsAPI.ai)
+2. Triage scoring: recency + source quality + tracked company + AI keywords
+3. Semantic dedup (Jina Embeddings ≥0.90) + reranking (Jina Reranker) → top 15
+4. Each candidate: fetch → structure → governance → fabrication → score → inbox
+5. UNIVERSAL INBOX: nothing auto-publishes. Editorial review required.
+```
+
+### v2 Pipeline (consulting-quality, interactive or scheduled)
+```
+1. Research Agent: fetch primary + search 5-10 additional sources + landscape context
+2. Writer Agent (Opus): consulting-quality entry (McKinsey voice, peer context)
+3. Fabrication Agent: verify ALL claims against ALL sources, drift detection
+4. Evaluator Agent (Opus): 6-point McKinsey test (specificity, so-what, source, substance, stat, competitor)
+5. If NEEDS_WORK → Writer refines with evaluator feedback → Fabrication re-checks
+6. Final scoring: 5 dimensions computed from finished entry
+7. Entry stored with _research, _fabrication, _iterations, _final_score metadata
+8. Editorial review → Approve → git push main → portal rebuilds
+```
+
+### Publish Flow
+```
+Approve → publisher.js: auto-correct week, auto-resolve logo, write JSON
+       → commitAndPush: git add + commit + push origin main
+       → landscape-trigger.js: check if entry warrants landscape update
+       → Railway auto-deploys portal
+```
 ```
 
 ---
@@ -200,19 +224,42 @@ Definitions shown on the landscape page below the matrix:
 
 ---
 
-## Landscape Coverage (as of March 2026)
+## Landscape Coverage (as of April 2026)
 
-**27 companies across 7 segments:**
+**37 companies across 8 segments:**
 
 | Segment | Companies |
 |---------|-----------|
 | Wirehouse (4) | Morgan Stanley, BofA/Merrill, Wells Fargo, JPMorgan |
-| Global Private Bank (6) | UBS, Goldman Sachs, Citi PB, HSBC PB, Julius Baer, BNP Paribas Wealth |
-| Regional Champion (4) | DBS, BBVA, Standard Chartered, RBC Wealth Management |
-| Digital Disruptor (4) | Robinhood, Wealthfront, eToro, Public.com |
+| Global Private Bank (9) | UBS, Goldman Sachs, Citi PB, HSBC PB, Julius Baer, BNP Paribas Wealth, Barclays Private Bank, Santander Private Banking, Société Générale Private Banking |
+| Regional Champion (7) | DBS, BBVA, Standard Chartered, RBC Wealth Management, Lloyds Wealth, ABN AMRO Private Banking, St. James's Place |
+| Asset Manager (2) | Fidelity, Vanguard |
+| Digital Disruptor (5) | Robinhood, Wealthfront, eToro, Public.com, Betterment |
 | AI-Native Wealth (2) | Arta Finance, Savvy Wealth |
 | RIA / Independent (2) | Altruist, LPL Financial |
 | Advisor Tools (5) | Jump, Nevis, Zocks, Holistiplan, Conquest Planning |
+
+---
+
+## Railway Deployment Map
+
+Three independent Railway services, each deploying from a different git branch:
+
+| Railway Service | Git Branch | Domain | What It Deploys |
+|----------------|------------|--------|-----------------|
+| `living-intelligence` | `main` | `wealth.tigerai.tech` | **The Portal** — what users/executives see (Next.js) |
+| `proud-reflection` | `intake` | (internal only) | **Editorial Studio / Intake Server** — content pipeline, agents, API (Express) |
+| `profound-wonder` | `feature/landing-page` | `livingintel.ai` | **Landing page** — public marketing site |
+
+### What goes where
+
+- **Portal UI changes** (pages, components, styles, CTA buttons, data files) → commit and push to `main` → `living-intelligence` service rebuilds → live on `wealth.tigerai.tech`
+- **Intake server changes** (agents, pipeline code, Editorial Studio UI) → commit and push to `intake` → `proud-reflection` service rebuilds
+- **Content publishing** (approved stories via Editorial Studio) → publisher.js pushes directly to `main` → portal rebuilds with new content
+
+### Common mistake
+
+Pushing portal UI changes to `intake` will only redeploy the intake server — the portal at `wealth.tigerai.tech` won't update. Portal changes **must** go to `main`.
 
 ---
 

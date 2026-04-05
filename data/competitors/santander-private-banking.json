@@ -1,0 +1,71 @@
+{
+  "id": "santander-private-banking",
+  "name": "Santander Private Banking",
+  "segment": "global_private_bank",
+  "regions": [
+    "emea",
+    "latam",
+    "us"
+  ],
+  "color": "#EC0000",
+  "ai_strategy_summary": "Santander is deploying AI at scale across its €558B Wealth Management & Insurance division. In August 2025, the bank partnered with OpenAI and deployed ChatGPT Enterprise to 15,000 employees across Europe and the Americas within two months, targeting 30,000. For private banking, AI investment copilots provide real-time strategy suggestions and hyper-personalised client journeys. €200M+ in efficiency gains (AI + automation) confirmed in 2024. Chief Data & AI Officer Ricardo Martín Manjón: 'Competitive edge comes not just from adopting AI, but from embedding it.'",
+  "head_of_ai": {
+    "name": "Ricardo Martín Manjón",
+    "title": "Chief Data & AI Officer, Banco Santander"
+  },
+  "headline_metric": "€200M+ efficiency gains in 2024 (AI + automation); ChatGPT Enterprise to 15,000 employees across €558B AUM and 277,000+ private banking clients",
+  "headline_initiative": "ChatGPT Enterprise to 15,000+ employees + AI investment copilots for private banking (Aug 2025)",
+  "overall_maturity": "deployed",
+  "capabilities": {
+    "advisor_productivity": {
+      "maturity": "deployed",
+      "headline": "ChatGPT Enterprise deployed to 15,000+ Santander employees within 2 months of OpenAI partnership — private banking investment copilots providing real-time strategy suggestions",
+      "detail": "Within two months of the OpenAI partnership announced August 2025, Santander deployed ChatGPT Enterprise to nearly 15,000 employees across Europe and the Americas, with plans to expand to 30,000 (~15% of the workforce). For private banking, early use cases include investment copilots providing real-time strategy suggestions. Developers using AI tools showed 20-30% productivity increases group-wide.",
+      "evidence": [
+        "ChatGPT Enterprise deployed to ~15,000 employees within 2 months of OpenAI partnership — Santander newsroom, August 2025",
+        "Targeting expansion to 30,000 employees (~15% of workforce) — Santander newsroom, August 2025",
+        "Developers: 20-30% productivity increase with AI tools — Santander newsroom, August 2025"
+      ],
+      "date_assessed": "2026-03-24",
+      "sources": [
+        {
+          "name": "Santander — Data & AI-first strategy accelerates through OpenAI collaboration (Aug 2025)",
+          "url": "https://www.santander.com/en/stories/santander-data-ai-first-strategy-accelerates-through-openai-collaboration"
+        }
+      ]
+    },
+    "client_personalization": {
+      "maturity": "piloting",
+      "headline": "AI investment copilots for private banking — hyper-personalised client journeys in early deployment",
+      "detail": "As part of the OpenAI partnership, Santander is deploying AI investment copilots for private banking that provide real-time strategy suggestions and support hyper-personalised client journeys. These are in early deployment as of August 2025 — no standalone product name or scale metrics have been separately announced.",
+      "evidence": [
+        "AI investment copilots for private banking: real-time strategy suggestions and hyper-personalised client journeys — Santander newsroom, August 2025"
+      ],
+      "date_assessed": "2026-03-24",
+      "sources": [
+        {
+          "name": "Santander — Data & AI-first strategy accelerates through OpenAI collaboration (Aug 2025)",
+          "url": "https://www.santander.com/en/stories/santander-data-ai-first-strategy-accelerates-through-openai-collaboration"
+        }
+      ]
+    },
+    "operations_compliance": {
+      "maturity": "scaled",
+      "headline": "AI copilots in 40%+ of contact centre interactions; Speech Analytics processing 10M calls/year in Spain; €200M+ AI savings confirmed 2024",
+      "detail": "AI copilots support more than 40% of contact centre interactions across Santander. Speech Analytics processes around 10 million voice calls annually in Spain, auto-filling CRM systems and freeing 100,000+ adviser hours per year in Spain alone. Santander reported €200M+ in efficiency gains in 2024 across the group — spanning AI, automation, and operational improvements (not attributable to AI alone).",
+      "evidence": [
+        "AI copilots support 40%+ of contact centre interactions — Santander newsroom, August 2025",
+        "Speech Analytics: ~10 million voice calls/year in Spain; 100,000+ hours freed per year — Santander newsroom, August 2025",
+        "€200M+ in efficiency gains in 2024 (AI + automation + ops improvements) — Santander newsroom, August 2025"
+      ],
+      "date_assessed": "2026-03-24",
+      "sources": [
+        {
+          "name": "Santander — Data & AI-first strategy accelerates through OpenAI collaboration (Aug 2025)",
+          "url": "https://www.santander.com/en/stories/santander-data-ai-first-strategy-accelerates-through-openai-collaboration"
+        }
+      ]
+    }
+  },
+  "last_updated": "2026-03-24"
+}

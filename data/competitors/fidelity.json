@@ -1,0 +1,81 @@
+{
+  "id": "fidelity",
+  "name": "Fidelity Investments",
+  "segment": "asset_manager",
+  "regions": [
+    "us"
+  ],
+  "color": "#007A33",
+  "ai_strategy_summary": "Fidelity is applying AI across both its direct-to-retail platform and its advisor-facing tools, with Trader+ (launched Sep 2025) as the flagship AI-powered active trading platform. With $16.4 trillion in AUA and 40+ million individual investor accounts, Fidelity's AI deployment operates at a scale few wealth managers can approach.",
+  "head_of_ai": null,
+  "headline_metric": "Trader+ AI platform launched September 2025; AI research tools available to all 40M+ accounts across $16.4T AUA",
+  "headline_initiative": "Trader+ — AI-powered active trading platform launched September 2025",
+  "overall_maturity": "deployed",
+  "capabilities": {
+    "investment_portfolio": {
+      "maturity": "deployed",
+      "headline": "Trader+ platform brings institutional-grade AI-powered trading tools to retail investors",
+      "detail": "Fidelity Trader+ launched September 25, 2025 as a dedicated active trading platform with advanced AI-driven charting, options analytics, and real-time market intelligence. The platform extends Fidelity's existing robo-advisory capability (Fidelity Go) into active trading, covering the full spectrum from passive automated investing to AI-assisted active management.",
+      "evidence": [
+        "Fidelity Trader+ launched September 25, 2025",
+        "Fidelity Go robo-advisor: existing automated portfolio management product",
+        "$16.4T AUA across retail and institutional (Fidelity Investments, 2025)"
+      ],
+      "jpm_implication": "Fidelity's scale means AI tools deployed across their platform instantly affect 40M+ accounts. The expectation gap between Fidelity's AI-powered self-directed experience and JPM's Self-Directed offering will only widen.",
+      "jpm_segments_affected": [
+        "Self-Directed",
+        "CWM"
+      ],
+      "date_assessed": "2026-03-23",
+      "sources": [
+        {
+          "name": "Fidelity Investments — Trader+ platform",
+          "url": "https://www.fidelity.com/trading/trader-plus"
+        }
+      ]
+    },
+    "research_content": {
+      "maturity": "deployed",
+      "headline": "AI-powered market research, screeners, and investment insights built into Fidelity's retail platform",
+      "detail": "Fidelity's retail brokerage platform integrates AI-driven research tools including stock screeners, earnings analysis, and personalized market commentary. The platform surfaces AI-generated insights alongside traditional analyst research, giving retail investors access to institutional-grade content at zero incremental cost.",
+      "evidence": [
+        "AI-powered screeners and research tools embedded in Fidelity.com",
+        "Fidelity Go and Trader+ both include AI-assisted investment insights",
+        "Zero-cost access to AI research for all account holders"
+      ],
+      "jpm_implication": "Fidelity is training the next generation of wealth clients to expect AI-quality research as a baseline, included in any platform they use — not as a premium add-on.",
+      "jpm_segments_affected": [
+        "Self-Directed"
+      ],
+      "date_assessed": "2026-03-23",
+      "sources": [
+        {
+          "name": "Fidelity Investments — Research and tools",
+          "url": "https://www.fidelity.com/trading/research-and-tools"
+        }
+      ]
+    },
+    "advisor_productivity": {
+      "maturity": "deployed",
+      "headline": "Fidelity Institutional AI tools supporting 13,000+ RIA and broker-dealer firms",
+      "detail": "Fidelity Institutional provides AI-powered tools to the 13,000+ RIA and broker-dealer firms that custody assets with Fidelity. These include AI-assisted portfolio analytics, client reporting automation, and practice management tools — extending Fidelity's AI capabilities into the independent advisor channel at scale.",
+      "evidence": [
+        "Fidelity Institutional: 13,000+ RIA and BD custodial relationships",
+        "AI tools available to advisors via Fidelity Institutional platform",
+        "Fidelity's institutional AI roadmap includes advisor workflow automation"
+      ],
+      "jpm_implication": "Fidelity is building AI capabilities into the custodial infrastructure that 13,000+ advisors depend on — creating a switching cost that competitors including JPMorgan's advisor platform must match.",
+      "jpm_segments_affected": [
+        "CWM"
+      ],
+      "date_assessed": "2026-03-23",
+      "sources": [
+        {
+          "name": "Fidelity Institutional — Advisor solutions",
+          "url": "https://institutional.fidelity.com"
+        }
+      ]
+    }
+  },
+  "last_updated": "2026-03-23"
+}
