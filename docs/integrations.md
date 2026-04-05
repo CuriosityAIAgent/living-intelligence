@@ -1,6 +1,43 @@
 # External Integrations
 
-All integrations live in the **Intake Server** (`../intake-server/`), not in the portal. The portal is purely static — it reads JSON files, no external API calls at runtime.
+Most integrations live in the **Intake Server** (`../intake-server/`). The portal makes runtime calls to **Supabase** (auth) and **Stripe** (checkout/webhooks) — all other portal content is static JSON read at build time.
+
+---
+
+## Supabase Auth
+
+**Used for:** User authentication (Google OAuth, magic link, email+password), user profiles, organization management, team invites, row-level security.
+
+**Portal files:**
+- `lib/supabase.ts` — browser client (`createBrowserClient` from `@supabase/ssr`)
+- `lib/supabase-server.ts` — server client (cookie-based sessions) + admin client (service key, bypasses RLS)
+- `middleware.ts` — auth gate on every request: logged in → has user_profiles row with org_id → org status active
+- `app/api/auth/callback/route.ts` — exchanges OAuth/magic-link code for session
+
+**Config:**
+- Site URL: `https://livingintel.ai`
+- Providers: Google OAuth, Email (magic link + password)
+- Session duration: 30 days
+- 14 tables deployed (2 auth + 8 KB + 4 engagement)
+
+**Env vars:** `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_KEY`
+
+---
+
+## Stripe
+
+**Used for:** Subscription billing (annual), checkout sessions, customer portal, friend access (100% off coupon).
+
+**Portal files:**
+- `app/api/checkout/route.ts` — creates Stripe Checkout session. Supports `coupon` param for FRIEND2026. Sets `payment_method_collection: 'if_required'` when coupon present (friends skip card form).
+- `app/api/webhooks/stripe/route.ts` — handles `checkout.session.completed` (creates org + admin profile), `customer.subscription.deleted` (deactivates org), `customer.subscription.updated`.
+
+**Products:**
+- Founding Member: $4,500/yr
+- Standard: $5,000/yr
+- FRIEND2026 coupon: 100% off, 1 month duration, 20 max redemptions
+
+**Env vars:** `STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET`, `STRIPE_PRICE_FOUNDING`, `STRIPE_PRICE_STANDARD`
 
 ---
 
@@ -340,3 +377,7 @@ This two-call pattern (structure → verify) is the primary anti-hallucination m
 | Ranking discovery candidates by relevance | Jina Reranker `jina-reranker-v3` — cross-attention quality ranking after rule scoring |
 | Picking best paywall alternative | Jina Reranker — reranks DataForSEO alternatives by similarity to original teaser |
 | Broken URLs and missing assets | `scripts/test-portal.js` health checker — auto-fixes on detect |
+| User authentication (3 methods) | Supabase Auth — Google OAuth, magic link, email+password. Session cookies via `@supabase/ssr`. |
+| Subscription billing + friend access | Stripe Checkout — annual plans ($4,500/$5,000), FRIEND2026 coupon (100% off, no card). Webhook creates org. |
+| Auth gate (portal access control) | `middleware.ts` — checks Supabase session + org membership + org active status on every request |
+| Team management | Supabase `invite_team_member` RPC + `handle_new_user` trigger — auto-links new signups to org via pending_invites |

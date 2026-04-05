@@ -2,14 +2,18 @@ import { createServerClient } from '@supabase/ssr'
 import { NextResponse, type NextRequest } from 'next/server'
 
 // Routes that don't require authentication
-const PUBLIC_ROUTES = ['/login', '/join', '/api/auth/callback', '/api/webhooks/stripe']
+// Routes that are public (prefix match)
+const PUBLIC_PREFIXES = ['/login', '/join', '/api/auth/', '/api/webhooks/stripe']
+// Routes that are public (exact match)
+const PUBLIC_EXACT = ['/']
 
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
 
   // Allow public routes, static assets, and Next.js internals
   if (
-    PUBLIC_ROUTES.some(route => pathname.startsWith(route)) ||
+    PUBLIC_EXACT.includes(pathname) ||
+    PUBLIC_PREFIXES.some(prefix => pathname.startsWith(prefix)) ||
     pathname.startsWith('/_next') ||
     pathname.startsWith('/favicon') ||
     pathname.startsWith('/icon') ||

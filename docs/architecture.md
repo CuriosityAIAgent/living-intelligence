@@ -56,6 +56,13 @@
 │  /thought-leadership/[slug] → Piece detail page                  │
 │  /landscape              → AI capabilities matrix (37 companies) │
 │  /competitors/[slug]     → Company detail page                   │
+│  /login                  → Auth: Google + magic link + password   │
+│  /join                   → Subscriber entry point (coupon param)  │
+│  /onboarding             → Team invite (up to 5 emails)          │
+│  /api/auth/callback      → OAuth + magic link redirect handler   │
+│  /api/auth/signout       → Sign out + redirect to /login         │
+│  /api/checkout           → Creates Stripe Checkout session        │
+│  /api/webhooks/stripe    → Stripe webhook (org creation etc.)    │
 └──────────────────────────────────────────────────────────────────┘
 ```
 
@@ -75,6 +82,16 @@
 | `app/page.tsx` | Homepage — date bar + full intelligence feed |
 | `app/intelligence/[slug]/page.tsx` | Article detail — FormattedSummary with lede + keyword bolding |
 | `app/thought-leadership/[slug]/page.tsx` | Piece detail — insight callout, summary bullets, quotes |
+| `lib/supabase.ts` | Supabase browser client (used in 'use client' components) |
+| `lib/supabase-server.ts` | Supabase server + admin clients (Route Handlers, Server Components) |
+| `middleware.ts` | Auth gate — checks logged in + org exists + org active. Public routes bypass. |
+| `app/login/page.tsx` | Google OAuth + magic link + email/password login |
+| `app/api/auth/callback/route.ts` | OAuth + magic link redirect handler |
+| `app/api/checkout/route.ts` | Creates Stripe Checkout session (supports coupon param) |
+| `app/api/webhooks/stripe/route.ts` | Stripe webhook: checkout.session.completed → create org + admin |
+| `app/onboarding/page.tsx` | Team invite page — up to 5 emails via invite_team_member RPC |
+| `app/join/page.tsx` | Subscriber entry point — reads ?coupon= param |
+| `supabase/schema.sql` | Full DDL: 14 tables + indexes + RLS + triggers + vector search |
 
 ---
 

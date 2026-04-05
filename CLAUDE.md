@@ -9,6 +9,46 @@ See @docs/architecture.md for full system design, @docs/integrations.md for all 
 
 ---
 
+## Supabase Auth Config
+
+| Setting | Value |
+|---------|-------|
+| Project | "Curiosity AI" — Pro tier, Micro compute, Europe |
+| Site URL | `https://livingintel.ai` |
+| Redirect URLs | `https://livingintel.ai/api/auth/callback`, `https://wealth.tigerai.tech/api/auth/callback`, `http://localhost:3002/api/auth/callback` |
+| Session duration | 30 days |
+| Providers | Google OAuth, Email (magic link + password) |
+
+**Auth files (10):**
+- `lib/supabase.ts` — browser client (`createBrowserClient` from `@supabase/ssr`)
+- `lib/supabase-server.ts` — server client + admin client (service key, bypasses RLS)
+- `middleware.ts` — auth gate: logged in → has profile with org → org active. Public routes: `/login`, `/join`, `/api/auth/callback`, `/api/webhooks/stripe`
+- `app/login/page.tsx` — Google button + email + magic link/password toggle
+- `app/api/auth/callback/route.ts` — OAuth + magic link redirect handler
+- `app/api/auth/signout/route.ts` — signs out + redirects to /login
+- `app/onboarding/page.tsx` — "Add your team" (up to 5 emails via `invite_team_member` RPC)
+- `app/join/page.tsx` — reads `?coupon=` param, redirects to Stripe checkout
+
+**API key naming (2026):** Supabase renamed `anon` → **Publishable** (`sb_publishable_...`), `service_role` → **Secret** (`sb_secret_...`). Functionality identical.
+
+## Stripe Checkout Config
+
+| Setting | Value |
+|---------|-------|
+| Mode | Sandbox (test keys) |
+| Products | Founding $4,500/yr (`STRIPE_PRICE_FOUNDING`), Standard $5,000/yr (`STRIPE_PRICE_STANDARD`) |
+| Coupon | `FRIEND2026` — 100% off, **1 month duration** (not forever), 20 max redemptions |
+| payment_method_collection | `'if_required'` when coupon present — friends skip card form entirely |
+| Success URL | `livingintel.ai/onboarding` |
+
+**Auth files:**
+- `app/api/checkout/route.ts` — creates Stripe Checkout session. Supports `coupon` param.
+- `app/api/webhooks/stripe/route.ts` — handles `checkout.session.completed`, `customer.subscription.deleted`, `customer.subscription.updated`. On checkout: creates org + links admin profile.
+
+**Env vars:** `STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET` (optional for testing), `STRIPE_PRICE_FOUNDING`, `STRIPE_PRICE_STANDARD`
+
+---
+
 ## CONTENT STANDARDS — NON-NEGOTIABLE
 
 This is a **premium, CEO-facing platform**. Every number, every claim, every quote that appears on this site has been seen in boardrooms and senior leadership meetings. A single fabricated or unverified statistic destroys the credibility of the entire platform.
