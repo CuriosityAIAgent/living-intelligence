@@ -115,5 +115,19 @@
     "blocked_at": "2026-04-04T04:11:47.709Z",
     "title": "Pebble Finance CEO Outlines AI Capability Shifts Reshaping Wealth Management Through 2026",
     "score": 50
+  },
+  "https://fintech.global/2026/01/29/wealthai-raises-800k-to-launch-ai-first-os-for-wealth-managers/": {
+    "id": "wealthai-ai-native-os-wealth-managers-800k-preseed-2026",
+    "reason": "Score 37/100 — below 45 review threshold",
+    "blocked_at": "2026-04-05T04:01:38.667Z",
+    "title": "WealthAI Builds AI-Native OS to Unify Fragmented Wealth Manager Tech Stacks",
+    "score": 37
+  },
+  "https://www.axios.com/pro/fintech-deals/2026/02/19/jump-80m-series-b-insight-advisor-ai": {
+    "id": "jump-80m-series-b-advisor-ai-operating-system-2026-02",
+    "reason": "Score 58/100 — below 45 review threshold",
+    "blocked_at": "2026-04-05T04:02:36.568Z",
+    "title": "Jump's AI Operating System Reaches Advisors at Scale, Backed by $80M Series B to Expand Productivity Layer",
+    "score": 58
   }
 }
