@@ -3,9 +3,10 @@
 import { useState, useEffect } from 'react';
 
 const HEADLINES = [
-  'AI is reshaping wealth management. Do you know who\u2019s ahead?',
-  'You can\u2019t build a strategy without knowing the competitive landscape.',
-  '14 AI launches last quarter. You heard about 3.',
+  'Your competitors are deploying AI at scale. Are you seeing it in time?',
+  'The firms moving fastest on AI will absorb the clients of those that don\u2019t.',
+  'The intelligence your leadership team needs — before the board asks for it.',
+  'What took a consulting firm six months, we track continuously.',
 ];
 
 export default function RotatingHeadline() {

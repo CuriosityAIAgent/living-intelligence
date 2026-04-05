@@ -1,29 +1,69 @@
+'use client';
+
 import RotatingHeadline from '@/components/RotatingHeadline';
+
+/* ─── Single source of truth for all landing page numbers ─── */
+const STATS = {
+  firms: '37+',
+  entries: '43+',
+  capabilities: '7',
+  queries: '60+',
+  qualityChecks: '6',
+  sources: '300+',
+} as const;
 
 export default function LandingPage() {
   return (
     <div className="min-h-screen">
 
+      {/* ─── STICKY REQUEST ACCESS CTA ─── */}
+      <div className="fixed bottom-6 right-6 z-50 hidden md:block">
+        <a
+          href="mailto:hello@livingintel.ai?subject=Living Intelligence — Request Access&body=I'd like to learn more about Living Intelligence for my firm."
+          className="bg-[#990F3D] hover:bg-[#7a0c31] text-white text-[13px] font-bold px-6 py-3 rounded-full shadow-lg transition-colors no-underline flex items-center gap-2"
+        >
+          Request access <span className="text-[16px]">&rarr;</span>
+        </a>
+      </div>
+
+      {/* ─── STICKY SECTION NAV ─── */}
+      <nav className="sticky top-0 z-50 bg-[#141420] border-b border-[#2A2A3E] hidden md:block">
+        <div className="max-w-5xl mx-auto px-6 flex items-center gap-6 py-2.5">
+          <span className="text-[11px] font-extrabold uppercase tracking-[0.2em] text-white mr-4">Living Intelligence</span>
+          {[
+            { label: 'Why Now', href: '#challenge' },
+            { label: 'How It Works', href: '#how' },
+            { label: 'Intelligence', href: '#sample' },
+            { label: 'Landscape', href: '#coverage' },
+            { label: 'Thought Leadership', href: '#thought-leadership' },
+            { label: 'Pricing', href: '#pricing' },
+          ].map((link) => (
+            <a
+              key={link.href}
+              href={link.href}
+              className="text-[11px] text-[#8888A0] hover:text-white transition-colors no-underline uppercase tracking-wider"
+            >
+              {link.label}
+            </a>
+          ))}
+        </div>
+      </nav>
+
       {/* ─── SECTION 1: HERO ─── */}
       <section className="bg-[#1C1C2E]">
         <div className="max-w-5xl mx-auto px-6 pt-16 pb-20 md:pt-24 md:pb-28">
-
-          {/* Masthead wordmark */}
-          <p className="text-[13px] font-extrabold uppercase tracking-[0.25em] text-white mb-16 md:mb-20">
-            Living Intelligence
-          </p>
 
           {/* Headline block */}
           <div className="max-w-3xl">
             <RotatingHeadline />
             <p className="text-[17px] md:text-[19px] text-[#9999BB] leading-relaxed mb-10 max-w-2xl">
-              37 wealth management firms tracked continuously across 7 AI capability dimensions. Multi-source verified. Human-edited. Updated daily.
+              AI is redrawing the competitive map in wealth management. The firms that see it first will move first. We track every development — daily, verified, consulting-grade — so your leadership team is never the last to know.
             </p>
             <a
-              href="#pricing"
+              href="#sample"
               className="inline-block bg-[#990F3D] hover:bg-[#7a0c31] text-white text-[15px] font-bold px-8 py-4 rounded transition-colors no-underline"
             >
-              Request access
+              View sample intelligence
             </a>
           </div>
         </div>
@@ -32,17 +72,13 @@ export default function LandingPage() {
         <div className="border-t border-[#2A2A3E]">
           <div className="max-w-5xl mx-auto px-6 py-5 flex flex-wrap gap-x-8 gap-y-3">
             {[
-              { n: '37+', label: 'Firms & Growing' },
-              { n: '7', label: 'Capability Dimensions' },
-              { n: '44+', label: 'Verified Developments' },
-              { n: '\u25CF', label: 'Daily Monitoring' },
+              { n: STATS.firms, label: 'Firms Tracked' },
+              { n: STATS.capabilities, label: 'AI Capability Dimensions' },
+              { n: STATS.entries, label: 'Verified Developments' },
+              { n: STATS.queries, label: 'Daily Discovery Queries' },
             ].map((s) => (
               <div key={s.label} className="flex items-center gap-2.5">
-                {s.n === '\u25CF' ? (
-                  <span className="text-[10px] text-[#990F3D]">{s.n}</span>
-                ) : (
-                  <span className="text-[20px] font-extrabold text-white">{s.n}</span>
-                )}
+                <span className="text-[20px] font-extrabold text-white">{s.n}</span>
                 <span className="text-[12px] uppercase tracking-wider text-[#8888A0]">{s.label}</span>
               </div>
             ))}
@@ -50,58 +86,95 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* ─── SECTION 2: THE CHALLENGE ─── */}
-      <section className="py-16 md:py-20 bg-[#FDF8F2]">
+      {/* ─── SECTION 2: THE HOOK ─── */}
+      <section id="challenge" className="py-16 md:py-20 bg-[#FDF8F2] scroll-mt-12">
         <div className="max-w-5xl mx-auto px-6">
-          <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#990F3D] mb-2">
-            The challenge
-          </p>
-          <hr className="border-t-2 border-[#990F3D] mb-10 w-10" />
-
-          <div className="space-y-6 text-[17px] text-gray-700 leading-relaxed max-w-3xl">
-            <p>
-              Last quarter, 14 wealth firms quietly launched or expanded AI capabilities. Most never made it past industry press.
+          <div className="space-y-5 text-[17px] text-gray-700 leading-relaxed max-w-3xl">
+            <p className="text-[22px] md:text-[26px] font-extrabold text-gray-900 leading-snug">
+              The wealth management business model is being rewritten. Right now.
             </p>
             <p>
-              Getting this picture from a consulting firm runs $75,000 to $250,000. By delivery, it&apos;s already stale. Gartner and Forrester start at $25,000 a year.
+              BofA: 3.2 billion Erica interactions. Morgan Stanley: 98% advisor AI adoption. Altruist: 1,600 RIA firms in 30 days. These are not pilots. They are deployed, scaled, and widening the gap every quarter.
             </p>
             <p className="text-gray-900 font-semibold">
-              We track it continuously. You get it for a fraction of that.
+              The question is not whether AI will affect your business. It is whether you will see it coming in time to respond.
+            </p>
+            <p className="text-gray-500">
+              A consulting firm charges six figures for this picture. By delivery, it&apos;s stale. We deliver it continuously.
             </p>
           </div>
         </div>
       </section>
 
-      {/* ─── SECTION 2B: THE PLATFORM ─── */}
-      <section className="py-16 md:py-20 bg-white border-t border-gray-200">
+      {/* ─── SECTION 3: HOW IT WORKS — Pipeline ─── */}
+      <section id="how" className="py-16 md:py-20 bg-white border-t border-gray-200 scroll-mt-12">
         <div className="max-w-5xl mx-auto px-6">
           <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#990F3D] mb-2">
-            The platform
+            How it works
           </p>
           <hr className="border-t-2 border-[#990F3D] mb-4 w-10" />
-          <p className="text-[17px] text-gray-700 leading-relaxed mb-10 max-w-3xl">
-            This is not a newsletter. It&apos;s an editorial intelligence system. AI discovers, verifies, and scores. A human editor approves every story before it reaches you.
+          <p className="text-[17px] text-gray-700 leading-relaxed mb-12 max-w-3xl">
+            Not a newsletter. Not an AI-generated feed. An editorial intelligence system with a multi-stage verification pipeline.
           </p>
 
-          <ul className="space-y-4 max-w-2xl">
+          {/* Pipeline steps */}
+          <div className="grid md:grid-cols-5 gap-4 mb-12">
             {[
-              '60+ search queries run daily across news sources and financial publications',
-              'Every claim verified against the original source in a separate AI pass',
-              'Scored on four dimensions: source credibility, claim accuracy, recency, capability impact',
-              'Nothing publishes without human editorial approval',
-              '37 firms mapped across 7 capability dimensions, updated as evidence comes in',
-              'Every claim links back to its source. One click to the original.',
-            ].map((item) => (
-              <li key={item} className="flex items-start gap-3">
-                <span className="text-[#990F3D] mt-1 flex-shrink-0">&#x2022;</span>
-                <span className="text-[15px] text-gray-700 leading-relaxed">{item}</span>
-              </li>
+              { step: '01', title: 'Discovery', desc: '60+ targeted queries daily across thousands of sources. News wires, press releases, trade publications, company newsrooms.' },
+              { step: '02', title: 'Scoring', desc: 'Algorithm scores every story on source credibility, claim strength, recency, and capability impact.' },
+              { step: '03', title: 'Verification', desc: 'Every claim checked against the original source document. Multi-source corroboration.' },
+              { step: '04', title: 'Editorial review', desc: 'Human sign-off before anything publishes. No exceptions.' },
+              { step: '05', title: 'Published', desc: 'Verified intelligence with editorial analysis on why it matters competitively.' },
+            ].map((s, i) => (
+              <div key={s.step} className="relative">
+                <div className="text-[11px] font-bold text-[#990F3D] mb-2">{s.step}</div>
+                <h4 className="text-[14px] font-bold text-gray-900 mb-2">{s.title}</h4>
+                <p className="text-[13px] text-gray-500 leading-relaxed">{s.desc}</p>
+                {i < 4 && <div className="hidden md:block absolute top-3 -right-2 text-gray-300">&#x2192;</div>}
+              </div>
             ))}
-          </ul>
+          </div>
+
+          {/* Quality standard — unified block */}
+          <div className="border border-gray-200 rounded-lg overflow-hidden max-w-4xl">
+            <div className="grid md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-gray-200">
+              <div className="p-6">
+                <p className="text-[14px] font-semibold text-gray-900 mb-2">Every source linked. Every link verified.</p>
+                <p className="text-[13px] text-gray-600 leading-relaxed">
+                  Every intelligence entry and landscape assessment links back to the original source — press releases, company newsrooms, trade publications, regulatory filings. Click through. It will be there.
+                </p>
+              </div>
+              <div className="p-6">
+                <p className="text-[14px] font-semibold text-gray-900 mb-2">Consulting-grade editorial standards.</p>
+                <p className="text-[13px] text-gray-600 leading-relaxed">
+                  Every entry is assessed across {STATS.qualityChecks} quality dimensions — the same rigour a McKinsey engagement applies to competitive intelligence. Multi-source corroboration. Iterative refinement. Nothing ships until it meets the standard we&apos;d put in front of a CXO.
+                </p>
+              </div>
+            </div>
+            <div className="border-t border-gray-200 bg-[#FAFAF8] px-6 py-4 flex flex-wrap gap-x-8 gap-y-2">
+              {[
+                { n: '15+', label: 'Specialised systems' },
+                { n: STATS.qualityChecks, label: 'Quality dimensions' },
+                { n: STATS.sources, label: 'Source references' },
+                { n: '2', label: 'Refinement iterations' },
+              ].map((s) => (
+                <div key={s.label} className="flex items-center gap-2">
+                  <span className="text-[16px] font-extrabold text-gray-900">{s.n}</span>
+                  <span className="text-[11px] text-gray-500 uppercase tracking-wider">{s.label}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="border-l-2 border-[#990F3D] pl-5 mt-8 max-w-4xl">
+            <p className="text-[14px] text-gray-800 font-semibold">
+              We do not publish unverified claims. We do not summarise press releases. Every development includes editorial analysis on what it means competitively.
+            </p>
+          </div>
         </div>
       </section>
 
-      {/* ─── SECTION 3: WHAT'S INSIDE ─── */}
+      {/* ─── SECTION 4: WHAT'S INSIDE ─── */}
       <section className="py-16 md:py-20 bg-[#FDF8F2] border-t border-gray-200">
         <div className="max-w-5xl mx-auto px-6">
           <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#990F3D] mb-2">
@@ -112,16 +185,16 @@ export default function LandingPage() {
           <div className="grid md:grid-cols-3 gap-8">
             {[
               {
-                title: 'The intelligence',
-                desc: 'AI developments in wealth management, verified against source. Not a feed. A lens on what each move means competitively.',
+                title: 'Intelligence',
+                desc: 'Verified AI developments across wealth management. Multi-source corroboration. Each entry includes editorial analysis on what it means for your firm — not a press release rewrite.',
               },
               {
-                title: 'The landscape',
-                desc: '37 firms, 7 dimensions. Who\u2019s live, who\u2019s testing, who\u2019s announced. A matrix that updates, not a slide deck gathering dust.',
+                title: 'Landscape',
+                desc: '37+ firms mapped across 7 AI capability dimensions. Who\u2019s scaled, who\u2019s piloting, who\u2019s still announcing. Every assessment sourced and evidence-linked. A living matrix, not a static slide deck.',
               },
               {
-                title: 'The insight',
-                desc: 'Each entry answers: why does this matter? Not a press release rewrite. Context you won\u2019t get anywhere else.',
+                title: 'Thought leadership',
+                desc: 'Curated from McKinsey, BCG, Harvard Business School, Wharton, Venrock, Ethan Mollick, and leading practitioners. The strategic frameworks and research shaping how the industry\u2019s smartest minds think about AI.',
               },
             ].map((card) => (
               <div
@@ -136,32 +209,119 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* ─── SECTION 3B: LANDSCAPE COVERAGE ─── */}
-      <section className="py-16 md:py-20 bg-white border-t border-gray-200">
+      {/* ─── SECTION 5: SAMPLE INTELLIGENCE ─── */}
+      <section id="sample" className="py-16 md:py-20 bg-white border-t border-gray-200">
         <div className="max-w-5xl mx-auto px-6">
           <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#990F3D] mb-2">
-            Coverage
+            Intelligence
           </p>
           <hr className="border-t-2 border-[#990F3D] mb-4 w-10" />
           <p className="text-[17px] text-gray-700 leading-relaxed mb-10 max-w-3xl">
-            37 firms across 8 segments. New firms get added as they make credible, trackable moves in AI. Each assessed across 7 capability dimensions, from advisor productivity to new business models.
+            This is what consulting-grade competitive intelligence looks like — verified against original sources, multi-source where possible, with editorial analysis on what each development means for your firm. Not summaries. Strategic context.
           </p>
 
-          {/* Segments with sample names */}
-          <div className="grid md:grid-cols-2 gap-x-12 gap-y-6 mb-12">
+          {/* Intelligence feed sample — 3 stacked cards */}
+          <p className="text-[11px] font-bold uppercase tracking-[0.15em] text-gray-400 mb-4">
+            From intelligence
+          </p>
+          <div className="space-y-4 max-w-3xl mb-14">
             {[
-              { segment: 'Wirehouses', names: 'Morgan Stanley, BofA/Merrill, Wells Fargo, JPMorgan' },
-              { segment: 'Global Private Banks', names: 'UBS, Goldman Sachs, HSBC, Julius Baer, BNP Paribas' },
-              { segment: 'Regional Champions', names: 'DBS, BBVA, Standard Chartered, RBC' },
-              { segment: 'Digital Disruptors', names: 'Robinhood, Wealthfront, eToro, Betterment' },
-              { segment: 'AI-Native Wealth', names: 'Arta Finance, Savvy Wealth' },
-              { segment: 'RIA / Independent', names: 'Altruist, LPL Financial' },
-              { segment: 'Advisor Tools', names: 'Jump, Zocks, Holistiplan, Nevis' },
-              { segment: 'Asset Managers', names: 'Fidelity, Vanguard' },
+              {
+                company: 'BofA / Merrill',
+                type: 'Product Launch',
+                typeColor: 'bg-[#FFF7ED] text-[#C2410C]',
+                sources: 3,
+                sourceNames: 'BofA Newsroom · American Banker · Fortune',
+                headline: 'BofA Deploys AI Meeting Journey Across Merrill and Private Bank Advisors',
+                insight: 'Full-scale AI meeting automation across Merrill and Private Bank, saving up to 4 hours per meeting. The advisor productivity gap between firms with deployed AI and those still piloting is widening every quarter.',
+                stat: '4hrs',
+                statLabel: 'saved per advisor meeting',
+              },
+              {
+                company: 'Robinhood',
+                type: 'Market Signal',
+                typeColor: 'bg-[#EFF6FF] text-[#1D4ED8]',
+                sources: 2,
+                sourceNames: 'Fortune · Yahoo Finance / McKinsey',
+                headline: 'One-Third of Consumers Now Use AI for Investment Guidance, McKinsey Finds',
+                insight: 'The $100K-to-$1M wealth segment is getting squeezed from both ends. Wirehouses can\u2019t match Robinhood\u2019s $250/year AI advice price without cannibalizing their own AUM-fee economics.',
+                stat: '250K',
+                statLabel: 'paying AI advisory customers',
+              },
+              {
+                company: 'Altruist',
+                type: 'Product Launch',
+                typeColor: 'bg-[#FFF7ED] text-[#C2410C]',
+                sources: 4,
+                sourceNames: 'Altruist Newsroom · RIABiz · CNBC · PLANADVISER',
+                headline: 'Altruist Hazel Adds AI Tax Planning — 1,600 RIA Firms Subscribe in 30 Days',
+                insight: 'The independent channel is adopting AI faster than the institutional channel. 1,600 RIA firms in one month is a structural reversal of the historic adoption curve.',
+                stat: '1,600',
+                statLabel: 'RIA firms in first 30 days',
+              },
+            ].map((entry) => (
+              <div key={entry.headline} className="border border-gray-200 rounded-lg p-6 bg-[#FAFAF8]">
+                <div className="flex flex-wrap items-center gap-2.5 mb-3">
+                  <span className="text-[11px] font-bold text-gray-500">{entry.company}</span>
+                  <span className={`text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-sm ${entry.typeColor}`}>
+                    {entry.type}
+                  </span>
+                  <span className="text-[10px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5">{entry.sources} sources</span>
+                </div>
+
+                <h3 className="text-[16px] font-extrabold text-gray-900 leading-snug mb-3">
+                  {entry.headline}
+                </h3>
+
+                <div className="border-l-2 border-[#990F3D] pl-4 mb-4">
+                  <p className="text-[12px] font-semibold text-[#990F3D] mb-0.5">Why it matters</p>
+                  <p className="text-[13px] text-gray-700 leading-relaxed">{entry.insight}</p>
+                </div>
+
+                <div className="flex items-center justify-between">
+                  <div className="flex items-end gap-2">
+                    <span className="text-2xl font-extrabold text-[#1C1C2E] leading-none">{entry.stat}</span>
+                    <span className="text-[11px] text-gray-500 pb-0.5">{entry.statLabel}</span>
+                  </div>
+                  <span className="text-[10px] text-gray-400">{entry.sourceNames}</span>
+                </div>
+              </div>
+            ))}
+            <p className="text-[12px] text-gray-400 text-center pt-2 italic">+ 40 more verified entries — growing weekly</p>
+          </div>
+
+        </div>
+      </section>
+
+      {/* ─── SECTION 6: COVERAGE ─── */}
+      <section id="coverage" className="py-16 md:py-20 bg-[#FDF8F2] border-t border-gray-200 scroll-mt-12">
+        <div className="max-w-5xl mx-auto px-6">
+          <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#990F3D] mb-2">
+            Landscape
+          </p>
+          <hr className="border-t-2 border-[#990F3D] mb-4 w-10" />
+          <p className="text-[17px] text-gray-700 leading-relaxed mb-4 max-w-3xl">
+            37+ firms. 7 segments. 7 AI capability dimensions. Every assessment sourced to press releases, earnings calls, product announcements, and company newsrooms. This is the competitive picture a consulting firm charges six figures to assemble — delivered as a living, continuously updated matrix.
+          </p>
+          <p className="text-[13px] text-gray-500 mb-10 max-w-3xl">
+            The full landscape is available to subscribers. Here is how we classify the market and what you see when you log in.
+          </p>
+
+          {/* Segments as classification framework — one example each */}
+          <div className="grid md:grid-cols-2 gap-x-12 gap-y-5 mb-12">
+            {[
+              { segment: 'Wirehouses', example: 'Morgan Stanley, BofA/Merrill, JPMorgan, Wells Fargo', desc: 'The largest US advisor-network broker-dealers' },
+              { segment: 'Global Private Banks', example: 'UBS, Goldman Sachs, Citi PB, HSBC PB, Julius Baer', desc: 'HNW/UHNW focused institutions globally' },
+              { segment: 'Regional Champions', example: 'DBS, BBVA, Standard Chartered, RBC', desc: 'Dominant in their home region, full-service banking + wealth' },
+              { segment: 'Digital Disruptors', example: 'Robinhood, Wealthfront, eToro, Public.com', desc: 'Tech-first platforms redefining access and pricing' },
+              { segment: 'AI-Native Wealth', example: 'Arta Finance, Savvy Wealth', desc: 'Built from scratch on AI infrastructure' },
+              { segment: 'RIA / Independent', example: 'Altruist, LPL Financial', desc: 'Independent channel platforms and custodians' },
+              { segment: 'Advisor Tools', example: 'Jump, Zocks, Holistiplan, Conquest Planning', desc: 'AI tools used by advisors across firms' },
             ].map((s) => (
-              <div key={s.segment} className="flex items-start gap-3">
-                <span className="text-[11px] font-bold text-[#990F3D] uppercase tracking-wide min-w-[140px] pt-0.5 flex-shrink-0">{s.segment}</span>
-                <span className="text-[13px] text-gray-600">{s.names}</span>
+              <div key={s.segment} className="py-1">
+                <span className="text-[13px] font-semibold text-gray-900">{s.segment}</span>
+                <p className="text-[12px] text-gray-500 mt-0.5">{s.desc}</p>
+                <p className="text-[11px] text-gray-400 mt-0.5">{s.example}</p>
               </div>
             ))}
           </div>
@@ -181,46 +341,71 @@ export default function LandingPage() {
             ))}
           </div>
 
-          {/* Mini matrix snapshot */}
+          {/* Landscape snapshot — shows actual cell content like the real product */}
           <p className="text-[11px] font-bold uppercase tracking-[0.15em] text-gray-400 mb-4">
-            Snapshot
+            Landscape — what you see when you log in
           </p>
           <div className="overflow-x-auto">
-            <table className="w-full text-[12px]" style={{ minWidth: 600 }}>
+            <table className="w-full text-[12px]" style={{ minWidth: 750 }}>
               <thead>
                 <tr className="border-b border-gray-200">
-                  <th className="text-left py-2 pr-4 text-gray-400 font-semibold">Company</th>
-                  <th className="text-center px-2 py-2 text-gray-400 font-normal">Advisor Prod.</th>
-                  <th className="text-center px-2 py-2 text-gray-400 font-normal">Client Pers.</th>
-                  <th className="text-center px-2 py-2 text-gray-400 font-normal">Investment</th>
-                  <th className="text-center px-2 py-2 text-gray-400 font-normal">Research</th>
-                  <th className="text-center px-2 py-2 text-gray-400 font-normal">Acquisition</th>
+                  <th className="text-left py-2 pr-3 text-gray-400 font-semibold w-[130px]">Institution</th>
+                  <th className="text-left px-2 py-2 text-gray-400 font-normal">Advisor Productivity</th>
+                  <th className="text-left px-2 py-2 text-gray-400 font-normal">Client Personalisation</th>
+                  <th className="text-left px-2 py-2 text-gray-400 font-normal">Research &amp; Content</th>
                 </tr>
               </thead>
               <tbody>
                 {[
-                  { name: 'Morgan Stanley', caps: ['scaled', 'deployed', 'deployed', 'piloting', 'none'] },
-                  { name: 'JPMorgan', caps: ['scaled', 'deployed', 'piloting', 'deployed', 'announced'] },
-                  { name: 'Goldman Sachs', caps: ['deployed', 'piloting', 'deployed', 'piloting', 'none'] },
+                  {
+                    name: 'BofA / Merrill',
+                    segment: 'Wirehouse',
+                    cells: [
+                      { maturity: 'Scaled', color: 'bg-green-500', headline: 'AI Meeting Journey: full-scale rollout, up to 4 hours saved per meeting' },
+                      { maturity: 'Scaled', color: 'bg-green-500', headline: 'Erica: 3.2B interactions, 20.6M active users, 700M interactions in 2025' },
+                      { maturity: 'Piloting', color: 'bg-orange-400', headline: 'Internal research synthesis tools in pilot with analysts' },
+                    ],
+                  },
+                  {
+                    name: 'Morgan Stanley',
+                    segment: 'Wirehouse',
+                    cells: [
+                      { maturity: 'Scaled', color: 'bg-green-500', headline: 'AI @ Morgan Stanley: 98% advisor adoption, meeting prep + insights' },
+                      { maturity: 'Deployed', color: 'bg-blue-500', headline: 'Next Best Action engine live across Private Wealth Management' },
+                      { maturity: 'Piloting', color: 'bg-orange-400', headline: 'Internal GPT for research synthesis — piloting with equity research' },
+                    ],
+                  },
+                  {
+                    name: 'Goldman Sachs',
+                    segment: 'Global PB',
+                    cells: [
+                      { maturity: 'Deployed', color: 'bg-blue-500', headline: '46,000 employees using GS AI platform for knowledge retrieval' },
+                      { maturity: 'Piloting', color: 'bg-orange-400', headline: 'AI-driven client profiling in pilot with Private Wealth division' },
+                      { maturity: 'Piloting', color: 'bg-orange-400', headline: 'AI-assisted research drafting in Global Investment Research' },
+                    ],
+                  },
                 ].map((row) => (
-                  <tr key={row.name} className="border-b border-gray-100">
-                    <td className="py-2.5 pr-4 font-semibold text-gray-900">{row.name}</td>
-                    {row.caps.map((c, i) => (
-                      <td key={i} className="text-center px-2 py-2.5">
-                        <span className={`inline-block w-2.5 h-2.5 rounded-full ${
-                          c === 'scaled' ? 'bg-green-500' :
-                          c === 'deployed' ? 'bg-blue-500' :
-                          c === 'piloting' ? 'bg-orange-400' :
-                          c === 'announced' ? 'bg-yellow-400' :
-                          'bg-gray-200'
-                        }`} />
+                  <tr key={row.name} className="border-b border-gray-100 align-top">
+                    <td className="py-3 pr-3">
+                      <span className="font-semibold text-gray-900 text-[12px]">{row.name}</span>
+                      <div className="text-[10px] text-gray-400 mt-0.5">{row.segment}</div>
+                    </td>
+                    {row.cells.map((cell, i) => (
+                      <td key={i} className="px-2 py-3">
+                        <div className="border border-gray-200 rounded p-2.5 bg-white min-h-[70px]">
+                          <div className="flex items-center gap-1.5 mb-1.5">
+                            <span className={`inline-block w-2 h-2 rounded-full ${cell.color}`} />
+                            <span className="text-[10px] font-semibold text-gray-500 uppercase">{cell.maturity}</span>
+                          </div>
+                          <p className="text-[11px] text-gray-700 leading-snug">{cell.headline}</p>
+                        </div>
                       </td>
                     ))}
                   </tr>
                 ))}
                 <tr>
-                  <td colSpan={6} className="py-3 text-center text-[11px] text-gray-400 italic">
-                    + 34 more firms across all segments
+                  <td colSpan={4} className="py-3 text-center text-[11px] text-gray-400 italic">
+                    + 34 more firms · 7 capability dimensions each · Click any cell on the platform to see full evidence and sources
                   </td>
                 </tr>
               </tbody>
@@ -236,76 +421,90 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* ─── SECTION 4: SAMPLE ENTRIES ─── */}
-      <section className="py-16 md:py-20 bg-[#FDF8F2] border-t border-gray-200">
+      {/* ─── SECTION 6a: COMPANY DEEP-DIVE ─── */}
+      <section className="py-16 md:py-20 bg-white border-t border-gray-200">
         <div className="max-w-5xl mx-auto px-6">
-          <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#990F3D] mb-2">
-            What you get
+          <p className="text-[11px] font-bold uppercase tracking-[0.15em] text-gray-400 mb-4">
+            Company deep-dive — click any firm to see this
           </p>
-          <hr className="border-t-2 border-[#990F3D] mb-4 w-10" />
-          <p className="text-[17px] text-gray-700 leading-relaxed mb-10 max-w-3xl">
-            Every entry is verified against the original source, scored for credibility, and includes an editorial insight you won&apos;t find in the headline. Here are two recent examples.
-          </p>
-
-          <div className="grid md:grid-cols-2 gap-6 max-w-5xl">
-            {/* Sample card 1 */}
-            <div className="border border-gray-200 rounded-lg p-7 bg-white">
-              <div className="flex flex-wrap items-center gap-3 mb-3">
-                <span className="text-[11px] font-bold text-gray-500">BofA / Merrill</span>
-                <span className="text-[10px] font-bold uppercase tracking-wider bg-[#FFF7ED] text-[#C2410C] px-2 py-0.5 rounded-sm">
-                  Product Launch
-                </span>
-                <span className="text-[10px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5">3 sources</span>
+          <div className="border border-gray-200 rounded-lg bg-[#FAFAF8] max-w-3xl overflow-hidden">
+            <div className="p-6 pb-4">
+              <div className="flex items-center gap-3 mb-2">
+                <span className="text-[18px] font-extrabold text-gray-900">BofA / Merrill</span>
+                <span className="text-[10px] font-bold uppercase tracking-wider bg-gray-100 text-gray-600 px-2 py-0.5 rounded-sm">Wirehouse</span>
               </div>
-
-              <h3 className="text-lg font-extrabold text-gray-900 leading-snug mb-4">
-                BofA Deploys AI Meeting Journey Across Merrill and Private Bank Advisors
-              </h3>
-
-              <div className="border-l-2 border-[#990F3D] pl-5 mb-5">
-                <p className="text-[13px] font-semibold text-[#990F3D] mb-1">Why it matters</p>
-                <p className="text-[14px] text-gray-700 leading-relaxed">
-                  Full-scale AI meeting automation across Merrill and Private Bank, saving up to 4 hours per meeting. The advisor productivity gap between firms with deployed AI and those still piloting is widening every quarter.
+              <p className="text-[15px] font-bold text-gray-900 leading-snug mb-4">
+                3.2B Erica interactions total (700M in 2025) across 20.6M users; 23,000 monthly active advisors
+              </p>
+              <div className="border-l-2 border-[#990F3D] pl-5 mb-4">
+                <p className="text-[10px] font-bold uppercase tracking-wider text-[#990F3D] mb-1.5">AI Strategy</p>
+                <p className="text-[13px] text-gray-700 leading-relaxed">
+                  The longest-running AI program in wealth management. Erica has surpassed 3.2 billion total interactions with 20.6 million active users and 700 million interactions in 2025 alone. BofA&apos;s 30 billion total digital interactions in 2025 grew 14% YoY — 86% of wealth management clients now engage digitally.
                 </p>
               </div>
-
-              <div className="flex items-end gap-3">
-                <span className="text-3xl font-extrabold text-[#1C1C2E] leading-none">4hrs</span>
-                <span className="text-[12px] text-gray-500 pb-0.5">saved per advisor meeting</span>
+              <div className="mb-4">
+                <p className="text-[10px] font-bold uppercase tracking-wider text-gray-400 mb-1">Headline Initiative</p>
+                <p className="text-[13px] text-gray-700">Erica + Ask Merrill + Ask Private Bank + AI Meeting Journey</p>
               </div>
             </div>
-
-            {/* Sample card 2 */}
-            <div className="border border-gray-200 rounded-lg p-7 bg-white">
-              <div className="flex flex-wrap items-center gap-3 mb-3">
-                <span className="text-[11px] font-bold text-gray-500">Robinhood</span>
-                <span className="text-[10px] font-bold uppercase tracking-wider bg-[#EFF6FF] text-[#1D4ED8] px-2 py-0.5 rounded-sm">
-                  Market Signal
-                </span>
-                <span className="text-[10px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5">2 sources</span>
-              </div>
-
-              <h3 className="text-lg font-extrabold text-gray-900 leading-snug mb-4">
-                One-Third of Consumers Now Use AI for Investment Guidance, McKinsey Finds
-              </h3>
-
-              <div className="border-l-2 border-[#990F3D] pl-5 mb-5">
-                <p className="text-[13px] font-semibold text-[#990F3D] mb-1">Why it matters</p>
-                <p className="text-[14px] text-gray-700 leading-relaxed">
-                  The $100K-to-$1M wealth segment is getting squeezed from both ends. Wirehouses can&apos;t match Robinhood&apos;s $250/year AI advice price without cannibalizing their own AUM-fee economics.
-                </p>
-              </div>
-
-              <div className="flex items-end gap-3">
-                <span className="text-3xl font-extrabold text-[#1C1C2E] leading-none">250K</span>
-                <span className="text-[12px] text-gray-500 pb-0.5">paying AI advisory customers</span>
+            <div className="border-t border-gray-200 p-6 pt-4 bg-white">
+              <p className="text-[11px] font-bold text-gray-900 mb-3">AI Capability Breakdown</p>
+              <div className="space-y-2.5">
+                {[
+                  { cap: 'Advisor Productivity', maturity: 'Scaled', color: 'bg-green-500', headline: 'AI Meeting Journey: full-scale rollout across Merrill and Private Bank, up to 4 hours saved per meeting' },
+                  { cap: 'Client Personalisation', maturity: 'Scaled', color: 'bg-green-500', headline: 'Ask Merrill: 23,000 advisors, 10,000+ Q&A answers per month' },
+                  { cap: 'Client Acquisition', maturity: 'Deployed', color: 'bg-blue-500', headline: 'Erica proactive insights driving 20.6M monthly active users across deposits and investments' },
+                ].map((row) => (
+                  <div key={row.cap} className="flex items-start gap-2.5 border border-gray-100 rounded p-2.5 bg-[#FAFAF8]">
+                    <span className={`inline-block w-2 h-2 rounded-full mt-1 flex-shrink-0 ${row.color}`} />
+                    <div>
+                      <div className="flex items-center gap-2">
+                        <span className="text-[11px] font-semibold text-gray-900">{row.cap}</span>
+                        <span className="text-[10px] font-bold text-gray-400 uppercase">{row.maturity}</span>
+                      </div>
+                      <p className="text-[11px] text-gray-600 leading-snug mt-0.5">{row.headline}</p>
+                    </div>
+                  </div>
+                ))}
+                <p className="text-[10px] text-gray-400 pt-1 italic">+ 4 more capabilities assessed · All evidence linked to original sources</p>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ─── SECTION 5: BUILT FOR ─── */}
+      {/* ─── SECTION 6b: THOUGHT LEADERSHIP ─── */}
+      <section id="thought-leadership" className="py-16 md:py-20 bg-white border-t border-gray-200 scroll-mt-12">
+        <div className="max-w-5xl mx-auto px-6">
+          <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#990F3D] mb-2">
+            Thought leadership
+          </p>
+          <hr className="border-t-2 border-[#990F3D] mb-4 w-10" />
+          <p className="text-[17px] text-gray-700 leading-relaxed mb-10 max-w-3xl">
+            Curated essays and reports from the people shaping how the industry thinks about AI. Not aggregated — selected for strategic relevance.
+          </p>
+
+          <div className="grid md:grid-cols-2 gap-4 max-w-3xl">
+            <div className="border border-gray-200 rounded-lg p-5 bg-[#FAFAF8]">
+              <span className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">McKinsey</span>
+              <h3 className="text-[14px] font-bold text-gray-900 leading-snug mt-1.5 mb-2">
+                US Wealth Management in 2035: A Transformative Decade Begins
+              </h3>
+              <p className="text-[12px] text-gray-500 leading-relaxed">110,000 advisors retiring by 2034. A structural opening for AI-native advisory.</p>
+            </div>
+            <div className="border border-gray-200 rounded-lg p-5 bg-[#FAFAF8]">
+              <span className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Venrock &middot; Nick Beim</span>
+              <h3 className="text-[14px] font-bold text-gray-900 leading-snug mt-1.5 mb-2">
+                The Week Altruist Shook the Markets
+              </h3>
+              <p className="text-[12px] text-gray-500 leading-relaxed">$130B in AUM shifted in one week. What happens when AI meets custody economics.</p>
+            </div>
+          </div>
+          <p className="text-[11px] text-gray-400 mt-3">+ 6 more from BCG, Deloitte, and domain practitioners</p>
+        </div>
+      </section>
+
+      {/* ─── SECTION 7: BUILT FOR ─── */}
       <section className="py-16 md:py-20 bg-white border-t border-gray-200">
         <div className="max-w-5xl mx-auto px-6">
           <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#990F3D] mb-2">
@@ -338,7 +537,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* ─── SECTION 6: PRICING ─── */}
+      {/* ─── SECTION 8: PRICING ─── */}
       <section id="pricing" className="py-16 md:py-20 bg-[#FDF8F2] border-t border-gray-200">
         <div className="max-w-5xl mx-auto px-6">
           <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#990F3D] mb-2">
@@ -347,7 +546,7 @@ export default function LandingPage() {
           <hr className="border-t-2 border-[#990F3D] mb-6 w-10" />
 
           <p className="text-[15px] text-gray-500 mb-10 max-w-2xl">
-            A consulting firm charges $75,000 for a competitive landscape that&apos;s stale by delivery. Analyst subscriptions start at $25,000 a year. We deliver continuous intelligence for a fraction of that.
+            A consulting firm charges $75,000–$150,000 for a competitive landscape that&apos;s stale by delivery. Analyst subscriptions start at $25,000 a year and bury you in volume without editorial judgement. We deliver consulting-grade intelligence — continuously updated, multi-source verified — for a fraction of either.
           </p>
 
           <div className="grid md:grid-cols-2 gap-6 max-w-2xl">
@@ -366,8 +565,9 @@ export default function LandingPage() {
               <ul className="space-y-2 mb-8">
                 {[
                   'Up to 5 users per firm',
-                  'Full intelligence feed + landscape matrix',
-                  'Multi-source verified entries daily',
+                  'Full intelligence + landscape access',
+                  'Multi-source verified entries',
+                  'Thought leadership library',
                   'Founding Member Advisory Board status',
                 ].map((f) => (
                   <li key={f} className="flex items-start gap-2 text-[13px] text-gray-600">
@@ -396,8 +596,9 @@ export default function LandingPage() {
               <ul className="space-y-2 mb-8">
                 {[
                   'Up to 5 users per firm',
-                  'Full intelligence feed + landscape matrix',
-                  'Multi-source verified entries daily',
+                  'Full intelligence + landscape access',
+                  'Multi-source verified entries',
+                  'Thought leadership library',
                   'Standard support',
                 ].map((f) => (
                   <li key={f} className="flex items-start gap-2 text-[13px] text-gray-600">
@@ -422,11 +623,11 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* ─── SECTION 7: FINAL CTA ─── */}
+      {/* ─── SECTION 9: FINAL CTA ─── */}
       <section className="bg-[#1C1C2E] py-20 md:py-24 text-center">
         <div className="max-w-2xl mx-auto px-6">
           <p className="text-[17px] md:text-[19px] text-[#9999BB] leading-relaxed mb-10">
-            44 developments tracked across 37 firms. New intelligence published daily. The pace is picking up.
+            {STATS.entries} verified developments. {STATS.firms} firms tracked. {STATS.capabilities} capability dimensions. Consulting-grade editorial standards. New intelligence published as it happens. Every source linked, every claim verified.
           </p>
           <a
             href="mailto:hello@livingintel.ai?subject=Living Intelligence — Request Access&body=I'd like to learn more about Living Intelligence for my firm."
