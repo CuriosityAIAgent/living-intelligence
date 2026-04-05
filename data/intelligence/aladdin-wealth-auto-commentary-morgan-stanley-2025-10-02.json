@@ -11,7 +11,10 @@
   "source_verified": true,
   "image_url": "/logos/blackrock.svg",
   "summary": "Aladdin Wealth, BlackRock's wealth management technology platform, has launched an AI-powered 'Auto Commentary' feature that converts complex portfolio analytics and client investment preferences into concise, personalized narratives for financial advisors. The tool combines Aladdin Wealth's risk analytics, a firm's CIO market outlook, and client portfolio data, using generative AI to assess hundreds of data points and surface the most relevant insights. Morgan Stanley's Portfolio Risk Platform — which integrates BlackRock's Aladdin risk analytics with Morgan Stanley data — will be the first to implement Auto Commentary, beginning in October 2025. The feature is designed to reduce time spent on labor-intensive research so advisors can focus more on client conversations and delivering actionable insights.",
-  "key_stat": null,
+  "key_stat": {
+    "number": "1st",
+    "label": "Morgan Stanley Portfolio Risk Platform is first to deploy Aladdin Wealth Auto Commentary — AI-generated portfolio narratives for advisors (October 2025)"
+  },
   "tags": {
     "capability": "advisor_productivity",
     "region": "us",

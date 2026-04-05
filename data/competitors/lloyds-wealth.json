@@ -38,11 +38,11 @@
     },
     "operations_compliance": {
       "maturity": "scaled",
-      "headline": "GenAI delivering £50M value in 2025, targeting £100M+ in 2026 — AI-driven efficiency tools contributed to £0.8B additional revenues in 2024",
-      "detail": "Lloyds reported generative AI delivered £50 million of value in 2025 across the group. The 2026 target is £100 million+. AI-driven efficiency tools contributed to £0.8 billion in additional revenues in 2024, exceeding the £0.7 billion target. Technology savings of $1.5 billion delivered in 2024.",
+      "headline": "GenAI delivering £50M measured value in 2025, targeting £100M+ in 2026",
+      "detail": "Lloyds reported generative AI delivered £50 million of measured value in 2025 across the group. The 2026 target is £100 million+. Separately, Lloyds's broader efficiency programme (spanning AI, process automation, and operational changes) contributed to £0.8 billion in additional revenues in 2024 — not attributable to AI alone. Technology savings of £1.5 billion delivered in 2024 across the group.",
       "evidence": [
         "GenAI delivered £50M of group value in 2025; £100M+ target for 2026 — FStech, 2025",
-        "AI-driven efficiency tools contributed to £0.8B additional revenues in 2024 — Lloyds FY2024 results"
+        "Broader efficiency programme contributed to £0.8B additional revenues in 2024 (AI + process + ops) — Lloyds FY2024 results"
       ],
       "date_assessed": "2026-03-24",
       "sources": [

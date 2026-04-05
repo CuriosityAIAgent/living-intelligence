@@ -12,7 +12,10 @@
   "source_url": "https://www.ubs.com/global/en/media/display-page-ndp/en-20251016-ai-strategy.html",
   "source_verified": false,
   "image_url": "/logos/ubs.svg",
-  "key_stat": null,
+  "key_stat": {
+    "number": "C-suite",
+    "label": "First global private bank to create a dedicated Chief AI Office with agentic-AI scaling mandate — Daniele Magazzeni (ex-JPMorgan) appointed, starts January 2026"
+  },
   "capability_evidence": {
     "capability": "operations_compliance",
     "stage": "piloting",

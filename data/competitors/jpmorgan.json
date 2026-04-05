@@ -5,22 +5,26 @@
   "scope_note": "Covers J.P. Morgan Wealth Management (branch-based advisors, mass affluent to HNW) and J.P. Morgan Private Bank (UHNW, $10M+ clients) only. Excludes JPMorgan Chase consumer banking, commercial banking, investment banking, and J.P. Morgan Asset Management divisions.",
   "regions": ["us", "emea", "asia"],
   "color": "#0A2351",
-  "ai_strategy_summary": "The largest technology investment in banking — $18 billion annual tech budget with 450+ AI use cases in production, expanding to 1,000 by 2026. JPMorgan is the only firm to publicly link AI deployment to revenue growth: Coach AI contributed to 20% gross sales growth YoY, and the firm estimates $1.5 billion in annual value from AI initiatives. The wealth management AI stack consists of three integrated tools: Connect Coach (next-best-action for 17,000 advisors, 95% faster information retrieval), Smart Monitor (83% reduction in research time for investment teams), and AI-curated guidelines. CEO Mary Callahan Erdoes publicly credited AI for enabling personalised advice to every client simultaneously during April 2025 market volatility — the first major bank CEO to make that specific claim.",
+  "ai_strategy_summary": "The largest technology investment in banking — $18 billion annual tech budget with 450+ AI use cases in production, expanding to 1,000 by 2026. Gross sales increased 20% YoY (2023-2024), with GenAI-driven tools cited as helping teams focus more effectively on high-impact client work — though no specific tool was credited for the growth. The wealth management AI centrepiece is Connect Coach — a next-best-action engine for advisors (95% faster information retrieval, scaling from 4,600 Private Bank advisors to 17,000 across Chase Wealth Management by year-end). CEO Mary Callahan Erdoes publicly credited AI for enabling personalised advice to every client simultaneously during April 2025 market volatility — the first major bank CEO to make that specific claim. At the 2025 Investor Day, AWM disclosed $2.7 billion in investment spend (largest ever), $6 trillion in entrusted assets, $1 trillion in new client assets over two years, and 3.4x advisor productivity improvement.",
   "head_of_ai": null,
-  "headline_metric": "$18B annual tech spend; 450+ AI use cases; 20% gross sales growth linked to Coach AI; 95% faster info retrieval; $1.5B annual AI value",
-  "headline_initiative": "Connect Coach + Smart Monitor + AI Guidelines — three-tool integrated advisor stack",
+  "headline_metric": "$18B annual tech spend; 450+ AI use cases; 20% gross sales growth (GenAI cited as contributor); 95% faster info retrieval; $2.7B AWM investment spend (largest ever)",
+  "headline_initiative": "Connect Coach — next-best-action engine scaling from 4,600 Private Bank to 17,000 advisors across Chase Wealth Management",
   "overall_maturity": "scaled",
   "capabilities": {
     "advisor_productivity": {
       "maturity": "scaled",
-      "headline": "Connect Coach: 95% faster info retrieval, scaling from 4,600 to 17,000 advisors, 20% gross sales growth linked",
-      "detail": "Connect Coach enables advisors to find relevant information 95% faster, freeing them for client conversations. Originally deployed to 4,600 private banking advisors, it is scaling to 17,000 across Chase Wealth Management by year-end. The firm projects efficiency gains will enable advisors to expand client rosters by 50% over 3-5 years. During April 2025 market turmoil, Coach AI was pivotal in enabling advisors to handle surge queries with AI-pre-populated real-time data and client investment preferences. The 20% gross sales growth correlation is the most concrete published evidence of AI driving revenue in wealth management.",
+      "headline": "Connect Coach: 95% faster info retrieval, scaling from 4,600 to 17,000 advisors, 3.4x productivity improvement",
+      "detail": "Connect Coach is JPMorgan's core wealth management AI tool — a next-best-action engine that anticipates personalised actions for each advisor's client base. Originally deployed to 4,600 Private Bank advisors, it launched to Kristin Lemkau's 7,600 Chase Wealth Management employees and will reach 17,000 by year-end. The tool reduces information retrieval by 95% and has driven 3.4x advisor productivity improvement. New hires (25-year-olds) are now as productive as mid-career (30-35) hires. During April 2025 market turmoil, Connect Coach pre-populated real-time data enabling personalised responses at scale. Harvard Business School wrote a case study on JPMorgan's AI deployment — it is now the required final case for first-year MBA students. Total wealth advisor force: 9,600 across Private Bank + Chase Wealth Management.",
       "evidence": [
-        "95% faster information retrieval via Coach AI (Reuters, May 2025)",
-        "20% gross sales growth YoY (2023-2024) linked to AI tools (Reuters CIO interview)",
-        "4,600 private bank advisors → scaling to 17,000 across Chase WM (Investor Day, May 2025)",
-        "50% client roster expansion projected over 3-5 years (AI Insider analysis)",
-        "April 2025 market volatility: AI pre-populated client data for personalised responses (CEO Erdoes, Reuters)"
+        "95% faster information retrieval via Connect Coach (Reuters, May 2025)",
+        "20% gross sales growth YoY (2023-2024) — GenAI tools cited as helping teams focus on high-impact client work; no specific tool credited (Reuters, May 2025)",
+        "4,600 Private Bank → launched to 7,600 CWM → 17,000 by year-end (CEO Erdoes, Investor Day transcript)",
+        "3.4x advisor productivity improvement; 25-year-old new hires as productive as 30-35 mid-career hires (Investor Day transcript)",
+        "9,600 total wealth advisors across Private Bank + Chase Wealth Management (Investor Day transcript)",
+        "Harvard Business School required final case study on JPMorgan AI deployment (CEO Erdoes, Investor Day transcript)",
+        "April 2025 market volatility: AI pre-populated client data for personalised responses (CEO Erdoes, Reuters)",
+        "450+ AI use cases in production, expanding to 1,000 (Klover.ai analysis of JPMorgan disclosures)",
+        "$2.7B AWM investment spend (largest ever), $6T entrusted assets, $1T new client assets over two years (Investor Day transcript)"
       ],
       "date_assessed": "2026-04-04",
       "sources": [
@@ -28,22 +32,6 @@
         { "name": "The AI Insider", "url": "https://theaiinsider.tech/2025/05/07/jpmorgan-chase-taps-ai-to-navigate-market-turbulence-and-deepen-client-engagement/" },
         { "name": "Klover.ai — JPMorgan AI Strategy", "url": "https://www.klover.ai/jpmorgan-ai-strategy-chasing-ai-dominance/" },
         { "name": "JPMorgan Investor Day 2025", "url": "https://privatebank.jpmorgan.com/nam/en/about-us/investor-day-2025" }
-      ]
-    },
-    "research_content": {
-      "maturity": "scaled",
-      "headline": "Smart Monitor: 83% reduction in research time for investment teams, AI-integrated workflows",
-      "detail": "Smart Monitor gathers data from earnings calls, market movements, and company filings to generate tailored alerts and analysis, reducing research time by 83% for portfolio managers. Combined with Connect Coach and AI-curated guidelines, JPMorgan has the first firm-wide AI productivity architecture spanning research, advisory, and compliance — a three-layer stack that competitors are building piecemeal.",
-      "evidence": [
-        "83% reduction in research time via Smart Monitor (JPMorgan Investor Day, May 2025, slide 12)",
-        "Smart Monitor absorbs call reports, stock moves, ratios to highlight trades (Klover.ai analysis)",
-        "Three-tool integrated stack: Connect Coach + Smart Monitor + Guidelines (Investor Day presentation)"
-      ],
-      "date_assessed": "2026-04-04",
-      "sources": [
-        { "name": "HyperAI", "url": "https://hyper.ai/en/stories/9be8e3581fda4e0beeb14f59087d522d" },
-        { "name": "Chief AI Officer Blog", "url": "https://chiefaiofficer.com/why-jpmorgans-ai-transformation-makes-every-other-bank-look-like-theyre-operating-in-slow-motion/" },
-        { "name": "Klover.ai", "url": "https://www.klover.ai/jpmorgan-uses-ai-agents-10-ways-to-use-ai-in-depth-analysis-2025/" }
       ]
     },
     "client_personalization": {
@@ -63,12 +51,13 @@
     },
     "investment_portfolio": {
       "maturity": "deployed",
-      "headline": "AI-driven stock monitoring, earnings analysis, and next-best-action trade recommendations",
-      "detail": "Smart Monitor generates tailored investment alerts from earnings calls, company filings, and market movements. Connect Coach surfaces next-best-action recommendations personalised to each advisor's client base. Together they create an AI-assisted investment decision workflow from research through execution.",
+      "headline": "Connect Coach surfaces next-best-action investment recommendations personalised to each advisor's client base",
+      "detail": "Connect Coach anticipates next-best-action for wealth advisors, personalised to each client situation. Examples from Investor Day: when 48 stocks hit all-time highs, it identifies clients who haven't donated to their alma mater and tees up DAF workflows. When stocks hit lows, it prompts advisors to call board members about GRATs for future appreciation. After a morning meeting on European equities, it instantly shows which clients lack European exposure with fund fact sheets and sample talking points.",
       "evidence": [
-        "Smart Monitor absorbs earnings calls, stock moves, ratios (Klover.ai analysis)",
-        "Connect Coach anticipates next-best-action for trades (JPMorgan Investor Day)",
-        "450+ AI use cases in production firm-wide, expanding to 1,000 (Emerj analysis)"
+        "Connect Coach next-best-action: DAF for all-time highs, GRAT for lows, European equity matching (CEO Erdoes, Investor Day transcript)",
+        "After morning meeting, Connect Coach shows who doesn't have European stocks + fund fact sheets + sample emails (Investor Day transcript)",
+        "55ip brought in $25B assets last year, $380B customised portfolio flywheel — top 3 (Investor Day transcript)",
+        "14M trades/day average → 28M in April; $260B → $500B daily trading in April, no system stress (Investor Day transcript)"
       ],
       "date_assessed": "2026-04-04",
       "sources": [

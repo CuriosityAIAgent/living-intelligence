@@ -12,7 +12,10 @@
   "source_url": "https://www.citigroup.com/global/news/press-release/2025/citi-wealth-launches-advisor-insights-askwealth",
   "source_verified": false,
   "image_url": "/logos/citi-private-bank.svg",
-  "key_stat": null,
+  "key_stat": {
+    "number": "2 AI tools",
+    "label": "AskWealth (pull-based, global) + Advisor Insights (push-based, North America pilot) — dual AI architecture for Citi Wealth advisors"
+  },
   "capability_evidence": {
     "capability": "advisor_productivity",
     "stage": "deployed",

@@ -33,7 +33,25 @@ function FormattedSummary({ text }: { text: string }) {
     <ul className="space-y-4">
       {sentences.map((s, i) => {
         // Bold the opening clause — text before first comma/semicolon/colon (chars 15–85)
-        const candidates = [s.indexOf(',', 15), s.indexOf(';', 15), s.indexOf(':', 15)]
+        const findNonNumericComma = (str: string): number => {
+          let idx = str.indexOf(',', 15);
+          while (idx > 0 && idx < 85) {
+            // Skip commas between digits (e.g. 23,000)
+            if (/\d/.test(str[idx - 1] || '') && /\d/.test(str[idx + 1] || '')) {
+              idx = str.indexOf(',', idx + 1);
+              continue;
+            }
+            // Skip commas inside parentheses (e.g. "(March 26, 2026)")
+            const before = str.slice(0, idx);
+            if ((before.split('(').length - before.split(')').length) > 0) {
+              idx = str.indexOf(',', idx + 1);
+              continue;
+            }
+            break;
+          }
+          return idx >= 15 && idx < 85 ? idx : -1;
+        };
+        const candidates = [findNonNumericComma(s), s.indexOf(';', 15), s.indexOf(':', 15)]
           .filter(p => p > 0 && p < 85);
         const cut = candidates.length ? Math.min(...candidates) : -1;
 

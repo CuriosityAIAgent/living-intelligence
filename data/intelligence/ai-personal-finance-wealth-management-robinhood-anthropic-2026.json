@@ -10,7 +10,7 @@
   "source_url": "https://fortune.com/2026/03/26/ai-personal-finance-investing-services-robinhood-advisors/",
   "source_verified": true,
   "image_url": "/logos/robinhood.svg",
-  "summary": "LLM-based financial tools have moved beyond robo-advisor-era ETF bucketing: Robinhood's Strategies product handles complex personalisation scenarios — concentrated stock option positions, home purchase planning — and has 250,000 paying customers at an average $250 per year. More than one-third of consumers across all age groups are now using tools like Claude and ChatGPT for investment guidance, often before meeting a human advisor, according to McKinsey. Anthropic has accelerated institutional distribution by partnering with LPL Financial (serving ~8 million end clients via tens of thousands of registered advisors) and ingesting financial data from S&P Global, Morningstar, and PitchBook, effectively embedding proprietary data depth into advisor workflows. A projected shortage of 110,000 retiring U.S. advisors by 2034 is compressing the supply of human advice in the $100K–$1M wealth segment, structurally expanding the addressable market for AI-native tools.",
+  "summary": "LLM-based financial tools have moved beyond robo-advisor-era ETF bucketing: Robinhood's Strategies product handles complex personalisation scenarios — concentrated stock option positions, home purchase planning — and has 250,000 paying customers at an average $250 per year. More than one-third of consumers across all age groups are now using tools like Claude and ChatGPT for investment guidance, often before meeting a human advisor, according to McKinsey. Anthropic has accelerated institutional distribution by partnering with LPL Financial (serving ~8 million end clients via tens of thousands of registered advisors) and ingesting financial data from S&P Global, Morningstar, and PitchBook, effectively embedding proprietary data depth into advisor workflows. A projected shortage of 110,000 retiring US advisors by 2034 is compressing the supply of human advice in the $100K–$1M wealth segment, structurally expanding the addressable market for AI-native tools.",
   "key_stat": {
     "number": "250,000",
     "label": "paying customers using Robinhood's AI Strategies tool at ~$250/year average"
@@ -76,7 +76,7 @@
       "Anthropic partnered with LPL Financial",
       "LPL Financial serves approximately 8 million end clients via tens of thousands of registered advisors",
       "Anthropic ingested financial data from S&P Global, Morningstar, and PitchBook",
-      "A projected shortage of 110,000 retiring U.S. advisors by 2034",
+      "A projected shortage of 110,000 retiring US advisors by 2034",
       "The $100K–$1M wealth segment is identified as the structural opportunity for AI-native tools"
     ],
     "unverified_claims": [

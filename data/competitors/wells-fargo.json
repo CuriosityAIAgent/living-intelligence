@@ -4,7 +4,7 @@
   "segment": "wirehouse",
   "regions": ["us"],
   "color": "#C0392B",
-  "ai_strategy_summary": "Wells Fargo is the first major bank to comprehensively adopt Google's agentic AI platform (Agentspace) for bank-wide deployment. Starting with 2,000 employees using Agentspace, the bank plans to expand across all 215,000 employees. The strategy marks a deliberate shift from generative AI (content production) to agentic AI (autonomous workflow execution) — where AI agents take actions across systems rather than just answering questions. Key use cases include FX post-trade inquiry triage in the Corporate Investment Bank, customer service automation across digital, branch, and call centres, and contract management for 250,000 vendor agreements. Wells Fargo chose a platform partner approach (Google) over building custom solutions (as JPMorgan and Morgan Stanley did), trading customisation for deployment speed.",
+  "ai_strategy_summary": "Wells Fargo is the first major bank to comprehensively adopt Google's agentic AI platform (Agentspace) for bank-wide deployment. Starting with 2,000 employees using Agentspace, the bank plans to expand across all 215,000 employees. The strategy represents a shift from generative AI (content production) to agentic AI (autonomous workflow execution) — where AI agents take actions across systems rather than just answering questions. Key use cases include FX post-trade inquiry triage in the Corporate Investment Bank, customer service automation across digital, branch, and call centres, and contract management for 250,000 vendor agreements. Wells Fargo chose a platform partner approach (Google), trading customisation for deployment speed.",
   "head_of_ai": null,
   "headline_metric": "2,000+ employees on Google Agentspace (expanding to 215,000); first major bank with comprehensive agentic AI platform adoption",
   "headline_initiative": "Google Agentspace for bank-wide agentic AI + Fargo virtual assistant",
@@ -31,7 +31,7 @@
     "operations_compliance": {
       "maturity": "deployed",
       "headline": "FX post-trade triage + contract management for 250,000 vendor agreements via agentic AI",
-      "detail": "Wells Fargo is building AI agents for FX post-trade inquiry triage in the Corporate Investment Bank — automating answering, triaging, and summarising complex foreign exchange inquiries and navigating policies across internal data sources. A separate agent handles contract management across 250,000 vendor agreements. Customer service automation spans digital, branch, and call centre channels for routine tasks like balance inquiries and debit card replacements.",
+      "detail": "Wells Fargo is building AI agents for FX post-trade inquiry triage in the Corporate Investment Bank — automating answering, triaging, and summarising complex foreign exchange inquiries and retrieving policies across internal data sources. A separate agent handles contract management across 250,000 vendor agreements. Customer service automation spans digital, branch, and call centre channels for routine tasks like balance inquiries and debit card replacements.",
       "evidence": [
         "FX post-trade inquiry triage agent in CIB (American Banker, Banking Dive)",
         "Contract management agent for 250,000 vendor documents (American Banker)",

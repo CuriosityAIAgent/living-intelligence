@@ -32,7 +32,7 @@
 │                  DATA DIRECTORY (inside this repo)               │
 │                    ./data/  — tracked in git                     │
 │                                                                  │
-│  intelligence/    → IntelligenceEntry JSON files (44 entries)   │
+│  intelligence/    → IntelligenceEntry JSON files (43 entries)   │
 │  thought-leadership/ → ThoughtLeadershipEntry JSON files (8)    │
 │  competitors/     → Competitor JSON files (37 companies)         │
 │  capabilities/    → index.json (7 capability dimensions)         │

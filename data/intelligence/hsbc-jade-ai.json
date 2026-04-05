@@ -16,8 +16,11 @@
     }
   ],
   "image_url": "/logos/hsbc.svg",
-  "summary": "HSBC Private Bank announced on 16 September 2025 the deployment of a generative AI platform called Wealth Intelligence for use by its wealth management staff. The platform is designed to support relationship managers and advisors in their day-to-day workflows. The rollout reflects HSBC's broader push to embed AI-driven tools across its private banking operations globally.",
-  "key_stat": null,
+  "summary": "HSBC Private Bank deployed Wealth Intelligence, a generative AI platform for relationship managers and advisors, on 16 September 2025. The tool supports day-to-day workflows including client preparation and research retrieval across HSBC's global private banking operations. Details on adoption metrics, specific use cases, or measured productivity impact have not been publicly disclosed.",
+  "key_stat": {
+    "number": "Wealth Intelligence",
+    "label": "HSBC Private Bank's generative AI platform for relationship managers — deployed September 2025, no public adoption metrics disclosed"
+  },
   "tags": {
     "capability": "advisor_productivity",
     "region": "global",

@@ -74,12 +74,12 @@ export interface WeeklyDigest {
 }
 
 export interface CapabilityEntry {
-  maturity: 'announced' | 'piloting' | 'deployed' | 'scaled' | 'none';
+  maturity: 'announced' | 'piloting' | 'deployed' | 'scaled' | 'no_activity' | 'none';
   headline: string;
   detail: string;
   evidence: string[];
   sources?: { name: string; url: string }[];
-  date_assessed: string;
+  date_assessed?: string;
   jpm_implication?: string;
   jpm_segments_affected?: string[];
 }

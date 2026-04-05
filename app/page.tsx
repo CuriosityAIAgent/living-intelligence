@@ -179,8 +179,8 @@ export default function HomePage() {
               <p className="section-label">Featured Thought Leadership</p>
               <hr className="section-rule" />
             </div>
-            <Link href={`/thought-leadership/${featuredThought.id}`} className="group block">
-              <div className="border border-gray-200 rounded p-6 hover:border-[#990F3D] transition-colors">
+            <div className="border border-gray-200 rounded p-6">
+              <Link href={`/thought-leadership/${featuredThought.id}`} className="group block">
                 <div className="flex items-start gap-4">
                   <AuthorAvatar name={featuredThought.author.name} size="md" />
                   <div className="flex-1 min-w-0">
@@ -202,12 +202,12 @@ export default function HomePage() {
                   </div>
                   <span className="flex-shrink-0 text-[#990F3D] font-bold text-sm hidden md:block">Read →</span>
                 </div>
-              </div>
-            </Link>
-            <div className="mt-4">
-              <Link href="/thought-leadership" className="inline-block text-sm font-bold text-[#990F3D] border border-[#990F3D] rounded px-5 py-2.5 hover:bg-[#990F3D] hover:text-white transition-colors">
-                View all thought leadership →
               </Link>
+              <div className="mt-5 pt-4 border-t border-gray-100">
+                <Link href="/thought-leadership" className="inline-block text-sm font-bold text-[#990F3D] border border-[#990F3D] rounded px-5 py-2.5 hover:bg-[#990F3D] hover:text-white transition-colors">
+                  View all thought leadership →
+                </Link>
+              </div>
             </div>
           </section>
         )}
@@ -215,27 +215,29 @@ export default function HomePage() {
         {/* Landscape teaser */}
         <section className="mb-6">
           <SectionLabel label="The AI Landscape" />
-          <div className="bg-gray-50 border border-gray-200 rounded p-6 flex items-center gap-10">
-            <div className="flex-1">
-              <h3 className="text-base font-semibold text-gray-800 mb-1">Who Is Doing What</h3>
-              <p className="text-sm text-gray-500">AI Capabilities Across Wealth Management</p>
-            </div>
-            <div className="flex gap-8 flex-shrink-0">
-              <div className="text-center">
-                <div className="text-2xl font-semibold text-[#990F3D] leading-none">{competitors.length}</div>
-                <div className="text-xs text-gray-500 mt-1.5 uppercase tracking-wide">Institutions</div>
+          <div className="border border-gray-200 rounded p-6">
+            <div className="flex items-center gap-10">
+              <div className="flex-1">
+                <h3 className="text-base font-semibold text-gray-800 mb-1">Who Is Doing What</h3>
+                <p className="text-sm text-gray-500">AI Capabilities Across Wealth Management</p>
               </div>
-              <div className="w-px bg-gray-200" />
-              <div className="text-center">
-                <div className="text-2xl font-semibold text-[#990F3D] leading-none">{capabilities.length}</div>
-                <div className="text-xs text-gray-500 mt-1.5 uppercase tracking-wide">Capability<br/>Dimensions</div>
+              <div className="flex gap-8 flex-shrink-0">
+                <div className="text-center">
+                  <div className="text-2xl font-semibold text-[#990F3D] leading-none">{competitors.length}</div>
+                  <div className="text-xs text-gray-500 mt-1.5 uppercase tracking-wide">Institutions</div>
+                </div>
+                <div className="w-px bg-gray-200" />
+                <div className="text-center">
+                  <div className="text-2xl font-semibold text-[#990F3D] leading-none">{capabilities.length}</div>
+                  <div className="text-xs text-gray-500 mt-1.5 uppercase tracking-wide">Capability<br/>Dimensions</div>
+                </div>
               </div>
             </div>
-          </div>
-          <div className="mt-4">
-            <Link href="/landscape" className="text-sm font-bold text-[#990F3D] hover:underline">
-              View full landscape →
-            </Link>
+            <div className="mt-5 pt-4 border-t border-gray-100">
+              <Link href="/landscape" className="inline-block text-sm font-bold text-[#990F3D] border border-[#990F3D] rounded px-5 py-2.5 hover:bg-[#990F3D] hover:text-white transition-colors">
+                View full landscape →
+              </Link>
+            </div>
           </div>
         </section>
 

@@ -1,16 +1,16 @@
 {
   "id": "jpmorgan-smart-monitor-83-percent-research-time-investors",
   "type": "deployment",
-  "headline": "JPMorgan Smart Monitor Cuts Research Time 83% for Investment Teams",
-  "the_so_what": "An 83% reduction in research time for investment teams is a structural compression of one of wealth management's most expensive workflows. When Smart Monitor, Connect Coach, and AI-curated guidelines ship together, JPMorgan will have the first firm-wide AI productivity architecture across research, advisory, and compliance — a three-layer stack that rivals are building piecemeal. Goldman has 46,000 employees on its AI platform but focused on code and document generation. JPMorgan is targeting the advisor-specific workflow.",
+  "headline": "JPMorgan Smart Monitor Cuts Research Time 83% for Asset Management Analysts and Portfolio Managers",
+  "the_so_what": "Smart Monitor sits in JPMorgan's Asset Management division — used by career research analysts and portfolio managers, not wealth advisors. The 83% research time reduction accelerates the alpha generation engine (500 analysts, $500M annual research spend, 5,000 companies covered) that feeds into the investment products wealth clients consume. Connect Coach is the separate advisor-facing tool on the wealth management side. The distinction matters: Goldman has 46,000 employees on its AI platform but focused on code and document generation. JPMorgan is deploying AI across both the investment factory (Smart Monitor) and the distribution layer (Connect Coach) — a two-sided approach rivals are building piecemeal.",
   "company": "jpmorgan",
-  "company_name": "JPMorgan Private Bank and Wealth Management",
+  "company_name": "JPMorgan Asset & Wealth Management",
   "date": "2025-05-20",
   "source_name": "JPMorgan Chase 2025 Investor Day — Asset & Wealth Management (slide 12)",
   "source_url": "https://www.jpmorganchase.com/content/dam/jpmc/jpmorgan-chase-and-co/investor-relations/documents/events/2025/jpmc-2025-investor-day/asset-wealth-management.pdf",
   "source_verified": true,
   "image_url": "/logos/jpmorgan.svg",
-  "summary": "At JPMorgan Chase's 2025 Investor Day on May 20, slide 12 of the Asset & Wealth Management presentation disclosed Smart Monitor — an AI-integrated research platform for investors and portfolio teams built on the Spectrum platform. Smart Monitor provides AI-integrated workflow, automated insights, custom investment universes, and extensive market coverage. The result: an 83% reduction in time spent researching a topic, measured before vs. after deployment. The tool sits alongside Connect Coach (for advisors) and Guidelines (for operations) as one of three production AI platforms disclosed in the Investor Day presentation. All three reflect JPMorgan's stated objective of deploying AI to 'drive productivity,' 'increase revenue,' and — newly added for 2025 — 'enable quicker decision-making' and 'proactive and anticipatory client advice.'",
+  "summary": "At JPMorgan Chase's 2025 Investor Day on May 20, the Asset & Wealth Management presentation disclosed Smart Monitor — an AI-integrated research platform built on the Spectrum platform, used specifically by career research analysts and portfolio managers in the Asset Management division (run by George Gatch), not by wealth advisors. Smart Monitor processes millions of call reports, 10-Qs, 10-Ks, and daily stock moves, generating tailored alerts and analysis customised to each user's preferred ratios. The result: an 83% reduction in time spent researching a topic. CEO Mary Callahan Erdoes distinguished it from Connect Coach (the advisor-facing tool) and Guidelines (operations), noting Smart Monitor serves the investment professionals who generate the alpha that wealth management clients consume. JPMorgan's 500 career research analysts cover 5,000 companies with 11,000 meetings per year and $500 million in annual research spend.",
   "key_stat": {
     "number": "83%",
     "label": "Reduction in time spent researching a topic — JPMorgan Smart Monitor (Spectrum), 2025 Investor Day"

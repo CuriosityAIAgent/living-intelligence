@@ -4,19 +4,19 @@
   "segment": "ria_independent",
   "regions": ["us"],
   "color": "#1B1B1B",
-  "ai_strategy_summary": "Altruist is the most disruptive AI-native custodian in wealth management. Its AI platform Hazel — launched September 2025, built on the 2025 acquisition of AI startup Thyme — signed 1,600 RIA firms in its first month alone, with a pipeline suggesting 1,500 new advisors per month for the next nine months. The February 2026 launch of Hazel's tax planning capability triggered a $130 billion sell-off across Schwab, LPL, Raymond James, and Ameriprise stocks — the market's clearest signal that AI-native platforms are repricing the independent channel. Hazel's architectural moat is custodial integration: it reads live from Altruist's custodial system of record (holdings, balances, cost basis, RMDs, beneficiaries), enabling advisors to query real-time account data in AI conversations. No partnership-based AI tool can replicate this — they all operate on imported or synced data. The $152M Series F (led by GIC) valued Altruist at $1.9B. CEO Jason Wenk frames the custodian as 'the ultimate system of record' for advisor AI.",
+  "ai_strategy_summary": "Altruist is the most disruptive AI-native custodian in wealth management. Its AI platform Hazel — launched September 2025, built on the 2025 acquisition of AI startup Thyme — signed 1,600 RIA firms in its first month alone, with a pipeline suggesting 1,500 new advisors per month for the next nine months. The February 2026 launch of Hazel's tax planning capability coincided with a $130 billion sell-off across Schwab, LPL, Raymond James, and Ameriprise stocks (CNBC, Feb 2026). Hazel's architectural moat is custodial integration: it reads live from Altruist's custodial system of record (holdings, balances, cost basis, RMDs, beneficiaries), enabling advisors to query real-time account data in AI conversations. The $152M Series F (led by GIC, April 2025) valued Altruist at $1.9B. CEO Jason Wenk frames the custodian as 'the ultimate system of record' for advisor AI.",
   "head_of_ai": {
     "name": "Jason Wenk",
     "title": "Founder & CEO"
   },
-  "headline_metric": "1,600 RIA firms in month 1; $130B stock sell-off triggered; $1.9B valuation; 1,000+ wealth managers on Hazel",
+  "headline_metric": "1,600 RIA firms in month 1; $130B stock sell-off (CNBC, Feb 2026); $1.9B valuation; 1,000+ wealth managers on Hazel",
   "headline_initiative": "Hazel: AI-native custodial platform with live account data integration + tax planning",
   "overall_maturity": "scaled",
   "capabilities": {
     "advisor_productivity": {
       "maturity": "scaled",
       "headline": "Hazel: 1,600 RIA firms in 30 days, live custodial data in every AI conversation, 1,000+ wealth managers",
-      "detail": "Hazel unifies CRM, email, meeting notes, and live custodial data (holdings, balances, cost basis, RMDs, beneficiaries) in a single AI conversation layer — the first platform to do so. Advisors can run household-level concentration analysis in seconds, identify clients behind on RMDs, harvest unrealised losses, and generate personalised tax strategies from 1040s and pay stubs. Over 1,000 wealth managers adopted Hazel within months of its September 2025 launch. The February 2026 addition of AI tax planning triggered $130B in market value loss across legacy custodians.",
+      "detail": "Hazel unifies CRM, email, meeting notes, and live custodial data (holdings, balances, cost basis, RMDs, beneficiaries) in a single AI conversation layer — the first platform to do so. Advisors can run household-level concentration analysis in seconds, identify clients behind on RMDs, harvest unrealised losses, and generate personalised tax strategies from 1040s and pay stubs. Over 1,000 wealth managers adopted Hazel within months of its September 2025 launch. The February 2026 addition of AI tax planning coincided with $130B in market value loss across legacy custodians (CNBC, Feb 2026).",
       "evidence": [
         "1,600 RIA firms subscribed in first month, pipeline of 1,500/month for 9 months (RIABiz, March 2026)",
         "1,000+ wealth managers using Hazel since September 2025 launch (Business Wire, Nov 2025)",

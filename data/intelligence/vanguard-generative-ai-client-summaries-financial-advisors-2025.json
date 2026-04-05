@@ -12,7 +12,10 @@
   "source_url": "https://www.prnewswire.com/news-releases/vanguard-unveils-generative-ai-client-summaries-for-financial-advisors-302445980.html",
   "source_verified": false,
   "image_url": "/logos/vanguard.png",
-  "key_stat": null,
+  "key_stat": {
+    "number": "$10T",
+    "label": "AUM managed by Vanguard — first client-facing GenAI app (Client-Ready Article Summaries) deployed on Writer enterprise AI platform (May 2025)"
+  },
   "capability_evidence": {
     "capability": "advisor_productivity",
     "stage": "deployed",
