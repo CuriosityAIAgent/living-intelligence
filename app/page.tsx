@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import RotatingHeadline from '@/components/RotatingHeadline';
 
 /* ─── Single source of truth for all landing page numbers ─── */
@@ -12,11 +13,21 @@ const STATS = {
   sources: '300+',
 } as const;
 
+const NAV_LINKS = [
+  { label: 'Why Now', href: '#challenge' },
+  { label: 'How It Works', href: '#how' },
+  { label: 'Intelligence', href: '#sample' },
+  { label: 'Landscape', href: '#coverage' },
+  { label: 'Pricing', href: '#pricing' },
+];
+
 export default function LandingPage() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
   return (
     <div className="min-h-screen">
 
-      {/* ─── STICKY REQUEST ACCESS CTA ─── */}
+      {/* ─── STICKY CTA — pill on desktop, bottom bar on mobile ─── */}
       <div className="fixed bottom-6 right-6 z-50 hidden md:block">
         <a
           href="/login"
@@ -25,60 +36,91 @@ export default function LandingPage() {
           Register now <span className="text-[16px]">&rarr;</span>
         </a>
       </div>
+      <div className="fixed bottom-0 left-0 right-0 z-50 md:hidden bg-[#1C1C2E] border-t border-[#2A2A3E] px-6 py-3">
+        <a
+          href="/login"
+          className="block text-center bg-[#990F3D] hover:bg-[#7a0c31] text-white text-[14px] font-bold py-3 rounded transition-colors no-underline"
+        >
+          Register now
+        </a>
+      </div>
 
-      {/* ─── STICKY NAV — FT/Bloomberg style ─── */}
+      {/* ─── STICKY NAV ─── */}
       <nav className="sticky top-0 z-50">
-        {/* Masthead: brand + descriptor + sign in */}
         <div className="bg-[#1C1C2E] border-b border-[#2A2A3E]">
           <div className="max-w-5xl mx-auto px-6 flex items-center justify-between py-4">
-            <a href="/" className="text-[20px] md:text-[24px] font-extrabold uppercase tracking-[0.12em] text-white no-underline">
+            <a href="/" className="text-[18px] md:text-[24px] font-extrabold uppercase tracking-[0.12em] text-white no-underline">
               Living Intelligence
             </a>
             <div className="flex items-center gap-5">
-              <span className="text-[15px] md:text-[17px] font-bold text-white tracking-wide">AI in Wealth Management</span>
-              <span className="text-[#555] text-[18px] font-light hidden md:inline">|</span>
+              <span className="hidden md:inline text-[15px] font-bold text-white tracking-wide">AI in Wealth Management</span>
+              <span className="hidden md:inline text-[#444] text-[18px] font-light">|</span>
               <a
                 href="/login"
-                className="text-[14px] text-[#CCCCDD] hover:text-white transition-colors no-underline"
+                className="text-[14px] text-[#CCCCDD] hover:text-white transition-colors no-underline hidden md:inline"
               >
                 Sign in
               </a>
+              {/* Hamburger — mobile only */}
+              <button
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                className="md:hidden text-white p-1"
+                aria-label="Menu"
+              >
+                <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                  {mobileMenuOpen ? (
+                    <><line x1="6" y1="6" x2="18" y2="18" /><line x1="6" y1="18" x2="18" y2="6" /></>
+                  ) : (
+                    <><line x1="4" y1="7" x2="20" y2="7" /><line x1="4" y1="12" x2="20" y2="12" /><line x1="4" y1="17" x2="20" y2="17" /></>
+                  )}
+                </svg>
+              </button>
             </div>
           </div>
         </div>
-        {/* Section nav — scrollable on mobile */}
-        <div className="bg-[#141420] border-b border-[#2A2A3E]">
-          <div className="max-w-5xl mx-auto px-6 flex items-center gap-5 md:gap-7 py-2.5 overflow-x-auto" style={{ scrollbarWidth: 'none' }}>
-            {[
-              { label: 'Why Now', href: '#challenge' },
-              { label: 'How It Works', href: '#how' },
-              { label: 'Intelligence', href: '#sample' },
-              { label: 'Landscape', href: '#coverage' },
-              { label: 'Thought Leadership', href: '#thought-leadership' },
-              { label: 'Pricing', href: '#pricing' },
-            ].map((link) => (
+        {/* Desktop section nav */}
+        <div className="bg-[#141420] border-b border-[#2A2A3E] hidden md:block">
+          <div className="max-w-5xl mx-auto px-6 flex items-center gap-7 py-2.5">
+            {NAV_LINKS.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
-                className="text-[13px] md:text-[14px] text-[#B0B0C8] hover:text-white transition-colors no-underline tracking-wide whitespace-nowrap"
+                className="text-[14px] text-[#B0B0C8] hover:text-white transition-colors no-underline tracking-wide whitespace-nowrap"
               >
                 {link.label}
               </a>
             ))}
           </div>
         </div>
+        {/* Mobile dropdown menu */}
+        {mobileMenuOpen && (
+          <div className="md:hidden bg-[#141420] border-b border-[#2A2A3E] px-6 py-4 space-y-3">
+            {NAV_LINKS.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                onClick={() => setMobileMenuOpen(false)}
+                className="block text-[15px] text-[#B0B0C8] hover:text-white transition-colors no-underline tracking-wide"
+              >
+                {link.label}
+              </a>
+            ))}
+            <div className="pt-2 border-t border-[#2A2A3E]">
+              <a href="/login" className="block text-[15px] text-[#CCCCDD] hover:text-white no-underline">Sign in</a>
+            </div>
+          </div>
+        )}
       </nav>
 
       {/* ─── SECTION 1: HERO ─── */}
       <section className="bg-[#1C1C2E]">
-        <div className="max-w-5xl mx-auto px-6 pt-10 pb-10 md:pt-14 md:pb-14 text-center">
-
-          {/* Headline block */}
+        <div className="max-w-5xl mx-auto px-6 pt-8 pb-8 md:pt-14 md:pb-14 text-center">
+          <p className="text-[13px] md:text-[15px] font-bold text-[#8888A0] tracking-wide mb-4 md:hidden">AI in Wealth Management</p>
           <div className="max-w-3xl mx-auto">
             <RotatingHeadline />
             <a
               href="#sample"
-              className="inline-block bg-[#990F3D] hover:bg-[#7a0c31] text-white text-[15px] font-bold px-8 py-4 rounded transition-colors no-underline mt-4"
+              className="inline-block bg-[#990F3D] hover:bg-[#7a0c31] text-white text-[14px] md:text-[15px] font-bold px-6 md:px-8 py-3 md:py-4 rounded transition-colors no-underline mt-2"
             >
               View sample intelligence
             </a>
@@ -87,16 +129,16 @@ export default function LandingPage() {
 
         {/* Stats strip */}
         <div className="border-t border-[#2A2A3E]">
-          <div className="max-w-5xl mx-auto px-6 py-5 flex flex-wrap justify-center gap-x-10 gap-y-3">
+          <div className="max-w-5xl mx-auto px-6 py-4 md:py-5 grid grid-cols-2 md:flex md:flex-wrap md:justify-center gap-x-10 gap-y-3">
             {[
               { n: STATS.firms, label: 'Firms Tracked' },
-              { n: STATS.capabilities, label: 'AI Capability Dimensions' },
+              { n: STATS.capabilities, label: 'Capability Dimensions' },
               { n: STATS.entries, label: 'Verified Developments' },
-              { n: STATS.queries, label: 'Daily Discovery Queries' },
+              { n: STATS.queries, label: 'Daily Queries' },
             ].map((s) => (
-              <div key={s.label} className="flex items-center gap-2.5">
-                <span className="text-[20px] font-extrabold text-white">{s.n}</span>
-                <span className="text-[12px] uppercase tracking-wider text-[#8888A0]">{s.label}</span>
+              <div key={s.label} className="flex items-center gap-2">
+                <span className="text-[18px] md:text-[20px] font-extrabold text-white">{s.n}</span>
+                <span className="text-[11px] md:text-[12px] uppercase tracking-wider text-[#8888A0]">{s.label}</span>
               </div>
             ))}
           </div>
@@ -111,82 +153,64 @@ export default function LandingPage() {
               The wealth management business model is being rewritten. Right now.
             </p>
             <p>
-              BofA: 3.2 billion Erica interactions. Morgan Stanley: 98% advisor AI adoption. Altruist: 1,600 RIA firms in 30 days. These are not pilots. They are deployed, scaled, and widening the gap every quarter.
+              BofA: 3.2 billion Erica interactions. Morgan Stanley: 98% advisor AI adoption. Altruist: 1,600 RIA firms signed up in 30 days. These are not pilots. They are live, scaled, and the gap is widening every quarter.
             </p>
             <p className="text-gray-900 font-semibold">
-              The question is not whether AI will affect your business. It is whether you will see it coming in time to respond.
+              The question is not whether AI will reshape your business. It is whether you will see it happening in time to respond.
             </p>
             <p className="text-gray-500">
-              A consulting firm charges six figures for this picture. By delivery, it&apos;s stale. We deliver it continuously.
+              A consulting firm charges six figures for this picture. By delivery, it&apos;s already out of date.
             </p>
           </div>
         </div>
       </section>
 
-      {/* ─── SECTION 3: HOW IT WORKS — Pipeline ─── */}
+      {/* ─── SECTION 3: HOW IT WORKS ─── */}
       <section id="how" className="py-16 md:py-20 bg-white border-t border-gray-200 scroll-mt-24">
         <div className="max-w-5xl mx-auto px-6">
           <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#990F3D] mb-2">
             How it works
           </p>
           <hr className="border-t-2 border-[#990F3D] mb-4 w-10" />
-          <p className="text-[17px] text-gray-700 leading-relaxed mb-12 max-w-3xl">
-            Not a newsletter. Not an AI-generated feed. An editorial intelligence system with a multi-stage verification pipeline.
+          <p className="text-[20px] md:text-[22px] font-extrabold text-gray-900 leading-snug mb-4 max-w-3xl">
+            Not a newsletter. Not an AI-generated feed.
+          </p>
+          <p className="text-[17px] text-gray-700 leading-relaxed mb-10 max-w-3xl">
+            We scan thousands of sources daily, verify every claim against original documents, and add editorial analysis on what each development means for your firm. Nothing publishes without human sign-off.
           </p>
 
-          {/* Pipeline steps */}
-          <div className="grid md:grid-cols-5 gap-4 mb-12">
+          <div className="grid md:grid-cols-3 gap-6 max-w-4xl mb-10">
+            <div className="border-l-2 border-[#990F3D] pl-5">
+              <p className="text-[14px] font-semibold text-gray-900 mb-1.5">Every source linked</p>
+              <p className="text-[13px] text-gray-600 leading-relaxed">
+                Click through to the press release, the earnings call, the company newsroom. The original source is always there.
+              </p>
+            </div>
+            <div className="border-l-2 border-gray-300 pl-5">
+              <p className="text-[14px] font-semibold text-gray-900 mb-1.5">Multi-source corroboration</p>
+              <p className="text-[13px] text-gray-600 leading-relaxed">
+                Key developments are cross-referenced across multiple independent sources before publishing.
+              </p>
+            </div>
+            <div className="border-l-2 border-gray-300 pl-5">
+              <p className="text-[14px] font-semibold text-gray-900 mb-1.5">Editorial judgement</p>
+              <p className="text-[13px] text-gray-600 leading-relaxed">
+                Every entry includes analysis on why it matters competitively — not a summary, a point of view.
+              </p>
+            </div>
+          </div>
+
+          <div className="flex flex-wrap gap-x-8 gap-y-2 border-t border-gray-200 pt-5 max-w-4xl">
             {[
-              { step: '01', title: 'Discovery', desc: '60+ targeted queries daily across thousands of sources. News wires, press releases, trade publications, company newsrooms.' },
-              { step: '02', title: 'Scoring', desc: 'Algorithm scores every story on source credibility, claim strength, recency, and capability impact.' },
-              { step: '03', title: 'Verification', desc: 'Every claim checked against the original source document. Multi-source corroboration.' },
-              { step: '04', title: 'Editorial review', desc: 'Human sign-off before anything publishes. No exceptions.' },
-              { step: '05', title: 'Published', desc: 'Verified intelligence with editorial analysis on why it matters competitively.' },
-            ].map((s, i) => (
-              <div key={s.step} className="relative">
-                <div className="text-[11px] font-bold text-[#990F3D] mb-2">{s.step}</div>
-                <h4 className="text-[14px] font-bold text-gray-900 mb-2">{s.title}</h4>
-                <p className="text-[13px] text-gray-500 leading-relaxed">{s.desc}</p>
-                {i < 4 && <div className="hidden md:block absolute top-3 -right-2 text-gray-300">&#x2192;</div>}
+              { n: STATS.sources, label: 'Source references' },
+              { n: STATS.qualityChecks, label: 'Quality checks per entry' },
+              { n: STATS.queries, label: 'Daily discovery queries' },
+            ].map((s) => (
+              <div key={s.label} className="flex items-center gap-2">
+                <span className="text-[16px] font-extrabold text-gray-900">{s.n}</span>
+                <span className="text-[11px] text-gray-500 uppercase tracking-wider">{s.label}</span>
               </div>
             ))}
-          </div>
-
-          {/* Quality standard — unified block */}
-          <div className="border border-gray-200 rounded-lg overflow-hidden max-w-4xl">
-            <div className="grid md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-gray-200">
-              <div className="p-6">
-                <p className="text-[14px] font-semibold text-gray-900 mb-2">Every source linked. Every link verified.</p>
-                <p className="text-[13px] text-gray-600 leading-relaxed">
-                  Every intelligence entry and landscape assessment links back to the original source — press releases, company newsrooms, trade publications, regulatory filings. Click through. It will be there.
-                </p>
-              </div>
-              <div className="p-6">
-                <p className="text-[14px] font-semibold text-gray-900 mb-2">Consulting-grade editorial standards.</p>
-                <p className="text-[13px] text-gray-600 leading-relaxed">
-                  Every entry is assessed across {STATS.qualityChecks} quality dimensions — the same rigour a McKinsey engagement applies to competitive intelligence. Multi-source corroboration. Iterative refinement. Nothing ships until it meets the standard we&apos;d put in front of a CXO.
-                </p>
-              </div>
-            </div>
-            <div className="border-t border-gray-200 bg-[#FAFAF8] px-6 py-4 flex flex-wrap gap-x-8 gap-y-2">
-              {[
-                { n: '15+', label: 'Specialised systems' },
-                { n: STATS.qualityChecks, label: 'Quality dimensions' },
-                { n: STATS.sources, label: 'Source references' },
-                { n: '2', label: 'Refinement iterations' },
-              ].map((s) => (
-                <div key={s.label} className="flex items-center gap-2">
-                  <span className="text-[16px] font-extrabold text-gray-900">{s.n}</span>
-                  <span className="text-[11px] text-gray-500 uppercase tracking-wider">{s.label}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="border-l-2 border-[#990F3D] pl-5 mt-8 max-w-4xl">
-            <p className="text-[14px] text-gray-800 font-semibold">
-              We do not publish unverified claims. We do not summarise press releases. Every development includes editorial analysis on what it means competitively.
-            </p>
           </div>
         </div>
       </section>
@@ -203,15 +227,15 @@ export default function LandingPage() {
             {[
               {
                 title: 'Intelligence',
-                desc: 'Verified AI developments across wealth management. Multi-source corroboration. Each entry includes editorial analysis on what it means for your firm — not a press release rewrite.',
+                desc: 'AI developments across wealth management, verified against original sources. Each entry tells you what happened, why it matters, and what your competitors are doing about it.',
               },
               {
                 title: 'Landscape',
-                desc: '37+ firms mapped across 7 AI capability dimensions. Who\u2019s scaled, who\u2019s piloting, who\u2019s still announcing. Every assessment sourced and evidence-linked. A living matrix, not a static slide deck.',
+                desc: '37+ firms mapped across 7 AI capability dimensions. Who\u2019s live, who\u2019s piloting, who\u2019s still talking about it. Updated continuously, not once a quarter.',
               },
               {
                 title: 'Thought leadership',
-                desc: 'Curated from McKinsey, BCG, Harvard Business School, Wharton, Venrock, Ethan Mollick, and leading practitioners. The strategic frameworks and research shaping how the industry\u2019s smartest minds think about AI.',
+                desc: 'Selected essays and research from McKinsey, BCG, Harvard Business School, Wharton, and leading practitioners. The thinking that shapes how the industry\u2019s decision-makers approach AI.',
               },
             ].map((card) => (
               <div
@@ -234,7 +258,7 @@ export default function LandingPage() {
           </p>
           <hr className="border-t-2 border-[#990F3D] mb-4 w-10" />
           <p className="text-[17px] text-gray-700 leading-relaxed mb-10 max-w-3xl">
-            This is what consulting-grade competitive intelligence looks like — verified against original sources, multi-source where possible, with editorial analysis on what each development means for your firm. Not summaries. Strategic context.
+            Each entry is verified against original sources, tells you why it matters, and connects it to the competitive landscape. Three examples from the platform:
           </p>
 
           {/* Intelligence feed sample — 3 stacked cards */}
@@ -318,10 +342,10 @@ export default function LandingPage() {
           </p>
           <hr className="border-t-2 border-[#990F3D] mb-4 w-10" />
           <p className="text-[17px] text-gray-700 leading-relaxed mb-4 max-w-3xl">
-            37+ firms. 7 segments. 7 AI capability dimensions. Every assessment sourced to press releases, earnings calls, product announcements, and company newsrooms. This is the competitive picture a consulting firm charges six figures to assemble — delivered as a living, continuously updated matrix.
+            37+ firms across 7 segments and 7 AI capability dimensions. Every assessment sourced to press releases, earnings calls, and company newsrooms. The competitive picture a consulting firm charges six figures to build — kept current week by week.
           </p>
           <p className="text-[13px] text-gray-500 mb-10 max-w-3xl">
-            The full landscape is available to subscribers. Here is how we classify the market and what you see when you log in.
+            The full landscape is available to subscribers. Here is how we classify the market.
           </p>
 
           {/* Segments as classification framework — one example each */}
@@ -498,7 +522,7 @@ export default function LandingPage() {
           </p>
           <hr className="border-t-2 border-[#990F3D] mb-4 w-10" />
           <p className="text-[17px] text-gray-700 leading-relaxed mb-10 max-w-3xl">
-            Curated essays and reports from the people shaping how the industry thinks about AI. Not aggregated — selected for strategic relevance.
+            Essays and research from the people shaping how the industry thinks about AI. Selected for relevance, not volume.
           </p>
 
           <div className="grid md:grid-cols-2 gap-4 max-w-3xl">
@@ -530,7 +554,7 @@ export default function LandingPage() {
           <hr className="border-t-2 border-[#990F3D] mb-4 w-10" />
 
           <p className="text-[17px] text-gray-700 leading-relaxed max-w-3xl mb-10">
-            One firm license. Up to five people. The executives who need to know what competitors are doing with AI, without spending hours assembling the picture themselves.
+            One firm license. Up to five people. For the team that needs to know what competitors are doing with AI, without spending hours piecing the picture together.
           </p>
 
           <div className="grid md:grid-cols-2 gap-x-12 gap-y-4 max-w-3xl">
@@ -563,7 +587,7 @@ export default function LandingPage() {
           <hr className="border-t-2 border-[#990F3D] mb-6 w-10" />
 
           <p className="text-[15px] text-gray-500 mb-10 max-w-2xl">
-            A consulting firm charges $75,000–$150,000 for a competitive landscape that&apos;s stale by delivery. Analyst subscriptions start at $25,000 a year and bury you in volume without editorial judgement. We deliver consulting-grade intelligence — continuously updated, multi-source verified — for a fraction of either.
+            A consulting firm charges $75,000+ for a competitive landscape that&apos;s out of date by delivery. Analyst subscriptions cost $25,000+ a year and bury you in volume. We deliver the same quality of intelligence, kept current, for a fraction of either.
           </p>
 
           <div className="max-w-md">
@@ -611,7 +635,7 @@ export default function LandingPage() {
       </section>
 
       {/* ─── FOOTER ─── */}
-      <section className="bg-[#1C1C2E] py-12 text-center">
+      <section className="bg-[#1C1C2E] py-12 pb-24 md:pb-12 text-center">
         <div className="max-w-2xl mx-auto px-6">
           <p className="text-[12px] text-[#444458]">
             {STATS.entries} verified developments. {STATS.firms} firms tracked. {STATS.capabilities} capability dimensions.{' '}
