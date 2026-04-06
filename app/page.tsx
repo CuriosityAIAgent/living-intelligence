@@ -26,33 +26,11 @@ export default function LandingPage() {
         </a>
       </div>
 
-      {/* ─── STICKY SECTION NAV ─── */}
+      {/* ─── STICKY NAV — clean, minimal ─── */}
       <nav className="sticky top-0 z-50 bg-[#141420] border-b border-[#2A2A3E]">
-        <div className="max-w-5xl mx-auto px-6 flex items-center gap-6 py-2.5">
-          <span className="text-[11px] font-extrabold uppercase tracking-[0.2em] text-white mr-4 shrink-0">Living Intelligence</span>
-          {/* Section links — hidden on mobile */}
-          <div className="hidden md:flex items-center gap-6">
-            {[
-              { label: 'Why Now', href: '#challenge' },
-              { label: 'How It Works', href: '#how' },
-              { label: 'Intelligence', href: '#sample' },
-              { label: 'Landscape', href: '#coverage' },
-              { label: 'Thought Leadership', href: '#thought-leadership' },
-              { label: 'Pricing', href: '#pricing' },
-            ].map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="text-[11px] text-[#8888A0] hover:text-white transition-colors no-underline uppercase tracking-wider"
-              >
-                {link.label}
-              </a>
-            ))}
-          </div>
-          <div className="ml-auto flex items-center gap-3">
-            <a href="/login" className="text-[11px] text-white hover:text-gray-300 transition-colors no-underline uppercase tracking-wider font-medium">Sign in</a>
-            <a href="/login" className="text-[11px] bg-[#990F3D] hover:bg-[#7a0c31] text-white px-3 py-1.5 rounded transition-colors no-underline uppercase tracking-wider font-bold">Register</a>
-          </div>
+        <div className="max-w-5xl mx-auto px-6 flex items-center justify-between py-3">
+          <a href="/" className="text-[12px] font-extrabold uppercase tracking-[0.2em] text-white no-underline">Living Intelligence</a>
+          <a href="/login" className="text-[12px] text-[#CCCCDD] hover:text-white transition-colors no-underline tracking-wider">Sign in</a>
         </div>
       </nav>
 
@@ -600,20 +578,14 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* ─── SECTION 9: FINAL CTA ─── */}
-      <section className="bg-[#1C1C2E] py-20 md:py-24 text-center">
+      {/* ─── FOOTER ─── */}
+      <section className="bg-[#1C1C2E] py-12 text-center">
         <div className="max-w-2xl mx-auto px-6">
-          <p className="text-[17px] md:text-[19px] text-[#9999BB] leading-relaxed mb-10">
-            {STATS.entries} verified developments. {STATS.firms} firms tracked. {STATS.capabilities} capability dimensions. Consulting-grade editorial standards. New intelligence published as it happens. Every source linked, every claim verified.
-          </p>
-          <a
-            href="/login"
-            className="inline-block bg-[#990F3D] hover:bg-[#7a0c31] text-white text-[15px] font-bold px-8 py-4 rounded transition-colors no-underline mb-10"
-          >
-            Register now
-          </a>
           <p className="text-[12px] text-[#444458]">
-            Founding member spots are limited.{' '}
+            {STATS.entries} verified developments. {STATS.firms} firms tracked. {STATS.capabilities} capability dimensions.{' '}
+            Every source linked, every claim verified.
+          </p>
+          <p className="text-[12px] text-[#444458] mt-3">
             <a href="mailto:hello@livingintel.ai" className="text-[#666680] hover:text-white transition-colors">hello@livingintel.ai</a>
           </p>
         </div>
