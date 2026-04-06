@@ -86,7 +86,7 @@ async function main() {
       .from('sources')
       .select('id, title, content_md')
       .is('embedding', null)
-      .order('created_at', { ascending: true })
+      .order('fetched_at', { ascending: true })
       .range(offset, offset + BATCH_SIZE - 1);
 
     if (error) {
