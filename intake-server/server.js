@@ -28,7 +28,8 @@ import {
   checkLandscapeImpact, getLandscapeSuggestions,
   applyLandscapeSuggestion, dismissLandscapeSuggestion,
 } from './agents/landscape-trigger.js';
-import { logDecision, storePublishedEntry } from './agents/kb-client.js';
+import { logDecision, storePublishedEntry, getReadyBriefs, getSupabaseClient } from './agents/kb-client.js';
+import { produceEntry } from './agents/content-producer.js';
 import { runLandscapeSweep, getStaleList } from './agents/landscape-sweep.js';
 import { publishTlEntry } from './agents/tl-publisher.js';
 import { runTLDiscover, getTLCandidates, dismissTLCandidate } from './agents/tl-discover.js';
@@ -856,6 +857,63 @@ app.get('/api/health', (req, res) => {
       blocked_urls: Object.keys(blocked).length,
     },
   });
+});
+
+// ─── V2 Pipeline API ────────────────────────────────────────────────────────
+
+// POST /api/v2/produce — Run full v2 pipeline for a URL (SSE stream)
+app.post('/api/v2/produce', (req, res) => {
+  const { url, title, source_name } = req.body;
+  if (!url) return res.status(400).json({ error: 'url required' });
+
+  res.writeHead(200, { 'Content-Type': 'text/event-stream', 'Cache-Control': 'no-cache', Connection: 'keep-alive' });
+  const send = (type, data) => res.write(`data: ${JSON.stringify({ type, ...data })}\n\n`);
+
+  produceEntry({ url, title: title || '', source_name: source_name || '', send })
+    .then(result => {
+      send('done', { aborted: result.aborted, reason: result.reason, entry: result.entry });
+      res.end();
+    })
+    .catch(err => {
+      send('error', { message: err.message });
+      res.end();
+    });
+});
+
+// GET /api/v2/briefs — List ready briefs from KB
+app.get('/api/v2/briefs', async (req, res) => {
+  try {
+    const limit = parseInt(req.query.limit, 10) || 20;
+    const briefs = await getReadyBriefs(limit);
+    res.json({ briefs, count: briefs.length });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// GET /api/v2/kb/stats — KB health summary
+app.get('/api/v2/kb/stats', async (req, res) => {
+  try {
+    const supabase = getSupabaseClient();
+    if (!supabase) return res.json({ kb_enabled: false });
+
+    const [sources, briefs, decisions, events] = await Promise.all([
+      supabase.from('sources').select('id', { count: 'exact', head: true }),
+      supabase.from('research_briefs').select('id', { count: 'exact', head: true }),
+      supabase.from('editorial_decisions').select('id', { count: 'exact', head: true }),
+      supabase.from('pipeline_events').select('id', { count: 'exact', head: true }),
+    ]);
+
+    res.json({
+      kb_enabled: true,
+      sources: sources.count || 0,
+      briefs: briefs.count || 0,
+      editorial_decisions: decisions.count || 0,
+      pipeline_events: events.count || 0,
+    });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
 });
 
 // ─── Mobile review routes (email links) ──────────────────────────────────────

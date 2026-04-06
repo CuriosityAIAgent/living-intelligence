@@ -21,6 +21,10 @@ import { evaluate } from './evaluator-agent.js';
 import { checkFabricationV2 } from './fabrication-strict.js';
 import { scoreEntry } from './scorer.js';
 import { PRESS_RELEASE_DOMAINS, TIER1_MEDIA } from './config.js';
+import {
+  logPipelineEvent, logPipelineRun, getReadyBriefs,
+  hydrateBrief, storePublishedEntry,
+} from './kb-client.js';
 
 // ── Verification Retry — search for unverified claims before blocking ────────
 
@@ -137,14 +141,18 @@ function getMondayOf(dateStr) {
  */
 export async function produceEntry({ url, title, source_name, triage_score, send }) {
   const iterations = [];
+  const runId = await logPipelineRun({ tier: 'tier2_cli', started_at: new Date().toISOString() });
 
   // ── Stage 2: Research ─────────────────────────────────────────────────────
   send('pipeline_stage', { stage: 'research', message: 'Starting deep research...' });
 
+  let researchStart = Date.now();
   let researchBrief;
   try {
     researchBrief = await research({ url, title, source_name, send });
+    await logPipelineEvent({ run_id: runId, agent: 'research', latency_ms: Date.now() - researchStart });
   } catch (err) {
+    await logPipelineEvent({ run_id: runId, agent: 'research', latency_ms: Date.now() - researchStart, error: err.message });
     return { aborted: true, reason: `Research failed: ${err.message}` };
   }
 
@@ -351,6 +359,12 @@ export async function produceEntry({ url, title, source_name, triage_score, send
     _editor_notes: [],
   };
 
+  // Log final pipeline event + update run
+  await logPipelineEvent({
+    run_id: runId, agent: 'content-producer', entry_id: entry.id,
+    score: { final_score: finalScore, fabrication: finalFab.verdict, iterations: iterations.length },
+  });
+
   send('pipeline_complete', {
     message: `Entry ready: "${entry.headline}" | Score: ${finalScore}/100 | Sources: ${entry.source_count} | Fabrication: ${finalFab.verdict}`,
     id: entry.id,
@@ -359,7 +373,7 @@ export async function produceEntry({ url, title, source_name, triage_score, send
     iterations: iterations.length,
   });
 
-  return { entry, aborted: false };
+  return { entry, aborted: false, runId };
 }
 
 // ── "Needs Work" Re-entry ────────────────────────────────────────────────────
@@ -417,4 +431,117 @@ export async function reworkEntry({ entry, editorNotes, researchBrief, send }) {
 
   send('pipeline_stage', { stage: 'rework_complete', message: 'Rework applied successfully.' });
   return entry;
+}
+
+// ── Batch Production ────────────────────────────────────────────────────────
+
+/**
+ * Produce entries for the top N ready briefs from KB.
+ */
+export async function produceBatch({ limit = 5, send }) {
+  const briefs = await getReadyBriefs(limit);
+  if (briefs.length === 0) {
+    send('pipeline_stage', { stage: 'batch', message: 'No ready briefs in KB.' });
+    return [];
+  }
+
+  send('pipeline_stage', { stage: 'batch', message: `Processing ${briefs.length} ready briefs...` });
+  const results = [];
+
+  for (const brief of briefs) {
+    const hydrated = await hydrateBrief(brief.id);
+    if (!hydrated) {
+      results.push({ aborted: true, reason: `Failed to hydrate brief ${brief.id}` });
+      continue;
+    }
+
+    const result = await produceEntry({
+      url: brief.candidate_url,
+      title: hydrated._primary_source?.title || '',
+      source_name: brief.candidate_source || '',
+      send,
+    });
+    results.push(result);
+  }
+
+  return results;
+}
+
+// ── CLI Entrypoint ──────────────────────────────────────────────────────────
+
+async function cli() {
+  const args = process.argv.slice(2);
+  const send = (type, data) => console.log(`[${type}] ${data.message || JSON.stringify(data)}`);
+
+  if (args.includes('--status')) {
+    const briefs = await getReadyBriefs(50);
+    console.log(`\nReady briefs in KB: ${briefs.length}`);
+    for (const b of briefs) {
+      console.log(`  ${b.id.slice(0, 8)} | ${b.candidate_url?.slice(0, 60)} | sources: ${b.source_count || '?'} | ${b.created_at?.slice(0, 10)}`);
+    }
+    return;
+  }
+
+  if (args.includes('--url')) {
+    const url = args[args.indexOf('--url') + 1];
+    if (!url) { console.error('Usage: --url <url>'); process.exit(1); }
+    console.log(`\nProducing entry for: ${url}\n`);
+    const result = await produceEntry({ url, title: '', source_name: '', send });
+    if (result.aborted) {
+      console.error(`\nAborted: ${result.reason}`);
+      process.exit(1);
+    }
+    console.log(`\nEntry produced: ${result.entry.headline}`);
+    console.log(`Score: ${result.entry._final_score}/100`);
+    console.log(`Fabrication: ${result.entry._fabrication.verdict}`);
+    console.log(`Iterations: ${result.entry._iterations.length}`);
+    console.log(`\nFull entry JSON written to stdout (pipe to file if needed):`);
+    console.log(JSON.stringify(result.entry, null, 2));
+    return;
+  }
+
+  if (args.includes('--top')) {
+    const limit = parseInt(args[args.indexOf('--top') + 1], 10) || 5;
+    console.log(`\nProducing top ${limit} ready briefs...\n`);
+    const results = await produceBatch({ limit, send });
+    console.log(`\nDone. ${results.filter(r => !r.aborted).length}/${results.length} produced.`);
+    return;
+  }
+
+  if (args.includes('--brief')) {
+    const briefId = args[args.indexOf('--brief') + 1];
+    if (!briefId) { console.error('Usage: --brief <uuid>'); process.exit(1); }
+    const hydrated = await hydrateBrief(briefId);
+    if (!hydrated) { console.error(`Brief ${briefId} not found or failed to hydrate.`); process.exit(1); }
+    console.log(`\nProducing from brief ${briefId}...\n`);
+    const result = await produceEntry({
+      url: hydrated.candidate_url,
+      title: hydrated._primary_source?.title || '',
+      source_name: hydrated.candidate_source || '',
+      send,
+    });
+    if (result.aborted) {
+      console.error(`\nAborted: ${result.reason}`);
+      process.exit(1);
+    }
+    console.log(`\nEntry produced: ${result.entry.headline}`);
+    console.log(JSON.stringify(result.entry, null, 2));
+    return;
+  }
+
+  console.log(`
+Content Producer CLI — v2 Pipeline
+
+Usage:
+  node --env-file=.env agents/content-producer.js --url <url>     Research + produce single URL
+  node --env-file=.env agents/content-producer.js --brief <uuid>  Resume from existing brief
+  node --env-file=.env agents/content-producer.js --top <N>       Produce top N ready briefs
+  node --env-file=.env agents/content-producer.js --status        Show ready briefs
+`);
+}
+
+// Run CLI if executed directly
+const isMain = process.argv[1]?.endsWith('content-producer.js');
+if (isMain) {
+  cli().catch(err => { console.error('Fatal:', err.message); process.exit(1); });
 }
