@@ -428,6 +428,39 @@ export async function hydrateBrief(briefId) {
   }
 }
 
+// ── Pipeline Events (per-agent observability — Principle 8) ──────────────────
+
+export async function logPipelineEvent({
+  run_id = null, agent, entry_id = null, prompt_version = null,
+  model = null, tokens_in = null, tokens_out = null,
+  latency_ms = null, score = null, error = null,
+}) {
+  try {
+    const supabase = getSupabaseClient();
+    if (!supabase) return null;
+
+    const { data, error: dbError } = await supabase
+      .from('pipeline_events')
+      .insert({
+        run_id, agent, entry_id, prompt_version, model,
+        tokens_in, tokens_out, latency_ms, score, error,
+      })
+      .select('id')
+      .single();
+
+    if (dbError) {
+      // Table might not exist yet — warn once, don't crash
+      if (dbError.code === '42P01') return null;
+      console.warn('[kb-client] logPipelineEvent error:', dbError.message);
+      return null;
+    }
+    return data.id;
+  } catch (err) {
+    console.warn('[kb-client] logPipelineEvent exception:', err.message);
+    return null;
+  }
+}
+
 // ── Pipeline Runs ────────────────────────────────────────────────────────────
 
 export async function logPipelineRun({

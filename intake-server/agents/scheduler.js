@@ -25,6 +25,7 @@ import { addPending, addBlocked, isBlocked, isTopicSuppressed, writePipelineStat
 import { commitInboxState } from './publisher.js';
 import { sendDigest } from './notifier.js';
 import { INTEL_DIR, THRESHOLDS } from './config.js';
+import { logPipelineRun, logPipelineEvent } from './kb-client.js';
 
 // ── Review threshold ───────────────────────────────────────────────────────────
 // PUBLISH ≥ 75  |  REVIEW 60–74  |  BLOCK < 60
@@ -81,6 +82,12 @@ export async function runDailyPipeline() {
   const startedAt = new Date().toISOString();
   console.log(`[scheduler] Daily pipeline started at ${startedAt}`);
 
+  // PRINCIPLE 8: Log pipeline run to KB
+  const runId = await logPipelineRun({
+    tier: 'tier1_auto',
+    started_at: startedAt,
+  });
+
   const published    = []; // always empty — nothing auto-publishes
   const pending      = [];
   const blocked      = [];
@@ -133,6 +140,7 @@ export async function runDailyPipeline() {
       const { send } = makeSink();
 
       // Step 1: fetch + structure
+      let intakeStart = Date.now();
       const intakeResult = await processUrl({
         url,
         source_name: candidate.source_name || 'Unknown',
@@ -140,9 +148,11 @@ export async function runDailyPipeline() {
       });
 
       if (!intakeResult) {
+        await logPipelineEvent({ run_id: runId, agent: 'intake', latency_ms: Date.now() - intakeStart, error: 'processUrl returned null' });
         errors.push({ url, stage: 'intake', message: 'processUrl returned null' });
         continue;
       }
+      await logPipelineEvent({ run_id: runId, agent: 'intake', entry_id: intakeResult.entry?.id, latency_ms: Date.now() - intakeStart });
 
       // Topic suppression — company+type rejected 2+ times with same reason → skip
       const entryCompanyId = (intakeResult.entry.company || '').toLowerCase().replace(/[^a-z0-9-]/g, '-');
@@ -213,12 +223,14 @@ export async function runDailyPipeline() {
       }
 
       // Step 2b: governance verification (6k→12k window)
+      const govStart = Date.now();
       const { send: govSend } = makeSink();
       const govResult = await verify({
         entry: intakeResult.entry,
         sourceMarkdown: intakeResult.markdown,
         send: govSend,
       });
+      await logPipelineEvent({ run_id: runId, agent: 'governance', entry_id: intakeResult.entry.id, latency_ms: Date.now() - govStart, score: { verdict: govResult.verdict, confidence: govResult.confidence } });
 
       const govAudit = {
         verdict:            govResult.verdict,
@@ -235,6 +247,7 @@ export async function runDailyPipeline() {
       intakeResult.entry._governance = govAudit;
 
       // Step 2c: fabrication-strict check (12k window, dedicated pass)
+      const fabStart = Date.now();
       let fabricationResult = { verdict: 'SUSPECT', issues: ['Not checked'], checked_at: new Date().toISOString() };
       try {
         fabricationResult = await checkFabrication({
@@ -242,8 +255,10 @@ export async function runDailyPipeline() {
           sourceMarkdown: intakeResult.markdown,
         });
         console.log(`[scheduler] Fabrication check: ${fabricationResult.verdict} for ${intakeResult.entry.id}`);
+        await logPipelineEvent({ run_id: runId, agent: 'fabrication', entry_id: intakeResult.entry.id, latency_ms: Date.now() - fabStart, score: { verdict: fabricationResult.verdict } });
       } catch (fabErr) {
         console.error(`[scheduler] Fabrication check failed: ${fabErr.message}`);
+        await logPipelineEvent({ run_id: runId, agent: 'fabrication', entry_id: intakeResult.entry.id, latency_ms: Date.now() - fabStart, error: fabErr.message });
       }
       intakeResult.entry._fabrication = fabricationResult;
 
@@ -258,11 +273,13 @@ export async function runDailyPipeline() {
       }
 
       // Step 3: score
+      const scoreStart = Date.now();
       const scored = await scoreEntry({
         entry:      intakeResult.entry,
         governance: govAudit,
         sourceUrl:  url,
       });
+      await logPipelineEvent({ run_id: runId, agent: 'scorer', entry_id: intakeResult.entry.id, latency_ms: Date.now() - scoreStart, score: { score: scored.score, action: scored.action } });
 
       // Override action with raised REVIEW threshold (65 instead of default 50)
       if (scored.action !== 'BLOCK') {
@@ -387,6 +404,19 @@ export async function runDailyPipeline() {
   } catch (err) {
     console.error('[scheduler] Failed to send digest:', err.message);
     errors.push({ stage: 'email', message: err.message });
+  }
+
+  // PRINCIPLE 8: Update pipeline run with final counts
+  if (runId) {
+    const supabase = (await import('./kb-client.js')).getSupabaseClient();
+    if (supabase) {
+      await supabase.from('pipeline_runs').update({
+        completed_at: new Date().toISOString(),
+        candidates_found: top15.length,
+        entries_produced: pending.length,
+        errors: errors.slice(0, 20),
+      }).eq('id', runId);
+    }
   }
 
   console.log(`[scheduler] Done. published=${published.length} pending=${pending.length} blocked=${blocked.length} new_cos=${newCompanies.length} tl=${tlCandidates.length} errors=${errors.length}`);

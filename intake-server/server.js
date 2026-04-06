@@ -28,6 +28,7 @@ import {
   checkLandscapeImpact, getLandscapeSuggestions,
   applyLandscapeSuggestion, dismissLandscapeSuggestion,
 } from './agents/landscape-trigger.js';
+import { logDecision, storePublishedEntry } from './agents/kb-client.js';
 import { runLandscapeSweep, getStaleList } from './agents/landscape-sweep.js';
 import { publishTlEntry } from './agents/tl-publisher.js';
 import { runTLDiscover, getTLCandidates, dismissTLCandidate } from './agents/tl-discover.js';
@@ -511,9 +512,35 @@ app.post('/api/inbox/:id/approve-and-publish', (req, res) => {
     send('error', { message: `Published but git push failed: ${gitErr.message}` });
   }
 
-  // 5. Non-blocking landscape impact check — runs after response is sent
+  // 5. PRINCIPLE 9: Log editorial decision + store published entry in KB
   const publishedEntry = { ...entry, id: entryId };
-  setImmediate(() => checkLandscapeImpact(publishedEntry).catch(() => {}));
+  setImmediate(async () => {
+    try {
+      await logDecision({
+        entry_id: entryId,
+        decision: 'approve',
+        draft_snapshot: { headline: entry.headline, summary: entry.summary, the_so_what: entry.the_so_what, key_stat: entry.key_stat },
+        evaluator_score: entry._evaluator || null,
+        pipeline_score: entry._score || entry.score || null,
+        company_id: entry.company || null,
+        capability: entry.capability_evidence?.capability || null,
+        entry_type: entry.type || 'intelligence',
+        editor_notes: edits.headline || edits.the_so_what ? 'Inline edits applied' : null,
+      });
+      await storePublishedEntry({
+        id: entryId,
+        headline: entry.headline,
+        summary: entry.summary,
+        the_so_what: entry.the_so_what,
+        key_stat: entry.key_stat ? `${entry.key_stat.number} — ${entry.key_stat.label}` : null,
+        company_id: entry.company || null,
+        capability: entry.capability_evidence?.capability || null,
+        source_url: entry.source_url,
+        source_urls: (entry.sources || []).map(s => s.url),
+      });
+    } catch (_) {}
+    checkLandscapeImpact(publishedEntry).catch(() => {});
+  });
 
   done();
 });
@@ -556,6 +583,23 @@ app.post('/api/inbox/:id/reject-with-reason', (req, res) => {
       console.log(`[inbox] Suppressed topic ${companyId}:${entryType} for 60 days (${reason})`);
     }
   }
+
+  // PRINCIPLE 9: Log editorial rejection to KB
+  setImmediate(async () => {
+    try {
+      await logDecision({
+        entry_id: req.params.id,
+        decision: 'reject',
+        reason,
+        editor_notes: notes || null,
+        draft_snapshot: { headline: item.entry.headline, summary: item.entry.summary, the_so_what: item.entry.the_so_what, key_stat: item.entry.key_stat },
+        pipeline_score: item.score ?? null,
+        company_id: companyId || null,
+        capability: item.entry.capability_evidence?.capability || null,
+        entry_type: entryType || null,
+      });
+    } catch (_) {}
+  });
 
   rejectPending(req.params.id);
   res.json({ ok: true });
