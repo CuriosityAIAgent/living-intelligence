@@ -14,6 +14,7 @@ export default function JoinPage() {
 function JoinContent() {
   const searchParams = useSearchParams()
   const coupon = searchParams.get('coupon') || ''
+  const tier = searchParams.get('tier') || 'standard'
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
 
@@ -25,7 +26,7 @@ function JoinContent() {
       const res = await fetch('/api/checkout', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ coupon }),
+        body: JSON.stringify({ coupon, tier }),
       })
 
       const data = await res.json()

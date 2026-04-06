@@ -5,10 +5,12 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!)
 
 export async function POST(request: Request) {
   try {
-    const { coupon, priceId } = await request.json()
+    const { coupon, tier } = await request.json()
 
-    // Default to standard price if not specified
-    const selectedPrice = priceId || process.env.STRIPE_PRICE_STANDARD
+    // Map tier to price ID
+    const selectedPrice = tier === 'founding'
+      ? process.env.STRIPE_PRICE_FOUNDING
+      : process.env.STRIPE_PRICE_STANDARD
 
     const sessionParams: Record<string, unknown> = {
       mode: 'subscription',
