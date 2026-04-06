@@ -9,6 +9,7 @@
  */
 
 import { createClient } from '@supabase/supabase-js';
+import { createHash } from 'crypto';
 
 // ── Singleton ────────────────────────────────────────────────────────────────
 
@@ -41,6 +42,8 @@ export async function storeSource({
     const supabase = getSupabaseClient();
     if (!supabase) return null;
 
+    const content_hash = content_md ? createHash('md5').update(content_md).digest('hex') : null;
+
     const { data, error } = await supabase
       .from('sources')
       .insert({
@@ -48,6 +51,7 @@ export async function storeSource({
         company_id, vertical_id, topics, capability,
         published_at, fetched_by, is_thin, is_paywalled,
         word_count: word_count || (content_md ? content_md.split(/\s+/).length : 0),
+        content_hash,
       })
       .select('id')
       .single();
@@ -349,11 +353,21 @@ export async function upsertSource({
     // Check if source already exists
     const existing = await getSourceByUrl(url);
     if (existing) {
+      const newHash = content_md ? createHash('md5').update(content_md).digest('hex') : null;
       // If existing is thin and we have full content, upgrade it
       if (existing.is_thin && content_md && content_md.length > 500) {
         await updateSource(existing.id, {
           content_md,
+          content_hash: newHash,
           is_thin: false,
+          word_count: word_count || content_md.split(/\s+/).length,
+          fetched_by,
+        });
+      } else if (newHash && existing.content_hash && newHash !== existing.content_hash) {
+        // Content changed since last fetch — update (Principle 7: detect changes)
+        await updateSource(existing.id, {
+          content_md,
+          content_hash: newHash,
           word_count: word_count || content_md.split(/\s+/).length,
           fetched_by,
         });

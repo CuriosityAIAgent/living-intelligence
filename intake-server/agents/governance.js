@@ -17,6 +17,7 @@
 
 import Anthropic from '@anthropic-ai/sdk';
 import { SOURCE_WINDOW, NEVER_PAYWALLED } from './config.js';
+import { build as buildGovernancePrompt, VERSION as GOV_PROMPT_VERSION } from '../prompts/governance-v1.js';
 
 const client = new Anthropic();
 
@@ -56,51 +57,13 @@ export async function verify({ entry, sourceMarkdown, send }) {
     ? `${entry.key_stat.number} — ${entry.key_stat.label}`
     : 'none';
 
-  const prompt = `You are a claim-verification agent for a premium AI in wealth management publication.
-
-Your ONLY job: determine whether each claim in the GENERATED ENTRY is supported by the SOURCE ARTICLE.
-
-This is NOT a fabrication check — do not try to detect exact text matches. You are checking logical support: does the source article, taken as a whole, support what the entry claims?
-
-GENERATED ENTRY (what we plan to publish):
----
-Headline: ${entry.headline}
-Summary: ${entry.summary}
-Key stat: ${keyStat}
----
-
-NOTE: The entry also has a "the_so_what" editorial field, but DO NOT verify it — it is intentional editorial analysis and interpretation, not a factual claim from the source. Only verify the headline, summary, and key stat.
-
-SOURCE ARTICLE (ground truth — first ${SOURCE_WINDOW.toLocaleString()} chars):
----
-${(sourceMarkdown || '').slice(0, SOURCE_WINDOW)}
----
-
-For each distinct factual claim in the entry, categorise it as:
-- verified_claim: the source clearly supports this (exact or paraphrased)
-- unverified_claim: the source does not explicitly state this, but does not contradict it either
-- fabricated_claim: the source DIRECTLY CONTRADICTS this (e.g. entry says "raised $50M" but source says "$30M"; entry attributes a quote to the wrong person; entry states the wrong company name)
-
-Important: "fabricated_claim" means CONTRADICTED, not merely absent. If the source is thin or paywalled and a claim simply cannot be found, that is an unverified_claim, not fabricated. Reserve fabricated_claim for direct contradictions only.
-
-Return a JSON object in exactly this format:
-{
-  "verdict": "PASS" | "REVIEW" | "FAIL",
-  "confidence": 0-100,
-  "verified_claims": ["claims clearly supported by source"],
-  "unverified_claims": ["claims not found but not contradicted — may be in paywalled section"],
-  "fabricated_claims": ["claims that DIRECTLY CONTRADICT the source"],
-  "notes": "One sentence explaining your verdict",
-  "paywall_caveat": true | false
-}
-
-Verdict rules:
-- PASS: All claims supported. No contradictions. Minor paraphrasing is fine.
-- REVIEW: 1-2 claims unverified (source thin or paywalled). No contradictions.
-- FAIL: Any claim is directly contradicted by the source — wrong number, wrong name, wrong direction.
-- Set paywall_caveat: true if the source appears paywalled or truncated (< 500 meaningful words).
-
-Return only valid JSON. No explanation outside the JSON.`;
+  const prompt = buildGovernancePrompt({
+    headline: entry.headline,
+    summary: entry.summary,
+    keyStat,
+    sourceMarkdown,
+    sourceWindow: SOURCE_WINDOW,
+  });
 
   let raw;
   try {
