@@ -19,7 +19,7 @@ export default function LandingPage() {
       {/* ─── STICKY REQUEST ACCESS CTA ─── */}
       <div className="fixed bottom-6 right-6 z-50 hidden md:block">
         <a
-          href="/join"
+          href="/register?tier=founding"
           className="bg-[#990F3D] hover:bg-[#7a0c31] text-white text-[13px] font-bold px-6 py-3 rounded-full shadow-lg transition-colors no-underline flex items-center gap-2"
         >
           Request access <span className="text-[16px]">&rarr;</span>
@@ -549,14 +549,12 @@ export default function LandingPage() {
             A consulting firm charges $75,000–$150,000 for a competitive landscape that&apos;s stale by delivery. Analyst subscriptions start at $25,000 a year and bury you in volume without editorial judgement. We deliver consulting-grade intelligence — continuously updated, multi-source verified — for a fraction of either.
           </p>
 
-          <div className="grid md:grid-cols-2 gap-6 max-w-2xl">
-            {/* Founding Member */}
+          <div className="max-w-md">
             <div className="border border-gray-200 rounded-lg p-8 relative bg-white">
               <span className="absolute top-4 right-4 text-[10px] font-bold uppercase tracking-wider bg-amber-100 text-amber-800 px-2 py-0.5 rounded-sm">
-                First 50 firms
+                Founding Member
               </span>
-              <p className="text-[11px] uppercase tracking-widest text-gray-400 mb-5">Founding Member</p>
-              <div className="mb-2">
+              <div className="mb-2 mt-2">
                 <span className="text-4xl font-extrabold text-gray-900">$4,500</span>
                 <span className="text-gray-400 text-sm ml-1.5">/ year</span>
               </div>
@@ -568,7 +566,6 @@ export default function LandingPage() {
                   'Full intelligence + landscape access',
                   'Multi-source verified entries',
                   'Thought leadership library',
-                  'Founding Member Advisory Board status',
                 ].map((f) => (
                   <li key={f} className="flex items-start gap-2 text-[13px] text-gray-600">
                     <span className="text-green-500 mt-0.5">&#x2713;</span> {f}
@@ -577,42 +574,15 @@ export default function LandingPage() {
               </ul>
 
               <a
-                href="/join?tier=founding"
+                href="/register?tier=founding"
                 className="block text-center bg-[#990F3D] hover:bg-[#7a0c31] text-white text-[14px] font-bold py-3.5 rounded transition-colors no-underline"
               >
                 Request access
               </a>
-            </div>
 
-            {/* Standard */}
-            <div className="border border-gray-200 rounded-lg p-8 relative bg-white">
-              <p className="text-[11px] uppercase tracking-widest text-gray-400 mb-5 mt-5">Standard</p>
-              <div className="mb-2">
-                <span className="text-4xl font-extrabold text-gray-900">$5,000</span>
-                <span className="text-gray-400 text-sm ml-1.5">/ year</span>
-              </div>
-              <p className="text-[13px] text-gray-500 mb-6">Annual contract. Firm license.</p>
-
-              <ul className="space-y-2 mb-8">
-                {[
-                  'Up to 5 users per firm',
-                  'Full intelligence + landscape access',
-                  'Multi-source verified entries',
-                  'Thought leadership library',
-                  'Standard support',
-                ].map((f) => (
-                  <li key={f} className="flex items-start gap-2 text-[13px] text-gray-600">
-                    <span className="text-green-500 mt-0.5">&#x2713;</span> {f}
-                  </li>
-                ))}
-              </ul>
-
-              <a
-                href="/join?tier=standard"
-                className="block text-center bg-gray-800 hover:bg-gray-900 text-white text-[14px] font-bold py-3.5 rounded transition-colors no-underline"
-              >
-                Request access
-              </a>
+              <p className="text-[12px] text-gray-400 mt-4 text-center">
+                Available to the first 50 firms. Standard rate of $5,000/year applies after.
+              </p>
             </div>
           </div>
 
@@ -630,7 +600,7 @@ export default function LandingPage() {
             {STATS.entries} verified developments. {STATS.firms} firms tracked. {STATS.capabilities} capability dimensions. Consulting-grade editorial standards. New intelligence published as it happens. Every source linked, every claim verified.
           </p>
           <a
-            href="/join"
+            href="/register?tier=founding"
             className="inline-block bg-[#990F3D] hover:bg-[#7a0c31] text-white text-[15px] font-bold px-8 py-4 rounded transition-colors no-underline mb-10"
           >
             Request access

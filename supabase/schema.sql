@@ -348,17 +348,19 @@ BEGIN
   LIMIT 1;
 
   -- Create user profile
-  INSERT INTO user_profiles (id, email, full_name, org_id, role)
+  INSERT INTO user_profiles (id, email, full_name, company, org_id, role)
   VALUES (
     NEW.id,
     v_email,
     COALESCE(NEW.raw_user_meta_data->>'full_name', NEW.raw_user_meta_data->>'name'),
+    NEW.raw_user_meta_data->>'company',
     v_org_id,
     CASE WHEN v_org_id IS NOT NULL THEN 'member' ELSE NULL END
   )
   ON CONFLICT (id) DO UPDATE SET
     email = EXCLUDED.email,
     full_name = COALESCE(EXCLUDED.full_name, user_profiles.full_name),
+    company = COALESCE(EXCLUDED.company, user_profiles.company),
     org_id = COALESCE(user_profiles.org_id, EXCLUDED.org_id);
 
   -- Clean up pending invite
