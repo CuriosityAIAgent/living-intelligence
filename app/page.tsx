@@ -26,27 +26,59 @@ export default function LandingPage() {
         </a>
       </div>
 
-      {/* ─── STICKY NAV — clean, minimal ─── */}
-      <nav className="sticky top-0 z-50 bg-[#141420] border-b border-[#2A2A3E]">
-        <div className="max-w-5xl mx-auto px-6 flex items-center justify-between py-3">
-          <a href="/" className="text-[12px] font-extrabold uppercase tracking-[0.2em] text-white no-underline">Living Intelligence</a>
-          <a href="/login" className="text-[12px] text-[#CCCCDD] hover:text-white transition-colors no-underline tracking-wider">Sign in</a>
+      {/* ─── STICKY NAV — FT/Bloomberg style ─── */}
+      <nav className="sticky top-0 z-50">
+        {/* Masthead: brand + descriptor + sign in */}
+        <div className="bg-[#1C1C2E] border-b border-[#2A2A3E]">
+          <div className="max-w-5xl mx-auto px-6 flex items-center justify-between py-4">
+            <a href="/" className="text-[20px] md:text-[24px] font-extrabold uppercase tracking-[0.12em] text-white no-underline">
+              Living Intelligence
+            </a>
+            <div className="flex items-center gap-5">
+              <span className="text-[15px] md:text-[17px] font-bold text-white tracking-wide">AI in Wealth Management</span>
+              <span className="text-[#555] text-[18px] font-light hidden md:inline">|</span>
+              <a
+                href="/login"
+                className="text-[14px] text-[#CCCCDD] hover:text-white transition-colors no-underline"
+              >
+                Sign in
+              </a>
+            </div>
+          </div>
+        </div>
+        {/* Section nav — scrollable on mobile */}
+        <div className="bg-[#141420] border-b border-[#2A2A3E]">
+          <div className="max-w-5xl mx-auto px-6 flex items-center gap-5 md:gap-7 py-2.5 overflow-x-auto" style={{ scrollbarWidth: 'none' }}>
+            {[
+              { label: 'Why Now', href: '#challenge' },
+              { label: 'How It Works', href: '#how' },
+              { label: 'Intelligence', href: '#sample' },
+              { label: 'Landscape', href: '#coverage' },
+              { label: 'Thought Leadership', href: '#thought-leadership' },
+              { label: 'Pricing', href: '#pricing' },
+            ].map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                className="text-[13px] md:text-[14px] text-[#B0B0C8] hover:text-white transition-colors no-underline tracking-wide whitespace-nowrap"
+              >
+                {link.label}
+              </a>
+            ))}
+          </div>
         </div>
       </nav>
 
       {/* ─── SECTION 1: HERO ─── */}
       <section className="bg-[#1C1C2E]">
-        <div className="max-w-5xl mx-auto px-6 pt-16 pb-20 md:pt-24 md:pb-28">
+        <div className="max-w-5xl mx-auto px-6 pt-10 pb-10 md:pt-14 md:pb-14 text-center">
 
           {/* Headline block */}
-          <div className="max-w-3xl">
+          <div className="max-w-3xl mx-auto">
             <RotatingHeadline />
-            <p className="text-[17px] md:text-[19px] text-[#9999BB] leading-relaxed mb-10 max-w-2xl">
-              AI is redrawing the competitive map in wealth management. The firms that see it first will move first. We track every development — daily, verified, consulting-grade — so your leadership team is never the last to know.
-            </p>
             <a
               href="#sample"
-              className="inline-block bg-[#990F3D] hover:bg-[#7a0c31] text-white text-[15px] font-bold px-8 py-4 rounded transition-colors no-underline"
+              className="inline-block bg-[#990F3D] hover:bg-[#7a0c31] text-white text-[15px] font-bold px-8 py-4 rounded transition-colors no-underline mt-4"
             >
               View sample intelligence
             </a>
@@ -55,7 +87,7 @@ export default function LandingPage() {
 
         {/* Stats strip */}
         <div className="border-t border-[#2A2A3E]">
-          <div className="max-w-5xl mx-auto px-6 py-5 flex flex-wrap gap-x-8 gap-y-3">
+          <div className="max-w-5xl mx-auto px-6 py-5 flex flex-wrap justify-center gap-x-10 gap-y-3">
             {[
               { n: STATS.firms, label: 'Firms Tracked' },
               { n: STATS.capabilities, label: 'AI Capability Dimensions' },
@@ -72,7 +104,7 @@ export default function LandingPage() {
       </section>
 
       {/* ─── SECTION 2: THE HOOK ─── */}
-      <section id="challenge" className="py-16 md:py-20 bg-[#FDF8F2] scroll-mt-12">
+      <section id="challenge" className="py-16 md:py-20 bg-[#FDF8F2] scroll-mt-24">
         <div className="max-w-5xl mx-auto px-6">
           <div className="space-y-5 text-[17px] text-gray-700 leading-relaxed max-w-3xl">
             <p className="text-[22px] md:text-[26px] font-extrabold text-gray-900 leading-snug">
@@ -92,7 +124,7 @@ export default function LandingPage() {
       </section>
 
       {/* ─── SECTION 3: HOW IT WORKS — Pipeline ─── */}
-      <section id="how" className="py-16 md:py-20 bg-white border-t border-gray-200 scroll-mt-12">
+      <section id="how" className="py-16 md:py-20 bg-white border-t border-gray-200 scroll-mt-24">
         <div className="max-w-5xl mx-auto px-6">
           <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#990F3D] mb-2">
             How it works
@@ -195,7 +227,7 @@ export default function LandingPage() {
       </section>
 
       {/* ─── SECTION 5: SAMPLE INTELLIGENCE ─── */}
-      <section id="sample" className="py-16 md:py-20 bg-white border-t border-gray-200">
+      <section id="sample" className="py-16 md:py-20 bg-white border-t border-gray-200 scroll-mt-24">
         <div className="max-w-5xl mx-auto px-6">
           <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#990F3D] mb-2">
             Intelligence
@@ -279,7 +311,7 @@ export default function LandingPage() {
       </section>
 
       {/* ─── SECTION 6: COVERAGE ─── */}
-      <section id="coverage" className="py-16 md:py-20 bg-[#FDF8F2] border-t border-gray-200 scroll-mt-12">
+      <section id="coverage" className="py-16 md:py-20 bg-[#FDF8F2] border-t border-gray-200 scroll-mt-24">
         <div className="max-w-5xl mx-auto px-6">
           <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#990F3D] mb-2">
             Landscape
@@ -459,7 +491,7 @@ export default function LandingPage() {
       </section>
 
       {/* ─── SECTION 6b: THOUGHT LEADERSHIP ─── */}
-      <section id="thought-leadership" className="py-16 md:py-20 bg-white border-t border-gray-200 scroll-mt-12">
+      <section id="thought-leadership" className="py-16 md:py-20 bg-white border-t border-gray-200 scroll-mt-24">
         <div className="max-w-5xl mx-auto px-6">
           <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#990F3D] mb-2">
             Thought leadership
@@ -523,7 +555,7 @@ export default function LandingPage() {
       </section>
 
       {/* ─── SECTION 8: PRICING ─── */}
-      <section id="pricing" className="py-16 md:py-20 bg-[#FDF8F2] border-t border-gray-200">
+      <section id="pricing" className="py-16 md:py-20 bg-[#FDF8F2] border-t border-gray-200 scroll-mt-24">
         <div className="max-w-5xl mx-auto px-6">
           <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#990F3D] mb-2">
             Pricing

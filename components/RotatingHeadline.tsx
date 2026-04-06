@@ -5,8 +5,8 @@ import { useState, useEffect } from 'react';
 const HEADLINES = [
   'Your competitors are deploying AI at scale. Are you seeing it in time?',
   'The firms moving fastest on AI will absorb the clients of those that don\u2019t.',
-  'The intelligence your leadership team needs — before the board asks for it.',
-  'What took a consulting firm six months, we track continuously.',
+  'A hundred AI announcements a week. Which ones are real, and which ones matter to your firm?',
+  'Every week you\u2019re not tracking this, your competitors are pulling ahead.',
 ];
 
 export default function RotatingHeadline() {
@@ -25,11 +25,13 @@ export default function RotatingHeadline() {
   }, []);
 
   return (
-    <h1
-      className="text-3xl md:text-[48px] font-extrabold text-white leading-[1.12] mb-6 min-h-[120px] md:min-h-[140px] transition-opacity duration-500"
-      style={{ opacity: visible ? 1 : 0 }}
-    >
-      {HEADLINES[index]}
-    </h1>
+    <div className="h-[110px] md:h-[165px] mb-4 flex items-start justify-center">
+      <h1
+        className="text-3xl md:text-[48px] font-extrabold text-white leading-[1.12] transition-opacity duration-500"
+        style={{ opacity: visible ? 1 : 0 }}
+      >
+        {HEADLINES[index]}
+      </h1>
+    </div>
   );
 }
