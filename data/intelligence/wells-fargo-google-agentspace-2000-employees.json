@@ -1,8 +1,8 @@
 {
   "id": "wells-fargo-google-agentspace-2000-employees",
   "type": "partnership",
-  "headline": "Wells Fargo becomes early adopter of Google Agentspace with 2,000+ employees already using agentic AI across banking and investment divisions",
-  "the_so_what": "Wells Fargo deploying agentic AI — not just generative AI — with AI agents already handling FX post-trade inquiry triage in Corporate & Investment Banking marks the shift from AI that answers questions to AI that executes workflows autonomously, the same architectural transition that separated early web portals from modern SaaS platforms.",
+  "headline": "Wells Fargo Adopts Google Agentspace for Agentic AI With 2,000 Employees",
+  "the_so_what": "Wells Fargo choosing Google Agentspace for agentic AI — where AI agents take actions across systems, not just answer questions — signals the shift from generative AI (content production) to agentic AI (workflow execution). JPMorgan and Morgan Stanley built custom solutions. Wells Fargo is betting on a platform partner, trading customisation for speed. At 2,000 employees initially, this is a pilot — but the FX post-trade triage use case in CIB suggests the bank is targeting operational complexity, not just advisor productivity.",
   "company": "wells-fargo",
   "company_name": "Wells Fargo",
   "date": "2025-08-05",
@@ -48,5 +48,66 @@
     "human_approved": true,
     "approved_at": "2026-03-23T00:00:00.000Z"
   },
-  "published_at": "2025-08-05T00:00:00.000Z"
+  "published_at": "2025-08-05T00:00:00.000Z",
+  "_final_score": 85,
+  "_research": {
+    "entities": {
+      "company_name": "Wells Fargo",
+      "capability_area": "advisor_productivity"
+    },
+    "source_count": 1,
+    "landscape_context": {
+      "is_tracked": true
+    },
+    "confidence": "high",
+    "researched_at": "2026-04-03T20:00:09.284Z"
+  },
+  "_fabrication": {
+    "verdict": "CLEAN",
+    "claims_checked": 8,
+    "claims_verified": 8,
+    "claims_unverified": 0,
+    "claims_fabricated": 0,
+    "details": [],
+    "checked_at": "2026-04-03T20:00:09.284Z"
+  },
+  "_iterations": [
+    {
+      "version": 1,
+      "evaluation": {
+        "overall": "PASS",
+        "quality_score": 9
+      },
+      "fabrication_verdict": "CLEAN"
+    }
+  ],
+  "_editor_notes": [],
+  "sources": [
+    {
+      "name": "Wells Fargo Newsroom",
+      "url": "https://newsroom.wf.com/news-releases/news-details/2025/Wells-Fargo-announces-expansion-of-strategic-relationship-with-Google-Cloud/default.aspx",
+      "type": "primary"
+    },
+    {
+      "name": "Google Cloud Blog",
+      "url": "https://cloud.google.com/blog/topics/financial-services/wells-fargo-agentic-ai-agentspace-empowering-workers",
+      "type": "primary"
+    },
+    {
+      "name": "American Banker",
+      "url": "https://www.americanbanker.com/news/wells-fargo-plans-to-unleash-googles-agentic-ai-bank-wide",
+      "type": "coverage"
+    },
+    {
+      "name": "PYMNTS",
+      "url": "https://www.pymnts.com/news/artificial-intelligence/2025/wells-fargo-deploys-ai-agents-business-wide/",
+      "type": "coverage"
+    },
+    {
+      "name": "Banking Dive",
+      "url": "https://www.bankingdive.com/news/wells-fargo-google-cloud-agentic-AI/757057/",
+      "type": "coverage"
+    }
+  ],
+  "source_count": 5
 }

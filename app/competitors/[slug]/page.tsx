@@ -9,17 +9,19 @@ export async function generateStaticParams() {
 }
 
 const MATURITY_BORDER: Record<string, string> = {
-  scaled:    'border-l-green-500',
-  deployed:  'border-l-blue-500',
-  piloting:  'border-l-orange-400',
-  announced: 'border-l-yellow-400',
+  scaled:      'border-l-green-500',
+  deployed:    'border-l-blue-500',
+  piloting:    'border-l-orange-400',
+  announced:   'border-l-yellow-400',
+  no_activity: 'border-l-gray-300',
 };
 
 const MATURITY_BADGE: Record<string, string> = {
-  scaled:    'text-green-700 bg-green-50 border-green-200',
-  deployed:  'text-blue-700 bg-blue-50 border-blue-200',
-  piloting:  'text-orange-700 bg-orange-50 border-orange-200',
-  announced: 'text-yellow-700 bg-yellow-50 border-yellow-200',
+  scaled:      'text-green-700 bg-green-50 border-green-200',
+  deployed:    'text-blue-700 bg-blue-50 border-blue-200',
+  piloting:    'text-orange-700 bg-orange-50 border-orange-200',
+  announced:   'text-yellow-700 bg-yellow-50 border-yellow-200',
+  no_activity: 'text-gray-500 bg-gray-50 border-gray-200',
 };
 
 export default async function CompetitorPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -32,9 +34,13 @@ export default async function CompetitorPage({ params }: { params: Promise<{ slu
   const capEntries = capabilities.map(cap => ({
     cap,
     entry: competitor.capabilities[cap.id] || null,
-  })).filter(({ entry }) => entry !== null);
+  })).filter(({ entry }) => entry !== null && entry.maturity !== 'no_activity');
 
-  const noActivityCaps = capabilities.filter(cap => !competitor.capabilities[cap.id]);
+  // Merge: capabilities with no_activity maturity + capabilities with no entry at all
+  const noActivityCaps = capabilities.filter(cap =>
+    !competitor.capabilities[cap.id] ||
+    competitor.capabilities[cap.id]?.maturity === 'no_activity'
+  );
 
   return (
     <div className="min-h-screen">
@@ -50,54 +56,36 @@ export default async function CompetitorPage({ params }: { params: Promise<{ slu
           <span className="text-gray-600">{competitor.name}</span>
         </nav>
 
-        {/* Header card */}
-        <div className="border border-gray-200 rounded p-6 mb-8">
-          <div className="flex items-start justify-between flex-wrap gap-4">
-            <div>
-              <h1 className="text-2xl font-bold text-gray-900 mb-2">{competitor.name}</h1>
-              <div className="flex items-center gap-2 flex-wrap">
-                <span className="text-xs text-gray-500 px-2 py-0.5 bg-gray-100 rounded">
-                  {SEGMENT_LABELS[competitor.segment] || competitor.segment}
-                </span>
-                <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full border uppercase tracking-wide ${MATURITY_BADGE[competitor.overall_maturity] || 'text-gray-500 bg-gray-50 border-gray-200'}`}>
-                  {competitor.overall_maturity}
-                </span>
-                {competitor.regions.map(r => (
-                  <span key={r} className="text-[10px] text-gray-400 uppercase">{r}</span>
-                ))}
-              </div>
-            </div>
-            <div className="text-right">
-              <div className="text-xl font-extrabold text-[#990F3D]">{competitor.headline_metric}</div>
-              <div className="text-xs text-gray-400 mt-0.5">headline metric</div>
-            </div>
-          </div>
+        {/* Company name + segment */}
+        <div className="mb-2">
+          <h1 className="text-2xl font-bold text-gray-900">{competitor.name}</h1>
+          <span className="text-xs text-gray-500">
+            {SEGMENT_LABELS[competitor.segment] || competitor.segment}
+          </span>
+        </div>
 
-          <div className="mt-5 pt-5 border-t border-gray-100">
-            <p className="text-xs text-gray-500 uppercase tracking-wide font-semibold mb-2">AI Strategy</p>
-            <p className="text-sm text-gray-700 leading-relaxed">{competitor.ai_strategy_summary}</p>
-          </div>
+        {/* Headline metric — big, bold, first thing after the name */}
+        <div className="mb-6">
+          <p className="text-xl font-extrabold text-[#990F3D] leading-snug">{competitor.headline_metric}</p>
+        </div>
 
-          <div className="mt-4 pt-4 border-t border-gray-100 grid grid-cols-2 gap-4">
-            <div>
-              <p className="text-xs text-gray-400 mb-1">Headline Initiative</p>
-              <p className="text-sm font-semibold text-gray-800">{competitor.headline_initiative}</p>
-            </div>
-            {competitor.head_of_ai && (
-              <div>
-                <p className="text-xs text-gray-400 mb-1">AI Leadership</p>
-                <p className="text-sm font-semibold text-gray-800">{competitor.head_of_ai.name}</p>
-                <p className="text-xs text-gray-500">{competitor.head_of_ai.title}</p>
-              </div>
-            )}
-          </div>
+        {/* AI Strategy */}
+        <div className="border-l-2 border-[#990F3D] pl-5 mb-8">
+          <p className="text-[11px] font-semibold uppercase tracking-widest text-[#990F3D] mb-3">AI Strategy</p>
+          <p className="text-[15px] text-gray-800 leading-relaxed">{competitor.ai_strategy_summary}</p>
+        </div>
+
+        {/* Headline Initiative */}
+        <div className="border-t border-gray-200 pt-5 mb-8">
+          <p className="text-xs text-gray-400 uppercase tracking-wide mb-1.5">Headline Initiative</p>
+          <p className="text-sm font-semibold text-gray-800">{competitor.headline_initiative}</p>
         </div>
 
         {/* Capabilities */}
         <div className="mb-4">
           <h2 className="text-base font-bold text-gray-900 mb-1">AI Capability Breakdown</h2>
           <p className="text-xs text-gray-400">
-            {capEntries.length} of {capabilities.length} capability areas active · Last updated {competitor.last_updated}
+            {capEntries.length} of {capabilities.length} capability areas with tracked activity · Last updated {competitor.last_updated}
           </p>
         </div>
 
@@ -114,7 +102,7 @@ export default async function CompetitorPage({ params }: { params: Promise<{ slu
                     <h3 className="text-sm font-bold text-gray-900">{entry.headline}</h3>
                   </div>
                   <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full border uppercase tracking-wide flex-shrink-0 ${badgeClass}`}>
-                    {entry.maturity}
+                    {entry.maturity.replace('_', ' ')}
                   </span>
                 </div>
                 <p className="text-sm text-gray-600 leading-relaxed mb-4">{entry.detail}</p>
@@ -125,7 +113,9 @@ export default async function CompetitorPage({ params }: { params: Promise<{ slu
                     <ul className="space-y-1">
                       {entry.evidence.map((e, i) => (
                         <li key={i} className="flex items-start gap-2 text-xs text-gray-600">
-                          <span className="text-green-600 mt-0.5 flex-shrink-0">✓</span>
+                          <span className={`mt-0.5 flex-shrink-0 ${entry.maturity === 'no_activity' ? 'text-gray-400' : 'text-green-600'}`}>
+                            {entry.maturity === 'no_activity' ? '—' : '✓'}
+                          </span>
                           <span>{e}</span>
                         </li>
                       ))}
@@ -154,13 +144,18 @@ export default async function CompetitorPage({ params }: { params: Promise<{ slu
         {noActivityCaps.length > 0 && (
           <div className="border border-gray-100 rounded p-4 mb-8 bg-gray-50">
             <p className="text-xs text-gray-400 uppercase tracking-wide mb-2">No tracked activity in:</p>
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-2 mb-3">
               {noActivityCaps.map(cap => (
                 <span key={cap.id} className="text-xs text-gray-500 bg-white px-3 py-1 rounded border border-gray-200">
                   {cap.label}
                 </span>
               ))}
             </div>
+            <p className="text-xs text-gray-400 leading-relaxed">
+              No publicly disclosed AI capabilities in {noActivityCaps.length === 1
+                ? 'this area'
+                : 'these areas'} based on available sources. Assessments are updated as new evidence emerges.
+            </p>
           </div>
         )}
 

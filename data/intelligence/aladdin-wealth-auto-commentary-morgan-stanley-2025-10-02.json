@@ -11,7 +11,10 @@
   "source_verified": true,
   "image_url": "/logos/blackrock.svg",
   "summary": "Aladdin Wealth, BlackRock's wealth management technology platform, has launched an AI-powered 'Auto Commentary' feature that converts complex portfolio analytics and client investment preferences into concise, personalized narratives for financial advisors. The tool combines Aladdin Wealth's risk analytics, a firm's CIO market outlook, and client portfolio data, using generative AI to assess hundreds of data points and surface the most relevant insights. Morgan Stanley's Portfolio Risk Platform — which integrates BlackRock's Aladdin risk analytics with Morgan Stanley data — will be the first to implement Auto Commentary, beginning in October 2025. The feature is designed to reduce time spent on labor-intensive research so advisors can focus more on client conversations and delivering actionable insights.",
-  "key_stat": null,
+  "key_stat": {
+    "number": "1st",
+    "label": "Morgan Stanley Portfolio Risk Platform is first to deploy Aladdin Wealth Auto Commentary — AI-generated portfolio narratives for advisors (October 2025)"
+  },
   "tags": {
     "capability": "advisor_productivity",
     "region": "us",
@@ -49,5 +52,57 @@
     "approved_at": "2026-03-27T06:05:11.994Z",
     "backfill": true
   },
-  "published_at": "2025-10-02T00:00:00.000Z"
+  "published_at": "2025-10-02T00:00:00.000Z",
+  "_final_score": 72,
+  "_research": {
+    "entities": {
+      "company_name": "BlackRock (Aladdin Wealth)"
+    },
+    "source_count": 1,
+    "confidence": "medium",
+    "researched_at": "2026-04-03T20:01:12.303Z"
+  },
+  "_fabrication": {
+    "verdict": "SUSPECT",
+    "claims_checked": 5,
+    "claims_verified": 4,
+    "claims_unverified": 1,
+    "claims_fabricated": 0,
+    "details": [],
+    "checked_at": "2026-04-03T20:01:12.304Z"
+  },
+  "_iterations": [
+    {
+      "version": 1,
+      "evaluation": {
+        "overall": "PASS",
+        "quality_score": 7
+      },
+      "fabrication_verdict": "SUSPECT"
+    }
+  ],
+  "_editor_notes": [],
+  "sources": [
+    {
+      "name": "BlackRock Aladdin",
+      "url": "https://www.blackrock.com/aladdin/discover/aladdin-wealth-launches-ai-enabled-commentary-tool-at-morgan-stanley",
+      "type": "primary"
+    },
+    {
+      "name": "Business Wire",
+      "url": "https://www.businesswire.com/news/home/20251002577295/en/Aladdin-Wealth-Launches-AI-Enabled-Commentary-Tool-for-Wealth-Advisors-Morgan-Stanleys-Portfolio-Risk-Platform-First-to-Implement",
+      "type": "primary"
+    },
+    {
+      "name": "InvestmentNews",
+      "url": "https://www.investmentnews.com/alternatives/blackrock-debuts-ai-powered-commentary-tool-for-advisors-lands-morgan-stanley-as-first-client/262370",
+      "type": "coverage"
+    },
+    {
+      "name": "ThinkAdvisor",
+      "url": "https://www.thinkadvisor.com/2025/10/03/blackrocks-aladdin-launches-ai-commentary-tool-for-advisors-morgan-stanley-signs-on/",
+      "type": "coverage"
+    }
+  ],
+  "source_count": 4
 }

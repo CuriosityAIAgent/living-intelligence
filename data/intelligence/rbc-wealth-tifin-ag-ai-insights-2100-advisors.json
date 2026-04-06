@@ -1,8 +1,8 @@
 {
   "id": "rbc-wealth-tifin-ag-ai-insights-2100-advisors",
   "type": "product_launch",
-  "headline": "RBC Wealth Management rolls out AI-Powered Insights to all 2,100+ US advisors — detecting clients with money in motion using behavioural AI",
-  "the_so_what": "TIFIN AG's behavioural model — trained on billions of transactions to identify clients most likely to consolidate outside assets — deployed to all 2,100+ RBC US advisors via Salesforce represents the shift from advisor intuition to algorithmic client acquisition, the same pattern that transformed marketing from creative-led to data-led over the past decade.",
+  "headline": "RBC Deploys TIFIN AG Behavioural AI Across 2,100 Advisors",
+  "the_so_what": "TIFIN AG's behavioural model — trained on billions of transactions to detect money-in-motion signals — gives RBC's 2,100 advisors a client acquisition capability that Morgan Stanley and JPMorgan are building internally. The distinction is the data source: Morgan Stanley's AI works from CRM and meeting notes; TIFIN AG works from actual transaction flows. For firms without the engineering resources to build behavioural models, TIFIN AG's partnership model offers a shortcut.",
   "company": "rbc-wealth-management",
   "company_name": "RBC Wealth Management",
   "date": "2024-02-28",
@@ -49,5 +49,66 @@
     "human_approved": true,
     "approved_at": "2026-03-23T00:00:00.000Z"
   },
-  "published_at": "2024-02-28T00:00:00.000Z"
+  "published_at": "2024-02-28T00:00:00.000Z",
+  "_final_score": 85,
+  "_research": {
+    "entities": {
+      "company_name": "RBC Wealth Management",
+      "capability_area": "client_acquisition"
+    },
+    "source_count": 1,
+    "landscape_context": {
+      "is_tracked": true
+    },
+    "confidence": "high",
+    "researched_at": "2026-04-03T20:00:09.285Z"
+  },
+  "_fabrication": {
+    "verdict": "CLEAN",
+    "claims_checked": 8,
+    "claims_verified": 8,
+    "claims_unverified": 0,
+    "claims_fabricated": 0,
+    "details": [],
+    "checked_at": "2026-04-03T20:00:09.285Z"
+  },
+  "_iterations": [
+    {
+      "version": 1,
+      "evaluation": {
+        "overall": "PASS",
+        "quality_score": 9
+      },
+      "fabrication_verdict": "CLEAN"
+    }
+  ],
+  "_editor_notes": [],
+  "sources": [
+    {
+      "name": "PR Newswire",
+      "url": "https://www.prnewswire.com/news-releases/tifin-ag-announces-collaboration-with-rbc-wealth-management-us-to-deepen-advisor-client-relationships-302073511.html",
+      "type": "primary"
+    },
+    {
+      "name": "American Banker",
+      "url": "https://www.americanbanker.com/news/rbc-rolls-out-ai-based-tools-to-financial-advisors",
+      "type": "coverage"
+    },
+    {
+      "name": "Financial Advisor Magazine",
+      "url": "https://www.fa-mag.com/news/rbc-adopts-tifin-ai-wealth-management-tool-77165.html",
+      "type": "coverage"
+    },
+    {
+      "name": "Financial Planning",
+      "url": "https://www.financial-planning.com/news/rbc-turns-to-ai-to-capture-more-of-clients-wallet-share",
+      "type": "coverage"
+    },
+    {
+      "name": "InvestmentNews",
+      "url": "https://www.investmentnews.com/fintech/tifin-ag-bolsters-partnership-with-rbcs-us-wealth-arm/250146",
+      "type": "coverage"
+    }
+  ],
+  "source_count": 5
 }

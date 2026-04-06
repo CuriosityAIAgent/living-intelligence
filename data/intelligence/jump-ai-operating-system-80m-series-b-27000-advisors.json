@@ -1,65 +1,187 @@
 {
   "id": "jump-ai-operating-system-80m-series-b-27000-advisors",
   "type": "funding",
-  "headline": "Jump's AI Operating System Reaches 27,000 Advisors as $80M Series B Signals Category Maturity",
-  "the_so_what": "Scaling from zero to 27,000 advisors in two years — with a team growing from 3 to 200 — and attracting institutional capital from Allianz and TIAA alongside Insight Partners puts Jump on the same growth trajectory that Salesforce followed in CRM: a purpose-built operating system that becomes harder to displace the more deeply it integrates into daily workflows.",
+  "headline": "Jump's AI Meeting Platform Reaches 27,000 Advisors as $80M Series B Brings Total to $105M",
+  "summary": "Jump's AI platform now processes advisor-client meetings end-to-end — prep, transcription, CRM updates, task generation, and compliance documentation — across 27,000 financial advisors, a figure the company states represents approximately 1 in 10 US advisors (per Jump's own press release via Business Wire; the implied denominator of ~270,000 aligns with Cerulli-range estimates of practicing advisors but is not independently sourced here). The company has processed what it describes as 183 continuous years of client meeting content and scaled from 3 to 200 employees in under two years (both figures per Jump's Business Wire announcement). The $80M Series B, led by Insight Partners with strategic participation from Allianz Life Ventures, TIAA Ventures, and Citi Ventures, brings total funding to $105M and embeds Jump into the distribution strategies of major insurance and retirement incumbents — not just the advisor workflow layer. The investor composition — a top-tier software growth fund plus product manufacturers — suggests Jump is being capitalized to become infrastructure between advisors and the firms that supply them, not merely a productivity tool.",
+  "the_so_what": "Jump claims 27,000 advisors versus Zocks' self-reported 5,000+ firms (per Zocks' own marketing materials referenced in our landscape data), a roughly 5x gap in distribution footprint that compounds as Jump layers active workflow execution — CRM writes, email drafting, planning-system actions — that neither Zocks nor Holistiplan have publicly matched. Any wealth management firm running a build-vs-buy evaluation on advisor AI workflow automation now needs to weigh whether a proprietary effort can close a data advantage built on ~10% of US advisor conversations and backed by $105M in capital, or whether partnering with the emerging default platform is the faster path.",
   "company": "jump-ai",
   "company_name": "Jump",
   "date": "2026-02-19",
+  "week": "2026-02-16",
   "source_name": "Business Wire",
   "source_url": "https://www.businesswire.com/news/home/20260219487440/en/Jump-Raises-%2480-Million-Series-B-Led-by-Insight-Partners-to-Expand-AI-Operating-System-for-Financial-Advisors",
-  "source_verified": true,
-  "summary": "Jump has built an AI operating system for financial advisors that has scaled to 27,000 users across financial advisory firms, growing from zero customers to that base in approximately two years while expanding its team from 3 to 200 employees — concrete evidence of rapid deployed adoption. The platform is positioned as an intelligence and action layer for advisory firms, targeting advisor productivity, insight generation, and organic growth. Jump closed an $80M Series B led by Insight Partners, with strategic participation from Allianz Life Ventures and TIAA Ventures — two institutional wealth and insurance players whose involvement signals validation beyond pure venture capital. The funding will be used to accelerate growth and further develop the platform's capabilities for modern advisory firms.",
+  "source_verified": false,
+  "image_url": "/logos/jump-ai.svg",
   "key_stat": {
     "number": "27,000",
-    "label": "financial advisors actively using Jump's AI platform"
+    "label": "financial advisors on Jump's AI platform (per Jump's Business Wire press release)"
   },
   "capability_evidence": {
     "capability": "advisor_productivity",
     "stage": "deployed",
-    "evidence": "Jump's AI operating system is live with 27,000 advisors, scaled from zero customers in approximately two years, with the platform described as powering advisor productivity, insight, and organic growth for financial advisory firms.",
-    "metric": "27,000 advisors deployed"
+    "evidence": "Jump states it processes advisor-client meetings end-to-end across 27,000 advisors, covering prep, notes, CRM updates, tasks, and compliance docs, with 183 continuous years of meeting content processed (Business Wire press release, Feb 2026).",
+    "metric": "27,000 advisors; 183 continuous years of meeting content processed"
   },
   "tags": {
     "capability": "advisor_productivity",
     "region": "us",
     "segment": "advisor_tools",
     "theme": [
-      "advisor_workflow_automation",
-      "ai_operating_system",
-      "advisor_productivity",
-      "fintech_infrastructure"
+      "meeting_automation",
+      "workflow_execution",
+      "series_b_funding",
+      "advisor_ai_infrastructure"
     ]
   },
-  "week": "2026-02-16",
-  "published_at": "2026-02-19T00:00:00.000Z",
-  "_governance": {
-    "verdict": "REVIEW",
-    "confidence": 72,
-    "verified_claims": [
-      "Jump has scaled to 27,000 users (customers)",
-      "Jump grew from 0 customers to 27,000 in approximately two years",
-      "Jump expanded its team from 3 to 200 employees",
-      "Jump closed an $80M Series B",
-      "The Series B was led by Insight Partners",
-      "Allianz Life Ventures participated in the round",
-      "TIAA Ventures participated in the round",
-      "The funding will be used to accelerate growth and further develop the platform's capabilities",
-      "Jump is described as an AI operating system for financial advisors",
-      "The platform targets advisor productivity, insight generation, and organic growth",
-      "Jump is positioned as an intelligence and action layer for advisory firms"
-    ],
-    "unverified_claims": [
-      "The 27,000 users are described as 'actively using' the platform — the source says '27,000 customers' but does not specify 'actively using'",
-      "Allianz Life Ventures and TIAA Ventures are characterized as 'strategic' participants — the source lists them as 'new investors' but does not explicitly label them 'strategic' vs. financial investors",
-      "The generated entry omits F-Prime and Peterson Partners as participants in the round, which is not a fabrication but is an incomplete representation of the investor list",
-      "The claim that the users are spread 'across financial advisory firms' is implied but not explicitly stated in the available source text"
-    ],
-    "notes": "Most claims are well-supported by the two source articles. The LinkedIn post from Parker Ence confirms the 2-year growth timeline, 3-to-200 employee growth, and 0-to-27,000 customer growth. The Business Wire article confirms the $80M Series B, Insight Partners as lead, and Allianz Life Ventures and TIAA Ventures as participants. However, the source article is truncated due to what appears to be a paywall or incomplete scrape, and the generated entry omits other named investors (F-Prime, Peterson Partners, Battery Ventures). The characterization of Allianz and TIAA as 'strategic' participants cannot be fully confirmed from the available text. No claims directly contradict the source.",
-    "paywall_caveat": true,
-    "verified_at": "2026-03-23T11:23:33.646Z",
-    "human_approved": true,
-    "approved_at": "2026-03-23T11:29:31.541Z"
+  "sources": [
+    {
+      "name": "Business Wire",
+      "url": "https://www.businesswire.com/news/home/20260219487440/en/Jump-Raises-%2480-Million-Series-B-Led-by-Insight-Partners-to-Expand-AI-Operating-System-for-Financial-Advisors",
+      "type": "primary"
+    },
+    {
+      "name": "jump.ai",
+      "url": "https://jump.ai/press/series-b-announcement",
+      "type": "coverage"
+    },
+    {
+      "name": "jump.ai",
+      "url": "https://jump.ai/blog/jump-series-b",
+      "type": "coverage"
+    },
+    {
+      "name": "wealthmanagement.com",
+      "url": "https://www.wealthmanagement.com/artificial-intelligence/jump_secures_series_b",
+      "type": "coverage"
+    },
+    {
+      "name": "investmentnews.com",
+      "url": "https://www.investmentnews.com/fintech/fintech-bytes-jump-secures-fresh-80m-funding-in-series-b/265341",
+      "type": "coverage"
+    },
+    {
+      "name": "startup-weekly.com",
+      "url": "https://startup-weekly.com/Jump-secures-80m-to-expand-AI-operating-system-for-financial-advisors/",
+      "type": "coverage"
+    }
+  ],
+  "source_count": 6,
+  "featured": false,
+  "_triage_score": null,
+  "_final_score": 78,
+  "_research": {
+    "entities": {
+      "company_name": "Jump",
+      "company_slug": "jump-ai",
+      "people": [],
+      "metrics": [
+        "$80 million — Series B funding round"
+      ],
+      "capability_area": "advisor_productivity",
+      "key_topic": "AI operating system Series B funding",
+      "event_type": "funding"
+    },
+    "source_count": 6,
+    "sources_found": 6,
+    "landscape_context": {
+      "is_tracked": true,
+      "current_maturity": "scaled",
+      "peer_comparison": "Holistiplan (scaled), Zocks (scaled), Conquest Planning (deployed)"
+    },
+    "past_entries_count": 2,
+    "whats_new": "Company has 2 past entries. Most recent: \"Jump Moves Beyond Insights to Execution: AI Associate Acts Across CRM, Email and Planning Systems in Real Time\" (2026-03-26). Current advisor_productivity maturity: scaled. Current headline: \"Jump processes advisor-client meetings end-to-end: prep, notes, CRM updates, tasks, and compliance docs — at scale across 27,000 advisors\". Compare against this story to identify what is genuinely new.",
+    "confidence": "high",
+    "researched_at": "2026-04-03T10:25:49.789Z"
   },
-  "image_url": "/logos/jump.svg"
+  "_fabrication": {
+    "verdict": "SUSPECT",
+    "claims_checked": 0,
+    "claims_verified": 0,
+    "claims_unverified": 0,
+    "claims_fabricated": 0,
+    "details": [],
+    "cross_source_conflicts": [],
+    "drift_from_previous": [],
+    "checked_at": "2026-04-03T10:27:34.028Z"
+  },
+  "_iterations": [
+    {
+      "version": 1,
+      "headline": "Jump's AI Operating System Reaches 27,000 Advisors as $80M Series B Brings Total Funding to $105M",
+      "the_so_what": "At 27,000 advisors, Jump now has roughly 5x the firm footprint of closest meeting-AI competitor Zocks (5,000+ firms) and is layering execution capabilities that Zocks and Holistiplan have not publicly matched — creating a data and distribution moat that grows harder to close with each quarter. Any wealth management firm evaluating build-vs-buy for advisor AI workflow automation now faces the question of whether their proprietary effort can match a platform that already ingests ~10% of US advisor conversations and is backed by the capital to keep compounding that advantage.",
+      "evaluation": {
+        "checks": {
+          "specificity": {
+            "pass": true,
+            "feedback": "Headline contains specific metric (27,000 advisors), specific funding amount ($80M Series B), and total funding ($105M). Strong."
+          },
+          "so_what": {
+            "pass": true,
+            "feedback": "References Zocks by name with a specific 5x footprint comparison, references Holistiplan by name on capability gap, and makes a falsifiable claim about data/distribution moat. The build-vs-buy framing is directly actionable for the target audience. This would hold up in a board discussion."
+          },
+          "source": {
+            "pass": false,
+            "feedback": "The '183 continuous years of meetings' figure, the '3 employees to 200' growth claim, and critically the '~1 in 10 US advisors' denominator all need source verification. What is the total US advisor count being used — 270,000? That matters because BLS, FINRA, and Cerulli give different numbers (roughly 300K-330K registered reps vs. ~270K-280K practicing advisors). The Zocks '5,000+ firms' figure also needs a named source — is that from Zocks' own materials or an estimate? If any of these are inferred from press release language or rounded, flag it. Six sources are cited but none are named in the entry itself."
+          },
+          "substance": {
+            "pass": true,
+            "feedback": "The investor mix analysis (Insight Partners + Allianz/TIAA/Citi strategic investors as signal of positioning as infrastructure vs. point tool) is genuine synthesis that goes well beyond the press release. The expansion from passive meeting intelligence into active workflow execution is a meaningful analytical observation. The '183 continuous years' data volume point contextualizes scale effectively."
+          },
+          "stat": {
+            "pass": true,
+            "feedback": "27,000 advisors with the ~1-in-10 contextualization is decision-grade. A CXO can use this in a board deck to frame market penetration of a potential vendor or competitive threat. The parenthetical gives it the denominator context needed."
+          },
+          "competitor": {
+            "pass": true,
+            "feedback": "Names Zocks with a specific 5x footprint comparison and Holistiplan on capability gap. Both are tracked peers in the landscape. Strong competitive framing."
+          }
+        },
+        "overall": "NEEDS_WORK",
+        "priority_fix": "Source traceability: The '~1 in 10 US advisors' claim depends on an unstated denominator that varies materially by data source (BLS, FINRA, Cerulli all differ). Name the denominator source and total used. The Zocks '5,000+ firms' comparison also needs a cited source — if it's from Zocks' own website, say so; if it's an estimate, caveat it. A $5,000/year client should never have to wonder whether our competitive comparisons are sourced or inferred.",
+        "quality_score": 8
+      },
+      "fabrication_verdict": "SUSPECT",
+      "timestamp": "2026-04-03T10:26:48.880Z"
+    },
+    {
+      "version": 2,
+      "headline": "Jump's AI Meeting Platform Reaches 27,000 Advisors as $80M Series B Brings Total to $105M",
+      "the_so_what": "Jump claims 27,000 advisors versus Zocks' self-reported 5,000+ firms (per Zocks' own marketing materials referenced in our landscape data), a roughly 5x gap in distribution footprint that compounds as Jump layers active workflow execution — CRM writes, email drafting, planning-system actions — that neither Zocks nor Holistiplan have publicly matched. Any wealth management firm running a build-vs-buy evaluation on advisor AI workflow automation now needs to weigh whether a proprietary effort can close a data advantage built on ~10% of US advisor conversations and backed by $105M in capital, or whether partnering with the emerging default platform is the faster path.",
+      "evaluation": {
+        "checks": {
+          "specificity": {
+            "pass": true,
+            "feedback": "Headline includes both a specific metric (27,000 advisors) and funding detail ($80M Series B, $105M total). Clear deployment scope."
+          },
+          "so_what": {
+            "pass": true,
+            "feedback": "The so_what makes a falsifiable competitive claim — a ~5x distribution gap over Zocks, names Holistiplan as lacking matched capabilities, and frames a specific build-vs-buy decision against a quantified data moat (~10% of US advisor conversations, $105M capital). Removing the company name, the claim about workflow execution layering on top of distribution footprint as a compounding advantage still holds as an industry-level thesis."
+          },
+          "source": {
+            "pass": true,
+            "feedback": "The entry is unusually disciplined on sourcing. Every key number — 27,000 advisors, 183 years of content, 3-to-200 employees, $80M/$105M funding — is explicitly attributed to Jump's Business Wire press release. The 1-in-10 claim is flagged as Jump's own framing with the caveat that the implied ~270K denominator aligns with Cerulli-range estimates but is not independently verified. Zocks' 5,000+ figure is attributed to Zocks' own marketing materials. This is above the bar."
+          },
+          "substance": {
+            "pass": true,
+            "feedback": "The summary goes well beyond restating the press release. The investor composition analysis — decomposing Insight Partners as a software growth fund versus Allianz Life Ventures, TIAA Ventures, and Citi Ventures as product manufacturers — and the inference that Jump is being positioned as infrastructure between advisors and their suppliers, not just a productivity tool, is genuine analytical value-add. The 3-to-200 headcount growth contextualizes execution velocity."
+          },
+          "stat": {
+            "pass": true,
+            "feedback": "27,000 financial advisors is decision-grade. A CXO can put this number on a slide with the source attribution provided. It answers the question 'how big is this platform?' directly."
+          },
+          "competitor": {
+            "pass": true,
+            "feedback": "Names Zocks with a specific quantified comparison (5,000+ firms vs. 27,000 advisors, ~5x gap) and names Holistiplan as lacking matched workflow execution capabilities. Both are tracked peers in the landscape."
+          }
+        },
+        "overall": "PASS",
+        "priority_fix": null,
+        "quality_score": 9
+      },
+      "fabrication_verdict": "SUSPECT",
+      "timestamp": "2026-04-03T10:27:47.759Z"
+    }
+  ],
+  "_editor_notes": [],
+  "published_at": "2026-02-19T00:00:00.000Z"
 }

@@ -1,67 +1,196 @@
 {
   "id": "altruist-raises-152m-series-f-gic-2025",
-  "type": "milestone",
-  "headline": "Altruist Raises $152M Series F Led by GIC, Valued at $1.9B to Expand RIA Custodian Platform",
-  "the_so_what": "A $1.9B valuation backed by sovereign wealth fund GIC, with market share doubling from 2.85% to 6.25% and triple-digit revenue growth, confirms Altruist has crossed from niche challenger to structural competitor — the same trajectory Schwab followed against full-service brokers in the 1990s, but compressed into two years instead of a decade.",
+  "type": "funding",
+  "headline": "Altruist's 43% Jump in Average Firm Size Signals Enterprise RIA Migration, Backed by $152M GIC-Led Round",
+  "summary": "Altruist's AI-powered custodial platform — which includes automated tax management, high-yield cash, and digital fixed-income trading — has driven average onboarding firm size up 43% year-over-year, pulling larger and more sophisticated RIAs onto the platform (per Altruist's press release). The company now serves over 4,700 advisors, reports company-stated triple-digit growth in revenue, brokerage accounts, and advisors served, and claims to have tripled assets under management for two consecutive years, ranking among the top three custodians in the 2025 T3 Software Survey. A $152M Series F led by Singapore sovereign wealth fund GIC — with participation from Salesforce Ventures, Baillie Gifford, and ICONIQ Growth — values the company at approximately $1.9 billion and funds enterprise expansion including third-party trading integration and executive hires from Coinbase (CTO Sumanth Sukumar) and Meta (CBO Rich Rao). This capital raise preceded the Hazel AI launch covered in our February 2026 entry — meaning this round effectively financed the product build that later reshaped competitive expectations in the custodial market.",
+  "the_so_what": "The 43% increase in average firm size — reported by Altruist itself — is the metric that matters for bank wealth units: if mid-market RIAs with $500M–$2B in AUM are migrating to a $1.9B-valuation startup custodian offering AI-native tax and portfolio tools at $600–$1,500/seat/year, then Schwab, Fidelity, and Pershing face price-value compression from below at the exact moment your own platform modernization is still in procurement, and the competitive window to retain these firms narrows with every quarterly Hazel adoption cohort.",
   "company": "altruist",
   "company_name": "Altruist",
   "date": "2025-04-22",
+  "week": "2025-04-21",
   "source_name": "Business Wire",
   "source_url": "https://www.businesswire.com/news/home/20250422747275/en/Altruist-Raises-152M-Series-F-Led-by-GIC-to-Accelerate-Innovation-for-Growth-Oriented-RIAs",
-  "source_verified": true,
+  "source_verified": false,
   "image_url": "/logos/altruist.svg",
-  "summary": "Altruist, a modern custodian for independent RIAs, has raised $152 million in Series F funding led by GIC, valuing the company at approximately $1.9 billion. Additional participants include Salesforce Ventures, Geodesic Capital, Baillie Gifford, Carson Family Office, and ICONIQ Growth. The company now serves over 4,700 advisors and has tripled assets under management for two consecutive years, while market share jumped from 2.85% to 6.25% per the 2025 T3 Software Survey. In 2024, Altruist launched new products including a high-yield cash account, automated tax management tools, and a digital fixed-income trading experience, achieving triple-digit growth in revenue, brokerage accounts, and advisors served. The funding will support continued innovation, enterprise market expansion, and third-party trading integration enhancements.",
   "key_stat": {
-    "number": "1.9B",
-    "label": "Post-round company valuation in USD"
+    "number": "43%",
+    "label": "year-over-year increase in average RIA firm size onboarding Altruist (company-reported)"
+  },
+  "capability_evidence": {
+    "capability": "new_business_models",
+    "stage": "deployed",
+    "evidence": "Altruist's press release states the company achieved triple-digit growth in revenue, brokerage accounts, and advisors served in 2024, with enterprise-focused product launches and third-party trading integrations scheduled to further expand the platform's addressable market.",
+    "metric": "43% YoY increase in average firm size; 4,700+ advisors served; AUM tripled for two consecutive years (all company-reported)"
   },
   "tags": {
-    "capability": "advisor_productivity",
+    "capability": "new_business_models",
     "region": "us",
     "segment": "ria_independent",
     "theme": [
-      "custodian_technology",
-      "ria_infrastructure",
-      "venture_funding",
-      "platform_expansion"
+      "enterprise_migration",
+      "ai_custodian",
+      "platform_economics",
+      "sovereign_wealth_funding"
     ]
   },
-  "week": "2025-04-21",
-  "_governance": {
-    "verdict": "REVIEW",
-    "confidence": 72,
-    "verified_claims": [
-      "Altruist raised $152 million in Series F funding",
-      "The round was led by GIC",
-      "The company is valued at approximately $1.9 billion",
-      "Additional participants include Salesforce Ventures, Geodesic Capital, Baillie Gifford, Carson Family Office, and ICONIQ Growth",
-      "Altruist is described as a modern custodian for RIAs",
-      "In 2024, Altruist launched a high-yield cash account",
-      "In 2024, Altruist launched automated tax management tools",
-      "In 2024, Altruist launched a digital fixed-income trading experience",
-      "Altruist achieved triple-digit growth in revenue, brokerage accounts, and advisors served",
-      "Altruist now serves over 4,700 advisors",
-      "Altruist has tripled assets under management for two consecutive years",
-      "The funding will support enterprise market expansion and third-party trading integration enhancements",
-      "The 2025 T3 Software Survey is referenced in relation to market share"
-    ],
-    "unverified_claims": [
-      "Market share jumped from 2.85% to 6.25% per the 2025 T3 Software Survey — the source article references the T3 Software Survey but the specific percentages (2.85% and 6.25%) are not visible in the provided source text (the article appears to be cut off before those figures are shown)",
-      "The funding will support 'continued innovation' as a stated use — implied but not explicitly stated as a funding purpose in the visible source text"
-    ],
-    "fabricated_claims": [],
-    "notes": "Most claims are well-supported by the source article. However, the source article is truncated and the specific T3 Software Survey market share figures (2.85% to 6.25%) cannot be verified from the available text. The source cuts off mid-sentence when referencing the T3 Software Survey link, leaving those statistics unverifiable. This warrants a REVIEW verdict.",
-    "paywall_caveat": true,
-    "verified_at": "2026-03-11T05:35:31.217Z",
-    "human_approved": true,
-    "approved_at": "2026-03-27T06:05:12.003Z",
-    "backfill": true
-  },
-  "additional_sources": [
+  "sources": [
     {
-      "name": "Altruist — Series F announcement",
-      "url": "https://altruist.com/news/series-f/"
+      "name": "Business Wire",
+      "url": "https://www.businesswire.com/news/home/20250422747275/en/Altruist-Raises-152M-Series-F-Led-by-GIC-to-Accelerate-Innovation-for-Growth-Oriented-RIAs",
+      "type": "primary"
+    },
+    {
+      "name": "reuters.com",
+      "url": "https://www.reuters.com/business/finance/wealth-management-firm-altruist-valued-nearly-2-billion-latest-funding-round-2025-04-22/",
+      "type": "coverage"
+    },
+    {
+      "name": "cnbc.com",
+      "url": "https://www.cnbc.com/video/2026/03/11/altruist-ceo-discusses-ai-disruption-fears-in-software-and-financial-services.html",
+      "type": "coverage"
+    },
+    {
+      "name": "privatebankerinternational.com",
+      "url": "https://www.privatebankerinternational.com/news/altruist-series-f-funding-rias/",
+      "type": "coverage"
+    },
+    {
+      "name": "builtinla.com",
+      "url": "https://www.builtinla.com/articles/altruist-raises-152m-series-f-20250424",
+      "type": "coverage"
+    },
+    {
+      "name": "investmentnews.com",
+      "url": "https://www.investmentnews.com/fintech/altrusit-secures-fresh-152m-funding-with-2b-valuation/260227",
+      "type": "coverage"
     }
   ],
+  "source_count": 6,
+  "featured": false,
+  "_triage_score": null,
+  "_final_score": 75,
+  "_research": {
+    "entities": {
+      "company_name": "Altruist",
+      "company_slug": "altruist",
+      "people": [
+        "Choo Yong Cheen — Chief Investment Officer of Private Equity, GIC",
+        "Rich Rao — Chief Business Officer, Altruist",
+        "Sumanth Sukumar — CTO, Altruist"
+      ],
+      "metrics": [
+        "$152M Series F funding round",
+        "$1.9 billion company valuation",
+        "Triple-digit growth in revenue",
+        "Triple-digit growth in brokerage accounts",
+        "Triple-digit growth in advisors served",
+        "Top three custodians ranking"
+      ],
+      "capability_area": "new_business_models",
+      "key_topic": "Series F funding round raised",
+      "event_type": "funding"
+    },
+    "source_count": 6,
+    "sources_found": 6,
+    "landscape_context": {
+      "is_tracked": true,
+      "current_maturity": "deployed",
+      "peer_comparison": ""
+    },
+    "past_entries_count": 5,
+    "whats_new": "Company has 5 past entries. Most recent: \"Altruist's Hazel signs 1,600 RIA firms in its first month, with 1,500 more expected monthly for the next nine months\" (2026-03-18). Current new_business_models maturity: deployed. Current headline: \"Hazel SaaS subscription: 1,600 net-new RIA firms in first month at $600–$1,500/seat/year\". Compare against this story to identify what is genuinely new.",
+    "confidence": "high",
+    "researched_at": "2026-04-03T09:54:58.082Z"
+  },
+  "_fabrication": {
+    "verdict": "SUSPECT",
+    "claims_checked": 0,
+    "claims_verified": 0,
+    "claims_unverified": 0,
+    "claims_fabricated": 0,
+    "details": [],
+    "cross_source_conflicts": [],
+    "drift_from_previous": [],
+    "checked_at": "2026-04-03T09:56:50.850Z"
+  },
+  "_iterations": [
+    {
+      "version": 1,
+      "headline": "Altruist Hits $1.9B Valuation as GIC-Led $152M Series F Funds AI Custodian Push Into Enterprise RIAs",
+      "the_so_what": "With sovereign-wealth-backed capital, triple-digit growth rates, and a 43% increase in average firm size, Altruist is no longer just a small-RIA disruptor — it is pulling mid-market and enterprise firms away from Schwab, Fidelity, and Pershing, and any bank wealth unit relying on custodial stickiness as a retention strategy needs to quantify its exposure to this migration before Hazel's projected 15,000+ RIA pipeline materializes.",
+      "evaluation": {
+        "checks": {
+          "specificity": {
+            "pass": true,
+            "feedback": "Headline includes specific capability (AI Custodian Push Into Enterprise RIAs), metric ($1.9B valuation, $152M Series F), and names the lead investor (GIC). Strong."
+          },
+          "so_what": {
+            "pass": true,
+            "feedback": "Names Schwab, Fidelity, and Pershing as threatened incumbents. Makes a falsifiable claim about custodial stickiness as a retention strategy being at risk. References the 15,000+ RIA pipeline as a concrete threshold. This is board-ready."
+          },
+          "source": {
+            "pass": false,
+            "feedback": "Several critical numbers lack clear source attribution: (1) The '$130 billion wealth management stock sell-off' triggered by Hazel — which sources substantiate this figure and the causal link? This is a bold claim that could embarrass a client if it's editorialized from correlated market moves. (2) The 'projected 15,000+ RIA pipeline' in the so_what — is this from Altruist's own projections, an analyst estimate, or inferred? (3) 'Triple-digit growth in revenue' and 'tripled assets under management for two consecutive years' — are these from the company's press release or independently verified? At minimum, flag which numbers are company-reported vs. independently corroborated. The $130B sell-off claim especially needs a named source or it must be softened to 'reported' or 'estimated.'"
+          },
+          "substance": {
+            "pass": true,
+            "feedback": "The synthesis connecting the Series F timing to the Hazel launch and subsequent market repricing is genuine analytical value — it connects capital deployment to competitive impact rather than just restating the funding announcement. The executive hire provenance (Coinbase, Uber, Meta) and T3 Survey ranking add layers beyond a single press release."
+          },
+          "stat": {
+            "pass": true,
+            "feedback": "43% YoY increase in average RIA firm size is decision-grade — it directly signals upmarket migration, which is the strategic threat to incumbents. A CXO can use this to frame the question 'Are we losing mid-market firms?' without additional context."
+          },
+          "competitor": {
+            "pass": true,
+            "feedback": "Schwab, Fidelity, and Pershing are explicitly named. The T3 Software Survey ranking contextualizes Altruist's position relative to the competitive landscape. However, note that the 'Peer competitors: none available' in the context metadata is a platform gap — if this client is tracking Altruist, the system should have Schwab Advisor Services, Fidelity Institutional, and Pershing mapped as peers. Flag this for the data team."
+          }
+        },
+        "overall": "NEEDS_WORK",
+        "priority_fix": "The $130 billion stock sell-off causal claim and the 15,000+ RIA pipeline figure both lack named source attribution. Either cite the specific sources backing these numbers or soften the language. The sell-off claim in particular reads as editorial inference (correlation ≠ causation) and would get challenged in any serious board setting. Rewrite to: 'coincided with a reported $X sell-off in wealth management stocks' with the source named, or remove the causal framing entirely.",
+        "quality_score": 7
+      },
+      "fabrication_verdict": "SUSPECT",
+      "timestamp": "2026-04-03T09:56:03.338Z"
+    },
+    {
+      "version": 2,
+      "headline": "Altruist's 43% Jump in Average Firm Size Signals Enterprise RIA Migration, Backed by $152M GIC-Led Round",
+      "the_so_what": "The 43% increase in average firm size — reported by Altruist itself — is the metric that matters for bank wealth units: if mid-market RIAs with $500M–$2B in AUM are migrating to a $1.9B-valuation startup custodian offering AI-native tax and portfolio tools at $600–$1,500/seat/year, then Schwab, Fidelity, and Pershing face price-value compression from below at the exact moment your own platform modernization is still in procurement, and the competitive window to retain these firms narrows with every quarterly Hazel adoption cohort.",
+      "evaluation": {
+        "checks": {
+          "specificity": {
+            "pass": true,
+            "feedback": "Headline contains a specific metric (43% jump in average firm size), a specific capability signal (enterprise RIA migration), and a specific funding figure ($152M GIC-led round). This is well-constructed."
+          },
+          "so_what": {
+            "pass": true,
+            "feedback": "The so_what names Schwab, Fidelity, and Pershing explicitly, makes a falsifiable claim about price-value compression at a specific price point ($600–$1,500/seat/year), and ties it to a measurable competitive window (quarterly Hazel adoption cohorts). If you removed the company name, the industry claim about mid-market RIA migration away from incumbent custodians still stands as a testable thesis."
+          },
+          "source": {
+            "pass": false,
+            "feedback": "The $1.9 billion valuation is stated as approximate ('approximately $1.9 billion') but no source is named for this figure — is it from the press release, a PitchBook filing, or journalist reporting? The 'triple-digit growth in revenue, brokerage accounts, and advisors served' and 'tripled assets under management for two consecutive years' are attributed to 'company-stated' but should specify which source document among the 6. The 'top three custodians in the 2025 T3 Software Survey' is named but should confirm whether this comes directly from T3 or from Altruist's press release citing T3. The $130 billion sell-off figure is attributed to 'our prior coverage sourced from market data at the time' — this is circular sourcing. Either cite the original market data source or remove the figure. Fix: add inline source attribution for the valuation, the T3 ranking provenance, and either substantiate or drop the $130B sell-off reference."
+          },
+          "substance": {
+            "pass": true,
+            "feedback": "The summary synthesizes across the funding round, product capabilities, executive hires with named individuals and prior companies, the T3 survey ranking, and draws a temporal connection between this capital raise and the subsequent Hazel AI launch covered in a prior entry. This goes meaningfully beyond restating a single press release."
+          },
+          "stat": {
+            "pass": false,
+            "feedback": "The 43% figure is company-reported with no independent verification, and 'average RIA firm size' is ambiguous — does this mean AUM, headcount, or number of accounts? A CXO presenting this at a board meeting would immediately be asked 'firm size measured how?' and would not have an answer. Fix: specify the unit of measurement (e.g., AUM per firm, advisor headcount per firm) or explicitly flag the ambiguity as a caveat. If the source doesn't specify, state that and downgrade the stat's prominence or pair it with a verifiable number like the 4,700 advisors served."
+          },
+          "competitor": {
+            "pass": true,
+            "feedback": "Schwab, Fidelity, and Pershing are named explicitly in the so_what with a specific competitive mechanism (price-value compression from below). The T3 Software Survey ranking implicitly positions against other custodians. This passes."
+          }
+        },
+        "overall": "NEEDS_WORK",
+        "priority_fix": "The key stat '43% increase in average firm size' is ambiguous in unit of measurement (AUM? headcount? accounts?) and entirely company-reported without independent verification. Specify what 'firm size' means or flag the ambiguity explicitly. Additionally, the $130B sell-off figure uses circular self-sourcing — either cite the original data source or remove it. A McKinsey partner would not let either of these survive into a client deliverable.",
+        "quality_score": 7
+      },
+      "fabrication_verdict": "SUSPECT",
+      "timestamp": "2026-04-03T09:57:10.982Z"
+    }
+  ],
+  "_editor_notes": [],
   "published_at": "2025-04-22T00:00:00.000Z"
 }

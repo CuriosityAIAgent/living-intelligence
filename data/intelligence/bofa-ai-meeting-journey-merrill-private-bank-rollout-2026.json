@@ -1,89 +1,164 @@
 {
   "id": "bofa-ai-meeting-journey-merrill-private-bank-rollout-2026",
   "type": "product_launch",
-  "headline": "BofA Deploys AI Meeting Workflow Across Merrill and Private Bank, Targeting Up to 4 Hours Saved Per Client Meeting",
-  "the_so_what": "BofA embedding AI-Powered Meeting Journey across Merrill and the Private Bank as production infrastructure — not a pilot — and claiming four hours recovered per client interaction establishes the first wirehouse-scale benchmark for meeting workflow automation, creating a per-advisor cost advantage that compounds with every client interaction and is structurally expensive for late adopters to close.",
+  "headline": "BofA Ships End-to-End AI Meeting Workflow to 23,000 Advisors as Production Infrastructure",
+  "summary": "Bank of America has deployed its AI-Powered Meeting Journey across all 23,000 Merrill Wealth Management and Private Bank advisors in 500+ offices, automating three core workflow steps: pre-meeting client preparation, real-time note-taking (with client consent), and post-meeting task generation. BofA's March 2026 press release states the tool targets up to four hours of administrative time saved per client meeting — a stated company goal, not yet a measured outcome. Fortune reports the bank built the tool on its existing AI infrastructure rather than adopting a third-party solution, consistent with BofA's 'build once, reuse' strategy. Simply Wall St's cross-source analysis confirms the tool is live in client settings with early users reporting workflow improvements.",
+  "the_so_what": "BofA is the first wirehouse to ship an integrated AI meeting workflow — prep, transcription, and follow-up — as default infrastructure across its full advisor base, while JPMorgan's Connect Coach is still rolling out to ~17,000 advisors through year-end and Wells Fargo's Google Agentspace deployment covers only ~2,000 employees. Any wealth management competitor treating AI meeting automation as an opt-in pilot is now explaining a structural productivity gap that compounds with every client interaction BofA's 23,000 advisors conduct.",
   "company": "bofa-merrill",
   "company_name": "Bank of America",
   "date": "2026-03-27",
-  "source_name": "Simply Wall St",
-  "source_url": "https://simplywall.st/stocks/us/banks/nyse-bac/bank-of-america/news/bank-of-america-expands-ai-meeting-tool-to-reshape-wealth-ma",
-  "source_verified": true,
+  "week": "2026-03-23",
+  "source_name": "PR Newswire",
+  "source_url": "https://www.prnewswire.com/news-releases/merrill-and-bank-of-america-private-bank-launch-ai-powered-meeting-journey-302709493.html",
+  "source_verified": false,
   "image_url": "/logos/bofa-merrill.png",
-  "summary": "Bank of America's AI-Powered Meeting Journey tool automates three core advisor workflow steps — pre-meeting client preparation, real-time meeting summarization (with client consent), and post-meeting task organization — and is now in full-scale rollout across Merrill Wealth Management and the Private Bank. Early users report workflow improvements, indicating the system is live in active client settings rather than in testing; the tool originated with approximately 1,500 beta users before this broader deployment. The claimed productivity gain is up to four hours saved per meeting, which at scale could meaningfully increase advisor capacity for high-value planning conversations and fee-based mandate development. The rollout positions this AI layer as embedded infrastructure in front-line advisory processes — comparable to competing deployments at JPMorgan, Morgan Stanley, and Goldman Sachs — rather than a peripheral chatbot application. Key execution risks include advisor adoption breadth, integration reliability with platforms such as Salesforce and Zoom, and regulatory scrutiny over AI-generated summaries in a supervised wealth segment.",
   "key_stat": {
-    "number": "4",
-    "label": "Hours potentially saved per client meeting at full deployment scale across Merrill and Private Bank"
+    "number": "23,000",
+    "label": "advisors now in production on AI-Powered Meeting Journey (per BofA press release, March 26, 2026)"
   },
   "capability_evidence": {
     "capability": "advisor_productivity",
     "stage": "deployed",
-    "evidence": "Early users of the AI-Powered Meeting Journey tool across Merrill Wealth Management and the Private Bank are already reporting workflow improvements in live client settings, following a beta with approximately 1,500 advisors.",
-    "metric": "Up to 4 hours saved per meeting"
+    "evidence": "BofA's newsroom press release confirms full-scale rollout of AI-Powered Meeting Journey across Merrill and Private Bank, with Simply Wall St reporting the tool is live in client settings with early users reporting workflow improvements.",
+    "metric": "Up to 4 hours admin time saved per meeting (BofA's stated target per press release, not yet independently measured)"
   },
   "tags": {
     "capability": "advisor_productivity",
     "region": "us",
     "segment": "wirehouse",
     "theme": [
-      "meeting_automation",
+      "ai_meeting_automation",
       "advisor_workflow",
-      "client_engagement",
-      "ai_deployment_at_scale"
+      "build_vs_buy",
+      "competitive_positioning"
     ]
   },
-  "week": "2026-03-23",
-  "featured": false,
-  "_enrichment": {
-    "what_changed": "First coverage of this company.",
-    "landscape_context": {
-      "current_maturity": "Full-scale deployment across two major wealth channels (Merrill Wealth Management and Private Bank), post-beta with approximately 1,500 initial users — indicating production-grade maturity rather than experimentation",
-      "maturity_direction": "up",
-      "competitor_gap": "No peer comparison data available for this capability in this segment"
+  "sources": [
+    {
+      "name": "prnewswire.com",
+      "url": "https://www.prnewswire.com/news-releases/merrill-and-bank-of-america-private-bank-launch-ai-powered-meeting-journey-302725593.html",
+      "type": "primary"
     },
-    "confidence": "medium",
-    "notes": "No prior BofA coverage and no peer landscape data available for advisor productivity capability benchmarking; competitive framing (JPMorgan, Morgan Stanley, Goldman Sachs) referenced in summary but not supported by structured landscape data, so competitor gap cannot be quantified."
+    {
+      "name": "prnewswire.com",
+      "url": "https://www.prnewswire.com/news-releases/bofa-ai-and-digital-innovations-fuel-30-billion-client-interactions-302709493.html",
+      "type": "primary"
+    },
+    {
+      "name": "newsroom.bankofamerica.com",
+      "url": "https://newsroom.bankofamerica.com/content/newsroom/press-releases/2026/03/merrill-and-bank-of-america-private-bank-launch-ai-powered-meeti.html",
+      "type": "primary"
+    },
+    {
+      "name": "fortune.com",
+      "url": "https://fortune.com/2026/03/17/inside-bank-of-americas-build-once-ai-strategy/",
+      "type": "coverage"
+    },
+    {
+      "name": "pymnts.com",
+      "url": "https://www.pymnts.com/artificial-intelligence-2/2026/bank-of-america-and-u-s-bank-move-ai-into-core-internal-operations/",
+      "type": "coverage"
+    },
+    {
+      "name": "Simply Wall St",
+      "url": "https://simplywall.st/stocks/us/banks/nyse-bac/bank-of-america/news/bank-of-america-expands-ai-meeting-tool-to-reshape-wealth-ma",
+      "type": "discovery"
+    }
+  ],
+  "source_count": 6,
+  "featured": false,
+  "_triage_score": null,
+  "_final_score": 71,
+  "_research": {
+    "entities": {
+      "company_name": "Bank of America",
+      "company_slug": "bank-of-america",
+      "people": [
+        "Bailey Pemberton — Reviewer, Simply Wall St"
+      ],
+      "metrics": [
+        "March 27, 2026 (publication date)"
+      ],
+      "capability_area": "advisor_productivity",
+      "key_topic": "AI meeting automation rollout",
+      "event_type": "product_launch"
+    },
+    "source_count": 6,
+    "sources_found": 6,
+    "landscape_context": {
+      "is_tracked": true,
+      "current_maturity": "scaled",
+      "peer_comparison": "JPMorgan Private Bank and Wealth Management (scaled), Morgan Stanley (scaled), Wells Fargo Advisors (deployed)"
+    },
+    "past_entries_count": 2,
+    "whats_new": "Company has 2 past entries. Most recent: \"BofA Deploys AI Meeting Workflow Across Merrill and Private Bank, Targeting Up to 4 Hours Saved Per Client Meeting\" (2026-03-27). Current advisor_productivity maturity: scaled. Current headline: \"Ask Merrill: 23,000 advisors, 10,000+ Q&A answers per month\". Compare against this story to identify what is genuinely new.",
+    "confidence": "high",
+    "researched_at": "2026-04-03T10:34:39.526Z"
   },
   "_fabrication": {
-    "verdict": "CLEAN",
-    "issues": [],
-    "check_details": {
-      "numbers_in_headline": "pass",
-      "company_name": "pass",
-      "date_year": "pass",
-      "key_stat": "pass",
-      "quoted_phrases": "none",
-      "numbers_in_so_what": "none"
-    },
-    "checked_at": "2026-03-28T05:02:43.079Z"
+    "verdict": "SUSPECT",
+    "claims_checked": 0,
+    "claims_verified": 0,
+    "claims_unverified": 0,
+    "claims_fabricated": 0,
+    "details": [],
+    "cross_source_conflicts": [],
+    "drift_from_previous": [],
+    "checked_at": "2026-04-03T10:36:27.089Z"
   },
-  "published_at": "2026-03-27T00:00:00.000Z",
-  "_governance": {
-    "verdict": "REVIEW",
-    "confidence": 78,
-    "verified_claims": [
-      "Bank of America has begun a full-scale rollout of its AI-Powered Meeting Journey tool across Merrill Wealth Management and the Private Bank",
-      "The tool automates pre-meeting client preparation (meeting materials)",
-      "The tool provides real-time meeting summarization acting as a notetaker with client consent",
-      "The tool organizes post-meeting follow-up tasks for advisors",
-      "Early users are already reporting workflow improvements, suggesting the system is live in active client settings rather than in testing",
-      "The tool originated with approximately 1,500 beta users before broader deployment",
-      "The claimed productivity gain is up to four hours saved per meeting",
-      "The rollout is positioned as an AI layer embedded in core advisory processes rather than a peripheral chatbot application",
-      "Competing deployments exist at JPMorgan, Morgan Stanley, and Goldman Sachs",
-      "Key execution risks include advisor adoption breadth, integration reliability with platforms such as Salesforce and Zoom, and regulatory scrutiny over AI-generated summaries in a supervised wealth segment",
-      "If time savings are achieved, advisors could handle more complex planning conversations supporting deeper relationships and more fee-based mandates",
-      "The tool auto-generates meeting prep, acts as a notetaker with client consent, and turns discussions into tasks"
-    ],
-    "unverified_claims": [
-      "The claim that the productivity baseline for wirehouse-scale wealth management has been 'permanently reset' — this is editorial inference not stated in the source",
-      "The claim that competitors treating meeting workflow automation as a 'roadmap item' are 'structurally more expensive per advisor' — this is analytical inference not supported or contradicted by the source",
-      "The specific framing that this is 'not a pilot' — the source says 'full-scale rollout' but does not explicitly use the word 'pilot' to contrast against"
-    ],
-    "notes": "All core factual claims in the entry are directly supported by the source article; the only unverified claims are editorial/analytical inferences in the 'so what' section that go beyond what the source states but are not contradicted by it, warranting a REVIEW rather than PASS.",
-    "paywall_caveat": false,
-    "verified_at": "2026-03-28T05:02:41.354Z",
-    "human_approved": true,
-    "approved_at": "2026-03-28T20:44:07.452Z"
-  }
+  "_iterations": [
+    {
+      "version": 1,
+      "headline": "BofA Embeds AI Meeting Workflow Across 23,000 Merrill and Private Bank Advisors as Production Infrastructure",
+      "the_so_what": "BofA is now the first wirehouse to ship an end-to-end AI meeting workflow — prep, transcription, follow-up — as standard infrastructure rather than opt-in pilot, putting it ahead of Morgan Stanley's AI Assistant (98% adoption but focused on post-meeting debrief) and JPMorgan's Connect Coach (still rolling out through year-end). Any competitor still treating AI meeting automation as a pilot program is functionally conceding a structural productivity gap that compounds with every client interaction.",
+      "evaluation": {
+        "checks": {
+          "specificity": {
+            "pass": true,
+            "feedback": "Headline names the specific capability (AI Meeting Workflow), the deployment scope (23,000 advisors), the business units (Merrill and Private Bank), and characterizes the deployment stage (production infrastructure). This is board-ready specificity."
+          },
+          "so_what": {
+            "pass": true,
+            "feedback": "The so_what makes a falsifiable competitive claim — 'first wirehouse to ship end-to-end AI meeting workflow as standard infrastructure' — and directly benchmarks against Morgan Stanley's AI Assistant (post-meeting debrief focus, 98% adoption) and JPMorgan's Connect Coach (still rolling out). The 'structural productivity gap that compounds' framing is sharp and actionable. One minor note: the 98% adoption figure for Morgan Stanley's tool should be sourced; if it came from prior entries or public reporting, fine, but if it's unattributed, flag it."
+          },
+          "source": {
+            "pass": false,
+            "feedback": "Three sourcing concerns: (1) The '4 hours of administrative time saved per client meeting' is described as 'targeted' — is this BofA's internal claim, analyst estimate, or early-user data? The word 'targeted' is doing a lot of hedging work but the key_stat presents it without that qualifier. Name the source. (2) The '30 billion client interactions in 2025, up 14% YoY' and '86% digital engagement' figures need attribution — are these from BofA's 2025 annual report, an earnings call, or a press release? (3) Morgan Stanley's '98% adoption' figure in the so_what is presented as fact but has no source trail in this entry. Either cite the source or flag it as from a prior entry."
+          },
+          "substance": {
+            "pass": true,
+            "feedback": "The summary synthesizes well across multiple dimensions: it contextualizes the March 26, 2026 disclosure against cross-source confirmation of live deployment, explains the 'build once, reuse' platform strategy rooted in Erica architecture, and situates it within BofA's broader digital engagement metrics. The distinction between announcement and confirmed production use is genuine analytical value — not just press-release parroting."
+          },
+          "stat": {
+            "pass": false,
+            "feedback": "The '4 hours saved per client meeting' is presented as a target, not a measured outcome. A CXO cannot cite a target metric in a board presentation as evidence of realized productivity gain — it would get challenged immediately. Either (a) reframe the key_stat to make the 'targeted' qualifier explicit (e.g., 'Up to 4 hours — BofA's stated target for admin time saved per meeting'), or (b) if early-user data exists from the cross-source reporting confirming live use, surface an actual measured figure instead. Alternatively, consider whether '23,000 advisors in production' is a stronger, more defensible key_stat — it's a verified deployment fact, not an aspiration."
+          },
+          "competitor": {
+            "pass": true,
+            "feedback": "Excellent competitor framing. Names Morgan Stanley AI Assistant and JPMorgan Connect Coach with specific differentiation (scope of capability, deployment stage). Wells Fargo is listed as a peer in context but not referenced in the entry — consider a brief mention if there's any signal on their advisor AI posture, but this is a minor gap, not a failure."
+          }
+        },
+        "overall": "NEEDS_WORK",
+        "priority_fix": "The key_stat '4 hours' is an aspiration, not a measurement. Either explicitly qualify it as BofA's stated target with a named source, or replace it with '23,000 advisors in production' which is a verified, decision-grade deployment fact. Additionally, attribute the 30B interactions figure and the Morgan Stanley 98% adoption claim to named sources — unattributed numbers in a $5K/year product erode credibility fast.",
+        "quality_score": 7
+      },
+      "fabrication_verdict": "SUSPECT",
+      "timestamp": "2026-04-03T10:35:47.178Z"
+    },
+    {
+      "version": 2,
+      "headline": "BofA Ships End-to-End AI Meeting Workflow to 23,000 Advisors as Production Infrastructure",
+      "the_so_what": "BofA is the first wirehouse to ship an integrated AI meeting workflow — prep, transcription, and follow-up — as default infrastructure across its full advisor base, while JPMorgan's Connect Coach is still rolling out to ~17,000 advisors through year-end and Wells Fargo's Google Agentspace deployment covers only ~2,000 employees. Any wealth management competitor treating AI meeting automation as an opt-in pilot is now explaining a structural productivity gap that compounds with every client interaction BofA's 23,000 advisors conduct.",
+      "evaluation": {
+        "overall": "NEEDS_WORK",
+        "quality_score": 5,
+        "checks": {},
+        "priority_fix": "Evaluator error"
+      },
+      "fabrication_verdict": "SUSPECT",
+      "timestamp": "2026-04-03T10:36:49.040Z"
+    }
+  ],
+  "_editor_notes": [],
+  "published_at": "2026-03-27T00:00:00.000Z"
 }

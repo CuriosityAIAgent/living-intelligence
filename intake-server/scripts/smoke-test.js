@@ -85,7 +85,7 @@ console.log(`\n${B}3. Company slug consistency${RS}`);
 
 const compFiles = new Set(readdirSync(COMP_DIR).filter(f => f.endsWith('.json')).map(f => f.replace('.json', '')));
 // Companies that are valid but not in the landscape (infrastructure providers, retail brokers)
-const NON_LANDSCAPE = new Set(['blackrock', 'fnz', 'webull', 'datos-insights']);
+const NON_LANDSCAPE = new Set(['blackrock', 'fnz', 'webull', 'datos-insights', 'orion']);
 let slugMismatches = 0;
 for (const f of intelFiles) {
   const entry = JSON.parse(readFileSync(join(INTEL_DIR, f), 'utf8'));

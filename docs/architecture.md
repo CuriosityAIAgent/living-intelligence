@@ -33,10 +33,10 @@
 │                    ./data/  — tracked in git                     │
 │                                                                  │
 │  intelligence/    → IntelligenceEntry JSON files (43 entries)   │
-│  thought-leadership/ → ThoughtLeadershipEntry JSON files (7)    │
+│  thought-leadership/ → ThoughtLeadershipEntry JSON files (8)    │
 │  competitors/     → Competitor JSON files (37 companies)         │
 │  capabilities/    → index.json (7 capability dimensions)         │
-│  logos/           → SVG/PNG logos (43 companies, local only)     │
+│  logos/           → SVG/PNG logos (44 companies, local only)     │
 │  .governance-pending.json  → Universal inbox (ALL stories pre-publish) │
 │  .governance-blocked.json  → FAIL URLs permanently blocked      │
 │  .rejection-log.json       → Editorial rejections (reason+notes)│
@@ -82,29 +82,31 @@
 
 | Path | Purpose |
 |------|---------|
-| `server.js` | Express server, all API routes |
-| `agents/auto-discover.js` | Multi-layer discovery: L1 News (8 DFS News) + L1 Caps (7 DFS News) + L2 Companies (DFS Content Analysis) + L3 NewsAPI.ai (4 queries, 80K+ sources) + TL via Jina |
-| `agents/intake.js` | Fetch article (with paywall fallback) + Claude structuring + post-structuring enrichment (searches for additional sources using company name after Claude identifies the topic) |
+| `server.js` | Express server, all API routes. Uses CONTENT_DIR/INTEL_DIR/TL_DIR from config.js. |
+| `agents/config.js` | Single source of truth for all paths, thresholds, constants. All agents import from here. |
+| `agents/auto-discover.js` | Multi-layer discovery: L1 News (8 DFS) + L1 Caps (7 DFS) + L2 Companies (37 DFS Content Analysis) + L3 NewsAPI.ai (4 queries, 80K+ sources) + TL via Jina |
+| `agents/intake.js` | Fetch article (with paywall fallback) + Claude structuring + post-structuring enrichment |
 | `agents/governance.js` | Verify all claims against source → PASS/REVIEW/FAIL |
+| `agents/scorer.js` | 5-dimension scoring (Source 0-25, Claims 0-25, Freshness 0-10, Impact 0-40, CXO 0-10) + multi-source bonus |
+| `agents/fabrication-strict.js` | Exact-text verification. v2: multi-source, drift detection, the_so_what handling |
+| `agents/context-enricher.js` | Landscape-aware the_so_what regeneration with peer comparison |
+| `agents/publisher.js` | Write entry JSON, auto-correct week, auto-resolve logo, git commit + push |
+| `agents/tl-publisher.js` | Publish TL entries. Railway clone-and-push mode. Quality gate (named author + insight). |
+| `agents/landscape-trigger.js` | Post-publish: check if entry warrants landscape update (maturity upgrade or evidence update) |
+| **v2 Pipeline Agents** | |
+| `agents/research-agent.js` | Deep multi-source research: entity extraction, 5-10 source search (Jina + NewsAPI), landscape context, peer comparison |
+| `agents/writer-agent.js` | Consulting-quality writer (Opus 4.6). Intelligence + TL modes. Refinement support. |
+| `agents/evaluator-agent.js` | McKinsey 6-check test (Opus 4.6): specificity, so-what, source, substance, stat, competitor |
+| `agents/content-producer.js` | v2 orchestrator: Research → Write → Fabrication → Evaluate → Refine → Score. 2 iterations + early exit. |
 | `agents/gov-store.js` | File-backed pending queue + blocked URL list |
-| `agents/publisher.js` | Write entry JSON + `_governance` audit, git commit + push. Auto-corrects `week` field to Monday of article date. Auto-resolves company logo from `public/logos/`. Strips unavatar.io URLs. |
-| `agents/tl-publisher.js` | Publish thought leadership entries. Fetches article via Jina, Claude extracts TL schema, quality gate (named author + insight required), writes to `data/thought-leadership/`, git push to main. Supports Railway clone-and-push mode. |
-| `agents/research-agent.js` | **v2 pipeline.** Deep multi-source research: fetches primary source, extracts entities, searches 5-10 additional sources via Jina + NewsAPI, loads landscape context (company file, past entries, peer competitors), determines what's new. Output: Research Brief JSON with full source texts. |
-| `agents/writer-agent.js` | **v2 pipeline.** Consulting-quality writer (Opus 4.6). Two modes: intelligence (capability-led, competitive context, falsifiable the_so_what) and thought leadership (preserves author voice). Takes research brief + optional evaluator feedback for refinement iterations. |
-| `agents/evaluator-agent.js` | **v2 pipeline.** McKinsey Test quality gate (Opus 4.6). Rates drafts against 6 checks: specificity, so-what, source, substance, stat, competitor. Returns pass/fail with specific improvement instructions. |
-| `agents/content-producer.js` | **v2 pipeline orchestrator.** Runs full pipeline: Research → Write (Opus) → Fabrication → Evaluate → Refine → Final Score. 2 iterations with early exit. "Needs work" re-entry flow. Assembles v2 entry with _research, _fabrication, _iterations metadata. |
-| `agents/landscape-trigger.js` | Post-publish hook: checks if new entry warrants landscape update (maturity upgrade OR evidence update). Creates pending suggestions for editorial approval. |
-| `scripts/backfill-governance.js` | One-time: add `_governance` to all existing entries |
-| `scripts/reprocess-failed.js` | Re-run FAIL entries through corrected pipeline |
-| `scripts/test-portal.js` | Health check all URLs + portal pages, auto-fix broken links |
-| `rss-feeds.json` | Archived — RSS removed; DataForSEO two-layer replaces it |
+| `agents/scheduler.js` | Daily pipeline orchestrator. Discovery → triage → intake → governance → scoring → inbox. |
 | `client/` | Editorial Studio UI — React (Vite + TS + Tailwind v4), builds to `intake-server/public/` |
 
 ### Intake Server API Routes
 
 | Route | Method | Description |
 |-------|--------|-------------|
-| `/api/auto-discover` | POST | Multi-layer discovery: L1 News + L1 Caps + L2 Companies |
+| `/api/auto-discover` | POST | Three-layer discovery: L1 News + L1 Caps + L2 Companies |
 | `/api/search` | POST | Jina s.jina.ai search (body: `{query}`) |
 | `/api/process-url` | POST | Fetch + structure + governance for one URL → queues to inbox |
 | `/api/publish` | POST | Write JSON + git commit + push (called by approve-and-publish) |
@@ -123,23 +125,34 @@
 
 ## Data Flow: New Intelligence Entry
 
+### v1 Pipeline (automated daily at 5am via scheduler.js)
 ```
-1. Auto-Discover runs (multi-layer: L1 News + L1 Caps + L2 Companies + L3 NewsAPI.ai)
-2. Stories scored by: recency + source quality + tracked company mentions + AI keyword density
-3. Semantic dedup (Jina Embeddings) + reranking (Jina Reranker) → top 15 candidates
-4. Each candidate processed automatically by scheduler (6am daily) OR manually via Discover tab
-5. Jina fetches full article from URL
-   └── If paywall detected → DataForSEO News + Organic in parallel → Jina Reranker picks best alt
-6. Claude structures into IntelligenceEntry JSON with the_so_what field (no inference allowed)
-7. Claude verifies every claim in the entry against the source (governance check)
-   ├── PASS  → score ≥ 75 → INBOX (high-confidence, awaits editorial sign-off)
-   ├── REVIEW → score 45–74 → INBOX (flagged for closer look)
-   └── FAIL   → URL permanently blocked, entry discarded
-8. **UNIVERSAL INBOX**: All stories queue in .governance-pending.json — nothing auto-publishes
-   Haresh reviews each item in Editorial Studio (localhost:3003):
-   → Approve: entry written to data/intelligence/{slug}.json + git commit + push
-   → Reject: reason logged to .rejection-log.json, URL blocked
-9. git push origin main → Railway auto-deploys portal
+1. Auto-Discover (4-layer: L1 News + L1 Caps + L2 Companies + L3 NewsAPI.ai)
+2. Triage scoring: recency + source quality + tracked company + AI keywords
+3. Semantic dedup (Jina Embeddings ≥0.90) + reranking (Jina Reranker) → top 15
+4. Each candidate: fetch → structure → governance → fabrication → score → inbox
+5. UNIVERSAL INBOX: nothing auto-publishes. Editorial review required.
+```
+
+### v2 Pipeline (consulting-quality, interactive or scheduled)
+```
+1. Research Agent: fetch primary + search 5-10 additional sources + landscape context
+2. Writer Agent (Opus): consulting-quality entry (McKinsey voice, peer context)
+3. Fabrication Agent: verify ALL claims against ALL sources, drift detection
+4. Evaluator Agent (Opus): 6-point McKinsey test (specificity, so-what, source, substance, stat, competitor)
+5. If NEEDS_WORK → Writer refines with evaluator feedback → Fabrication re-checks
+6. Final scoring: 5 dimensions computed from finished entry
+7. Entry stored with _research, _fabrication, _iterations, _final_score metadata
+8. Editorial review → Approve → git push main → portal rebuilds
+```
+
+### Publish Flow
+```
+Approve → publisher.js: auto-correct week, auto-resolve logo, write JSON
+       → commitAndPush: git add + commit + push origin main
+       → landscape-trigger.js: check if entry warrants landscape update
+       → Railway auto-deploys portal
+```
 ```
 
 ---
@@ -211,7 +224,7 @@ Definitions shown on the landscape page below the matrix:
 
 ---
 
-## Landscape Coverage (as of March 2026)
+## Landscape Coverage (as of April 2026)
 
 **37 companies across 8 segments:**
 
@@ -225,6 +238,28 @@ Definitions shown on the landscape page below the matrix:
 | AI-Native Wealth (2) | Arta Finance, Savvy Wealth |
 | RIA / Independent (2) | Altruist, LPL Financial |
 | Advisor Tools (5) | Jump, Nevis, Zocks, Holistiplan, Conquest Planning |
+
+---
+
+## Railway Deployment Map
+
+Three independent Railway services, each deploying from a different git branch:
+
+| Railway Service | Git Branch | Domain | What It Deploys |
+|----------------|------------|--------|-----------------|
+| `living-intelligence` | `main` | `wealth.tigerai.tech` | **The Portal** — what users/executives see (Next.js) |
+| `proud-reflection` | `intake` | (internal only) | **Editorial Studio / Intake Server** — content pipeline, agents, API (Express) |
+| `profound-wonder` | `feature/landing-page` | `livingintel.ai` | **Landing page** — public marketing site |
+
+### What goes where
+
+- **Portal UI changes** (pages, components, styles, CTA buttons, data files) → commit and push to `main` → `living-intelligence` service rebuilds → live on `wealth.tigerai.tech`
+- **Intake server changes** (agents, pipeline code, Editorial Studio UI) → commit and push to `intake` → `proud-reflection` service rebuilds
+- **Content publishing** (approved stories via Editorial Studio) → publisher.js pushes directly to `main` → portal rebuilds with new content
+
+### Common mistake
+
+Pushing portal UI changes to `intake` will only redeploy the intake server — the portal at `wealth.tigerai.tech` won't update. Portal changes **must** go to `main`.
 
 ---
 

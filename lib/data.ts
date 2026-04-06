@@ -18,6 +18,8 @@ export interface IntelligenceEntry {
   source_url: string;
   source_verified: boolean;
   additional_sources?: { name: string; url: string }[];
+  sources?: { name: string; url: string; type: 'primary' | 'coverage' | 'discovery' }[];
+  source_count?: number;
   image_url: string;
   summary: string;
   key_stat: { number: string; label: string } | null;
@@ -72,12 +74,12 @@ export interface WeeklyDigest {
 }
 
 export interface CapabilityEntry {
-  maturity: 'announced' | 'piloting' | 'deployed' | 'scaled' | 'none';
+  maturity: 'announced' | 'piloting' | 'deployed' | 'scaled' | 'no_activity' | 'none';
   headline: string;
   detail: string;
   evidence: string[];
   sources?: { name: string; url: string }[];
-  date_assessed: string;
+  date_assessed?: string;
   jpm_implication?: string;
   jpm_segments_affected?: string[];
 }

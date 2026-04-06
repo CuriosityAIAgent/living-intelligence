@@ -9,7 +9,8 @@ const MATURITY_STYLES: Record<string, { cell: string; dot: string; label: string
   deployed:  { cell: 'bg-blue-50 border border-blue-200', dot: 'bg-blue-500', label: 'Deployed' },
   piloting:  { cell: 'bg-orange-50 border border-orange-200', dot: 'bg-orange-400', label: 'Piloting' },
   announced: { cell: 'bg-yellow-50 border border-yellow-200', dot: 'bg-yellow-400', label: 'Announced' },
-  none:      { cell: 'bg-gray-50 border border-gray-100', dot: 'bg-gray-200', label: '—' },
+  no_activity: { cell: 'bg-gray-50 border border-gray-100', dot: 'bg-gray-200', label: '—' },
+  none:        { cell: 'bg-gray-50 border border-gray-100', dot: 'bg-gray-200', label: '—' },
 };
 
 export default function LandscapePage() {
@@ -54,8 +55,7 @@ export default function LandscapePage() {
             );
           })}
           <div className="flex items-center gap-1.5 ml-2">
-            <div className="w-2.5 h-2.5 rounded-full bg-gray-200" />
-            <span className="text-xs text-gray-400">No activity</span>
+            <span className="text-xs text-gray-400">— = No tracked activity</span>
           </div>
         </div>
 
@@ -99,9 +99,10 @@ export default function LandscapePage() {
                         const entry = competitor.capabilities[cap.id];
                         const maturity = entry?.maturity || 'none';
                         const style = MATURITY_STYLES[maturity] || MATURITY_STYLES.none;
+                        const isActive = entry && maturity !== 'none' && maturity !== 'no_activity';
                         return (
                           <td key={cap.id} className="p-1.5 text-center">
-                            {entry && maturity !== 'none' ? (
+                            {isActive ? (
                               <Link href={`/competitors/${competitor.id}#${cap.id}`}>
                                 <div
                                   className={`${style.cell} rounded p-1.5 cursor-pointer hover:opacity-80 transition-opacity`}

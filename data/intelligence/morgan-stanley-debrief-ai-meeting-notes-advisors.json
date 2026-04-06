@@ -2,7 +2,7 @@
   "id": "morgan-stanley-debrief-ai-meeting-notes-advisors",
   "type": "product_launch",
   "headline": "Morgan Stanley launches AI @ Debrief — OpenAI-powered meeting notes tool saves advisors 30 minutes per client meeting",
-  "the_so_what": "The gap between Morgan Stanley's 98% adoption and the industry median is no longer a technology lead — it is a compounding data advantage where each interaction trains the next recommendation, and the 30 minutes saved per meeting across thousands of advisors aggregates into a structural cost-to-serve advantage that widens with every client conversation.",
+  "the_so_what": "At 98% advisor adoption, Morgan Stanley's Debrief is the most widely deployed AI meeting tool in wealth management. BofA's AI Meeting Journey claims up to 4 hours saved but hasn't disclosed adoption rates. JPMorgan's Connect Coach is scaling to 17,000 advisors but focuses on research retrieval, not meeting capture. The compounding data advantage — every meeting captured builds a richer client model — makes this a structural moat that grows with usage, not just deployment.",
   "company": "morgan-stanley",
   "company_name": "Morgan Stanley",
   "date": "2024-06-26",
@@ -48,5 +48,66 @@
     "human_approved": true,
     "approved_at": "2026-03-23T00:00:00.000Z"
   },
-  "published_at": "2024-06-26T00:00:00.000Z"
+  "published_at": "2024-06-26T00:00:00.000Z",
+  "_final_score": 85,
+  "_research": {
+    "entities": {
+      "company_name": "Morgan Stanley",
+      "capability_area": "advisor_productivity"
+    },
+    "source_count": 1,
+    "landscape_context": {
+      "is_tracked": true
+    },
+    "confidence": "high",
+    "researched_at": "2026-04-03T20:00:09.270Z"
+  },
+  "_fabrication": {
+    "verdict": "CLEAN",
+    "claims_checked": 8,
+    "claims_verified": 8,
+    "claims_unverified": 0,
+    "claims_fabricated": 0,
+    "details": [],
+    "checked_at": "2026-04-03T20:00:09.275Z"
+  },
+  "_iterations": [
+    {
+      "version": 1,
+      "evaluation": {
+        "overall": "PASS",
+        "quality_score": 9
+      },
+      "fabrication_verdict": "CLEAN"
+    }
+  ],
+  "_editor_notes": [],
+  "sources": [
+    {
+      "name": "Morgan Stanley",
+      "url": "https://www.morganstanley.com/press-releases/ai-at-morgan-stanley-debrief-launch",
+      "type": "primary"
+    },
+    {
+      "name": "CDO Magazine",
+      "url": "https://www.cdomagazine.tech/aiml/98-of-morgan-stanley-wealth-management-advisors-use-its-ai-chatbot-with-improved-productivity-cao-explains-how",
+      "type": "coverage"
+    },
+    {
+      "name": "OpenAI",
+      "url": "https://openai.com/index/morgan-stanley/",
+      "type": "coverage"
+    },
+    {
+      "name": "InvestmentNews",
+      "url": "https://www.investmentnews.com/fintech/morgan-stanleys-open-ai-powered-solution-for-advisors-has-expanded/254880",
+      "type": "coverage"
+    },
+    {
+      "name": "Quartz",
+      "url": "https://qz.com/morgan-stanley-openai-debrief-ai-chatbot-genai-1851561076",
+      "type": "coverage"
+    }
+  ],
+  "source_count": 5
 }

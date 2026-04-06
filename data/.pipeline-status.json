@@ -1,43 +1,29 @@
 {
-  "started_at": "2026-04-04T04:00:00.786Z",
+  "started_at": "2026-04-05T04:00:00.482Z",
   "candidates_found": 15,
-  "queued": 1,
-  "blocked": 0,
-  "errors": 2,
+  "queued": 2,
+  "blocked": 2,
+  "errors": 1,
   "error_details": [
     {
       "url": "https://citywire.com/wealth-manager/news/schroders-signs-coutts-veteran-for-key-new-ai-wealth-role/a2486995",
       "stage": "intake",
       "message": "processUrl returned null"
-    },
-    {
-      "url": "https://rbj.net/2026/04/03/how-ai-complements-financial-advisors-in-wealth-management/",
-      "stage": "intake",
-      "message": "processUrl returned null"
     }
   ],
   "discovery_sources": {
-    "layer1_news": 43,
-    "layer1_capabilities": 0,
+    "layer1_news": 42,
+    "layer1_capabilities": 14,
     "layer2_companies": 0,
     "layer3_newsapi": 2,
     "layer1_tl": 36,
-    "layer2_authors": 8,
-    "companies_queried": 0,
-    "capabilities_queried": 0,
-    "raw_intel_total": 42
+    "layer2_authors": 50,
+    "companies_queried": 37,
+    "capabilities_queried": 7,
+    "raw_intel_total": 51
   },
-  "tl_candidates": 42,
+  "tl_candidates": 83,
   "tl_items": [
-    {
-      "id": "aHR0cHM6Ly93",
-      "title": "AI Market Outlook and Wealth Management Strategies 2026",
-      "url": "https://www.wealthmanagement.com/investment-news/zephyr-s-adjusted-for-risk-examining-the-ai-bubble-opportunities-and-risks-ahead",
-      "source_name": "wealthmanagement.com",
-      "pub_date": null,
-      "snippet": "GenTrust CIO Jim Besaw discusses AI impact on markets, portfolio risk management, and wealth management innovations on Zephyr podcasts",
-      "via": "layer1_tl"
-    },
     {
       "id": "aHR0cHM6Ly93",
       "title": "Wealth Management Needs AI: Raymond James CEO",
@@ -102,12 +88,12 @@
       "via": "layer1_tl"
     },
     {
-      "id": "aHR0cHM6Ly9z",
-      "title": "https://scholarworks.uark.edu/cgi/viewcontent.cgi?article=1102&context=finnuht",
-      "url": "https://scholarworks.uark.edu/cgi/viewcontent.cgi?article=1102&context=finnuht",
-      "source_name": "scholarworks.uark.edu",
-      "pub_date": null,
-      "snippet": "Max challenge attempts exceeded. Please refresh the page to try again!\n\nWe use cookies that are necessary to make our site work. We may also use additional cookies to analyze, improve, and personalize our content and your digital experience. You can manage your cookie preferences using the[Cookie se",
+      "id": "aHR0cHM6Ly93",
+      "title": "How AI will change wealth management in 2026 and beyond",
+      "url": "https://www.investmentnews.com/videos/in-the-nasdaq/how-ai-will-change-wealth-management-in-2026-and-beyond/265219",
+      "source_name": "investmentnews.com",
+      "pub_date": "Feb 10, 2026",
+      "snippet": "Justin Whitehead, CEO and founder of Pebble Finance, sits down with InvestmentNews anchor Gregg Greenberg to explain how AI will change the wealth management industry in 2026 and beyond.",
       "via": "layer1_tl"
     },
     {
@@ -117,6 +103,15 @@
       "source_name": "ey.com",
       "pub_date": null,
       "snippet": "AI is reshaping the financial services industry, making it more efficient, effective and innovative. Read more.",
+      "via": "layer1_tl"
+    },
+    {
+      "id": "aHR0cHM6Ly9m",
+      "title": "Something big is happening in AI — and most people will be blindsided | Fortune",
+      "url": "https://fortune.com/2026/02/11/something-big-is-happening-ai-february-2020-moment-matt-shumer/",
+      "source_name": "fortune.com",
+      "pub_date": "Feb 11, 2026",
+      "snippet": "It’s not like a light switch... more like the moment you realize the water has been rising around you and is now at your chest.",
       "via": "layer1_tl"
     },
     {
@@ -134,7 +129,7 @@
       "url": "https://www.researchgate.net/publication/381277119_Artificial_Intelligence_as_Personal_Financial_Advisor_in_the_Future_-_A_Case_Study_Based_on_Algorithmic_Innovation_Strategies",
       "source_name": "researchgate.net",
       "pub_date": null,
-      "snippet": "## Security check required\n\nWe've detected unusual activity from your network. To continue, complete the security check below.\n\nRay ID: 9e6d675c0f3023ab\n\nClient IP: 2600:1900:0:4005::1000\n\n© 2008-2026 ResearchGate GmbH. All rights reserved.",
+      "snippet": "## Security check required\n\nWe've detected unusual activity from your network. To continue, complete the security check below.\n\nRay ID: 9e75a4c89d17392c\n\nClient IP: 2600:1900:0:2100::1a01\n\n© 2008-2026 ResearchGate GmbH. All rights reserved.",
       "via": "layer1_tl"
     },
     {
@@ -152,7 +147,7 @@
       "url": "https://www.spglobal.com/market-intelligence/en/news-insights/research/2026/01/10-ai-trends-to-shape-your-2026-strategy",
       "source_name": "spglobal.com",
       "pub_date": "Jan 30, 2026",
-      "snippet": "You don't have permission to access \"http://www.spglobal.com/market-intelligence/en/news-insights/research/2026/01/10-ai-trends-to-shape-your-2026-strategy\" on this server.\nReference #18.8df23517.1775275208.c8c43d2\n\nhttps://errors.edgesuite.net/18.8df23517.1775275208.c8c43d2",
+      "snippet": "You don't have permission to access \"http://www.spglobal.com/market-intelligence/en/news-insights/research/2026/01/10-ai-trends-to-shape-your-2026-strategy\" on this server.\nReference #18.8a813217.1775361602.a1bb52f8\n\nhttps://errors.edgesuite.net/18.8a813217.1775361602.a1bb52f8",
       "via": "layer1_tl"
     },
     {
@@ -165,6 +160,19 @@
       "via": "layer1_tl"
     }
   ],
-  "blocked_items": [],
-  "written_at": "2026-04-04T04:02:46.625Z"
+  "blocked_items": [
+    {
+      "url": "https://fintech.global/2026/01/29/wealthai-raises-800k-to-launch-ai-first-os-for-wealth-managers/",
+      "title": "WealthAI Builds AI-Native OS to Unify Fragmented Wealth Manager Tech Stacks",
+      "reason": "Score 37/100 — below 45 review threshold",
+      "score": 37
+    },
+    {
+      "url": "https://www.axios.com/pro/fintech-deals/2026/02/19/jump-80m-series-b-insight-advisor-ai",
+      "title": "Jump's AI Operating System Reaches Advisors at Scale, Backed by $80M Series B to Expand Productivity Layer",
+      "reason": "Score 58/100 — below 45 review threshold",
+      "score": 58
+    }
+  ],
+  "written_at": "2026-04-05T04:05:44.227Z"
 }

@@ -6,7 +6,7 @@
     "us"
   ],
   "color": "#1E4D8C",
-  "ai_strategy_summary": "Holistiplan holds 42% advisor adoption after 5 years — #1 tax planning software for advisors 5 consecutive years — using AI and OCR to analyze client tax returns in minutes and identify planning opportunities that previously required a specialist.",
+  "ai_strategy_summary": "Holistiplan holds ~39% advisor adoption after 5 years (2024 T3 survey) — #1 tax planning software for advisors 5 consecutive years — using AI and OCR to analyze client tax returns in minutes and identify planning opportunities that previously required a specialist.",
   "head_of_ai": null,
   "headline_metric": "Tax return analysis in minutes; #1 tax planning tool 5 years running across 8,000+ advisory firms (38.92% advisor market share)",
   "headline_initiative": "AI + OCR tax return analysis that identifies planning opportunities in minutes",
@@ -15,7 +15,7 @@
     "advisor_productivity": {
       "maturity": "scaled",
       "headline": "Holistiplan analyzes client tax returns in minutes using AI and OCR — identifying tax-saving opportunities that previously required a tax specialist",
-      "detail": "Holistiplan uses AI and OCR to analyze client tax returns in minutes, identifying tax-saving opportunities (Roth conversions, loss harvesting, charitable giving, etc.) and generating advisor-ready planning summaries. Used by 50,000+ users across firms and 42% of US financial advisors. Rated #1 tax planning software in T3/Inside Information survey for 5 consecutive years.",
+      "detail": "Holistiplan uses AI and OCR to analyze client tax returns in minutes, identifying tax-saving opportunities (Roth conversions, loss harvesting, charitable giving, etc.) and generating advisor-ready planning summaries. Used by 50,000+ users across firms and ~39% of US financial advisors (2024 T3 survey). Rated #1 tax planning software in T3/Inside Information survey for 5 consecutive years.",
       "evidence": [
         "8,000+ advisory firms using Holistiplan",
         "~39% advisor adoption rate (2024 survey)",
@@ -23,7 +23,7 @@
         "Tax return analysis in minutes vs. hours manually",
         "Zocks integration (September 2025) extends meeting AI into tax planning"
       ],
-      "jpm_implication": "Tax planning is one of the highest-value advisor services and also one of the most time-intensive. Holistiplan's 42% adoption proves advisors will pay for AI that makes tax planning faster. JPM advisors need comparable AI-assisted tax planning tools.",
+      "jpm_implication": "Tax planning is one of the highest-value advisor services and also one of the most time-intensive. Holistiplan's ~39% adoption proves advisors will pay for AI that makes tax planning faster. JPM advisors need comparable AI-assisted tax planning tools.",
       "jpm_segments_affected": [
         "JPMWM",
         "CWM"

@@ -2,68 +2,68 @@
   "id": "julius-baer",
   "name": "Julius Baer",
   "segment": "global_private_bank",
-  "regions": [
-    "emea",
-    "asia"
-  ],
-  "color": "#003865",
-  "ai_strategy_summary": "Julius Baer built a proprietary AI Narrative Generation Engine for advisor-led client portfolio reviews in 10 weeks, earned a Google AI Trailblazers award, and deployed JAI — its custom GenAI stack — across relationship manager workflows globally.",
+  "regions": ["emea", "asia"],
+  "color": "#002A5C",
+  "ai_strategy_summary": "Julius Baer built JAI (Julius AI), a proprietary GenAI platform that became the bank's fastest-adopted internal tool, reaching 4,000 weekly active users globally within months of its late-2024 launch. The platform automates routine documentation, meeting summaries, and multilingual client communications — critical for a bank operating across Swiss, Asian, and European jurisdictions with diverse language requirements. JAI uses a customised GenAI stack with flexible transitions between language models and deployment options (on-prem or cloud). The bank invested CHF 1 billion in technology between 2023 and 2025. The rapid adoption suggests relationship managers in private banking will adopt AI for documentation and communication tasks more readily than for client-facing advice.",
   "head_of_ai": null,
-  "headline_metric": "JAI: prototype to production in 10 weeks (Google AI Trailblazers Award 2024); AI narrative generation deployed to relationship managers globally",
-  "headline_initiative": "JAI + AI-Agent Narrative Generation Engine for relationship managers",
+  "headline_metric": "4,000 weekly active users on JAI; fastest-adopted internal tool; CHF 1B tech investment (2023-2025)",
+  "headline_initiative": "JAI (Julius AI) — proprietary GenAI platform for documentation, meeting summaries, multilingual communications",
   "overall_maturity": "deployed",
   "capabilities": {
     "advisor_productivity": {
       "maturity": "deployed",
-      "headline": "JAI Narrative Generation Engine deployed for RM portfolio reviews globally",
-      "detail": "Julius Baer built JAI on Unique AI platform in 10 weeks — an AI-Agent Narrative Generation Engine that accelerates portfolio review narratives for relationship managers in Asia and globally. Awarded Google AI Trailblazers Innovation Award 2024.",
+      "headline": "JAI: 4,000 weekly active users, fastest-adopted tool — documentation and meeting summaries automated",
+      "detail": "JAI automates meeting summaries, client communication drafting, and multilingual documentation for relationship managers. The platform reached 4,000 weekly active users — making it the fastest-adopted internal tool at Julius Baer. The adoption pattern reveals what private banking RMs will embrace first: documentation and communication automation, not relationship replacement. Won a Google Cloud Customer Award for innovation.",
       "evidence": [
-        "JAI prototype to production in 10 weeks",
-        "Google AI Trailblazers Innovation Award 2024",
-        "Deployed across RM workflows in Asia and globally",
-        "Built on Unique AI platform"
+        "4,000 weekly active users globally (Asian Private Banker editorial interview, Dec 2025)",
+        "Fastest-adopted internal tool at Julius Baer (Asian Private Banker)",
+        "Automates documentation, meeting summaries, multilingual communications (Hubbis coverage)",
+        "Google Cloud Customer Award (internal reporting)",
+        "Customised GenAI stack with flexible LLM transitions (Unique AI partnership)"
       ],
-      "jpm_implication": "Julius Baer's 10-week build-to-deploy cycle for advisor AI is a benchmark. JPM should match this speed for advisor productivity tooling.",
-      "jpm_segments_affected": [
-        "GPB",
-        "JPMWM"
-      ],
-      "date_assessed": "2026-03-10",
+      "date_assessed": "2026-04-04",
       "sources": [
-        {
-          "name": "Asian Private Banker — Julius Baer COO confirms JAI Narrative Generation Engine + Google AI Trailblazers Award 2024",
-          "url": "https://asianprivatebanker.com/coo-focus-2025/andreas-zingg-julius-baer/"
-        },
-        {
-          "name": "Unique AI — Julius Baer GPT-4 + on-premises integration",
-          "url": "https://www.unique.ai/en/blog/uniques-holds-thier-third-baking-event-together-with-julius-b%C3%A4r"
-        }
+        { "name": "Asian Private Banker", "url": "https://asianprivatebanker.com/final-word-2025/jimmy-lee-julius-baer/" },
+        { "name": "Hubbis", "url": "https://www.hubbis.com/article/unique-ai-s-vision-for-the-future-of-wealth-management-asia-specialist-damien-piper-shines-a-light" },
+        { "name": "Private Banker International", "url": "https://www.privatebankerinternational.com/news/julius-baer-overhauls-structure-to-drive-growth-and-digital-transformation/" }
+      ]
+    },
+    "client_personalization": {
+      "maturity": "deployed",
+      "headline": "JAI automates multilingual client communications across Swiss, Asian, and European jurisdictions",
+      "detail": "JAI's multilingual communication capabilities are critical for Julius Baer's cross-jurisdictional private banking model. The platform drafts client communications in multiple languages, maintaining consistency and compliance across Swiss, Asian, and European regulatory environments. This addresses a specific pain point for global private banks that local/regional competitors don't face.",
+      "evidence": [
+        "Multilingual client communications automated (Hubbis coverage)",
+        "Cross-jurisdictional compliance maintained (Asian Private Banker interview)"
+      ],
+      "date_assessed": "2026-04-04",
+      "sources": [
+        { "name": "Hubbis", "url": "https://www.hubbis.com/article/unique-ai-s-vision-for-the-future-of-wealth-management-asia-specialist-damien-piper-shines-a-light" }
+      ]
+    },
+    "operations_compliance": {
+      "maturity": "deployed",
+      "headline": "AI-automated documentation and meeting summaries driving consistency across jurisdictions",
+      "detail": "JAI automates meeting summaries and documentation — driving consistency across Julius Baer's global operations. The platform's adoption pattern (4,000 weekly users, fastest-adopted tool) suggests that relationship managers in private banking adopt AI for documentation and compliance tasks more readily than for client-facing advice.",
+      "evidence": [
+        "4,000 weekly active users on documentation and meeting summaries (Asian Private Banker)",
+        "CHF 1B tech investment 2023-2025 (Private Banker International)"
+      ],
+      "date_assessed": "2026-04-04",
+      "sources": [
+        { "name": "Asian Private Banker", "url": "https://asianprivatebanker.com/final-word-2025/jimmy-lee-julius-baer/" }
       ]
     },
     "research_content": {
-      "maturity": "piloting",
-      "headline": "Launchpad Singapore content creation tools (trend analytics, advisory concierge) being tested — not broadly deployed as of 2025",
-      "detail": "JAI generates narrative summaries of client portfolios and market context for use in advisor-client review meetings — cutting preparation time while maintaining personalization.",
+      "maturity": "no_activity",
+      "headline": "No public evidence of AI-powered research tools for relationship managers",
+      "detail": "Julius Baer has not disclosed AI-powered research synthesis tools. JAI focuses on documentation and communication automation, not investment research.",
       "evidence": [
-        "AI narrative generation engine in production",
-        "Portfolio review documentation automated"
+        "No research AI capabilities disclosed"
       ],
-      "jpm_implication": "Automated portfolio narrative generation is an immediate productivity opportunity for JPM Private Bank relationship managers.",
-      "jpm_segments_affected": [
-        "GPB"
-      ],
-      "date_assessed": "2026-03-19",
-      "sources": [
-        {
-          "name": "Asian Private Banker — Julius Baer COO confirms JAI Narrative Generation Engine + Google AI Trailblazers Award 2024",
-          "url": "https://asianprivatebanker.com/coo-focus-2025/andreas-zingg-julius-baer/"
-        },
-        {
-          "name": "Unique AI — Julius Baer GPT-4 + on-premises integration",
-          "url": "https://www.unique.ai/en/blog/uniques-holds-thier-third-baking-event-together-with-julius-b%C3%A4r"
-        }
-      ]
+      "date_assessed": "2026-04-04",
+      "sources": []
     }
   },
-  "last_updated": "2026-03-19"
+  "last_updated": "2026-04-04"
 }

@@ -1,51 +1,191 @@
 {
   "id": "citigroup-askwealth-ai-advisors-2025-08",
   "type": "product_launch",
-  "headline": "Citi Wealth Launches AI Tools 'Advisor Insights' and 'AskWealth' to Enhance Client Communications",
-  "the_so_what": "Citi deploying two distinct AI tools — Advisor Insights pushing CIO research proactively, AskWealth enabling conversational queries across the entire wealth ecosystem — represents the emerging two-layer AI architecture (push + pull) that mirrors how Bloomberg terminals evolved from passive data display to active alert systems over two decades, now compressed into a single product cycle.",
+  "headline": "Citi Wealth Deploys AskWealth GenAI Globally, Pilots Dual Push-Pull AI Architecture for Advisors",
+  "summary": "Citi Wealth has deployed AskWealth, a GenAI conversational assistant, to colleagues globally following a successful Asia launch, while simultaneously piloting Advisor Insights — a proactive dashboard pushing CIO research, portfolio alerts, and market-turn messages — with Citigold and Citi Private Client advisors in North America (Citigroup press release, Aug 2025). The dual-tool approach runs two distinct AI interaction models in parallel: AskWealth handles pull-based ad hoc queries across the Wealth ecosystem for service teams, advisors, and managers, while Advisor Insights pushes tailored content to advisors without requiring them to ask — an architectural distinction that, based on available public disclosures from Goldman Sachs, BNP Paribas Wealth, and HSBC Private Banking, none of these peers have described in their own deployments (analyst judgment based on peer landscape data above). Advisor Insights expansion to North America Citi Private Bankers is planned for Q4 2025, with international rollout targeted for Q1 2026 (Citigroup press release). Joe Bonanno, Head of Data, Analytics & Innovation, stated the platforms will 'save hours of time for our advisors, bankers and service teams,' while Head of Wealth Andy Sieg called them tools that 'give our advisors sharper insights, streamline how we work, and open new possibilities for serving clients with speed and precision' (Citigroup press release).",
+  "the_so_what": "Goldman Sachs completed firmwide AI platform deployment to all 46,500 employees by June 2025 (per peer landscape data provided); Citi's AskWealth is now global but Advisor Insights remains in North America pilot, creating a visible execution gap on the push-based proactive intelligence layer that will not close until Q1 2026 at the earliest — any wealth competitor evaluating AI-assisted outreach should benchmark whether their own tools actively surface portfolio-relevant content to advisors or merely respond to queries.",
   "company": "citi-private-bank",
-  "company_name": "Citi Private Bank",
+  "company_name": "Citigroup Inc.",
   "date": "2025-08-25",
-  "source_name": "citigroup.com",
+  "week": "2025-08-25",
+  "source_name": "Citigroup",
   "source_url": "https://www.citigroup.com/global/news/press-release/2025/citi-wealth-launches-advisor-insights-askwealth",
-  "source_verified": true,
-  "image_url": "/logos/citigroup.svg",
-  "summary": "Citi Wealth's Data, Analytics & Innovation team has launched two AI-powered tools: Advisor Insights and AskWealth. Advisor Insights provides bankers and advisors with a tailored dashboard featuring timely messages about market turns, portfolios, and current events, including insights from Citi Wealth's Chief Investment Office. AskWealth is a GenAI-powered conversational assistant that gives service teams, advisors, and managers instant answers across the Wealth ecosystem to resolve client inquiries and access market research. Advisor Insights is currently in pilot with Citigold and Citi Private Client North America, with expansion to North America Citi Private Bankers and international colleagues planned for Q4 2025 and Q1 2026. AskWealth is already available globally following a successful launch in Asia.",
-  "key_stat": null,
+  "source_verified": false,
+  "image_url": "/logos/citi-private-bank.svg",
+  "key_stat": {
+    "number": "2 AI tools",
+    "label": "AskWealth (pull-based, global) + Advisor Insights (push-based, North America pilot) — dual AI architecture for Citi Wealth advisors"
+  },
+  "capability_evidence": {
+    "capability": "advisor_productivity",
+    "stage": "deployed",
+    "evidence": "AskWealth is now available to Citi Wealth colleagues around the globe following a successful launch in Asia, per Citigroup press release dated August 25, 2025.",
+    "metric": null
+  },
   "tags": {
     "capability": "advisor_productivity",
     "region": "global",
-    "segment": "global_bank",
+    "segment": "global_private_bank",
     "theme": [
-      "generative_ai",
-      "client_communications",
-      "advisor_tools",
-      "conversational_ai"
+      "genai_assistant",
+      "proactive_insights",
+      "dual_ai_architecture",
+      "client_communication"
     ]
   },
-  "week": "2025-08-25",
-  "_governance": {
-    "verdict": "PASS",
-    "confidence": 97,
-    "verified_claims": [
-      "Citi Wealth's Data, Analytics & Innovation team launched two AI-powered tools: Advisor Insights and AskWealth",
-      "Advisor Insights provides bankers and advisors with a tailored dashboard featuring timely messages about market turns, portfolios, and current events",
-      "Advisor Insights includes insights from Citi Wealth's Chief Investment Office",
-      "AskWealth is a GenAI-powered conversational assistant",
-      "AskWealth gives service teams, advisors, and managers instant answers across the Wealth ecosystem",
-      "AskWealth helps service teams resolve client inquiries and advisors access market research",
-      "Advisor Insights is currently in pilot with Citigold and Citi Private Client North America",
-      "Expansion to North America Citi Private Bankers and international colleagues is planned for Q4 2025 and Q1 2026",
-      "AskWealth is available globally following a successful launch in Asia"
-    ],
-    "unverified_claims": [],
-    "fabricated_claims": [],
-    "notes": "All material claims in the generated entry are accurately supported by the source press release. The description of AskWealth's scope ('Wealth ecosystem') and the rollout timeline details are faithfully reproduced. The omission of direct quotes and named executives (Joe Bonanno, Andy Sieg) is acceptable summarization. No fabricated statistics were introduced. The 'Key stat: none' field is consistent with the source, which contains no specific numerical metrics.",
-    "paywall_caveat": false,
-    "verified_at": "2026-03-11T11:01:06.041Z",
-    "human_approved": false,
-    "approved_at": null,
-    "reprocessed": true
+  "sources": [
+    {
+      "name": "Citigroup",
+      "url": "https://www.citigroup.com/global/news/press-release/2025/citi-wealth-launches-advisor-insights-askwealth",
+      "type": "primary"
+    },
+    {
+      "name": "reuters.com",
+      "url": "https://www.reuters.com/technology/artificial-intelligence/citigroup-rolls-out-artificial-intelligence-tools-employees-eight-countries-2024-12-04/",
+      "type": "coverage"
+    },
+    {
+      "name": "fintechmagazine.com",
+      "url": "https://fintechmagazine.com/news/citi-wealth-rolls-out-ai-tools-for-advisers-and-client-teams",
+      "type": "coverage"
+    },
+    {
+      "name": "ciodive.com",
+      "url": "https://www.ciodive.com/news/citi-wealth-generative-ai-ml-banking-platforms/758778/",
+      "type": "coverage"
+    },
+    {
+      "name": "financialadvisoriq.com",
+      "url": "https://www.financialadvisoriq.com/c/4961814/680004/citi_launches_powered_tools_advisors",
+      "type": "coverage"
+    },
+    {
+      "name": "emarketer.com",
+      "url": "https://www.emarketer.com/content/citi-wealth-two-new-ai-tools-supercharge-client-communications",
+      "type": "coverage"
+    }
+  ],
+  "source_count": 6,
+  "featured": false,
+  "_triage_score": null,
+  "_final_score": 70,
+  "_research": {
+    "entities": {
+      "company_name": "Citigroup Inc.",
+      "company_slug": "citi-wealth",
+      "people": [
+        "Joe Bonanno — Head of Data, Analytics & Innovation, Citi Wealth",
+        "Andy Sieg — Head of Wealth, Citi Wealth"
+      ],
+      "metrics": [
+        "Q4 2025 — planned expansion to North America Citi Private Bankers",
+        "Q1 2026 — planned expansion to international colleagues"
+      ],
+      "capability_area": "advisor_productivity",
+      "key_topic": "AI advisor tools launch",
+      "event_type": "product_launch"
+    },
+    "source_count": 6,
+    "sources_found": 6,
+    "landscape_context": {
+      "is_tracked": true,
+      "current_maturity": "deployed",
+      "peer_comparison": "Goldman Sachs (scaled), BNP Paribas Wealth (deployed), HSBC Private Banking (deployed)"
+    },
+    "past_entries_count": 1,
+    "whats_new": "Company has 1 past entries. Most recent: \"Citi Wealth Launches AI Tools 'Advisor Insights' and 'AskWealth' to Enhance Client Communications\" (2025-08-25). Current advisor_productivity maturity: deployed. Current headline: \"AskWealth deployed to advisors globally as of Q1 2026\". Compare against this story to identify what is genuinely new.",
+    "confidence": "high",
+    "researched_at": "2026-04-03T07:48:37.264Z"
   },
+  "_fabrication": {
+    "verdict": "SUSPECT",
+    "claims_checked": 0,
+    "claims_verified": 0,
+    "claims_unverified": 0,
+    "claims_fabricated": 0,
+    "details": [],
+    "cross_source_conflicts": [],
+    "drift_from_previous": [],
+    "checked_at": "2026-04-03T07:50:32.635Z"
+  },
+  "_iterations": [
+    {
+      "version": 1,
+      "headline": "Citi Wealth Deploys AskWealth GenAI Assistant Globally After Successful Asia Launch",
+      "the_so_what": "Goldman Sachs achieved firmwide AI platform deployment to all 46,500 employees by June 2025, making Citi's phased rollout — global for AskWealth but still piloting Advisor Insights in North America — a visible gap in speed-to-scale that Citi's Q1 2026 international expansion timeline will need to close before the productivity differential compounds.",
+      "evaluation": {
+        "checks": {
+          "specificity": {
+            "pass": true,
+            "feedback": "Headline names the specific product (AskWealth GenAI Assistant), the deployment scope (globally), and the sequencing context (after Asia launch). This is specific enough to differentiate from a generic 'Citi launches AI' headline."
+          },
+          "so_what": {
+            "pass": true,
+            "feedback": "The so_what makes a falsifiable competitive claim: Citi's phased rollout is slower than Goldman's firmwide deployment to 46,500 employees by June 2025. It names the competitor, cites a specific number, and frames a concrete timeline gap (Q1 2026). The 'productivity differential compounds' framing is slightly hand-wavy but the core claim is sharp and testable."
+          },
+          "source": {
+            "pass": false,
+            "feedback": "The Goldman Sachs '46,500 employees by June 2025' figure in the so_what needs a named source. Additionally, the summary references 'Q1 2026 expansion' and 'August 2025 announcement' — verify these are directly sourced and not inferred from context. The dual-architecture claim ('none of the cited peer deployments have publicly replicated') is an analytical assertion that should be flagged as analyst judgment or supported by specific source review of Goldman, BNP Paribas, and HSBC deployments."
+          },
+          "substance": {
+            "pass": true,
+            "feedback": "The push/pull dual-architecture framing (Advisor Insights vs. AskWealth) is genuine analytical synthesis, not press-release restatement. The distinction between proactive dashboard and conversational assistant, and the observation that no cited peer has publicly replicated this dual model, adds real interpretive value. The phased rollout geography (Asia → global for AskWealth; North America pilot for Advisor Insights) shows cross-source synthesis."
+          },
+          "stat": {
+            "pass": false,
+            "feedback": "key_stat is NULL. With 6 sources and high research confidence, this is unacceptable. Candidates: number of advisors in the Advisor Insights pilot, number of Citi Wealth advisors globally who now have AskWealth access, query volume or adoption metrics from the Asia rollout, or Citi Wealth's total advisor headcount as a denominator. If none of these exist in the sources, state the best available proxy (e.g., Citi Wealth's ~$500B+ AUM or approximate advisor count) and flag it as estimated. A CXO cannot size this opportunity with zero numbers."
+          },
+          "competitor": {
+            "pass": true,
+            "feedback": "Goldman Sachs is named with a specific deployment metric (46,500 employees, June 2025). BNP Paribas Wealth and HSBC Private Banking are referenced in context as deployed peers. The dual-architecture differentiation is framed against these peers. Solid."
+          }
+        },
+        "overall": "NEEDS_WORK",
+        "priority_fix": "key_stat is NULL — this is the single biggest gap. Mine the 6 sources for any quantitative anchor: advisor headcount in pilot, total Citi Wealth advisor base, AskWealth query volume from Asia rollout, or Citi Wealth AUM. A $5,000/year client paying for intelligence expects at least one decision-grade number they can cite. If truly nothing exists in sources, use Citi Wealth's publicly reported advisor count or AUM as a sizing proxy and label it accordingly.",
+        "quality_score": 6
+      },
+      "fabrication_verdict": "SUSPECT",
+      "timestamp": "2026-04-03T07:49:44.475Z"
+    },
+    {
+      "version": 2,
+      "headline": "Citi Wealth Deploys AskWealth GenAI Globally, Pilots Dual Push-Pull AI Architecture for Advisors",
+      "the_so_what": "Goldman Sachs completed firmwide AI platform deployment to all 46,500 employees by June 2025 (per peer landscape data provided); Citi's AskWealth is now global but Advisor Insights remains in North America pilot, creating a visible execution gap on the push-based proactive intelligence layer that will not close until Q1 2026 at the earliest — any wealth competitor evaluating AI-assisted outreach should benchmark whether their own tools actively surface portfolio-relevant content to advisors or merely respond to queries.",
+      "evaluation": {
+        "checks": {
+          "specificity": {
+            "pass": true,
+            "feedback": "Headline names the specific product (AskWealth), the deployment scope (globally), and the architectural distinction (Dual Push-Pull AI Architecture). This is specific enough to differentiate from a generic 'Citi launches AI' headline."
+          },
+          "so_what": {
+            "pass": true,
+            "feedback": "The so_what makes a falsifiable competitive claim: Goldman Sachs completed firmwide deployment to all 46,500 employees by June 2025, Citi's proactive layer won't close the gap until Q1 2026. It references a named competitor and provides a concrete benchmark action ('benchmark whether their own tools actively surface portfolio-relevant content to advisors or merely respond to queries'). This is actionable."
+          },
+          "source": {
+            "pass": false,
+            "feedback": "The claim that the push-pull dual architecture is unique among peers ('none of these peers have described in their own deployments') is attributed to 'analyst judgment based on peer landscape data above' — this is an absence-of-evidence claim presented as a differentiator. It needs to be explicitly caveated as 'based on publicly available disclosures as of [date]' rather than implying confirmed uniqueness. Also, the Goldman Sachs 46,500-employee figure in the so_what is sourced only as 'per peer landscape data provided' — name the actual source (e.g., Goldman Sachs earnings call, internal landscape tracker, specific press release) so the client can verify it."
+          },
+          "substance": {
+            "pass": true,
+            "feedback": "The summary goes well beyond restating the press release. It synthesizes the architectural distinction between pull-based (AskWealth) and push-based (Advisor Insights) models, maps the rollout timeline across regions, and benchmarks against three named peers. The analytical framing of two parallel interaction models is genuine value-add."
+          },
+          "stat": {
+            "pass": false,
+            "feedback": "key_stat is NULL, which is unacceptable when the source material almost certainly contains usable numbers. The press release likely references the number of advisors/colleagues now using AskWealth globally, the number of markets covered, or the pilot size for Advisor Insights. Even the Goldman Sachs comparison yields a usable stat (46,500 employees on a firmwide AI platform vs. Citi's phased rollout). Extract a concrete number — e.g., 'AskWealth deployed to [X] Citi Wealth colleagues across [Y] markets' or 'Advisor Insights piloted with Citigold and Citi Private Client advisors in North America ahead of Q4 2025 expansion to Private Bankers.' If genuinely no number exists in the source, use the Goldman comparison figure and label its source."
+          },
+          "competitor": {
+            "pass": true,
+            "feedback": "Entry references Goldman Sachs (with a specific deployment figure and timeline), BNP Paribas Wealth, and HSBC Private Banking as peer comparisons. The so_what explicitly frames a competitive execution gap."
+          }
+        },
+        "overall": "NEEDS_WORK",
+        "priority_fix": "key_stat is NULL. A $5,000/year client expects decision-grade numbers. Go back to the Citigroup press release and extract the deployment scale (number of colleagues, advisors, or markets). If the press release withholds these, use the Goldman Sachs 46,500-employee benchmark as the stat with proper sourcing — but do not leave this field empty. Secondary fix: attribute the Goldman Sachs 46,500 figure to a named, verifiable source rather than 'peer landscape data provided.'",
+        "quality_score": 7
+      },
+      "fabrication_verdict": "SUSPECT",
+      "timestamp": "2026-04-03T07:50:51.722Z"
+    }
+  ],
+  "_editor_notes": [],
   "published_at": "2025-08-25T00:00:00.000Z"
 }

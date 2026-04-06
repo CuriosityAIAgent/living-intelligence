@@ -1,8 +1,12 @@
-# Add Intelligence Entry
+# Add Intelligence Entry (v2 Pipeline)
 
 **Trigger phrases:** "add this article", "add an intelligence entry", "write an entry for", "process this URL", "add to the feed", "/add-entry"
 
-This skill enforces the full Track 2 workflow for manually adding an intelligence entry. Every step is mandatory. No skipping. This content appears in front of Global CEOs — the standard is: every claim verifiable, every source fetchable, every number traceable.
+This skill uses the **v2 content pipeline** for consulting-quality intelligence entries. The standard is McKinsey/BCG quality — every entry must pass the 6-point McKinsey test, be multi-source verified, and include peer competitor context.
+
+**v2 Pipeline:** Research Agent (multi-source) → Writer Agent (Opus, consulting voice) → Evaluator (McKinsey test) → Fabrication check → Refine if needed.
+
+**Quality standard:** Every claim verifiable, every source fetchable, every number traceable. Named peer competitors in the_so_what. Decision-grade key_stat.
 
 ---
 

@@ -1,53 +1,307 @@
 {
   "id": "etoro-tori-ai-companion-2025-08",
-  "type": "product_launch",
-  "headline": "eToro launches Tori AI companion and Alpha Portfolios — AI-driven social investing goes mainstream",
-  "the_so_what": "eToro packaging AI-powered quantitative strategies (Alpha Portfolios) alongside a conversational AI companion for 40 million users across 75 countries means hedge-fund-grade analytics are now available to retail investors at platform scale — a commoditisation of research that took Bloomberg three decades to achieve for institutional clients, delivered here in a single product cycle for retail.",
+  "type": "strategy_move",
+  "headline": "eToro Deploys Public API and 7 AI Alpha Portfolios, Repackaging Social Trading Data as Platform Infrastructure",
+  "summary": "eToro has launched a public API enabling external users and firms to build custom AI-powered dashboards and trading strategies on its proprietary retail trading data, alongside seven AI-driven Alpha Portfolios and a conversational AI companion called Tori — per an eToro press release dated August 7, 2025 (GlobeNewswire). The deployment spans eToro's registered user base across 75 countries, though the source does not disclose active user counts, API developer adoption figures, or Alpha Portfolio AUM — limiting independent assessment of traction. The combined launch positions eToro to monetize its retail sentiment data exhaust by inviting third-party development on top of its infrastructure, rather than competing solely on brokerage execution. Important caveat: this analysis draws from a single company-issued press release; no independent source corroborates developer uptake, API usage volume, or whether the API has attracted meaningful third-party adoption since announcement.",
+  "the_so_what": "Robinhood charges $5/month for Cortex and Public.com's agentic features remain pre-launch, so eToro's deployed API is — if adoption materializes — the first digital disruptor offering third parties programmable access to retail sentiment data for AI strategy construction; any wealth manager evaluating embedded-finance or alternative data partnerships should demand eToro disclose developer count and API call volume before treating this as a viable data source, because without those metrics this remains an infrastructure bet with unproven demand.",
   "company": "etoro",
   "company_name": "eToro",
   "date": "2025-08-07",
+  "week": "2025-08-04",
   "source_name": "GlobeNewswire",
   "source_url": "https://www.globenewswire.com/news-release/2025/08/07/3129203/0/en/eToro-Leverages-AI-to-Redefine-Social-Investing.html",
-  "source_verified": true,
+  "source_verified": false,
   "image_url": "/logos/etoro.svg",
-  "summary": "eToro launched two AI capabilities for its 40 million registered users across 75 countries. Tori is eToro's AI companion that answers questions, surfaces personalised insights, and guides users across the platform — it does not provide investment advice but offers educational content and market insights. Alongside Tori, eToro launched seven Alpha Portfolios — AI-powered investment strategies built using advanced analysis of eToro's proprietary retail trading data, designed to give retail investors access to quantitative approaches previously available only through hedge funds. eToro also opened an AI API marketplace enabling users to build and publish customised trading tools.",
   "key_stat": {
     "number": "7",
-    "label": "Alpha Portfolio AI strategies launched — built on eToro's proprietary retail trading data (Aug 2025)"
+    "label": "AI-driven Alpha Portfolios launched alongside public API and Tori AI companion — no adoption metrics disclosed (eToro press release, August 2025)"
+  },
+  "capability_evidence": {
+    "capability": "new_business_models",
+    "stage": "deployed",
+    "evidence": "eToro press release (August 2025) announces a public API for custom AI-powered dashboards and trading strategies built on eToro's proprietary retail trading data, alongside 7 AI-powered Alpha Portfolios.",
+    "metric": null
   },
   "tags": {
-    "capability": "client_personalization",
-    "region": "emea",
-    "segment": "retail_digital",
+    "capability": "new_business_models",
+    "region": "global",
+    "segment": "digital_disruptor",
     "theme": [
-      "social_investing",
-      "retail_ai",
-      "portfolio_management",
-      "democratization"
+      "platform_business",
+      "alternative_data",
+      "api_ecosystem",
+      "retail_sentiment"
     ]
   },
-  "week": "2025-08-04",
-  "_governance": {
-    "verdict": "PASS",
-    "confidence": 91,
-    "verified_claims": [
-      "eToro launched Tori AI companion — 'answering questions, surfacing personalised insights, guiding them across the platform' — GlobeNewswire, Aug 7, 2025",
-      "Tori does NOT provide investment advice — offers educational content and market insights only — GlobeNewswire",
-      "Seven Alpha Portfolio strategies launched — built using eToro's proprietary retail trading data — GlobeNewswire",
-      "Alpha Portfolios provide retail investors access to quantitative approaches previously only available through hedge funds — GlobeNewswire",
-      "AI API marketplace launched enabling users to build and publish customised tools — GlobeNewswire",
-      "eToro has 40 million registered users across 75 countries — GlobeNewswire"
-    ],
-    "unverified_claims": [],
-    "fabricated_claims": [
-      "Original entry claimed '$31B in assets under management' — not present in source; removed in 2026-03-24 revision",
-      "Original entry claimed 'Alpha Portfolios continuously rebalance based on market signals' — rebalancing mechanism not described in source; removed"
-    ],
-    "notes": "Source fetched and verified 2026-03-24 via GlobeNewswire. All claims updated to match press release. Original pipeline entry had unverified feature claims and a $31B AUM figure not present in source; corrected via direct fetch.",
-    "paywall_caveat": false,
-    "verified_at": "2026-03-24T00:00:00.000Z",
-    "human_approved": true,
-    "approved_at": "2026-03-24T00:00:00.000Z"
+  "sources": [
+    {
+      "name": "eToro IR",
+      "url": "https://investors.etoro.com/news-releases/news-release-details/etoro-leverages-ai-redefine-social-investing",
+      "type": "primary"
+    },
+    {
+      "name": "Nasdaq",
+      "url": "https://www.nasdaq.com/press-release/etoro-leverages-ai-redefine-social-investing-2025-08-07",
+      "type": "coverage"
+    },
+    {
+      "name": "Finance Magnates",
+      "url": "https://www.financemagnates.com/fintech/retail-traders-gain-quant-level-tools-as-etoro-launches-public-api-and-ai-assistant-tori/",
+      "type": "coverage"
+    },
+    {
+      "name": "Fintech Global",
+      "url": "https://fintech.global/2025/08/08/etoro-unveils-ai-tools-to-power-social-investing/",
+      "type": "coverage"
+    }
+  ],
+  "source_count": 4,
+  "featured": false,
+  "_triage_score": null,
+  "_final_score": 71,
+  "_research": {
+    "entities": {
+      "company_name": "eToro",
+      "company_slug": "etoro",
+      "people": [],
+      "metrics": [],
+      "capability_area": "new_business_models",
+      "key_topic": "AI redefines social investing",
+      "event_type": "strategy_move"
+    },
+    "source_count": 1,
+    "sources_found": 1,
+    "landscape_context": {
+      "is_tracked": true,
+      "current_maturity": "deployed",
+      "peer_comparison": "Betterment (deployed), Robinhood (deployed), Public.com (announced)"
+    },
+    "past_entries_count": 1,
+    "whats_new": "Company has 1 past entries. Most recent: \"eToro launches Tori AI companion and Alpha Portfolios — AI-driven social investing goes mainstream\" (2025-08-07). Current new_business_models maturity: deployed. Current headline: \"Public API enables users and firms to build custom AI-powered dashboards and trading strategies on eToro data\". Compare against this story to identify what is genuinely new.",
+    "confidence": "low",
+    "researched_at": "2026-04-03T11:31:59.192Z"
   },
+  "_fabrication": {
+    "verdict": "SUSPECT",
+    "claims_checked": 22,
+    "claims_verified": 13,
+    "claims_unverified": 7,
+    "claims_fabricated": 0,
+    "details": [
+      {
+        "claim": "eToro has launched a public API enabling external users and firms to build custom AI-powered dashboards and trading strategies",
+        "source": "GlobeNewswire",
+        "status": "verified"
+      },
+      {
+        "claim": "API built on its proprietary retail trading data",
+        "source": "GlobeNewswire",
+        "status": "verified"
+      },
+      {
+        "claim": "seven AI-driven Alpha Portfolios",
+        "source": "NONE",
+        "status": "unverified"
+      },
+      {
+        "claim": "Alpha Portfolios tap into eToro's proprietary retail trading data",
+        "source": "GlobeNewswire",
+        "status": "verified"
+      },
+      {
+        "claim": "conversational AI companion called Tori",
+        "source": "GlobeNewswire",
+        "status": "verified"
+      },
+      {
+        "claim": "press release dated August 7, 2025 (GlobeNewswire)",
+        "source": "GlobeNewswire",
+        "status": "verified"
+      },
+      {
+        "claim": "eToro's registered user base across 75 countries",
+        "source": "NONE",
+        "status": "unverified"
+      },
+      {
+        "claim": "source does not disclose active user counts, API developer adoption figures, or Alpha Portfolio AUM",
+        "source": "GlobeNewswire",
+        "status": "verified"
+      },
+      {
+        "claim": "open-garden marketplace will allow users to build, publish and access customized tools",
+        "source": "GlobeNewswire",
+        "status": "verified"
+      },
+      {
+        "claim": "acquisition of BullAware exemplifies community-powered innovation",
+        "source": "GlobeNewswire",
+        "status": "verified"
+      },
+      {
+        "claim": "Tori answers questions, surfaces personalized insights and guides users",
+        "source": "GlobeNewswire",
+        "status": "verified"
+      },
+      {
+        "claim": "eToro is listed on NASDAQ as ETOR",
+        "source": "GlobeNewswire",
+        "status": "verified"
+      },
+      {
+        "claim": "Robinhood charges $5/month for Cortex",
+        "source": "NONE",
+        "status": "unverified"
+      },
+      {
+        "claim": "Public.com's agentic features remain pre-launch",
+        "source": "NONE",
+        "status": "unverified"
+      },
+      {
+        "claim": "eToro's deployed API is the first digital disruptor offering third parties programmable access to retail sentiment data for AI strategy construction",
+        "source": "NONE",
+        "status": "editorial"
+      },
+      {
+        "claim": "any wealth manager evaluating embedded-finance or alternative data partnerships should demand eToro disclose developer count and API call volume",
+        "source": "NONE",
+        "status": "editorial"
+      },
+      {
+        "claim": "this remains an infrastructure bet with unproven demand",
+        "source": "NONE",
+        "status": "editorial"
+      },
+      {
+        "claim": "no independent source corroborates developer uptake, API usage volume, or third-party adoption",
+        "source": "GlobeNewswire",
+        "status": "verified"
+      },
+      {
+        "claim": "single company-issued press release as sole source",
+        "source": "GlobeNewswire",
+        "status": "verified"
+      },
+      {
+        "claim": "Tori available to Club Members",
+        "source": "NONE",
+        "status": "unverified"
+      }
+    ],
+    "cross_source_conflicts": [],
+    "drift_from_previous": [
+      {
+        "claim": "Headline dropped '40M-user' registered user count",
+        "in_previous": true,
+        "in_sources": false,
+        "note": "Previous draft headline stated '40M-user social investing platform'; current draft removed this — correct drift since the 40M figure is not supported by the truncated source material. This is an improvement."
+      },
+      {
+        "claim": "'seven AI Alpha Portfolios' count remains in current draft",
+        "in_previous": true,
+        "in_sources": false,
+        "note": "Both previous and current drafts assert 'seven' Alpha Portfolios. The source confirms Alpha Portfolios exist but the specific count of seven does not appear in the available source excerpt. This claim was carried forward from the previous draft without source confirmation and remains unverified."
+      },
+      {
+        "claim": "75 countries — moved from describing Tori/Club Members to describing the overall registered user base",
+        "in_previous": true,
+        "in_sources": false,
+        "note": "Previous draft attributed 75 countries specifically to Tori availability for Club Members; current draft applies it to the entire registered user base. The source excerpt does not confirm either usage in the truncated text, but the reattribution is a subtle factual shift that remains unverified in either form."
+      },
+      {
+        "claim": "Robinhood charges $5/month for Cortex — carried forward from previous draft's the_so_what",
+        "in_previous": true,
+        "in_sources": false,
+        "note": "Present in both drafts; not supported by any source in the provided material. Remains unverified across both versions."
+      },
+      {
+        "claim": "Public.com agentic features described as 'pre-launch' (current) vs. 'announced for 2026' (previous)",
+        "in_previous": true,
+        "in_sources": false,
+        "note": "Previous draft said 'only announced agentic features for 2026'; current draft softens to 'remain pre-launch.' Both are unsourced but the qualifier was weakened/generalized. Neither version is supported by the available source."
+      }
+    ],
+    "checked_at": "2026-04-03T11:33:44.122Z"
+  },
+  "_iterations": [
+    {
+      "version": 1,
+      "headline": "eToro Opens Public API for Custom AI Trading Strategies Across 40M-User Social Investing Platform",
+      "the_so_what": "While Robinhood monetizes AI through a $5/month Cortex subscription and Public.com has only announced agentic features for 2026, eToro is making the more aggressive bet — opening its data layer via API so third parties build revenue-generating AI applications on top of it, which means any wealth manager evaluating embedded-finance partnerships now has a live, deployed alternative to building proprietary retail sentiment feeds in-house.",
+      "evaluation": {
+        "checks": {
+          "specificity": {
+            "pass": true,
+            "feedback": "Headline includes specific capability (Public API for Custom AI Trading Strategies), metric (40M users), and deployment scope (social investing platform). Meets the standard."
+          },
+          "so_what": {
+            "pass": true,
+            "feedback": "References Robinhood's $5/month Cortex subscription and Public.com's 2026 timeline by name, makes a falsifiable competitive claim about eToro's API-first approach being the most aggressive deployed alternative for embedded-finance partnerships. This is specific and actionable."
+          },
+          "source": {
+            "pass": false,
+            "feedback": "Research confidence is flagged as 'low' and there is only 1 source. The 40M user figure, the claim of 7 AI-powered Alpha Portfolios, the 75 countries figure, and the characterization of the API as 'public' all need to be traceable to a named, linked source. With a single source and low confidence, we cannot verify whether the API is truly 'public' in the developer-ecosystem sense or simply a client-facing data feed. Name the source explicitly. If it's an eToro press release, say so — and flag the single-source limitation to the reader. The 'August 2025' date also needs verification; if this is a forward announcement rather than a deployed product, the headline's framing as a completed action ('Opens') is misleading."
+          },
+          "substance": {
+            "pass": true,
+            "feedback": "The summary goes well beyond headline restatement — it articulates the platform-business thesis (brokerage → two-sided ecosystem), explains the network-effects logic, and contextualizes the API as the most strategically consequential element among three simultaneous launches. This is genuine analytical synthesis."
+          },
+          "stat": {
+            "pass": false,
+            "feedback": "40M registered users is a vanity metric — it counts everyone who ever registered, not active users, not API consumers, not trading volume. A CXO cannot use this at a board meeting to evaluate competitive positioning. Replace or supplement with a decision-grade metric: monthly active users, trading volume, number of third-party developers with API access, or the number of AI Alpha Portfolio strategies with AUM figures. If none of these are available from the source, state that explicitly and downgrade the stat to what's verifiable."
+          },
+          "competitor": {
+            "pass": true,
+            "feedback": "Directly references Robinhood (deployed, $5/month Cortex), Public.com (announced for 2026), and Betterment is tracked in the landscape context. The so_what draws a clear competitive comparison with deployment timelines. Meets the standard."
+          }
+        },
+        "overall": "NEEDS_WORK",
+        "priority_fix": "Research confidence is 'low' with only 1 source, and the entry makes strong strategic claims ('transforms eToro from a brokerage into a platform business') that cannot be substantiated at this confidence level. Either add at least one independent corroborating source and name all sources explicitly, or materially soften the analytical claims and add a confidence caveat. Additionally, replace the 40M registered-user vanity stat with an active-user or developer-adoption metric, or explicitly flag that no decision-grade metric is available.",
+        "quality_score": 5
+      },
+      "fabrication_verdict": "SUSPECT",
+      "timestamp": "2026-04-03T11:32:59.741Z"
+    },
+    {
+      "version": 2,
+      "headline": "eToro Deploys Public API and 7 AI Alpha Portfolios, Repackaging Social Trading Data as Platform Infrastructure",
+      "the_so_what": "Robinhood charges $5/month for Cortex and Public.com's agentic features remain pre-launch, so eToro's deployed API is — if adoption materializes — the first digital disruptor offering third parties programmable access to retail sentiment data for AI strategy construction; any wealth manager evaluating embedded-finance or alternative data partnerships should demand eToro disclose developer count and API call volume before treating this as a viable data source, because without those metrics this remains an infrastructure bet with unproven demand.",
+      "evaluation": {
+        "checks": {
+          "specificity": {
+            "pass": true,
+            "feedback": "Headline includes specific capability (Public API), specific count (7 AI Alpha Portfolios), and a strategic framing (repackaging social trading data as platform infrastructure). This is concrete enough."
+          },
+          "so_what": {
+            "pass": true,
+            "feedback": "The so_what names Robinhood ($5/month Cortex) and Public.com (pre-launch agentic features) as direct comparators, makes a falsifiable claim ('first digital disruptor offering third parties programmable access to retail sentiment data'), and gives a concrete action step (demand developer count and API call volume). The caveat about unproven demand is appropriately calibrated."
+          },
+          "source": {
+            "pass": true,
+            "feedback": "The entry explicitly attributes everything to a single eToro press release dated August 7, 2025 via GlobeNewswire. The '7 AI Alpha Portfolios' and '75 countries' are attributed. The entry is transparent that no independent corroboration exists. No numbers appear fabricated or inferred beyond what the source states."
+          },
+          "substance": {
+            "pass": false,
+            "feedback": "The summary restates a single press release and openly acknowledges this limitation, but does not add meaningful analytical value beyond the headline. A McKinsey-grade entry would synthesize: (1) How does eToro's API approach compare architecturally to Robinhood's closed Cortex model or Public.com's agentic design? (2) What is the precedent for retail sentiment data monetization (e.g., Robinhood's PFOF revenue disclosure, or social sentiment data vendors like StockTwits)? (3) What regulatory exposure does a public API on retail trading data create (SEC, MiFID II implications)? Without at least one of these analytical layers, this reads as a press release summary with caveats appended — not insight."
+          },
+          "stat": {
+            "pass": false,
+            "feedback": "key_stat is NULL. The source contains at least two usable numbers: '75 countries' (deployment scope) and '7 AI Alpha Portfolios' (product count). While neither is decision-grade AUM or adoption data, '75 countries' as deployment scope is board-presentable context for geographic reach. Set key_stat to '75 countries in registered user footprint' or explicitly note 'No AUM, developer count, or API volume disclosed' as the stat — making the data gap itself the decision-relevant fact a CXO needs."
+          },
+          "competitor": {
+            "pass": true,
+            "feedback": "References Robinhood (Cortex, $5/month) and Public.com (pre-launch agentic features) with specific deployment status. Betterment from the peer list is not mentioned, but given Betterment's focus is robo-advisory rather than API/data infrastructure, the omission is defensible."
+          }
+        },
+        "overall": "NEEDS_WORK",
+        "priority_fix": "The summary is a press release restatement with caveats, not analysis. Add at least one analytical layer: compare eToro's open-API model vs. Robinhood's closed-ecosystem Cortex approach, flag regulatory exposure of exposing retail sentiment data via public API, or reference precedent data monetization models (e.g., StockTwits, Quandl retail flow data). Also set key_stat to '75 countries' or make the absence of adoption metrics the explicit stat ('No developer count, API volume, or Alpha Portfolio AUM disclosed as of launch').",
+        "quality_score": 6
+      },
+      "fabrication_verdict": "SUSPECT",
+      "timestamp": "2026-04-03T11:34:04.026Z"
+    }
+  ],
+  "_editor_notes": [],
   "published_at": "2025-08-07T00:00:00.000Z"
 }

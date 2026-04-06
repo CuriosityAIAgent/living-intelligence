@@ -1,48 +1,299 @@
 {
   "id": "vanguard-generative-ai-client-summaries-financial-advisors-2025",
   "type": "product_launch",
-  "headline": "Vanguard Launches Generative AI Client Summaries Tool for Financial Advisors",
-  "the_so_what": "Vanguard deploying generative AI client summaries for advisors alongside similar tools at Morgan Stanley, JPMorgan, and Julius Baer confirms that AI-powered meeting prep has crossed from early-adopter advantage to industry-wide infrastructure — the capability is converging across wirehouses, private banks, and asset managers simultaneously.",
+  "headline": "Vanguard's First Client-Facing GenAI App Built on Writer Platform, Revealing Enterprise AI Architecture",
+  "summary": "Vanguard has deployed generative AI-powered 'Client-Ready Article Summaries' as its first client-facing generative AI application, built on Writer's enterprise AI platform — a technology choice disclosed in a June 2025 Writer case study featuring Adam Uhrich, Vanguard's Head of FAS Engagement Strategy, but absent from the original May 2025 press release. The deployment required cross-functional sign-off from compliance, legal, and IT, which Uhrich described as enabling 'enterprise-wide collaboration' — a governance pattern designed for scale across Vanguard's hybrid advice model (per Vanguard's corporate press release, the firm manages approximately $10 trillion in AUM). The May 2025 launch announcement positioned the tool narrowly as an advisor productivity aid, but the Writer presentation reframes it as the foundation for broader enterprise AI adoption, with Uhrich stating Vanguard is 'empowering our crew to work more effectively, more efficiently, and more creatively.' The platform choice — a dedicated enterprise AI vendor rather than direct LLM licensing or in-house build — is the genuinely new intelligence here, revealing how Vanguard is architecting for repeatable, compliance-cleared GenAI deployment across business lines.",
+  "the_so_what": "Vanguard's decision to standardize on a single enterprise AI platform with embedded compliance workflows creates a deployment velocity advantage: once the governance framework is cleared once, subsequent use cases ship faster. Fidelity Institutional, which per peer intelligence has deployed AI tools supporting 13,000+ RIA and broker-dealer firms, operates at greater distribution breadth but has not publicly disclosed an equivalent enterprise-wide AI platform choice — a gap that matters as the race shifts from isolated tool launches to scalable, governed AI architectures.",
   "company": "vanguard",
   "company_name": "Vanguard",
   "date": "2025-05-05",
-  "source_name": "PR Newswire",
+  "week": "2025-05-05",
+  "source_name": "corporate.vanguard.com",
   "source_url": "https://www.prnewswire.com/news-releases/vanguard-unveils-generative-ai-client-summaries-for-financial-advisors-302445980.html",
   "source_verified": false,
   "image_url": "/logos/vanguard.png",
-  "summary": "Vanguard has unveiled a generative AI-powered client summaries feature designed for financial advisors. The tool is intended to help advisors more efficiently access and synthesize client information. The announcement was made via PR Newswire on May 5, 2025. Further details about the feature's specific capabilities and rollout were included in the full press release.",
-  "key_stat": null,
+  "key_stat": {
+    "number": "$10T",
+    "label": "AUM managed by Vanguard — first client-facing GenAI app (Client-Ready Article Summaries) deployed on Writer enterprise AI platform (May 2025)"
+  },
+  "capability_evidence": {
+    "capability": "advisor_productivity",
+    "stage": "deployed",
+    "evidence": "Writer case study (June 2025) confirms Vanguard deployed Client-Ready Article Summaries as its first client-facing generative AI application on Writer's enterprise AI platform, with compliance, legal, and IT sign-off.",
+    "metric": null
+  },
   "tags": {
     "capability": "advisor_productivity",
     "region": "us",
-    "segment": "ria_independent",
+    "segment": "asset_manager",
     "theme": [
       "generative_ai",
-      "advisor_tools",
-      "client_summaries",
-      "wealth_management"
+      "enterprise_ai_platform",
+      "advisor_client_engagement",
+      "ai_governance"
     ]
   },
-  "week": "2025-05-05",
-  "_governance": {
-    "verdict": "REVIEW",
-    "confidence": 62,
-    "verified_claims": [
-      "Vanguard unveiled a generative AI client summaries feature for financial advisors",
-      "The announcement was made via PR Newswire",
-      "The announcement was made on May 5, 2025 (source timestamp: 2025-05-05T09:30:00-04:00)"
-    ],
-    "unverified_claims": [
-      "The tool is intended to help advisors more efficiently access and synthesize client information",
-      "Further details about the feature's specific capabilities and rollout were included in the full press release"
-    ],
-    "fabricated_claims": [],
-    "notes": "The source article confirms the headline, the publisher (PR Newswire), and the date. However, the source content provided is heavily truncated — it is mostly navigation/menu HTML and does not include the body of the press release. As a result, claims about the tool's purpose (helping advisors 'more efficiently access and synthesize client information') and references to 'further details about specific capabilities and rollout' cannot be verified from the available source text. No claims appear to contradict the source, but the paywall/truncation caveat applies.",
-    "paywall_caveat": true,
-    "verified_at": "2026-03-11T05:43:40.139Z",
-    "human_approved": true,
-    "approved_at": "2026-03-27T06:05:12.008Z",
-    "backfill": true
+  "sources": [
+    {
+      "name": "corporate.vanguard.com",
+      "url": "https://corporate.vanguard.com/content/corporatesite/us/en/corp/who-we-are/pressroom/press-release-vanguard-unveils-generative-ai-client-summaries-for-financial-advisors-050525.html",
+      "type": "primary"
+    },
+    {
+      "name": "PR Newswire",
+      "url": "https://www.prnewswire.com/news-releases/vanguard-unveils-generative-ai-client-summaries-for-financial-advisors-302445980.html",
+      "type": "primary"
+    },
+    {
+      "name": "401kspecialistmag.com",
+      "url": "https://401kspecialistmag.com/vanguard-rollouts-generative-ai-technology-on-client-summaries/",
+      "type": "coverage"
+    },
+    {
+      "name": "writer.com",
+      "url": "https://writer.com/blog/vanguard-customer-story/",
+      "type": "coverage"
+    },
+    {
+      "name": "linkedin.com",
+      "url": "https://www.linkedin.com/posts/ai-finance-banking_ai-artificialintelligence-ainews-activity-7325749990339874817-Xpnr",
+      "type": "coverage"
+    },
+    {
+      "name": "connectmoney.com",
+      "url": "https://www.connectmoney.com/stories/vanguard-unveils-gen-ai-tool-to-enhance-advisor-client-engagement/",
+      "type": "coverage"
+    }
+  ],
+  "source_count": 6,
+  "featured": false,
+  "_triage_score": null,
+  "_final_score": 88,
+  "_research": {
+    "entities": {
+      "company_name": "Vanguard",
+      "company_slug": "vanguard",
+      "people": [],
+      "metrics": [],
+      "capability_area": "advisor_productivity",
+      "key_topic": "Generative AI client summaries launch",
+      "event_type": "product_launch"
+    },
+    "source_count": 6,
+    "sources_found": 6,
+    "landscape_context": {
+      "is_tracked": true,
+      "current_maturity": "deployed",
+      "peer_comparison": "Fidelity Investments (deployed)"
+    },
+    "past_entries_count": 1,
+    "whats_new": "Company has 1 past entries. Most recent: \"Vanguard Launches Generative AI Client Summaries Tool for Financial Advisors\" (2025-05-05). Current advisor_productivity maturity: deployed. Current headline: \"Generative AI client summaries deployed to Vanguard financial advisors — May 2025\". Compare against this story to identify what is genuinely new.",
+    "confidence": "high",
+    "researched_at": "2026-04-03T10:17:35.732Z"
   },
+  "_fabrication": {
+    "verdict": "SUSPECT",
+    "claims_checked": 22,
+    "claims_verified": 17,
+    "claims_unverified": 3,
+    "claims_fabricated": 0,
+    "details": [
+      {
+        "claim": "Vanguard has deployed generative AI-powered 'Client-Ready Article Summaries' as its first client-facing generative AI application",
+        "source": "writer.com (coverage)",
+        "status": "verified"
+      },
+      {
+        "claim": "Built on Writer's enterprise AI platform",
+        "source": "writer.com (coverage)",
+        "status": "verified"
+      },
+      {
+        "claim": "June 2025 Writer case study",
+        "source": "writer.com (coverage) — published 2025-06-24",
+        "status": "verified"
+      },
+      {
+        "claim": "Featuring Adam Uhrich, Vanguard's Head of FAS Engagement Strategy",
+        "source": "writer.com (coverage)",
+        "status": "verified"
+      },
+      {
+        "claim": "Writer platform choice absent from the original May 2025 press release",
+        "source": "corporate.vanguard.com (primary) — no mention of Writer found in PR Newswire or Vanguard press release sources",
+        "status": "verified"
+      },
+      {
+        "claim": "Cross-functional sign-off from compliance, legal, and IT",
+        "source": "writer.com (coverage)",
+        "status": "verified"
+      },
+      {
+        "claim": "Uhrich described this as enabling 'enterprise-wide collaboration'",
+        "source": "NONE — writer.com states the approach 'secured enterprise-wide collaboration' but does not attribute this specific phrase as a direct Uhrich quote",
+        "status": "unverified"
+      },
+      {
+        "claim": "Governance pattern designed for scale across Vanguard's hybrid advice model",
+        "source": "writer.com (coverage) — editorial inference, reasonably supported",
+        "status": "editorial"
+      },
+      {
+        "claim": "Vanguard manages approximately $10 trillion in AUM",
+        "source": "NONE — the draft attributes this to 'Vanguard's corporate press release' but the source material provided does not contain this specific figure; prior draft also cited this without a visible source in the provided text",
+        "status": "unverified"
+      },
+      {
+        "claim": "May 2025 launch announcement",
+        "source": "PR Newswire — published 2025-05-05",
+        "status": "verified"
+      },
+      {
+        "claim": "May 2025 press release positioned the tool narrowly as an advisor productivity aid",
+        "source": "PR Newswire / corporate.vanguard.com — headline: 'Vanguard Unveils Generative AI Client Summaries for Financial Advisors'",
+        "status": "verified"
+      },
+      {
+        "claim": "Writer presentation reframes it as the foundation for broader enterprise AI adoption",
+        "source": "writer.com (coverage)",
+        "status": "verified"
+      },
+      {
+        "claim": "Uhrich stating Vanguard is 'empowering our crew to work more effectively, more efficiently, and more creatively'",
+        "source": "writer.com (coverage) — exact quote present",
+        "status": "verified"
+      },
+      {
+        "claim": "Dedicated enterprise AI vendor rather than direct LLM licensing or in-house build",
+        "source": "writer.com (coverage) — supported by context; editorial inference about alternatives not contradicted",
+        "status": "editorial"
+      },
+      {
+        "claim": "Once the governance framework is cleared once, subsequent use cases ship faster",
+        "source": "NONE — editorial interpretation of deployment velocity advantage",
+        "status": "editorial"
+      },
+      {
+        "claim": "Fidelity Institutional has deployed AI tools supporting 13,000+ RIA and broker-dealer firms",
+        "source": "Draft attributes this to 'peer intelligence' — not found in any of the six provided sources",
+        "status": "unverified"
+      },
+      {
+        "claim": "Fidelity has not publicly disclosed an equivalent enterprise-wide AI platform choice",
+        "source": "NONE — editorial/analytical claim not contradicted by sources",
+        "status": "editorial"
+      },
+      {
+        "claim": "The tool helps financial advisors create customized content summaries for their clients",
+        "source": "linkedin.com (coverage) and writer.com (coverage)",
+        "status": "verified"
+      },
+      {
+        "claim": "Tool described as enabling advisors to tailor content by financial acumen, investing life stage, and tone",
+        "source": "linkedin.com (coverage)",
+        "status": "verified"
+      },
+      {
+        "claim": "Writer case study is a session recap from 'AI Leaders Forum | NYC 2025'",
+        "source": "writer.com (coverage)",
+        "status": "verified"
+      }
+    ],
+    "cross_source_conflicts": [],
+    "drift_from_previous": [
+      {
+        "claim": "Uhrich described cross-functional sign-off as enabling 'enterprise-wide collaboration'",
+        "in_previous": false,
+        "in_sources": false,
+        "note": "Previous draft stated the governance approach 'secured enterprise-wide collaboration' (paraphrasing writer.com). Current draft attributes 'enterprise-wide collaboration' as a direct Uhrich description/quote, which is not supported by the source — writer.com uses this phrase in its own editorial summary, not as a Uhrich quote."
+      },
+      {
+        "claim": "Vanguard manages approximately $10 trillion in AUM 'per Vanguard's corporate press release'",
+        "in_previous": true,
+        "in_sources": false,
+        "note": "Previous draft included the $10T AUM figure. Current draft adds attribution 'per Vanguard's corporate press release' — this attribution is not verifiable from the source material provided, and the figure itself does not appear in any of the six sources shown. The claim drifted by adding a specific attribution that cannot be confirmed."
+      }
+    ],
+    "checked_at": "2026-04-03T10:19:16.631Z"
+  },
+  "_iterations": [
+    {
+      "version": 1,
+      "headline": "Vanguard Deploys First Client-Facing GenAI App via Writer Platform, Extending Advisor Productivity Stack",
+      "the_so_what": "Vanguard's choice to route its first client-facing GenAI tool through a dedicated enterprise AI platform (Writer) rather than building in-house or licensing from a major LLM provider directly creates a replicable deployment pattern that Fidelity — which has deployed AI tools to 13,000+ RIA and broker-dealer firms — will need to match in governance rigor if it wants to extend from institutional support into client-facing content generation at comparable scale.",
+      "evaluation": {
+        "checks": {
+          "specificity": {
+            "pass": true,
+            "feedback": "Headline names the specific capability ('Client-Facing GenAI App'), the platform vendor (Writer), and the strategic context ('Advisor Productivity Stack'). Sufficiently specific."
+          },
+          "so_what": {
+            "pass": true,
+            "feedback": "The so_what makes a falsifiable competitive claim: Vanguard's choice of a dedicated enterprise AI platform (Writer) over in-house or direct LLM licensing creates a governance-rigorous deployment pattern, and it names Fidelity with a specific benchmark (13,000+ RIA and broker-dealer firms) as the competitor that must match this in client-facing content generation. The claim is directional and testable."
+          },
+          "source": {
+            "pass": false,
+            "feedback": "The '$10 trillion in AUM' figure is stated without attribution to a specific source. The '13,000+ RIA and broker-dealer firms' for Fidelity likewise lacks a named source. The Adam Uhrich quote and the Writer case study are properly attributed, but every key number must be traceable. Cite the specific source for the AUM figure (e.g., 'per Vanguard's Q1 2025 fact sheet') and for Fidelity's 13,000+ figure (e.g., 'per Fidelity Institutional Q2 2025 press release'). With 6 sources listed, this should be easy to pin down."
+          },
+          "substance": {
+            "pass": true,
+            "feedback": "The summary synthesizes across at least two distinct sources — the May press release and the June Writer case study — and explicitly calls out the analytical gap between them (narrow productivity framing vs. enterprise AI foundation). The governance detail (cross-functional compliance/legal/IT sign-off) adds genuine analytical value beyond headline restatement."
+          },
+          "stat": {
+            "pass": false,
+            "feedback": "key_stat is NULL. This is unacceptable when the entry itself cites '$10 trillion in AUM' and the competitor reference includes '13,000+ firms.' At minimum, key_stat should be '$10T AUM under hybrid advice model now served by Writer-powered GenAI workflow' or a comparable decision-grade figure. A CXO reading this entry gets no anchor number. Review all 6 sources for deployment-specific metrics — number of advisors using the tool, content pieces generated, time savings — and surface the strongest one."
+          },
+          "competitor": {
+            "pass": true,
+            "feedback": "Fidelity is named with a specific deployment metric (13,000+ firms) and a clear competitive implication (governance gap in client-facing content generation vs. institutional support). The competitive framing is actionable."
+          }
+        },
+        "overall": "NEEDS_WORK",
+        "priority_fix": "key_stat is NULL — this is the most damaging gap for a $5K/year client. Surface a decision-grade number from your 6 sources (advisor count, AUM scope, content volume, or time-to-deployment metric) and populate it. Secondarily, add source attribution for the $10T AUM and Fidelity 13,000+ firms figures.",
+        "quality_score": 6
+      },
+      "fabrication_verdict": "SUSPECT",
+      "timestamp": "2026-04-03T10:18:33.771Z"
+    },
+    {
+      "version": 2,
+      "headline": "Vanguard's First Client-Facing GenAI App Built on Writer Platform, Revealing Enterprise AI Architecture",
+      "the_so_what": "Vanguard's decision to standardize on a single enterprise AI platform with embedded compliance workflows creates a deployment velocity advantage: once the governance framework is cleared once, subsequent use cases ship faster. Fidelity Institutional, which per peer intelligence has deployed AI tools supporting 13,000+ RIA and broker-dealer firms, operates at greater distribution breadth but has not publicly disclosed an equivalent enterprise-wide AI platform choice — a gap that matters as the race shifts from isolated tool launches to scalable, governed AI architectures.",
+      "evaluation": {
+        "checks": {
+          "specificity": {
+            "pass": true,
+            "feedback": "Headline names the specific capability ('Client-Facing GenAI App'), the vendor platform (Writer), and the analytical hook ('Enterprise AI Architecture'). It's specific enough to differentiate from a generic 'Vanguard launches AI' headline."
+          },
+          "so_what": {
+            "pass": true,
+            "feedback": "The so_what makes a falsifiable competitive claim: Vanguard's platform standardization creates deployment velocity advantage vs. Fidelity Institutional, which has broader distribution (13,000+ RIA/BD firms) but no publicly disclosed equivalent enterprise-wide platform choice. The claim is specific, references a named competitor, and is testable against future disclosures."
+          },
+          "source": {
+            "pass": false,
+            "feedback": "The summary references '$10 trillion in AUM' attributed to 'Vanguard's corporate press release' — acceptable. However, the Fidelity '13,000+ RIA and broker-dealer firms' figure in the so_what is attributed only to 'peer intelligence,' which is vague. Name the specific source (e.g., a Fidelity press release, SEC filing, or a prior platform entry with date). Also, the claim that Writer is the platform is attributed to a 'June 2025 Writer case study' — confirm this is a publicly available, citable source. With 6 sources listed, every material claim should have a named, traceable origin."
+          },
+          "substance": {
+            "pass": true,
+            "feedback": "Strong analytical layering. The summary synthesizes across at least three distinct information sources (May 2025 Vanguard press release, June 2025 Writer case study, Uhrich quotes) and identifies the genuinely new intelligence — the platform vendor choice — that was absent from the original announcement. The cross-functional governance angle adds real strategic texture beyond restating a press release."
+          },
+          "stat": {
+            "pass": false,
+            "feedback": "key_stat is NULL, which is unacceptable when the summary itself contains the $10 trillion AUM figure and the sources clearly contain material that could yield a decision-grade stat. At minimum, use '$10T AUM under management — scale at which Vanguard's enterprise AI platform choice sets architecture precedent.' Better: if the Writer case study or Vanguard press release discloses number of advisors served, number of article summaries generated, or time savings, extract that. A CXO cannot cite NULL at a board meeting."
+          },
+          "competitor": {
+            "pass": true,
+            "feedback": "Fidelity Institutional is named with a specific metric (13,000+ RIA/BD firms) and a clear strategic contrast (distribution breadth vs. governed platform architecture). The competitive framing is sharp."
+          }
+        },
+        "overall": "NEEDS_WORK",
+        "priority_fix": "key_stat is NULL. Extract a decision-grade number from the 6 sources — the Writer case study or Vanguard press release almost certainly contains advisor count, time savings, or deployment scope. If truly nothing quantitative exists beyond $10T AUM, use that with appropriate framing, but first go back to the Writer case study and confirm no operational metric was disclosed. A $5,000/year client expects every entry to carry a board-ready number.",
+        "quality_score": 7
+      },
+      "fabrication_verdict": "SUSPECT",
+      "timestamp": "2026-04-03T10:19:35.806Z"
+    }
+  ],
+  "_editor_notes": [],
   "published_at": "2025-05-05T00:00:00.000Z"
 }

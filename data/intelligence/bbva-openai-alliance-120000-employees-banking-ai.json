@@ -1,8 +1,8 @@
 {
   "id": "bbva-openai-alliance-120000-employees-banking-ai",
   "type": "partnership",
-  "headline": "BBVA seals strategic alliance with OpenAI to deploy ChatGPT Enterprise to 120,000 employees — one of the largest corporate AI rollouts globally",
-  "the_so_what": "With 80% daily active usage and 3 hours saved per employee per week in an 11,000-person pilot, BBVA has published the clearest ROI data on enterprise AI in banking — 360,000 hours recovered weekly at full 120,000-employee scale, a productivity dividend that compounds with each new use case layered onto the same infrastructure.",
+  "headline": "BBVA Reports 80% Daily AI Usage Across 11,000 Employees in OpenAI Alliance",
+  "the_so_what": "BBVA reporting 80% daily active usage and 3 hours per week saved per employee across an 11,000-person pilot is the clearest ROI data on enterprise AI in banking. Standard Chartered deployed to 70,000 across 41 markets but hasn't disclosed adoption or productivity metrics. Goldman's 46,000-employee AI platform focuses on code and document generation. BBVA's disclosure of measured time savings per employee gives competitors — and their boards — a concrete benchmark to target or explain away.",
   "company": "bbva",
   "company_name": "BBVA",
   "date": "2025-12-12",
@@ -48,5 +48,66 @@
     "human_approved": true,
     "approved_at": "2026-03-23T00:00:00.000Z"
   },
-  "published_at": "2025-12-12T00:00:00.000Z"
+  "published_at": "2025-12-12T00:00:00.000Z",
+  "_final_score": 85,
+  "_research": {
+    "entities": {
+      "company_name": "BBVA",
+      "capability_area": "advisor_productivity"
+    },
+    "source_count": 1,
+    "landscape_context": {
+      "is_tracked": true
+    },
+    "confidence": "high",
+    "researched_at": "2026-04-03T20:00:09.286Z"
+  },
+  "_fabrication": {
+    "verdict": "CLEAN",
+    "claims_checked": 8,
+    "claims_verified": 8,
+    "claims_unverified": 0,
+    "claims_fabricated": 0,
+    "details": [],
+    "checked_at": "2026-04-03T20:00:09.286Z"
+  },
+  "_iterations": [
+    {
+      "version": 1,
+      "evaluation": {
+        "overall": "PASS",
+        "quality_score": 9
+      },
+      "fabrication_verdict": "CLEAN"
+    }
+  ],
+  "_editor_notes": [],
+  "sources": [
+    {
+      "name": "BBVA",
+      "url": "https://www.bbva.com/en/innovation/bbva-and-openai-seal-a-strategic-alliance-to-redefine-banking-with-artificial-intelligence/",
+      "type": "primary"
+    },
+    {
+      "name": "OpenAI",
+      "url": "https://openai.com/index/bbva-collaboration-expansion/",
+      "type": "primary"
+    },
+    {
+      "name": "Bloomberg",
+      "url": "https://www.bloomberg.com/news/articles/2025-12-12/bbva-rolls-out-chatgpt-to-almost-all-employees-in-openai-deal",
+      "type": "coverage"
+    },
+    {
+      "name": "PYMNTS",
+      "url": "https://www.pymnts.com/artificial-intelligence-2/2025/no-more-pilots-bbva-deploys-ai-across-the-bank-with-openais-partnership/",
+      "type": "coverage"
+    },
+    {
+      "name": "Fintech Global",
+      "url": "https://fintech.global/2025/12/12/bbva-rolls-out-chatgpt-enterprise-in-global-ai-banking-push/",
+      "type": "coverage"
+    }
+  ],
+  "source_count": 5
 }

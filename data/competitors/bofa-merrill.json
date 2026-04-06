@@ -2,91 +2,83 @@
   "id": "bofa-merrill",
   "name": "BofA / Merrill",
   "segment": "wirehouse",
-  "regions": [
-    "us",
-    "emea"
-  ],
-  "color": "#E31837",
-  "ai_strategy_summary": "The longest-running AI program in wealth management. Erica has surpassed 3.2 billion total interactions with 20.6 million active users and 700 million interactions in 2025 alone. BofA's 30 billion total digital interactions in 2025 grew 14% YoY — 86% of wealth management clients now engage digitally.",
+  "regions": ["us"],
+  "color": "#012169",
+  "ai_strategy_summary": "The longest-running AI program in wealth management, backed by $13.5 billion in annual technology spend ($4 billion on new initiatives including AI). Erica, launched in 2018, has crossed 3.2 billion total interactions with 20.6 million active users — the largest consumer AI estate in banking. BofA extended the same underlying technology to advisor-facing tools: Ask Merrill and Ask Private Banking for knowledge retrieval, and the AI-Powered Meeting Journey (March 2026) for end-to-end meeting automation across all 25,000 Merrill and Private Bank advisors. The bank processed 30 billion digital client interactions in 2025, growing 14% YoY, with 86% of wealth management clients now engaging digitally. In 2026, BofA is shifting to agentic AI — proactively recommending savings, fee reductions, and cash-flow optimisation rather than waiting for client queries.",
   "head_of_ai": null,
-  "headline_metric": "3.2B Erica interactions total (700M in 2025) across 20.6M users; 23,000 monthly active advisors",
-  "headline_initiative": "AI Meeting Journey + Erica + Ask Merrill + Ask Private Bank",
+  "headline_metric": "3.2B Erica interactions total; 30B digital touchpoints in 2025 (14% YoY); 25,000 advisors on AI Meeting Journey; $13.5B annual tech spend",
+  "headline_initiative": "Erica + Ask Merrill + Ask Private Banking + AI-Powered Meeting Journey",
   "overall_maturity": "scaled",
   "capabilities": {
-    "client_personalization": {
-      "maturity": "scaled",
-      "headline": "Erica: 3.2 billion total interactions, 20.6 million users, 700M interactions in 2025",
-      "detail": "Bank of America's Erica virtual assistant has reached 3.2 billion total interactions since its 2018 launch, with 20.6 million active users and 700 million interactions in 2025 alone. 86% of wealth management clients engage digitally. BofA's total digital estate logged 30 billion client interactions in 2025 — a 14% year-on-year increase.",
-      "evidence": [
-        "3.2 billion total Erica interactions since 2018 (BofA, March 2026)",
-        "20.6 million Erica users (BofA, March 2026)",
-        "700 million Erica interactions in 2025 alone",
-        "30 billion total digital client interactions in 2025 (+14% YoY)",
-        "86% of wealth management clients engaging digitally"
-      ],
-      "jpm_implication": "Erica's scale is unmatched in consumer banking AI. Chase's digital AI capabilities are directly competing with Erica for the same mass affluent clients.",
-      "jpm_segments_affected": [
-        "CWM",
-        "Self-Directed"
-      ],
-      "date_assessed": "2026-03-19",
-      "sources": [
-        {
-          "name": "Bank of America — BofA AI and Digital Innovations Fuel 30 Billion Client Interactions (March 10, 2026)",
-          "url": "https://newsroom.bankofamerica.com/content/newsroom/press-releases/2026/03/bofa-ai-and-digital-innovations-fuel-30-billion-client-interacti.html"
-        }
-      ]
-    },
     "advisor_productivity": {
       "maturity": "scaled",
-      "headline": "AI Meeting Journey: full-scale rollout across Merrill and Private Bank, up to 4 hours saved per meeting",
-      "detail": "BofA deployed AI-Powered Meeting Journey across Merrill Wealth Management and the Private Bank in March 2026. The tool automates pre-meeting client preparation, real-time meeting summarization (with client consent), and post-meeting task organization. Started with 1,500 beta advisors, now in full production rollout. This sits on top of existing Ask Merrill (23,000 monthly active advisors, 10,000+ Q&A answers) and Ask Private Bank.",
+      "headline": "AI Meeting Journey: full-scale rollout across 25,000 Merrill and Private Bank advisors, up to 4 hours saved per meeting",
+      "detail": "BofA launched the AI-Powered Meeting Journey on March 26, 2026, automating three core advisor workflow steps: pre-meeting client preparation, real-time meeting note-taking (with client consent), and post-meeting task generation. The tool runs across all 25,000 Merrill advisors in 500+ offices. Ask Merrill provides AI-powered knowledge retrieval for advisors, with 23,000 monthly active users. The productivity claim of up to 4 hours saved per meeting is a vendor estimate — BofA has not disclosed measured adoption rates or verified time savings.",
       "evidence": [
-        "AI Meeting Journey in full-scale rollout across Merrill and Private Bank (BofA Newsroom, March 2026)",
-        "Up to 4 hours saved per client meeting claimed (BofA Newsroom, March 2026)",
-        "1,500 beta users before broader deployment (American Banker, March 2026)",
-        "23,000 monthly active advisors on Ask Merrill (prior capability)",
-        "10,000+ unique Q&A answers monthly on Ask Merrill"
+        "AI-Powered Meeting Journey launched March 26, 2026 across all Merrill and Private Bank advisors (BofA Newsroom)",
+        "25,000 advisors across 500+ offices (BofA press release via PR Newswire)",
+        "Up to 4 hours saved per client meeting — vendor estimate, not independently verified (BofA press release)",
+        "Ask Merrill: 23,000 monthly active advisors, 10,000+ Q&A answers per month (BofA Newsroom)",
+        "Meeting prep, real-time AI note-taking, automated post-meeting follow-ups (American Banker coverage)"
       ],
-      "jpm_implication": "BofA has moved from Q&A AI to full meeting workflow automation at wirehouse scale. This is the first production deployment of end-to-end meeting AI in the wirehouse segment.",
-      "jpm_segments_affected": [
-        "JPMWM",
-        "GPB"
-      ],
-      "date_assessed": "2026-03-31",
+      "date_assessed": "2026-04-04",
       "sources": [
-        {
-          "name": "BofA Newsroom — Merrill and Private Bank Launch AI-Powered Meeting Journey (March 27, 2026)",
-          "url": "https://newsroom.bankofamerica.com/content/newsroom/press-releases/2026/03/merrill-and-bank-of-america-private-bank-launch-ai-powered-meeti.html"
-        },
-        {
-          "name": "American Banker — Bank of America gives Merrill Lynch an AI makeover (March 26, 2026)",
-          "url": "https://www.americanbanker.com/news/bank-of-america-gives-merrill-lynch-an-ai-makeover"
-        }
+        { "name": "BofA Newsroom — Meeting Journey", "url": "https://newsroom.bankofamerica.com/content/newsroom/press-releases/2026/03/merrill-and-bank-of-america-private-bank-launch-ai-powered-meeti.html" },
+        { "name": "PR Newswire", "url": "https://www.prnewswire.com/news-releases/merrill-and-bank-of-america-private-bank-launch-ai-powered-meeting-journey-302725593.html" },
+        { "name": "American Banker", "url": "https://www.americanbanker.com/news/bank-of-america-gives-merrill-lynch-an-ai-makeover" },
+        { "name": "PYMNTS", "url": "https://www.pymnts.com/artificial-intelligence-2/2026/bank-of-america-and-u-s-bank-move-ai-into-core-internal-operations/" }
+      ]
+    },
+    "client_personalization": {
+      "maturity": "scaled",
+      "headline": "Erica: 3.2B interactions, 20.6M users, 676M interactions in 2025 with ~95% accuracy",
+      "detail": "Erica is the largest consumer AI assistant in banking. Launched in 2018, it has surpassed 3.2 billion total interactions with 20.6 million monthly active users. In 2025, Erica handled 676 million interactions with approximately 95% accuracy, delivering 24/7 personalised financial guidance. $211 billion in AI-linked asset growth demonstrates direct revenue impact. In 2026, BofA is evolving Erica toward agentic AI — proactively recommending savings, fee reductions, and cash-flow fixes rather than responding to client queries.",
+      "evidence": [
+        "3.2 billion total interactions, 20.6 million monthly active users (BofA Newsroom, March 2026)",
+        "676 million interactions in 2025 with ~95% accuracy (Klover.ai analysis citing BofA disclosures)",
+        "$211 billion AUM in accounts where Erica is used — not growth attributable to AI alone (BofA Newsroom)",
+        "30 billion total digital interactions in 2025, 14% YoY growth (PR Newswire)",
+        "86% of wealth management clients engage digitally (BofA press release)",
+        "2026: shifting to agentic AI for proactive recommendations (CIO.com coverage)"
+      ],
+      "date_assessed": "2026-04-04",
+      "sources": [
+        { "name": "BofA Newsroom — AI & Digital", "url": "https://newsroom.bankofamerica.com/content/newsroom/press-releases/2025/04/ai-adoption-by-bofa-s-global-workforce-improves-productivity--cl.html" },
+        { "name": "PR Newswire — 30B Interactions", "url": "https://www.prnewswire.com/news-releases/bofa-ai-and-digital-innovations-fuel-30-billion-client-interactions-302709493.html" },
+        { "name": "Klover.ai Analysis", "url": "https://www.klover.ai/bank-of-america-uses-ai-agents-10-ways-to-use-ai-in-depth-analysis-2025/" },
+        { "name": "CIO.com", "url": "https://www.cio.com/article/3966293/bank-of-americas-big-bet-on-ai-started-small.html" }
       ]
     },
     "client_acquisition": {
-      "maturity": "piloting",
-      "headline": "AI-powered segment migration and next-best-action across 67M clients",
-      "detail": "Bank of America is applying AI to segment migration and next-best-action across its 67M client base, but the WM-specific AI acquisition tooling for Merrill advisors is not separately disclosed with the same specificity as the core consumer AI stack. The $13B 2026 technology investment signals intent; WM-specific AI acquisition capabilities are assumed to be in pilot.",
+      "maturity": "deployed",
+      "headline": "Erica proactive insights driving 20.6M monthly active users across deposits and investments",
+      "detail": "Erica proactively surfaces insights on spending patterns, bill reminders, and investment opportunities, driving engagement across the full banking relationship. The tool's ability to connect deposits, lending, and investment accounts creates cross-sell opportunities that independent RIA AI tools structurally cannot replicate — they see only the investment account, while BofA sees the full household picture.",
       "evidence": [
-        "$13B 2026 technology investment includes AI across all client segments",
-        "67M client base — AI-driven segment migration from consumer to Merrill Edge/Merrill Lynch in development",
-        "WM-specific AI acquisition product not separately disclosed"
+        "20.6 million monthly active users on Erica (BofA Newsroom)",
+        "Proactive insights on spending, bills, and investments (product documentation)",
+        "Cross-sell advantage: deposits + lending + investments in single view (Datos Insights analysis)"
       ],
-      "jpm_implication": "BofA's AI-driven migration from banking to wealth management is a direct competitive threat to CWM and JPMWM acquisition pipeline.",
-      "jpm_segments_affected": [
-        "CWM",
-        "JPMWM"
-      ],
-      "date_assessed": "2026-03-07",
+      "date_assessed": "2026-04-04",
       "sources": [
-        {
-          "name": "Bank of America Q3 2025 Earnings — technology investment and AI strategy",
-          "url": "https://investor.bankofamerica.com/press-releases/detail/701/bank-of-america-reports-third-quarter-2025-financial"
-        }
+        { "name": "BofA Newsroom", "url": "https://newsroom.bankofamerica.com/content/newsroom/press-releases/2025/04/ai-adoption-by-bofa-s-global-workforce-improves-productivity--cl.html" },
+        { "name": "Datos Insights", "url": "https://datos-insights.com/blog/hazel-avantos-and-the-bank-wealth-management-opportunity/" }
+      ]
+    },
+    "operations_compliance": {
+      "maturity": "deployed",
+      "headline": "AI-powered post-meeting workflow automation + agentic AI for internal operations",
+      "detail": "The AI Meeting Journey automates post-meeting task generation and follow-up scheduling. In 2026, BofA is moving AI into core internal operations with agentic AI that proactively recommends process improvements. The bank's $13.5 billion annual technology spend funds continued infrastructure investment.",
+      "evidence": [
+        "Post-meeting task automation in AI Meeting Journey (BofA press release)",
+        "Agentic AI for internal operations in 2026 (PYMNTS coverage)",
+        "$13.5B annual tech spend, $4B on new initiatives (Klover.ai analysis)"
+      ],
+      "date_assessed": "2026-04-04",
+      "sources": [
+        { "name": "PYMNTS", "url": "https://www.pymnts.com/artificial-intelligence-2/2026/bank-of-america-and-u-s-bank-move-ai-into-core-internal-operations/" },
+        { "name": "Klover.ai", "url": "https://www.klover.ai/bank-of-america-uses-ai-agents-10-ways-to-use-ai-in-depth-analysis-2025/" }
       ]
     }
   },
-  "last_updated": "2026-03-31"
+  "last_updated": "2026-04-04"
 }

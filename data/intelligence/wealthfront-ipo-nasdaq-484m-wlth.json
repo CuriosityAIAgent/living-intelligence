@@ -1,8 +1,8 @@
 {
   "id": "wealthfront-ipo-nasdaq-484m-wlth",
   "type": "milestone",
-  "headline": "Wealthfront raises $484.6M in IPO on Nasdaq at $14 per share, validating the AI-driven robo-advisor model at public market scale",
-  "the_so_what": "A $484M public market debut for a 0.25%-fee automated wealth platform — with Goldman Sachs and J.P. Morgan as lead underwriters — validates that the economics of AI-driven portfolio management, automated tax-loss harvesting, and continuous rebalancing can sustain public-market scrutiny, establishing a pricing benchmark that will compress margins across the mass-affluent segment.",
+  "headline": "Wealthfront Prices IPO at $14/Share on Nasdaq, Raises ~$300M With Goldman and JPMorgan as Lead Underwriters",
+  "the_so_what": "Wealthfront listing on Nasdaq with Goldman and JPMorgan as lead underwriters validates the public market appetite for AI-native wealth platforms at a time when traditional wealth firms face valuation pressure from the Altruist-triggered selloff. The absence of disclosed AUM or revenue in the pricing announcement suggests the market is valuing Wealthfront on growth trajectory and platform economics rather than current assets — the same playbook Robinhood used in its 2021 IPO.",
   "company": "wealthfront",
   "company_name": "Wealthfront",
   "date": "2025-12-12",
@@ -10,7 +10,7 @@
   "source_url": "https://www.globenewswire.com/news-release/2025/12/12/3204421/0/en/Wealthfront-Announces-Pricing-of-Initial-Public-Offering.html",
   "source_verified": true,
   "image_url": "/logos/wealthfront.svg",
-  "summary": "Wealthfront priced its IPO at $14 per share — the top of its $12–$14 range — and began trading on the Nasdaq Global Select Market under ticker WLTH on December 12, 2025. The offering raised approximately $300.6M for the company from 21.5M new shares, with total proceeds including selling stockholders reaching $484.6M. Goldman Sachs and J.P. Morgan acted as lead underwriters. Wealthfront describes itself as a 'tech-driven financial platform helping digital natives turn their savings into wealth', with its core proposition built on AI-driven portfolio management, automated tax-loss harvesting, and continuous rebalancing at a 0.25% advisory fee.",
+  "summary": "Wealthfront priced its initial public offering at $14 per share on the Nasdaq Global Select Market (WLTH), with 34.6 million shares offered for a total offering value of approximately $484 million. The company raised ~$300 million from its own shares, with Goldman Sachs and J.P. Morgan as lead underwriters alongside Citigroup, Wells Fargo Securities, and RBC Capital Markets. Wealthfront describes itself as a tech-driven financial platform for digital natives, though no AUM or revenue figures were disclosed in the pricing announcement.",
   "key_stat": {
     "number": "$484.6M",
     "label": "Raised in Wealthfront IPO on Nasdaq (December 2025) — ticker: WLTH"
@@ -47,5 +47,68 @@
     "human_approved": true,
     "approved_at": "2026-03-23T00:00:00.000Z"
   },
-  "published_at": "2025-12-12T00:00:00.000Z"
+  "published_at": "2025-12-12T00:00:00.000Z",
+  "_final_score": 78,
+  "_research": {
+    "entities": {
+      "company_name": "Wealthfront",
+      "metrics": [
+        "$14/share",
+        "34.6M shares",
+        "~$484M total",
+        "~$300M raised"
+      ]
+    },
+    "source_count": 1,
+    "confidence": "high",
+    "researched_at": "2026-04-03T19:58:38.197Z"
+  },
+  "_fabrication": {
+    "verdict": "CLEAN",
+    "claims_checked": 6,
+    "claims_verified": 6,
+    "claims_unverified": 0,
+    "claims_fabricated": 0,
+    "details": [],
+    "checked_at": "2026-04-03T19:58:38.197Z"
+  },
+  "_iterations": [
+    {
+      "version": 1,
+      "evaluation": {
+        "overall": "PASS",
+        "quality_score": 8
+      },
+      "fabrication_verdict": "CLEAN"
+    }
+  ],
+  "_editor_notes": [],
+  "sources": [
+    {
+      "name": "Wealthfront IR",
+      "url": "https://ir.wealthfront.com/news-releases/news-release-details/wealthfront-announces-pricing-initial-public-offering",
+      "type": "primary"
+    },
+    {
+      "name": "GlobeNewsWire",
+      "url": "https://www.globenewswire.com/news-release/2025/12/12/3204421/0/en/Wealthfront-Announces-Pricing-of-Initial-Public-Offering.html",
+      "type": "primary"
+    },
+    {
+      "name": "Morningstar",
+      "url": "https://www.morningstar.com/stocks/wealthfront-notches-26b-valuation-uneventful-public-debut",
+      "type": "coverage"
+    },
+    {
+      "name": "IPO Scoop",
+      "url": "https://www.iposcoop.com/the-ipo-buzz-wealthfront-wlth-prices-its-ipo-at-14-top-of-the-range/",
+      "type": "coverage"
+    },
+    {
+      "name": "Latham & Watkins",
+      "url": "https://www.lw.com/en/news/2025/12/latham-watkins-advises-on-wealthfront-ipo",
+      "type": "coverage"
+    }
+  ],
+  "source_count": 5
 }

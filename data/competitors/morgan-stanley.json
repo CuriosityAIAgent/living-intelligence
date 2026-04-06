@@ -2,87 +2,98 @@
   "id": "morgan-stanley",
   "name": "Morgan Stanley",
   "segment": "wirehouse",
-  "regions": [
-    "us",
-    "emea",
-    "asia",
-    "latam"
-  ],
+  "regions": ["us", "emea", "asia", "latam"],
   "color": "#1E3A5F",
-  "ai_strategy_summary": "Industry-leading advisor AI with 98% adoption. Morgan Stanley has deployed OpenAI-powered tools across its 15,000+ wealth management advisors, focusing on productivity, meeting preparation, and CRM automation. Now expanding firm-wide.",
+  "ai_strategy_summary": "The most widely adopted advisor AI program in wealth management. Morgan Stanley achieved 98% adoption of OpenAI-powered tools across its 15,000+ Wealth Management advisors within months of launch — the fastest firm-wide AI adoption in the industry. The strategy is built on three pillars: the AI Assistant (knowledge retrieval from 350,000+ internal documents), AI Debrief (automated meeting notes with Salesforce CRM sync), and AskResearchGPT (cross-divisional research synthesis). Jeff McMillan was appointed Head of Firmwide AI in March 2024 to coordinate strategy across all business units. Morgan Stanley frames AI as a growth enabler — amplifying human expertise and deepening advisor-client relationships — rather than a cost reduction tool. BlackRock's Aladdin Wealth Auto Commentary deployed within Morgan Stanley's Portfolio Risk Platform.",
   "head_of_ai": {
     "name": "Jeff McMillan",
-    "title": "Head of Analytics, Data & Innovation"
+    "title": "Head of Firmwide Artificial Intelligence (appointed March 2024)"
   },
-  "headline_metric": "98% advisor adoption; document retrieval improved from 20% to 80% of queries resolved by AI",
-  "headline_initiative": "AI @ Morgan Stanley Assistant + Debrief",
+  "headline_metric": "98% advisor adoption; 15 hrs/week saved per advisor; document retrieval from 20% to 80% resolution; 30 min admin saved per meeting",
+  "headline_initiative": "AI @ Morgan Stanley: Assistant + Debrief + AskResearchGPT + Aladdin Auto Commentary",
   "overall_maturity": "scaled",
   "capabilities": {
     "advisor_productivity": {
       "maturity": "scaled",
-      "headline": "AI Assistant + Debrief: 98% advisor adoption, 15 hrs/week saved",
-      "detail": "Morgan Stanley deployed AI @ Morgan Stanley Assistant (OpenAI-powered) for internal knowledge retrieval, boosting document retrieval from 20% to 80% efficiency. AI Debrief auto-generates meeting notes and syncs to Salesforce CRM. Both tools have achieved 98% adoption among Wealth Management advisors — the highest in the industry.",
+      "headline": "AI Assistant + Debrief: 98% adoption, 30 min saved per meeting, 15 hrs/week across 15,000+ advisors",
+      "detail": "Morgan Stanley deployed AI @ Morgan Stanley Assistant (OpenAI GPT-4 powered) for knowledge retrieval across 350,000+ internal documents, boosting resolution rates from 20% to 80%. AI Debrief (launched June 2024) auto-generates meeting notes via Whisper transcription, creates follow-up emails, and syncs directly to Salesforce CRM. Both tools achieved 98% adoption — the highest in the industry. Each advisor saves approximately 30 minutes of admin per meeting. The compounding data advantage — every meeting captured builds a richer client model — creates a structural moat that grows with usage.",
       "evidence": [
-        "98% advisor adoption rate confirmed by Chief Administrative Officer (Morgan Stanley)",
-        "Document retrieval efficiency improved from 20% to 80% of queries resolved by AI",
-        "Up to 15 hours/week per advisor estimated from pilot data (~30 min per meeting saved)",
-        "Rolled out to mobile and Salesforce platforms"
+        "98% advisor adoption confirmed by Chief Administrative Officer (CDO Magazine, 2025)",
+        "Document retrieval improved from 20% to 80% resolution rate (OpenAI case study)",
+        "30 min saved per meeting on administrative tasks (Morgan Stanley press release)",
+        "Up to 15 hrs/week estimated from pilot data (CTO Magazine analysis)",
+        "Debrief launched June 2024, expanded firm-wide and to mobile (Morgan Stanley press release)",
+        "Onboarding completed in under 30 minutes per advisor via Microsoft Teams integration"
       ],
-      "jpm_implication": "Sets the benchmark for advisor AI adoption. JPM must match this productivity baseline or risk advisor attrition to MS.",
-      "jpm_segments_affected": [
-        "JPMWM",
-        "GPB"
-      ],
-      "date_assessed": "2026-03-07",
+      "date_assessed": "2026-04-04",
       "sources": [
-        {
-          "name": "Morgan Stanley — AI @ Morgan Stanley Debrief launch",
-          "url": "https://www.morganstanley.com/press-releases/ai-at-morgan-stanley-debrief-launch"
-        }
+        { "name": "Morgan Stanley Press Release", "url": "https://www.morganstanley.com/press-releases/ai-at-morgan-stanley-debrief-launch" },
+        { "name": "CDO Magazine — 98% Adoption", "url": "https://www.cdomagazine.tech/aiml/98-of-morgan-stanley-wealth-management-advisors-use-its-ai-chatbot-with-improved-productivity-cao-explains-how" },
+        { "name": "OpenAI Case Study", "url": "https://openai.com/index/morgan-stanley/" },
+        { "name": "InvestmentNews", "url": "https://www.investmentnews.com/fintech/morgan-stanleys-open-ai-powered-solution-for-advisors-has-expanded/254880" }
+      ]
+    },
+    "client_personalization": {
+      "maturity": "deployed",
+      "headline": "Aladdin Wealth Auto Commentary + Roth Conversion Analyst: AI-generated personalised portfolio narratives",
+      "detail": "Morgan Stanley deployed BlackRock's Aladdin Wealth Auto Commentary tool within its Portfolio Risk Platform — the first firm to implement it. The tool combines Aladdin's data analytics, the firm's CIO market outlook, and individual client portfolio holdings to generate personalised investment narratives. Additionally, a Roth Conversion Analyst tool auto-pulls client data and generates conversion recommendations based on forward-looking assumptions. These tools shift advisor conversations from generic market updates to personalised, data-driven guidance.",
+      "evidence": [
+        "First firm to deploy Aladdin Wealth Auto Commentary (BlackRock press release, Oct 2025)",
+        "Chris Scott-Hansen (MD, Head of Consulting Group) confirmed deployment within Portfolio Risk Platform",
+        "Roth Conversion Analyst pulls client data and generates personalised recommendations (Klover.ai analysis)",
+        "Tool integrates CIO market outlook with individual client portfolio data"
+      ],
+      "date_assessed": "2026-04-04",
+      "sources": [
+        { "name": "BlackRock Aladdin Wealth", "url": "https://www.blackrock.com/aladdin/discover/aladdin-wealth-launches-ai-enabled-commentary-tool-at-morgan-stanley" },
+        { "name": "InvestmentNews", "url": "https://www.investmentnews.com/alternatives/blackrock-debuts-ai-powered-commentary-tool-for-advisors-lands-morgan-stanley-as-first-client/262370" },
+        { "name": "ThinkAdvisor", "url": "https://www.thinkadvisor.com/2025/10/03/blackrocks-aladdin-launches-ai-commentary-tool-for-advisors-morgan-stanley-signs-on/" }
       ]
     },
     "research_content": {
       "maturity": "deployed",
-      "headline": "AskResearchGPT rolled out to all Institutional Securities staff — reduces client inquiry response time to one-tenth",
-      "detail": "Morgan Stanley is expanding its AI research tools beyond wealth management into Institutional Securities with AskResearchGPT, a tool for summarizing and querying research reports.",
+      "headline": "AskResearchGPT: cross-divisional AI research synthesis, rolled out to all Institutional Securities staff",
+      "detail": "Morgan Stanley expanded AI beyond wealth management with AskResearchGPT, deployed to all Institutional Securities staff for summarising and querying research reports. Client inquiry response time reduced to one-tenth of previous levels. The firm is cross-pollinating AI tools across divisions — research capabilities built for investment banking are being adapted for wealth management contexts and vice versa.",
       "evidence": [
-        "Finextra Oct 2024: Morgan Stanley rolls out AskResearchGPT to all IS staff — https://www.finextra.com/newsarticle/44946/morgan-stanley-rolls-out-askresearchgpt-to-institutional-securities-staff",
-        "CNBC: Morgan Stanley AI tools near 100% daily adoption across wealth management"
+        "AskResearchGPT rolled out to all Institutional Securities staff (Finextra, Oct 2024)",
+        "Client inquiry response time reduced to one-tenth (Morgan Stanley disclosure)",
+        "Near 100% daily AI adoption across wealth management division (CNBC)"
       ],
-      "jpm_implication": "MS is cross-pollinating AI tools across divisions — JPM should consider similar expansion of any successful internal AI tools.",
-      "jpm_segments_affected": [
-        "GPB",
-        "IPB"
-      ],
-      "date_assessed": "2026-03-19",
+      "date_assessed": "2026-04-04",
       "sources": [
-        {
-          "name": "Morgan Stanley — AI @ Morgan Stanley Debrief launch",
-          "url": "https://www.morganstanley.com/press-releases/ai-at-morgan-stanley-debrief-launch"
-        }
+        { "name": "Finextra — AskResearchGPT rollout", "url": "https://www.finextra.com/newsarticle/44946/morgan-stanley-rolls-out-askresearchgpt-to-institutional-securities-staff" },
+        { "name": "CTO Magazine", "url": "https://ctomagazine.com/ai-in-morgan-stanley-shaping-the-future-of-financial-services/" }
       ]
     },
     "operations_compliance": {
       "maturity": "deployed",
-      "headline": "AI-powered CRM integration and post-meeting workflow automation",
-      "detail": "AI Debrief's Salesforce integration automates post-meeting workflows including task creation, follow-up scheduling, and compliance documentation.",
+      "headline": "Automated post-meeting workflow: Salesforce sync, task creation, compliance documentation, client service AI agent",
+      "detail": "AI Debrief's Salesforce integration automates post-meeting workflows including note creation, task assignment, follow-up email drafting, and compliance documentation. An AI agent automates routine tasks so client service associates can focus on higher-value client interactions. Deployed on mobile for meetings outside the office.",
       "evidence": [
-        "Salesforce CRM integration live",
-        "Mobile app deployment confirmed"
+        "Salesforce CRM integration live for meeting notes and task creation",
+        "Mobile deployment confirmed for field meetings",
+        "AI agent for routine task automation in development (Klover.ai analysis)",
+        "Compliance documentation automated as part of Debrief workflow"
       ],
-      "jpm_implication": "Operational AI is becoming table stakes. JPM's advisor workflow automation is a direct competitive pressure point.",
-      "jpm_segments_affected": [
-        "JPMWM",
-        "CWM"
-      ],
-      "date_assessed": "2026-03-07",
+      "date_assessed": "2026-04-04",
       "sources": [
-        {
-          "name": "Morgan Stanley — AI @ Morgan Stanley Debrief launch (Salesforce CRM integration)",
-          "url": "https://www.morganstanley.com/press-releases/ai-at-morgan-stanley-debrief-launch"
-        }
+        { "name": "Morgan Stanley Press Release", "url": "https://www.morganstanley.com/press-releases/ai-at-morgan-stanley-debrief-launch" },
+        { "name": "Klover.ai Analysis", "url": "https://www.klover.ai/morgan-stanley-ai-strategy-analysis-of-ai-dominance-in-financial-services/" }
+      ]
+    },
+    "investment_portfolio": {
+      "maturity": "piloting",
+      "headline": "Aladdin integration for portfolio risk analytics; AI-driven Roth conversion recommendations",
+      "detail": "Through the BlackRock Aladdin Wealth platform, Morgan Stanley advisors access AI-enhanced portfolio risk analytics. The Roth Conversion Analyst tool demonstrates emerging AI capabilities in portfolio-level decision support. Full AI-driven portfolio construction capabilities are not yet publicly deployed at scale.",
+      "evidence": [
+        "Aladdin Wealth Auto Commentary deployed within Portfolio Risk Platform (Oct 2025)",
+        "Roth Conversion Analyst generates personalised recommendations from client data"
+      ],
+      "date_assessed": "2026-04-04",
+      "sources": [
+        { "name": "BlackRock Aladdin Wealth", "url": "https://www.blackrock.com/aladdin/discover/aladdin-wealth-launches-ai-enabled-commentary-tool-at-morgan-stanley" }
       ]
     }
   },
-  "last_updated": "2026-03-19"
+  "last_updated": "2026-04-04"
 }

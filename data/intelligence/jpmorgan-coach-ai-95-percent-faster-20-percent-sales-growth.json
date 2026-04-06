@@ -1,8 +1,8 @@
 {
   "id": "jpmorgan-coach-ai-95-percent-faster-20-percent-sales-growth",
   "type": "deployment",
-  "headline": "JPMorgan CIO: Coach AI lets advisors find client information 95% faster — wealth management posts 20% gross sales growth with AI tools cited",
-  "the_so_what": "A 95% reduction in information retrieval time correlating with 20% gross sales growth across 4,000 private bank advisors is the most concrete published evidence that advisor AI deployments translate to revenue — not just efficiency — and the 50% client roster expansion target over three to five years implies JPMorgan sees this as a compounding growth engine, not a one-time productivity gain.",
+  "headline": "JPMorgan CIO: Coach AI Cuts Info Retrieval 95% for Private Bank Advisors",
+  "the_so_what": "A 95% reduction in information retrieval time across 4,000 private bank advisors is the most concrete efficiency metric published by any wirehouse. Separately, JPMorgan reported 20% gross sales growth (2023-2024), with GenAI tools broadly cited as helping teams focus on high-impact client work — but the firm did not attribute the growth to any specific tool. Morgan Stanley reports 98% adoption of its AI tools but has not disclosed a revenue impact. BofA claims up to 4 hours saved per meeting but without sales conversion data. The distinction matters: JPMorgan is disclosing both efficiency gains and business results, but carefully not drawing a direct causal line between the two.",
   "company": "jpmorgan",
   "company_name": "JPMorgan Private Bank and Wealth Management",
   "date": "2025-05-05",
@@ -12,8 +12,8 @@
   "image_url": "/logos/jpmorgan.svg",
   "summary": "In a Reuters interview published May 5, 2025, JPMorgan Chase's AWM CIO Mike Urciuoli stated: 'Our advisors are finding the right information up to 95% faster — which means they spend less time searching and more time engaging in meaningful conversations with clients.' The tool — called Coach AI in wealth management and Connect Coach in the Private Bank — is deployed across approximately 4,000 advisers serving JPMorgan's high-net-worth private bank clients. JPMorgan stated the Asset & Wealth Management division saw a 20% year-over-year increase in gross sales between 2023 and 2024, citing AI-driven tools as enabling teams to 'focus more effectively on high-impact client work.' The bank also disclosed that its GenAI toolkit is deployed on the desktops of more than 200,000 employees, more than half of whom use it several times a day, and that AI has saved approximately $1.5 billion across the firm through fraud prevention, personalisation, trading, and operational efficiencies. Looking ahead, JPMorgan stated Coach AI will help advisers expand their client rosters by 50% over the next three to five years. Harvard Business School published a case study on JPMorgan's AI programme, concluding: 'JPMorgan is playing an entirely different game.'",
   "key_stat": {
-    "number": "20%",
-    "label": "Gross sales growth YoY (2023–2024) — JPMorgan Asset & Wealth Management, AI tools cited as key driver (Reuters, May 2025)"
+    "number": "95%",
+    "label": "Faster info retrieval — Coach AI for Private Bank advisors (CIO Mike Urciuoli, Reuters, May 2025)"
   },
   "tags": {
     "capability": "advisor_productivity",
@@ -50,5 +50,63 @@
     "human_approved": true,
     "approved_at": "2026-03-23T00:00:00.000Z"
   },
-  "published_at": "2025-05-05T00:00:00.000Z"
+  "published_at": "2025-05-05T00:00:00.000Z",
+  "_final_score": 85,
+  "_research": {
+    "entities": {
+      "company_name": "JPMorgan",
+      "capability_area": "advisor_productivity"
+    },
+    "source_count": 1,
+    "landscape_context": {
+      "is_tracked": true,
+      "current_maturity": "scaled",
+      "peer_comparison": "Morgan Stanley (scaled, 98% adoption), BofA (scaled, 30B interactions), Goldman (deployed, 46K employees)"
+    },
+    "confidence": "high",
+    "researched_at": "2026-04-03T19:59:27.692Z"
+  },
+  "_fabrication": {
+    "verdict": "CLEAN",
+    "claims_checked": 8,
+    "claims_verified": 8,
+    "claims_unverified": 0,
+    "claims_fabricated": 0,
+    "details": [],
+    "checked_at": "2026-04-03T19:59:27.696Z"
+  },
+  "_iterations": [
+    {
+      "version": 1,
+      "evaluation": {
+        "overall": "PASS",
+        "quality_score": 9
+      },
+      "fabrication_verdict": "CLEAN"
+    }
+  ],
+  "_editor_notes": [],
+  "sources": [
+    {
+      "name": "Reuters",
+      "url": "https://www.reuters.com/business/finance/jpmorgan-says-ai-helped-boost-sales-add-clients-market-turmoil-2025-05-05/",
+      "type": "primary"
+    },
+    {
+      "name": "The Bridge Chronicle",
+      "url": "https://www.thebridgechronicle.com/tech/ai-sales-manager-jpmorgan-wealthy-clients-market-turmoil",
+      "type": "coverage"
+    },
+    {
+      "name": "The AI Insider",
+      "url": "https://theaiinsider.tech/2025/05/07/jpmorgan-chase-taps-ai-to-navigate-market-turbulence-and-deepen-client-engagement/",
+      "type": "coverage"
+    },
+    {
+      "name": "Complete AI Training",
+      "url": "https://completeaitraining.com/news/how-jpmorgans-ai-tools-boosted-sales-and-client-growth-amid/",
+      "type": "coverage"
+    }
+  ],
+  "source_count": 4
 }
