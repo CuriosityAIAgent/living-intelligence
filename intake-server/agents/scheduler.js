@@ -25,7 +25,7 @@ import { addPending, addBlocked, isBlocked, isTopicSuppressed, writePipelineStat
 import { commitInboxState } from './publisher.js';
 import { sendDigest } from './notifier.js';
 import { INTEL_DIR, THRESHOLDS } from './config.js';
-import { logPipelineRun, logPipelineEvent } from './kb-client.js';
+import { logPipelineRun, logPipelineEvent, storeBrief, upsertSource } from './kb-client.js';
 
 // ── Review threshold ───────────────────────────────────────────────────────────
 // PUBLISH ≥ 75  |  REVIEW 60–74  |  BLOCK < 60
@@ -371,6 +371,33 @@ export async function runDailyPipeline() {
         enrichment:          intakeResult.entry._enrichment || null,
       });
       console.log(`[scheduler] INBOX → queued for editorial review (score ${scored.score}): ${intakeResult.entry.id}`);
+
+      // Store as research brief in KB for v2 pipeline (Claude Code /produce picks these up)
+      if (scored.score >= REVIEW_THRESHOLD) {
+        setImmediate(async () => {
+          try {
+            // Get primary source ID (already stored by intake.js)
+            const primarySourceId = intakeResult.entry._kb_source_id || null;
+            await storeBrief({
+              candidate_url: url,
+              candidate_source: candidate.source || source_name,
+              company_id: entryCompanyId || null,
+              vertical_id: 'wealth',
+              entities: {
+                company_name: intakeResult.entry.company_name,
+                company_slug: entryCompanyId,
+                capability_area: intakeResult.entry.capability_evidence?.capability || null,
+                key_topic: intakeResult.entry.headline?.slice(0, 50),
+                event_type: intakeResult.entry.type,
+              },
+              primary_source_id: primarySourceId,
+              triage_score: scored.score,
+              source_count: (intakeResult.entry.sources || []).length || 1,
+              status: 'ready',
+            });
+          } catch (_) { /* non-blocking */ }
+        });
+      }
 
     } catch (err) {
       console.error(`[scheduler] Error processing ${url}:`, err.message);
