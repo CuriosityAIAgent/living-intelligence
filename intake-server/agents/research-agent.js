@@ -29,6 +29,9 @@ import {
   MATURITY_RANK,
 } from './context-enricher.js';
 import { normalizeCompanySlug } from './intake.js';
+import {
+  upsertSource, storeBrief, getCompanyContext,
+} from './kb-client.js';
 
 const client = new Anthropic();
 
@@ -323,6 +326,20 @@ export async function research({ url, title, source_name, send }) {
     message: `Primary source: ${primary.word_count} words${primary.paywall_suspected ? ' (paywall detected)' : ''}`,
   });
 
+  // 1b. PRINCIPLE 1: Store primary source to KB BEFORE any processing
+  const primarySourceId = await upsertSource({
+    url,
+    title: title || null,
+    source_name: source_name || null,
+    content_md: primary.markdown,
+    word_count: primary.word_count,
+    is_paywalled: primary.paywall_suspected,
+    fetched_by: 'research-agent',
+  });
+  if (primarySourceId) {
+    send('research_status', { message: `Primary stored in KB (${primarySourceId.toString().slice(0, 8)}...)` });
+  }
+
   // 2. Extract entities
   send('research_status', { message: 'Extracting entities...' });
   const entities = await extractEntities(primary.markdown, url);
@@ -340,11 +357,23 @@ export async function research({ url, title, source_name, send }) {
 
   send('research_status', { message: `Found ${sourceCandidates.length} candidate sources. Fetching...` });
 
-  // 4. Fetch each source (FULL TEXT, not compressed)
+  // 4. Fetch each source (FULL TEXT, not compressed) + store to KB
   const fetchedSources = [];
+  const additionalSourceIds = [];
   for (const candidate of sourceCandidates.slice(0, 8)) {
     const fetched = await fetchSourceSafe(candidate.url);
     if (fetched) {
+      // PRINCIPLE 1: Store to KB before any processing
+      const srcId = await upsertSource({
+        url: candidate.url,
+        title: candidate.title || null,
+        source_name: candidate.hostname,
+        content_md: fetched.markdown,
+        word_count: fetched.word_count,
+        fetched_by: 'research-agent',
+      });
+      if (srcId) additionalSourceIds.push(srcId);
+
       fetchedSources.push({
         url: candidate.url,
         name: candidate.hostname,
@@ -362,13 +391,21 @@ export async function research({ url, title, source_name, send }) {
     message: `${fetchedSources.length} sources fetched successfully: ${fetchedSources.map(s => s.name).join(', ')}`,
   });
 
-  // 5. Load landscape context (normalize slug to match our landscape IDs)
+  // 5. Load landscape context (flat files + KB for institutional memory)
   send('research_status', { message: 'Loading landscape context...' });
   const normalizedSlug = normalizeCompanySlug(entities.company_slug || '');
   const landscapeContext = loadLandscapeContext(
     normalizedSlug,
     entities.capability_area || 'unknown'
   );
+
+  // Query KB for additional company context (prior sources, published entries, landscape)
+  const kbContext = await getCompanyContext(normalizedSlug);
+  if (kbContext.sources.length > 0 || kbContext.entries.length > 0) {
+    send('research_status', {
+      message: `KB context: ${kbContext.sources.length} prior sources, ${kbContext.entries.length} published entries`,
+    });
+  }
 
   // 6. What's new
   const whats_new = determineWhatsNew(entities, landscapeContext, primary.markdown);
@@ -470,6 +507,31 @@ export async function research({ url, title, source_name, send }) {
     researched_at: new Date().toISOString(),
   };
 
+  // 12. Persist research brief to KB
+  const briefId = await storeBrief({
+    candidate_url: url,
+    company_id: normalizedSlug || null,
+    vertical_id: 'wealth',
+    entities,
+    primary_source_id: primarySourceId || null,
+    additional_source_ids: additionalSourceIds,
+    landscape_snapshot: {
+      is_tracked: landscapeContext.is_tracked,
+      company_summary: landscapeContext.company?.ai_strategy_summary || null,
+      past_entries: landscapeContext.past_entries.map(e => e.headline),
+      peers: landscapeContext.peers.map(p => p.name),
+    },
+    whats_new,
+    source_count: totalSources,
+    total_word_count: brief.total_source_word_count,
+    triage_score: null, // set later by scorer
+    status: 'ready',
+  });
+  if (briefId) {
+    brief.brief_id = briefId;
+    send('research_status', { message: `Brief persisted to KB (${briefId.toString().slice(0, 8)}...)` });
+  }
+
   send('research_complete', {
     message: `Research complete: ${totalSources} sources, ${brief.total_source_word_count} words, confidence: ${confidence}`,
     source_count: totalSources,
@@ -477,6 +539,7 @@ export async function research({ url, title, source_name, send }) {
     entities: entities,
     whats_new,
     conflicts: conflicts.length,
+    brief_id: briefId || null,
   });
 
   return brief;

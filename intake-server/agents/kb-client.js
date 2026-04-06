@@ -334,6 +334,100 @@ export async function updateSource(id, updates) {
   }
 }
 
+// ── Upsert Source (store or return existing) ────────────────────────────────
+
+export async function upsertSource({
+  url, title, source_name, source_type = 'article', content_md,
+  company_id = null, vertical_id = 'wealth', topics = [],
+  capability = null, published_at = null, fetched_by = 'pipeline',
+  is_thin = false, is_paywalled = false, word_count = null,
+}) {
+  try {
+    const supabase = getSupabaseClient();
+    if (!supabase) return null;
+
+    // Check if source already exists
+    const existing = await getSourceByUrl(url);
+    if (existing) {
+      // If existing is thin and we have full content, upgrade it
+      if (existing.is_thin && content_md && content_md.length > 500) {
+        await updateSource(existing.id, {
+          content_md,
+          is_thin: false,
+          word_count: word_count || content_md.split(/\s+/).length,
+          fetched_by,
+        });
+      }
+      return existing.id;
+    }
+
+    return await storeSource({
+      url, title, source_name, source_type, content_md,
+      company_id, vertical_id, topics, capability,
+      published_at, fetched_by, is_thin, is_paywalled, word_count,
+    });
+  } catch (err) {
+    console.warn('[kb-client] upsertSource exception:', err.message);
+    return null;
+  }
+}
+
+// ── Company Context (combined query) ────────────────────────────────────────
+
+export async function getCompanyContext(company_id) {
+  try {
+    const supabase = getSupabaseClient();
+    if (!supabase) return { sources: [], entries: [], landscape: null };
+
+    const [sources, entries, landscape] = await Promise.all([
+      getCompanySources(company_id, 20),
+      getCompanyEntries(company_id, 10),
+      getLandscapeProfile(company_id),
+    ]);
+
+    return { sources, entries, landscape };
+  } catch (err) {
+    console.warn('[kb-client] getCompanyContext exception:', err.message);
+    return { sources: [], entries: [], landscape: null };
+  }
+}
+
+// ── Hydrate Brief (load source text from KB into brief) ─────────────────────
+
+export async function hydrateBrief(briefId) {
+  try {
+    const supabase = getSupabaseClient();
+    if (!supabase) return null;
+
+    const brief = await getBrief(briefId);
+    if (!brief) return null;
+
+    // Load primary source content
+    if (brief.primary_source_id) {
+      const { data } = await supabase
+        .from('sources')
+        .select('url, title, source_name, content_md, word_count')
+        .eq('id', brief.primary_source_id)
+        .single();
+      if (data) brief._primary_source = data;
+    }
+
+    // Load additional source content
+    if (brief.additional_source_ids?.length > 0) {
+      const { data } = await supabase
+        .from('sources')
+        .select('id, url, title, source_name, content_md, word_count')
+        .in('id', brief.additional_source_ids);
+      if (data) brief._additional_sources = data;
+    }
+
+    return brief;
+  } catch (err) {
+    console.warn('[kb-client] hydrateBrief exception:', err.message);
+    return null;
+  }
+}
+
 // ── Pipeline Runs ────────────────────────────────────────────────────────────
 
 export async function logPipelineRun({

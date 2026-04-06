@@ -8,6 +8,7 @@ import {
   PAYWALLED_DOMAINS as _PAYWALLED_DOMAINS,
   THIN_CONTENT_THRESHOLD as _THIN_CONTENT_THRESHOLD,
 } from './config.js';
+import { upsertSource } from './kb-client.js';
 
 // ── Company slug normalization ──────────────────────────────────────────────
 // Claude generates company slugs during structuring but doesn't know our
@@ -509,6 +510,22 @@ export async function processUrl({ url, source_name, send }) {
     return null;
   }
 
+  // ── PRINCIPLE 1: Store raw source to KB BEFORE any processing ────────────────
+  // Raw content hits the database first. We can always re-derive; we cannot re-fetch.
+  const primarySourceId = await upsertSource({
+    url,
+    title: null, // will be updated after Claude structuring
+    source_name: source_name || null,
+    content_md: pageData.markdown,
+    word_count: pageData.word_count,
+    is_paywalled: pageData.paywall_suspected,
+    is_thin: pageData.thin_content,
+    fetched_by: 'intake',
+  });
+  if (primarySourceId) {
+    send('status', { message: `Source stored in KB (${primarySourceId.slice(0, 8)}...)` });
+  }
+
   // ── Always search for enrichment sources ─────────────────────────────────────
   // Paywall/thin → DataForSEO headline search (finds same story on open sources)
   // Full content → Jina keyword search (supplementary press releases + context)
@@ -533,6 +550,17 @@ export async function processUrl({ url, source_name, send }) {
       message: `Found ${usable.length} enrichment source(s): ${usable.map(s => s.hostname).join(', ')}`,
       enrichment_sources: enrichmentSources,
     });
+
+    // Store enrichment sources to KB (Principle 1: store raw, transform later)
+    for (const s of usable) {
+      await upsertSource({
+        url: s.url,
+        source_name: s.hostname,
+        content_md: s.markdown,
+        word_count: s.markdown.split(/\s+/).length,
+        fetched_by: 'intake-enrichment',
+      });
+    }
 
     if (needsEnrichment) {
       // Thin/paywalled: lead with enrichment content, keep original teaser for URL/date context
