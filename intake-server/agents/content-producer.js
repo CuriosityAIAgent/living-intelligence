@@ -21,6 +21,7 @@ import { evaluate } from './evaluator-agent.js';
 import { checkFabricationV2 } from './fabrication-strict.js';
 import { scoreEntry } from './scorer.js';
 import { PRESS_RELEASE_DOMAINS, TIER1_MEDIA } from './config.js';
+import { addPending } from './gov-store.js';
 import {
   logPipelineEvent, logPipelineRun, getReadyBriefs,
   hydrateBrief, storePublishedEntry,
@@ -358,6 +359,21 @@ export async function produceEntry({ url, title, source_name, triage_score, send
 
     _editor_notes: [],
   };
+
+  // Add to editorial inbox
+  const govAudit = {
+    verdict: finalFab.verdict === 'CLEAN' ? 'PASS' : 'REVIEW',
+    confidence: finalFab.verdict === 'CLEAN' ? 90 : 60,
+    verified_claims: (finalFab.details || []).filter(d => d.status === 'verified').map(d => d.claim),
+    unverified_claims: (finalFab.details || []).filter(d => d.status === 'unverified').map(d => d.claim),
+    fabricated_claims: (finalFab.details || []).filter(d => d.status === 'fabricated').map(d => d.claim),
+    notes: `v2 pipeline — ${iterations.length} iteration(s), fabrication: ${finalFab.verdict}`,
+    paywall_caveat: false,
+    verified_at: new Date().toISOString(),
+    human_approved: false,
+  };
+  addPending(entry, govAudit, { score: finalScore, score_breakdown: `v2 pipeline (${iterations.length} iterations)` });
+  send('pipeline_stage', { stage: 'inbox', message: `Added to editorial inbox: ${entry.id}` });
 
   // Log final pipeline event + update run
   await logPipelineEvent({

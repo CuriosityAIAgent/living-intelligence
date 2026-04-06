@@ -378,10 +378,10 @@ export async function runDailyPipeline() {
           try {
             // Get primary source ID (already stored by intake.js)
             const primarySourceId = intakeResult.entry._kb_source_id || null;
+            const isTracked = knownCompanyIds.has(entryCompanyId) || [...knownCompanyIds].some(id => id.length >= 3 && (id.startsWith(entryCompanyId) || entryCompanyId.startsWith(id)));
             await storeBrief({
               candidate_url: url,
-              candidate_source: candidate.source || source_name,
-              company_id: entryCompanyId || null,
+              company_id: isTracked ? entryCompanyId : null,
               vertical_id: 'wealth',
               entities: {
                 company_name: intakeResult.entry.company_name,

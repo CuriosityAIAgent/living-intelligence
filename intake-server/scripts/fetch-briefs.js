@@ -14,7 +14,7 @@ const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SER
 async function listBriefs() {
   const { data, error } = await supabase
     .from('research_briefs')
-    .select('id, candidate_url, candidate_source, company_id, source_count, triage_score, research_confidence, created_at')
+    .select('id, candidate_url, company_id, source_count, triage_score, research_confidence, created_at')
     .eq('status', 'ready')
     .order('created_at', { ascending: false })
     .limit(20);

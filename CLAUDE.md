@@ -3,7 +3,11 @@
 Premium executive intelligence platform ($4,500-$5,000/year) tracking AI adoption across 37+ wealth management firms.
 Two systems: **Portal** (this repo, Next.js) + **Intake Server** (`../intake-server`, Node.js port 3003).
 
-**v2 Content Pipeline (Sessions 14-17):** Research Agent → Writer Agent (Opus) → Evaluator Agent (McKinsey 6-check test) → Fabrication Agent (multi-source, drift detection) → Content Producer orchestrator. All 43 intelligence entries upgraded to consulting quality with multi-source verification.
+**v2 Content Pipeline (Sessions 14-28):** Research Agent → Writer Agent (Opus) → Evaluator Agent (McKinsey 6-check test) → Fabrication Agent (multi-source, drift detection, full raw source text) → Content Producer orchestrator. All 43 intelligence entries upgraded to consulting quality with multi-source verification.
+
+**Knowledge Base (Sessions 22-28):** Supabase (PostgreSQL + pgvector). 265 sources embedded (Jina v3, 512 dims). All 5 KB phases complete. 10 platform engineering principles enforced in code. Prompts versioned in `intake-server/prompts/`. Hybrid execution: Railway (discovery/triage) + Claude Code Max (writing/evaluation, free).
+
+**Key principle:** All fabrication checks and writing use full raw Jina markdown from KB — never truncated, never summarized. Opus handles 200K context.
 
 See @docs/architecture.md for full system design, @docs/integrations.md for all external APIs, @docs/pipeline-v2-plan.md for the v2 pipeline architecture.
 
@@ -113,6 +117,8 @@ cd ../intake-server
 node --env-file=.env server.js   # localhost:3003
 # Env vars: ANTHROPIC_API_KEY, JINA_API_KEY, DATAFORSEO_LOGIN, DATAFORSEO_PASSWORD,
 #           NEWSAPI_KEY, SUPABASE_URL, SUPABASE_SERVICE_KEY
+# V2 pipeline: node --env-file=.env agents/content-producer.js --top 5
+# /produce skill: node --env-file=.env scripts/fetch-briefs.js --hydrate 3
 ```
 
 **Git workflow — branching strategy:**

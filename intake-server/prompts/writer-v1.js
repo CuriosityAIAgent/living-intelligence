@@ -19,10 +19,10 @@ export function build({ researchBrief, previousDraft, evaluatorFeedback, editorN
   const sourceSection = [
     `=== PRIMARY SOURCE: ${primarySource.name || 'Unknown'} ===`,
     `URL: ${primarySource.url || ''}`,
-    (primarySource.content || '').slice(0, 8000),
+    (primarySource.content || ''),
     '',
     ...additionalSources.map(s =>
-      `=== ${s.name} (${s.type || 'coverage'}) ===\nURL: ${s.url}\n${(s.content || '').slice(0, 4000)}`
+      `=== ${s.name} (${s.type || 'coverage'}) ===\nURL: ${s.url}\n${(s.content || '')}`
     ),
   ].join('\n\n');
 

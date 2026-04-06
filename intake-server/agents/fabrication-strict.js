@@ -107,11 +107,12 @@ export async function checkFabrication({ entry, sourceMarkdown }) {
  * @returns {Object} Fabrication report
  */
 export async function checkFabricationV2({ draft, researchBrief, previousDraft }) {
-  // Build combined source text from ALL sources (FULL TEXT)
+  // Build combined source text from ALL sources — use full raw Jina markdown
+  // Opus handles 200K context; truncation loses evidence and degrades verification quality
   const sourceTexts = [
-    `=== PRIMARY: ${researchBrief.primary_source.name} ===\n${researchBrief.primary_source.content.slice(0, 8000)}`,
+    `=== PRIMARY: ${researchBrief.primary_source.name} ===\n${researchBrief.primary_source.content}`,
     ...(researchBrief.additional_sources || []).map(s =>
-      `=== ${s.name} (${s.type}) ===\n${s.content.slice(0, 4000)}`
+      `=== ${s.name} (${s.type}) ===\n${s.content}`
     ),
   ].join('\n\n');
 

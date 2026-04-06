@@ -513,7 +513,7 @@ export async function research({ url, title, source_name, send }) {
   // 12. Persist research brief to KB
   const briefId = await storeBrief({
     candidate_url: url,
-    company_id: normalizedSlug || null,
+    company_id: landscapeContext.is_tracked ? normalizedSlug : null,
     vertical_id: 'wealth',
     entities,
     primary_source_id: primarySourceId || null,

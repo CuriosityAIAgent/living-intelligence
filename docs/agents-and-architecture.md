@@ -2,7 +2,7 @@
 
 ## System Overview
 
-Two deployed services, one GitHub repository, zero databases.
+Two deployed services, one GitHub repository, Supabase KB (PostgreSQL + pgvector).
 
 ```
 GitHub: CuriosityAIAgent/living-intelligence
@@ -67,13 +67,15 @@ GitHub: CuriosityAIAgent/living-intelligence
 
 ## Agent Architecture
 
-Eleven agents in `intake-server/agents/`, each with a single responsibility:
+15 agents in `intake-server/agents/`, each with a single responsibility:
 
 ```
+V1 PIPELINE (automated daily at 5am, Sonnet):
 auto-discover.js     ──┐
-                       ├──► scored candidates (DFS News + DFS Content Analysis + Jina)
+                       ├──► scored candidates (DFS News + DFS Content Analysis + Jina + NewsAPI.ai)
 intake.js  ────────────┤
                        ├──► structured entry (paywall → DataForSEO News + Organic in parallel)
+                       │    Stores raw markdown to KB before Claude structuring (Principle 1)
 context-enricher.js ───┤
                        ├──► enriched the_so_what (landscape + peer context)
 format-validator.js ───┤
@@ -81,7 +83,7 @@ format-validator.js ───┤
 governance.js  ────────┤
                        ├──► claim verification (12k source window)
 fabrication-strict.js ─┤
-                       ├──► CLEAN / SUSPECT / FAIL (5 explicit checks, 12k window)
+                       ├──► CLEAN / SUSPECT / FAIL (full source text, no truncation for Opus)
 scorer.js  ────────────┤
                        ├──► PUBLISH / REVIEW / BLOCK + score breakdown
 gov-store.js  ─────────┤
@@ -90,8 +92,24 @@ publisher.js  ─────────┤
                        ├──► JSON file + git commit + push
 notifier.js  ──────────┤
                        └──► Telegram digest (score + unverified claims per item)
-scheduler.js  ─────────── orchestrates daily pipeline (11-step)
+scheduler.js  ─────────── orchestrates daily pipeline + stores briefs to KB
 auditor.js  ───────────── standalone audit engine (fast + deep modes)
+kb-client.js  ─────────── Supabase singleton + KB helpers (store/query/embed/search)
+
+V2 PIPELINE (on-demand, Opus 4.6 via Claude Code Max):
+research-agent.js  ────── Deep multi-source research + entity extraction + KB context
+writer-agent.js  ──────── Consulting-quality writer (Opus 4.6, McKinsey voice)
+evaluator-agent.js  ───── McKinsey 6-check quality test (Opus 4.6)
+content-producer.js  ──── V2 orchestrator: Research → Write → Fabrication → Evaluate → Refine
+
+PROMPTS (versioned, in intake-server/prompts/):
+intake-v1.js  ─────────── Structuring prompt (imported by intake.js)
+governance-v1.js  ─────── Verification prompt (imported by governance.js)
+fabrication-v1.js  ────── Single-source fabrication (imported by fabrication-strict.js)
+fabrication-v2.js  ────── Multi-source fabrication + drift detection
+entity-extraction-v1.js ─ Entity extraction (imported by research-agent.js)
+writer-v1.js  ─────────── Consulting writer prompt (imported by writer-agent.js)
+evaluator-v1.js  ──────── McKinsey 6-check test prompt (imported by evaluator-agent.js)
 ```
 
 ### `auto-discover.js` — Content Discovery
@@ -317,6 +335,9 @@ Run: `node --env-file=.env scripts/run-tests.js`
 | POST | `/api/run-pipeline` | Manually trigger daily pipeline |
 | POST | `/api/test-digest` | Send sample Telegram digest |
 | GET | `/review/:token` | Mobile review page (approve/reject via HMAC token) |
+| **POST** | **`/api/v2/produce`** | **SSE stream: full v2 pipeline for a URL (research → write → evaluate → refine)** |
+| **GET** | **`/api/v2/briefs`** | **List ready research briefs from KB (status, count, scores)** |
+| **GET** | **`/api/v2/kb/stats`** | **KB health: source/brief/decision/event counts** |
 
 ---
 
@@ -324,8 +345,8 @@ Run: `node --env-file=.env scripts/run-tests.js`
 
 ```
 data/
-├── intelligence/             ← 42 IntelligenceEntry JSON files (audited, 2026-03-25)
-├── thought-leadership/       ← 7 ThoughtLeadershipEntry JSON files (all URLs verified)
+├── intelligence/             ← 43 IntelligenceEntry JSON files (all v2 quality, 2026-04-06)
+├── thought-leadership/       ← 8 ThoughtLeadershipEntry JSON files (all URLs verified)
 ├── competitors/              ← 37 Competitor JSON files (8 segments)
 ├── capabilities/             ← index.json (7 capability dimensions)
 ├── logos/                    ← Local SVG/PNG logos (never use external URLs)
