@@ -22,32 +22,35 @@ export default function LandingPage() {
           href="/login"
           className="bg-[#990F3D] hover:bg-[#7a0c31] text-white text-[13px] font-bold px-6 py-3 rounded-full shadow-lg transition-colors no-underline flex items-center gap-2"
         >
-          Register <span className="text-[16px]">&rarr;</span>
+          Register now <span className="text-[16px]">&rarr;</span>
         </a>
       </div>
 
       {/* ─── STICKY SECTION NAV ─── */}
-      <nav className="sticky top-0 z-50 bg-[#141420] border-b border-[#2A2A3E] hidden md:block">
+      <nav className="sticky top-0 z-50 bg-[#141420] border-b border-[#2A2A3E]">
         <div className="max-w-5xl mx-auto px-6 flex items-center gap-6 py-2.5">
-          <span className="text-[11px] font-extrabold uppercase tracking-[0.2em] text-white mr-4">Living Intelligence</span>
-          {[
-            { label: 'Why Now', href: '#challenge' },
-            { label: 'How It Works', href: '#how' },
-            { label: 'Intelligence', href: '#sample' },
-            { label: 'Landscape', href: '#coverage' },
-            { label: 'Thought Leadership', href: '#thought-leadership' },
-            { label: 'Pricing', href: '#pricing' },
-          ].map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="text-[11px] text-[#8888A0] hover:text-white transition-colors no-underline uppercase tracking-wider"
-            >
-              {link.label}
-            </a>
-          ))}
+          <span className="text-[11px] font-extrabold uppercase tracking-[0.2em] text-white mr-4 shrink-0">Living Intelligence</span>
+          {/* Section links — hidden on mobile */}
+          <div className="hidden md:flex items-center gap-6">
+            {[
+              { label: 'Why Now', href: '#challenge' },
+              { label: 'How It Works', href: '#how' },
+              { label: 'Intelligence', href: '#sample' },
+              { label: 'Landscape', href: '#coverage' },
+              { label: 'Thought Leadership', href: '#thought-leadership' },
+              { label: 'Pricing', href: '#pricing' },
+            ].map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                className="text-[11px] text-[#8888A0] hover:text-white transition-colors no-underline uppercase tracking-wider"
+              >
+                {link.label}
+              </a>
+            ))}
+          </div>
           <div className="ml-auto flex items-center gap-3">
-            <a href="/login" className="text-[11px] text-[#8888A0] hover:text-white transition-colors no-underline uppercase tracking-wider">Sign in</a>
+            <a href="/login" className="text-[11px] text-white hover:text-gray-300 transition-colors no-underline uppercase tracking-wider font-medium">Sign in</a>
             <a href="/login" className="text-[11px] bg-[#990F3D] hover:bg-[#7a0c31] text-white px-3 py-1.5 rounded transition-colors no-underline uppercase tracking-wider font-bold">Register</a>
           </div>
         </div>
@@ -607,7 +610,7 @@ export default function LandingPage() {
             href="/login"
             className="inline-block bg-[#990F3D] hover:bg-[#7a0c31] text-white text-[15px] font-bold px-8 py-4 rounded transition-colors no-underline mb-10"
           >
-            Request access
+            Register now
           </a>
           <p className="text-[12px] text-[#444458]">
             Founding member spots are limited.{' '}
