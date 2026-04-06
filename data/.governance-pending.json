@@ -500,8 +500,8 @@
     "entry": {
       "id": "jump-advisor-os-canada-integrations-march-2026",
       "type": "milestone",
-      "headline": "Jump's AI Advisor OS Reaches 27,000 Advisors as CRM and Custodian Integrations Drive Network-Wide Rollouts",
-      "the_so_what": "By formalizing a three-module OS architecture with bidirectional CRM and custodian integrations — not just meeting transcription — Jump has structurally separated itself from Zocks' 5,000-firm footprint and Holistiplan's single-use tax analysis, converting compliance data structured at capture across 27,000 advisors into a switching-cost moat that mirrors how Bloomberg terminal integration depth made displacement economically irrational even when cheaper alternatives existed.",
+      "headline": "Jump's Advisor OS Reaches 27,000 Advisors as Integration Depth Converts Pilots to Network Rollouts",
+      "the_so_what": "By formalizing Meet, Grow, and Operate as a unified OS with native CIRO and PIPEDA compliance logging — not a bolt-on — Jump has structurally widened the switching-cost gap over Zocks (5,000+ firms, meeting transcription only) and Holistiplan (tax analysis, no workflow layer), because every bidirectional CRM write and custodian sync deepens the audit trail that regulators require and that no competing point solution can replicate without rebuilding from the data layer up.",
       "company": "jump-ai",
       "company_name": "Jump",
       "date": "2026-03-15",
@@ -509,26 +509,26 @@
       "source_url": "https://meyka.com/blog/march-15-wealth-management-ai-advisor-os-race-accelerates-on-integrations-1503/",
       "source_verified": true,
       "image_url": null,
-      "summary": "Jump has formalized an end-to-end AI advisor operating system spanning three modules — Meet, Grow, and Operate — now used by 27,000 advisors, signaling a market shift from point tools to full workflow platforms. The platform automates meeting prep, compliance-ready notes, next-best-action generation, and service ticket routing, with bidirectional CRM and custodian integrations designed to eliminate manual data entry and support real-time supervision. Built to satisfy Canadian regulatory requirements, the stack structures data at capture to meet CIRO suitability and records obligations and enforces PIPEDA-aligned privacy controls including role-based access, field-level masking, and data residency options. The formalization of the OS architecture and the 27,000-advisor milestone were announced on March 15, 2026, with supporting coverage from Yahoo Finance and TipRanks cited in the source.",
+      "summary": "Jump has formalized an end-to-end advisor operating system spanning Meet, Grow, and Operate modules, reporting adoption by 27,000 advisors — a scale that signals the shift from point tools to full-workflow platforms in Canadian wealth management. The platform automates meeting prep, generates compliant notes and next-best actions, routes service tickets, and syncs bidirectionally with CRMs and custodian portals, reducing swivel-chair work and manual data repairs. Compliance capability is native: the stack logs prompts, outputs, and approvals as part of the client record to satisfy CIRO supervision requirements and PIPEDA data minimization rules. The announcement, covered via Yahoo Finance, coincides with an industry brief cited by TipRanks identifying workflow-led buying and integration depth as the primary selection drivers for wealth management AI in 2026.",
       "key_stat": {
         "number": "27,000",
-        "label": "advisors actively using Jump's AI operating system across Meet, Grow, and Operate modules"
+        "label": "advisors using Jump's AI operating system"
       },
       "capability_evidence": {
         "capability": "advisor_productivity",
         "stage": "deployed",
-        "evidence": "Jump reports 27,000 advisors using its formalized AI operating system, which automates meeting prep, compliant note generation, next-best-action suggestions, and service ticket routing through live CRM and custodian integrations.",
-        "metric": "27,000 advisors deployed"
+        "evidence": "Jump reports 27,000 advisors actively using its Meet, Grow, and Operate stack, with the platform automating meeting summaries, next-best actions, onboarding checklists, and service ticket routing inside live CRM and custodian environments.",
+        "metric": "27,000 advisors on platform"
       },
       "tags": {
         "capability": "advisor_productivity",
-        "region": "us",
+        "region": "global",
         "segment": "advisor_tools",
         "theme": [
           "advisor_os",
-          "workflow_integration",
-          "compliance_by_design",
-          "crm_connectivity"
+          "crm_integration",
+          "compliance_workflows",
+          "platform_expansion"
         ]
       },
       "week": "2026-03-30",
@@ -562,45 +562,45 @@
       ],
       "source_count": 5,
       "_enrichment": {
-        "what_changed": "Previous coverage focused on the $105M raise and the agentic execution capability of AI Associate; this entry shifts focus to the underlying OS architecture formalization and Canadian regulatory compliance stack as the mechanism that converts individual advisor adoption into enterprise-wide, network-locked rollouts.",
+        "what_changed": "Previous coverage established Jump's agentic execution capability (AI Associate, March 2026) and its 5x distribution lead over Zocks; this entry shifts the analytical frame from feature differentiation to regulatory infrastructure lock-in, showing how CIRO and PIPEDA compliance logging — not just workflow automation — is the compounding moat.",
         "landscape_context": {
           "current_maturity": "SCALED",
           "maturity_direction": "stable",
-          "competitor_gap": "Jump 5x ahead of Zocks on advisor distribution; Holistiplan not competing on workflow breadth"
+          "competitor_gap": "Zocks and Holistiplan both SCALED but limited to single workflow layers; Jump leads on integrated OS depth"
         },
         "confidence": "high",
         "notes": null
       },
       "_format_errors": [
-        "the_so_what sentence 1 is 61 words — max 50 per sentence (split or tighten)",
+        "the_so_what sentence 1 is 73 words — max 50 per sentence (split or tighten)",
         "week \"2026-03-30\" is not the Monday of date \"2026-03-15\" (expected \"2026-03-09\")"
       ],
       "_governance": {
         "verdict": "PASS",
-        "confidence": 88,
+        "confidence": 92,
         "verified_claims": [
-          "Jump formalized an advisor operating system spanning three modules — Meet, Grow, and Operate",
-          "The platform is used by 27,000 advisors",
-          "This signals a market shift from point tools to full workflow platforms",
-          "The platform automates meeting prep, compliance-ready notes, next-best-action generation, and service ticket routing",
-          "Bidirectional CRM and custodian integrations are designed to eliminate manual data entry",
-          "The integrations support real-time supervision",
-          "The platform is built to satisfy Canadian regulatory requirements including CIRO suitability and records obligations",
-          "The stack structures data at capture to meet CIRO suitability and records obligations",
-          "PIPEDA-aligned privacy controls include role-based access, field-level masking, and data residency options",
-          "The formalization of the OS architecture and the 27,000-advisor milestone were announced on March 15, 2026",
-          "Yahoo Finance is cited as a supporting source",
-          "TipRanks is cited as a supporting source",
-          "CRM and custodian integrations drive network-wide rollouts"
+          "Jump has formalized an end-to-end advisor operating system spanning Meet, Grow, and Operate modules",
+          "Jump reports adoption by 27,000 advisors",
+          "The platform signals a shift from point tools to full-workflow platforms in Canadian wealth management",
+          "The platform automates meeting prep, generates compliant notes and next-best actions",
+          "The platform routes service tickets",
+          "The platform syncs bidirectionally with CRMs and custodian portals",
+          "The platform reduces swivel-chair work and manual data repairs",
+          "The stack logs prompts, outputs, and approvals as part of the client record",
+          "Compliance capability satisfies CIRO supervision requirements",
+          "Compliance capability addresses PIPEDA data minimization rules",
+          "The announcement was covered via Yahoo Finance",
+          "A TipRanks industry brief identifies workflow-led buying and integration depth as primary selection drivers for wealth management AI in 2026",
+          "Integration depth converts pilots to network-wide rollouts",
+          "Key stat: 27,000 advisors using Jump's AI operating system"
         ],
         "unverified_claims": [
-          "The entry describes the integrations as 'bidirectional' — the source mentions bidirectional sync conceptually but does not explicitly confirm Jump's specific implementation is bidirectional",
-          "The entry states 27,000 advisors are 'actively using' the platform — the source says 'using its stack' without specifying 'active' usage definitions"
+          "The TipRanks brief is described as an 'industry brief' — the source links to TipRanks but does not fully characterize the nature of that publication"
         ],
         "fabricated_claims": [],
-        "notes": "All major factual claims in the headline, summary, and key stat are clearly supported by the source article with no direct contradictions; two minor unverified nuances exist but do not rise to contradictions.",
+        "notes": "All substantive factual claims in the headline, summary, and key stat are directly supported by the source article with no contradictions found.",
         "paywall_caveat": false,
-        "verified_at": "2026-04-05T04:04:38.058Z",
+        "verified_at": "2026-04-06T04:02:15.808Z",
         "human_approved": false
       },
       "_fabrication": {
@@ -613,41 +613,41 @@
           "key_stat": "pass",
           "quoted_phrases": "none"
         },
-        "checked_at": "2026-04-05T04:04:39.604Z"
+        "checked_at": "2026-04-06T04:02:18.058Z"
       }
     },
     "governance": {
       "verdict": "PASS",
-      "confidence": 88,
+      "confidence": 92,
       "verified_claims": [
-        "Jump formalized an advisor operating system spanning three modules — Meet, Grow, and Operate",
-        "The platform is used by 27,000 advisors",
-        "This signals a market shift from point tools to full workflow platforms",
-        "The platform automates meeting prep, compliance-ready notes, next-best-action generation, and service ticket routing",
-        "Bidirectional CRM and custodian integrations are designed to eliminate manual data entry",
-        "The integrations support real-time supervision",
-        "The platform is built to satisfy Canadian regulatory requirements including CIRO suitability and records obligations",
-        "The stack structures data at capture to meet CIRO suitability and records obligations",
-        "PIPEDA-aligned privacy controls include role-based access, field-level masking, and data residency options",
-        "The formalization of the OS architecture and the 27,000-advisor milestone were announced on March 15, 2026",
-        "Yahoo Finance is cited as a supporting source",
-        "TipRanks is cited as a supporting source",
-        "CRM and custodian integrations drive network-wide rollouts"
+        "Jump has formalized an end-to-end advisor operating system spanning Meet, Grow, and Operate modules",
+        "Jump reports adoption by 27,000 advisors",
+        "The platform signals a shift from point tools to full-workflow platforms in Canadian wealth management",
+        "The platform automates meeting prep, generates compliant notes and next-best actions",
+        "The platform routes service tickets",
+        "The platform syncs bidirectionally with CRMs and custodian portals",
+        "The platform reduces swivel-chair work and manual data repairs",
+        "The stack logs prompts, outputs, and approvals as part of the client record",
+        "Compliance capability satisfies CIRO supervision requirements",
+        "Compliance capability addresses PIPEDA data minimization rules",
+        "The announcement was covered via Yahoo Finance",
+        "A TipRanks industry brief identifies workflow-led buying and integration depth as primary selection drivers for wealth management AI in 2026",
+        "Integration depth converts pilots to network-wide rollouts",
+        "Key stat: 27,000 advisors using Jump's AI operating system"
       ],
       "unverified_claims": [
-        "The entry describes the integrations as 'bidirectional' — the source mentions bidirectional sync conceptually but does not explicitly confirm Jump's specific implementation is bidirectional",
-        "The entry states 27,000 advisors are 'actively using' the platform — the source says 'using its stack' without specifying 'active' usage definitions"
+        "The TipRanks brief is described as an 'industry brief' — the source links to TipRanks but does not fully characterize the nature of that publication"
       ],
       "fabricated_claims": [],
-      "notes": "All major factual claims in the headline, summary, and key stat are clearly supported by the source article with no direct contradictions; two minor unverified nuances exist but do not rise to contradictions.",
+      "notes": "All substantive factual claims in the headline, summary, and key stat are directly supported by the source article with no contradictions found.",
       "paywall_caveat": false,
-      "verified_at": "2026-04-05T04:04:38.058Z",
+      "verified_at": "2026-04-06T04:02:15.808Z",
       "human_approved": false
     },
-    "queued_at": "2026-04-05T04:04:40.230Z",
-    "discovered_at": "2026-04-05T04:04:40.230Z",
-    "score": null,
-    "score_breakdown": null
+    "queued_at": "2026-04-06T04:02:18.067Z",
+    "discovered_at": "2026-04-06T04:02:18.067Z",
+    "score": 82,
+    "score_breakdown": "Score: 82/100 · Source: Company news page (meyka.com) (20) · Claims: 1 unverified claim (+15) · Fresh: 22d old (2) · Impact: capability clear: advisor_productivity (+10), deployed+quantified (+15), quantified scale (+10), central tracked company (+5) (40) · CXO: too long (73 words) (-1), contains specific metric (+2) (6/10)"
   },
   "ai-product-service-launches-2026-03-30": {
     "entry": {
@@ -775,5 +775,136 @@
     "discovered_at": "2026-04-05T04:05:44.225Z",
     "score": null,
     "score_breakdown": null
+  },
+  "nitrogen-nucleus-agentic-ai-advisor-platform-2026-02": {
+    "entry": {
+      "id": "nitrogen-nucleus-agentic-ai-advisor-platform-2026-02",
+      "type": "product_launch",
+      "headline": "Nitrogen Embeds Agentic AI Engine Across Full Advisor Workflow for 30,000 Advisors",
+      "the_so_what": "By embedding Nucleus inside its structured risk and portfolio data environment — rather than layering a chatbot on top — Nitrogen is replicating the architectural move that made Salesforce the default CRM: the platform that owns the workflow data compounds its advantage with every advisor action, making it structurally harder for standalone AI tools to displace at the 30,000-advisor scale it already controls.",
+      "company": "nitrogen",
+      "company_name": "Nitrogen",
+      "date": "2026-02-19",
+      "source_name": "Business Wire",
+      "source_url": "https://www.businesswire.com/news/home/20260219678156/en/Nitrogen-Redefines-the-Client-Meeting-with-Launch-of-Nucleus-Agentic-AI-Tax-Planning-Upgrades",
+      "source_verified": true,
+      "image_url": null,
+      "summary": "Nitrogen launched Nucleus, an agentic AI engine embedded directly inside its advisor platform, capable of executing complex multi-step tasks — setting risk targets, sending questionnaires, converting statements into portfolios, generating retirement income maps, drafting proposals, and preparing meeting talking points — all from within a single client profile without switching tools. Unlike a standalone AI assistant, Nucleus operates inside Nitrogen's structured data environment with advisor approval required before actions are executed, backed by SOC 2 and ISO-42001 compliance. The platform also introduced Tax Center upgrades including a Tax Snapshot Report, a Tax Transition Report illustrating portfolio-switch tax implications, and a previewed Roth Conversion Calculator, plus a human-verified Premium Statement Capture tier at $49/month. Research Center performance was upgraded to support three times larger portfolios with 3.5 times faster load speeds. Nucleus is available at no additional cost to all 30,000 Nitrogen advisor users, with beta access opening at the Fearless Investing Summit.",
+      "key_stat": {
+        "number": "30,000",
+        "label": "advisors with access to Nucleus agentic AI at no additional cost"
+      },
+      "capability_evidence": {
+        "capability": "advisor_productivity",
+        "stage": "deployed",
+        "evidence": "Nucleus is live in beta for Fearless Investing Summit attendees and executes multi-step advisor tasks — risk targeting, questionnaire delivery, statement conversion, proposal drafting, and meeting prep — inside a single client profile within Nitrogen's structured data environment.",
+        "metric": "3.5x improvement in Research Center load speeds; 3x increase in supported portfolio size"
+      },
+      "tags": {
+        "capability": "advisor_productivity",
+        "region": "us",
+        "segment": "advisor_tools",
+        "theme": [
+          "agentic_ai",
+          "meeting_workflow",
+          "tax_planning",
+          "platform_integration"
+        ]
+      },
+      "week": "2026-03-30",
+      "featured": false,
+      "sources": [
+        {
+          "name": "businesswire.com",
+          "url": "https://www.businesswire.com/news/home/20260219678156/en/Nitrogen-Redefines-the-Client-Meeting-with-Launch-of-Nucleus-Agentic-AI-Tax-Planning-Upgrades",
+          "type": "discovery"
+        }
+      ],
+      "source_count": 1,
+      "_enrichment": {
+        "what_changed": "First coverage of this company.",
+        "landscape_context": {
+          "current_maturity": "agentic workflow automation embedded in structured advisor data environment with human-in-the-loop approval gates",
+          "maturity_direction": "unknown",
+          "competitor_gap": "No peer comparison data available"
+        },
+        "confidence": "medium",
+        "notes": "Company not previously in landscape; no peer comparison data available for advisor_productivity segment; maturity direction cannot be assessed without prior coverage baseline."
+      },
+      "_format_errors": [
+        "the_so_what sentence 1 is 63 words — max 50 per sentence (split or tighten)",
+        "week \"2026-03-30\" is not the Monday of date \"2026-02-19\" (expected \"2026-02-16\")"
+      ],
+      "_governance": {
+        "verdict": "PASS",
+        "confidence": 97,
+        "verified_claims": [
+          "Nitrogen launched Nucleus, an agentic AI engine embedded directly inside its advisor platform",
+          "Nucleus is capable of executing complex multi-step tasks including setting risk targets, sending questionnaires, converting statements into portfolios, generating retirement income maps, drafting proposals, and preparing meeting talking points",
+          "All tasks can be performed from within a single client profile without switching tools",
+          "Unlike a standalone AI assistant, Nucleus operates inside Nitrogen's structured data environment",
+          "Advisor approval is required before actions are executed",
+          "Nucleus is backed by SOC 2 and ISO-42001 compliance",
+          "Tax Center upgrades include a Tax Snapshot Report",
+          "Tax Center upgrades include a Tax Transition Report illustrating portfolio-switch tax implications",
+          "A Roth Conversion Calculator was previewed (scheduled for next month)",
+          "Premium Statement Capture is a human-verified tier at $49/month",
+          "Research Center performance was upgraded to support three times larger portfolios",
+          "Research Center load speeds improved by more than 3.5 times",
+          "Nucleus is available at no additional cost to all Nitrogen users on current plans",
+          "Beta access opens at the Fearless Investing Summit",
+          "Nitrogen has over 30,000 advisors"
+        ],
+        "unverified_claims": [],
+        "fabricated_claims": [],
+        "notes": "Every factual claim in the generated entry is directly and explicitly supported by the source article with no contradictions found.",
+        "paywall_caveat": false,
+        "verified_at": "2026-04-06T04:03:44.259Z",
+        "human_approved": false
+      },
+      "_fabrication": {
+        "verdict": "CLEAN",
+        "issues": [],
+        "check_details": {
+          "numbers_in_headline": "pass",
+          "company_name": "pass",
+          "date_year": "pass",
+          "key_stat": "pass",
+          "quoted_phrases": "pass"
+        },
+        "checked_at": "2026-04-06T04:03:45.992Z"
+      }
+    },
+    "governance": {
+      "verdict": "PASS",
+      "confidence": 97,
+      "verified_claims": [
+        "Nitrogen launched Nucleus, an agentic AI engine embedded directly inside its advisor platform",
+        "Nucleus is capable of executing complex multi-step tasks including setting risk targets, sending questionnaires, converting statements into portfolios, generating retirement income maps, drafting proposals, and preparing meeting talking points",
+        "All tasks can be performed from within a single client profile without switching tools",
+        "Unlike a standalone AI assistant, Nucleus operates inside Nitrogen's structured data environment",
+        "Advisor approval is required before actions are executed",
+        "Nucleus is backed by SOC 2 and ISO-42001 compliance",
+        "Tax Center upgrades include a Tax Snapshot Report",
+        "Tax Center upgrades include a Tax Transition Report illustrating portfolio-switch tax implications",
+        "A Roth Conversion Calculator was previewed (scheduled for next month)",
+        "Premium Statement Capture is a human-verified tier at $49/month",
+        "Research Center performance was upgraded to support three times larger portfolios",
+        "Research Center load speeds improved by more than 3.5 times",
+        "Nucleus is available at no additional cost to all Nitrogen users on current plans",
+        "Beta access opens at the Fearless Investing Summit",
+        "Nitrogen has over 30,000 advisors"
+      ],
+      "unverified_claims": [],
+      "fabricated_claims": [],
+      "notes": "Every factual claim in the generated entry is directly and explicitly supported by the source article with no contradictions found.",
+      "paywall_caveat": false,
+      "verified_at": "2026-04-06T04:03:44.259Z",
+      "human_approved": false
+    },
+    "queued_at": "2026-04-06T04:03:45.995Z",
+    "discovered_at": "2026-04-06T04:03:45.995Z",
+    "score": 87,
+    "score_breakdown": "Score: 87/100 · Source: Press release wire (businesswire.com) (25) · Claims: All claims verified (+25) · Fresh: 46d old (1) · Impact: capability clear: advisor_productivity (+10), deployed+quantified (+15), quantified scale (+10), general industry (+1) (36) · CXO: too long (63 words) (-1), contains specific metric (+2), decision language (+2) (8/10)"
   }
 }
