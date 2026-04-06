@@ -193,6 +193,147 @@ export async function logDecision({
   }
 }
 
+// ── Published Entries ────────────────────────────────────────────────────────
+
+export async function storePublishedEntry({
+  id, entry_type = 'intelligence', company_id = null, vertical_id = 'wealth',
+  headline, summary = null, the_so_what = null, key_stat = null,
+  capability = null, source_url = null, source_urls = [],
+  week = null, published_at = null, tags = [],
+  related_landscape_ids = [], supersedes = null,
+}) {
+  try {
+    const supabase = getSupabaseClient();
+    if (!supabase) return null;
+
+    const { data, error } = await supabase
+      .from('published_entries')
+      .upsert({
+        id, entry_type, company_id, vertical_id, headline, summary,
+        the_so_what, key_stat, capability, source_url, source_urls,
+        week, published_at, tags, related_landscape_ids, supersedes,
+      }, { onConflict: 'id' })
+      .select('id')
+      .single();
+
+    if (error) { console.warn('[kb-client] storePublishedEntry error:', error.message); return null; }
+    return data.id;
+  } catch (err) {
+    console.warn('[kb-client] storePublishedEntry exception:', err.message);
+    return null;
+  }
+}
+
+export async function getPublishedEntry(id) {
+  try {
+    const supabase = getSupabaseClient();
+    if (!supabase) return null;
+
+    const { data, error } = await supabase
+      .from('published_entries')
+      .select('*')
+      .eq('id', id)
+      .single();
+
+    if (error) return null;
+    return data;
+  } catch (err) {
+    console.warn('[kb-client] getPublishedEntry exception:', err.message);
+    return null;
+  }
+}
+
+export async function getCompanyEntries(company_id, limit = 20) {
+  try {
+    const supabase = getSupabaseClient();
+    if (!supabase) return [];
+
+    const { data, error } = await supabase
+      .from('published_entries')
+      .select('*')
+      .eq('company_id', company_id)
+      .order('published_at', { ascending: false })
+      .limit(limit);
+
+    if (error) { console.warn('[kb-client] getCompanyEntries error:', error.message); return []; }
+    return data || [];
+  } catch (err) {
+    console.warn('[kb-client] getCompanyEntries exception:', err.message);
+    return [];
+  }
+}
+
+// ── Landscape Profiles ──────────────────────────────────────────────────────
+
+export async function storeLandscapeProfile({
+  id, company_id = null, vertical_id = 'wealth', segment = null,
+  ai_strategy_summary = null, headline_metric = null, headline_initiative = null,
+  overall_maturity = null, capabilities = {}, evidence_entry_ids = [],
+  last_updated = null,
+}) {
+  try {
+    const supabase = getSupabaseClient();
+    if (!supabase) return null;
+
+    const { data, error } = await supabase
+      .from('landscape_profiles')
+      .upsert({
+        id, company_id: company_id || id, vertical_id, segment,
+        ai_strategy_summary, headline_metric, headline_initiative,
+        overall_maturity, capabilities, evidence_entry_ids, last_updated,
+      }, { onConflict: 'id' })
+      .select('id')
+      .single();
+
+    if (error) { console.warn('[kb-client] storeLandscapeProfile error:', error.message); return null; }
+    return data.id;
+  } catch (err) {
+    console.warn('[kb-client] storeLandscapeProfile exception:', err.message);
+    return null;
+  }
+}
+
+export async function getLandscapeProfile(id) {
+  try {
+    const supabase = getSupabaseClient();
+    if (!supabase) return null;
+
+    const { data, error } = await supabase
+      .from('landscape_profiles')
+      .select('*')
+      .eq('id', id)
+      .single();
+
+    if (error) return null;
+    return data;
+  } catch (err) {
+    console.warn('[kb-client] getLandscapeProfile exception:', err.message);
+    return null;
+  }
+}
+
+// ── Source Updates ───────────────────────────────────────────────────────────
+
+export async function updateSource(id, updates) {
+  try {
+    const supabase = getSupabaseClient();
+    if (!supabase) return null;
+
+    const { data, error } = await supabase
+      .from('sources')
+      .update(updates)
+      .eq('id', id)
+      .select('id')
+      .single();
+
+    if (error) { console.warn('[kb-client] updateSource error:', error.message); return null; }
+    return data.id;
+  } catch (err) {
+    console.warn('[kb-client] updateSource exception:', err.message);
+    return null;
+  }
+}
+
 // ── Pipeline Runs ────────────────────────────────────────────────────────────
 
 export async function logPipelineRun({
