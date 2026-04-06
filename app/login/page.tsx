@@ -16,44 +16,66 @@ function LoginContent() {
   const supabase = createClient()
   const searchParams = useSearchParams()
   const redirect = searchParams.get('redirect') || '/'
-  const error = searchParams.get('error')
+  const errorParam = searchParams.get('error')
 
   const [email, setEmail] = useState('')
   const [loading, setLoading] = useState(false)
   const [sent, setSent] = useState(false)
-  const [message, setMessage] = useState('')
+  const [error, setError] = useState('')
 
-  async function signInWithGoogle() {
+  async function handleContinueWithGoogle() {
     setLoading(true)
+    setError('')
+
     const { error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
       options: {
         redirectTo: `${window.location.origin}/api/auth/callback?redirect=${encodeURIComponent(redirect)}`,
-        queryParams: {
-          prompt: 'select_account',
-        },
+        queryParams: { prompt: 'select_account' },
       },
     })
     if (error) {
-      setMessage(error.message)
+      setError(error.message)
       setLoading(false)
     }
   }
 
-  async function sendLoginLink() {
-    if (!email) { setMessage('Please enter your email'); return }
+  async function handleContinueWithEmail() {
+    if (!email.trim()) { setError('Please enter your work email'); return }
     setLoading(true)
+    setError('')
+
     const { error } = await supabase.auth.signInWithOtp({
       email,
       options: {
+        shouldCreateUser: true,
         emailRedirectTo: `${window.location.origin}/api/auth/callback?redirect=${encodeURIComponent(redirect)}`,
       },
     })
+
     if (error) {
-      setMessage(error.message)
-    } else {
-      setSent(true)
+      setError(error.message)
+      setLoading(false)
+      return
     }
+
+    setSent(true)
+    setLoading(false)
+  }
+
+  async function handleResend() {
+    setLoading(true)
+    setError('')
+
+    const { error } = await supabase.auth.signInWithOtp({
+      email,
+      options: {
+        shouldCreateUser: true,
+        emailRedirectTo: `${window.location.origin}/api/auth/callback?redirect=${encodeURIComponent(redirect)}`,
+      },
+    })
+
+    if (error) setError(error.message)
     setLoading(false)
   }
 
@@ -65,15 +87,12 @@ function LoginContent() {
           <h1 className="text-2xl font-bold text-[#1C1C2E] mb-1">
             Living Intelligence
           </h1>
-          <div className="text-[11px] font-semibold uppercase tracking-widest text-[#990F3D] mb-3">
+          <div className="text-[11px] font-semibold uppercase tracking-widest text-[#990F3D] mb-4">
             AI in Wealth Management
           </div>
-          <p className="text-sm text-gray-500">
-            Sign in to your account
-          </p>
         </div>
 
-        {error === 'inactive' && (
+        {errorParam === 'inactive' && (
           <div className="bg-red-50 border border-red-200 rounded-lg p-3 mb-4 text-sm text-red-700">
             Your subscription is no longer active. Please contact us to restore access.
           </div>
@@ -81,9 +100,38 @@ function LoginContent() {
 
         {!sent ? (
           <>
+            {/* Email */}
+            <input
+              type="email"
+              value={email}
+              onChange={e => { setEmail(e.target.value); setError('') }}
+              placeholder="Work email"
+              className="w-full border border-gray-300 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#990F3D] focus:border-transparent mb-3"
+              onKeyDown={e => e.key === 'Enter' && handleContinueWithEmail()}
+            />
+
+            <button
+              onClick={handleContinueWithEmail}
+              disabled={loading}
+              className="w-full bg-[#1C1C2E] text-white rounded-lg px-4 py-3.5 text-sm font-medium hover:bg-[#2a2a40] transition-colors disabled:opacity-50"
+            >
+              {loading ? 'Sending...' : 'Continue →'}
+            </button>
+
+            <p className="text-[12px] text-gray-400 text-center mt-2 mb-5">
+              We&apos;ll send a secure link to your email. No password needed.
+            </p>
+
+            {/* Divider */}
+            <div className="flex items-center mb-5">
+              <div className="flex-1 border-t border-gray-200" />
+              <span className="px-4 text-xs text-gray-400">or</span>
+              <div className="flex-1 border-t border-gray-200" />
+            </div>
+
             {/* Google */}
             <button
-              onClick={signInWithGoogle}
+              onClick={handleContinueWithGoogle}
               disabled={loading}
               className="w-full flex items-center justify-center gap-3 bg-white border border-gray-300 rounded-lg px-4 py-3 text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors disabled:opacity-50"
             >
@@ -95,72 +143,45 @@ function LoginContent() {
               </svg>
               Continue with Google
             </button>
-
-            <div className="flex items-center my-5">
-              <div className="flex-1 border-t border-gray-200" />
-              <span className="px-4 text-xs text-gray-400">or</span>
-              <div className="flex-1 border-t border-gray-200" />
-            </div>
-
-            {/* Email */}
-            <input
-              type="email"
-              value={email}
-              onChange={e => { setEmail(e.target.value); setMessage('') }}
-              placeholder="Work email"
-              className="w-full border border-gray-300 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#990F3D] focus:border-transparent mb-3"
-            />
-
-            <button
-              onClick={sendLoginLink}
-              disabled={loading}
-              className="w-full bg-[#1C1C2E] text-white rounded-lg px-4 py-3 text-sm font-medium hover:bg-[#2a2a40] transition-colors disabled:opacity-50"
-            >
-              {loading ? 'Sending...' : 'Send login link'}
-            </button>
-
-            <p className="text-[12px] text-gray-400 text-center mt-2">
-              We&apos;ll email you a secure link. No password needed.
-            </p>
-
-            {/* New user */}
-            <p className="text-center text-[13px] text-gray-500 mt-6">
-              Don&apos;t have an account?{' '}
-              <a href="/register?tier=founding" className="text-[#990F3D] hover:text-[#7a0c31] font-medium">Get started</a>
-            </p>
           </>
         ) : (
-          /* Sent confirmation */
+          /* Link sent */
           <div className="bg-white border border-gray-200 rounded-lg p-6 text-center">
             <div className="text-3xl mb-3">✉️</div>
             <h2 className="text-lg font-bold text-[#1C1C2E] mb-2">Check your inbox</h2>
-            <p className="text-sm text-gray-600 mb-1">
-              We sent a login link to
+            <p className="text-sm text-gray-600 mb-1">We sent a login link to</p>
+            <p className="text-sm font-medium text-[#1C1C2E] mb-4">{email}</p>
+            <p className="text-[13px] text-gray-500 mb-4">
+              Click the link to continue. It expires in 1 hour.
             </p>
-            <p className="text-sm font-medium text-[#1C1C2E] mb-4">
-              {email}
-            </p>
-            <p className="text-[13px] text-gray-500">
-              Click the link to sign in. It expires in 1 hour.
-            </p>
-            <button
-              onClick={() => { setSent(false); setMessage('') }}
-              className="text-[13px] text-[#990F3D] hover:text-[#7a0c31] font-medium mt-4"
-            >
-              Try a different email
-            </button>
+            <div className="flex items-center justify-center gap-4">
+              <button
+                onClick={handleResend}
+                disabled={loading}
+                className="text-[13px] text-[#990F3D] hover:text-[#7a0c31] font-medium disabled:opacity-50"
+              >
+                {loading ? 'Sending...' : 'Resend'}
+              </button>
+              <span className="text-gray-300">|</span>
+              <button
+                onClick={() => { setSent(false); setError('') }}
+                className="text-[13px] text-gray-500 hover:text-gray-700"
+              >
+                Use a different email
+              </button>
+            </div>
           </div>
         )}
 
-        {/* Error/Message */}
-        {message && (
+        {/* Error */}
+        {error && (
           <div className="mt-4 p-3 bg-red-50 border border-red-200 rounded-lg text-sm text-red-700 text-center">
-            {message}
+            {error}
           </div>
         )}
 
         <p className="text-center text-xs text-gray-400 mt-8">
-          By signing in, you agree to our terms of service.
+          By continuing, you agree to our terms of service.
         </p>
       </div>
     </div>

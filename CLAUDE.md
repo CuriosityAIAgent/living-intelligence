@@ -19,20 +19,21 @@ See @docs/architecture.md for full system design, @docs/integrations.md for all 
 | Session duration | 30 days |
 | Providers | Google OAuth, Email (magic link only — no passwords) |
 
-**Auth files (11):**
+**Auth files (10):**
 - `lib/supabase.ts` — browser client (`createBrowserClient` from `@supabase/ssr`)
 - `lib/supabase-server.ts` — server client + admin client (service key, bypasses RLS)
-- `middleware.ts` — auth gate: logged in → has profile with org → org active. Public routes: `/`, `/login`, `/register`, `/join`, `/api/auth/*`, `/api/webhooks/stripe`
-- `app/register/page.tsx` — **New users:** 3-step flow with progress indicator. Step 1: name + company + work email → "Continue →". Step 2: "Check your inbox" (magic link sent). Step 3: Stripe checkout (after clicking magic link). Google sign-up also available (stores company in localStorage).
-- `app/login/page.tsx` — **Returning users:** Google button + email → "Send login link". No passwords. Links to /register for new users.
+- `middleware.ts` — auth gate: logged in → has complete profile (name+company) → has org → org active. Public routes: `/`, `/login`, `/join`, `/api/auth/*`, `/api/webhooks/stripe`
+- `app/login/page.tsx` — **Unified auth page** for both new and returning users. Work email + "Continue →" (magic link) or Google. No passwords. Supabase auto-registers new users, auto-signs-in existing ones. No separate /register page.
 - `app/api/auth/callback/route.ts` — OAuth + magic link redirect handler
 - `app/api/auth/signout/route.ts` — signs out + redirects to /login
-- `app/onboarding/page.tsx` — "Add your team" (up to 5 emails via `invite_team_member` RPC)
+- `app/onboarding/page.tsx` — Profile completion (name + company if missing) → team invites (up to 4 emails) → or "Complete checkout" if no org yet
 - `app/join/page.tsx` — reads `?tier=` and `?coupon=` params, redirects to Stripe checkout
 
-**User flow:** Landing page → "Request access" → `/register?tier=founding` → name + company + email → magic link → `/join?tier=founding` → Stripe checkout → webhook creates org → `/onboarding` (add team) → portal
+**New user flow:** Landing page → "Register" → `/login` → email or Google → magic link → `/onboarding` (complete profile: name + company) → Stripe checkout → team invites → portal
 
-**Returning user flow:** portal page → middleware redirects to `/login` → email + "Send login link" (or Google) → magic link → portal
+**Returning user flow:** any portal page → middleware redirects to `/login` → email or Google → magic link → portal (skips onboarding — profile already complete)
+
+**Landing page nav:** "Sign in" (text link) + "Register" (claret button) — both go to `/login`
 
 **API key naming (2026):** Supabase renamed `anon` → **Publishable** (`sb_publishable_...`), `service_role` → **Secret** (`sb_secret_...`). Functionality identical.
 

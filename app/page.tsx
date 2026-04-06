@@ -19,10 +19,10 @@ export default function LandingPage() {
       {/* ─── STICKY REQUEST ACCESS CTA ─── */}
       <div className="fixed bottom-6 right-6 z-50 hidden md:block">
         <a
-          href="/register?tier=founding"
+          href="/login"
           className="bg-[#990F3D] hover:bg-[#7a0c31] text-white text-[13px] font-bold px-6 py-3 rounded-full shadow-lg transition-colors no-underline flex items-center gap-2"
         >
-          Request access <span className="text-[16px]">&rarr;</span>
+          Register <span className="text-[16px]">&rarr;</span>
         </a>
       </div>
 
@@ -46,6 +46,10 @@ export default function LandingPage() {
               {link.label}
             </a>
           ))}
+          <div className="ml-auto flex items-center gap-3">
+            <a href="/login" className="text-[11px] text-[#8888A0] hover:text-white transition-colors no-underline uppercase tracking-wider">Sign in</a>
+            <a href="/login" className="text-[11px] bg-[#990F3D] hover:bg-[#7a0c31] text-white px-3 py-1.5 rounded transition-colors no-underline uppercase tracking-wider font-bold">Register</a>
+          </div>
         </div>
       </nav>
 
@@ -574,10 +578,10 @@ export default function LandingPage() {
               </ul>
 
               <a
-                href="/register?tier=founding"
+                href="/login"
                 className="block text-center bg-[#990F3D] hover:bg-[#7a0c31] text-white text-[14px] font-bold py-3.5 rounded transition-colors no-underline"
               >
-                Request access
+                Register now
               </a>
 
               <p className="text-[12px] text-gray-400 mt-4 text-center">
@@ -600,7 +604,7 @@ export default function LandingPage() {
             {STATS.entries} verified developments. {STATS.firms} firms tracked. {STATS.capabilities} capability dimensions. Consulting-grade editorial standards. New intelligence published as it happens. Every source linked, every claim verified.
           </p>
           <a
-            href="/register?tier=founding"
+            href="/login"
             className="inline-block bg-[#990F3D] hover:bg-[#7a0c31] text-white text-[15px] font-bold px-8 py-4 rounded transition-colors no-underline mb-10"
           >
             Request access

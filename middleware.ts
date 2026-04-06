@@ -3,7 +3,7 @@ import { NextResponse, type NextRequest } from 'next/server'
 
 // Routes that don't require authentication
 // Routes that are public (prefix match)
-const PUBLIC_PREFIXES = ['/login', '/join', '/register', '/api/auth/', '/api/webhooks/stripe']
+const PUBLIC_PREFIXES = ['/login', '/join', '/api/auth/', '/api/webhooks/stripe']
 // Routes that are public (exact match)
 const PUBLIC_EXACT = ['/']
 
@@ -60,16 +60,15 @@ export async function middleware(request: NextRequest) {
     return NextResponse.redirect(url)
   }
 
-  // Check user has a profile with an active org
+  // Check user has a complete profile with an active org
   const { data: profile } = await supabase
     .from('user_profiles')
-    .select('org_id, organizations(status)')
+    .select('full_name, company, org_id, organizations(status)')
     .eq('id', user.id)
     .single()
 
-  if (!profile?.org_id) {
-    // User is authenticated but has no org — send to onboarding or show error
-    // This happens if webhook hasn't fired yet or user signed up directly
+  // Incomplete profile or no org → onboarding
+  if (!profile?.full_name || !profile?.company || !profile?.org_id) {
     if (pathname !== '/onboarding') {
       const url = request.nextUrl.clone()
       url.pathname = '/onboarding'
