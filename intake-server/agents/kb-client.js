@@ -503,3 +503,68 @@ export async function logPipelineRun({
     return null;
   }
 }
+
+// ── Jina Embedding ──────────────────────────────────────────────────────────
+
+export async function getJinaEmbedding(text) {
+  try {
+    if (!process.env.JINA_API_KEY || !text) return null;
+
+    const res = await fetch('https://api.jina.ai/v1/embeddings', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${process.env.JINA_API_KEY}`,
+      },
+      body: JSON.stringify({
+        model: 'jina-embeddings-v3',
+        task: 'text-matching',
+        dimensions: 512,
+        input: [text.slice(0, 8000)],
+      }),
+      signal: AbortSignal.timeout(15000),
+    });
+    if (!res.ok) return null;
+    const data = await res.json();
+    return data.data?.[0]?.embedding ?? null;
+  } catch (err) {
+    console.warn('[kb-client] getJinaEmbedding exception:', err.message);
+    return null;
+  }
+}
+
+// ── Semantic Search (vector similarity via match_sources RPC) ───────────────
+
+export async function searchSimilar(text, {
+  company_id = null,
+  vertical_id = null,
+  threshold = 0.75,
+  limit = 5,
+} = {}) {
+  try {
+    const embedding = await getJinaEmbedding(text);
+    if (!embedding) return [];
+
+    const supabase = getSupabaseClient();
+    if (!supabase) return [];
+
+    const { data, error } = await supabase.rpc('match_sources', {
+      query_embedding: JSON.stringify(embedding),
+      match_threshold: threshold,
+      match_count: limit,
+      filter_company_id: company_id,
+      filter_vertical_id: vertical_id,
+    });
+
+    if (error) {
+      // RPC might not exist yet
+      if (error.code === '42883') return [];
+      console.warn('[kb-client] searchSimilar error:', error.message);
+      return [];
+    }
+    return data || [];
+  } catch (err) {
+    console.warn('[kb-client] searchSimilar exception:', err.message);
+    return [];
+  }
+}

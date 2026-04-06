@@ -30,7 +30,7 @@ import {
 } from './context-enricher.js';
 import { normalizeCompanySlug } from './intake.js';
 import {
-  upsertSource, storeBrief, getCompanyContext,
+  upsertSource, storeBrief, getCompanyContext, searchSimilar,
 } from './kb-client.js';
 import { build as buildEntityPrompt, VERSION as ENTITY_PROMPT_VERSION } from '../prompts/entity-extraction-v1.js';
 
@@ -393,6 +393,15 @@ export async function research({ url, title, source_name, send }) {
     });
   }
 
+  // Semantic search: find similar sources across the KB (cross-company insights)
+  const searchQuery = `${entities.company_name || ''} ${entities.key_topic || ''} ${entities.capability_area || ''}`.trim();
+  const similarSources = await searchSimilar(searchQuery, { limit: 5, threshold: 0.72 });
+  if (similarSources.length > 0) {
+    send('research_status', {
+      message: `Semantic search: ${similarSources.length} similar sources found in KB`,
+    });
+  }
+
   // 6. What's new
   const whats_new = determineWhatsNew(entities, landscapeContext, primary.markdown);
 
@@ -480,6 +489,14 @@ export async function research({ url, title, source_name, send }) {
       peers: landscapeContext.peers,
       is_tracked: landscapeContext.is_tracked,
     },
+
+    // KB context
+    kb_prior_sources: kbContext.sources.length,
+    kb_prior_entries: kbContext.entries.length,
+    kb_similar_sources: similarSources.map(s => ({
+      url: s.url, title: s.title, company_id: s.company_id,
+      capability: s.capability, similarity: s.similarity,
+    })),
 
     // Analysis
     whats_new,
