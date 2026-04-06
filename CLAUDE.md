@@ -17,17 +17,22 @@ See @docs/architecture.md for full system design, @docs/integrations.md for all 
 | Site URL | `https://livingintel.ai` |
 | Redirect URLs | `https://livingintel.ai/api/auth/callback`, `https://wealth.tigerai.tech/api/auth/callback`, `http://localhost:3002/api/auth/callback` |
 | Session duration | 30 days |
-| Providers | Google OAuth, Email (magic link + password) |
+| Providers | Google OAuth, Email (magic link only — no passwords) |
 
-**Auth files (10):**
+**Auth files (11):**
 - `lib/supabase.ts` — browser client (`createBrowserClient` from `@supabase/ssr`)
 - `lib/supabase-server.ts` — server client + admin client (service key, bypasses RLS)
-- `middleware.ts` — auth gate: logged in → has profile with org → org active. Public routes: `/login`, `/join`, `/api/auth/callback`, `/api/webhooks/stripe`
-- `app/login/page.tsx` — Google button + email + magic link/password toggle
+- `middleware.ts` — auth gate: logged in → has profile with org → org active. Public routes: `/`, `/login`, `/register`, `/join`, `/api/auth/*`, `/api/webhooks/stripe`
+- `app/register/page.tsx` — **New users:** 3-step flow with progress indicator. Step 1: name + company + work email → "Continue →". Step 2: "Check your inbox" (magic link sent). Step 3: Stripe checkout (after clicking magic link). Google sign-up also available (stores company in localStorage).
+- `app/login/page.tsx` — **Returning users:** Google button + email → "Send login link". No passwords. Links to /register for new users.
 - `app/api/auth/callback/route.ts` — OAuth + magic link redirect handler
 - `app/api/auth/signout/route.ts` — signs out + redirects to /login
 - `app/onboarding/page.tsx` — "Add your team" (up to 5 emails via `invite_team_member` RPC)
-- `app/join/page.tsx` — reads `?coupon=` param, redirects to Stripe checkout
+- `app/join/page.tsx` — reads `?tier=` and `?coupon=` params, redirects to Stripe checkout
+
+**User flow:** Landing page → "Request access" → `/register?tier=founding` → name + company + email → magic link → `/join?tier=founding` → Stripe checkout → webhook creates org → `/onboarding` (add team) → portal
+
+**Returning user flow:** portal page → middleware redirects to `/login` → email + "Send login link" (or Google) → magic link → portal
 
 **API key naming (2026):** Supabase renamed `anon` → **Publishable** (`sb_publishable_...`), `service_role` → **Secret** (`sb_secret_...`). Functionality identical.
 
@@ -41,8 +46,8 @@ See @docs/architecture.md for full system design, @docs/integrations.md for all 
 | payment_method_collection | `'if_required'` when coupon present — friends skip card form entirely |
 | Success URL | `livingintel.ai/onboarding` |
 
-**Auth files:**
-- `app/api/checkout/route.ts` — creates Stripe Checkout session. Supports `coupon` param.
+**Checkout files:**
+- `app/api/checkout/route.ts` — creates Stripe Checkout session. Accepts `tier` param (founding/standard) and optional `coupon`.
 - `app/api/webhooks/stripe/route.ts` — handles `checkout.session.completed`, `customer.subscription.deleted`, `customer.subscription.updated`. On checkout: creates org + links admin profile.
 
 **Env vars:** `STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET` (optional for testing), `STRIPE_PRICE_FOUNDING`, `STRIPE_PRICE_STANDARD`
