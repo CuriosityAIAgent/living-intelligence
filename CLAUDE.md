@@ -97,6 +97,8 @@ npx next build                        # production build check
 # Intake Server (content discovery pipeline)
 cd ../intake-server
 node --env-file=.env server.js   # localhost:3003
+# Env vars: ANTHROPIC_API_KEY, JINA_API_KEY, DATAFORSEO_LOGIN, DATAFORSEO_PASSWORD,
+#           NEWSAPI_KEY, SUPABASE_URL, SUPABASE_SERVICE_KEY
 ```
 
 **Git workflow — branching strategy:**
