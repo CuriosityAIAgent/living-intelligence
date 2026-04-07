@@ -15,7 +15,7 @@ export default function LoginPage() {
 function LoginContent() {
   const supabase = createClient()
   const searchParams = useSearchParams()
-  const redirect = searchParams.get('redirect') || '/'
+  const redirect = searchParams.get('redirect') || '/intelligence'
   const errorParam = searchParams.get('error')
 
   const [email, setEmail] = useState('')
