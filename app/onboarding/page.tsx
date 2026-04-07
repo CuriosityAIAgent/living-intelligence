@@ -102,7 +102,7 @@ export default function OnboardingPage() {
   async function handleAddTeam() {
     const validEmails = emails.filter(e => e.trim() && e.includes('@'))
     if (validEmails.length === 0) {
-      router.push('/intelligence')
+      router.push('/latest')
       return
     }
 
@@ -130,7 +130,7 @@ export default function OnboardingPage() {
     }
 
     setMessage('Team invited! Redirecting...')
-    setTimeout(() => router.push('/intelligence'), 1500)
+    setTimeout(() => router.push('/latest'), 1500)
   }
 
   if (step === 'loading') {
@@ -219,7 +219,7 @@ export default function OnboardingPage() {
             </button>
 
             <button
-              onClick={() => router.push('/intelligence')}
+              onClick={() => router.push('/latest')}
               className="w-full text-center text-sm text-gray-500 mt-4 py-3 hover:text-[#1C1C2E] hover:bg-gray-100 rounded-lg transition-colors"
             >
               Skip — I&apos;ll add team members later

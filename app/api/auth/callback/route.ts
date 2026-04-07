@@ -5,7 +5,7 @@ import { NextResponse } from 'next/server'
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url)
   const code = searchParams.get('code')
-  const redirect = searchParams.get('redirect') || '/intelligence'
+  const redirect = searchParams.get('redirect') || '/latest'
 
   // Use forwarded host (Railway runs behind a reverse proxy, so request.url is localhost:8080)
   const forwardedHost = request.headers.get('x-forwarded-host')
