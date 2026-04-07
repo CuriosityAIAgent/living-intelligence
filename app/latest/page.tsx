@@ -1,147 +1,245 @@
-import Header from '@/components/Header';
 import Link from 'next/link';
-import { getAllIntelligence } from '@/lib/data';
-import { TYPE_LABELS } from '@/lib/constants';
-
-function formatDateShort(dateStr: string): string {
-  return new Date(dateStr).toLocaleDateString('en-US', {
-    month: 'short', day: 'numeric', year: 'numeric',
-  });
-}
+import Header from '@/components/Header';
+import SectionLabel from '@/components/SectionLabel';
+import AuthorAvatar from '@/components/AuthorAvatar';
+import {
+  getAllIntelligence,
+  getAllThoughtLeadership,
+  getAllCompetitors,
+  getCapabilities,
+  formatDateShort,
+  TYPE_LABELS,
+  FORMAT_LABELS,
+} from '@/lib/data';
 
 export default function LatestPage() {
-  const entries = getAllIntelligence().slice(0, 13);
-  const lead = entries[0];
-  const grid = entries.slice(1, 5);
-  const rest = entries.slice(5);
+  const allEntries = getAllIntelligence();
+  const allTL = getAllThoughtLeadership();
+  const competitors = getAllCompetitors();
+  const capabilities = getCapabilities();
+
+  // Build date = when the portal was last deployed/rebuilt
+  const buildDate = new Date();
+  const monthLabel = buildDate.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+
+  // Lead story = most recent featured entry, fallback to most recent
+  const leadStory = allEntries.find(e => e.featured) || allEntries[0];
+
+  // Featured grid = 6 most recent entries after lead story
+  const featured = allEntries.filter(e => e.id !== leadStory?.id).slice(0, 6);
+
+  // Featured TL = most recent entry
+  const featuredThought = allTL[0] || null;
 
   return (
     <div className="min-h-screen">
       <Header />
 
-      <main className="max-w-6xl mx-auto px-6 py-10">
-
-        <div className="mb-8 pb-6 border-b border-gray-200">
-          <p className="section-label mb-1">Latest Developments</p>
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">
-            AI in Wealth Management
-          </h1>
-          <p className="text-sm text-gray-500">
-            The most recent developments across {entries.length}+ tracked firms
-          </p>
+      {/* Date bar */}
+      <div className="border-b border-gray-200 bg-gray-50">
+        <div className="max-w-6xl mx-auto px-6 h-9 flex items-center gap-4">
+          <span className="text-[11px] font-bold uppercase tracking-widest text-[#990F3D]">Updated {monthLabel}</span>
+          <span className="text-gray-300">|</span>
+          <span className="text-[11px] text-gray-500">{allEntries.length} developments · {allTL.length} thought leadership</span>
         </div>
+      </div>
 
-        {/* Lead story */}
-        {lead && (
-          <Link
-            href={`/intelligence/${lead.id}`}
-            className="block mb-8 p-6 bg-white border border-gray-200 rounded-lg hover:border-[#990F3D] transition-colors group"
-          >
-            <div className="flex gap-6 items-start">
-              <div className="flex-1 min-w-0">
-                <div className="flex items-center gap-2 mb-2">
-                  <span className={`type-badge badge-${lead.type}`}>
-                    {TYPE_LABELS[lead.type] ?? lead.type}
-                  </span>
-                  <span className="text-xs text-gray-400">{lead.company_name}</span>
-                  <span className="text-xs text-gray-400">· {formatDateShort(lead.date)}</span>
-                  {(lead.source_count ?? lead.sources?.length ?? 0) > 1 && (
-                    <span className="text-[10px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5">
-                      {lead.source_count ?? lead.sources?.length} sources
-                    </span>
+      <main className="max-w-6xl mx-auto px-6 py-8">
+
+        {/* Lead Story */}
+        {leadStory && (
+          <section className="mb-12">
+            <div className="mb-4">
+              <p className="section-label">Lead Story</p>
+              <hr className="section-rule" />
+            </div>
+            <Link href={`/intelligence/${leadStory.id}`} className="group block">
+              <div className="grid md:grid-cols-5 gap-8 items-stretch">
+                {/* Logo panel */}
+                <div className="md:col-span-2 bg-[#1C1C2E] rounded flex items-center justify-center overflow-hidden p-10 min-h-[220px]">
+                  {leadStory.image_url ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      src={leadStory.image_url}
+                      alt={leadStory.company_name}
+                      className="max-h-20 max-w-[65%] object-contain brightness-0 invert"
+                    />
+                  ) : (
+                    <span className="text-white text-2xl font-bold opacity-80">{leadStory.company_name}</span>
                   )}
                 </div>
-                <h2 className="text-xl font-bold text-gray-900 leading-snug mb-2 group-hover:text-[#990F3D] transition-colors">
-                  {lead.headline}
-                </h2>
-                <p className="text-sm text-gray-600 leading-relaxed mb-3 line-clamp-3">
-                  {lead.summary}
-                </p>
-                {lead.the_so_what && (
-                  <p className="text-xs text-gray-600 leading-relaxed border-l-2 border-[#990F3D] pl-2.5 line-clamp-2">
-                    <span className="font-semibold text-[#990F3D]">Why it matters</span>{' '}
-                    {lead.the_so_what}
-                  </p>
-                )}
-              </div>
-              {lead.key_stat && (
-                <div className="flex-shrink-0 text-right w-44">
-                  <div className="text-3xl font-extrabold text-[#990F3D] leading-none">{lead.key_stat.number}</div>
-                  <div className="text-xs text-gray-400 leading-snug mt-1.5">{lead.key_stat.label}</div>
+                {/* Content */}
+                <div className="md:col-span-3 flex flex-col justify-between py-1">
+                  <div>
+                    <div className="flex items-center gap-2 mb-3">
+                      <span className={`type-badge badge-${leadStory.type}`}>
+                        {TYPE_LABELS[leadStory.type]}
+                      </span>
+                      <span className="text-xs text-gray-500 font-medium">{leadStory.company_name}</span>
+                      <span className="text-gray-300">·</span>
+                      <span className="text-xs text-gray-400">{formatDateShort(leadStory.date)}</span>
+                    </div>
+                    <h2 className="text-[28px] font-bold text-gray-900 leading-tight mb-4 group-hover:text-[#990F3D] transition-colors">
+                      {leadStory.headline}
+                    </h2>
+                    <p className="text-[15px] text-gray-600 leading-relaxed line-clamp-3">{leadStory.summary}</p>
+                  </div>
+                  <div>
+                    {leadStory.key_stat && (
+                      <div className="mt-5 pt-4 border-t border-gray-100 flex items-baseline gap-3">
+                        <span className="text-3xl font-extrabold text-[#990F3D]">{leadStory.key_stat.number}</span>
+                        <span className="text-xs text-gray-500 leading-snug max-w-xs">{leadStory.key_stat.label}</span>
+                      </div>
+                    )}
+                    {leadStory.source_url && (
+                      <div className="mt-4 flex items-center gap-3">
+                        <span className="text-xs text-[#990F3D] font-medium">{leadStory.source_name} ↗</span>
+                        {(leadStory.source_count ?? leadStory.sources?.length ?? 0) > 1 && (
+                          <span className="text-[10px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5">
+                            {leadStory.source_count ?? leadStory.sources?.length} sources
+                          </span>
+                        )}
+                      </div>
+                    )}
+                  </div>
                 </div>
-              )}
-            </div>
-          </Link>
+              </div>
+            </Link>
+          </section>
         )}
 
-        {/* Featured grid — 4 cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
-          {grid.map(entry => (
-            <Link
-              key={entry.id}
-              href={`/intelligence/${entry.id}`}
-              className="block p-5 bg-white border border-gray-200 rounded-lg hover:border-[#990F3D] transition-colors group"
-            >
-              <div className="flex items-center gap-2 mb-1.5">
-                <span className={`type-badge badge-${entry.type}`}>
-                  {TYPE_LABELS[entry.type] ?? entry.type}
-                </span>
-                <span className="text-xs text-gray-400 truncate">{entry.company_name}</span>
-                <span className="text-xs text-gray-400 flex-shrink-0">· {formatDateShort(entry.date)}</span>
+        {/* Featured Intelligence */}
+        {featured.length > 0 && (
+          <section className="mb-12">
+            <div className="mb-4 flex items-center justify-between">
+              <div>
+                <p className="section-label">Featured Intelligence</p>
+                <hr className="section-rule mt-1" />
               </div>
-              <h3 className="text-sm font-bold text-gray-900 leading-snug mb-1.5 group-hover:text-[#990F3D] transition-colors line-clamp-2">
-                {entry.headline}
-              </h3>
-              {entry.key_stat && (
-                <div className="flex items-baseline gap-2 mt-2">
-                  <span className="text-lg font-extrabold text-[#990F3D]">{entry.key_stat.number}</span>
-                  <span className="text-[10px] text-gray-400">{entry.key_stat.label}</span>
-                </div>
-              )}
-            </Link>
-          ))}
-        </div>
-
-        {/* Rest — compact list */}
-        {rest.length > 0 && (
-          <div className="space-y-3 mb-8">
-            {rest.map(entry => (
-              <Link
-                key={entry.id}
-                href={`/intelligence/${entry.id}`}
-                className="block p-4 bg-white border border-gray-200 rounded-lg hover:border-[#990F3D] transition-colors group flex items-center gap-4"
-              >
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-2 mb-1">
-                    <span className={`type-badge badge-${entry.type}`}>
-                      {TYPE_LABELS[entry.type] ?? entry.type}
-                    </span>
-                    <span className="text-xs text-gray-400 truncate">{entry.company_name}</span>
-                    <span className="text-xs text-gray-400 flex-shrink-0">· {formatDateShort(entry.date)}</span>
+            </div>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 mb-5">
+              {featured.map(entry => (
+                <Link
+                  key={entry.id}
+                  href={`/intelligence/${entry.id}`}
+                  className="article-card rounded p-4 block group flex flex-col"
+                >
+                  <div className="h-7 mb-3 flex items-center">
+                    {entry.image_url ? (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img
+                        src={entry.image_url}
+                        alt={entry.company_name}
+                        className="max-h-7 max-w-[100px] object-contain"
+                      />
+                    ) : (
+                      <span className="text-xs text-gray-500 font-bold">{entry.company_name}</span>
+                    )}
                   </div>
-                  <h3 className="text-sm font-bold text-gray-900 leading-snug group-hover:text-[#990F3D] transition-colors truncate">
+                  <div className="flex items-center gap-2 mb-1.5 flex-wrap">
+                    <span className={`type-badge badge-${entry.type}`}>
+                      {TYPE_LABELS[entry.type]}
+                    </span>
+                    <span className="text-[10px] text-gray-300">·</span>
+                    <span className="text-[10px] text-gray-400 uppercase">{entry.tags?.region}</span>
+                  </div>
+                  <h3 className="text-sm font-bold text-gray-900 leading-snug mb-2 group-hover:text-[#990F3D] transition-colors flex-1">
                     {entry.headline}
                   </h3>
-                </div>
-                {entry.key_stat && (
-                  <div className="flex-shrink-0 text-right">
-                    <span className="text-base font-extrabold text-[#990F3D]">{entry.key_stat.number}</span>
+                  {entry.key_stat && (
+                    <div className="mb-2">
+                      <span className="text-base font-extrabold text-[#990F3D]">{entry.key_stat.number}</span>
+                      <span className="text-[10px] text-gray-400 ml-1.5">{entry.key_stat.label}</span>
+                    </div>
+                  )}
+                  <div className="mt-auto flex items-center justify-between pt-2 border-t border-gray-50">
+                    <span className="text-[10px] text-gray-400">{formatDateShort(entry.date)}</span>
+                    <div className="flex items-center gap-2">
+                      <span className="text-[10px] text-gray-400">{entry.source_name}</span>
+                      {(entry.source_count ?? entry.sources?.length ?? 0) > 1 && (
+                        <span className="text-[9px] text-gray-400 border border-gray-200 rounded px-1 py-0.5">
+                          {entry.source_count ?? entry.sources?.length} sources
+                        </span>
+                      )}
+                    </div>
                   </div>
-                )}
-              </Link>
-            ))}
-          </div>
+                </Link>
+              ))}
+            </div>
+            <Link href="/intelligence" className="inline-block mt-4 text-sm font-bold text-[#990F3D] border border-[#990F3D] rounded px-5 py-2.5 hover:bg-[#990F3D] hover:text-white transition-colors">
+              View all intelligence →
+            </Link>
+          </section>
         )}
 
-        {/* View all */}
-        <div className="text-center">
-          <Link
-            href="/intelligence"
-            className="inline-block text-sm font-medium text-[#990F3D] hover:text-[#7a0c31] transition-colors"
-          >
-            View all intelligence entries →
-          </Link>
-        </div>
+        {/* Featured Thought Leadership */}
+        {featuredThought && (
+          <section className="mb-12">
+            <div className="mb-4">
+              <p className="section-label">Featured Thought Leadership</p>
+              <hr className="section-rule" />
+            </div>
+            <div className="border border-gray-200 rounded p-6">
+              <Link href={`/thought-leadership/${featuredThought.id}`} className="group block">
+                <div className="flex items-start gap-4">
+                  <AuthorAvatar name={featuredThought.author.name} size="md" />
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-2 mb-1">
+                      <span className={`format-badge badge-${featuredThought.format}`}>
+                        {FORMAT_LABELS[featuredThought.format]}
+                      </span>
+                      <span className="text-xs text-gray-400">{featuredThought.author.organization}</span>
+                    </div>
+                    <h3 className="text-lg font-bold text-gray-900 leading-snug mb-1 group-hover:text-[#990F3D] transition-colors">
+                      {featuredThought.title}
+                    </h3>
+                    <p className="text-sm text-gray-500 mb-3">
+                      {featuredThought.author.name} · {featuredThought.publication} · {formatDateShort(featuredThought.date_published)}
+                    </p>
+                    <p className="text-sm text-gray-700 leading-relaxed border-l-2 border-[#990F3D] pl-3">
+                      {featuredThought.the_one_insight}
+                    </p>
+                  </div>
+                  <span className="flex-shrink-0 text-[#990F3D] font-bold text-sm hidden md:block">Read →</span>
+                </div>
+              </Link>
+              <div className="mt-5 pt-4 border-t border-gray-100">
+                <Link href="/thought-leadership" className="inline-block text-sm font-bold text-[#990F3D] border border-[#990F3D] rounded px-5 py-2.5 hover:bg-[#990F3D] hover:text-white transition-colors">
+                  View all thought leadership →
+                </Link>
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* Landscape teaser */}
+        <section className="mb-6">
+          <SectionLabel label="The AI Landscape" />
+          <div className="border border-gray-200 rounded p-6">
+            <div className="flex items-center gap-10">
+              <div className="flex-1">
+                <h3 className="text-base font-semibold text-gray-800 mb-1">Who Is Doing What</h3>
+                <p className="text-sm text-gray-500">AI Capabilities Across Wealth Management</p>
+              </div>
+              <div className="flex gap-8 flex-shrink-0">
+                <div className="text-center">
+                  <div className="text-2xl font-semibold text-[#990F3D] leading-none">{competitors.length}</div>
+                  <div className="text-xs text-gray-500 mt-1.5 uppercase tracking-wide">Institutions</div>
+                </div>
+                <div className="w-px bg-gray-200" />
+                <div className="text-center">
+                  <div className="text-2xl font-semibold text-[#990F3D] leading-none">{capabilities.length}</div>
+                  <div className="text-xs text-gray-500 mt-1.5 uppercase tracking-wide">Capability<br/>Dimensions</div>
+                </div>
+              </div>
+            </div>
+            <div className="mt-5 pt-4 border-t border-gray-100">
+              <Link href="/landscape" className="inline-block text-sm font-bold text-[#990F3D] border border-[#990F3D] rounded px-5 py-2.5 hover:bg-[#990F3D] hover:text-white transition-colors">
+                View full landscape →
+              </Link>
+            </div>
+          </div>
+        </section>
 
       </main>
     </div>
