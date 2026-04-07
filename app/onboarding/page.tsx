@@ -220,7 +220,7 @@ export default function OnboardingPage() {
 
             <button
               onClick={() => router.push('/intelligence')}
-              className="w-full text-center text-[13px] text-gray-400 mt-3 hover:text-gray-600 transition-colors"
+              className="w-full text-center text-sm text-gray-500 mt-4 py-3 hover:text-[#1C1C2E] hover:bg-gray-100 rounded-lg transition-colors"
             >
               Skip — I&apos;ll add team members later
             </button>

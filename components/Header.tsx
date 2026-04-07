@@ -4,8 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 const navItems = [
-  { label: 'Latest', shortLabel: 'Latest', href: '/' },
-  { label: 'Intelligence', shortLabel: 'Intelligence', href: '/intelligence' },
+  { label: 'Latest', shortLabel: 'Latest', href: '/intelligence' },
   { label: 'Thought Leadership', shortLabel: 'Thought', href: '/thought-leadership' },
   { label: 'Landscape', shortLabel: 'Landscape', href: '/landscape' },
 ];
@@ -19,7 +18,7 @@ export default function Header() {
       {/* Masthead — dark slate */}
       <div className="bg-[#1C1C2E]">
         <div className="max-w-6xl mx-auto px-6 h-[56px] flex items-center justify-between">
-          <Link href="/" className="no-underline">
+          <Link href="/intelligence" className="no-underline">
             <span className="text-white text-[22px] font-bold tracking-tight leading-none">
               AI in Wealth Management
             </span>
@@ -36,10 +35,7 @@ export default function Header() {
       <div className="bg-[#141420] border-b border-[#2A2A3E]">
         <div className="max-w-6xl mx-auto px-6 flex items-stretch h-10 overflow-x-auto scrollbar-none">
           {navItems.map((item) => {
-            const isActive =
-              item.href === '/'
-                ? pathname === '/'
-                : pathname.startsWith(item.href);
+            const isActive = pathname.startsWith(item.href);
             return (
               <Link
                 key={item.href}
