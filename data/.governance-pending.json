@@ -1,191 +1,99 @@
 {
-  "jump-ai-operating-system-advisors-grow-operate-2026-03": {
+  "revolution-ai-enterprise-asset-management-infrastructure-retail-launch": {
     "entry": {
-      "id": "jump-ai-operating-system-advisors-grow-operate-2026-03",
+      "id": "revolution-ai-enterprise-asset-management-infrastructure-retail-launch",
       "type": "product_launch",
-      "headline": "Jump Expands AI Platform to 27,000 Advisors With Agentic Growth and Operations Layer",
-      "the_so_what": "Jump's expansion from meeting automation into agentic workflow orchestration across the full client lifecycle mirrors the arc of Salesforce CRM — what began as a single-function productivity tool is now positioning as the operating layer that locks in data compounding advantages the longer advisors use it, making displacement by point solutions progressively harder.",
-      "company": "jump-ai",
-      "company_name": "Jump",
-      "date": "2026-03-09",
-      "source_name": "Business Wire",
-      "source_url": "https://www.businesswire.com/news/home/20260309897864/en/Jump-Expands-AI-Operating-System-for-Advisors-With-New-Products-Powering-Growth-and-Operations",
+      "headline": "Revolution AI Brings Institutional-Style Quantitative Execution Infrastructure to Retail Investors",
+      "the_so_what": "Revolution AI's launch follows the same infrastructure democratization arc as electronic trading platforms in the late 1990s — but the critical unresolved tension is whether retail-packaged quant execution delivers genuine systematic edge or merely replicates rule sets that institutional managers have already arbitraged into obsolescence, a question that no AUM figure, user count, or performance data yet answers.",
+      "company": "revolution-ai",
+      "company_name": "Revolution AI",
+      "date": "2026-04-02",
+      "source_name": "Morningstar (via ACCESS Newswire)",
+      "source_url": "https://www.morningstar.com/news/accesswire/1154604msn/revolution-ai-introduces-enterprise-grade-intelligent-asset-management-infrastructure-for-individual-investors",
       "source_verified": true,
       "image_url": null,
-      "summary": "Jump has advanced beyond meeting automation to deploy a unified AI Operating System for advisors structured across three integrated products — Meet, Grow and Operate — with a shared agentic orchestration layer that ingests firm-wide data across meetings, emails and 30+ integrated systems of record to automate cross-functional workflows and surface growth intelligence. The Grow module identifies performance gaps across advisor networks and distributes best practices via referrals, signals and playbooks; the Operate module converts intake, email and document activity into structured, compliance-ready data in real time — both capabilities now live. Evidence of deployment scale is concrete: 27,000 advisors are active on the platform, with the Meet product alone saving advisors 5–15 hours per week on pre- and post-meeting work, and Jump holds the #1 advisor satisfaction and adoption ranking in both the 2025 T3/Inside Information Software Survey and the 2025 Kitces Report. The product expansion follows Jump's $80 million Series B funding round and is available immediately, with enterprise deployments offered in a flexible architecture supporting proprietary tech stack integration and custom agent development.",
-      "key_stat": {
-        "number": "27,000",
-        "label": "financial advisors actively deployed on the Jump platform"
-      },
+      "summary": "Revolution AI has launched an asset management platform that processes multiple financial data streams simultaneously, executing predefined quantitative strategies without manual intervention, applying risk parameter adherence and continuous asset allocation logic previously available only to institutional managers. The platform adapts enterprise software frameworks — built by a founding team with backgrounds in large-scale, mission-critical AI deployments for global corporations — for direct retail consumer use. The triggering event is the platform's public availability for user onboarding, announced April 2, 2026. No user counts, AUM figures, or quantified performance metrics are provided in the source material.",
+      "key_stat": null,
       "capability_evidence": {
-        "capability": "advisor_productivity",
+        "capability": "investment_portfolio",
         "stage": "deployed",
-        "evidence": "27,000 advisors are live on Jump's platform, with the Meet product saving 5–15 hours per week per advisor and the new Grow and Operate modules now available, automating intake, email, document workflows and distributing advisor best practices across firm networks in real time.",
-        "metric": "5–15 hours saved per advisor per week; 27,000 advisors deployed"
+        "evidence": "The platform is live for user onboarding and processes multiple financial data streams simultaneously, executing predefined strategies with continuous risk parameter adherence and quantitative asset allocation, per the company announcement.",
+        "metric": null
       },
       "tags": {
-        "capability": "advisor_productivity",
+        "capability": "investment_portfolio",
         "region": "us",
-        "segment": "advisor_tools",
+        "segment": "digital_disruptor",
         "theme": [
-          "agentic_workflows",
-          "meeting_automation",
-          "organic_growth",
-          "operations_compliance"
+          "retail_democratization",
+          "autonomous_execution",
+          "quantitative_infrastructure",
+          "behavioral_finance"
         ]
       },
       "week": "2026-03-30",
       "featured": false,
       "sources": [
         {
-          "name": "jump.ai",
-          "url": "https://jump.ai/blog/march-2026-product-update",
+          "name": "airevolutionsummit.com",
+          "url": "https://airevolutionsummit.com/",
           "type": "coverage"
         },
         {
-          "name": "jump.ai",
-          "url": "https://jump.ai/advisor-trends/artificial-intelligence/ai-in-wealth-management",
+          "name": "aiml.events",
+          "url": "https://aiml.events/events/ai-revolution-summit-2026",
           "type": "coverage"
         },
         {
-          "name": "finance.yahoo.com",
-          "url": "https://finance.yahoo.com/sectors/technology/articles/jump-launches-ai-associate-intelligent-130800149.html",
+          "name": "medium.com",
+          "url": "https://medium.com/@theabhishek.040/the-silent-revolution-why-2026-is-the-year-ai-changes-everything-and-how-to-thrive-4924a6896f94",
           "type": "coverage"
         },
         {
-          "name": "wealthmanagement.com",
-          "url": "https://www.wealthmanagement.com/artificial-intelligence/new-jump-report-delivers-advisor-client-insights-never-seen-before",
+          "name": "youtube.com",
+          "url": "https://www.youtube.com/watch?v=DEqJoVjXSCI",
           "type": "coverage"
         },
         {
-          "name": "businesswire.com",
-          "url": "https://www.businesswire.com/news/home/20260309897864/en/Jump-Expands-AI-Operating-System-for-Advisors-With-New-Products-Powering-Growth-and-Operations",
+          "name": "morningstar.com",
+          "url": "https://www.morningstar.com/news/accesswire/1154604msn/revolution-ai-introduces-enterprise-grade-intelligent-asset-management-infrastructure-for-individual-investors",
           "type": "discovery"
         }
       ],
       "source_count": 5,
-      "_governance": {
-        "verdict": "REVIEW",
-        "confidence": 50,
-        "verified_claims": [],
-        "unverified_claims": [
-          "Possible duplicate: Jump already has a product_launch entry within the last 14 days"
-        ],
-        "fabricated_claims": [],
-        "notes": "Possible duplicate: Jump already has a product_launch entry within the last 14 days",
-        "paywall_caveat": false,
-        "verified_at": "2026-04-04T04:06:01.094Z",
-        "human_approved": false
-      }
-    },
-    "governance": {
-      "verdict": "REVIEW",
-      "confidence": 50,
-      "verified_claims": [],
-      "unverified_claims": [
-        "Possible duplicate: Jump already has a product_launch entry within the last 14 days"
-      ],
-      "fabricated_claims": [],
-      "notes": "Possible duplicate: Jump already has a product_launch entry within the last 14 days",
-      "paywall_caveat": false,
-      "verified_at": "2026-04-04T04:06:01.094Z",
-      "human_approved": false
-    },
-    "queued_at": "2026-04-04T04:06:01.110Z",
-    "discovered_at": "2026-04-04T04:06:01.110Z",
-    "score": null,
-    "score_breakdown": null
-  },
-  "planadviser-ai-launches-2026-03-30": {
-    "entry": {
-      "id": "planadviser-ai-launches-2026-03-30",
-      "type": "product_launch",
-      "headline": "Jump, Merrill, and Mangrove Launch AI Meeting and Digital Asset Tools Across Advisor Channels",
-      "the_so_what": "Merrill Lynch's entry into the same advisor-productivity category previously owned by independent fintechs like Jump marks the point at which wirehouse distribution scale — measured in tens of thousands of captive advisors — converts meeting-automation from a fintech wedge product into a commoditized baseline, compressing the window in which pure-play independents can monetize workflow differentiation before it becomes table stakes.",
-      "company": "multiple",
-      "company_name": "Jump / Merrill Lynch / Mangrove Technologies",
-      "date": "2026-03-30",
-      "source_name": "PLANADVISER",
-      "source_url": "https://www.planadviser.com/ai-product-service-launches-3-30-2026/",
-      "source_verified": true,
-      "image_url": null,
-      "summary": "Jump launched an AI agent designed specifically for financial advisors, adding to a growing category of tools that automate meeting workflows and CRM updates for the advisory channel. Merrill Lynch and Bank of America separately introduced an AI-powered meeting tool, indicating that wirehouse-scale distribution is now entering the same advisor-productivity category as independent fintechs. Mangrove Technologies rolled out a digital asset ecosystem, extending AI-enabled infrastructure into the digital asset segment of wealth management. All three launches were reported together by PLANADVISER on March 30, 2026, reflecting an acceleration in the pace of AI product introductions across advisor-facing platforms.",
-      "key_stat": null,
-      "capability_evidence": {
-        "capability": "advisor_productivity",
-        "stage": "deployed",
-        "evidence": "Jump launched an AI agent for advisers and Merrill/Bank of America introduced an AI meeting tool, both reported as live product launches on March 30, 2026.",
-        "metric": null
-      },
-      "tags": {
-        "capability": "advisor_productivity",
-        "region": "us",
-        "segment": "advisor_tools",
-        "theme": [
-          "meeting_automation",
-          "digital_assets",
-          "wirehouse_ai",
-          "advisor_workflow"
-        ]
-      },
-      "week": "2026-03-30",
-      "featured": false,
-      "sources": [
-        {
-          "name": "stackoverflow.com",
-          "url": "https://stackoverflow.com/questions/11448068/mysql-error-code-1175-during-update-in-mysql-workbench",
-          "type": "coverage"
-        },
-        {
-          "name": "nasa.gov",
-          "url": "https://www.nasa.gov/wp-sitemap-news-10.xml",
-          "type": "coverage"
-        },
-        {
-          "name": "trac.filezilla-project.org",
-          "url": "https://trac.filezilla-project.org/report/8?USER=anonymous&format=csv&sort=summary",
-          "type": "coverage"
-        },
-        {
-          "name": "planadviser.com",
-          "url": "https://www.planadviser.com/ai-product-service-launches-3-30-2026/",
-          "type": "discovery"
-        }
-      ],
-      "source_count": 4,
       "_enrichment": {
-        "what_changed": "First coverage of Jump, Merrill Lynch, and Mangrove Technologies in this platform.",
+        "what_changed": "First coverage of this company.",
         "landscape_context": {
           "current_maturity": null,
           "maturity_direction": "unknown",
-          "competitor_gap": null
+          "competitor_gap": "No peers at this maturity level yet"
         },
         "confidence": "low",
-        "notes": "No prior landscape data, peer comparison data, or previous coverage exists for any of the three companies; insight is derived from structural analysis of the competitive dynamic described in the article rather than proprietary tracking data."
+        "notes": "Company not in landscape; no user counts, AUM, or performance metrics provided in source material; no peer comparison data available for investment_portfolio segment; analytical insight necessarily relies on structural inference rather than validated competitive or financial data."
       },
       "_format_errors": [
-        "the_so_what sentence 1 is 60 words — max 50 per sentence (split or tighten)"
+        "the_so_what sentence 1 is 58 words — max 50 per sentence (split or tighten)"
       ],
       "_governance": {
-        "verdict": "REVIEW",
-        "confidence": 72,
+        "verdict": "PASS",
+        "confidence": 95,
         "verified_claims": [
-          "Jump launched an agent for advisers",
-          "Merrill Lynch and Bank of America introduced a meeting tool",
-          "Mangrove Technologies rolled out a digital asset ecosystem",
-          "All three launches were reported together by PLANADVISER on March 30, 2026"
+          "Revolution AI has launched an asset management platform",
+          "The platform processes multiple financial data streams simultaneously",
+          "The platform executes predefined quantitative strategies without manual intervention",
+          "The platform applies risk parameter adherence and continuous asset allocation logic",
+          "These capabilities were previously available only to institutional managers",
+          "The platform adapts enterprise software frameworks for retail consumer use",
+          "The founding team has backgrounds in large-scale, mission-critical AI deployments for global corporations",
+          "The platform is currently available for user onboarding",
+          "The announcement was published April 2, 2026",
+          "No user counts, AUM figures, or quantified performance metrics are provided in the source material"
         ],
-        "unverified_claims": [
-          "Jump's agent specifically automates meeting workflows and CRM updates",
-          "The Merrill/Bank of America tool is specifically AI-powered",
-          "Mangrove Technologies' ecosystem is described as AI-enabled infrastructure",
-          "The entry characterizes this as reflecting 'an acceleration in the pace of AI product introductions' — editorial framing not in the source snippet",
-          "The framing of Merrill as 'wirehouse-scale distribution entering the same category as independent fintechs' is not stated in the source"
-        ],
+        "unverified_claims": [],
         "fabricated_claims": [],
-        "notes": "The source headline/subheadline confirms all three company launches on the correct date, but the article body is truncated/paywalled so specific product details (CRM automation, AI-powered meeting tool specifics, digital asset ecosystem details) cannot be verified beyond what the subheadline states.",
-        "paywall_caveat": true,
-        "verified_at": "2026-04-04T04:09:15.742Z",
+        "notes": "All factual claims in the headline and summary are directly supported by the source article; the entry accurately paraphrases the press release without introducing any contradictions.",
+        "paywall_caveat": false,
+        "verified_at": "2026-04-03T04:01:54.006Z",
         "human_approved": false
       },
       "_fabrication": {
@@ -198,214 +106,66 @@
           "key_stat": "no_stat",
           "quoted_phrases": "none"
         },
-        "checked_at": "2026-04-04T04:09:17.792Z"
-      }
-    },
-    "governance": {
-      "verdict": "REVIEW",
-      "confidence": 72,
-      "verified_claims": [
-        "Jump launched an agent for advisers",
-        "Merrill Lynch and Bank of America introduced a meeting tool",
-        "Mangrove Technologies rolled out a digital asset ecosystem",
-        "All three launches were reported together by PLANADVISER on March 30, 2026"
-      ],
-      "unverified_claims": [
-        "Jump's agent specifically automates meeting workflows and CRM updates",
-        "The Merrill/Bank of America tool is specifically AI-powered",
-        "Mangrove Technologies' ecosystem is described as AI-enabled infrastructure",
-        "The entry characterizes this as reflecting 'an acceleration in the pace of AI product introductions' — editorial framing not in the source snippet",
-        "The framing of Merrill as 'wirehouse-scale distribution entering the same category as independent fintechs' is not stated in the source"
-      ],
-      "fabricated_claims": [],
-      "notes": "The source headline/subheadline confirms all three company launches on the correct date, but the article body is truncated/paywalled so specific product details (CRM automation, AI-powered meeting tool specifics, digital asset ecosystem details) cannot be verified beyond what the subheadline states.",
-      "paywall_caveat": true,
-      "verified_at": "2026-04-04T04:09:15.742Z",
-      "human_approved": false
-    },
-    "queued_at": "2026-04-04T04:09:18.654Z",
-    "discovered_at": "2026-04-04T04:09:18.654Z",
-    "score": null,
-    "score_breakdown": null
-  },
-  "onevest-go-ai-native-wealth-relationship-workspace-2026-03-16": {
-    "entry": {
-      "id": "onevest-go-ai-native-wealth-relationship-workspace-2026-03-16",
-      "type": "product_launch",
-      "headline": "OneVest GO Brings AI-Native CRM Automation to Independent RIAs, Replacing Static Legacy Systems",
-      "the_so_what": "OneVest GO's tiered architecture — a lightweight AI-native CRM entry point that scales into a full Agentic Wealth Operating System without data migration — is a deliberate land-and-expand play against Salesforce Financial Services Cloud and Redtail, betting that independent RIAs will abandon static legacy CRMs faster if the switching cost is framed as a product upgrade rather than a platform replacement.",
-      "company": "onevest",
-      "company_name": "OneVest Technologies Inc.",
-      "date": "2026-03-16",
-      "source_name": "Morningstar / PR Newswire",
-      "source_url": "https://www.morningstar.com/news/pr-newswire/20260316to10009/onevest-launches-onevest-go-the-ai-native-wealth-relationship-workspace-built-for-the-modern-independent-advisor",
-      "source_verified": true,
-      "image_url": null,
-      "summary": "OneVest GO automates advisor workflow by capturing communications and calendars across Outlook and Google, generating meeting summaries, action items, and client-ready notes autonomously, and surfacing next-best-action prompts — embedding AI intelligence directly into the advisor's daily routine rather than requiring manual CRM entry. The platform also provides natural-language search across a firm's entire client history, AI-driven document extraction, real-time net worth tracking, and Kanban-style opportunity pipelines. OneVest positioned the product as a standalone workspace for independent advisors and agile RIA teams, explicitly contrasting it with legacy CRMs described as static databases requiring constant manual input. The launch follows OneVest's earlier release of its Agentic Wealth Operating System, with GO designed as a lighter entry point that scales into the fuller platform without requiring data migration. No user count or AUM figures were disclosed at launch.",
-      "key_stat": null,
-      "capability_evidence": {
-        "capability": "advisor_productivity",
-        "stage": "deployed",
-        "evidence": "OneVest GO autonomously analyzes meetings to generate action items, summaries, and client-ready notes, and proactively surfaces next-best-action recommendations within a unified workspace that syncs calendars and communications across Outlook and Google.",
-        "metric": null
-      },
-      "tags": {
-        "capability": "advisor_productivity",
-        "region": "global",
-        "segment": "ria_independent",
-        "theme": [
-          "ai_native_crm",
-          "workflow_automation",
-          "independent_advisor",
-          "agentic_ai"
-        ]
-      },
-      "week": "2026-03-30",
-      "featured": false,
-      "sources": [
-        {
-          "name": "Prnewswire",
-          "url": "https://www.prnewswire.com/news-releases/onevest-launches-onevest-go-the-ai-native-wealth-relationship-workspace-built-for-the-modern-independent-advisor-302714636.html",
-          "type": "primary"
-        },
-        {
-          "name": "onevest.com",
-          "url": "https://www.onevest.com/blog/onevest-launches-onevest-go-the-ai-native-wealth-relationship-workspace/",
-          "type": "coverage"
-        },
-        {
-          "name": "onevest.com",
-          "url": "https://www.onevest.com/go/",
-          "type": "coverage"
-        },
-        {
-          "name": "linkedin.com",
-          "url": "https://www.linkedin.com/posts/onevest_wealthtech-ria-financialadvisors-activity-7439302579773222912-DRLh",
-          "type": "coverage"
-        },
-        {
-          "name": "morningstar.com",
-          "url": "https://www.morningstar.com/news/pr-newswire/20260316to10009/onevest-launches-onevest-go-the-ai-native-wealth-relationship-workspace-built-for-the-modern-independent-advisor",
-          "type": "discovery"
-        }
-      ],
-      "source_count": 5,
-      "_enrichment": {
-        "what_changed": "First coverage of this company.",
-        "landscape_context": {
-          "current_maturity": null,
-          "maturity_direction": "unknown",
-          "competitor_gap": "No peer comparison data available"
-        },
-        "confidence": "low",
-        "notes": "Company not previously in landscape; no user count, AUM, or revenue figures disclosed at launch; no peer maturity data available for direct competitive benchmarking in this segment."
-      },
-      "_format_errors": [
-        "the_so_what sentence 1 is 61 words — max 50 per sentence (split or tighten)",
-        "week \"2026-03-30\" is not the Monday of date \"2026-03-16\" (expected \"2026-03-16\")"
-      ],
-      "_governance": {
-        "verdict": "PASS",
-        "confidence": 92,
-        "verified_claims": [
-          "OneVest GO automates advisor workflow by capturing communications and calendars across Outlook and Google",
-          "The platform generates meeting summaries, action items, and client-ready notes autonomously",
-          "The platform surfaces next-best-action prompts",
-          "AI intelligence is embedded directly into the advisor's daily routine rather than requiring manual CRM entry",
-          "The platform provides natural-language search across a firm's entire client history",
-          "AI-driven document extraction is a feature",
-          "Real-time net worth tracking is included",
-          "Kanban-style opportunity pipelines are a feature",
-          "OneVest positioned the product as a standalone workspace for independent advisors and agile RIA teams",
-          "The product explicitly contrasts with legacy CRMs described as static databases requiring constant manual input",
-          "The launch follows OneVest's earlier release of its Agentic Wealth Operating System",
-          "GO is designed as a lighter entry point that scales into the fuller platform without requiring data migration",
-          "No user count or AUM figures were disclosed at launch"
-        ],
-        "unverified_claims": [
-          "The headline describes GO as replacing static legacy systems — the source contrasts with them but does not explicitly say 'replacing'"
-        ],
-        "fabricated_claims": [],
-        "notes": "All core factual claims in the entry are directly supported by the source article; the headline's use of 'replacing' is a minor editorial interpretation not directly contradicted by the source.",
-        "paywall_caveat": false,
-        "verified_at": "2026-04-04T04:10:45.229Z",
-        "human_approved": false
-      },
-      "_fabrication": {
-        "verdict": "CLEAN",
-        "issues": [],
-        "check_details": {
-          "numbers_in_headline": "none",
-          "company_name": "pass",
-          "date_year": "pass",
-          "key_stat": "no_stat",
-          "quoted_phrases": "pass"
-        },
-        "checked_at": "2026-04-04T04:10:49.025Z"
+        "checked_at": "2026-04-03T04:01:55.804Z"
       }
     },
     "governance": {
       "verdict": "PASS",
-      "confidence": 92,
+      "confidence": 95,
       "verified_claims": [
-        "OneVest GO automates advisor workflow by capturing communications and calendars across Outlook and Google",
-        "The platform generates meeting summaries, action items, and client-ready notes autonomously",
-        "The platform surfaces next-best-action prompts",
-        "AI intelligence is embedded directly into the advisor's daily routine rather than requiring manual CRM entry",
-        "The platform provides natural-language search across a firm's entire client history",
-        "AI-driven document extraction is a feature",
-        "Real-time net worth tracking is included",
-        "Kanban-style opportunity pipelines are a feature",
-        "OneVest positioned the product as a standalone workspace for independent advisors and agile RIA teams",
-        "The product explicitly contrasts with legacy CRMs described as static databases requiring constant manual input",
-        "The launch follows OneVest's earlier release of its Agentic Wealth Operating System",
-        "GO is designed as a lighter entry point that scales into the fuller platform without requiring data migration",
-        "No user count or AUM figures were disclosed at launch"
+        "Revolution AI has launched an asset management platform",
+        "The platform processes multiple financial data streams simultaneously",
+        "The platform executes predefined quantitative strategies without manual intervention",
+        "The platform applies risk parameter adherence and continuous asset allocation logic",
+        "These capabilities were previously available only to institutional managers",
+        "The platform adapts enterprise software frameworks for retail consumer use",
+        "The founding team has backgrounds in large-scale, mission-critical AI deployments for global corporations",
+        "The platform is currently available for user onboarding",
+        "The announcement was published April 2, 2026",
+        "No user counts, AUM figures, or quantified performance metrics are provided in the source material"
       ],
-      "unverified_claims": [
-        "The headline describes GO as replacing static legacy systems — the source contrasts with them but does not explicitly say 'replacing'"
-      ],
+      "unverified_claims": [],
       "fabricated_claims": [],
-      "notes": "All core factual claims in the entry are directly supported by the source article; the headline's use of 'replacing' is a minor editorial interpretation not directly contradicted by the source.",
+      "notes": "All factual claims in the headline and summary are directly supported by the source article; the entry accurately paraphrases the press release without introducing any contradictions.",
       "paywall_caveat": false,
-      "verified_at": "2026-04-04T04:10:45.229Z",
+      "verified_at": "2026-04-03T04:01:54.006Z",
       "human_approved": false
     },
-    "queued_at": "2026-04-04T04:10:49.027Z",
-    "discovered_at": "2026-04-04T04:10:49.027Z",
-    "score": null,
-    "score_breakdown": null
+    "queued_at": "2026-04-03T04:01:56.333Z",
+    "discovered_at": "2026-04-03T04:01:56.333Z",
+    "score": 79,
+    "score_breakdown": "Score: 79/100 · Source: Company news page (morningstar.com) (20) · Claims: All claims verified (+25) · Fresh: 1d old (8) · Impact: capability clear: investment_portfolio (+10), deployed (+10), general industry (+1) (21) · CXO: contains specific metric (+2) (7/10)"
   },
-  "revolution-ai-enterprise-asset-management-infrastructure-launch-2026-04": {
+  "revolution-ai-enterprise-asset-management-infrastructure-2026-04": {
     "entry": {
-      "id": "revolution-ai-enterprise-asset-management-infrastructure-launch-2026-04",
+      "id": "revolution-ai-enterprise-asset-management-infrastructure-2026-04",
       "type": "product_launch",
-      "headline": "Revolution AI Deploys Institutional-Grade Quantitative Infrastructure Directly to Retail Investors",
-      "the_so_what": "Revolution AI is applying the same infrastructure democratization thesis that eroded Bloomberg's and Reuters' institutional data moats in the 2000s — but the critical unknown is whether quantitative execution architecture alone, stripped of the proprietary data feeds and risk capital that give institutional quant systems their edge, can deliver differentiated retail outcomes rather than simply replicating the form without the substance.",
+      "headline": "Revolution AI Deploys Institutional-Grade Quantitative Infrastructure for Retail Investors",
+      "the_so_what": "Revolution AI's launch follows the same democratisation arc as discount brokerage and robo-advisory before it — institutional-grade execution infrastructure repackaged for retail — but without disclosed AUM, user count, or verified performance data, this is a category entry claim rather than a competitive position, and its enterprise AI pedigree is the only differentiator separating it from a crowded field of retail quant platforms that made identical promises.",
       "company": "revolution-ai",
       "company_name": "Revolution AI",
       "date": "2026-04-02",
-      "source_name": "Morningstar / ACCESS Newswire",
+      "source_name": "Morningstar (via ACCESS Newswire)",
       "source_url": "https://www.morningstar.com/news/accesswire/1154604msn/revolution-ai-introduces-enterprise-grade-intelligent-asset-management-infrastructure-for-individual-investors",
       "source_verified": true,
       "image_url": null,
-      "summary": "Revolution AI has launched an asset management platform that processes multiple financial data streams simultaneously and executes predefined strategies continuously without manual intervention, applying the same quantitative, emotionless execution architecture historically available only to institutional asset managers. The platform is designed to maintain strict adherence to risk parameters and allocate assets based on quantifiable metrics rather than market sentiment, explicitly removing the behavioral volatility the company identifies as the defining weakness of retail portfolio management. The founding team cites backgrounds in building large-scale, mission-critical AI software for global corporations as the basis for the system's enterprise-grade reliability and data-processing standards. The platform is now live and open for user onboarding.",
+      "summary": "Revolution AI has launched a retail asset management platform that processes multiple financial data streams simultaneously and executes predefined strategies without manual intervention, applying quantitative frameworks previously restricted to institutional environments. The platform is designed to maintain strict adherence to risk parameters continuously, removing behavioural bias from individual portfolio decisions through system-driven execution. The company was founded by veterans of enterprise AI software and describes its architecture as adapted from large-scale, mission-critical corporate AI deployments. The platform is now open for user onboarding. No user count, AUM figure, or performance data is disclosed in the source.",
       "key_stat": null,
       "capability_evidence": {
         "capability": "investment_portfolio",
         "stage": "deployed",
-        "evidence": "The platform simultaneously processes multiple financial data streams and executes predefined strategies continuously without latency or emotional interference, operating within strict risk parameters — and is currently available for user onboarding.",
+        "evidence": "The platform is live for user onboarding, executing predefined strategies across multiple simultaneous financial data streams with continuous risk parameter adherence, per the company's launch announcement.",
         "metric": null
       },
       "tags": {
         "capability": "investment_portfolio",
         "region": "us",
-        "segment": "ai_native",
+        "segment": "digital_disruptor",
         "theme": [
           "retail_democratisation",
           "quantitative_execution",
-          "autonomous_portfolio_management",
-          "institutional_infrastructure"
+          "behavioural_bias_removal",
+          "institutional_to_retail"
         ]
       },
       "week": "2026-03-30",
@@ -426,35 +186,36 @@
       "_enrichment": {
         "what_changed": "First coverage of this company.",
         "landscape_context": {
-          "current_maturity": "launch",
+          "current_maturity": null,
           "maturity_direction": "unknown",
-          "competitor_gap": "No peers at this maturity level yet"
+          "competitor_gap": null
         },
         "confidence": "low",
-        "notes": "Company not in landscape; no peer comparison data available for this capability segment; no key metrics (AUM, user count, funding) disclosed in source material to anchor competitive benchmarking."
+        "notes": "Company not in landscape; no peer comparison data available for this capability segment; no disclosed AUM, user count, or performance metrics to anchor competitive positioning."
       },
       "_format_errors": [
-        "the_so_what sentence 1 is 61 words — max 50 per sentence (split or tighten)"
+        "the_so_what sentence 1 is 67 words — max 50 per sentence (split or tighten)"
       ],
       "_governance": {
         "verdict": "PASS",
         "confidence": 95,
         "verified_claims": [
-          "Revolution AI has launched an asset management platform",
+          "Revolution AI has launched a retail asset management platform",
           "The platform processes multiple financial data streams simultaneously",
-          "The platform executes predefined strategies continuously without manual intervention",
-          "The platform applies quantitative, emotionless execution architecture historically available only to institutional asset managers",
-          "The platform is designed to maintain strict adherence to risk parameters",
-          "The platform allocates assets based on quantifiable metrics rather than market sentiment",
-          "The platform explicitly removes behavioral volatility identified as a weakness of retail portfolio management",
-          "The founding team cites backgrounds in building large-scale, mission-critical AI software for global corporations",
-          "The platform is now live and open for user onboarding"
+          "The platform executes predefined strategies without manual intervention",
+          "The platform applies quantitative frameworks previously restricted to institutional environments",
+          "The platform is designed to maintain strict adherence to risk parameters continuously",
+          "The platform removes behavioural bias from individual portfolio decisions through system-driven execution",
+          "The company was founded by veterans of enterprise AI software",
+          "The architecture is described as adapted from large-scale, mission-critical corporate AI deployments",
+          "The platform is now open for user onboarding",
+          "No user count, AUM figure, or performance data is disclosed in the source"
         ],
         "unverified_claims": [],
         "fabricated_claims": [],
         "notes": "All factual claims in the headline and summary are clearly and directly supported by the source article with no contradictions found.",
         "paywall_caveat": false,
-        "verified_at": "2026-04-04T04:12:42.901Z",
+        "verified_at": "2026-04-04T04:02:44.517Z",
         "human_approved": false
       },
       "_fabrication": {
@@ -467,313 +228,34 @@
           "key_stat": "no_stat",
           "quoted_phrases": "none"
         },
-        "checked_at": "2026-04-04T04:12:44.636Z"
+        "checked_at": "2026-04-04T04:02:45.939Z"
       }
     },
     "governance": {
       "verdict": "PASS",
       "confidence": 95,
       "verified_claims": [
-        "Revolution AI has launched an asset management platform",
+        "Revolution AI has launched a retail asset management platform",
         "The platform processes multiple financial data streams simultaneously",
-        "The platform executes predefined strategies continuously without manual intervention",
-        "The platform applies quantitative, emotionless execution architecture historically available only to institutional asset managers",
-        "The platform is designed to maintain strict adherence to risk parameters",
-        "The platform allocates assets based on quantifiable metrics rather than market sentiment",
-        "The platform explicitly removes behavioral volatility identified as a weakness of retail portfolio management",
-        "The founding team cites backgrounds in building large-scale, mission-critical AI software for global corporations",
-        "The platform is now live and open for user onboarding"
+        "The platform executes predefined strategies without manual intervention",
+        "The platform applies quantitative frameworks previously restricted to institutional environments",
+        "The platform is designed to maintain strict adherence to risk parameters continuously",
+        "The platform removes behavioural bias from individual portfolio decisions through system-driven execution",
+        "The company was founded by veterans of enterprise AI software",
+        "The architecture is described as adapted from large-scale, mission-critical corporate AI deployments",
+        "The platform is now open for user onboarding",
+        "No user count, AUM figure, or performance data is disclosed in the source"
       ],
       "unverified_claims": [],
       "fabricated_claims": [],
       "notes": "All factual claims in the headline and summary are clearly and directly supported by the source article with no contradictions found.",
       "paywall_caveat": false,
-      "verified_at": "2026-04-04T04:12:42.901Z",
+      "verified_at": "2026-04-04T04:02:44.517Z",
       "human_approved": false
     },
-    "queued_at": "2026-04-04T04:12:44.638Z",
-    "discovered_at": "2026-04-04T04:12:44.638Z",
+    "queued_at": "2026-04-04T04:02:46.623Z",
+    "discovered_at": "2026-04-04T04:02:46.623Z",
     "score": 77,
-    "score_breakdown": "Score: 77/100 · Source: Company news page (morningstar.com) (20) · Claims: All claims verified (+25) · Fresh: 2d old (8) · Impact: capability clear: investment_portfolio (+10), deployed (+10), general industry (+1) (21) · CXO: too long (61 words) (-1), contains specific metric (+2) (6/10)"
-  },
-  "jump-advisor-os-canada-integrations-march-2026": {
-    "entry": {
-      "id": "jump-advisor-os-canada-integrations-march-2026",
-      "type": "milestone",
-      "headline": "Jump's AI Advisor OS Reaches 27,000 Advisors as CRM and Custodian Integrations Drive Network-Wide Rollouts",
-      "the_so_what": "By formalizing a three-module OS architecture with bidirectional CRM and custodian integrations — not just meeting transcription — Jump has structurally separated itself from Zocks' 5,000-firm footprint and Holistiplan's single-use tax analysis, converting compliance data structured at capture across 27,000 advisors into a switching-cost moat that mirrors how Bloomberg terminal integration depth made displacement economically irrational even when cheaper alternatives existed.",
-      "company": "jump-ai",
-      "company_name": "Jump",
-      "date": "2026-03-15",
-      "source_name": "Meyka",
-      "source_url": "https://meyka.com/blog/march-15-wealth-management-ai-advisor-os-race-accelerates-on-integrations-1503/",
-      "source_verified": true,
-      "image_url": null,
-      "summary": "Jump has formalized an end-to-end AI advisor operating system spanning three modules — Meet, Grow, and Operate — now used by 27,000 advisors, signaling a market shift from point tools to full workflow platforms. The platform automates meeting prep, compliance-ready notes, next-best-action generation, and service ticket routing, with bidirectional CRM and custodian integrations designed to eliminate manual data entry and support real-time supervision. Built to satisfy Canadian regulatory requirements, the stack structures data at capture to meet CIRO suitability and records obligations and enforces PIPEDA-aligned privacy controls including role-based access, field-level masking, and data residency options. The formalization of the OS architecture and the 27,000-advisor milestone were announced on March 15, 2026, with supporting coverage from Yahoo Finance and TipRanks cited in the source.",
-      "key_stat": {
-        "number": "27,000",
-        "label": "advisors actively using Jump's AI operating system across Meet, Grow, and Operate modules"
-      },
-      "capability_evidence": {
-        "capability": "advisor_productivity",
-        "stage": "deployed",
-        "evidence": "Jump reports 27,000 advisors using its formalized AI operating system, which automates meeting prep, compliant note generation, next-best-action suggestions, and service ticket routing through live CRM and custodian integrations.",
-        "metric": "27,000 advisors deployed"
-      },
-      "tags": {
-        "capability": "advisor_productivity",
-        "region": "us",
-        "segment": "advisor_tools",
-        "theme": [
-          "advisor_os",
-          "workflow_integration",
-          "compliance_by_design",
-          "crm_connectivity"
-        ]
-      },
-      "week": "2026-03-30",
-      "featured": false,
-      "sources": [
-        {
-          "name": "jump.ai",
-          "url": "https://jump.ai/financial-advisor-insights-report",
-          "type": "coverage"
-        },
-        {
-          "name": "jump.ai",
-          "url": "https://jump.ai/blog/march-2026-product-update",
-          "type": "coverage"
-        },
-        {
-          "name": "jump.ai",
-          "url": "https://jump.ai/advisor-trends/artificial-intelligence/ai-in-wealth-management",
-          "type": "coverage"
-        },
-        {
-          "name": "finance.yahoo.com",
-          "url": "https://finance.yahoo.com/sectors/technology/articles/jump-launches-ai-associate-intelligent-130800149.html",
-          "type": "coverage"
-        },
-        {
-          "name": "meyka.com",
-          "url": "https://meyka.com/blog/march-15-wealth-management-ai-advisor-os-race-accelerates-on-integrations-1503/",
-          "type": "discovery"
-        }
-      ],
-      "source_count": 5,
-      "_enrichment": {
-        "what_changed": "Previous coverage focused on the $105M raise and the agentic execution capability of AI Associate; this entry shifts focus to the underlying OS architecture formalization and Canadian regulatory compliance stack as the mechanism that converts individual advisor adoption into enterprise-wide, network-locked rollouts.",
-        "landscape_context": {
-          "current_maturity": "SCALED",
-          "maturity_direction": "stable",
-          "competitor_gap": "Jump 5x ahead of Zocks on advisor distribution; Holistiplan not competing on workflow breadth"
-        },
-        "confidence": "high",
-        "notes": null
-      },
-      "_format_errors": [
-        "the_so_what sentence 1 is 61 words — max 50 per sentence (split or tighten)",
-        "week \"2026-03-30\" is not the Monday of date \"2026-03-15\" (expected \"2026-03-09\")"
-      ],
-      "_governance": {
-        "verdict": "PASS",
-        "confidence": 88,
-        "verified_claims": [
-          "Jump formalized an advisor operating system spanning three modules — Meet, Grow, and Operate",
-          "The platform is used by 27,000 advisors",
-          "This signals a market shift from point tools to full workflow platforms",
-          "The platform automates meeting prep, compliance-ready notes, next-best-action generation, and service ticket routing",
-          "Bidirectional CRM and custodian integrations are designed to eliminate manual data entry",
-          "The integrations support real-time supervision",
-          "The platform is built to satisfy Canadian regulatory requirements including CIRO suitability and records obligations",
-          "The stack structures data at capture to meet CIRO suitability and records obligations",
-          "PIPEDA-aligned privacy controls include role-based access, field-level masking, and data residency options",
-          "The formalization of the OS architecture and the 27,000-advisor milestone were announced on March 15, 2026",
-          "Yahoo Finance is cited as a supporting source",
-          "TipRanks is cited as a supporting source",
-          "CRM and custodian integrations drive network-wide rollouts"
-        ],
-        "unverified_claims": [
-          "The entry describes the integrations as 'bidirectional' — the source mentions bidirectional sync conceptually but does not explicitly confirm Jump's specific implementation is bidirectional",
-          "The entry states 27,000 advisors are 'actively using' the platform — the source says 'using its stack' without specifying 'active' usage definitions"
-        ],
-        "fabricated_claims": [],
-        "notes": "All major factual claims in the headline, summary, and key stat are clearly supported by the source article with no direct contradictions; two minor unverified nuances exist but do not rise to contradictions.",
-        "paywall_caveat": false,
-        "verified_at": "2026-04-05T04:04:38.058Z",
-        "human_approved": false
-      },
-      "_fabrication": {
-        "verdict": "CLEAN",
-        "issues": [],
-        "check_details": {
-          "numbers_in_headline": "pass",
-          "company_name": "pass",
-          "date_year": "pass",
-          "key_stat": "pass",
-          "quoted_phrases": "none"
-        },
-        "checked_at": "2026-04-05T04:04:39.604Z"
-      }
-    },
-    "governance": {
-      "verdict": "PASS",
-      "confidence": 88,
-      "verified_claims": [
-        "Jump formalized an advisor operating system spanning three modules — Meet, Grow, and Operate",
-        "The platform is used by 27,000 advisors",
-        "This signals a market shift from point tools to full workflow platforms",
-        "The platform automates meeting prep, compliance-ready notes, next-best-action generation, and service ticket routing",
-        "Bidirectional CRM and custodian integrations are designed to eliminate manual data entry",
-        "The integrations support real-time supervision",
-        "The platform is built to satisfy Canadian regulatory requirements including CIRO suitability and records obligations",
-        "The stack structures data at capture to meet CIRO suitability and records obligations",
-        "PIPEDA-aligned privacy controls include role-based access, field-level masking, and data residency options",
-        "The formalization of the OS architecture and the 27,000-advisor milestone were announced on March 15, 2026",
-        "Yahoo Finance is cited as a supporting source",
-        "TipRanks is cited as a supporting source",
-        "CRM and custodian integrations drive network-wide rollouts"
-      ],
-      "unverified_claims": [
-        "The entry describes the integrations as 'bidirectional' — the source mentions bidirectional sync conceptually but does not explicitly confirm Jump's specific implementation is bidirectional",
-        "The entry states 27,000 advisors are 'actively using' the platform — the source says 'using its stack' without specifying 'active' usage definitions"
-      ],
-      "fabricated_claims": [],
-      "notes": "All major factual claims in the headline, summary, and key stat are clearly supported by the source article with no direct contradictions; two minor unverified nuances exist but do not rise to contradictions.",
-      "paywall_caveat": false,
-      "verified_at": "2026-04-05T04:04:38.058Z",
-      "human_approved": false
-    },
-    "queued_at": "2026-04-05T04:04:40.230Z",
-    "discovered_at": "2026-04-05T04:04:40.230Z",
-    "score": null,
-    "score_breakdown": null
-  },
-  "ai-product-service-launches-2026-03-30": {
-    "entry": {
-      "id": "ai-product-service-launches-2026-03-30",
-      "type": "product_launch",
-      "headline": "Jump, Merrill, and Mangrove Deploy AI Agents Across Advisor Workflow and Digital Assets",
-      "the_so_what": "The same product cycle producing parallel advisor workflow launches from Jump and Merrill Lynch mirrors the dynamic of the early Bloomberg terminal era — where independent data vendors and institutional incumbents reached feature parity simultaneously, ultimately ceding competitive differentiation to distribution scale and switching costs rather than capability alone.",
-      "company": "multiple",
-      "company_name": "Jump / Merrill Lynch / Mangrove Technologies",
-      "date": "2026-03-30",
-      "source_name": "PLANADVISER",
-      "source_url": "https://www.planadviser.com/ai-product-service-launches-3-30-2026/",
-      "source_verified": true,
-      "image_url": null,
-      "summary": "Three distinct AI capability deployments were reported on March 30, 2026. Jump launched an AI agent purpose-built for financial advisers, automating meeting workflows for the adviser channel. Merrill Lynch and Bank of America introduced a meeting tool powered by AI, extending institutional-grade workflow automation to wirehouse advisers. Mangrove Technologies rolled out a digital asset ecosystem, advancing AI-enabled infrastructure for the emerging digital asset segment of wealth management. The convergence of independent fintech and major wirehouse launches in the same product cycle indicates advisor-facing AI has moved beyond piloting into parallel deployment across firm types.",
-      "key_stat": null,
-      "capability_evidence": {
-        "capability": "advisor_productivity",
-        "stage": "deployed",
-        "evidence": "Jump launched an AI agent for advisers and Merrill/Bank of America introduced an AI meeting tool, both going live as named product releases on March 30, 2026.",
-        "metric": null
-      },
-      "tags": {
-        "capability": "advisor_productivity",
-        "region": "us",
-        "segment": "advisor_tools",
-        "theme": [
-          "meeting_automation",
-          "ai_agents",
-          "digital_assets",
-          "wirehouse_adoption"
-        ]
-      },
-      "week": "2026-03-30",
-      "featured": false,
-      "sources": [
-        {
-          "name": "stackoverflow.com",
-          "url": "https://stackoverflow.com/questions/11448068/mysql-error-code-1175-during-update-in-mysql-workbench",
-          "type": "coverage"
-        },
-        {
-          "name": "nasa.gov",
-          "url": "https://www.nasa.gov/wp-sitemap-news-10.xml",
-          "type": "coverage"
-        },
-        {
-          "name": "palisadestahoe.com",
-          "url": "https://www.palisadestahoe.com/events-and-activities/events-calendar",
-          "type": "coverage"
-        },
-        {
-          "name": "planadviser.com",
-          "url": "https://www.planadviser.com/ai-product-service-launches-3-30-2026/",
-          "type": "discovery"
-        }
-      ],
-      "source_count": 4,
-      "_enrichment": {
-        "what_changed": "First coverage of this company",
-        "landscape_context": {
-          "current_maturity": null,
-          "maturity_direction": "unknown",
-          "competitor_gap": null
-        },
-        "confidence": "low",
-        "notes": "No prior landscape data, peer comparison data, or previous coverage available for Jump, Merrill Lynch, or Mangrove Technologies in this capability segment; insight drawn from structural pattern in article and infrastructure parallel framework."
-      },
-      "_governance": {
-        "verdict": "REVIEW",
-        "confidence": 62,
-        "verified_claims": [
-          "Three distinct AI capability deployments were reported on March 30, 2026",
-          "Jump launched an AI agent for financial advisers",
-          "Merrill Lynch and Bank of America introduced a meeting tool powered by AI",
-          "Mangrove Technologies rolled out a digital asset ecosystem"
-        ],
-        "unverified_claims": [
-          "Jump's AI agent automates meeting workflows specifically for the adviser channel",
-          "Merrill/BofA's tool extends 'institutional-grade workflow automation' to wirehouse advisers",
-          "Mangrove Technologies' ecosystem advances 'AI-enabled infrastructure' for digital assets in wealth management",
-          "The convergence of independent fintech and major wirehouse launches in the same product cycle indicates advisor-facing AI has moved beyond piloting into parallel deployment across firm types"
-        ],
-        "fabricated_claims": [],
-        "notes": "The source article headline and subheadline confirm all three company launches on the stated date, but the article body appears truncated or paywalled, so specific claims about functionality (meeting workflow automation, institutional-grade tools, AI-enabled digital asset infrastructure) cannot be verified from the available text — no direct contradictions are present.",
-        "paywall_caveat": true,
-        "verified_at": "2026-04-05T04:05:42.685Z",
-        "human_approved": false
-      },
-      "_fabrication": {
-        "verdict": "CLEAN",
-        "issues": [],
-        "check_details": {
-          "numbers_in_headline": "none",
-          "company_name": "pass",
-          "date_year": "pass",
-          "key_stat": "no_stat",
-          "quoted_phrases": "none"
-        },
-        "checked_at": "2026-04-05T04:05:44.222Z"
-      }
-    },
-    "governance": {
-      "verdict": "REVIEW",
-      "confidence": 62,
-      "verified_claims": [
-        "Three distinct AI capability deployments were reported on March 30, 2026",
-        "Jump launched an AI agent for financial advisers",
-        "Merrill Lynch and Bank of America introduced a meeting tool powered by AI",
-        "Mangrove Technologies rolled out a digital asset ecosystem"
-      ],
-      "unverified_claims": [
-        "Jump's AI agent automates meeting workflows specifically for the adviser channel",
-        "Merrill/BofA's tool extends 'institutional-grade workflow automation' to wirehouse advisers",
-        "Mangrove Technologies' ecosystem advances 'AI-enabled infrastructure' for digital assets in wealth management",
-        "The convergence of independent fintech and major wirehouse launches in the same product cycle indicates advisor-facing AI has moved beyond piloting into parallel deployment across firm types"
-      ],
-      "fabricated_claims": [],
-      "notes": "The source article headline and subheadline confirm all three company launches on the stated date, but the article body appears truncated or paywalled, so specific claims about functionality (meeting workflow automation, institutional-grade tools, AI-enabled digital asset infrastructure) cannot be verified from the available text — no direct contradictions are present.",
-      "paywall_caveat": true,
-      "verified_at": "2026-04-05T04:05:42.685Z",
-      "human_approved": false
-    },
-    "queued_at": "2026-04-05T04:05:44.225Z",
-    "discovered_at": "2026-04-05T04:05:44.225Z",
-    "score": null,
-    "score_breakdown": null
+    "score_breakdown": "Score: 77/100 · Source: Company news page (morningstar.com) (20) · Claims: All claims verified (+25) · Fresh: 2d old (8) · Impact: capability clear: investment_portfolio (+10), deployed (+10), general industry (+1) (21) · CXO: too long (67 words) (-1) (4/10) ⚠"
   }
 }
