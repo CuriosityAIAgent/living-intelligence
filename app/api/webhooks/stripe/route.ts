@@ -48,18 +48,16 @@ export async function POST(request: Request) {
 }
 
 async function handleCheckoutComplete(session: Stripe.Checkout.Session) {
-  const { createClient } = await import('@supabase/supabase-js')
-  const supabase = createClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.SUPABASE_SERVICE_KEY!
-  )
+  const { createAdminClient } = await import('@/lib/supabase-server')
+  const supabase = createAdminClient()
 
   const customerId = session.customer as string
+  const userId = session.client_reference_id // Supabase user ID (set in checkout route)
   const customerEmail = session.customer_details?.email
   const customerName = session.customer_details?.name
 
-  if (!customerEmail) {
-    console.error('No email in checkout session')
+  if (!customerEmail && !userId) {
+    console.error('No email or user ID in checkout session')
     return
   }
 
@@ -92,7 +90,7 @@ async function handleCheckoutComplete(session: Stripe.Checkout.Session) {
     const { data: newOrg, error: orgError } = await supabase
       .from('organizations')
       .insert({
-        name: customerName || customerEmail.split('@')[0],
+        name: customerName || customerEmail?.split('@')[0] || 'New Organization',
         stripe_customer_id: customerId,
         tier,
         max_seats: 5,
@@ -108,32 +106,44 @@ async function handleCheckoutComplete(session: Stripe.Checkout.Session) {
     orgId = newOrg.id
   }
 
-  // Check if user profile exists (user may have signed up via auth already)
-  const { data: existingProfile } = await supabase
-    .from('user_profiles')
-    .select('id')
-    .eq('email', customerEmail)
-    .single()
+  // Link user profile to org — prefer client_reference_id (reliable), fall back to email match
+  let profileId: string | null = null
 
-  if (!existingProfile) {
-    // User hasn't signed up via auth yet — profile will be created on first login
-    // Store a pending invite so middleware can match them
-    console.log(`Org ${orgId} created for ${customerEmail} — awaiting first login`)
-  } else {
-    // Link existing user to org as admin
+  if (userId) {
+    // Direct match via Supabase user ID (set as client_reference_id in checkout)
+    const { data: profile } = await supabase
+      .from('user_profiles')
+      .select('id')
+      .eq('id', userId)
+      .single()
+    if (profile) profileId = profile.id
+  }
+
+  if (!profileId && customerEmail) {
+    // Fallback: match by email (handles cases where user wasn't signed in during checkout)
+    const { data: profile } = await supabase
+      .from('user_profiles')
+      .select('id')
+      .eq('email', customerEmail)
+      .single()
+    if (profile) profileId = profile.id
+  }
+
+  if (profileId) {
+    // Link user to org as admin
     await supabase
       .from('user_profiles')
       .update({ org_id: orgId, role: 'admin' })
-      .eq('id', existingProfile.id)
+      .eq('id', profileId)
+    console.log(`Org ${orgId} linked to user ${profileId} as admin`)
+  } else {
+    console.log(`Org ${orgId} created for ${customerEmail} — awaiting first login`)
   }
 }
 
 async function handleSubscriptionCancelled(subscription: Stripe.Subscription) {
-  const { createClient } = await import('@supabase/supabase-js')
-  const supabase = createClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.SUPABASE_SERVICE_KEY!
-  )
+  const { createAdminClient } = await import('@/lib/supabase-server')
+  const supabase = createAdminClient()
 
   const customerId = subscription.customer as string
 
@@ -144,11 +154,8 @@ async function handleSubscriptionCancelled(subscription: Stripe.Subscription) {
 }
 
 async function handleSubscriptionUpdated(subscription: Stripe.Subscription) {
-  const { createClient } = await import('@supabase/supabase-js')
-  const supabase = createClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.SUPABASE_SERVICE_KEY!
-  )
+  const { createAdminClient } = await import('@/lib/supabase-server')
+  const supabase = createAdminClient()
 
   const customerId = subscription.customer as string
   const status = subscription.status === 'active' ? 'active' : 'inactive'

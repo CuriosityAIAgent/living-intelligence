@@ -1,11 +1,18 @@
 import { NextResponse } from 'next/server'
 import Stripe from 'stripe'
+import { createServerSupabaseClient } from '@/lib/supabase-server'
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!)
 
 export async function POST(request: Request) {
   try {
     const { coupon, tier } = await request.json()
+
+    // Get authenticated user (if signed in) to link Stripe checkout to Supabase user
+    const supabase = await createServerSupabaseClient()
+    const { data: { user } } = await supabase.auth.getUser()
+
+    const baseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL ? 'https://livingintel.ai' : 'http://localhost:3002'
 
     // Map tier to price ID
     const selectedPrice = tier === 'founding'
@@ -15,13 +22,16 @@ export async function POST(request: Request) {
     const sessionParams: Record<string, unknown> = {
       mode: 'subscription',
       line_items: [{ price: selectedPrice, quantity: 1 }],
-      success_url: `${process.env.NEXT_PUBLIC_SUPABASE_URL ? 'https://livingintel.ai' : 'http://localhost:3002'}/onboarding?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${process.env.NEXT_PUBLIC_SUPABASE_URL ? 'https://livingintel.ai' : 'http://localhost:3002'}/join`,
+      success_url: `${baseUrl}/onboarding?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${baseUrl}/join`,
       // Collect customer details
       customer_creation: 'always',
       billing_address_collection: 'required',
       // Allow promotion codes (including FRIEND2026)
       allow_promotion_codes: true,
+      // Link to Supabase user for reliable webhook matching
+      ...(user?.id && { client_reference_id: user.id }),
+      ...(user?.email && { customer_email: user.email }),
     }
 
     // If a coupon code is provided directly, apply it
