@@ -212,5 +212,33 @@
     "blocked_at": "2026-04-02T04:03:55.293Z",
     "title": "Altruist AI Platform Reveal Triggers Wealth Management Stock Selloff, Signaling Fee Compression Fears",
     "score": 50
+  },
+  "https://www.prnewswire.com/news-releases/wealthbox-announces-early-access-to-new-ai-features-for-financial-advisors-302707692.html": {
+    "id": "wealthbox-ai-features-early-access-2026-03",
+    "reason": "Score 52/100 — below 45 review threshold",
+    "blocked_at": "2026-04-09T04:01:55.196Z",
+    "title": "Wealthbox Opens Early Access to AI Features Embedded Directly in Advisor CRM Workflow",
+    "score": 52
+  },
+  "https://www.thesaasnews.com/news/sherpas-raises-3-2-million-seed-round": {
+    "id": "sherpas-ai-operating-layer-wealth-management-seed-2026",
+    "reason": "Score 43/100 — below 45 review threshold",
+    "blocked_at": "2026-04-09T04:02:46.881Z",
+    "title": "Sherpas Builds AI Operating Layer for Wealth Management, Backed by Mariner Wealth Founder's Family Office",
+    "score": 43
+  },
+  "https://rbj.net/2026/04/03/how-ai-complements-financial-advisors-in-wealth-management/": {
+    "id": "rbj-ai-complements-wealth-management-2026-04-03",
+    "reason": "Score 41/100 — below 45 review threshold",
+    "blocked_at": "2026-04-09T04:04:19.318Z",
+    "title": "AI in Wealth Management Framed as Advisor Complement, Not Replacement, in Regional Business Coverage",
+    "score": 41
+  },
+  "https://fintech.global/2026/04/07/accuquant-raises-20m-to-boost-ai-financial-infrastructure/": {
+    "id": "accuquant-raises-20m-ai-financial-infrastructure-2026-04-07",
+    "reason": "Paywalled source — claims unverifiable, not fabricated. Human review required.",
+    "blocked_at": "2026-04-09T04:05:21.119Z",
+    "title": "AccuQuant Secures $20M to Scale AI-Driven Financial Infrastructure Capabilities",
+    "score": 40
   }
 }
