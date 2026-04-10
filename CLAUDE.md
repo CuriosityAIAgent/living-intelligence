@@ -24,14 +24,14 @@ See @docs/architecture.md for full system design, @docs/integrations.md for all 
 - `lib/supabase-server.ts` — server client + admin client (service key, bypasses RLS)
 - `middleware.ts` — auth gate: logged in → has complete profile (name+company) → has org → org active. Public routes: `/`, `/login`, `/join`, `/api/auth/*`, `/api/webhooks/stripe`
 - `app/login/page.tsx` — **Unified auth page** for both new and returning users. Work email + "Continue →" (magic link) or Google. No passwords. Supabase auto-registers new users, auto-signs-in existing ones. No separate /register page.
-- `app/api/auth/callback/route.ts` — OAuth + magic link redirect handler
+- `app/api/auth/callback/route.ts` — OAuth + magic link redirect handler (uses x-forwarded-host for Railway reverse proxy)
 - `app/api/auth/signout/route.ts` — signs out + redirects to /login
 - `app/onboarding/page.tsx` — Profile completion (name + company if missing) → team invites (up to 4 emails) → or "Complete checkout" if no org yet
 - `app/join/page.tsx` — reads `?tier=` and `?coupon=` params, redirects to Stripe checkout
 
-**New user flow:** Landing page → "Register" → `/login` → email or Google → magic link → `/onboarding` (complete profile: name + company) → Stripe checkout → team invites → portal
+**New user flow:** Landing page → "Register" → `/login` → email or Google → magic link → `/onboarding` (complete profile: name + company) → Stripe checkout → team invites → `/latest`
 
-**Returning user flow:** any portal page → middleware redirects to `/login` → email or Google → magic link → portal (skips onboarding — profile already complete)
+**Returning user flow:** any portal page → middleware redirects to `/login` → email or Google → magic link → `/latest` (skips onboarding — profile already complete)
 
 **Landing page nav:** "Sign in" (text link) + "Register" (claret button) — both go to `/login`
 
@@ -49,9 +49,9 @@ See @docs/architecture.md for full system design, @docs/integrations.md for all 
 
 **Checkout files:**
 - `app/api/checkout/route.ts` — creates Stripe Checkout session. Accepts `tier` param (founding/standard) and optional `coupon`.
-- `app/api/webhooks/stripe/route.ts` — handles `checkout.session.completed`, `customer.subscription.deleted`, `customer.subscription.updated`. On checkout: creates org + links admin profile.
+- `app/api/webhooks/stripe/route.ts` — handles `checkout.session.completed`, `customer.subscription.deleted`, `customer.subscription.updated`. On checkout: creates org + links admin profile. Uses createAdminClient + reliable user matching (ID first via client_reference_id, email fallback).
 
-**Env vars:** `STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET` (optional for testing), `STRIPE_PRICE_FOUNDING`, `STRIPE_PRICE_STANDARD`
+**Env vars:** `STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET` (registered in Stripe Dashboard, set on Railway profound-wonder), `STRIPE_PRICE_FOUNDING`, `STRIPE_PRICE_STANDARD`
 
 ---
 
@@ -227,8 +227,8 @@ git push origin main --force
 | Section label | `text-[11px] font-semibold uppercase tracking-widest text-[#990F3D]` |
 
 **Header structure (two-tier):**
-- Top tier (56px, `#1C1C2E`): wordmark "AI in Wealth Management" left; "LIVING INTELLIGENCE" bold right (15px, font-bold, uppercase, tracking-widest, white) — no subtitle
-- Bottom tier (40px, `#141420`): nav tabs left-flush (`pl-0 pr-6`) with `border-b-2` active underline
+- Top tier (56px, `#1C1C2E`): wordmark "AI in Wealth Management" left (links to /latest); "LIVING INTELLIGENCE" bold right (15px, font-bold, uppercase, tracking-widest, white) — no subtitle
+- Bottom tier (40px, `#141420`): 4 nav tabs left-flush (`pl-0 pr-6`) with `border-b-2` active underline: Latest | Intelligence | Thought Leadership | Landscape
 
 ---
 
@@ -239,6 +239,26 @@ git push origin main --force
 - Server Components by default; `'use client'` only when hooks are needed (Header, interactive components)
 - `async/await` — no `.then()` chains
 - Prefer editing existing files over creating new ones
+
+---
+
+## Code Evaluator (commit gate)
+
+Every `git commit` with staged code files (not docs-only) is reviewed by a **separate Sonnet evaluator** before the commit proceeds. This is a PreToolUse hook — it blocks, not advises.
+
+**What the evaluator reads:**
+1. `~/.claude/hooks/evaluator-brief.md` — project-specific criteria, hard rules, 10 real past bugs, brand tokens, deployment map
+2. This file (CLAUDE.md) — architecture and standards
+3. The active plan in `~/.claude/plans/` — what's currently being built
+4. The staged diff + branch name
+
+**PASS** = commit proceeds. **FAIL** = commit blocked with specific issues cited by file and line.
+
+**Files:** `~/.claude/hooks/code-evaluator.sh` (shell wrapper) → `~/.claude/hooks/code-evaluator.js` (calls Anthropic API with Sonnet). Requires `ANTHROPIC_API_KEY` with credits.
+
+**Override:** `SKIP_EVALUATOR=1` environment variable (emergency only).
+
+**To update what the evaluator checks:** Edit `~/.claude/hooks/evaluator-brief.md`. Add new hard rules, common mistakes, or project-specific criteria there — the evaluator reads it fresh on every commit.
 
 ---
 

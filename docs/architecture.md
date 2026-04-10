@@ -49,8 +49,9 @@
 │                       localhost:3002                             │
 │                  Railway deploy on push to main                  │
 │                                                                  │
-│  /                       → Latest (IntelligenceFeed)             │
-│  /intelligence           → All intelligence entries              │
+│  /                       → Landing page (public, unauthenticated)│
+│  /latest                 → Latest (lead story + grid + TL + landscape teaser) │
+│  /intelligence           → All intelligence entries (filterable) │
 │  /intelligence/[slug]    → Article detail page                   │
 │  /thought-leadership     → All thought leadership                │
 │  /thought-leadership/[slug] → Piece detail page                  │
@@ -74,12 +75,13 @@
 |------|---------|
 | `lib/data.ts` | All data-loading functions — reads from `data/` |
 | `lib/constants.ts` | SEGMENT_LABELS, FORMAT_LABELS, TYPE_LABELS, brand constants |
-| `components/Header.tsx` | Sticky two-tier nav — `'use client'`, uses `usePathname()` |
+| `components/Header.tsx` | Sticky two-tier nav — `'use client'`, uses `usePathname()`. 4 tabs: Latest, Intelligence, Thought Leadership, Landscape. Masthead links to /latest. |
 | `components/AuthorAvatar.tsx` | Deterministic letter-initial avatar (no external URLs) |
 | `components/IntelligenceFeed.tsx` | Main feed on `/` — lead story + grid cards |
 | `components/SectionLabel.tsx` | Consistent section heading style |
 | `app/landscape/page.tsx` | AI capabilities matrix — reads all competitors |
-| `app/page.tsx` | Homepage — date bar + full intelligence feed |
+| `app/page.tsx` | Landing page (public marketing, unauthenticated) |
+| `app/latest/page.tsx` | Authenticated homepage — date bar, lead story, 6-card grid, TL, landscape teaser |
 | `app/intelligence/[slug]/page.tsx` | Article detail — FormattedSummary with lede + keyword bolding |
 | `app/thought-leadership/[slug]/page.tsx` | Piece detail — insight callout, summary bullets, quotes |
 | `lib/supabase.ts` | Supabase browser client (used in 'use client' components) |

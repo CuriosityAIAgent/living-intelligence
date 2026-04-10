@@ -19,12 +19,15 @@ function LoginContent() {
   const errorParam = searchParams.get('error')
 
   const [email, setEmail] = useState('')
-  const [loading, setLoading] = useState(false)
+  const [loadingEmail, setLoadingEmail] = useState(false)
+  const [loadingGoogle, setLoadingGoogle] = useState(false)
   const [sent, setSent] = useState(false)
   const [error, setError] = useState('')
 
+  const loading = loadingEmail || loadingGoogle
+
   async function handleContinueWithGoogle() {
-    setLoading(true)
+    setLoadingGoogle(true)
     setError('')
 
     const { error } = await supabase.auth.signInWithOAuth({
@@ -36,13 +39,13 @@ function LoginContent() {
     })
     if (error) {
       setError(error.message)
-      setLoading(false)
+      setLoadingGoogle(false)
     }
   }
 
   async function handleContinueWithEmail() {
     if (!email.trim()) { setError('Please enter your work email'); return }
-    setLoading(true)
+    setLoadingEmail(true)
     setError('')
 
     const { error } = await supabase.auth.signInWithOtp({
@@ -55,16 +58,16 @@ function LoginContent() {
 
     if (error) {
       setError(error.message)
-      setLoading(false)
+      setLoadingEmail(false)
       return
     }
 
     setSent(true)
-    setLoading(false)
+    setLoadingEmail(false)
   }
 
   async function handleResend() {
-    setLoading(true)
+    setLoadingEmail(true)
     setError('')
 
     const { error } = await supabase.auth.signInWithOtp({
@@ -76,7 +79,7 @@ function LoginContent() {
     })
 
     if (error) setError(error.message)
-    setLoading(false)
+    setLoadingEmail(false)
   }
 
   return (
@@ -115,7 +118,7 @@ function LoginContent() {
               disabled={loading}
               className="w-full bg-[#1C1C2E] text-white rounded-lg px-4 py-3.5 text-sm font-medium hover:bg-[#2a2a40] transition-colors disabled:opacity-50"
             >
-              {loading ? 'Sending...' : 'Continue →'}
+              {loadingEmail ? 'Sending...' : 'Continue →'}
             </button>
 
             <p className="text-[12px] text-gray-400 text-center mt-2 mb-5">
