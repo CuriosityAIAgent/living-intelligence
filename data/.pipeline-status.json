@@ -1,20 +1,20 @@
 {
-  "started_at": "2026-04-09T04:00:00.622Z",
+  "started_at": "2026-04-10T04:00:00.298Z",
   "candidates_found": 15,
   "queued": 0,
-  "blocked": 4,
+  "blocked": 1,
   "errors": 0,
   "error_details": [],
   "discovery_sources": {
-    "layer1_news": 36,
+    "layer1_news": 39,
     "layer1_capabilities": 0,
     "layer2_companies": 0,
-    "layer3_newsapi": 2,
-    "layer1_tl": 33,
-    "layer2_authors": 9,
+    "layer3_newsapi": 3,
+    "layer1_tl": 34,
+    "layer2_authors": 8,
     "companies_queried": 0,
     "capabilities_queried": 0,
-    "raw_intel_total": 36
+    "raw_intel_total": 40
   },
   "tl_candidates": 40,
   "tl_items": [
@@ -29,20 +29,20 @@
     },
     {
       "id": "aHR0cHM6Ly93",
-      "title": "Wealth Management Needs AI: Raymond James CEO",
-      "url": "https://www.thinkadvisor.com/2026/03/03/wealth-management-needs-ai-raymond-james-ceo/",
-      "source_name": "thinkadvisor.com",
-      "pub_date": "Mar 3, 2026",
-      "snippet": "Artificial intelligence tools will help advisors better serve their clients, Paul Shoukry says.",
-      "via": "layer1_tl"
-    },
-    {
-      "id": "aHR0cHM6Ly93",
       "title": "As AI Investments Surge, CEOs Take the Lead",
       "url": "https://www.bcg.com/publications/2026/as-ai-investments-surge-ceos-take-the-lead",
       "source_name": "bcg.com",
       "pub_date": "Jan 15, 2026",
       "snippet": "Nearly three-quarters of CEOs are their company’s chief decision maker on AI. Most of them remain bullish on the technology.",
+      "via": "layer1_tl"
+    },
+    {
+      "id": "aHR0cHM6Ly93",
+      "title": "10 Wealth Management Trends For 2026",
+      "url": "https://www.oliverwyman.com/our-expertise/insights/2025/dec/wealth-management-trends-2026.html",
+      "source_name": "oliverwyman.com",
+      "pub_date": null,
+      "snippet": "A forward look at key 2026 wealth management trends, including AI-driven advice, tokenized cash, private markets, embedded wealth, and downturn readiness.",
       "via": "layer1_tl"
     },
     {
@@ -55,12 +55,12 @@
       "via": "layer1_tl"
     },
     {
-      "id": "aHR0cHM6Ly93",
-      "title": "AI Revolutionizes Wealth Management with Future Proof Citywide 2026 Speakers | Future Proof posted on the topic | LinkedIn",
-      "url": "https://www.linkedin.com/posts/futureproofhq_fpc26-speaker-announcement-10-activity-7431733270976872448-Y_Jw",
-      "source_name": "linkedin.com",
-      "pub_date": "Feb 23, 2026",
-      "snippet": "AI is changing wealth management, from how investments are built and portfolios are managed to how firms use data, technology, and new platforms to better serve clients and grow. Join leaders across asset management, data and analytics, fintech, and advisor technology as they share practical insight",
+      "id": "aHR0cHM6Ly90",
+      "title": "John O’Connell Featured in Family Wealth Report: AI 2026: Increased Adoption, New Use Cases, Regulatory Concerns And New FPA Initiative",
+      "url": "https://theoasisgrp.com/article/john-oconnell-featured-in-family-wealth-report-ai-2026-increased-adoption-new-use-cases-regulatory-concerns-and-new-fpa-initiative/",
+      "source_name": "theoasisgrp.com",
+      "pub_date": "Jan 13, 2026",
+      "snippet": "John O'Connell Featured in Family Wealth Report: AI 2026: Increased Adoption, New Use Cases, Regulatory Concerns And New FPA Initiative",
       "via": "layer1_tl"
     },
     {
@@ -87,7 +87,7 @@
       "url": "https://www.researchgate.net/publication/381277119_Artificial_Intelligence_as_Personal_Financial_Advisor_in_the_Future_-_A_Case_Study_Based_on_Algorithmic_Innovation_Strategies",
       "source_name": "researchgate.net",
       "pub_date": null,
-      "snippet": "## Security check required\n\nWe've detected unusual activity from your network. To continue, complete the security check below.\n\nRay ID: 9e969a4699fc76da\n\nClient IP: 2600:1900:0:4005::900\n\n© 2008-2026 ResearchGate GmbH. All rights reserved.",
+      "snippet": "## Security check required\n\nWe've detected unusual activity from your network. To continue, complete the security check below.\n\nRay ID: 9e9ed798f9606810\n\nClient IP: 2600:1900:0:4005::1a00\n\n© 2008-2026 ResearchGate GmbH. All rights reserved.",
       "via": "layer1_tl"
     },
     {
@@ -101,20 +101,20 @@
     },
     {
       "id": "aHR0cHM6Ly93",
-      "title": "ChatGPT as a Financial Advisor: A Re-Examination",
-      "url": "https://www.mdpi.com/1911-8074/18/12/664",
-      "source_name": "mdpi.com",
-      "pub_date": null,
-      "snippet": "Building on prior research, we revisited the 21 personal finance scenarios using OpenAI’s newer ChatGPT-4o to observe whether its financial guidance has meaningfully evolved. Our qualitative analysis relied on expert assessments to examine both the content and tone of the model’s advice, considering",
-      "via": "layer1_tl"
-    },
-    {
-      "id": "aHR0cHM6Ly93",
       "title": "AI Market Trends 2026: Global Investment, Risks, and Buildout | Morgan Stanley",
       "url": "https://www.morganstanley.com/insights/articles/ai-market-trends-institute-2026",
       "source_name": "morganstanley.com",
       "pub_date": "Mar 9, 2026",
       "snippet": "Discover key market trends as AI becomes the central force influencing growth, earnings, geopolitics, and investment strategy across global markets in 2026.",
+      "via": "layer1_tl"
+    },
+    {
+      "id": "aHR0cHM6Ly93",
+      "title": "Access Denied",
+      "url": "https://www.spglobal.com/market-intelligence/en/news-insights/research/2026/01/10-ai-trends-to-shape-your-2026-strategy",
+      "source_name": "spglobal.com",
+      "pub_date": "Jan 30, 2026",
+      "snippet": "You don't have permission to access \"http://www.spglobal.com/market-intelligence/en/news-insights/research/2026/01/10-ai-trends-to-shape-your-2026-strategy\" on this server.\nReference #18.1a7b3517.1775793602.a6e5d8c\n\nhttps://errors.edgesuite.net/18.1a7b3517.1775793602.a6e5d8c",
       "via": "layer1_tl"
     },
     {
@@ -128,20 +128,20 @@
     },
     {
       "id": "aHR0cHM6Ly93",
-      "title": "Access Denied",
-      "url": "https://www.spglobal.com/market-intelligence/en/news-insights/research/2026/01/10-ai-trends-to-shape-your-2026-strategy",
-      "source_name": "spglobal.com",
-      "pub_date": "Jan 30, 2026",
-      "snippet": "You don't have permission to access \"http://www.spglobal.com/market-intelligence/en/news-insights/research/2026/01/10-ai-trends-to-shape-your-2026-strategy\" on this server.\nReference #18.954ddb17.1775707203.dc78009c\n\nhttps://errors.edgesuite.net/18.954ddb17.1775707203.dc78009c",
-      "via": "layer1_tl"
-    },
-    {
-      "id": "aHR0cHM6Ly93",
       "title": "Algorithmic Revolution: AI Leads Investment Strategies in 2026",
       "url": "https://www.linkedin.com/pulse/algorithmic-revolution-ai-leads-investment-mif9c",
       "source_name": "linkedin.com",
       "pub_date": "Jan 21, 2026",
       "snippet": "Industry leaders predict AI will revolutionize business by 2026. IBM believes quantum computers will surpass classical computers that year, which could lead to breakthroughs in many industries.",
+      "via": "layer1_tl"
+    },
+    {
+      "id": "aHR0cHM6Ly93",
+      "title": "Q4 2025 Investment AI Trends: Traditional AI Leads Adoption, But GenAI to Reshape the Status Quo in 2026",
+      "url": "https://www.scnsoft.com/investment/investment-ai-trends",
+      "source_name": "scnsoft.com",
+      "pub_date": "Jan 30, 2026",
+      "snippet": "Investment firms moved past pilots in generative AI, but trust and privacy concerns restrain live rollouts. Agentic AI remains in exploration mode.",
       "via": "layer1_tl"
     },
     {
@@ -156,29 +156,11 @@
   ],
   "blocked_items": [
     {
-      "url": "https://www.prnewswire.com/news-releases/wealthbox-announces-early-access-to-new-ai-features-for-financial-advisors-302707692.html",
-      "title": "Wealthbox Opens Early Access to AI Features Embedded Directly in Advisor CRM Workflow",
-      "reason": "Score 52/100 — below 45 review threshold",
-      "score": 52
-    },
-    {
-      "url": "https://www.thesaasnews.com/news/sherpas-raises-3-2-million-seed-round",
-      "title": "Sherpas Builds AI Operating Layer for Wealth Management, Backed by Mariner Wealth Founder's Family Office",
-      "reason": "Score 43/100 — below 45 review threshold",
-      "score": 43
-    },
-    {
-      "url": "https://rbj.net/2026/04/03/how-ai-complements-financial-advisors-in-wealth-management/",
-      "title": "AI in Wealth Management Framed as Advisor Complement, Not Replacement, in Regional Business Coverage",
-      "reason": "Score 41/100 — below 45 review threshold",
-      "score": 41
-    },
-    {
-      "url": "https://fintech.global/2026/04/07/accuquant-raises-20m-to-boost-ai-financial-infrastructure/",
-      "title": "AccuQuant Secures $20M to Scale AI-Driven Financial Infrastructure Capabilities",
-      "reason": "Paywalled source — claims unverifiable, not fabricated. Human review required.",
-      "score": 40
+      "url": "https://www.techcircle.in/2026/04/09/wealthtech-enters-a-new-phase-with-real-time-portfolio-intelligence-centricity-s-kishore",
+      "title": "Centricity WealthTech Advances Real-Time Portfolio Intelligence as Core Architecture for India's Wealth Platforms",
+      "reason": "Score 46/100 — below 45 review threshold",
+      "score": 46
     }
   ],
-  "written_at": "2026-04-09T04:05:21.119Z"
+  "written_at": "2026-04-10T04:01:18.913Z"
 }
