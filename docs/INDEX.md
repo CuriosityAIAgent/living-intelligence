@@ -14,6 +14,8 @@ Everything in one place. Where to find what.
 | `docs/integrations.md` | Every external API: Anthropic Claude, Jina (search + extract + embeddings + reranker), DataForSEO (news + organic + images + content analysis + backlinks), NewsAPI.ai. Pipeline flow diagrams. |
 | `docs/landscape-v2-plan.md` | Landscape v2 pipeline architecture: 5 agents, iteration process, quality criteria (Landscape McKinsey Test), testing plan, cost considerations. |
 | `docs/landscape-v2-execution-plan.md` | Per-company execution process: 5 stages (research → supplementary → write → iterate → verify URLs). Quality gates. Priority order. Portal changes. Lessons learned. |
+| `docs/sessions-23-28-plan.md` | KB Phases 3-5 + 10 platform engineering principles enforced in code. Per-session breakdown with files, tests, verification. |
+| `docs/platform-engineering-principles.md` | 10 principles from Anthropic, Stripe, Palantir, CB Insights, Linear. Each with enforcement strategy specific to Living Intelligence. |
 | `BUILD_PLAN_ALGORITHM.md` | Original algorithm design document (v1 era). |
 
 ---
