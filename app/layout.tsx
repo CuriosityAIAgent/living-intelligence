@@ -3,7 +3,18 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Living Intelligence — AI in Wealth Management",
-  description: "37 wealth management firms. 7 AI capability dimensions. Every development verified, analysed, and updated weekly.",
+  description: "The intelligence platform for wealth management decision-makers. 7 AI capability dimensions tracked across the industry — verified, analysed, and updated daily.",
+  openGraph: {
+    title: "Living Intelligence — AI in Wealth Management",
+    description: "The intelligence platform for wealth management decision-makers. 7 AI capability dimensions tracked across the industry.",
+    siteName: "Living Intelligence",
+    type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: "Living Intelligence — AI in Wealth Management",
+    description: "The intelligence platform for wealth management decision-makers. 7 AI capability dimensions tracked across the industry.",
+  },
 };
 
 export default function RootLayout({

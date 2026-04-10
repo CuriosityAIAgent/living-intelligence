@@ -22,18 +22,22 @@ See @docs/architecture.md for full system design, @docs/integrations.md for all 
 **Auth files (10):**
 - `lib/supabase.ts` — browser client (`createBrowserClient` from `@supabase/ssr`)
 - `lib/supabase-server.ts` — server client + admin client (service key, bypasses RLS)
-- `middleware.ts` — auth gate: logged in → has complete profile (name+company) → has org → org active. Public routes: `/`, `/login`, `/join`, `/api/auth/*`, `/api/webhooks/stripe`
+- `middleware.ts` — auth gate: logged in → has complete profile (name+company) → has org → org active. Public routes: `/`, `/login`, `/join`, `/invite`, `/api/auth/*`, `/api/webhooks/stripe`, `/api/invite/*`
 - `app/login/page.tsx` — **Unified auth page** for both new and returning users. Work email + "Continue →" (magic link) or Google. No passwords. Supabase auto-registers new users, auto-signs-in existing ones. No separate /register page.
+- `app/invite/page.tsx` — **Invite-only registration** for friends/soft launch. Pre-filled code from URL. Google/magic link → name+company → auto-creates org (no Stripe). 2 clicks to portal.
+- `app/api/invite/activate/route.ts` — Validates invite code (FRIEND2026), creates org (founding tier, active), links user profile as admin. Uses createAdminClient to bypass RLS.
 - `app/api/auth/callback/route.ts` — OAuth + magic link redirect handler (uses x-forwarded-host for Railway reverse proxy)
 - `app/api/auth/signout/route.ts` — signs out + redirects to /login
 - `app/onboarding/page.tsx` — Profile completion (name + company if missing) → team invites (up to 4 emails) → or "Complete checkout" if no org yet
 - `app/join/page.tsx` — reads `?tier=` and `?coupon=` params, redirects to Stripe checkout
 
-**New user flow:** Landing page → "Register" → `/login` → email or Google → magic link → `/onboarding` (complete profile: name + company) → Stripe checkout → team invites → `/latest`
+**Friend/invite flow (soft launch):** You send `livingintel.ai/invite?code=FRIEND2026` → Google login → name+company → org auto-created → `/latest`. No Stripe, no checkout. 2 clicks. Invite code stored in localStorage (`li_invite_code`) to survive OAuth redirect. Landing page (`app/page.tsx`) checks localStorage on mount — if pending invite code found, redirects to `/invite`.
 
 **Returning user flow:** any portal page → middleware redirects to `/login` → email or Google → magic link → `/latest` (skips onboarding — profile already complete)
 
-**Landing page nav:** "Sign in" (text link) + "Register" (claret button) — both go to `/login`
+**Paid user flow (future):** Landing page → "Request access" → conversation with Haresh → Stripe checkout link → pay → org created via webhook → `/latest`
+
+**Landing page nav:** "Sign in" (text link) + "Request access" (claret button)
 
 **API key naming (2026):** Supabase renamed `anon` → **Publishable** (`sb_publishable_...`), `service_role` → **Secret** (`sb_secret_...`). Functionality identical.
 

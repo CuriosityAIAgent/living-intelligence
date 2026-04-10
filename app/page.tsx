@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import RotatingHeadline from '@/components/RotatingHeadline';
 
 /* ─── Single source of truth for all landing page numbers ─── */
@@ -24,6 +24,14 @@ const NAV_LINKS = [
 export default function LandingPage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+  // If user came back from OAuth with a pending invite code, redirect to /invite
+  useEffect(() => {
+    const pendingCode = localStorage.getItem('li_invite_code');
+    if (pendingCode) {
+      window.location.href = `/invite?code=${pendingCode}`;
+    }
+  }, []);
+
   return (
     <div className="min-h-screen">
 
@@ -33,7 +41,7 @@ export default function LandingPage() {
           href="/login"
           className="bg-[#990F3D] hover:bg-[#7a0c31] text-white text-[13px] font-bold px-6 py-3 rounded-full shadow-lg transition-colors no-underline flex items-center gap-2"
         >
-          Register now <span className="text-[16px]">&rarr;</span>
+          Request access <span className="text-[16px]">&rarr;</span>
         </a>
       </div>
       <div className="fixed bottom-0 left-0 right-0 z-50 md:hidden bg-[#1C1C2E] border-t border-[#2A2A3E] px-6 py-3">
@@ -41,7 +49,7 @@ export default function LandingPage() {
           href="/login"
           className="block text-center bg-[#990F3D] hover:bg-[#7a0c31] text-white text-[14px] font-bold py-3 rounded transition-colors no-underline"
         >
-          Register now
+          Request access
         </a>
       </div>
 
@@ -618,7 +626,7 @@ export default function LandingPage() {
                 href="/login"
                 className="block text-center bg-[#990F3D] hover:bg-[#7a0c31] text-white text-[14px] font-bold py-3.5 rounded transition-colors no-underline"
               >
-                Register now
+                Request access
               </a>
 
               <p className="text-[12px] text-gray-400 mt-4 text-center">
