@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import RatingWidget from "@/components/RatingWidget";
 
 export const metadata: Metadata = {
   title: "Living Intelligence — AI in Wealth Management",
@@ -43,6 +44,7 @@ export default function RootLayout({
       </head>
       <body className="bg-white text-gray-900 min-h-screen flex flex-col">
         <div className="flex-1">{children}</div>
+        <RatingWidget />
       </body>
     </html>
   );

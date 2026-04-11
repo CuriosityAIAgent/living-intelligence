@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState, useEffect, useRef } from 'react';
 import { createClient } from '@/lib/supabase';
+import FeedbackModal from '@/components/FeedbackModal';
 
 const navItems = [
   { label: 'Latest', shortLabel: 'Latest', href: '/latest' },
@@ -15,6 +16,7 @@ const navItems = [
 export default function Header() {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [feedbackOpen, setFeedbackOpen] = useState(false);
   const [initials, setInitials] = useState('');
   const [userName, setUserName] = useState('');
   const [userCompany, setUserCompany] = useState('');
@@ -85,16 +87,14 @@ export default function Header() {
                         <div className="text-xs text-gray-500 truncate">{userCompany}</div>
                       )}
                     </div>
-                    <a
-                      href="mailto:hello@livingintel.ai?subject=Living%20Intelligence%20Feedback"
-                      className="block px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 no-underline"
+                    <button
+                      onClick={() => { setMenuOpen(false); setFeedbackOpen(true); }}
+                      className="block w-full text-left px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50"
                     >
                       Share feedback
-                    </a>
+                    </button>
                     <a
-                      href="/"
-                      target="_blank"
-                      rel="noopener"
+                      href="/about"
                       className="block px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 no-underline"
                     >
                       About Living Intelligence
@@ -137,6 +137,7 @@ export default function Header() {
         </div>
       </div>
 
+      <FeedbackModal open={feedbackOpen} onClose={() => setFeedbackOpen(false)} />
     </header>
   );
 }

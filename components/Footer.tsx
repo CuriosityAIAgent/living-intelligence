@@ -49,7 +49,7 @@ export default function Footer() {
             <ul className="space-y-2">
               <li>
                 <Link
-                  href="/"
+                  href="/about"
                   className="text-[13px] text-[#9999BB] hover:text-white transition-colors no-underline"
                 >
                   About Living Intelligence
