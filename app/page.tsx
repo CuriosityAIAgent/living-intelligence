@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import RotatingHeadline from '@/components/RotatingHeadline';
 
 /* ─── Single source of truth for all landing page numbers ─── */
@@ -23,14 +23,6 @@ const NAV_LINKS = [
 
 export default function LandingPage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-  // If user came back from OAuth with a pending invite code, redirect to /invite
-  useEffect(() => {
-    const pendingCode = localStorage.getItem('li_invite_code');
-    if (pendingCode) {
-      window.location.href = `/invite?code=${pendingCode}`;
-    }
-  }, []);
 
   return (
     <div className="min-h-screen">
