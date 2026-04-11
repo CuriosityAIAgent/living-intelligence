@@ -64,6 +64,7 @@ export async function POST(request: Request) {
       .from('user_profiles')
       .upsert({
         id: user.id,
+        email: user.email!,
         full_name: fullName.trim(),
         company: company.trim(),
         org_id: org.id,
