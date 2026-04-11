@@ -1,4 +1,5 @@
 import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 import IntelligenceFilter from '@/components/IntelligenceFilter';
 import { getAllIntelligence } from '@/lib/data';
 
@@ -6,10 +7,10 @@ export default function IntelligencePage() {
   const entries = getAllIntelligence();
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen flex flex-col">
       <Header />
 
-      <main className="max-w-6xl mx-auto px-6 py-10">
+      <main className="max-w-6xl mx-auto px-6 py-10 flex-1">
 
         <div className="mb-8 pb-6 border-b border-gray-200">
           <p className="section-label mb-1">Market Intelligence</p>
@@ -24,6 +25,8 @@ export default function IntelligencePage() {
         <IntelligenceFilter entries={entries} />
 
       </main>
+
+      <Footer />
     </div>
   );
 }

@@ -231,8 +231,19 @@ git push origin main --force
 | Section label | `text-[11px] font-semibold uppercase tracking-widest text-[#990F3D]` |
 
 **Header structure (two-tier):**
-- Top tier (56px, `#1C1C2E`): wordmark "AI in Wealth Management" left (links to /latest); "LIVING INTELLIGENCE" bold right (15px, font-bold, uppercase, tracking-widest, white) — no subtitle
+- Top tier (56px, `#1C1C2E`): "LIVING INTELLIGENCE" bold left (15px, font-bold, uppercase, tracking-widest, white, links to /latest); "AI in Wealth Management" muted right (#9999BB) + user avatar menu (initials, sign out, feedback, about)
 - Bottom tier (40px, `#141420`): 4 nav tabs left-flush (`pl-0 pr-6`) with `border-b-2` active underline: Latest | Intelligence | Thought Leadership | Landscape
+
+**Footer (all portal pages):**
+- 3-column: brand description | platform nav links | company links (About, Privacy, Contact) + "Share feedback →"
+- Disclaimer + © Curiosity AI + hello@livingintel.ai
+- Dark slate bg (#1C1C2E), matches header
+
+**WelcomeBanner (latest page):**
+- Dismissible, first-visit only (localStorage `li_welcome_dismissed`), explains platform sections
+
+**/privacy page:**
+- Data collection, auth, analytics, AI content, security, disclaimer, contact (hello@livingintel.ai)
 
 ---
 

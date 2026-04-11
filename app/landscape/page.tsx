@@ -1,6 +1,7 @@
 import React from 'react';
 import { getAllCompetitors, getCapabilities, SEGMENT_LABELS } from '@/lib/data';
 import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 import SectionLabel from '@/components/SectionLabel';
 import Link from 'next/link';
 
@@ -25,10 +26,10 @@ export default function LandscapePage() {
   })).filter(g => g.competitors.length > 0);
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen flex flex-col">
       <Header />
 
-      <main className="max-w-6xl mx-auto px-6 py-10">
+      <main className="max-w-6xl mx-auto px-6 py-10 flex-1">
 
         {/* Page header */}
         <div className="mb-8 pb-6 border-b border-gray-200">
@@ -189,6 +190,7 @@ export default function LandscapePage() {
 
       </main>
 
+      <Footer />
     </div>
   );
 }

@@ -1,5 +1,6 @@
 import { getAllCompetitors, SEGMENT_LABELS } from '@/lib/data';
 import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 import SectionLabel from '@/components/SectionLabel';
 import Link from 'next/link';
 
@@ -21,9 +22,9 @@ export default function CompetitorsPage() {
   })).filter(g => g.competitors.length > 0);
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen flex flex-col">
       <Header />
-      <main className="max-w-6xl mx-auto px-6 py-10">
+      <main className="max-w-6xl mx-auto px-6 py-10 flex-1">
         <div className="mb-8 pb-6 border-b border-gray-200">
           <p className="section-label mb-1">Institution Profiles</p>
           <h1 className="text-3xl font-bold text-gray-900 mb-2">Company Profiles</h1>
@@ -75,6 +76,8 @@ export default function CompetitorsPage() {
           </div>
         ))}
       </main>
+
+      <Footer />
     </div>
   );
 }

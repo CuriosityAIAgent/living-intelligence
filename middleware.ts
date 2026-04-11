@@ -3,7 +3,7 @@ import { NextResponse, type NextRequest } from 'next/server'
 
 // Routes that don't require authentication
 // Routes that are public (prefix match)
-const PUBLIC_PREFIXES = ['/login', '/join', '/invite', '/api/auth/', '/api/webhooks/stripe', '/api/invite/']
+const PUBLIC_PREFIXES = ['/login', '/join', '/invite', '/privacy', '/api/auth/', '/api/webhooks/stripe', '/api/invite/']
 // Routes that are public (exact match)
 const PUBLIC_EXACT = ['/']
 

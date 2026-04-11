@@ -1,5 +1,7 @@
 import Link from 'next/link';
 import Header from '@/components/Header';
+import Footer from '@/components/Footer';
+import WelcomeBanner from '@/components/WelcomeBanner';
 import SectionLabel from '@/components/SectionLabel';
 import AuthorAvatar from '@/components/AuthorAvatar';
 import {
@@ -32,7 +34,7 @@ export default function LatestPage() {
   const featuredThought = allTL[0] || null;
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen flex flex-col">
       <Header />
 
       {/* Date bar */}
@@ -44,7 +46,8 @@ export default function LatestPage() {
         </div>
       </div>
 
-      <main className="max-w-6xl mx-auto px-6 py-8">
+      <main className="max-w-6xl mx-auto px-6 py-8 flex-1">
+        <WelcomeBanner />
 
         {/* Lead Story */}
         {leadStory && (
@@ -242,6 +245,8 @@ export default function LatestPage() {
         </section>
 
       </main>
+
+      <Footer />
     </div>
   );
 }

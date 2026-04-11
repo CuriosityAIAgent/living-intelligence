@@ -1,5 +1,6 @@
 import { getCompetitor, getCapabilities, getAllCompetitors, getIntelligenceByCompany, SEGMENT_LABELS } from '@/lib/data';
 import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 
@@ -43,9 +44,9 @@ export default async function CompetitorPage({ params }: { params: Promise<{ slu
   );
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen flex flex-col">
       <Header />
-      <main className="max-w-4xl mx-auto px-6 py-10">
+      <main className="max-w-4xl mx-auto px-6 py-10 flex-1">
 
         {/* Breadcrumb */}
         <nav className="flex items-center gap-2 text-xs text-gray-400 mb-8">
@@ -211,6 +212,8 @@ export default async function CompetitorPage({ params }: { params: Promise<{ slu
         </div>
 
       </main>
+
+      <Footer />
     </div>
   );
 }

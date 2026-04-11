@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 import AuthorAvatar from '@/components/AuthorAvatar';
 import SectionLabel from '@/components/SectionLabel';
 import { getAllThoughtLeadership, formatDateShort, FORMAT_LABELS } from '@/lib/data';
@@ -8,10 +9,10 @@ export default function ThoughtLeadershipPage() {
   const entries = getAllThoughtLeadership();
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen flex flex-col">
       <Header />
 
-      <main className="max-w-6xl mx-auto px-6 py-10">
+      <main className="max-w-6xl mx-auto px-6 py-10 flex-1">
 
         {/* Page header */}
         <div className="mb-10 pb-6 border-b border-gray-200">
@@ -74,6 +75,7 @@ export default function ThoughtLeadershipPage() {
 
       </main>
 
+      <Footer />
     </div>
   );
 }

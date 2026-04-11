@@ -60,6 +60,9 @@
 │  /login                  → Auth: Google + magic link + password   │
 │  /join                   → Subscriber entry point (coupon param)  │
 │  /onboarding             → Team invite (up to 5 emails)          │
+│  /privacy                → Privacy policy (public, no auth)      │
+│  /invite                 → Redirects to /login?code=...          │
+│  /api/invite/activate    → Validates invite code, creates org    │
 │  /api/auth/callback      → OAuth + magic link redirect handler   │
 │  /api/auth/signout       → Sign out + redirect to /login         │
 │  /api/checkout           → Creates Stripe Checkout session        │
@@ -75,7 +78,9 @@
 |------|---------|
 | `lib/data.ts` | All data-loading functions — reads from `data/` |
 | `lib/constants.ts` | SEGMENT_LABELS, FORMAT_LABELS, TYPE_LABELS, brand constants |
-| `components/Header.tsx` | Sticky two-tier nav — `'use client'`, uses `usePathname()`. 4 tabs: Latest, Intelligence, Thought Leadership, Landscape. Masthead links to /latest. |
+| `components/Header.tsx` | Sticky two-tier nav — `'use client'`, uses `usePathname()`. Brand left, descriptor + user menu right. 4 tabs: Latest, Intelligence, Thought Leadership, Landscape. |
+| `components/Footer.tsx` | 3-column footer (brand, platform nav, company links + feedback) + disclaimer. Used on all 8 portal pages. |
+| `components/WelcomeBanner.tsx` | Dismissible first-visit banner (`'use client'`, localStorage). Shown on /latest. |
 | `components/AuthorAvatar.tsx` | Deterministic letter-initial avatar (no external URLs) |
 | `components/IntelligenceFeed.tsx` | Main feed on `/` — lead story + grid cards |
 | `components/SectionLabel.tsx` | Consistent section heading style |
