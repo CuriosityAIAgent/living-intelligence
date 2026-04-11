@@ -1,166 +1,42 @@
 {
-  "started_at": "2026-04-10T04:00:00.298Z",
+  "started_at": "2026-04-11T04:00:00.392Z",
   "candidates_found": 15,
   "queued": 0,
-  "blocked": 1,
+  "blocked": 3,
   "errors": 0,
   "error_details": [],
   "discovery_sources": {
-    "layer1_news": 39,
+    "layer1_news": 41,
     "layer1_capabilities": 0,
     "layer2_companies": 0,
     "layer3_newsapi": 3,
-    "layer1_tl": 34,
-    "layer2_authors": 8,
+    "layer1_tl": 0,
+    "layer2_authors": 0,
     "companies_queried": 0,
     "capabilities_queried": 0,
-    "raw_intel_total": 40
+    "raw_intel_total": 43
   },
-  "tl_candidates": 40,
-  "tl_items": [
-    {
-      "id": "aHR0cHM6Ly9o",
-      "title": "Has AI Ended Thought Leadership?",
-      "url": "https://hbr.org/2026/03/has-ai-ended-thought-leadership",
-      "source_name": "hbr.org",
-      "pub_date": "Mar 9, 2026",
-      "snippet": "As generative AI and content platforms make it effortless to sound authoritative, organizations are being overwhelmed by polished insight that rarely translates into real change. The growing gap between those who talk about the future of work and those who actually build it has turned expertise into",
-      "via": "layer1_tl"
-    },
-    {
-      "id": "aHR0cHM6Ly93",
-      "title": "As AI Investments Surge, CEOs Take the Lead",
-      "url": "https://www.bcg.com/publications/2026/as-ai-investments-surge-ceos-take-the-lead",
-      "source_name": "bcg.com",
-      "pub_date": "Jan 15, 2026",
-      "snippet": "Nearly three-quarters of CEOs are their company’s chief decision maker on AI. Most of them remain bullish on the technology.",
-      "via": "layer1_tl"
-    },
-    {
-      "id": "aHR0cHM6Ly93",
-      "title": "10 Wealth Management Trends For 2026",
-      "url": "https://www.oliverwyman.com/our-expertise/insights/2025/dec/wealth-management-trends-2026.html",
-      "source_name": "oliverwyman.com",
-      "pub_date": null,
-      "snippet": "A forward look at key 2026 wealth management trends, including AI-driven advice, tokenized cash, private markets, embedded wealth, and downturn readiness.",
-      "via": "layer1_tl"
-    },
-    {
-      "id": "aHR0cHM6Ly93",
-      "title": "AI AND WEALTH MANAGEMENT: A WORD FROM AMERICAN COLLEGE THOUGHT LEADERS",
-      "url": "https://www.theamericancollege.edu/knowledge-hub/insights/ai-and-wealth-management",
-      "source_name": "theamericancollege.edu",
-      "pub_date": null,
-      "snippet": "The nexus of artificial intelligence (AI) technologies and wealth management is one of the biggest points of discussion in financial services today, and is setting up a quantum leap in how advisors interact with clients, make decisions, and run their businesses.",
-      "via": "layer1_tl"
-    },
-    {
-      "id": "aHR0cHM6Ly90",
-      "title": "John O’Connell Featured in Family Wealth Report: AI 2026: Increased Adoption, New Use Cases, Regulatory Concerns And New FPA Initiative",
-      "url": "https://theoasisgrp.com/article/john-oconnell-featured-in-family-wealth-report-ai-2026-increased-adoption-new-use-cases-regulatory-concerns-and-new-fpa-initiative/",
-      "source_name": "theoasisgrp.com",
-      "pub_date": "Jan 13, 2026",
-      "snippet": "John O'Connell Featured in Family Wealth Report: AI 2026: Increased Adoption, New Use Cases, Regulatory Concerns And New FPA Initiative",
-      "via": "layer1_tl"
-    },
-    {
-      "id": "aHR0cHM6Ly93",
-      "title": "Instagram",
-      "url": "https://www.instagram.com/reel/DWEQfXJk5T-/",
-      "source_name": "instagram.com",
-      "pub_date": "Mar 19, 2026",
-      "snippet": "Create an account or log in to Instagram - Share what you're into with the people who get you.",
-      "via": "layer1_tl"
-    },
-    {
-      "id": "aHR0cHM6Ly93",
-      "title": "How artificial intelligence is reshaping the financial services industry",
-      "url": "https://www.ey.com/en_gr/insights/financial-services/how-artificial-intelligence-is-reshaping-the-financial-services-industry",
-      "source_name": "ey.com",
-      "pub_date": null,
-      "snippet": "AI is reshaping the financial services industry, making it more efficient, effective and innovative. Read more.",
-      "via": "layer1_tl"
-    },
-    {
-      "id": "aHR0cHM6Ly93",
-      "title": "Just a moment...",
-      "url": "https://www.researchgate.net/publication/381277119_Artificial_Intelligence_as_Personal_Financial_Advisor_in_the_Future_-_A_Case_Study_Based_on_Algorithmic_Innovation_Strategies",
-      "source_name": "researchgate.net",
-      "pub_date": null,
-      "snippet": "## Security check required\n\nWe've detected unusual activity from your network. To continue, complete the security check below.\n\nRay ID: 9e9ed798f9606810\n\nClient IP: 2600:1900:0:4005::1a00\n\n© 2008-2026 ResearchGate GmbH. All rights reserved.",
-      "via": "layer1_tl"
-    },
-    {
-      "id": "aHR0cHM6Ly93",
-      "title": "Impact of Artificial Intelligence (AI) in Financial Advisory Industry",
-      "url": "https://www.theamericancollege.edu/knowledge-hub/insights/impact-of-artificial-intelligence-ai-in-financial-advisory-industry",
-      "source_name": "theamericancollege.edu",
-      "pub_date": null,
-      "snippet": "Center for Ethics Webcast explores artificial intelligence in the financial services industry.",
-      "via": "layer1_tl"
-    },
-    {
-      "id": "aHR0cHM6Ly93",
-      "title": "AI Market Trends 2026: Global Investment, Risks, and Buildout | Morgan Stanley",
-      "url": "https://www.morganstanley.com/insights/articles/ai-market-trends-institute-2026",
-      "source_name": "morganstanley.com",
-      "pub_date": "Mar 9, 2026",
-      "snippet": "Discover key market trends as AI becomes the central force influencing growth, earnings, geopolitics, and investment strategy across global markets in 2026.",
-      "via": "layer1_tl"
-    },
-    {
-      "id": "aHR0cHM6Ly93",
-      "title": "Access Denied",
-      "url": "https://www.spglobal.com/market-intelligence/en/news-insights/research/2026/01/10-ai-trends-to-shape-your-2026-strategy",
-      "source_name": "spglobal.com",
-      "pub_date": "Jan 30, 2026",
-      "snippet": "You don't have permission to access \"http://www.spglobal.com/market-intelligence/en/news-insights/research/2026/01/10-ai-trends-to-shape-your-2026-strategy\" on this server.\nReference #18.1a7b3517.1775793602.a6e5d8c\n\nhttps://errors.edgesuite.net/18.1a7b3517.1775793602.a6e5d8c",
-      "via": "layer1_tl"
-    },
-    {
-      "id": "aHR0cHM6Ly9o",
-      "title": "7 Factors That Drive Returns on AI Investments, According to a New Survey",
-      "url": "https://hbr.org/2026/03/7-factors-that-drive-returns-on-ai-investments-according-to-a-new-survey",
-      "source_name": "hbr.org",
-      "pub_date": "Mar 17, 2026",
-      "snippet": "Leaders are facing tremendous pressure to deliver on AI. To understand how they are navigating this, researchers surveyed 1,006 global senior executives who had close familiarity with their organizations’ AI initiatives, and interviewed 12 technology, data, and AI leaders at enterprise organizations",
-      "via": "layer1_tl"
-    },
-    {
-      "id": "aHR0cHM6Ly93",
-      "title": "Algorithmic Revolution: AI Leads Investment Strategies in 2026",
-      "url": "https://www.linkedin.com/pulse/algorithmic-revolution-ai-leads-investment-mif9c",
-      "source_name": "linkedin.com",
-      "pub_date": "Jan 21, 2026",
-      "snippet": "Industry leaders predict AI will revolutionize business by 2026. IBM believes quantum computers will surpass classical computers that year, which could lead to breakthroughs in many industries.",
-      "via": "layer1_tl"
-    },
-    {
-      "id": "aHR0cHM6Ly93",
-      "title": "Q4 2025 Investment AI Trends: Traditional AI Leads Adoption, But GenAI to Reshape the Status Quo in 2026",
-      "url": "https://www.scnsoft.com/investment/investment-ai-trends",
-      "source_name": "scnsoft.com",
-      "pub_date": "Jan 30, 2026",
-      "snippet": "Investment firms moved past pilots in generative AI, but trust and privacy concerns restrain live rollouts. Agentic AI remains in exploration mode.",
-      "via": "layer1_tl"
-    },
-    {
-      "id": "aHR0cHM6Ly9w",
-      "title": "GenAI Strategy & Investment Management | Portal26 Platform Feature",
-      "url": "https://portal26.ai/genai-strategy/",
-      "source_name": "portal26.ai",
-      "pub_date": null,
-      "snippet": "Balance GenAI investments across private, public, and licensed AI with Portal26's strategy management. Optimize ROI, manage risk, and align with enterprise objectives and policies.",
-      "via": "layer1_tl"
-    }
-  ],
+  "tl_candidates": 0,
+  "tl_items": [],
   "blocked_items": [
     {
-      "url": "https://www.techcircle.in/2026/04/09/wealthtech-enters-a-new-phase-with-real-time-portfolio-intelligence-centricity-s-kishore",
-      "title": "Centricity WealthTech Advances Real-Time Portfolio Intelligence as Core Architecture for India's Wealth Platforms",
-      "reason": "Score 46/100 — below 45 review threshold",
-      "score": 46
+      "url": "https://www.investmentnews.com/fintech/wealth-firms-double-down-on-ai-as-sowell-and-guardian-forge-new-tech-alliances/265487",
+      "title": "Altruist's Hazel AI Aggregates CRM, Comms and Market Data to Automate Advisor Workflows Across Sowell Network",
+      "reason": "Score 45/100 — below 45 review threshold",
+      "score": 45
+    },
+    {
+      "url": "https://finance.yahoo.com/news/openai-releases-financial-services-tools-190124457.html",
+      "title": "OpenAI Launches Dedicated Financial-Services AI Tools, Entering Direct Competition with Anthropic",
+      "reason": "Score 42/100 — below 45 review threshold",
+      "score": 42
+    },
+    {
+      "url": "https://citywire.com/ria/news/altruist-saw-record-traffic-after-launching-ai-tax-tool-coo-says/a2483745",
+      "title": "Altruist AI Tax Tool Drives Record Platform Traffic, Signaling Advisor Demand for Automated Tax Intelligence",
+      "reason": "Score 50/100 — below 45 review threshold",
+      "score": 50
     }
   ],
-  "written_at": "2026-04-10T04:01:18.913Z"
+  "written_at": "2026-04-11T04:04:46.927Z"
 }

@@ -247,5 +247,26 @@
     "blocked_at": "2026-04-10T04:01:18.911Z",
     "title": "Centricity WealthTech Advances Real-Time Portfolio Intelligence as Core Architecture for India's Wealth Platforms",
     "score": 46
+  },
+  "https://www.investmentnews.com/fintech/wealth-firms-double-down-on-ai-as-sowell-and-guardian-forge-new-tech-alliances/265487": {
+    "id": "altruist-hazel-ai-sowell-guardian-avantos-2026-03",
+    "reason": "Score 45/100 — below 45 review threshold",
+    "blocked_at": "2026-04-11T04:01:49.439Z",
+    "title": "Altruist's Hazel AI Aggregates CRM, Comms and Market Data to Automate Advisor Workflows Across Sowell Network",
+    "score": 45
+  },
+  "https://finance.yahoo.com/news/openai-releases-financial-services-tools-190124457.html": {
+    "id": "openai-financial-services-tools-march-2026",
+    "reason": "Score 42/100 — below 45 review threshold",
+    "blocked_at": "2026-04-11T04:03:08.222Z",
+    "title": "OpenAI Launches Dedicated Financial-Services AI Tools, Entering Direct Competition with Anthropic",
+    "score": 42
+  },
+  "https://citywire.com/ria/news/altruist-saw-record-traffic-after-launching-ai-tax-tool-coo-says/a2483745": {
+    "id": "altruist-ai-tax-tool-record-traffic-2026-02",
+    "reason": "Score 50/100 — below 45 review threshold",
+    "blocked_at": "2026-04-11T04:04:46.927Z",
+    "title": "Altruist AI Tax Tool Drives Record Platform Traffic, Signaling Advisor Demand for Automated Tax Intelligence",
+    "score": 50
   }
 }
