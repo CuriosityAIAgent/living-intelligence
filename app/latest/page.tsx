@@ -39,14 +39,14 @@ export default function LatestPage() {
 
       {/* Date bar */}
       <div className="border-b border-gray-200 bg-gray-50">
-        <div className="max-w-6xl mx-auto px-6 h-9 flex items-center gap-4">
-          <span className="text-[11px] font-bold uppercase tracking-widest text-[#990F3D]">Updated {monthLabel}</span>
-          <span className="text-gray-300">|</span>
-          <span className="text-[11px] text-gray-500">{allEntries.length} developments · {allTL.length} thought leadership</span>
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 h-9 flex items-center gap-2 sm:gap-4">
+          <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-widest text-[#990F3D]">Updated {monthLabel}</span>
+          <span className="text-gray-300 hidden sm:inline">|</span>
+          <span className="text-[10px] sm:text-[11px] text-gray-500 hidden sm:inline">{allEntries.length} developments · {allTL.length} thought leadership</span>
         </div>
       </div>
 
-      <main className="max-w-6xl mx-auto px-6 py-8 flex-1">
+      <main className="max-w-6xl mx-auto px-4 sm:px-6 py-6 sm:py-8 flex-1">
         <WelcomeBanner />
 
         {/* Lead Story */}
@@ -57,9 +57,9 @@ export default function LatestPage() {
               <hr className="section-rule" />
             </div>
             <Link href={`/intelligence/${leadStory.id}`} className="group block">
-              <div className="grid md:grid-cols-5 gap-8 items-stretch">
+              <div className="grid md:grid-cols-5 gap-5 sm:gap-8 items-stretch">
                 {/* Logo panel */}
-                <div className="md:col-span-2 bg-[#1C1C2E] rounded flex items-center justify-center overflow-hidden p-10 min-h-[220px]">
+                <div className="md:col-span-2 bg-[#1C1C2E] rounded flex items-center justify-center overflow-hidden p-6 sm:p-10 min-h-[140px] sm:min-h-[220px]">
                   {leadStory.image_url ? (
                     // eslint-disable-next-line @next/next/no-img-element
                     <img
@@ -82,7 +82,7 @@ export default function LatestPage() {
                       <span className="text-gray-300">·</span>
                       <span className="text-xs text-gray-400">{formatDateShort(leadStory.date)}</span>
                     </div>
-                    <h2 className="text-[28px] font-bold text-gray-900 leading-tight mb-4 group-hover:text-[#990F3D] transition-colors">
+                    <h2 className="text-xl sm:text-[28px] font-bold text-gray-900 leading-tight mb-3 sm:mb-4 group-hover:text-[#990F3D] transition-colors">
                       {leadStory.headline}
                     </h2>
                     <p className="text-[15px] text-gray-600 leading-relaxed line-clamp-3">{leadStory.summary}</p>
@@ -90,7 +90,7 @@ export default function LatestPage() {
                   <div>
                     {leadStory.key_stat && (
                       <div className="mt-5 pt-4 border-t border-gray-100 flex items-baseline gap-3">
-                        <span className="text-3xl font-extrabold text-[#990F3D]">{leadStory.key_stat.number}</span>
+                        <span className="text-2xl sm:text-3xl font-extrabold text-[#990F3D]">{leadStory.key_stat.number}</span>
                         <span className="text-xs text-gray-500 leading-snug max-w-xs">{leadStory.key_stat.label}</span>
                       </div>
                     )}
@@ -120,7 +120,7 @@ export default function LatestPage() {
                 <hr className="section-rule mt-1" />
               </div>
             </div>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 mb-5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 mb-5">
               {featured.map(entry => (
                 <Link
                   key={entry.id}
@@ -182,10 +182,12 @@ export default function LatestPage() {
               <p className="section-label">Featured Thought Leadership</p>
               <hr className="section-rule" />
             </div>
-            <div className="border border-gray-200 rounded p-6">
+            <div className="border border-gray-200 rounded p-4 sm:p-6">
               <Link href={`/thought-leadership/${featuredThought.id}`} className="group block">
-                <div className="flex items-start gap-4">
-                  <AuthorAvatar name={featuredThought.author.name} size="md" />
+                <div className="flex items-start gap-3 sm:gap-4">
+                  <div className="hidden sm:block">
+                    <AuthorAvatar name={featuredThought.author.name} size="md" />
+                  </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 mb-1">
                       <span className={`format-badge badge-${featuredThought.format}`}>
@@ -218,21 +220,21 @@ export default function LatestPage() {
         {/* Landscape teaser */}
         <section className="mb-6">
           <SectionLabel label="The AI Landscape" />
-          <div className="border border-gray-200 rounded p-6">
-            <div className="flex items-center gap-10">
+          <div className="border border-gray-200 rounded p-4 sm:p-6">
+            <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-10">
               <div className="flex-1">
                 <h3 className="text-base font-semibold text-gray-800 mb-1">Who Is Doing What</h3>
                 <p className="text-sm text-gray-500">AI Capabilities Across Wealth Management</p>
               </div>
-              <div className="flex gap-8 flex-shrink-0">
+              <div className="flex gap-6 sm:gap-8 flex-shrink-0">
                 <div className="text-center">
-                  <div className="text-2xl font-semibold text-[#990F3D] leading-none">{competitors.length}</div>
-                  <div className="text-xs text-gray-500 mt-1.5 uppercase tracking-wide">Institutions</div>
+                  <div className="text-xl sm:text-2xl font-semibold text-[#990F3D] leading-none">{competitors.length}</div>
+                  <div className="text-[10px] sm:text-xs text-gray-500 mt-1 sm:mt-1.5 uppercase tracking-wide">Institutions</div>
                 </div>
                 <div className="w-px bg-gray-200" />
                 <div className="text-center">
-                  <div className="text-2xl font-semibold text-[#990F3D] leading-none">{capabilities.length}</div>
-                  <div className="text-xs text-gray-500 mt-1.5 uppercase tracking-wide">Capability<br/>Dimensions</div>
+                  <div className="text-xl sm:text-2xl font-semibold text-[#990F3D] leading-none">{capabilities.length}</div>
+                  <div className="text-[10px] sm:text-xs text-gray-500 mt-1 sm:mt-1.5 uppercase tracking-wide">Dimensions</div>
                 </div>
               </div>
             </div>

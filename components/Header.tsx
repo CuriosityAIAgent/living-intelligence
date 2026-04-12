@@ -58,9 +58,9 @@ export default function Header() {
 
       {/* Masthead — dark slate */}
       <div className="bg-[#1C1C2E]">
-        <div className="max-w-6xl mx-auto px-6 h-[56px] flex items-center justify-between">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 h-[48px] sm:h-[56px] flex items-center justify-between">
           <Link href="/latest" className="no-underline flex items-center gap-3">
-            <span className="text-[15px] font-bold uppercase tracking-widest text-white">
+            <span className="text-[13px] sm:text-[15px] font-bold uppercase tracking-wider sm:tracking-widest text-white">
               Living Intelligence
             </span>
           </Link>
@@ -116,14 +116,14 @@ export default function Header() {
 
       {/* Nav bar — slightly darker */}
       <div className="bg-[#141420] border-b border-[#2A2A3E]">
-        <div className="max-w-6xl mx-auto px-6 flex items-stretch h-10 overflow-x-auto scrollbar-none">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 flex items-stretch h-10 overflow-x-auto scrollbar-none">
           {navItems.map((item) => {
             const isActive = pathname.startsWith(item.href);
             return (
               <Link
                 key={item.href}
                 href={item.href}
-                className={`flex items-center whitespace-nowrap flex-shrink-0 pl-0 pr-6 text-[13px] font-medium border-b-2 transition-colors ${
+                className={`flex items-center whitespace-nowrap flex-shrink-0 pl-0 pr-4 sm:pr-6 text-[12px] sm:text-[13px] font-medium border-b-2 transition-colors ${
                   isActive
                     ? 'text-white border-[#990F3D]'
                     : 'text-[#9999BB] border-transparent hover:text-white hover:border-[#9999BB]'

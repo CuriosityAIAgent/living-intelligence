@@ -23,7 +23,7 @@ export default async function ThoughtLeadershipPiecePage({
     <div className="min-h-screen flex flex-col">
       <Header />
 
-      <main className="max-w-3xl mx-auto px-6 py-10 flex-1">
+      <main className="max-w-3xl mx-auto px-4 sm:px-6 py-6 sm:py-10 flex-1">
 
         {/* Breadcrumb */}
         <nav className="flex items-center gap-2 text-xs text-gray-400 mb-8">

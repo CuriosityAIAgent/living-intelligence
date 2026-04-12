@@ -29,12 +29,12 @@ export default function LandscapePage() {
     <div className="min-h-screen flex flex-col">
       <Header />
 
-      <main className="max-w-6xl mx-auto px-6 py-10 flex-1">
+      <main className="max-w-6xl mx-auto px-4 sm:px-6 py-6 sm:py-10 flex-1">
 
         {/* Page header */}
-        <div className="mb-8 pb-6 border-b border-gray-200">
+        <div className="mb-6 sm:mb-8 pb-4 sm:pb-6 border-b border-gray-200">
           <p className="section-label mb-1">The Landscape</p>
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">
+          <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">
             AI Capabilities Across Wealth Management
           </h1>
           <p className="text-sm text-gray-500 max-w-2xl">
@@ -44,7 +44,7 @@ export default function LandscapePage() {
         </div>
 
         {/* Legend */}
-        <div className="flex items-center gap-5 mb-8 flex-wrap">
+        <div className="flex items-center gap-3 sm:gap-5 mb-6 sm:mb-8 flex-wrap">
           <span className="text-xs text-gray-500 font-semibold uppercase tracking-wide">Maturity:</span>
           {['scaled', 'deployed', 'piloting', 'announced'].map(m => {
             const s = MATURITY_STYLES[m];
@@ -135,8 +135,8 @@ export default function LandscapePage() {
         {/* Maturity Definitions */}
         <div className="mt-12 mb-10">
           <SectionLabel label="How to Read the Matrix" />
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-0 border border-gray-200 rounded overflow-hidden">
-            <div className="p-4 border-r border-gray-200">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-0 border border-gray-200 rounded overflow-hidden">
+            <div className="p-4 border-b sm:border-b-0 sm:border-r border-gray-200">
               <div className="flex items-center gap-2 mb-2">
                 <div className="w-2.5 h-2.5 rounded-full bg-green-500 flex-shrink-0" />
                 <span className="text-[11px] font-bold uppercase tracking-wider text-gray-800">Scaled</span>
@@ -145,7 +145,7 @@ export default function LandscapePage() {
                 AI is core to operations at full institutional scale — measurable adoption across the firm, advisor network, or client base (tens of thousands of users, billions of interactions, or embedded in all client workflows). Efficiency or revenue impact is documented.
               </p>
             </div>
-            <div className="p-4 border-r border-gray-200">
+            <div className="p-4 border-b sm:border-b-0 sm:border-r border-gray-200">
               <div className="flex items-center gap-2 mb-2">
                 <div className="w-2.5 h-2.5 rounded-full bg-blue-500 flex-shrink-0" />
                 <span className="text-[11px] font-bold uppercase tracking-wider text-gray-800">Deployed</span>
@@ -154,7 +154,7 @@ export default function LandscapePage() {
                 AI capability is live in production with real clients or advisors, but not yet at full organizational scale. Rollout is underway or limited to specific regions, divisions, or user groups.
               </p>
             </div>
-            <div className="p-4 border-r border-gray-200">
+            <div className="p-4 border-b sm:border-b-0 sm:border-r border-gray-200">
               <div className="flex items-center gap-2 mb-2">
                 <div className="w-2.5 h-2.5 rounded-full bg-orange-400 flex-shrink-0" />
                 <span className="text-[11px] font-bold uppercase tracking-wider text-gray-800">Piloting</span>
@@ -163,7 +163,7 @@ export default function LandscapePage() {
                 A formal internal pilot or limited external trial is confirmed and underway. The capability is not yet generally available — a defined group of users is actively testing it in a controlled environment.
               </p>
             </div>
-            <div className="p-4 border-r border-gray-200">
+            <div className="p-4 border-b sm:border-b-0 sm:border-r border-gray-200">
               <div className="flex items-center gap-2 mb-2">
                 <div className="w-2.5 h-2.5 rounded-full bg-yellow-400 flex-shrink-0" />
                 <span className="text-[11px] font-bold uppercase tracking-wider text-gray-800">Announced</span>

@@ -92,7 +92,7 @@ export default async function IntelligenceArticlePage({
     <div className="min-h-screen flex flex-col">
       <Header />
 
-      <main className="max-w-3xl mx-auto px-6 py-10 flex-1">
+      <main className="max-w-3xl mx-auto px-4 sm:px-6 py-6 sm:py-10 flex-1">
 
         {/* Breadcrumb */}
         <nav className="flex items-center gap-2 text-xs text-gray-400 mb-8">
@@ -142,13 +142,13 @@ export default async function IntelligenceArticlePage({
 
         {/* Key stat */}
         {entry.key_stat && (
-          <div className="bg-gray-50 border border-gray-100 rounded p-5 mb-8 flex items-center gap-6">
+          <div className="bg-gray-50 border border-gray-100 rounded p-4 sm:p-5 mb-8 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6">
             <div>
               <div className="key-stat-number">{entry.key_stat.number}</div>
               <div className="key-stat-label">{entry.key_stat.label}</div>
             </div>
-            <div className="w-px h-10 bg-gray-200" />
-            <div className="text-sm text-gray-500">Key figure from this development</div>
+            <div className="hidden sm:block w-px h-10 bg-gray-200" />
+            <div className="text-xs sm:text-sm text-gray-500">Key figure from this development</div>
           </div>
         )}
 

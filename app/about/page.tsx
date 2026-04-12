@@ -7,14 +7,14 @@ export default function AboutPage() {
     <div className="min-h-screen flex flex-col">
       <Header />
 
-      <main className="max-w-3xl mx-auto px-6 py-12 flex-1">
+      <main className="max-w-3xl mx-auto px-4 sm:px-6 py-8 sm:py-12 flex-1">
 
         {/* Hero */}
-        <div className="mb-10">
+        <div className="mb-8 sm:mb-10">
           <p className="text-[11px] font-semibold uppercase tracking-widest text-[#990F3D] mb-3">
             About the Platform
           </p>
-          <h1 className="text-2xl md:text-3xl font-bold text-gray-900 leading-snug mb-4">
+          <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 leading-snug mb-4">
             AI adoption intelligence for wealth management decision-makers
           </h1>
           <p className="text-[15px] text-gray-600 leading-relaxed">
@@ -26,9 +26,9 @@ export default function AboutPage() {
         </div>
 
         {/* What we track */}
-        <div className="mb-10 pb-10 border-b border-gray-200">
+        <div className="mb-8 sm:mb-10 pb-8 sm:pb-10 border-b border-gray-200">
           <h2 className="text-base font-bold text-gray-900 mb-4">What we track</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
             <div>
               <div className="text-2xl font-bold text-[#990F3D] mb-1">37+</div>
               <div className="text-sm text-gray-600">Wealth management firms tracked globally</div>
@@ -45,7 +45,7 @@ export default function AboutPage() {
         </div>
 
         {/* Capability dimensions */}
-        <div className="mb-10 pb-10 border-b border-gray-200">
+        <div className="mb-8 sm:mb-10 pb-8 sm:pb-10 border-b border-gray-200">
           <h2 className="text-base font-bold text-gray-900 mb-4">Seven capability dimensions</h2>
           <p className="text-sm text-gray-600 mb-5 leading-relaxed">
             Every firm is assessed across the same seven dimensions, making it possible to
@@ -73,7 +73,7 @@ export default function AboutPage() {
         </div>
 
         {/* Quality standards */}
-        <div className="mb-10 pb-10 border-b border-gray-200">
+        <div className="mb-8 sm:mb-10 pb-8 sm:pb-10 border-b border-gray-200">
           <h2 className="text-base font-bold text-gray-900 mb-4">How we maintain quality</h2>
           <p className="text-sm text-gray-600 mb-5 leading-relaxed">
             This is not a news aggregator. Every piece of intelligence on this platform
@@ -110,7 +110,7 @@ export default function AboutPage() {
         </div>
 
         {/* Coverage */}
-        <div className="mb-10 pb-10 border-b border-gray-200">
+        <div className="mb-8 sm:mb-10 pb-8 sm:pb-10 border-b border-gray-200">
           <h2 className="text-base font-bold text-gray-900 mb-4">Coverage</h2>
           <p className="text-sm text-gray-600 leading-relaxed mb-4">
             The platform covers wirehouses, global private banks, regional champions,

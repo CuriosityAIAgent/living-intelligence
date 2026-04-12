@@ -152,15 +152,15 @@ export default function IntelligenceFilter({ entries }: { entries: IntelligenceE
 
       {/* Filters */}
       <div className="mb-6 space-y-3">
-        <div className="flex items-center justify-between flex-wrap gap-3">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
           {/* Region */}
-          <div className="flex items-center gap-1.5 flex-wrap">
+          <div className="flex items-center gap-1.5 overflow-x-auto scrollbar-none pb-1 sm:pb-0 sm:flex-wrap">
             <span className="text-[10px] text-gray-400 font-semibold uppercase tracking-wider mr-1">Region</span>
             {REGIONS.map(r => (
               <button
                 key={r.value}
                 onClick={() => setRegion(r.value)}
-                className={`text-[11px] px-2.5 py-1 border transition-colors font-medium rounded ${
+                className={`text-[11px] px-2.5 py-1 border transition-colors font-medium rounded flex-shrink-0 ${
                   region === r.value
                     ? 'bg-[#990F3D] text-white border-[#990F3D]'
                     : 'bg-white text-gray-500 border-gray-200 hover:border-[#990F3D] hover:text-[#990F3D]'
@@ -188,8 +188,8 @@ export default function IntelligenceFilter({ entries }: { entries: IntelligenceE
         </div>
 
         {/* Topic */}
-        <div className="flex items-center gap-1.5 flex-wrap">
-          <span className="text-[10px] text-gray-400 font-semibold uppercase tracking-wider mr-1">Topic</span>
+        <div className="flex items-center gap-1.5 overflow-x-auto scrollbar-none pb-1 sm:pb-0 sm:flex-wrap">
+          <span className="text-[10px] text-gray-400 font-semibold uppercase tracking-wider mr-1 flex-shrink-0">Topic</span>
           {CAPABILITIES.map(c => (
             <button
               key={c.value}
@@ -219,10 +219,10 @@ export default function IntelligenceFilter({ entries }: { entries: IntelligenceE
             <Link
               key={entry.id}
               href={`/intelligence/${entry.id}`}
-              className="article-card rounded p-5 flex gap-5 items-start group block"
+              className="article-card rounded p-4 sm:p-5 flex gap-3 sm:gap-5 items-start group block"
             >
               {/* Logo */}
-              <div className="w-14 h-14 bg-gray-50 border border-gray-100 rounded flex items-center justify-center flex-shrink-0">
+              <div className="w-10 h-10 sm:w-14 sm:h-14 bg-gray-50 border border-gray-100 rounded flex items-center justify-center flex-shrink-0">
                 {entry.image_url ? (
                   // eslint-disable-next-line @next/next/no-img-element
                   <img
@@ -266,9 +266,9 @@ export default function IntelligenceFilter({ entries }: { entries: IntelligenceE
                 )}
               </div>
 
-              {/* Key stat */}
+              {/* Key stat — hidden on mobile, shown inline in content on small screens */}
               {entry.key_stat && (
-                <div className="flex-shrink-0 text-right w-44">
+                <div className="flex-shrink-0 text-right w-44 hidden md:block">
                   <div className="text-2xl font-extrabold text-[#990F3D] leading-none">{entry.key_stat.number}</div>
                   <div className="text-xs text-gray-400 leading-snug mt-1.5">{entry.key_stat.label}</div>
                 </div>

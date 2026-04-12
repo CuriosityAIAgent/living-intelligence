@@ -10,11 +10,11 @@ export default function IntelligencePage() {
     <div className="min-h-screen flex flex-col">
       <Header />
 
-      <main className="max-w-6xl mx-auto px-6 py-10 flex-1">
+      <main className="max-w-6xl mx-auto px-4 sm:px-6 py-6 sm:py-10 flex-1">
 
-        <div className="mb-8 pb-6 border-b border-gray-200">
+        <div className="mb-6 sm:mb-8 pb-4 sm:pb-6 border-b border-gray-200">
           <p className="section-label mb-1">Market Intelligence</p>
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">
+          <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">
             What Companies Are Doing with AI
           </h1>
           <p className="text-sm text-gray-500">

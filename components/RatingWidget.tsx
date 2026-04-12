@@ -102,9 +102,9 @@ export default function RatingWidget() {
   if (!visible) return null;
 
   return (
-    <div className="fixed bottom-6 left-6 z-[90]" ref={panelRef}>
+    <div className="fixed bottom-4 left-4 sm:bottom-6 sm:left-6 z-[90]" ref={panelRef}>
       {open ? (
-        <div className="bg-white rounded-lg shadow-xl border border-gray-200 w-80 overflow-hidden">
+        <div className="bg-white rounded-lg shadow-xl border border-gray-200 w-[calc(100vw-2rem)] sm:w-80 max-w-80 overflow-hidden">
           {submitted ? (
             <div className="p-6 text-center">
               <div className="text-2xl mb-2">✓</div>

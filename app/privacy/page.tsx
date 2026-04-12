@@ -6,8 +6,8 @@ export default function PrivacyPage() {
     <div className="min-h-screen flex flex-col">
       <Header />
 
-      <main className="max-w-3xl mx-auto px-6 py-10 flex-1">
-        <h1 className="text-2xl font-bold text-gray-900 mb-6">Privacy Policy</h1>
+      <main className="max-w-3xl mx-auto px-4 sm:px-6 py-6 sm:py-10 flex-1">
+        <h1 className="text-xl sm:text-2xl font-bold text-gray-900 mb-6">Privacy Policy</h1>
 
         <div className="prose prose-sm text-gray-600 space-y-6">
           <section>

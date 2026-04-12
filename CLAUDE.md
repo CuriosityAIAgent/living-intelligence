@@ -30,6 +30,13 @@ See @docs/architecture.md for full system design, @docs/integrations.md for all 
 - `app/api/auth/signout/route.ts` — signs out + redirects to /login
 - `app/onboarding/page.tsx` — Profile completion (name + company if missing) → team invites (up to 4 emails) → or "Complete checkout" if no org yet
 - `app/join/page.tsx` — reads `?tier=` and `?coupon=` params, redirects to Stripe checkout
+- `app/about/page.tsx` — Platform about page (public). Capabilities, quality standards, coverage.
+- `app/privacy/page.tsx` — Privacy policy (public). Data, auth, analytics, AI, security.
+- `app/api/feedback/route.ts` — Stores feedback + ratings to Supabase `platform_feedback` table.
+- `components/FeedbackModal.tsx` — In-app feedback form, triggered from Header user menu.
+- `components/RatingWidget.tsx` — Floating 1-5 rating widget, shows after 3 visits, one-time.
+- `components/WelcomeBanner.tsx` — Dismissible first-visit banner on /latest.
+- `components/Footer.tsx` — 3-column footer on all 8 portal pages.
 
 **Friend/invite flow (soft launch):** You send `livingintel.ai/invite?code=FRIEND2026` → Google login → name+company → org auto-created → `/latest`. No Stripe, no checkout. 2 clicks. Invite code stored in localStorage (`li_invite_code`) to survive OAuth redirect. Landing page (`app/page.tsx`) checks localStorage on mount — if pending invite code found, redirects to `/invite`.
 
@@ -244,6 +251,28 @@ git push origin main --force
 
 **/privacy page:**
 - Data collection, auth, analytics, AI content, security, disclaimer, contact (hello@livingintel.ai)
+
+**/about page:**
+- Platform positioning: 7 capabilities, 37+ firms, daily updates, 80K+ sources
+- Quality standards: source-linked, multi-source verification, editorially reviewed, consulting-grade
+- Coverage segments listed. No company identity / team info.
+
+**FeedbackModal (`components/FeedbackModal.tsx`):**
+- In-app textarea form, triggered from Header user menu "Share feedback"
+- Stores to Supabase `platform_feedback` table via `POST /api/feedback`
+- Footer "Share feedback →" remains mailto fallback
+
+**RatingWidget (`components/RatingWidget.tsx`):**
+- Floating pill bottom-left, appears after 3 page visits (localStorage `li_page_visits`)
+- Two 1-5 scale questions: usefulness + quality of intelligence
+- Optional comment. One-time — after submit, stored in localStorage (`li_rating_submitted`)
+- Stores to Supabase `platform_feedback` table via `POST /api/feedback`
+- Added to root layout (`app/layout.tsx`) — appears on all pages
+
+**`/api/feedback` route:**
+- Accepts `{ type, feedback, ratings, comment, user_id, user_email }`
+- Inserts into `platform_feedback` table via admin client
+- Public route (no auth required — middleware allows `/api/feedback`)
 
 ---
 

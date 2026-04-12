@@ -12,12 +12,12 @@ export default function ThoughtLeadershipPage() {
     <div className="min-h-screen flex flex-col">
       <Header />
 
-      <main className="max-w-6xl mx-auto px-6 py-10 flex-1">
+      <main className="max-w-6xl mx-auto px-4 sm:px-6 py-6 sm:py-10 flex-1">
 
         {/* Page header */}
-        <div className="mb-10 pb-6 border-b border-gray-200">
+        <div className="mb-6 sm:mb-10 pb-4 sm:pb-6 border-b border-gray-200">
           <p className="section-label mb-2">Thought Leadership</p>
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">
+          <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">
             What the Smartest People Are Thinking
           </h1>
           <p className="text-sm text-gray-500">
@@ -33,7 +33,7 @@ export default function ThoughtLeadershipPage() {
               <Link
                 key={entry.id}
                 href={`/thought-leadership/${entry.id}`}
-                className="article-card rounded p-5 flex gap-5 items-start group block"
+                className="article-card rounded p-4 sm:p-5 flex gap-3 sm:gap-5 items-start group block"
               >
                 {/* Author avatar */}
                 <AuthorAvatar name={entry.author.name} size="md" />

@@ -29,7 +29,7 @@ export default function WelcomeBanner() {
             Track how wealth management firms are deploying AI — across 7 capability
             dimensions, updated daily. Every claim is source-linked and editorially reviewed.
           </p>
-          <div className="flex flex-wrap gap-4 mt-3 text-[12px] text-gray-500">
+          <div className="flex flex-col sm:flex-row sm:flex-wrap gap-1.5 sm:gap-4 mt-3 text-[12px] text-gray-500">
             <span><strong className="text-gray-700">Latest</strong> — lead stories and recent developments</span>
             <span><strong className="text-gray-700">Intelligence</strong> — all tracked developments</span>
             <span><strong className="text-gray-700">Landscape</strong> — AI capabilities matrix</span>
