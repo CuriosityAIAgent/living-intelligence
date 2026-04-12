@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Footer from "@/components/Footer";
+import JpmGate from "@/components/JpmGate";
 
 export const metadata: Metadata = {
   title: "AI in Wealth Management",
@@ -18,8 +19,10 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
       </head>
       <body className="bg-white text-gray-900 min-h-screen flex flex-col">
-        <div className="flex-1">{children}</div>
-        <Footer />
+        <JpmGate>
+          <div className="flex-1">{children}</div>
+          <Footer />
+        </JpmGate>
       </body>
     </html>
   );
