@@ -10,7 +10,7 @@ import { useState, useEffect } from 'react'
 export default function JpmGate({ children }: { children: React.ReactNode }) {
   const [isJpmDomain, setIsJpmDomain] = useState(false)
   const [verified, setVerified] = useState(false)
-  const [email, setEmail] = useState('')
+  const [username, setUsername] = useState('')
   const [error, setError] = useState('')
   const [showTick, setShowTick] = useState(false)
   const [mounted, setMounted] = useState(false)
@@ -41,20 +41,16 @@ export default function JpmGate({ children }: { children: React.ReactNode }) {
     e.preventDefault()
     setError('')
 
-    const trimmed = email.trim().toLowerCase()
+    const trimmed = username.trim().toLowerCase()
     if (!trimmed) {
       setError('Please enter your work email address.')
       return
     }
 
-    if (trimmed.endsWith('@jpmorgan.com')) {
-      // Success — show green tick, then reveal content
-      setShowTick(true)
-      sessionStorage.setItem('jpm_verified', 'true')
-      setTimeout(() => setVerified(true), 1200)
-    } else {
-      setError('Unable to access the platform.')
-    }
+    // Username is just the part before @ — domain is fixed
+    setShowTick(true)
+    sessionStorage.setItem('jpm_verified', 'true')
+    setTimeout(() => setVerified(true), 1200)
   }
 
   return (
@@ -84,16 +80,19 @@ export default function JpmGate({ children }: { children: React.ReactNode }) {
             <label htmlFor="jpm-email" className="block text-[#CCCCDD] text-sm font-medium mb-3">
               Enter your work email
             </label>
-            <input
-              id="jpm-email"
-              type="email"
-              value={email}
-              onChange={e => { setEmail(e.target.value); setError('') }}
-              placeholder="name@jpmorgan.com"
-              autoFocus
-              autoComplete="email"
-              className="w-full px-4 py-3 rounded-md bg-[#1C1C2E] border border-[#333355] text-white placeholder-[#666688] focus:outline-none focus:border-[#990F3D] focus:ring-1 focus:ring-[#990F3D] transition-colors"
-            />
+            <div className="flex items-center rounded-md bg-[#1C1C2E] border border-[#333355] focus-within:border-[#990F3D] focus-within:ring-1 focus-within:ring-[#990F3D] transition-colors">
+              <input
+                id="jpm-email"
+                type="text"
+                value={username}
+                onChange={e => { setUsername(e.target.value.replace(/[@\s]/g, '')); setError('') }}
+                placeholder="firstname.lastname"
+                autoFocus
+                autoComplete="off"
+                className="flex-1 px-4 py-3 bg-transparent text-white placeholder-[#666688] focus:outline-none"
+              />
+              <span className="pr-4 text-[#9999BB] text-sm select-none whitespace-nowrap">@jpmorgan.com</span>
+            </div>
             {error && (
               <p className="mt-3 text-red-400 text-sm">{error}</p>
             )}
