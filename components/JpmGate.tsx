@@ -11,6 +11,7 @@ export default function JpmGate({ children }: { children: React.ReactNode }) {
   const [isJpmDomain, setIsJpmDomain] = useState(false)
   const [verified, setVerified] = useState(false)
   const [username, setUsername] = useState('')
+  const [code, setCode] = useState('')
   const [error, setError] = useState('')
   const [showTick, setShowTick] = useState(false)
   const [mounted, setMounted] = useState(false)
@@ -41,13 +42,24 @@ export default function JpmGate({ children }: { children: React.ReactNode }) {
     e.preventDefault()
     setError('')
 
-    const trimmed = username.trim().toLowerCase()
-    if (!trimmed) {
+    const trimmedName = username.trim().toLowerCase()
+    const trimmedCode = code.trim().toLowerCase()
+
+    if (!trimmedName) {
       setError('Please enter your work email address.')
       return
     }
 
-    // Username is just the part before @ — domain is fixed
+    if (!trimmedCode) {
+      setError('Please enter the access code.')
+      return
+    }
+
+    if (trimmedCode !== 'jpm2026') {
+      setError('Invalid access code.')
+      return
+    }
+
     setShowTick(true)
     sessionStorage.setItem('jpm_verified', 'true')
     setTimeout(() => setVerified(true), 1200)
@@ -93,6 +105,18 @@ export default function JpmGate({ children }: { children: React.ReactNode }) {
               />
               <span className="pr-4 text-[#9999BB] text-sm select-none whitespace-nowrap">@jpmorgan.com</span>
             </div>
+            <label htmlFor="jpm-code" className="block text-[#CCCCDD] text-sm font-medium mb-3 mt-5">
+              Access code
+            </label>
+            <input
+              id="jpm-code"
+              type="text"
+              value={code}
+              onChange={e => { setCode(e.target.value); setError('') }}
+              placeholder="Enter access code"
+              autoComplete="off"
+              className="w-full px-4 py-3 rounded-md bg-[#1C1C2E] border border-[#333355] text-white placeholder-[#666688] focus:outline-none focus:border-[#990F3D] focus:ring-1 focus:ring-[#990F3D] transition-colors"
+            />
             {error && (
               <p className="mt-3 text-red-400 text-sm">{error}</p>
             )}
@@ -102,6 +126,12 @@ export default function JpmGate({ children }: { children: React.ReactNode }) {
             >
               Continue
             </button>
+            <p className="mt-4 text-center text-[#666688] text-xs">
+              Need an access code? Contact{' '}
+              <a href="mailto:haresh.raju@jpmorgan.com" className="text-[#9999BB] underline">
+                haresh.raju@jpmorgan.com
+              </a>
+            </p>
           </form>
         )}
       </div>
