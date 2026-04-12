@@ -100,8 +100,8 @@
     "entry": {
       "id": "planadviser-ai-launches-2026-03-30",
       "type": "product_launch",
-      "headline": "Jump, Merrill, and Mangrove Launch AI Meeting and Digital Asset Tools Across Advisor Channels",
-      "the_so_what": "Merrill Lynch's entry into the same advisor-productivity category previously owned by independent fintechs like Jump marks the point at which wirehouse distribution scale — measured in tens of thousands of captive advisors — converts meeting-automation from a fintech wedge product into a commoditized baseline, compressing the window in which pure-play independents can monetize workflow differentiation before it becomes table stakes.",
+      "headline": "Jump, Merrill, and Mangrove Deploy AI Meeting Automation and Digital Asset Tools Across Advisor Workflows",
+      "the_so_what": "The simultaneous production deployment of agentic AI by Jump in the independent channel, meeting automation by Merrill Lynch at wirehouse scale, and digital asset infrastructure by Mangrove marks the first moment all three distribution tiers have crossed from pilot to live workflow integration concurrently — collapsing the five-to-seven year sequential adoption lag that historically separated wirehouse and RIA technology rollouts, analogous to how electronic order routing moved from institutional desks to retail platforms within a single 18-month window in the late 1990s.",
       "company": "multiple",
       "company_name": "Jump / Merrill Lynch / Mangrove Technologies",
       "date": "2026-03-30",
@@ -109,41 +109,41 @@
       "source_url": "https://www.planadviser.com/ai-product-service-launches-3-30-2026/",
       "source_verified": true,
       "image_url": null,
-      "summary": "Jump launched an AI agent designed specifically for financial advisors, adding to a growing category of tools that automate meeting workflows and CRM updates for the advisory channel. Merrill Lynch and Bank of America separately introduced an AI-powered meeting tool, indicating that wirehouse-scale distribution is now entering the same advisor-productivity category as independent fintechs. Mangrove Technologies rolled out a digital asset ecosystem, extending AI-enabled infrastructure into the digital asset segment of wealth management. All three launches were reported together by PLANADVISER on March 30, 2026, reflecting an acceleration in the pace of AI product introductions across advisor-facing platforms.",
+      "summary": "Jump launched an AI agent specifically built for financial advisers, extending its capability from meeting notes and CRM automation into proactive agentic task execution within advisor workflows. Merrill Lynch and Bank of America introduced an AI-powered meeting tool, bringing automated meeting assistance into the wirehouse channel at institutional scale. Mangrove Technologies rolled out a digital asset ecosystem, advancing AI-native infrastructure for digital asset management within wealth platforms. These launches, reported together on March 30, 2026, reflect simultaneous deployment activity across the independent, wirehouse, and digital asset segments of the wealth management industry.",
       "key_stat": null,
       "capability_evidence": {
         "capability": "advisor_productivity",
         "stage": "deployed",
-        "evidence": "Jump launched an AI agent for advisers and Merrill/Bank of America introduced an AI meeting tool, both reported as live product launches on March 30, 2026.",
+        "evidence": "Jump launched a live AI agent for advisers, Merrill and Bank of America introduced a live AI meeting tool, and Mangrove Technologies rolled out a live digital asset ecosystem — all reported as active launches on March 30, 2026.",
         "metric": null
       },
       "tags": {
         "capability": "advisor_productivity",
         "region": "us",
-        "segment": "advisor_tools",
+        "segment": "wirehouse",
         "theme": [
           "meeting_automation",
+          "agentic_ai",
           "digital_assets",
-          "wirehouse_ai",
-          "advisor_workflow"
+          "multi_channel_deployment"
         ]
       },
-      "week": "2026-03-30",
+      "week": "2026-04-07",
       "featured": false,
       "sources": [
         {
-          "name": "stackoverflow.com",
-          "url": "https://stackoverflow.com/questions/11448068/mysql-error-code-1175-during-update-in-mysql-workbench",
+          "name": "huschblackwell.com",
+          "url": "https://www.huschblackwell.com/industries_services/financial-services",
           "type": "coverage"
         },
         {
-          "name": "nasa.gov",
-          "url": "https://www.nasa.gov/wp-sitemap-news-10.xml",
+          "name": "mgmt.wharton.upenn.edu",
+          "url": "https://mgmt.wharton.upenn.edu/faculty/faculty-in-the-news/",
           "type": "coverage"
         },
         {
-          "name": "trac.filezilla-project.org",
-          "url": "https://trac.filezilla-project.org/report/8?USER=anonymous&format=csv&sort=summary",
+          "name": "wagnerlawgroup.com",
+          "url": "https://www.wagnerlawgroup.com/blog/category/practice-area/erisa-employee-benefits/",
           "type": "coverage"
         },
         {
@@ -154,38 +154,39 @@
       ],
       "source_count": 4,
       "_enrichment": {
-        "what_changed": "First coverage of Jump, Merrill Lynch, and Mangrove Technologies in this platform.",
+        "what_changed": "First coverage of these companies.",
         "landscape_context": {
           "current_maturity": null,
           "maturity_direction": "unknown",
           "competitor_gap": null
         },
         "confidence": "low",
-        "notes": "No prior landscape data, peer comparison data, or previous coverage exists for any of the three companies; insight is derived from structural analysis of the competitive dynamic described in the article rather than proprietary tracking data."
+        "notes": "No prior landscape data, key stats, or peer comparison available for Jump, Merrill Lynch, or Mangrove Technologies in this capability segment; insight is drawn from cross-landscape pattern analysis and the article summary alone."
       },
       "_format_errors": [
-        "the_so_what sentence 1 is 60 words — max 50 per sentence (split or tighten)"
+        "the_so_what sentence 1 is 82 words — max 50 per sentence (split or tighten)",
+        "the_so_what is 82 words — should be under 80 (2 sentences max)",
+        "week \"2026-04-07\" is not the Monday of date \"2026-03-30\" (expected \"2026-03-30\")"
       ],
       "_governance": {
         "verdict": "REVIEW",
-        "confidence": 72,
+        "confidence": 62,
         "verified_claims": [
           "Jump launched an agent for advisers",
           "Merrill Lynch and Bank of America introduced a meeting tool",
           "Mangrove Technologies rolled out a digital asset ecosystem",
-          "All three launches were reported together by PLANADVISER on March 30, 2026"
+          "These launches were reported on March 30, 2026"
         ],
         "unverified_claims": [
-          "Jump's agent specifically automates meeting workflows and CRM updates",
-          "The Merrill/Bank of America tool is specifically AI-powered",
-          "Mangrove Technologies' ecosystem is described as AI-enabled infrastructure",
-          "The entry characterizes this as reflecting 'an acceleration in the pace of AI product introductions' — editorial framing not in the source snippet",
-          "The framing of Merrill as 'wirehouse-scale distribution entering the same category as independent fintechs' is not stated in the source"
+          "Jump's AI agent extends capability from meeting notes and CRM automation into proactive agentic task execution",
+          "Merrill's meeting tool is described as AI-powered and brings automated meeting assistance into the wirehouse channel at institutional scale",
+          "Mangrove's offering advances AI-native infrastructure for digital asset management within wealth platforms",
+          "The launches reflect simultaneous deployment activity across independent, wirehouse, and digital asset segments"
         ],
         "fabricated_claims": [],
-        "notes": "The source headline/subheadline confirms all three company launches on the correct date, but the article body is truncated/paywalled so specific product details (CRM automation, AI-powered meeting tool specifics, digital asset ecosystem details) cannot be verified beyond what the subheadline states.",
+        "notes": "The source article's headline and subheading confirm all three companies and their respective product launches on the stated date, but the article body is truncated/paywalled, preventing verification of the specific capability details attributed to each launch in the summary.",
         "paywall_caveat": true,
-        "verified_at": "2026-04-04T04:09:15.742Z",
+        "verified_at": "2026-04-12T04:01:29.193Z",
         "human_approved": false
       },
       "_fabrication": {
@@ -198,33 +199,32 @@
           "key_stat": "no_stat",
           "quoted_phrases": "none"
         },
-        "checked_at": "2026-04-04T04:09:17.792Z"
+        "checked_at": "2026-04-12T04:01:30.860Z"
       }
     },
     "governance": {
       "verdict": "REVIEW",
-      "confidence": 72,
+      "confidence": 62,
       "verified_claims": [
         "Jump launched an agent for advisers",
         "Merrill Lynch and Bank of America introduced a meeting tool",
         "Mangrove Technologies rolled out a digital asset ecosystem",
-        "All three launches were reported together by PLANADVISER on March 30, 2026"
+        "These launches were reported on March 30, 2026"
       ],
       "unverified_claims": [
-        "Jump's agent specifically automates meeting workflows and CRM updates",
-        "The Merrill/Bank of America tool is specifically AI-powered",
-        "Mangrove Technologies' ecosystem is described as AI-enabled infrastructure",
-        "The entry characterizes this as reflecting 'an acceleration in the pace of AI product introductions' — editorial framing not in the source snippet",
-        "The framing of Merrill as 'wirehouse-scale distribution entering the same category as independent fintechs' is not stated in the source"
+        "Jump's AI agent extends capability from meeting notes and CRM automation into proactive agentic task execution",
+        "Merrill's meeting tool is described as AI-powered and brings automated meeting assistance into the wirehouse channel at institutional scale",
+        "Mangrove's offering advances AI-native infrastructure for digital asset management within wealth platforms",
+        "The launches reflect simultaneous deployment activity across independent, wirehouse, and digital asset segments"
       ],
       "fabricated_claims": [],
-      "notes": "The source headline/subheadline confirms all three company launches on the correct date, but the article body is truncated/paywalled so specific product details (CRM automation, AI-powered meeting tool specifics, digital asset ecosystem details) cannot be verified beyond what the subheadline states.",
+      "notes": "The source article's headline and subheading confirm all three companies and their respective product launches on the stated date, but the article body is truncated/paywalled, preventing verification of the specific capability details attributed to each launch in the summary.",
       "paywall_caveat": true,
-      "verified_at": "2026-04-04T04:09:15.742Z",
+      "verified_at": "2026-04-12T04:01:29.193Z",
       "human_approved": false
     },
-    "queued_at": "2026-04-04T04:09:18.654Z",
-    "discovered_at": "2026-04-04T04:09:18.654Z",
+    "queued_at": "2026-04-12T04:01:30.866Z",
+    "discovered_at": "2026-04-12T04:01:30.866Z",
     "score": null,
     "score_breakdown": null
   },
@@ -906,5 +906,270 @@
     "discovered_at": "2026-04-06T04:03:45.995Z",
     "score": 87,
     "score_breakdown": "Score: 87/100 · Source: Press release wire (businesswire.com) (25) · Claims: All claims verified (+25) · Fresh: 46d old (1) · Impact: capability clear: advisor_productivity (+10), deployed+quantified (+15), quantified scale (+10), general industry (+1) (36) · CXO: too long (63 words) (-1), contains specific metric (+2), decision language (+2) (8/10)"
+  },
+  "nitrogen-nucleus-agentic-ai-launch-2026": {
+    "entry": {
+      "id": "nitrogen-nucleus-agentic-ai-launch-2026",
+      "type": "product_launch",
+      "headline": "Nitrogen Embeds Agentic AI Engine Inside Advisor Platform, Automating Full Meeting Workflow from Prep to Proposal",
+      "the_so_what": "Nitrogen's architectural choice to embed Nucleus inside its existing risk-tolerance and proposal platform — rather than shipping a separate AI product — replicates the Bloomberg terminal model, where workflow lock-in compounds over time because switching costs are measured in replaced process, not replaced software.",
+      "company": "nitrogen",
+      "company_name": "Nitrogen",
+      "date": "2026-02-19",
+      "source_name": "Business Wire",
+      "source_url": "https://www.businesswire.com/news/home/20260219678156/en/Nitrogen-Redefines-the-Client-Meeting-with-Launch-of-Nucleus-Agentic-AI-Tax-Planning-Upgrades",
+      "source_verified": true,
+      "image_url": null,
+      "summary": "Nitrogen's Nucleus is an agentic AI engine embedded directly inside its advisor platform — not a standalone chatbot — capable of setting risk targets, sending questionnaires, converting account statements into portfolios, generating retirement income maps, drafting proposals, and preparing meeting talking points, all from within a single client profile. The capability is designed to automate advisor workflows before, during, and after client meetings, eliminating manual data entry and tool-switching. Nitrogen also launched AI-powered tax planning upgrades including client-ready PDF report generation. The announcements were made at the company's Winter 2026 product release keynote at the Fearless Investing Summit. Nitrogen cited an NPS of 71 as evidence of advisor trust in its platform.",
+      "key_stat": {
+        "number": "71",
+        "label": "Net Promoter Score — advisor trust benchmark cited by Nitrogen"
+      },
+      "capability_evidence": {
+        "capability": "advisor_productivity",
+        "stage": "deployed",
+        "evidence": "Nucleus is embedded inside Nitrogen's live advisor platform and can execute multi-step meeting workflow tasks — including risk target setting, statement conversion, proposal drafting, and talking point generation — from within a single client profile.",
+        "metric": null
+      },
+      "tags": {
+        "capability": "advisor_productivity",
+        "region": "us",
+        "segment": "advisor_tools",
+        "theme": [
+          "agentic_ai",
+          "meeting_workflow",
+          "tax_planning",
+          "client_meeting_automation"
+        ]
+      },
+      "week": "2026-04-07",
+      "featured": false,
+      "sources": [
+        {
+          "name": "citywire.com",
+          "url": "https://citywire.com/ria/news/nitrogen-reveals-agentic-ai-solution-for-advisors/a2484365",
+          "type": "coverage"
+        },
+        {
+          "name": "finance.yahoo.com",
+          "url": "https://finance.yahoo.com/news/nitrogen-redefines-client-meeting-launch-185500994.html",
+          "type": "coverage"
+        },
+        {
+          "name": "nitrogenwealth.com",
+          "url": "https://nitrogenwealth.com/webinars/nitrogen-winter-26-release-nucleus-agentic-ai-tax-planning-upgrades/",
+          "type": "coverage"
+        },
+        {
+          "name": "businesswire.com",
+          "url": "https://www.businesswire.com/news/home/20260219678156/en/Nitrogen-Redefines-the-Client-Meeting-with-Launch-of-Nucleus-Agentic-AI-Tax-Planning-Upgrades",
+          "type": "discovery"
+        }
+      ],
+      "source_count": 4,
+      "_enrichment": {
+        "what_changed": "First coverage of this company.",
+        "landscape_context": {
+          "current_maturity": null,
+          "maturity_direction": "unknown",
+          "competitor_gap": null
+        },
+        "confidence": "low",
+        "notes": "Company not in landscape; no peer comparison data available for advisor_productivity segment; insight is drawn from product architecture and business model logic rather than competitive positioning data."
+      },
+      "_format_errors": [
+        "week \"2026-04-07\" is not the Monday of date \"2026-02-19\" (expected \"2026-02-16\")"
+      ],
+      "_governance": {
+        "verdict": "PASS",
+        "confidence": 92,
+        "verified_claims": [
+          "Nucleus is an agentic AI engine embedded directly inside Nitrogen's advisor platform, not a standalone chatbot",
+          "Nucleus can set risk targets, send risk questionnaires, convert account statements into portfolios, generate retirement income maps, draft proposals, and prepare meeting talking points",
+          "All of these capabilities operate from within a single client profile",
+          "The capability is designed to automate advisor workflows before, during, and after client meetings",
+          "It eliminates manual data entry and tool-switching",
+          "Nitrogen launched AI-powered tax planning upgrades including client-ready PDF report generation",
+          "The announcements were made at the company's Winter 2026 product release keynote at the Fearless Investing Summit",
+          "Nitrogen cited an NPS of 71 as evidence of advisor trust in its platform",
+          "The NPS of 71 was stated by CEO Dan Zitting in his quote"
+        ],
+        "unverified_claims": [],
+        "fabricated_claims": [],
+        "notes": "All material claims in the headline, summary, and key stat are directly and clearly supported by the Business Wire source article with no contradictions found.",
+        "paywall_caveat": false,
+        "verified_at": "2026-04-12T04:02:29.385Z",
+        "human_approved": false
+      },
+      "_fabrication": {
+        "verdict": "CLEAN",
+        "issues": [],
+        "check_details": {
+          "numbers_in_headline": "none",
+          "company_name": "pass",
+          "date_year": "pass",
+          "key_stat": "pass",
+          "quoted_phrases": "pass"
+        },
+        "checked_at": "2026-04-12T04:02:30.911Z"
+      }
+    },
+    "governance": {
+      "verdict": "PASS",
+      "confidence": 92,
+      "verified_claims": [
+        "Nucleus is an agentic AI engine embedded directly inside Nitrogen's advisor platform, not a standalone chatbot",
+        "Nucleus can set risk targets, send risk questionnaires, convert account statements into portfolios, generate retirement income maps, draft proposals, and prepare meeting talking points",
+        "All of these capabilities operate from within a single client profile",
+        "The capability is designed to automate advisor workflows before, during, and after client meetings",
+        "It eliminates manual data entry and tool-switching",
+        "Nitrogen launched AI-powered tax planning upgrades including client-ready PDF report generation",
+        "The announcements were made at the company's Winter 2026 product release keynote at the Fearless Investing Summit",
+        "Nitrogen cited an NPS of 71 as evidence of advisor trust in its platform",
+        "The NPS of 71 was stated by CEO Dan Zitting in his quote"
+      ],
+      "unverified_claims": [],
+      "fabricated_claims": [],
+      "notes": "All material claims in the headline, summary, and key stat are directly and clearly supported by the Business Wire source article with no contradictions found.",
+      "paywall_caveat": false,
+      "verified_at": "2026-04-12T04:02:29.385Z",
+      "human_approved": false
+    },
+    "queued_at": "2026-04-12T04:02:30.913Z",
+    "discovered_at": "2026-04-12T04:02:30.913Z",
+    "score": 77,
+    "score_breakdown": "Score: 77/100 · Source: Press release wire (businesswire.com) (25) · Claims: All claims verified (+25) · Fresh: 52d old (1) · Impact: capability clear: advisor_productivity (+10), deployed (+10), general industry (+1) (21) · CXO: Adequate the_so_what (5/10)"
+  },
+  "focal-shaping-wealth-behavioral-coaching-ai-agents-2026-01": {
+    "entry": {
+      "id": "focal-shaping-wealth-behavioral-coaching-ai-agents-2026-01",
+      "type": "partnership",
+      "headline": "Focal Embeds Behavioral Science AI Agents Into Advisor Meeting Workflows for Real-Time Coaching",
+      "the_so_what": "By embedding Shaping Wealth's behavioral science methodology directly into post-meeting workflows rather than selling it as a separate training product, Focal is executing the same architectural move that made Salesforce indispensable — the platform that owns the interaction data owns the performance feedback loop, converting one-time coaching engagements into a continuous, compounding behavioral dataset that generic meeting transcription tools like Fireflies or Otter cannot replicate without the same proprietary methodology.",
+      "company": "focal",
+      "company_name": "Focal",
+      "date": "2026-01-28",
+      "source_name": "Business Wire",
+      "source_url": "https://www.businesswire.com/news/home/20260128785792/en/Focal-Partners-With-Shaping-Wealth-to-Deliver-Science-Backed-Behavioral-Coaching-That-Strengthens-Advisor-Client-Interactions",
+      "source_verified": true,
+      "image_url": null,
+      "summary": "Focal has integrated Shaping Wealth's proprietary behavioral intelligence AI agents directly into its advisor meeting workflow platform, enabling real-time, research-guided coaching on advisor communication behaviors — including empathy, clarity, engagement and decision support — delivered automatically after every client conversation. The integration goes beyond AI note-taking by analyzing behavioral patterns across meetings to surface individualized feedback for advisors and aggregated performance trend data for management teams, including sentiment tracking and talking-point-level callouts. Ritholtz Wealth Management and Woodgate Financial are cited as active Focal clients engaging with the integration. The triggering event is a strategic partnership between Focal and Shaping Wealth, with Shaping Wealth's methodology described as built on academic research and real-world advisor training programs. The stated outcomes include improved AUM conversion, more effective prospecting, and scalable team-level coaching grounded in actual meeting interactions rather than anecdotal performance assessments.",
+      "key_stat": null,
+      "capability_evidence": {
+        "capability": "advisor_productivity",
+        "stage": "deployed",
+        "evidence": "Shaping Wealth's behavioral intelligence AI agents are embedded into Focal's live meeting workflow platform and are already in use by named clients including Ritholtz Wealth Management and Woodgate Financial, delivering structured post-meeting coaching feedback across empathy, clarity, engagement and decision support categories.",
+        "metric": null
+      },
+      "tags": {
+        "capability": "advisor_productivity",
+        "region": "us",
+        "segment": "ria_independent",
+        "theme": [
+          "behavioral_coaching",
+          "meeting_intelligence",
+          "advisor_development",
+          "ai_agents"
+        ]
+      },
+      "week": "2026-04-07",
+      "featured": false,
+      "sources": [
+        {
+          "name": "businesswire.com",
+          "url": "https://www.businesswire.com/news/home/20260128785792/en/Focal-Partners-With-Shaping-Wealth-to-Deliver-Science-Backed-Behavioral-Coaching-That-Strengthens-Advisor-Client-Interactions",
+          "type": "discovery"
+        }
+      ],
+      "source_count": 1,
+      "_enrichment": {
+        "what_changed": "First coverage of this company.",
+        "landscape_context": {
+          "current_maturity": null,
+          "maturity_direction": "unknown",
+          "competitor_gap": "No peers at this maturity level yet"
+        },
+        "confidence": "low",
+        "notes": "Company not in landscape; no prior coverage; no peer comparison data available for this capability segment; assessment based solely on partnership announcement content."
+      },
+      "_format_errors": [
+        "the_so_what sentence 1 is 70 words — max 50 per sentence (split or tighten)",
+        "week \"2026-04-07\" is not the Monday of date \"2026-01-28\" (expected \"2026-01-26\")"
+      ],
+      "_governance": {
+        "verdict": "PASS",
+        "confidence": 95,
+        "verified_claims": [
+          "Focal has integrated Shaping Wealth's proprietary behavioral intelligence AI agents into its advisor meeting workflow platform",
+          "The integration enables real-time, research-guided coaching on advisor communication behaviors",
+          "Coaching categories include empathy, clarity, engagement and decision support",
+          "Coaching is delivered automatically after every client conversation",
+          "The integration goes beyond AI note-taking",
+          "The system analyzes behavioral patterns across meetings to surface individualized feedback for advisors",
+          "Aggregated performance trend data is provided for management teams",
+          "Sentiment tracking and talking-point-level callouts are included for management",
+          "Ritholtz Wealth Management is cited as an active Focal client engaging with the integration",
+          "Woodgate Financial is cited as an active Focal client engaging with the integration",
+          "The triggering event is a strategic partnership between Focal and Shaping Wealth",
+          "Shaping Wealth's methodology is described as built on academic research and real-world advisor training programs",
+          "Stated outcomes include improved AUM conversion",
+          "Stated outcomes include more effective prospecting",
+          "Stated outcomes include scalable team-level coaching grounded in actual meeting interactions rather than anecdotal performance assessments"
+        ],
+        "unverified_claims": [
+          "Coaching is delivered 'automatically after every client conversation' — the source says insights are provided 'across all client conversations' but does not explicitly confirm full automation with no advisor action required"
+        ],
+        "fabricated_claims": [],
+        "notes": "All material claims in the headline and summary are directly supported by the source article, with only a minor nuance around full automation being slightly extrapolated but not contradicted.",
+        "paywall_caveat": false,
+        "verified_at": "2026-04-12T04:05:31.662Z",
+        "human_approved": false
+      },
+      "_fabrication": {
+        "verdict": "CLEAN",
+        "issues": [],
+        "check_details": {
+          "numbers_in_headline": "none",
+          "company_name": "pass",
+          "date_year": "pass",
+          "key_stat": "no_stat",
+          "quoted_phrases": "pass"
+        },
+        "checked_at": "2026-04-12T04:05:35.447Z"
+      }
+    },
+    "governance": {
+      "verdict": "PASS",
+      "confidence": 95,
+      "verified_claims": [
+        "Focal has integrated Shaping Wealth's proprietary behavioral intelligence AI agents into its advisor meeting workflow platform",
+        "The integration enables real-time, research-guided coaching on advisor communication behaviors",
+        "Coaching categories include empathy, clarity, engagement and decision support",
+        "Coaching is delivered automatically after every client conversation",
+        "The integration goes beyond AI note-taking",
+        "The system analyzes behavioral patterns across meetings to surface individualized feedback for advisors",
+        "Aggregated performance trend data is provided for management teams",
+        "Sentiment tracking and talking-point-level callouts are included for management",
+        "Ritholtz Wealth Management is cited as an active Focal client engaging with the integration",
+        "Woodgate Financial is cited as an active Focal client engaging with the integration",
+        "The triggering event is a strategic partnership between Focal and Shaping Wealth",
+        "Shaping Wealth's methodology is described as built on academic research and real-world advisor training programs",
+        "Stated outcomes include improved AUM conversion",
+        "Stated outcomes include more effective prospecting",
+        "Stated outcomes include scalable team-level coaching grounded in actual meeting interactions rather than anecdotal performance assessments"
+      ],
+      "unverified_claims": [
+        "Coaching is delivered 'automatically after every client conversation' — the source says insights are provided 'across all client conversations' but does not explicitly confirm full automation with no advisor action required"
+      ],
+      "fabricated_claims": [],
+      "notes": "All material claims in the headline and summary are directly supported by the source article, with only a minor nuance around full automation being slightly extrapolated but not contradicted.",
+      "paywall_caveat": false,
+      "verified_at": "2026-04-12T04:05:31.662Z",
+      "human_approved": false
+    },
+    "queued_at": "2026-04-12T04:05:35.450Z",
+    "discovered_at": "2026-04-12T04:05:35.450Z",
+    "score": null,
+    "score_breakdown": null
   }
 }

@@ -129,5 +129,26 @@
     "blocked_at": "2026-04-05T04:02:36.568Z",
     "title": "Jump's AI Operating System Reaches Advisors at Scale, Backed by $80M Series B to Expand Productivity Layer",
     "score": 58
+  },
+  "https://www.thinkadvisor.com/2026/02/24/orion-expands-ai-work-with-anthropic/": {
+    "id": "orion-anthropic-claude-financial-analysis-tools-2026-02",
+    "reason": "Score 39/100 — below 45 review threshold",
+    "blocked_at": "2026-04-12T04:04:09.252Z",
+    "title": "Orion Deploys Anthropic's Claude Agent for Financial Analysis as Wealth Platform AI Race Accelerates",
+    "score": 39
+  },
+  "https://finance.yahoo.com/news/openai-releases-financial-services-tools-190124457.html": {
+    "id": "openai-financial-services-tools-2026-03",
+    "reason": "Score 47/100 — below 45 review threshold",
+    "blocked_at": "2026-04-12T04:06:58.692Z",
+    "title": "OpenAI Launches Financial-Services-Specific AI Tools, Entering Direct Competition with Anthropic",
+    "score": 47
+  },
+  "https://www.wealthmanagement.com/artificial-intelligence/morgan-stanley-s-wealth-head-addresses-ai-driven-pressures": {
+    "id": "morgan-stanley-wealth-head-ai-driven-pressures-2026-02",
+    "reason": "Score 40/100 — below 45 review threshold",
+    "blocked_at": "2026-04-12T04:09:06.079Z",
+    "title": "Morgan Stanley Wealth Head Publicly Addresses AI Pressure on Wirehouse Business Model",
+    "score": 40
   }
 }
