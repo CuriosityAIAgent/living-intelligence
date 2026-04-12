@@ -119,6 +119,7 @@
 | `/api/pending/:id/approve` | POST | Legacy approve |
 | `/api/pending/:id/reject` | POST | Legacy reject |
 | `/api/blocked` | GET | View all permanently blocked URLs |
+| `/api/blocked/unblock` | POST | Unblock URL and reprocess through full pipeline (fetch → governance → score → inbox) |
 | `/api/health` | GET | Server health + queue counts |
 
 ---

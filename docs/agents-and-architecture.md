@@ -328,6 +328,7 @@ Run: `node --env-file=.env scripts/run-tests.js`
 | **GET** | **`/api/pipeline-status`** | **Last pipeline run summary from .pipeline-status.json** |
 | **GET** | **`/api/recent-published`** | **Last 7 days of published entries for editorial audit** |
 | GET | `/api/blocked` | View all permanently blocked URLs |
+| POST | `/api/blocked/unblock` | Remove URL from blocked list and reprocess through full pipeline (fetch → governance → score → inbox). Re-blocks if governance fails again. |
 | GET | `/api/health` | Server health + queue counts |
 | GET | `/api/audit` | Run fast audit (SSE stream) |
 | GET | `/api/audit/deep` | Run deep audit with Claude (SSE stream) |

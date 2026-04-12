@@ -836,11 +836,66 @@ app.get('/api/blocked', (req, res) => {
   res.json({ blocked });
 });
 
-app.post('/api/blocked/unblock', (req, res) => {
+app.post('/api/blocked/unblock', async (req, res) => {
   const { url } = req.body;
   if (!url) return res.status(400).json({ error: 'url required' });
+
+  // Step 1: Remove from blocked list
   removeBlocked(url);
-  res.json({ ok: true, url });
+
+  // Step 2: Re-process through the full pipeline (fetch → structure → governance → score → inbox)
+  // This runs in the background — the UI gets an immediate response
+  res.json({ ok: true, url, message: 'Unblocked and reprocessing through pipeline' });
+
+  // Fire-and-forget: re-process the URL
+  try {
+    const noopSend = () => {};
+    const intakeResult = await processUrl({ url, source_name: 'Unblocked', send: noopSend });
+    if (!intakeResult) return;
+
+    const govResult = await verify({
+      entry: intakeResult.entry,
+      sourceMarkdown: intakeResult.markdown,
+      send: noopSend,
+    });
+
+    // If it fails governance again, re-block it
+    if (govResult.verdict === 'FAIL') {
+      addBlocked(url, intakeResult.entry.id, govResult.notes || 'Governance FAIL on re-process');
+      return;
+    }
+
+    const govAudit = {
+      verdict: govResult.verdict,
+      confidence: govResult.confidence,
+      verified_claims: govResult.verified_claims || [],
+      unverified_claims: govResult.unverified_claims || [],
+      fabricated_claims: govResult.fabricated_claims || [],
+      notes: govResult.notes || '',
+      paywall_caveat: govResult.paywall_caveat || false,
+      verified_at: new Date().toISOString(),
+      human_approved: false,
+    };
+
+    intakeResult.entry._governance = govAudit;
+
+    // Score the entry
+    const { scoreEntry } = await import('./agents/scorer.js');
+    const scored = await scoreEntry({
+      entry: intakeResult.entry,
+      governance: govAudit,
+      sourceUrl: url,
+    });
+
+    intakeResult.entry._score = scored.score;
+    intakeResult.entry._score_breakdown = scored;
+
+    // Add to inbox for editorial review
+    addPending(intakeResult.entry);
+    console.log(`[unblock] ${url} → reprocessed, score ${scored.score}, queued in inbox`);
+  } catch (err) {
+    console.error(`[unblock] Failed to reprocess ${url}:`, err.message);
+  }
 });
 
 // ─── Health check ─────────────────────────────────────────────────────────────

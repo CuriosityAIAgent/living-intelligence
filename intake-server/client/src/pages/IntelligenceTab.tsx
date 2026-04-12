@@ -514,6 +514,8 @@ function BlockedPanel() {
     try {
       await unblockUrl(url);
       queryClient.invalidateQueries({ queryKey: ['blocked'] });
+      // Also refresh inbox — the unblocked article will be reprocessed and land there
+      queryClient.invalidateQueries({ queryKey: ['inbox'] });
     } finally {
       setUnblocking(null);
     }
