@@ -97,11 +97,14 @@ export default function JpmGate({ children }: { children: React.ReactNode }) {
                 id="jpm-email"
                 type="text"
                 value={username}
-                onChange={e => { setUsername(e.target.value.replace(/[@\s]/g, '')); setError('') }}
+                onChange={e => { setUsername(e.target.value.replace(/[@\s]/g, '').toLowerCase()); setError('') }}
                 placeholder="firstname.lastname"
                 autoFocus
                 autoComplete="off"
-                className="flex-1 px-4 py-3 bg-transparent text-white placeholder-[#666688] focus:outline-none"
+                autoCapitalize="none"
+                autoCorrect="off"
+                spellCheck={false}
+                className="flex-1 px-4 py-3 bg-transparent text-white placeholder-[#666688] focus:outline-none lowercase"
               />
               <span className="pr-4 text-[#9999BB] text-sm select-none whitespace-nowrap">@jpmorgan.com</span>
             </div>
@@ -126,9 +129,9 @@ export default function JpmGate({ children }: { children: React.ReactNode }) {
             >
               Continue
             </button>
-            <p className="mt-4 text-center text-[#666688] text-xs">
+            <p className="mt-5 text-center text-[#9999BB] text-sm">
               Need an access code? Contact{' '}
-              <a href="mailto:haresh.raju@jpmorgan.com" className="text-[#9999BB] underline">
+              <a href="mailto:haresh.raju@jpmorgan.com" className="text-white underline font-medium">
                 haresh.raju@jpmorgan.com
               </a>
             </p>
