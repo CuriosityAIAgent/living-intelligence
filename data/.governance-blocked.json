@@ -255,13 +255,6 @@
     "title": "Altruist's Hazel AI Aggregates CRM, Comms and Market Data to Automate Advisor Workflows Across Sowell Network",
     "score": 45
   },
-  "https://finance.yahoo.com/news/openai-releases-financial-services-tools-190124457.html": {
-    "id": "openai-financial-services-tools-march-2026",
-    "reason": "Score 42/100 — below 45 review threshold",
-    "blocked_at": "2026-04-11T04:03:08.222Z",
-    "title": "OpenAI Launches Dedicated Financial-Services AI Tools, Entering Direct Competition with Anthropic",
-    "score": 42
-  },
   "https://citywire.com/ria/news/altruist-saw-record-traffic-after-launching-ai-tax-tool-coo-says/a2483745": {
     "id": "altruist-ai-tax-tool-record-traffic-2026-02",
     "reason": "Score 50/100 — below 45 review threshold",
@@ -282,5 +275,19 @@
     "blocked_at": "2026-04-12T04:02:25.017Z",
     "title": "Ten Wealthtech Experts Converge on Agentic AI and Hyper-Personalization as 2026's Defining Capability Shifts",
     "score": 0
+  },
+  "https://hubbis.com/article/damien-piper-of-unique-ai-turning-artificial-intelligence-into-a-practical-tool-for-wealth-management": {
+    "id": "unique-ai-damien-piper-wealth-management-practical-tool",
+    "reason": "the_so_what flagged as weak CXO relevance (4/10) — review before publishing",
+    "blocked_at": "2026-04-13T04:01:13.187Z",
+    "title": "Unique AI Positions Proprietary Knowledge Layer as the Core Differentiator in Wealth Management AI Deployment",
+    "score": 45
+  },
+  "https://hubbis.com/article/ai-in-private-wealth-management-from-experimentation-to-agentic-transformation": {
+    "id": "ai-private-wealth-experimentation-to-agentic-transformation",
+    "reason": "the_so_what flagged as weak CXO relevance (2/10) — review before publishing",
+    "blocked_at": "2026-04-13T04:02:07.546Z",
+    "title": "Agentic AI Moves from Pilot to Autonomous Execution Across Private Wealth Client Lifecycle",
+    "score": 45
   }
 }
