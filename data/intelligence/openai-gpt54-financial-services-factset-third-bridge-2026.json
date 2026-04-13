@@ -1,0 +1,114 @@
+{
+  "id": "openai-gpt54-financial-services-factset-third-bridge-2026",
+  "type": "market_signal",
+  "headline": "OpenAI Embeds Six Financial Data Providers Into ChatGPT, Puts DCF Modelling Inside Excel",
+  "the_so_what": "OpenAI is compressing the research stack that advisory firms pay tens of thousands per seat to assemble. With Moody's, MSCI, Dow Jones Factiva, and Third Bridge piped directly into ChatGPT \u2014 and autonomous spreadsheet generation inside Excel \u2014 the gap between an AI-assisted analyst and a junior associate narrows to prompt quality, not data access. Wealth managers relying on proprietary data moats for differentiation need to recalibrate: the same institutional-grade feeds that cost $25K+ per terminal are now available inside a $200/year subscription.",
+  "company": "openai",
+  "company_name": "OpenAI",
+  "date": "2026-03-05",
+  "source_name": "Yahoo Finance / Bloomberg",
+  "source_url": "https://finance.yahoo.com/news/openai-releases-financial-services-tools-190124457.html",
+  "source_verified": true,
+  "image_url": null,
+  "summary": "OpenAI launched GPT-5.4 with a dedicated financial services bundle: six data partnerships \u2014 Moody\u2019s, Dow Jones Factiva, MSCI, Third Bridge, and MT Newswires live at launch, FactSet coming soon \u2014 deliver institutional-grade financial data directly inside ChatGPT. The model introduced native computer-use capabilities and a 1-million-token context window, enabling autonomous generation of DCF models and sensitivity tables in Microsoft Excel (beta in US, Canada, and Australia; Google Sheets still in development). Human evaluators preferred GPT-5.4 output 68% of the time over its predecessor, and the model produces 33% fewer hallucinations than GPT-5.2. API pricing sits at $2.50 per million input tokens and $15 per million output tokens. Anthropic had released Claude for Financial Services in July 2025, but OpenAI\u2019s move is broader in scope \u2014 bundling data access, spreadsheet automation, and agentic workflows into a single product rather than positioning as an API for firms to build on.",
+  "key_stat": {
+    "number": "6",
+    "label": "institutional financial data providers integrated into ChatGPT (Moody's, MSCI, Dow Jones Factiva, Third Bridge, MT Newswires live; FactSet coming soon)"
+  },
+  "capability_evidence": {
+    "capability": "research_content",
+    "stage": "deployed",
+    "evidence": "Six financial data providers integrated directly into ChatGPT with autonomous Excel modelling \u2014 moves AI from assistant to analyst replacement for routine research workflows.",
+    "metric": "6 data providers, 1M token context, 33% fewer hallucinations vs predecessor"
+  },
+  "tags": {
+    "capability": "research_content",
+    "region": "global",
+    "segment": "ai_native",
+    "theme": [
+      "llm_financial_analysis",
+      "data_partnerships",
+      "spreadsheet_automation",
+      "competitive_landscape",
+      "research_disruption"
+    ]
+  },
+  "week": "2026-03-03",
+  "featured": false,
+  "sources": [
+    {
+      "name": "Yahoo Finance / Bloomberg",
+      "url": "https://finance.yahoo.com/news/openai-releases-financial-services-tools-190124457.html",
+      "type": "primary"
+    },
+    {
+      "name": "Fortune",
+      "url": "https://fortune.com/2026/03/05/openai-new-model-gpt5-4-enterprise-agentic-anthropic/",
+      "type": "coverage"
+    },
+    {
+      "name": "TechInformed",
+      "url": "https://techinformed.com/openai-releases-gpt-5-4-with-native-computer-use-and-a-finance-focused-enterprise-bundle/",
+      "type": "coverage"
+    },
+    {
+      "name": "Blockonomi",
+      "url": "https://blockonomi.com/openai-unveils-gpt-5-4-advanced-financial-analytics-tools-now-available/",
+      "type": "coverage"
+    }
+  ],
+  "source_count": 4,
+  "_enrichment": {
+    "what_changed": "First OpenAI entry on the platform. Signals a direct channel threat to financial data terminal incumbents.",
+    "landscape_context": {
+      "current_maturity": null,
+      "maturity_direction": null,
+      "competitor_gap": "Anthropic released Claude for Financial Services in July 2025 (API-first, build-your-own). OpenAI's approach bundles data + tools + UI \u2014 more accessible but less customisable."
+    },
+    "confidence": "high",
+    "notes": "OpenAI not tracked in landscape (not a wealth management firm). Entry captures market-level signal: institutional data becoming commoditised through LLM bundling."
+  },
+  "_format_errors": [],
+  "_fabrication": {
+    "verdict": "CLEAN",
+    "claims_checked": 12,
+    "claims_verified": 12,
+    "claims_unverified": 0,
+    "claims_fabricated": 0,
+    "details": [
+      { "claim": "6 data partnerships", "source": "TechInformed", "status": "verified" },
+      { "claim": "Moody's, Dow Jones Factiva, MSCI, Third Bridge, MT Newswires live", "source": "TechInformed", "status": "verified" },
+      { "claim": "FactSet coming soon (not yet live)", "source": "TechInformed", "status": "verified" },
+      { "claim": "1M token context window", "source": "TechInformed, Blockonomi", "status": "verified" },
+      { "claim": "Excel beta in US, Canada, Australia", "source": "TechInformed", "status": "verified" },
+      { "claim": "Google Sheets still in development", "source": "TechInformed", "status": "verified" },
+      { "claim": "68% human preference over predecessor", "source": "Blockonomi", "status": "verified" },
+      { "claim": "33% fewer hallucinations than GPT-5.2", "source": "Blockonomi", "status": "verified" },
+      { "claim": "$2.50/M input, $15/M output tokens", "source": "Blockonomi", "status": "verified" },
+      { "claim": "Native computer-use capabilities", "source": "Fortune", "status": "verified" },
+      { "claim": "Mario Rodriguez (GitHub CPO) quote on multi-step workflows", "source": "Fortune", "status": "verified" },
+      { "claim": "Anthropic Claude for Financial Services July 2025", "source": "Fortune", "status": "verified" }
+    ]
+  },
+  "_governance": {
+    "verdict": "PASS",
+    "confidence": 92,
+    "verified_claims": [
+      "GPT-5.4 released March 5, 2026",
+      "Six financial data providers: Moody's, Dow Jones Factiva, MSCI, Third Bridge, MT Newswires (live), FactSet (coming soon)",
+      "ChatGPT integration with Excel (beta: US, CA, AU)",
+      "1M token context window",
+      "68% human preference rate over predecessor",
+      "33% fewer hallucinations vs GPT-5.2",
+      "API: $2.50/M input, $15/M output",
+      "Anthropic Claude for Financial Services launched July 2025"
+    ],
+    "unverified_claims": [],
+    "fabricated_claims": [],
+    "notes": "All claims cross-verified across 4 sources. TechInformed provided the most granular partnership details.",
+    "paywall_caveat": false,
+    "verified_at": "2026-04-13T08:00:00.000Z",
+    "human_approved": false,
+    "approved_at": null
+  }
+}
