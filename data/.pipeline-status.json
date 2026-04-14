@@ -1,47 +1,23 @@
 {
-  "started_at": "2026-04-05T04:00:00.482Z",
+  "started_at": "2026-04-14T04:00:00.143Z",
   "candidates_found": 15,
   "queued": 2,
   "blocked": 2,
-  "errors": 1,
-  "error_details": [
-    {
-      "url": "https://citywire.com/wealth-manager/news/schroders-signs-coutts-veteran-for-key-new-ai-wealth-role/a2486995",
-      "stage": "intake",
-      "message": "processUrl returned null"
-    }
-  ],
+  "errors": 0,
+  "error_details": [],
   "discovery_sources": {
-    "layer1_news": 42,
-    "layer1_capabilities": 14,
+    "layer1_news": 40,
+    "layer1_capabilities": 17,
     "layer2_companies": 0,
-    "layer3_newsapi": 2,
-    "layer1_tl": 36,
-    "layer2_authors": 50,
+    "layer3_newsapi": 4,
+    "layer1_tl": 31,
+    "layer2_authors": 22,
     "companies_queried": 37,
     "capabilities_queried": 7,
-    "raw_intel_total": 51
+    "raw_intel_total": 55
   },
-  "tl_candidates": 83,
+  "tl_candidates": 51,
   "tl_items": [
-    {
-      "id": "aHR0cHM6Ly93",
-      "title": "Wealth Management Needs AI: Raymond James CEO",
-      "url": "https://www.thinkadvisor.com/2026/03/03/wealth-management-needs-ai-raymond-james-ceo/",
-      "source_name": "thinkadvisor.com",
-      "pub_date": "Mar 3, 2026",
-      "snippet": "Artificial intelligence tools will help advisors better serve their clients, Paul Shoukry says.",
-      "via": "layer1_tl"
-    },
-    {
-      "id": "aHR0cHM6Ly9o",
-      "title": "Has AI Ended Thought Leadership?",
-      "url": "https://hbr.org/2026/03/has-ai-ended-thought-leadership",
-      "source_name": "hbr.org",
-      "pub_date": "Mar 9, 2026",
-      "snippet": "As generative AI and content platforms make it effortless to sound authoritative, organizations are being overwhelmed by polished insight that rarely translates into real change. The growing gap between those who talk about the future of work and those who actually build it has turned expertise into",
-      "via": "layer1_tl"
-    },
     {
       "id": "aHR0cHM6Ly93",
       "title": "As AI Investments Surge, CEOs Take the Lead",
@@ -49,24 +25,6 @@
       "source_name": "bcg.com",
       "pub_date": "Jan 15, 2026",
       "snippet": "Nearly three-quarters of CEOs are their company’s chief decision maker on AI. Most of them remain bullish on the technology.",
-      "via": "layer1_tl"
-    },
-    {
-      "id": "aHR0cHM6Ly90",
-      "title": "John O’Connell Featured in Wealth Solutions Report: 2026: The Year Of Serious AI Adoption",
-      "url": "https://theoasisgrp.com/article/john-oconnell-featured-in-wealth-solutions-report-2026-the-year-of-serious-ai-adoption/",
-      "source_name": "theoasisgrp.com",
-      "pub_date": "Jan 14, 2026",
-      "snippet": "John O'Connell Featured in Wealth Solutions Report on how 2026 is the year of serious AI adoption in wealth management.",
-      "via": "layer1_tl"
-    },
-    {
-      "id": "aHR0cHM6Ly9j",
-      "title": "How Boards Can Lead in a World Remade by AI",
-      "url": "https://corpgov.law.harvard.edu/2026/02/19/how-boards-can-lead-in-a-world-remade-by-ai/",
-      "source_name": "corpgov.law.harvard.edu",
-      "pub_date": "Feb 19, 2026",
-      "snippet": "# How Boards Can Lead in a World Remade by AI\n\nHarvard Law School Forum on Corporate Governance\n\n*   [Home](https://corpgov.law.harvard.edu/)\n*   [About](https://corpgov.law.harvard.edu/about/)\n*   [Archive](https://corpgov.law.harvard.edu/archive/)\n*   [Categories](https://corpgov.law.harvard.edu/c",
       "via": "layer1_tl"
     },
     {
@@ -80,74 +38,74 @@
     },
     {
       "id": "aHR0cHM6Ly9j",
-      "title": "Wealth management trends for 2026: Six questions driven by a wave of change",
-      "url": "https://clearingcustody.fidelity.com/insights/topics/running-your-business/wealth-management-trends-for-2026",
-      "source_name": "clearingcustody.fidelity.com",
-      "pub_date": null,
-      "snippet": "Explore six questions driven by what may impact wealth managers and their clients in the coming year, including AI, asset classes, M&A activity, and more.",
+      "title": "How Boards Can Lead in a World Remade by AI",
+      "url": "https://corpgov.law.harvard.edu/2026/02/19/how-boards-can-lead-in-a-world-remade-by-ai/",
+      "source_name": "corpgov.law.harvard.edu",
+      "pub_date": "Feb 19, 2026",
+      "snippet": "In brief AI’s impacts on strategy, talent, and risk make it essential for boards to adapt their oversight approaches. The board’s guidance is key to helping companies harness AI for growth, maintain needed skills, and drive accountability for AI’s uses and outputs. Leading boards can fulfill this re",
       "via": "layer1_tl"
     },
     {
       "id": "aHR0cHM6Ly93",
-      "title": "How AI will change wealth management in 2026 and beyond",
-      "url": "https://www.investmentnews.com/videos/in-the-nasdaq/how-ai-will-change-wealth-management-in-2026-and-beyond/265219",
-      "source_name": "investmentnews.com",
-      "pub_date": "Feb 10, 2026",
-      "snippet": "Justin Whitehead, CEO and founder of Pebble Finance, sits down with InvestmentNews anchor Gregg Greenberg to explain how AI will change the wealth management industry in 2026 and beyond.",
+      "title": "AI in Wealth Management: 2026 Trends and Challenges | Next Level Recruiting, LLC posted on the topic | LinkedIn",
+      "url": "https://www.linkedin.com/posts/next-level-recruiting-llc_ai-2026-increased-adoption-new-use-cases-activity-7420485172136984576-MxYJ",
+      "source_name": "linkedin.com",
+      "pub_date": "Jan 23, 2026",
+      "snippet": "AI is set to play a bigger role in wealth management in 2026—but questions remain.\n\nThis Family Wealth Report article explores how advisors are beginning to adopt AI, the new use cases gaining traction, and why regulation and trust still slow broader uptake. It also highlights a new Financial Planni",
+      "via": "layer1_tl"
+    },
+    {
+      "id": "aHR0cHM6Ly9r",
+      "title": "AI in 2026: What's Next?",
+      "url": "https://knowledge.wharton.upenn.edu/podcast/this-week-in-business/where-artificial-intelligence-stands-heading-into-2026/",
+      "source_name": "knowledge.wharton.upenn.edu",
+      "pub_date": null,
+      "snippet": "Wharton's Ethan Mollick discusses the current state of AI and the key implications for business, labor, and society in the year ahead.",
       "via": "layer1_tl"
     },
     {
       "id": "aHR0cHM6Ly93",
-      "title": "How artificial intelligence is reshaping the financial services industry",
-      "url": "https://www.ey.com/en_gr/insights/financial-services/how-artificial-intelligence-is-reshaping-the-financial-services-industry",
-      "source_name": "ey.com",
+      "title": "The Impact of Artificial Intelligence on Financial Decisions for",
+      "url": "https://www.soa.org/globalassets/assets/files/resources/research-report/2024/ai-retirement-risk-essays/ai-retirement-risks-essays-6-dennis.pdf",
+      "source_name": "soa.org",
       "pub_date": null,
-      "snippet": "AI is reshaping the financial services industry, making it more efficient, effective and innovative. Read more.",
+      "snippet": "Copyright © 20 24 Society of Actuaries Research Institute \n\n# The Impact of Artificial Intelligence on Financial Decisions for Retirees \n\n# Mark Dennis , DBA, CFP ®\n\nAny views and ideas expressed in the essay are the author ’s alone and may not reflect th e views and ideas of the \n\nSociety of Actuar",
       "via": "layer1_tl"
     },
     {
-      "id": "aHR0cHM6Ly9m",
-      "title": "Something big is happening in AI — and most people will be blindsided | Fortune",
-      "url": "https://fortune.com/2026/02/11/something-big-is-happening-ai-february-2020-moment-matt-shumer/",
-      "source_name": "fortune.com",
-      "pub_date": "Feb 11, 2026",
-      "snippet": "It’s not like a light switch... more like the moment you realize the water has been rising around you and is now at your chest.",
+      "id": "aHR0cHM6Ly9z",
+      "title": "Regulating Robo-Advisors in an Age of Generative Artificial Intelligence",
+      "url": "https://scholarlycommons.law.wlu.edu/cgi/viewcontent.cgi?article=4914&context=wlulr",
+      "source_name": "scholarlycommons.law.wlu.edu",
+      "pub_date": null,
+      "snippet": "Washington and Lee Law Review Washington and Lee Law Review \n\nVolume 82  Issue 2  Article 7 \n\nSpring 2025 \n\n# Regulating Robo-Advisors in an Age of Generative Artificial Regulating Robo-Advisors in an Age of Generative Artificial \n\n# Intelligence Intelligence \n\nDaniel Schwarcz University of Minnesot",
+      "via": "layer1_tl"
+    },
+    {
+      "id": "aHR0cHM6Ly9y",
+      "title": "WEF_Artificial_Intelligence_in_Financial_Services_2025.pdf",
+      "url": "https://reports.weforum.org/docs/WEF_Artificial_Intelligence_in_Financial_Services_2025.pdf",
+      "source_name": "reports.weforum.org",
+      "pub_date": null,
+      "snippet": "# Artificial Intelligence in Financial Services W H I T E P A P E R \n\nJ A N U A R Y 2 0 2 5 \n\nIn collaboration with Accenture \n\nTransformation of Industries in the Age of AI AI Governance Alliance Images: Getty Images, Unsplash \n\nDisclaimer \n\nThis document is published by the World Economic Forum as",
       "via": "layer1_tl"
     },
     {
       "id": "aHR0cHM6Ly93",
-      "title": "Impact of Artificial Intelligence (AI) in Financial Advisory Industry",
-      "url": "https://www.theamericancollege.edu/knowledge-hub/insights/impact-of-artificial-intelligence-ai-in-financial-advisory-industry",
-      "source_name": "theamericancollege.edu",
-      "pub_date": null,
-      "snippet": "Center for Ethics Webcast explores artificial intelligence in the financial services industry.",
+      "title": "AI Rewires Brains: Tom Slater's Insightful Essay | Pete Matthew posted on the topic | LinkedIn",
+      "url": "https://www.linkedin.com/posts/petematthew_ai-isnt-coming-for-your-job-its-coming-activity-7435469981045116928-CCkQ",
+      "source_name": "linkedin.com",
+      "pub_date": "Mar 5, 2026",
+      "snippet": "This is the best thing I’ve read on AI in ages - a brilliant essay by Tom Slater of Scottish Mortgage Investment Trust (whom I’m unable to tag) about how AI is physically rewiring our brains. It is immaculately written, very easy to digest and might be the most important thing you read this year. \n\n",
       "via": "layer1_tl"
     },
     {
       "id": "aHR0cHM6Ly93",
       "title": "Just a moment...",
-      "url": "https://www.researchgate.net/publication/381277119_Artificial_Intelligence_as_Personal_Financial_Advisor_in_the_Future_-_A_Case_Study_Based_on_Algorithmic_Innovation_Strategies",
+      "url": "https://www.researchgate.net/publication/399586100_Exploring_the_potential_of_AI_in_personal_financial_planning_and_advisory_services",
       "source_name": "researchgate.net",
-      "pub_date": null,
-      "snippet": "## Security check required\n\nWe've detected unusual activity from your network. To continue, complete the security check below.\n\nRay ID: 9e75a4c89d17392c\n\nClient IP: 2600:1900:0:2100::1a01\n\n© 2008-2026 ResearchGate GmbH. All rights reserved.",
-      "via": "layer1_tl"
-    },
-    {
-      "id": "aHR0cHM6Ly9o",
-      "title": "7 Factors That Drive Returns on AI Investments, According to a New Survey",
-      "url": "https://hbr.org/2026/03/7-factors-that-drive-returns-on-ai-investments-according-to-a-new-survey",
-      "source_name": "hbr.org",
-      "pub_date": "Mar 17, 2026",
-      "snippet": "Leaders are facing tremendous pressure to deliver on AI. To understand how they are navigating this, researchers surveyed 1,006 global senior executives who had close familiarity with their organizations’ AI initiatives, and interviewed 12 technology, data, and AI leaders at enterprise organizations",
-      "via": "layer1_tl"
-    },
-    {
-      "id": "aHR0cHM6Ly93",
-      "title": "Access Denied",
-      "url": "https://www.spglobal.com/market-intelligence/en/news-insights/research/2026/01/10-ai-trends-to-shape-your-2026-strategy",
-      "source_name": "spglobal.com",
-      "pub_date": "Jan 30, 2026",
-      "snippet": "You don't have permission to access \"http://www.spglobal.com/market-intelligence/en/news-insights/research/2026/01/10-ai-trends-to-shape-your-2026-strategy\" on this server.\nReference #18.8a813217.1775361602.a1bb52f8\n\nhttps://errors.edgesuite.net/18.8a813217.1775361602.a1bb52f8",
+      "pub_date": "Mar 4, 2026",
+      "snippet": "## Security check required\n\nWe've detected unusual activity from your network. To continue, complete the security check below.\n\nRay ID: 9ebfcd2528b4c98c\n\nClient IP: 2600:1900:0:2106::1f00\n\n© 2008-2026 ResearchGate GmbH. All rights reserved.",
       "via": "layer1_tl"
     },
     {
@@ -158,21 +116,57 @@
       "pub_date": "Mar 9, 2026",
       "snippet": "Discover key market trends as AI becomes the central force influencing growth, earnings, geopolitics, and investment strategy across global markets in 2026.",
       "via": "layer1_tl"
+    },
+    {
+      "id": "aHR0cHM6Ly93",
+      "title": "Access Denied",
+      "url": "https://www.spglobal.com/market-intelligence/en/news-insights/research/2026/01/10-ai-trends-to-shape-your-2026-strategy",
+      "source_name": "spglobal.com",
+      "pub_date": "Jan 30, 2026",
+      "snippet": "You don't have permission to access \"http://www.spglobal.com/market-intelligence/en/news-insights/research/2026/01/10-ai-trends-to-shape-your-2026-strategy\" on this server.\nReference #18.51dfda17.1776139203.25fadd89\n\nhttps://errors.edgesuite.net/18.51dfda17.1776139203.25fadd89",
+      "via": "layer1_tl"
+    },
+    {
+      "id": "aHR0cHM6Ly93",
+      "title": "Algorithmic Revolution: AI Leads Investment Strategies in 2026",
+      "url": "https://www.linkedin.com/pulse/algorithmic-revolution-ai-leads-investment-mif9c",
+      "source_name": "linkedin.com",
+      "pub_date": "Jan 21, 2026",
+      "snippet": "Industry leaders predict AI will revolutionize business by 2026. IBM believes quantum computers will surpass classical computers that year, which could lead to breakthroughs in many industries.",
+      "via": "layer1_tl"
+    },
+    {
+      "id": "aHR0cHM6Ly93",
+      "title": "Q4 2025 Investment AI Trends: Traditional AI Leads Adoption, But GenAI to Reshape the Status Quo in 2026",
+      "url": "https://www.scnsoft.com/investment/investment-ai-trends",
+      "source_name": "scnsoft.com",
+      "pub_date": "Jan 30, 2026",
+      "snippet": "Investment firms moved past pilots in generative AI, but trust and privacy concerns restrain live rollouts. Agentic AI remains in exploration mode.",
+      "via": "layer1_tl"
+    },
+    {
+      "id": "aHR0cHM6Ly9w",
+      "title": "GenAI Strategy & Investment Management | Portal26 Platform Feature",
+      "url": "https://portal26.ai/genai-strategy/",
+      "source_name": "portal26.ai",
+      "pub_date": null,
+      "snippet": "Balance GenAI investments across private, public, and licensed AI with Portal26's strategy management. Optimize ROI, manage risk, and align with enterprise objectives and policies.",
+      "via": "layer1_tl"
     }
   ],
   "blocked_items": [
     {
-      "url": "https://fintech.global/2026/01/29/wealthai-raises-800k-to-launch-ai-first-os-for-wealth-managers/",
-      "title": "WealthAI Builds AI-Native OS to Unify Fragmented Wealth Manager Tech Stacks",
-      "reason": "Score 37/100 — below 45 review threshold",
-      "score": 37
+      "url": "https://www.pymnts.com/artificial-intelligence-2/2026/citi-arms-wealth-advisors-with-4-ai-tools-to-cut-busywork/",
+      "title": "Citi Deploys 4 AI Tools Across Wealth Division, Automating Notes, Research Queries and Client 360 Views",
+      "reason": "Fabrication detected: Client 360 rollout timeline contradiction: Entry states 'full rollout planned for April 2026', but source states full rollout to Citi Private Bank and Wealth at Work is planned for 'this month' (April 2026) with ALL Wealth colleagues gaining access in Q2 2026 — the entry omits the Q2 2026 phase and mischaracterizes the rollout scope.; Portfolio Intelligence global rollout: Entry states 'global rollout through year-end', but source specifies expanding to Private Bank clients globally in Q2 first, then all Wealth clients by year-end — the entry collapses these two phases into one.; CitiScribe description: Entry states it 'automates meeting note-taking', but source describes it as 'automates note-taking, summarizing client discussions' — minor but the entry's characterization is consistent enough to not be a hard fail.; Citi Stylus Workspaces launch: Entry states 'launched in September 2025' which is consistent with source reference to 'Last September' (published April 2026).",
+      "score": 0
     },
     {
-      "url": "https://www.axios.com/pro/fintech-deals/2026/02/19/jump-80m-series-b-insight-advisor-ai",
-      "title": "Jump's AI Operating System Reaches Advisors at Scale, Backed by $80M Series B to Expand Productivity Layer",
-      "reason": "Score 58/100 — below 45 review threshold",
-      "score": 58
+      "url": "https://hubbis.com/article/ai-in-private-wealth-management-from-experimentation-to-agentic-transformation",
+      "title": "Agentic AI Moves From Pilot to Autonomous Execution Across Private Wealth Client Lifecycle",
+      "reason": "the_so_what flagged as weak CXO relevance (3/10) — review before publishing",
+      "score": 45
     }
   ],
-  "written_at": "2026-04-05T04:05:44.227Z"
+  "written_at": "2026-04-14T04:06:14.620Z"
 }

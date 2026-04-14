@@ -97,14 +97,24 @@ export function getBlocked() {
   return readStore(BLOCKED_FILE);
 }
 
-export function addBlocked(url, id, reason) {
+export function addBlocked(url, id, reason, meta = {}) {
   const store = readStore(BLOCKED_FILE);
-  store[url] = { id, reason, blocked_at: new Date().toISOString() };
+  store[url] = {
+    id, reason, blocked_at: new Date().toISOString(),
+    ...(meta.title && { title: meta.title }),
+    ...(meta.score != null && { score: meta.score }),
+  };
   writeStore(BLOCKED_FILE, store);
 }
 
 export function isBlocked(url) {
   return !!readStore(BLOCKED_FILE)[url];
+}
+
+export function removeBlocked(url) {
+  const store = readStore(BLOCKED_FILE);
+  delete store[url];
+  writeStore(BLOCKED_FILE, store);
 }
 
 // ─── Rejection log (editorial feedback for algorithm tuning) ──────────────────
@@ -123,14 +133,27 @@ export function addRejectionLog(entry) {
 
 // ─── Pipeline status (last run timestamp + summary) ───────────────────────────
 
+const PIPELINE_HISTORY_FILE = join(STORE_DIR, '.pipeline-history.json');
+
 export function writePipelineStatus(status) {
   if (!existsSync(STORE_DIR)) mkdirSync(STORE_DIR, { recursive: true });
-  writeFileSync(PIPELINE_STATUS_FILE, JSON.stringify({ ...status, written_at: new Date().toISOString() }, null, 2), 'utf-8');
+  const run = { ...status, written_at: new Date().toISOString() };
+  // Write current status (backwards compat)
+  writeFileSync(PIPELINE_STATUS_FILE, JSON.stringify(run, null, 2), 'utf-8');
+  // Append to history (keep last 30 runs)
+  const history = readPipelineHistory();
+  history.unshift(run);
+  writeFileSync(PIPELINE_HISTORY_FILE, JSON.stringify(history.slice(0, 30), null, 2), 'utf-8');
 }
 
 export function readPipelineStatus() {
   if (!existsSync(PIPELINE_STATUS_FILE)) return null;
   try { return JSON.parse(readFileSync(PIPELINE_STATUS_FILE, 'utf-8')); } catch { return null; }
+}
+
+export function readPipelineHistory() {
+  if (!existsSync(PIPELINE_HISTORY_FILE)) return [];
+  try { return JSON.parse(readFileSync(PIPELINE_HISTORY_FILE, 'utf-8')); } catch { return []; }
 }
 
 // ─── Archive (items > 7 days old from pending) ───────────────────────────────

@@ -10,15 +10,12 @@
  */
 
 import { readFileSync, writeFileSync, existsSync, readdirSync } from 'fs';
-import { join, dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { join } from 'path';
 import { execSync } from 'child_process';
 import Anthropic from '@anthropic-ai/sdk';
+import { REPO_ROOT, COMPETITORS_DIR, STATE_DIR } from './config.js';
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
-const DATA_ROOT = process.env.DATA_DIR || join(__dirname, '..', '..');
-const COMPETITORS_DIR = join(DATA_ROOT, 'data', 'competitors');
-const SUGGESTIONS_FILE = join(DATA_ROOT, 'data', '.landscape-suggestions.json');
+const SUGGESTIONS_FILE = join(STATE_DIR, '.landscape-suggestions.json');
 
 const MATURITY_ORDER = ['no_activity', 'announced', 'piloting', 'deployed', 'scaled'];
 
@@ -65,22 +62,27 @@ export async function checkLandscapeImpact(entry) {
 
   const currentMaturity = cap.maturity;
   const currentIdx      = MATURITY_ORDER.indexOf(currentMaturity);
-  if (currentIdx === MATURITY_ORDER.length - 1) return; // already scaled — nothing higher
+  const atMax           = currentIdx === MATURITY_ORDER.length - 1;
 
   const client = new Anthropic();
 
-  const systemPrompt = `You audit landscape maturity ratings for a premium wealth management AI intelligence platform.
+  const systemPrompt = `You audit landscape capability profiles for a premium wealth management AI intelligence platform.
 Maturity levels (ascending): no_activity → announced → piloting → deployed → scaled.
 Definitions:
 - announced: publicly committed to building, not yet in production
 - piloting: live with select users, not broadly available
 - deployed: live in production, partial/regional/limited adoption
 - scaled: widely deployed across the firm, measurably impacting business outcomes
-Be conservative. Only suggest an upgrade when the new evidence is unambiguous — a launch announcement ≠ deployed; a pilot ≠ deployed; a press release ≠ scaled.`;
+
+Your job: determine whether a new intelligence entry warrants updating this company's landscape profile.
+Two types of updates:
+1. MATURITY UPGRADE — the new evidence moves the company to a higher maturity level. Be conservative.
+2. EVIDENCE UPDATE — the company stays at the same maturity, but the new entry is a significant development (new product, new metric, expanded deployment) that should update the headline and evidence list. This is common for companies already at "deployed" or "scaled" that ship something new.`;
 
   const userPrompt = `COMPANY: ${data.name}
 CAPABILITY: ${capability}
 CURRENT MATURITY: ${currentMaturity}
+CURRENT HEADLINE: ${cap.headline}
 CURRENT EVIDENCE:
 ${JSON.stringify(cap.evidence, null, 2)}
 
@@ -88,20 +90,29 @@ NEW INTELLIGENCE ENTRY:
 Headline: ${entry.headline}
 Summary: ${entry.summary}
 Key stat: ${entry.key_stat ? `${entry.key_stat.number} — ${entry.key_stat.label}` : 'none'}
+Capability evidence: ${entry.capability_evidence ? `${entry.capability_evidence.stage} — ${entry.capability_evidence.evidence}` : 'none'}
 Date: ${entry.date}
 
-Does this new entry provide clear evidence to UPGRADE the maturity rating?
+Decide:
+- If the entry warrants a maturity UPGRADE, set update_type to "maturity_upgrade"
+- If the entry is a significant new development at the SAME maturity level (new product, new metric, expanded deployment), set update_type to "evidence_update"
+- If the entry adds nothing significant beyond what's already in the evidence list, set update_type to "none"
+
+${atMax ? 'NOTE: This company is already at "scaled" (highest level), so maturity_upgrade is not possible. Focus on evidence_update.' : ''}
+
 Respond with JSON only — no markdown fences:
 {
-  "should_update": true | false,
+  "update_type": "maturity_upgrade" | "evidence_update" | "none",
   "suggested_maturity": "${currentMaturity}",
-  "reason": "one sentence citing specific evidence from the entry"
+  "suggested_headline": "updated one-line headline for this capability (only if update_type != none)",
+  "new_evidence_line": "one evidence bullet to add, citing the specific fact and date from the entry (only if update_type != none)",
+  "reason": "one sentence explaining why this warrants an update"
 }`;
 
   try {
     const response = await client.messages.create({
       model: 'claude-sonnet-4-6',
-      max_tokens: 256,
+      max_tokens: 512,
       messages: [{ role: 'user', content: userPrompt }],
       system: systemPrompt,
     });
@@ -110,11 +121,13 @@ Respond with JSON only — no markdown fences:
       .replace(/^```json\n?/, '').replace(/\n?```$/, '');
     const result = JSON.parse(text);
 
-    if (!result.should_update) return;
+    if (result.update_type === 'none') return;
 
-    // Validate: only accept genuine upgrades
-    const suggestedIdx = MATURITY_ORDER.indexOf(result.suggested_maturity);
-    if (suggestedIdx <= currentIdx) return;
+    // Validate maturity upgrade is genuine
+    if (result.update_type === 'maturity_upgrade') {
+      const suggestedIdx = MATURITY_ORDER.indexOf(result.suggested_maturity);
+      if (suggestedIdx <= currentIdx) return;
+    }
 
     const suggestions = loadSuggestions();
     const suggestionId = `${data.id}__${capability}__${Date.now()}`;
@@ -123,8 +136,11 @@ Respond with JSON only — no markdown fences:
       company_id:              data.id,
       company_name:            data.name,
       capability,
+      update_type:             result.update_type,
       current_maturity:        currentMaturity,
-      suggested_maturity:      result.suggested_maturity,
+      suggested_maturity:      result.suggested_maturity || currentMaturity,
+      suggested_headline:      result.suggested_headline || null,
+      new_evidence_line:       result.new_evidence_line || null,
       reason:                  result.reason,
       triggered_by_entry_id:   entry.id,
       triggered_by_headline:   entry.headline,
@@ -135,7 +151,7 @@ Respond with JSON only — no markdown fences:
     };
     saveSuggestions(suggestions);
 
-    console.log(`[landscape-trigger] Suggestion: ${data.name} · ${capability} · ${currentMaturity} → ${result.suggested_maturity}`);
+    console.log(`[landscape-trigger] Suggestion (${result.update_type}): ${data.name} · ${capability} · ${result.reason?.slice(0, 80)}`);
   } catch (err) {
     // Non-fatal — the publish already succeeded
     console.warn('[landscape-trigger] check failed (non-fatal):', err.message);
@@ -159,12 +175,28 @@ export function applyLandscapeSuggestion(suggestionId) {
   const cap  = data.capabilities?.[s.capability];
   if (!cap) return null;
 
-  cap.maturity      = s.suggested_maturity;
+  // Apply maturity change (if upgrade)
+  if (s.update_type === 'maturity_upgrade' && s.suggested_maturity) {
+    cap.maturity = s.suggested_maturity;
+  }
+
+  // Apply headline update
+  if (s.suggested_headline) {
+    cap.headline = s.suggested_headline;
+  }
+
+  // Add new evidence line
+  if (s.new_evidence_line) {
+    cap.evidence = [...(cap.evidence || []), s.new_evidence_line];
+  } else {
+    // Fallback: generic evidence line
+    const label = s.update_type === 'maturity_upgrade'
+      ? `maturity upgraded from ${s.current_maturity} to ${s.suggested_maturity}`
+      : 'evidence updated';
+    cap.evidence = [...(cap.evidence || []), `${s.triggered_by_headline} (${s.triggered_by_date}) — ${label}`];
+  }
+
   cap.date_assessed = new Date().toISOString().split('T')[0];
-  cap.evidence      = [
-    ...(cap.evidence || []),
-    `${s.triggered_by_headline} (${s.triggered_by_date}) — maturity upgraded from ${s.current_maturity} to ${s.suggested_maturity}`,
-  ];
   data.last_updated = new Date().toISOString().split('T')[0];
 
   writeFileSync(s.competitor_filepath, JSON.stringify(data, null, 2), 'utf-8');
@@ -197,7 +229,7 @@ export function dismissLandscapeSuggestion(suggestionId) {
 function _commitCompetitorUpdate({ filepath, message }) {
   const gitToken = process.env.GIT_TOKEN;
   const repo     = process.env.GITHUB_REPO || 'CuriosityAIAgent/living-intelligence';
-  const portalDir = process.env.PORTAL_DIR || join(__dirname, '..', '..');
+  const portalDir = process.env.PORTAL_DIR || REPO_ROOT;
 
   try {
     execSync(`git config --global --add safe.directory "${portalDir}"`, { stdio: 'pipe' });

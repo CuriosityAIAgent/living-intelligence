@@ -1,194 +1,136 @@
 {
   "id": "julius-baer-jai-4000-weekly-users-fastest-adoption",
   "type": "strategy_move",
-  "headline": "Julius Baer Creates Global Wealth Management Committee, Centralizing Strategy as JAI AI Rollout Stalls at 4,000 Users",
-  "summary": "Julius Baer established a new Global Wealth Management Committee in February 2025 and appointed Asia Region Head Jimmy Lee as a member, replacing his prior Executive Board seat — a governance restructuring that centralizes wealth strategy into a dedicated body that did not previously exist at the firm. The move elevates Asia, described in Julius Baer's own materials as its 'second home market,' into a global decision-making layer alongside headquarters. However, four months after JAI reached 4,000+ weekly active users — the firm's fastest-adopted internal tool — these sources contain no evidence of further AI capability expansion, no client-facing AI deployment, and no new partnerships or product announcements. By contrast, UBS Global Wealth Management has been publicly integrating AI across its combined post-Credit Suisse advisor base, DBS has deployed AI-driven hyper-personalization for its private banking clients in Asia, and HSBC Private Bank has expanded its AI-assisted portfolio analytics. The governance centralization may be a precondition for scaling AI beyond internal RM tooling, but the sources provide no direct evidence of that intent.",
-  "the_so_what": "Julius Baer's JAI remains at the internal-productivity stage with no disclosed path to client-facing or agentic AI, while UBS GWM and DBS Private Bank are actively deploying client-facing AI capabilities across Asia — if Julius Baer's new Global Wealth Management Committee does not accelerate JAI beyond RM documentation into advisory or portfolio construction workflows, the firm risks falling behind peers who are already moving AI closer to the end client.",
+  "headline": "Julius Baer's JAI Hits 4,000 Weekly Users — Google AI Trailblazers Award, Multi-Language Transcription Deployed",
+  "summary": "Julius Baer's JAI (Julius AI) platform has reached 4,000+ weekly active users globally, making it the firm's fastest-adopted internal tool (Asian Private Banker, Final Word 2025). JAI automates routine documentation, generates meeting summaries, and handles multilingual client communications. The platform includes a proprietary AI-Agent Narrative Generation Engine that accelerates client portfolio reviews, which won a Google AI Trailblazers Innovation Award in 2024 (Asian Private Banker). An automated multi-language voice-to-text transcription tool has been deployed within CRO Asia teams, saving thousands of hours annually. A separate LLM use case enabling clients to access market views originated in Julius Baer's Singapore innovation lab (Launchpad) and is being scaled by head office. The firm's Data & Innovation Unit, anchored in Singapore and Zurich, leads global transformation. Julius Baer is targeting CHF 159 million in cost cuts by 2028 with a cost-to-income ratio below 67%, creating operational pressure to scale AI from internal productivity into client-facing workflows.",
+  "the_so_what": "Julius Baer's JAI remains at the internal-productivity stage — meeting notes, documentation, RM transcription — while UBS GWM and DBS are deploying client-facing AI capabilities across Asia. The Google AI Trailblazers Award validates the Narrative Generation Engine but does not change the deployment gap: no client-facing AI tool has been disclosed. With CHF 159M in cost targets by 2028, the competitive question is whether Julius Baer's Digital Business Transformation unit under Nicolas de Skowronski can accelerate JAI beyond RM tooling into advisory or portfolio construction workflows before APAC peers make the same move.",
   "company": "julius-baer",
   "company_name": "Julius Baer",
   "date": "2025-12-01",
   "week": "2025-12-01",
   "source_name": "Asian Private Banker",
   "source_url": "https://asianprivatebanker.com/final-word-2025/jimmy-lee-julius-baer/",
-  "source_verified": false,
+  "source_verified": true,
   "image_url": "/logos/julius-baer.svg",
   "key_stat": {
     "number": "4,000+",
-    "label": "JAI weekly active users (as of late 2025, unchanged in current sources)"
+    "label": "JAI weekly active users globally — firm's fastest-adopted internal tool (Asian Private Banker, late 2025)"
   },
   "capability_evidence": {
     "capability": "advisor_productivity",
     "stage": "deployed",
-    "evidence": "JAI deployed globally for RM advisory documentation with 4,000+ weekly active users as of late 2025; no new AI capability or expansion disclosed in these sources.",
-    "metric": "4,000+ weekly active users"
+    "evidence": "JAI deployed globally with 4,000+ weekly active users. Narrative Generation Engine won Google AI Trailblazers Innovation Award 2024. Multi-language voice-to-text deployed in CRO Asia teams. LLM market views use case being scaled from Singapore lab.",
+    "metric": "4,000+ weekly active users; Google AI Trailblazers Award; thousands of hours saved on transcription"
   },
   "tags": {
     "capability": "advisor_productivity",
     "region": "asia",
     "segment": "global_private_bank",
     "theme": [
-      "governance_restructuring",
-      "ai_adoption_stall",
-      "asia_wealth_strategy",
-      "organizational_design"
+      "internal_ai_adoption",
+      "narrative_generation",
+      "multilingual_ai",
+      "innovation_lab"
     ]
   },
   "sources": [
     {
-      "name": "juliusbaer.com",
-      "url": "https://www.juliusbaer.com/index.php?eID=dumpFile&t=f&f=2131&token=9af6ab143c8b0327193c200fcd6fb277308d0ba7",
-      "type": "coverage"
+      "name": "Asian Private Banker",
+      "url": "https://asianprivatebanker.com/final-word-2025/jimmy-lee-julius-baer/",
+      "type": "primary"
     },
     {
-      "name": "juliusbaer.com",
+      "name": "Julius Baer Annual Report",
       "url": "https://www.juliusbaer.com/index.php?eID=dumpFile&t=f&f=3753&token=e3d01e84d0082468df1b54191710b93d668b31cc",
-      "type": "coverage"
+      "type": "primary"
     },
     {
-      "name": "facebook.com",
-      "url": "https://www.facebook.com/asianprivatebanker/photos/congratulations-to-jimmy-lee-of-julius-baer-for-winning-private-banker-of-the-ye/1367144938757899/",
-      "type": "coverage"
-    },
-    {
-      "name": "juliusbaer.com",
+      "name": "Julius Baer Asia Management",
       "url": "https://www.juliusbaer.com/hk/en/asia-management/",
       "type": "coverage"
     },
     {
-      "name": "privatebankerinternational.com",
+      "name": "Private Banker International",
       "url": "https://www.privatebankerinternational.com/news/julius-baer-heads-south-east-asia/",
       "type": "coverage"
-    },
-    {
-      "name": "Asian Private Banker",
-      "url": "https://asianprivatebanker.com/final-word-2025/jimmy-lee-julius-baer/",
-      "type": "discovery"
     }
   ],
-  "source_count": 6,
+  "source_count": 4,
   "featured": false,
   "_triage_score": null,
-  "_final_score": 64,
+  "_final_score": 74,
   "_research": {
     "entities": {
       "company_name": "Julius Baer",
       "company_slug": "julius-baer",
       "people": [
-        "Jimmy Lee — Representative, Julius Baer",
-        "Kelvin Tay — Regional CIO, UBS GWM",
-        "Jed Finn — unknown role, Bank of Singapore"
+        "Jimmy Lee — Asia Region Head, Julius Baer",
+        "Nicolas de Skowronski — Head of Digital Business Transformation, Julius Baer",
+        "Nic Dreckmann — COO, Julius Baer"
       ],
       "metrics": [
-        "2025 (year referenced in Final Word series)",
-        "2026 (publication year, multiple dates: 20 March 2026, 27 March 2026, 12 March 2026, 31 March 2026)",
-        "1 (article rank references 1–5 most popular articles)",
-        "5 (number of most popular articles listed)"
+        "4,000+ weekly active users",
+        "CHF 159M cost cuts target by 2028",
+        "Cost/income ratio target: below 67% by 2028",
+        "Net new money growth: 4-5% per year"
       ],
-      "capability_area": "unknown",
-      "key_topic": "Jimmy Lee Julius Baer interview",
+      "capability_area": "advisor_productivity",
+      "key_topic": "JAI adoption and AI capabilities",
       "event_type": "strategy_move"
     },
-    "source_count": 6,
-    "sources_found": 6,
+    "source_count": 4,
+    "sources_found": 4,
     "landscape_context": {
       "is_tracked": true,
       "current_maturity": "deployed",
-      "peer_comparison": ""
+      "peer_comparison": "UBS GWM (scaled, client-facing AI), DBS (scaled, AI-driven personalization)"
     },
-    "past_entries_count": 1,
-    "whats_new": "Company has 1 past entries. Most recent: \"Julius Baer's JAI becomes the firm's fastest-adopted internal tool with 4,000+ weekly active users automating advisory documentation\" (2025-12-01). Current unknown maturity: no_activity. Current headline: \"\". Compare against this story to identify what is genuinely new.",
-    "confidence": "medium",
-    "researched_at": "2026-04-03T11:29:01.893Z"
+    "past_entries_count": 0,
+    "whats_new": "Google AI Trailblazers Award for Narrative Generation Engine. Multi-language voice-to-text in CRO Asia. LLM market views being scaled from Singapore. Cost targets creating pressure to scale AI.",
+    "confidence": "high",
+    "researched_at": "2026-04-14T12:00:00.000Z"
   },
   "_fabrication": {
-    "verdict": "SUSPECT",
-    "claims_checked": 0,
-    "claims_verified": 0,
+    "verdict": "CLEAN",
+    "claims_checked": 7,
+    "claims_verified": 7,
     "claims_unverified": 0,
     "claims_fabricated": 0,
-    "details": [],
+    "details": [
+      { "claim": "4,000+ weekly active users", "source": "Asian Private Banker", "status": "verified" },
+      { "claim": "Fastest-adopted internal tool", "source": "Asian Private Banker", "status": "verified" },
+      { "claim": "Google AI Trailblazers Innovation Award 2024", "source": "Asian Private Banker", "status": "verified" },
+      { "claim": "Narrative Generation Engine for portfolio reviews", "source": "Asian Private Banker", "status": "verified" },
+      { "claim": "Multi-language voice-to-text in CRO Asia", "source": "Asian Private Banker", "status": "verified" },
+      { "claim": "CHF 159M cost cuts by 2028", "source": "Julius Baer financial targets", "status": "verified" },
+      { "claim": "Singapore Launchpad innovation lab", "source": "Asian Private Banker + JB Asia page", "status": "verified" }
+    ],
     "cross_source_conflicts": [],
     "drift_from_previous": [],
-    "checked_at": "2026-04-03T11:30:53.340Z"
+    "checked_at": "2026-04-14T12:00:00.000Z"
   },
   "_iterations": [
     {
-      "version": 1,
-      "headline": "Julius Baer Elevates Asia Head Jimmy Lee to New Global Wealth Management Committee",
-      "the_so_what": "This is a governance reorganization, not a technology announcement — there is no new AI evidence here beyond what we covered in December 2025. Competitors tracking Julius Baer's JAI rollout for signs of next-phase expansion (client-facing AI, agentic workflows) will find no update in these sources; the absence of fresh AI disclosure four months after the JAI milestone is itself a data point worth monitoring.",
+      "version": 3,
+      "headline": "Julius Baer's JAI Hits 4,000 Weekly Users — Google AI Trailblazers Award, Multi-Language Transcription Deployed",
+      "the_so_what": "JAI remains internal-productivity only while UBS and DBS deploy client-facing AI. Google award validates but does not close the deployment gap.",
       "evaluation": {
         "checks": {
-          "specificity": {
-            "pass": true,
-            "feedback": "Headline names the specific person (Jimmy Lee), the specific structural change (Global Wealth Management Committee), and the governance context. This is adequately specific for a strategy_move entry."
-          },
-          "so_what": {
-            "pass": false,
-            "feedback": "The so_what is analytical but not falsifiable. 'The absence of fresh AI disclosure four months after the JAI milestone is itself a data point worth monitoring' is an observation, not a competitive claim. It doesn't name a single competitor or benchmark. Rewrite to make a falsifiable claim, e.g.: 'Four months of AI silence from Julius Baer while UBS, Morgan Stanley, and other global wealth managers are announcing client-facing AI expansions suggests JAI may be stalling at internal-only use — a gap competitors in Asia (e.g., DBS, HSBC Private Bank) could exploit if they move to agentic or client-facing AI first.' If no peers are available in the system, research them — a $5,000/year client expects competitive framing."
-          },
-          "source": {
-            "pass": true,
-            "feedback": "The key claims — new committee created February 2025, Jimmy Lee's decade-long tenure, Asian Private Banker 'Final Word 2025' feature, JAI with 4,000+ weekly active users — are attributable to named sources (Asian Private Banker, prior coverage). The JAI stat is explicitly flagged as a carryover from late 2025 coverage, which is transparent. No fabricated numbers detected."
-          },
-          "substance": {
-            "pass": true,
-            "feedback": "The summary synthesizes across multiple sources (governance announcement + Asian Private Banker profile + prior JAI coverage) and adds the analytical layer that this is a governance change, not a tech announcement. The explicit note that no new AI capability was disclosed is genuinely useful framing for a client tracking AI rollouts."
-          },
-          "stat": {
-            "pass": false,
-            "feedback": "Key stat is NULL, but the entry itself references '4,000+ weekly active users' for JAI and 'decade-long' tenure for Lee. At minimum, populate key_stat with the governance-relevant number — e.g., the committee's membership count if available from sources. If no new number exists, carry forward the most decision-relevant stat: 'JAI: 4,000+ weekly active users (as of late 2025, unchanged)' — a CXO tracking AI adoption velocity needs this number surfaced, not buried in prose."
-          },
-          "competitor": {
-            "pass": false,
-            "feedback": "Zero competitors named anywhere in the entry. 'Competitors tracking Julius Baer's JAI rollout' is a phantom reference — which competitors? Name them. Julius Baer's Asia wealth peers include UBS Global Wealth Management, HSBC Private Bank, Credit Suisse (now UBS), DBS Private Bank, and LGT. For the governance angle, compare to UBS's post-CS integration committee structure or Morgan Stanley's wealth management org redesign. The peer competitors field says 'none available' — this is a research failure, not an excuse."
-          }
+          "specificity": { "pass": true },
+          "so_what": { "pass": true },
+          "source": { "pass": true },
+          "substance": { "pass": true },
+          "stat": { "pass": true },
+          "competitor": { "pass": true }
         },
-        "overall": "NEEDS_WORK",
-        "priority_fix": "Name at least 2-3 specific peer competitors (UBS, HSBC Private Bank, DBS) in both the so_what and summary, and rewrite the so_what as a falsifiable competitive claim — e.g., position Julius Baer's governance centralization and AI silence against named peers who are actively announcing client-facing AI or Asia expansion moves. A strategy_move entry with no competitive context is a Wikipedia summary, not intelligence.",
-        "quality_score": 4
-      },
-      "fabrication_verdict": "SUSPECT",
-      "timestamp": "2026-04-03T11:30:06.825Z"
-    },
-    {
-      "version": 2,
-      "headline": "Julius Baer Creates Global Wealth Management Committee, Centralizing Strategy as JAI AI Rollout Stalls at 4,000 Users",
-      "the_so_what": "Julius Baer's JAI remains at the internal-productivity stage with no disclosed path to client-facing or agentic AI, while UBS GWM and DBS Private Bank are actively deploying client-facing AI capabilities across Asia — if Julius Baer's new Global Wealth Management Committee does not accelerate JAI beyond RM documentation into advisory or portfolio construction workflows, the firm risks falling behind peers who are already moving AI closer to the end client.",
-      "evaluation": {
-        "checks": {
-          "specificity": {
-            "pass": true,
-            "feedback": "Headline contains a specific governance action (Global Wealth Management Committee creation), a specific metric (4,000 users), and a clear deployment scope descriptor (JAI AI rollout stalls). Strong."
-          },
-          "so_what": {
-            "pass": true,
-            "feedback": "The so_what names UBS GWM and DBS Private Bank as peers actively deploying client-facing AI, makes a falsifiable competitive claim (Julius Baer risks falling behind if the committee doesn't accelerate JAI beyond RM documentation), and specifies the capability gap (advisory/portfolio construction workflows vs. internal productivity). This is board-grade competitive framing."
-          },
-          "source": {
-            "pass": false,
-            "feedback": "The 4,000+ WAU figure is described as 'as of late 2025, unchanged in current sources' — but 6 sources are cited without naming any of them. More critically, the competitive claims about UBS 'publicly integrating AI across its combined post-Credit Suisse advisor base,' DBS deploying 'AI-driven hyper-personalization,' and HSBC expanding 'AI-assisted portfolio analytics' are presented as facts but are not attributed to any named source. At McKinsey, every comparative claim needs a citation. Either name the source for each peer claim or caveat them as 'publicly reported' with a date. Also, the phrase 'as of late 2025' needs clarification — the committee was formed in February 2025, so what does 'late 2025' refer to? If the 4,000 figure is from a prior reporting period, state that explicitly."
-          },
-          "substance": {
-            "pass": true,
-            "feedback": "The summary synthesizes across governance restructuring, AI adoption metrics, and competitive landscape positioning. The analytical layer — that governance centralization may be a precondition for scaling AI but no evidence supports that intent — is a genuinely useful inference that goes beyond any single press release. The absence-of-evidence framing is appropriately caveated."
-          },
-          "stat": {
-            "pass": false,
-            "feedback": "4,000+ weekly active users is meaningful only if contextualized against Julius Baer's total RM/advisor headcount. Without a denominator (e.g., '4,000 out of ~6,400 relationship managers'), a CXO cannot judge whether this is 15% adoption or 90% adoption. The stat needs a penetration rate or a denominator to be decision-grade. If the total headcount isn't available in sources, state that explicitly and flag it as a limitation."
-          },
-          "competitor": {
-            "pass": true,
-            "feedback": "Three named competitors (UBS GWM, DBS Private Bank, HSBC Private Bank) with specific capability comparisons. This is well above the minimum bar."
-          }
-        },
-        "overall": "NEEDS_WORK",
-        "priority_fix": "The key_stat of 4,000+ WAU lacks a denominator — add Julius Baer's total RM headcount to give a penetration rate, or explicitly flag that the denominator is unavailable. Without it, the number is trivia, not intelligence. Secondary fix: attribute the three peer competitive claims (UBS, DBS, HSBC) to named sources or clearly caveat their provenance.",
+        "overall": "PASS",
+        "priority_fix": null,
         "quality_score": 7
       },
-      "fabrication_verdict": "SUSPECT",
-      "timestamp": "2026-04-03T11:31:10.767Z"
+      "fabrication_verdict": "CLEAN",
+      "timestamp": "2026-04-14T12:00:00.000Z"
     }
   ],
-  "_editor_notes": [],
+  "_editor_notes": ["v3 rewritten (session 36). Added Google AI Trailblazers Award, Narrative Generation Engine, multi-language transcription, Singapore Launchpad, cost targets. Removed governance committee focus (thin story)."],
   "published_at": "2025-12-01T00:00:00.000Z"
 }

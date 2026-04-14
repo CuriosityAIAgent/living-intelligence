@@ -1,6 +1,84 @@
 import fetch from 'node-fetch';
 import Anthropic from '@anthropic-ai/sdk';
 import slugify from 'slugify';
+import { readdirSync, readFileSync } from 'fs';
+import { join } from 'path';
+import {
+  COMPETITORS_DIR,
+  PAYWALLED_DOMAINS as _PAYWALLED_DOMAINS,
+  THIN_CONTENT_THRESHOLD as _THIN_CONTENT_THRESHOLD,
+} from './config.js';
+import { upsertSource } from './kb-client.js';
+import { build as buildIntakePrompt, VERSION as INTAKE_PROMPT_VERSION } from '../prompts/intake-v1.js';
+
+// ── Company slug normalization ──────────────────────────────────────────────
+// Claude generates company slugs during structuring but doesn't know our
+// landscape IDs. This alias map corrects common variations to the canonical slug.
+// Built dynamically from data/competitors/*.json + hardcoded overrides.
+
+const COMPANY_ALIAS_MAP = new Map();
+
+// Hardcoded aliases for known variations
+const MANUAL_ALIASES = {
+  'arta-finance': 'arta-ai',
+  'arta': 'arta-ai',
+  'citigroup': 'citi-private-bank',
+  'citi': 'citi-private-bank',
+  'citi-wealth': 'citi-private-bank',
+  'fidelity-investments': 'fidelity',
+  'hsbc-private-bank': 'hsbc',
+  'hsbc-wealth': 'hsbc',
+  'public': 'public-com',
+  'bofa': 'bofa-merrill',
+  'bank-of-america': 'bofa-merrill',
+  'merrill': 'bofa-merrill',
+  'merrill-lynch': 'bofa-merrill',
+  'jp-morgan': 'jpmorgan',
+  'j-p-morgan': 'jpmorgan',
+  'rbc': 'rbc-wealth-management',
+  'standard-chartered-bank': 'standard-chartered',
+  'julius-bar': 'julius-baer',
+  'bnp-paribas': 'bnp-paribas-wealth',
+  'jump': 'jump-ai',
+  'societe-generale': 'societe-generale-private-banking',
+  'st-james-place': 'st-jamess-place',
+  'abn-amro': 'abn-amro-private-banking',
+  'lloyds': 'lloyds-wealth',
+  'wells-fargo-advisors': 'wells-fargo',
+  'barclays': 'barclays-private-bank',
+  'santander': 'santander-private-banking',
+};
+
+// Load canonical IDs from landscape
+try {
+  const compDir = COMPETITORS_DIR;
+  const files = readdirSync(compDir).filter(f => f.endsWith('.json'));
+  const canonicalIds = new Set();
+  for (const f of files) {
+    const c = JSON.parse(readFileSync(join(compDir, f), 'utf8'));
+    if (c.id) canonicalIds.add(c.id);
+    // Also map name → id (e.g. "Goldman Sachs" → "goldman-sachs")
+    if (c.name && c.id) {
+      const nameSlug = slugify(c.name, { lower: true, strict: true });
+      if (nameSlug !== c.id) COMPANY_ALIAS_MAP.set(nameSlug, c.id);
+    }
+  }
+  // Add manual aliases (only if target exists in landscape)
+  for (const [alias, canonical] of Object.entries(MANUAL_ALIASES)) {
+    if (canonicalIds.has(canonical)) COMPANY_ALIAS_MAP.set(alias, canonical);
+  }
+} catch (_) {
+  // Fallback: use manual aliases only
+  for (const [alias, canonical] of Object.entries(MANUAL_ALIASES)) {
+    COMPANY_ALIAS_MAP.set(alias, canonical);
+  }
+}
+
+export function normalizeCompanySlug(slug) {
+  if (!slug) return slug;
+  const normalized = slug.toLowerCase().replace(/[^a-z0-9-]/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '');
+  return COMPANY_ALIAS_MAP.get(normalized) || normalized;
+}
 
 // ── Jina Reranker — pick best paywall alternative ──────────────────────────
 // Given a list of alternative URLs with title+snippet, reranks them by
@@ -39,14 +117,14 @@ const INTAKE_SCHEMA = `{
   "id": "url-slug-style-id",
   "type": "funding | acquisition | regulatory | partnership | product_launch | milestone | strategy_move | market_signal",
   "headline": "Concise, factual headline under 120 chars — lead with capability/impact, not the event trigger",
-  "the_so_what": "One sentence. What should a CXO in wealth management think or decide differently because of this? Business-decision oriented — not a summary of what happened, not a quote. The strategic implication.",
+  "the_so_what": "One sentence of analytical insight. Choose the best angle: competitive benchmark (scale economics, compounding advantages), cross-landscape context (how this connects to what peers are doing), infrastructure parallel (comparison to historic technology shifts), or business model insight (why the model matters more than the technology). Never use CXO, board, firms should, or any directive language. Never say game-changing, landmark, or revolutionary.",
   "company": "company-slug",
   "company_name": "Full Company Name",
   "date": "YYYY-MM-DD",
   "source_name": "Publication Name",
   "source_url": "the actual URL",
   "source_verified": true,
-  "image_url": "https://unavatar.io/[company-domain]",
+  "image_url": null,
   "summary": "3-5 sentences. Lead with the capability being advanced and its evidence. Then explain the event (funding/launch/etc). Only facts from the source — no inference.",
   "key_stat": { "number": "X", "label": "what it measures — advisors reached, AUM affected, time saved, etc." },
   "capability_evidence": {
@@ -77,13 +155,10 @@ const OPEN_DOMAINS = new Set([
 ]);
 
 // Domains known to be hard paywalled — skip in enrichment search
-const PAYWALLED_DOMAINS = new Set([
-  'ft.com', 'wsj.com', 'bloomberg.com', 'barrons.com',
-  'economist.com', 'hbr.org', 'morningstar.com',
-]);
+const PAYWALLED_DOMAINS = _PAYWALLED_DOMAINS;
 
 // Content is "thin" if below this word count — always triggers enrichment
-const THIN_CONTENT_THRESHOLD = 500;
+const THIN_CONTENT_THRESHOLD = _THIN_CONTENT_THRESHOLD;
 
 async function fetchPageMarkdown(url) {
   const jinaUrl = `https://r.jina.ai/${url}`;
@@ -319,69 +394,15 @@ async function fetchEnrichmentMarkdown(altUrl) {
 }
 
 async function structureEntry(url, markdown, sourceInfo) {
-  const hasEnrichment = sourceInfo.enrichment_sources && sourceInfo.enrichment_sources.length > 0;
-
-  const prompt = `You are an editorial analyst for a wealth management intelligence publication read by CXOs and senior executives.
-
-Your job is NOT to summarise what happened. You are writing for a CXO in wealth management who needs to make business decisions. Every entry must answer three questions:
-1. Which AI capability is advancing and what is the concrete evidence? (the intelligence)
-2. What does this mean for wealth management firms strategically? (the_so_what)
-3. What was the triggering event? (context only — funding, launch, partnership)
-
-The event is never the story. The story is always the capability advancing and the business implication.
-
-SOURCE ARTICLE URL: ${url}
-SOURCE NAME: ${sourceInfo.source_name}
-${sourceInfo.needs_enrichment ? '⚠ Original article had limited content (paywall or thin). Enrichment sources have been added below.' : ''}
-${hasEnrichment ? `\nENRICHMENT SOURCES USED:\n${sourceInfo.enrichment_sources.map(s => `- ${s}`).join('\n')}\n` : ''}
-
-ARTICLE CONTENT (markdown):
----
-${markdown.slice(0, 10000)}
----
-
-Structure this into the following JSON schema.
-
-CRITICAL RULES:
-1. the_so_what: One sentence answering "what should a wealth management CXO think or decide differently because of this?" This is the editorial product — not a summary, not a quote. It must be a strategic business implication.
-   BAD: "Jump raised $80M to expand its AI meeting assistant platform."
-   BAD: "This shows that AI is growing in wealth management."
-   GOOD: "Advisor productivity tools are now a funded, scaling category — firms without an AI meeting workflow strategy are falling behind 15,000 advisors who already have one."
-   GOOD: "The independent channel is adopting AI faster than the institutional channel — a structural reversal of the historic adoption curve that wirehouse strategy teams need to factor into their 2026 plans."
-   Think: what would a Chief Strategy Officer or Head of Wealth Management need to hear to make a better decision?
-
-2. summary: Lead with the CAPABILITY and its EVIDENCE. Then explain the event trigger. Only facts from the source.
-   BAD: "Jump raises $80M Series B to expand its AI platform."
-   GOOD: "Jump's AI assistant automates meeting notes and CRM updates, saving advisors 6 hours per week. Currently used by 3,000 advisors, the company raised $80M to scale to 15,000. Lead investor Insight Partners cited advisor time savings as primary investment thesis."
-
-3. headline: Lead with the capability impact or scale, not the dollar amount or event type.
-   BAD: "Jump Raises $80M Series B"
-   GOOD: "Jump Scales AI Meeting Assistant to 15,000 Advisors After $80M Series B"
-
-4. key_stat: The single most significant number for a CXO — advisors reached, AUM affected, time saved, cost reduced. Must be explicitly stated in the source. If no meaningful number, set to null.
-
-5. capability_evidence: Populate ALL fields if evidence exists. stage = "deployed" only if live with real users. "piloting" = being tested. "announced" = committed but not live. metric = null if no quantified impact stated.
-
-6. If the article has no identifiable AI capability dimension for wealth management, set type to "market_signal".
-7. If the article is not about AI in wealth management or financial services at all, set type to null.
-8. All summary content must come ONLY from the source article above. No inference from training data.
-9. For image_url: https://unavatar.io/[company-main-domain]
-10. If multiple sources cover the same story, synthesize the most complete version. Prefer primary sources.
-
-Event type definitions:
-- funding: capital raise (seed, Series A/B/C, debt, IPO)
-- acquisition: M&A — company acquiring or being acquired
-- regulatory: regulatory guidance, compliance requirements, enforcement, government AI policy for financial services
-- partnership: strategic partnership, integration, or distribution agreement between named institutions
-- product_launch: new AI product, feature, or platform going live or announced
-- milestone: user count, AUM, deployment scale achievement
-- strategy_move: strategic direction, firm-wide AI policy, executive statement of intent
-- market_signal: survey data, industry report, analyst opinion, general trend — no specific company action
-
-Today's date: ${new Date().toISOString().split('T')[0]}
-
-OUTPUT: Return only valid JSON matching this schema exactly:
-${INTAKE_SCHEMA}`;
+  const prompt = buildIntakePrompt({
+    url,
+    source_name: sourceInfo.source_name,
+    needs_enrichment: sourceInfo.needs_enrichment,
+    enrichment_sources: sourceInfo.enrichment_sources,
+    markdown,
+    schema: INTAKE_SCHEMA,
+    today: new Date().toISOString().split('T')[0],
+  });
 
   const response = await client.messages.create({
     model: 'claude-sonnet-4-6',
@@ -398,6 +419,11 @@ ${INTAKE_SCHEMA}`;
 
   entry.source_url = url;
   entry.source_verified = true;
+
+  // Normalize company slug to match landscape IDs
+  if (entry.company) {
+    entry.company = normalizeCompanySlug(entry.company);
+  }
 
   if (!entry.id || entry.id === 'url-slug-style-id') {
     entry.id = slugify(entry.headline || 'untitled', {
@@ -427,6 +453,22 @@ export async function processUrl({ url, source_name, send }) {
     return null;
   }
 
+  // ── PRINCIPLE 1: Store raw source to KB BEFORE any processing ────────────────
+  // Raw content hits the database first. We can always re-derive; we cannot re-fetch.
+  const primarySourceId = await upsertSource({
+    url,
+    title: null, // will be updated after Claude structuring
+    source_name: source_name || null,
+    content_md: pageData.markdown,
+    word_count: pageData.word_count,
+    is_paywalled: pageData.paywall_suspected,
+    is_thin: pageData.thin_content,
+    fetched_by: 'intake',
+  });
+  if (primarySourceId) {
+    send('status', { message: `Source stored in KB (${primarySourceId.slice(0, 8)}...)` });
+  }
+
   // ── Always search for enrichment sources ─────────────────────────────────────
   // Paywall/thin → DataForSEO headline search (finds same story on open sources)
   // Full content → Jina keyword search (supplementary press releases + context)
@@ -451,6 +493,17 @@ export async function processUrl({ url, source_name, send }) {
       message: `Found ${usable.length} enrichment source(s): ${usable.map(s => s.hostname).join(', ')}`,
       enrichment_sources: enrichmentSources,
     });
+
+    // Store enrichment sources to KB (Principle 1: store raw, transform later)
+    for (const s of usable) {
+      await upsertSource({
+        url: s.url,
+        source_name: s.hostname,
+        content_md: s.markdown,
+        word_count: s.markdown.split(/\s+/).length,
+        fetched_by: 'intake-enrichment',
+      });
+    }
 
     if (needsEnrichment) {
       // Thin/paywalled: lead with enrichment content, keep original teaser for URL/date context
@@ -495,6 +548,90 @@ export async function processUrl({ url, source_name, send }) {
     send('skipped', { message: 'Article is not relevant to AI in wealth management', entry });
     return null;
   }
+
+  // ── Post-structuring enrichment ─────────────────────────────────────────────
+  // After Claude identifies the company and topic, search specifically for
+  // primary sources (press releases, newsroom) and key entity coverage.
+  // Only runs if initial enrichment found ≤1 source.
+  if (usable.length <= 1 && entry.company_name && process.env.JINA_API_KEY) {
+    const companyName = entry.company_name;
+    const headline = entry.headline || '';
+
+    // Build targeted queries from structured data
+    const targetedQueries = [];
+    // Company-specific: press release / newsroom
+    targetedQueries.push(`${companyName} AI ${new Date().getFullYear()}`);
+    // Headline-derived: find other outlets covering the same story
+    const headlineWords = headline.replace(/[^a-zA-Z0-9\s]/g, '').split(/\s+/).filter(w => w.length > 3).slice(0, 6).join(' ');
+    if (headlineWords.length > 10) targetedQueries.push(headlineWords);
+
+    const originalHostname = (() => {
+      try { return new URL(url).hostname.replace(/^www\./, ''); } catch (_) { return ''; }
+    })();
+    const existingUrls = new Set([url, ...usable.map(s => s.url)]);
+
+    for (const query of targetedQueries) {
+      try {
+        const res = await fetch(`https://s.jina.ai/${encodeURIComponent(query)}`, {
+          headers: { 'Accept': 'application/json', 'Authorization': `Bearer ${process.env.JINA_API_KEY}` },
+          signal: AbortSignal.timeout(15000),
+        });
+        if (!res.ok) continue;
+        const data = await res.json();
+        const results = data.data || [];
+        for (const r of results) {
+          if (!r.url || existingUrls.has(r.url)) continue;
+          let hostname = '';
+          try { hostname = new URL(r.url).hostname.replace(/^www\./, ''); } catch (_) { continue; }
+          if (hostname === originalHostname) continue;
+          if (PAYWALLED_DOMAINS.has(hostname)) continue;
+          // Try to fetch and validate
+          const fetched = await fetchEnrichmentMarkdown(r.url);
+          if (fetched) {
+            usable.push(fetched);
+            existingUrls.add(r.url);
+            send('status', { message: `Post-structure enrichment: found ${hostname}` });
+            if (usable.length >= 4) break;
+          }
+        }
+      } catch (_) {}
+      if (usable.length >= 4) break;
+    }
+  }
+
+  // ── Build multi-source array ─────────────────────────────────────────────────
+  // Collect all sources that covered this story: original discovery + enrichment
+  const sources = [];
+
+  for (const s of usable) {
+    const hostname = s.hostname || '';
+    const isPressRelease = ['businesswire.com', 'prnewswire.com', 'globenewswire.com', 'accesswire.com'].includes(hostname);
+    const isCompanyNewsroom = /newsroom\.|\/newsroom|\/press-releases|\/press-release|investor\.|press\./.test(s.url);
+    sources.push({
+      name: isPressRelease ? hostname.replace('.com', '').replace(/^\w/, c => c.toUpperCase())
+           : isCompanyNewsroom ? `${entry.company_name || 'Company'} Newsroom`
+           : hostname.replace('www.', ''),
+      url: s.url,
+      type: isPressRelease || isCompanyNewsroom ? 'primary' : 'coverage',
+    });
+  }
+
+  // Add the original discovery source
+  const discoveryHostname = (() => { try { return new URL(url).hostname.replace('www.', ''); } catch { return ''; } })();
+  if (!sources.some(s => s.url === url)) {
+    sources.push({
+      name: source_name || entry.source_name || discoveryHostname,
+      url,
+      type: 'discovery',
+    });
+  }
+
+  // Sort: primary first, then coverage, then discovery
+  const typeOrder = { primary: 0, coverage: 1, discovery: 2 };
+  sources.sort((a, b) => (typeOrder[a.type] ?? 9) - (typeOrder[b.type] ?? 9));
+
+  entry.sources = sources;
+  entry.source_count = sources.length;
 
   send('structured', {
     entry,

@@ -12,15 +12,12 @@
  *   5. Git commit + push to main → portal rebuilds
  */
 
-import { writeFileSync, existsSync } from 'fs';
-import { join, dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { writeFileSync, existsSync, mkdirSync, copyFileSync } from 'fs';
+import { join } from 'path';
+import { tmpdir } from 'os';
 import { execSync } from 'child_process';
 import Anthropic from '@anthropic-ai/sdk';
-
-const __dirname = dirname(fileURLToPath(import.meta.url));
-const DATA_ROOT = process.env.DATA_DIR || join(__dirname, '..', '..');
-const TL_DIR    = join(DATA_ROOT, 'data', 'thought-leadership');
+import { REPO_ROOT, TL_DIR } from './config.js';
 
 const client = new Anthropic();
 
@@ -107,6 +104,22 @@ Key rule: the_one_insight must be the CORE ARGUMENT — something a CEO would qu
 // ── Main export ───────────────────────────────────────────────────────────────
 
 export async function publishTlEntry({ url, send }) {
+  // 0. Dedup: check if this URL is already published as TL
+  try {
+    const { readdirSync, readFileSync } = await import('fs');
+    const tlFiles = readdirSync(TL_DIR).filter(f => f.endsWith('.json'));
+    const normUrl = url.toLowerCase().replace(/\/$/, '');
+    for (const f of tlFiles) {
+      const existing = JSON.parse(readFileSync(join(TL_DIR, f), 'utf8'));
+      if (existing.source_url && existing.source_url.toLowerCase().replace(/\/$/, '') === normUrl) {
+        throw new Error(`Already published as TL: "${existing.title}" (${f})`);
+      }
+    }
+  } catch (err) {
+    if (err.message.startsWith('Already published')) throw err;
+    // File read errors — proceed (non-fatal)
+  }
+
   // 1. Fetch
   send('status', { message: 'Fetching article...' });
   let content;
@@ -178,8 +191,9 @@ export async function publishTlEntry({ url, send }) {
     document_url:   extracted.document_url || null,
   };
 
-  // 5. Write
+  // 5. Write (ensure directory exists — on Railway, intake branch may not have data/thought-leadership/)
   send('status', { message: `Writing: ${slug}.json` });
+  if (!existsSync(TL_DIR)) mkdirSync(TL_DIR, { recursive: true });
   writeFileSync(filepath, JSON.stringify(entry, null, 2), 'utf-8');
 
   // 6. Git commit + push
@@ -190,33 +204,76 @@ export async function publishTlEntry({ url, send }) {
   return slug;
 }
 
-// ── Git ───────────────────────────────────────────────────────────────────────
+// ── Git — supports both local and Railway environments ────────────────────────
 
 function _commitAndPush({ filepath, slug, send }) {
   const gitToken  = process.env.GIT_TOKEN;
   const repo      = process.env.GITHUB_REPO || 'CuriosityAIAgent/living-intelligence';
-  const portalDir = process.env.PORTAL_DIR  || join(__dirname, '..', '..');
+  const portalDir = process.env.PORTAL_DIR  || REPO_ROOT;
+  const branch    = 'main';
+  const hasGitRepo = existsSync(join(portalDir, '.git'));
 
-  try {
-    execSync(`git config --global --add safe.directory "${portalDir}"`, { stdio: 'pipe' });
-    execSync(`git -C "${portalDir}" config user.email "intake-bot@portal.ai"`, { stdio: 'pipe' });
-    execSync(`git -C "${portalDir}" config user.name "AI Portal Intake"`, { stdio: 'pipe' });
+  // ── Local mode: git repo exists, push directly ────────────────────────────
+  if (hasGitRepo) {
+    try {
+      execSync(`git config --global --add safe.directory "${portalDir}"`, { stdio: 'pipe' });
+      execSync(`git -C "${portalDir}" config user.email "intake-bot@portal.ai"`, { stdio: 'pipe' });
+      execSync(`git -C "${portalDir}" config user.name "AI Portal Intake"`, { stdio: 'pipe' });
 
-    if (gitToken) {
+      if (gitToken) {
+        execSync(
+          `git -C "${portalDir}" remote set-url origin "https://${gitToken}@github.com/${repo}.git"`,
+          { stdio: 'pipe' }
+        );
+      }
+
+      execSync(`git -C "${portalDir}" add "${filepath}"`, { stdio: 'pipe' });
       execSync(
-        `git -C "${portalDir}" remote set-url origin "https://${gitToken}@github.com/${repo}.git"`,
+        `git -C "${portalDir}" commit -m "Add thought leadership: ${slug}\n\nCo-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>"`,
         { stdio: 'pipe' }
       );
+      execSync(`git -C "${portalDir}" push origin ${branch}`, { stdio: 'pipe' });
+      send('pushed', { message: `Published to portal: ${slug}` });
+    } catch (err) {
+      send('error', { message: `Git push failed: ${err.message}` });
     }
+    return;
+  }
 
-    execSync(`git -C "${portalDir}" add "${filepath}"`, { stdio: 'pipe' });
+  // ── Railway mode: clone main into temp dir, copy file, commit, push ───────
+  if (!gitToken) {
+    send('error', { message: 'GIT_TOKEN is required on Railway to push TL entries to GitHub' });
+    return;
+  }
+
+  const tempDir = join(tmpdir(), `tl-push-${Date.now()}`);
+  try {
+    const cloneUrl = `https://${gitToken}@github.com/${repo}.git`;
+
+    send('status', { message: 'Cloning portal repo (main)...' });
+    execSync(`git clone --depth=1 -b ${branch} "${cloneUrl}" "${tempDir}"`, { stdio: 'pipe' });
+
+    execSync(`git -C "${tempDir}" config user.email "intake-bot@portal.ai"`, { stdio: 'pipe' });
+    execSync(`git -C "${tempDir}" config user.name "AI Portal Intake"`, { stdio: 'pipe' });
+
+    // Copy the TL file into the cloned repo
+    const targetDir = join(tempDir, 'data', 'thought-leadership');
+    mkdirSync(targetDir, { recursive: true });
+    copyFileSync(filepath, join(targetDir, `${slug}.json`));
+
+    send('status', { message: 'Committing...' });
+    execSync(`git -C "${tempDir}" add data/thought-leadership/`, { stdio: 'pipe' });
     execSync(
-      `git -C "${portalDir}" commit -m "Add thought leadership: ${slug}\n\nCo-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>"`,
+      `git -C "${tempDir}" commit -m "Add thought leadership: ${slug}\n\nCo-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>"`,
       { stdio: 'pipe' }
     );
-    execSync(`git -C "${portalDir}" push origin main`, { stdio: 'pipe' });
+
+    send('status', { message: 'Pushing to GitHub (main)...' });
+    execSync(`git -C "${tempDir}" push origin ${branch}`, { stdio: 'pipe' });
     send('pushed', { message: `Published to portal: ${slug}` });
   } catch (err) {
-    send('error', { message: `Published locally but git push failed: ${err.message}` });
+    send('error', { message: `TL git push failed (Railway mode): ${err.message}` });
+  } finally {
+    try { execSync(`rm -rf "${tempDir}"`, { stdio: 'pipe' }); } catch (_) {}
   }
 }

@@ -1,133 +1,300 @@
 {
   "https://www.prnewswire.com/news-releases/guardian-announces-strategic-partnership-with-avantos-enhancing-wealth-management-capabilities-and-accelerating-ai-driven-transformation-302697428.html": {
-    "id": "guardian-avantos-ai-wealth-management-partnership",
-    "reason": "Score 41/100 — below 60 review threshold",
-    "blocked_at": "2026-03-23T11:19:49.973Z"
+    "id": "guardian-avantos-ai-wealth-partnership-2026",
+    "reason": "the_so_what flagged as weak CXO relevance (3/10) — review before publishing",
+    "blocked_at": "2026-03-26T05:01:10.231Z"
   },
   "https://www.wealthmanagement.com/artificial-intelligence/jump_secures_series_b": {
-    "id": "jump-ai-advisor-platform-series-b-2026",
+    "id": "jump-series-b-advisor-ai-operating-system-2026-02",
     "reason": "Score 45/100 — below 60 review threshold",
-    "blocked_at": "2026-03-23T11:20:50.227Z"
-  },
-  "https://fintech.global/2026/02/20/jump-secures-80m-series-b-to-scale-ai-for-advisors/": {
-    "id": "jump-ai-advisor-assistant-series-b-2026-02",
-    "reason": "Score 45/100 — below 60 review threshold",
-    "blocked_at": "2026-03-23T11:21:29.467Z"
-  },
-  "https://www.thedailyupside.com/advisor/wealthtech/anthropic-bets-big-on-wealth-management-with-new-ai-tools/": {
-    "id": "anthropic-wealth-management-plugins-lpl-orion-2026-02-26",
-    "reason": "Score 32/100 — below 60 review threshold",
-    "blocked_at": "2026-03-23T11:22:10.374Z"
+    "blocked_at": "2026-03-26T05:02:22.838Z"
   },
   "https://www.thinkadvisor.com/2026/02/24/lpl-expands-partnership-with-anthropic/": {
-    "id": "lpl-expands-partnership-anthropic-2026-02-24",
-    "reason": "Paywalled source — claims unverifiable, not fabricated. Human review required.",
-    "blocked_at": "2026-03-23T11:22:48.469Z"
+    "id": "lpl-expands-partnership-anthropic-2026-02",
+    "reason": "the_so_what flagged as weak CXO relevance (4/10) — review before publishing",
+    "blocked_at": "2026-03-26T05:03:28.704Z"
   },
-  "https://www.financial-planning.com/news/advisors-look-to-ai-for-growth-not-just-efficiency": {
-    "id": "advisors-look-to-ai-for-growth-not-just-efficiency",
-    "reason": "Score 44/100 — below 60 review threshold",
-    "blocked_at": "2026-03-23T11:24:00.753Z"
+  "https://www.businesswire.com/news/home/20260219487440/en/Jump-Raises-%2480-Million-Series-B-Led-by-Insight-Partners-to-Expand-AI-Operating-System-for-Financial-Advisors": {
+    "id": "jump-ai-operating-system-series-b-2026",
+    "reason": "Fabrication detected: The headline claims '15,000 Users' but this number does not appear in the source text and is not supported anywhere in the provided sources — it is not a truncation issue as the headline itself introduces it as a key figure, and no such user count appears anywhere in the source material.; The summary describes participation from 'TIAA Ventures and Allianz Life Ventures' as 'strategic participation' but omits F-Prime and Peterson Partners who are also listed as new investors in the source — while omission alone may not be a fail, the framing implies only two strategic investors when the source lists four new investors.; The number '15,000' in the headline cannot be verified against the source and appears to be fabricated — it is not found in any of the provided source texts, not merely truncated, as the sources describe the round and company without any user count figure.",
+    "blocked_at": "2026-03-26T05:04:45.403Z"
   },
-  "https://www.investmentnews.com/transformation/ai-native-operating-systems-get-buy-in-from-mega-rias/265345": {
-    "id": "ai-native-operating-systems-mega-ria-buy-in-2026-02",
-    "reason": "Score 54/100 — below 60 review threshold",
-    "blocked_at": "2026-03-23T11:24:44.671Z"
+  "https://fintech.global/2026/01/29/wealthai-raises-800k-to-launch-ai-first-os-for-wealth-managers/": {
+    "id": "wealthai-ai-native-os-pre-seed-2026-01",
+    "reason": "Score 32/100 — below 60 review threshold",
+    "blocked_at": "2026-03-26T05:05:36.551Z"
   },
-  "https://hubbis.com/article/ai-in-private-wealth-management-from-experimentation-to-agentic-transformation": {
-    "id": "agentic-ai-wealth-management-experimentation-to-transformation",
-    "reason": "Article is 180 days old — exceeds 90-day freshness limit",
-    "blocked_at": "2026-03-23T11:25:44.856Z"
+  "https://fintech.global/2026/03/25/flanks-launches-ai-financial-advisor-for-wealth-managers/": {
+    "id": "flanks-ai-financial-advisor-launch-2026-03",
+    "reason": "the_so_what flagged as weak CXO relevance (4/10) — review before publishing",
+    "blocked_at": "2026-03-26T05:06:29.370Z"
+  },
+  "https://fintechnews.ch/fintechusa/jump-series-b-ai-financial-advisors/82171/": {
+    "id": "jump-series-b-ai-advisor-platform-2026-02",
+    "reason": "Score 37/100 — below 60 review threshold",
+    "blocked_at": "2026-03-26T05:07:01.064Z"
+  },
+  "https://www.wealthmanagement.com/artificial-intelligence/lpl-and-anthropic-of-claude-fame-have-expanded-relationship-on-ai-integrations": {
+    "id": "lpl-anthropic-ai-integration-expansion-2026-02",
+    "reason": "Score 56/100 — below 60 review threshold",
+    "blocked_at": "2026-03-26T05:08:03.474Z"
+  },
+  "https://www.investmentnews.com/videos/in-the-nasdaq/how-ai-will-change-wealth-management-in-2026-and-beyond/265219": {
+    "id": "pebble-finance-ai-wealth-management-2026",
+    "reason": "Score 39/100 — below 60 review threshold",
+    "blocked_at": "2026-03-26T05:09:27.050Z"
+  },
+  "https://finovate.com/jump-raises-80-million-to-leverage-ai-to-automate-financial-advisory-workflows/": {
+    "id": "jump-ai-advisor-workflow-series-b-2026",
+    "reason": "Score 37/100 — below 60 review threshold",
+    "blocked_at": "2026-03-26T05:11:01.456Z"
+  },
+  "https://www.hubbis.com/article/avaloq-s-paweena-suchattrakoon-on-why-ai-resilience-and-investing-in-digital-capabilities-matter-more-than-ever-in-thailand-s-wealth-market": {
+    "id": "avaloq-thailand-ai-digital-capabilities-wealth-market",
+    "reason": "Score 30/100 — below 60 review threshold",
+    "blocked_at": "2026-03-26T05:11:50.559Z"
+  },
+  "https://www.businesswire.com/news/home/20260219678156/en/Nitrogen-Redefines-the-Client-Meeting-with-Launch-of-Nucleus-Agentic-AI-Tax-Planning-Upgrades": {
+    "id": "nitrogen-nucleus-agentic-ai-advisor-platform-2026",
+    "reason": "Score 47/100 — below 60 review threshold",
+    "blocked_at": "2026-03-26T05:12:58.127Z"
   },
   "https://news.crunchbase.com/fintech/zocks-raises-seriesb-ai-assistant-financial-advisers/": {
     "id": "zocks-series-b-ai-assistant-financial-advisers-2026-01",
     "reason": "Score 37/100 — below 60 review threshold",
-    "blocked_at": "2026-03-23T11:26:11.939Z"
-  },
-  "https://finovate.com/jump-raises-80-million-to-leverage-ai-to-automate-financial-advisory-workflows/": {
-    "id": "jump-ai-operating-system-advisor-workflows-series-b-2026",
-    "reason": "Score 37/100 — below 60 review threshold",
-    "blocked_at": "2026-03-23T11:26:55.919Z"
-  },
-  "https://www.investmentnews.com/alternatives/allocate-taps-advisor-demand-for-openai-and-anthropic-before-potential-ipos/265476": {
-    "id": "allocate-openai-anthropic-pre-ipo-fund-access-advisors",
-    "reason": "Score 40/100 — below 60 review threshold",
-    "blocked_at": "2026-03-23T11:27:30.039Z"
-  },
-  "https://www.investmentnews.com/transformation/lpl-orion-add-anthropics-new-ai-for-advisors/265438": {
-    "id": "lpl-orion-anthropic-claude-advisor-plugins-2026-02",
-    "reason": "Paywalled source — claims unverifiable, not fabricated. Human review required.",
-    "blocked_at": "2026-03-23T11:28:15.257Z"
-  },
-  "https://www.wealthmanagement.com/artificial-intelligence/lpl-and-anthropic-of-claude-fame-have-expanded-relationship-on-ai-integrations": {
-    "id": "lpl-anthropic-claude-ai-integration-expansion-2026-02",
-    "reason": "Paywalled source — claims unverifiable, not fabricated. Human review required.",
-    "blocked_at": "2026-03-23T11:29:05.293Z"
-  },
-  "https://fintechnews.ch/fintechusa/jump-series-b-ai-financial-advisors/82171/": {
-    "id": "jump-series-b-ai-financial-advisors-2026-02",
-    "reason": "Human rejected REVIEW entry",
-    "blocked_at": "2026-03-24T15:17:07.110Z"
-  },
-  "https://www.businesswire.com/news/home/20260219487440/en/Jump-Raises-%2480-Million-Series-B-Led-by-Insight-Partners-to-Expand-AI-Operating-System-for-Financial-Advisors": {
-    "id": "jump-ai-operating-system-80m-series-b-27000-advisors",
-    "reason": "Human rejected REVIEW entry",
-    "blocked_at": "2026-03-24T15:17:28.191Z"
-  },
-  "https://www.fintechfutures.com/venture-capital-funding/jump-raises-80m-series-b": {
-    "id": "jump-ai-meeting-assistant-80m-series-b-2026-02",
-    "reason": "Score 37/100 — below 45 review threshold",
-    "blocked_at": "2026-04-04T04:02:13.751Z",
-    "title": "Jump's AI Meeting Assistant Scales Across Advisor Workflows After $80M Series B",
-    "score": 37
-  },
-  "https://www.wealthmanagement.com/artificial-intelligence/wealthstack-roundup-finny-partners-with-osaic": {
-    "id": "finny-osaic-ai-prospecting-11000-advisors",
-    "reason": "Score 59/100 — below 45 review threshold",
-    "blocked_at": "2026-04-04T04:03:26.657Z",
-    "title": "Finny Deploys AI Prospecting Tools Across Osaic's 11,000-Advisor Network",
-    "score": 59
-  },
-  "https://rbj.net/2026/04/03/how-ai-complements-financial-advisors-in-wealth-management/": {
-    "id": "ai-complements-wealth-management-rbj-2026-04-03",
-    "reason": "Score 38/100 — below 45 review threshold",
-    "blocked_at": "2026-04-04T04:04:47.353Z",
-    "title": "AI Adoption in Wealth Management Framed as Advisor Complement, Not Replacement",
-    "score": 38
-  },
-  "https://www.investmentnews.com/fintech/finny-lands-osaic-deal-to-put-ai-prospecting-in-front-of-11000-advisors/265053": {
-    "id": "finny-osaic-ai-prospecting-11000-advisors",
-    "reason": "Score 59/100 — below 45 review threshold",
-    "blocked_at": "2026-04-04T04:07:06.631Z",
-    "title": "Finny Deploys AI Prospecting Tools Across Osaic's 11,000-Advisor Network",
-    "score": 59
-  },
-  "https://fintech.global/2026/03/25/flanks-launches-ai-financial-advisor-for-wealth-managers/": {
-    "id": "flanks-ai-financial-advisor-wealth-managers-2026-03-25",
-    "reason": "Score 53/100 — below 45 review threshold",
-    "blocked_at": "2026-04-04T04:08:19.253Z",
-    "title": "Flanks Launches AI Financial Advisor Tool Embedded in Wealth Manager Workflows",
-    "score": 53
-  },
-  "https://www.investmentnews.com/videos/in-the-nasdaq/how-ai-will-change-wealth-management-in-2026-and-beyond/265219": {
-    "id": "pebble-finance-ai-wealth-management-2026",
-    "reason": "Score 50/100 — below 45 review threshold",
-    "blocked_at": "2026-04-04T04:11:47.709Z",
-    "title": "Pebble Finance CEO Outlines AI Capability Shifts Reshaping Wealth Management Through 2026",
-    "score": 50
-  },
-  "https://fintech.global/2026/01/29/wealthai-raises-800k-to-launch-ai-first-os-for-wealth-managers/": {
-    "id": "wealthai-ai-native-os-wealth-managers-800k-preseed-2026",
-    "reason": "Score 37/100 — below 45 review threshold",
-    "blocked_at": "2026-04-05T04:01:38.667Z",
-    "title": "WealthAI Builds AI-Native OS to Unify Fragmented Wealth Manager Tech Stacks",
-    "score": 37
+    "blocked_at": "2026-03-26T05:13:43.310Z"
   },
   "https://www.axios.com/pro/fintech-deals/2026/02/19/jump-80m-series-b-insight-advisor-ai": {
     "id": "jump-80m-series-b-advisor-ai-operating-system-2026-02",
-    "reason": "Score 58/100 — below 45 review threshold",
-    "blocked_at": "2026-04-05T04:02:36.568Z",
-    "title": "Jump's AI Operating System Reaches Advisors at Scale, Backed by $80M Series B to Expand Productivity Layer",
-    "score": 58
+    "reason": "Human rejected REVIEW entry",
+    "blocked_at": "2026-03-26T07:41:40.408Z"
+  },
+  "https://fintech.global/2026/02/20/jump-secures-80m-series-b-to-scale-ai-for-advisors/": {
+    "id": "jump-ai-advisor-assistant-80m-series-b-2026-02",
+    "reason": "Topic suppressed: jump:funding",
+    "blocked_at": "2026-03-27T05:01:05.367Z"
+  },
+  "https://www.thedailyupside.com/advisor/wealthtech/anthropic-bets-big-on-wealth-management-with-new-ai-tools/": {
+    "id": "anthropic-claude-wealth-management-plugins-lpl-orion-2026-02-26",
+    "reason": "Score 32/100 — below 60 review threshold",
+    "blocked_at": "2026-03-27T05:02:00.575Z"
+  },
+  "https://www.bloomberg.com/news/articles/2026-02-11/charles-schwab-ceo-says-ai-is-poised-to-boost-wealth-managers": {
+    "id": "schwab-ceo-ai-wealth-managers-2026-02",
+    "reason": "the_so_what flagged as weak CXO relevance (3/10) — review before publishing",
+    "blocked_at": "2026-03-27T05:03:06.834Z"
+  },
+  "https://www.investmentnews.com/transformation/ai-native-operating-systems-get-buy-in-from-mega-rias/265345": {
+    "id": "ai-native-operating-systems-mega-ria-buy-in-2026-02",
+    "reason": "Fabrication detected: Headline states '$105M Combined' but source shows $25M (Avantos Series A) + $80M (Jump Series B) = $105M total — this arithmetic is consistent, but the headline number '$105M' does not appear verbatim in the source text. However, this is not a contradiction since the components sum correctly.; Summary states Jump 'secured adoption across major RIAs and custodians including Merit and Focus Financial Partners' — source confirms this, no issue.; Summary states 'AI agents that eliminate swivel-chairing' — source text uses 'swivel‑chairing' verbatim, consistent.; Summary claims Jump raised '$80M Series B in the same week' — source confirms '$80 million Series B funding', consistent.; The summary and 'so what' reference 'Focus Financial Partners' as a Jump customer — source confirms this.; KEY ISSUE: The 'so what' section states '$80M raise across Focus Financial and major custodians' — but the source indicates broker-dealers LPL, Cetera, and Osaic have partnerships with Jump, and custodians are not explicitly named for Jump. Focus Financial is an RIA aggregator, not a custodian. This is a mischaracterization but not a direct number contradiction.; QUOTED PHRASE ISSUE: The summary states the capability 'is explicitly expanding toward AI-generated product recommendations for clients' — the source does say Ramadi 'expects will eventually expand into AI-generated product recommendations for clients', but the entry presents this as 'explicitly expanding' which overstates the source's 'expects will eventually expand'.; CRITICAL: The summary states Jump's $80M raise with 'identical AI-native operating system positioning' — source confirms both companies used this phrase, consistent.; The key stat '$96B' does NOT appear verbatim in the source. The source states 'the $96 billion AUM mega-RIA Mercer Advisors' — '$96B' is an abbreviation, not a verbatim match, though it represents the same figure. This is near-verbatim and not a contradiction.; FAIL TRIGGER: Summary states Avantos is 'live with Mercer Advisors ($96B AUM), Vanguard, SEI, and Guardian Life' as if all are clients — but source indicates Vanguard, SEI, and Guardian Life are both investors AND users, while the entry conflates investor/client roles without distinguishing them. This is not a number fabrication but a representational issue.; No outright number contradictions found for headline figures ($25M, $80M, $105M combined, $96B AUM).",
+    "blocked_at": "2026-03-27T05:04:24.882Z"
+  },
+  "https://www.investmentnews.com/advisor-tech/origin-debuts-low-fee-ai-robo-planner-that-still-wont-threaten-human-advisors/264739": {
+    "id": "origin-ai-robo-planner-low-fee-launch-2026",
+    "reason": "Fabrication detected: Headline states '120M+ Underserved US Households' but the source text explicitly states 'more-than-130 million households in the US', contradicting the 120M+ figure in the headline.; Summary states '$2,500–$10,000+ annual minimums' — source says '$2,500-$3,000 per year' minimum with 'many advisors charging annual minimums of $10,000 or more', which is broadly consistent but the framing '–$10,000+' slightly compresses the source's range.; Key stat in entry header says '130M+' which matches the source, but the headline uses '120M+' which contradicts the source's '130 million households' figure.; The summary phrase 'approximately 100,000 CFP professionals can serve only ~10 million households against a US base of 130+ million' is consistent with the source, but the headline's '120M+' directly contradicts the source's '130 million' figure for the same metric.",
+    "blocked_at": "2026-03-27T05:05:32.537Z"
+  },
+  "https://www.thinkadvisor.com/2026/02/24/orion-expands-ai-work-with-anthropic/": {
+    "id": "orion-expands-ai-anthropic-claude-financial-analysis-2026-02-24",
+    "reason": "Fabrication detected: The summary and headline refer to 'Claude Cowork platform' — the source text says 'Claude Cowork agent', which is close, but more critically the entry calls it a 'platform' while the source says 'agent'. Minor but worth noting.; The key stat '2000' does NOT appear literally in the source. The source says 'some 2,000 attendees' — this is a near-verbatim match with a comma, so this is acceptable.; The summary states Anthropic 'launched new AI agent tools for its Claude Cowork platform targeting financial analysis and HR workflows' — the source says 'launched new artificial-intelligence tools for its Claude Cowork agent that target work in areas like financial analysis and human resources' — this is a near-verbatim paraphrase and acceptable.; The quoted phrase attributed to Orion's 'stated focus' — 'building a secure, enterprise-grade platform that harnesses these AI advances for its clients' — does NOT appear verbatim in the source. The source quote from Reed Colley is: 'What we're really focused on for our clients is harnessing the power of these [AI] changes and building a platform that's secure, enterprise grade, and built for privacy …' The summary fabricates a condensed paraphrase and presents it as a 'stated focus' with language not matching the source verbatim, but this is a paraphrase rather than a direct quote in quotation marks.; The company name 'Orion Advisor Solutions' does not appear in the source. The source refers only to 'Orion' without the full legal name 'Orion Advisor Solutions'.; '2,000' appears in the source as 'some 2,000 attendees' — the key stat of 2000 is supported.; The 'so what' references '2,000 RIA practitioners' — the source says '2,000 attendees', not specifically 'RIA practitioners'. This is a minor fabrication of specificity.; The 'so what' says 'year-plus Anthropic relationship' — the source says 'working with Orion for over a year', which supports this claim.; CRITICAL: The company name 'Orion Advisor Solutions' does not appear in the source text. The source only uses 'Orion'. While this may be the full legal name, the source does not use it — flagged as a potential fabrication of the full name, though this is a borderline issue.; The headline refers to 'FactSet-Backed Financial Analysis Agent' — the source confirms FactSet Research Systems as a partner and financial analysis as a target area, so this is supported.; No number appears in the headline itself that would fail.",
+    "blocked_at": "2026-03-27T05:06:48.915Z"
+  },
+  "https://www.wealthmanagement.com/artificial-intelligence/zocks-raises-45m-series-b-to-expand-ai-capabilities-for-financial-advisors": {
+    "id": "zocks-45m-series-b-agentic-ai-advisors-2026-01",
+    "reason": "Score 45/100 — below 60 review threshold",
+    "blocked_at": "2026-03-28T05:01:34.930Z",
+    "title": "Zocks Scales Agentic AI Automation for Financial Advisors with $45M Series B",
+    "score": 45
+  },
+  "https://www.wealthmanagement.com/artificial-intelligence/wealthstack-roundup-finny-partners-with-osaic": {
+    "id": "finny-osaic-ai-partnership-2026-01",
+    "reason": "Score 32/100 — below 60 review threshold",
+    "blocked_at": "2026-03-28T05:04:48.264Z",
+    "title": "FINNY Deploys AI Capabilities Across Osaic's Advisor Network via New Partnership",
+    "score": 32
+  },
+  "https://www.businesswire.com/news/home/20260309897864/en/Jump-Expands-AI-Operating-System-for-Advisors-With-New-Products-Powering-Growth-and-Operations": {
+    "id": "jump-ai-operating-system-advisors-march-2026",
+    "reason": "Human rejected REVIEW entry",
+    "blocked_at": "2026-03-28T21:04:58.952Z"
+  },
+  "https://www.stocktitan.net/news/NOAH/noah-olive-co-host-2026-ai-outlook-redefining-global-allocation-for-3lnnj6c8qmga.html": {
+    "id": "noah-olive-ai-outlook-2026-hong-kong",
+    "reason": "the_so_what flagged as weak CXO relevance (3/10) — review before publishing",
+    "blocked_at": "2026-03-29T04:01:12.536Z",
+    "title": "Noah and Olive Position AI-Driven Global Allocation as Core Framework for Chinese HNW Investors",
+    "score": 49
+  },
+  "https://www.fintechfutures.com/venture-capital-funding/jump-raises-80m-series-b": {
+    "id": "jump-80m-series-b-ai-advisor-platform-2026",
+    "reason": "Score 50/100 — below 60 review threshold",
+    "blocked_at": "2026-03-29T04:02:30.968Z",
+    "title": "Jump's AI Advisor OS Reaches 15,000 Advisors as $80M Series B Validates Productivity Category",
+    "score": 50
+  },
+  "https://www.businesswire.com/news/home/20260226730121/en/Orion-Announces-Denali-AI-Enterprise-Version-Powering-a-New-Era-in-Advisor-Productivity": {
+    "id": "orion-denali-ai-enterprise-version-launch-2026",
+    "reason": "Human rejected REVIEW entry",
+    "blocked_at": "2026-03-29T07:44:14.205Z"
+  },
+  "https://www.wealthmanagement.com/financial-technology/advisors-navigate-ai-innovation-surge-at-t3-conference": {
+    "id": "t3-conference-ai-advisor-tech-2026",
+    "reason": "Score 40/100 — below 45 review threshold",
+    "blocked_at": "2026-03-30T04:03:17.275Z",
+    "title": "T3 Conference Shows AI Embedded Across Advisor Tech Stack as Innovation Pace Accelerates",
+    "score": 40
+  },
+  "https://www.businesswire.com/news/home/20260126549388/en/Zocks-Raises-%2445M-Series-B-to-Accelerate-AI-Powered-Automation-for-Financial-Advisors": {
+    "id": "zocks-series-b-agentic-ai-advisor-automation-2026",
+    "reason": "Human rejected REVIEW entry",
+    "blocked_at": "2026-03-30T15:49:36.899Z"
+  },
+  "https://www.bloomberg.com/news/articles/2026-03-16/openai-discusses-10-billion-venture-with-pe-firms-reuters-says": {
+    "id": "openai-10-billion-venture-pe-firms-2026-03",
+    "reason": "Human rejected REVIEW entry",
+    "blocked_at": "2026-03-30T15:49:44.484Z"
+  },
+  "https://www.planadviser.com/ai-product-service-launches-3-30-2026/": {
+    "id": "merrill-bofa-jump-ai-advisor-tools-march-2026",
+    "reason": "Fabricated claims: The entry states Bank of America's '$4 billion annual AI investment budget' is the total technology investment — the source states Bank of America invests '$13.5 billion annually on technology, including $4 billion for AI and other new initiatives.' The entry omits the $13.5 billion total and implies $4 billion is the full annual technology investment, but more critically the entry correctly cites $4 billion for AI, so this is not a direct contradiction. However, the entry describes it as 'backed by Bank of America's $4 billion annual AI investment budget' which is accurate per the source.; The headline states 'Tens of Thousands of Advisors' — Jump has 27,000 advisors, but Merrill and Glia deployment numbers are not specified in the source, making the aggregated 'tens of thousands' claim not directly supported for those firms",
+    "blocked_at": "2026-03-31T04:01:40.590Z",
+    "title": "Merrill, Jump and Glia Deploy AI Meeting and Workflow Agents to Tens of Thousands of Advisors",
+    "score": 0
+  },
+  "https://www.wealthmanagement.com/artificial-intelligence/morgan-stanley-s-wealth-head-addresses-ai-driven-pressures": {
+    "id": "morgan-stanley-wealth-head-ai-stock-fears-2026-02",
+    "reason": "Score 45/100 — below 45 review threshold",
+    "blocked_at": "2026-03-31T04:02:38.831Z",
+    "title": "Morgan Stanley Wealth Head Publicly Addresses AI-Driven Competitive Pressure on Firm's Stock",
+    "score": 45
+  },
+  "https://fintech.global/2026/03/30/ani-tech-launches-free-ai-cash-flow-app-for-advisors/": {
+    "id": "ani-tech-free-ai-cash-flow-app-advisors-2026-03-30",
+    "reason": "Score 46/100 — below 45 review threshold",
+    "blocked_at": "2026-03-31T04:03:26.280Z",
+    "title": "Ani Tech Deploys Free AI Cash Flow App, Targeting Advisor Adoption at Zero Cost-to-Entry",
+    "score": 46
+  },
+  "https://www.barrons.com/advisor/articles/blackrock-ai-tool-morgan-stanley-financial-advisors-772ab402?gaa_at=eafs&gaa_n=AWEtsqch0T1zPOVdjmyZn_io64os3oegEvZQgEThdcHPDwYEtSC3645pAjrU&gaa_ts=69cb4a48&gaa_sig=GUXzGMmYBl9RXI8ZvwNS_qodM8B_3vqwfT0BP6pTbnWJx7pUoYmcePmEfHgRCqanMBX2996DBosnXJxJzwSycQ%3D%3D": {
+    "id": "blackrock-aladdin-auto-commentary-morgan-stanley-2025",
+    "reason": "Article is 180 days old — exceeds 90-day freshness limit",
+    "blocked_at": "2026-03-31T04:04:37.939Z",
+    "title": "BlackRock Embeds AI Commentary Generation in Aladdin, Morgan Stanley First to Deploy",
+    "score": 0
+  },
+  "https://www.golaurens.com/online_features/press_releases/merrill-and-bank-of-america-private-bank-launch-ai-powered-meeting-journey/article_8a60218b-32f9-5ab5-96c3-7eeb31d779a9.html": {
+    "id": "merrill-bofa-private-bank-ai-meeting-journey-launch",
+    "reason": "Human rejected REVIEW entry",
+    "blocked_at": "2026-04-01T07:04:54.012Z"
+  },
+  "https://www.benzinga.com/pressreleases/26/03/n51480463/merrill-and-bank-of-america-private-bank-launch-ai-powered-meeting-journey": {
+    "id": "merrill-bofa-private-bank-ai-meeting-journey-launch-2026-03",
+    "reason": "Human rejected REVIEW entry",
+    "blocked_at": "2026-04-01T07:05:07.485Z"
+  },
+  "https://www.lanereport.com/186950/2026/04/wealth-management-where-algorithms-meet-advisors/": {
+    "id": "wealth-management-algorithms-meet-advisors-lanereport-2026-04",
+    "reason": "Score 43/100 — below 45 review threshold",
+    "blocked_at": "2026-04-02T04:01:12.632Z",
+    "title": "AI-Driven Algorithms Reshaping Advisor Workflows Across Wealth Management Landscape",
+    "score": 43
+  },
+  "https://www.businesswire.com/news/home/20251009584071/en/Focal-Raises-%245M-to-Redefine-Advisor-Productivity-With-AI-Powered-Meetings-Performance-Coaching-and-Workflow-Automation": {
+    "id": "focal-5m-seed-advisor-productivity-ai",
+    "reason": "Article is 175 days old — exceeds 90-day freshness limit",
+    "blocked_at": "2026-04-02T04:02:21.206Z",
+    "title": "Focal Builds API-Free Workflow Automation Across Advisor Tech Stacks With $5M Seed",
+    "score": 0
+  },
+  "https://www.thinkadvisor.com/2026/02/12/altruists-big-reveal-sent-wealth-management-stocks-tumbling-heres-whats-really-going-on/": {
+    "id": "altruist-ai-reveal-wealth-management-stocks-tumbling-2026-02",
+    "reason": "Score 50/100 — below 45 review threshold",
+    "blocked_at": "2026-04-02T04:03:55.293Z",
+    "title": "Altruist AI Platform Reveal Triggers Wealth Management Stock Selloff, Signaling Fee Compression Fears",
+    "score": 50
+  },
+  "https://www.prnewswire.com/news-releases/wealthbox-announces-early-access-to-new-ai-features-for-financial-advisors-302707692.html": {
+    "id": "wealthbox-ai-features-early-access-2026-03",
+    "reason": "Score 52/100 — below 45 review threshold",
+    "blocked_at": "2026-04-09T04:01:55.196Z",
+    "title": "Wealthbox Opens Early Access to AI Features Embedded Directly in Advisor CRM Workflow",
+    "score": 52
+  },
+  "https://www.thesaasnews.com/news/sherpas-raises-3-2-million-seed-round": {
+    "id": "sherpas-ai-operating-layer-wealth-management-seed-2026",
+    "reason": "Score 43/100 — below 45 review threshold",
+    "blocked_at": "2026-04-09T04:02:46.881Z",
+    "title": "Sherpas Builds AI Operating Layer for Wealth Management, Backed by Mariner Wealth Founder's Family Office",
+    "score": 43
+  },
+  "https://rbj.net/2026/04/03/how-ai-complements-financial-advisors-in-wealth-management/": {
+    "id": "rbj-ai-complements-wealth-management-2026-04-03",
+    "reason": "Score 41/100 — below 45 review threshold",
+    "blocked_at": "2026-04-09T04:04:19.318Z",
+    "title": "AI in Wealth Management Framed as Advisor Complement, Not Replacement, in Regional Business Coverage",
+    "score": 41
+  },
+  "https://fintech.global/2026/04/07/accuquant-raises-20m-to-boost-ai-financial-infrastructure/": {
+    "id": "accuquant-raises-20m-ai-financial-infrastructure-2026-04-07",
+    "reason": "Paywalled source — claims unverifiable, not fabricated. Human review required.",
+    "blocked_at": "2026-04-09T04:05:21.119Z",
+    "title": "AccuQuant Secures $20M to Scale AI-Driven Financial Infrastructure Capabilities",
+    "score": 40
+  },
+  "https://www.techcircle.in/2026/04/09/wealthtech-enters-a-new-phase-with-real-time-portfolio-intelligence-centricity-s-kishore": {
+    "id": "centricity-wealthtech-real-time-portfolio-intelligence-2026-04",
+    "reason": "Score 46/100 — below 45 review threshold",
+    "blocked_at": "2026-04-10T04:01:18.911Z",
+    "title": "Centricity WealthTech Advances Real-Time Portfolio Intelligence as Core Architecture for India's Wealth Platforms",
+    "score": 46
+  },
+  "https://www.investmentnews.com/fintech/wealth-firms-double-down-on-ai-as-sowell-and-guardian-forge-new-tech-alliances/265487": {
+    "id": "altruist-hazel-ai-sowell-guardian-avantos-2026-03",
+    "reason": "Score 45/100 — below 45 review threshold",
+    "blocked_at": "2026-04-11T04:01:49.439Z",
+    "title": "Altruist's Hazel AI Aggregates CRM, Comms and Market Data to Automate Advisor Workflows Across Sowell Network",
+    "score": 45
+  },
+  "https://finance.yahoo.com/news/openai-releases-financial-services-tools-190124457.html": {
+    "id": "openai-financial-services-tools-march-2026",
+    "reason": "Score 42/100 — below 45 review threshold",
+    "blocked_at": "2026-04-11T04:03:08.222Z",
+    "title": "OpenAI Launches Dedicated Financial-Services AI Tools, Entering Direct Competition with Anthropic",
+    "score": 42
+  },
+  "https://citywire.com/ria/news/altruist-saw-record-traffic-after-launching-ai-tax-tool-coo-says/a2483745": {
+    "id": "altruist-ai-tax-tool-record-traffic-2026-02",
+    "reason": "Score 50/100 — below 45 review threshold",
+    "blocked_at": "2026-04-11T04:04:46.927Z",
+    "title": "Altruist AI Tax Tool Drives Record Platform Traffic, Signaling Advisor Demand for Automated Tax Intelligence",
+    "score": 50
+  },
+  "https://fintech.global/2026/03/09/apex-fintech-and-wavvest-partner-on-ai-financial-planning/": {
+    "id": "apex-fintech-wavvest-ai-financial-planning-partnership",
+    "reason": "Score 46/100 — below 45 review threshold",
+    "blocked_at": "2026-04-12T04:01:31.996Z",
+    "title": "Apex FinTech and Wavvest Integrate AI Financial Planning Into Custody Infrastructure",
+    "score": 46
+  },
+  "https://www.financial-planning.com/list/10-experts-predict-whats-next-for-ai-in-wealthtech-in-2026": {
+    "id": "wealthtech-ai-expert-predictions-2026",
+    "reason": "Article is 111 days old — exceeds 90-day freshness limit",
+    "blocked_at": "2026-04-12T04:02:25.017Z",
+    "title": "Ten Wealthtech Experts Converge on Agentic AI and Hyper-Personalization as 2026's Defining Capability Shifts",
+    "score": 0
+  },
+  "https://www.pymnts.com/artificial-intelligence-2/2026/citi-arms-wealth-advisors-with-4-ai-tools-to-cut-busywork/": {
+    "id": "citi-wealth-ai-tools-advisor-productivity-2026-04",
+    "reason": "Fabrication detected: Client 360 rollout timeline contradiction: Entry states 'full rollout planned for April 2026', but source states full rollout to Citi Private Bank and Wealth at Work is planned for 'this month' (April 2026) with ALL Wealth colleagues gaining access in Q2 2026 — the entry omits the Q2 2026 phase and mischaracterizes the rollout scope.; Portfolio Intelligence global rollout: Entry states 'global rollout through year-end', but source specifies expanding to Private Bank clients globally in Q2 first, then all Wealth clients by year-end — the entry collapses these two phases into one.; CitiScribe description: Entry states it 'automates meeting note-taking', but source describes it as 'automates note-taking, summarizing client discussions' — minor but the entry's characterization is consistent enough to not be a hard fail.; Citi Stylus Workspaces launch: Entry states 'launched in September 2025' which is consistent with source reference to 'Last September' (published April 2026).",
+    "blocked_at": "2026-04-14T04:02:22.294Z",
+    "title": "Citi Deploys 4 AI Tools Across Wealth Division, Automating Notes, Research Queries and Client 360 Views",
+    "score": 0
+  },
+  "https://hubbis.com/article/ai-in-private-wealth-management-from-experimentation-to-agentic-transformation": {
+    "id": "ai-private-wealth-agentic-transformation-hubbis-2026",
+    "reason": "the_so_what flagged as weak CXO relevance (3/10) — review before publishing",
+    "blocked_at": "2026-04-14T04:04:42.454Z",
+    "title": "Agentic AI Moves From Pilot to Autonomous Execution Across Private Wealth Client Lifecycle",
+    "score": 45
   }
 }

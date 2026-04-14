@@ -1,11 +1,8 @@
 import { readFileSync, writeFileSync, existsSync, readdirSync } from 'fs';
-import { join, dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { join } from 'path';
+import { TL_DIR, STATE_DIR } from './config.js';
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
-const DATA_ROOT = process.env.DATA_DIR || join(__dirname, '..', '..');
-const TL_CANDIDATES_FILE = join(__dirname, '..', '.tl-candidates.json');
-const TL_DIR = join(DATA_ROOT, 'data', 'thought-leadership');
+const TL_CANDIDATES_FILE = join(STATE_DIR, '.tl-candidates.json');
 
 const JINA_KEY = process.env.JINA_API_KEY;
 

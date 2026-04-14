@@ -1,15 +1,10 @@
 import { writeFileSync, existsSync, mkdirSync, copyFileSync } from 'fs';
-import { join, dirname } from 'path';
+import { join } from 'path';
 import { tmpdir } from 'os';
-import { fileURLToPath } from 'url';
 import { execSync } from 'child_process';
+import { REPO_ROOT, INTEL_DIR, LOGOS_DIR } from './config.js';
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
-// Local mode: data/ is two levels up (living-intelligence/data/).
-// Railway mode: overridden by DATA_DIR env var, or falls back to /app/data/
-//   (ephemeral write target — files are then cloned+pushed via GIT_TOKEN).
-const DATA_ROOT = process.env.DATA_DIR || join(__dirname, '..', '..');
-const PORTAL_DATA_DIR = join(DATA_ROOT, 'data', 'intelligence');
+const PORTAL_DATA_DIR = INTEL_DIR;
 
 // ── Date integrity ─────────────────────────────────────────────────────────────
 
@@ -67,6 +62,40 @@ export function publish({ entry, candidatePubDate, send }) {
     ? new Date(entry.date).toISOString()
     : new Date().toISOString();
 
+  // Auto-correct week field — compute Monday of article date
+  if (entry.date && /^\d{4}-\d{2}-\d{2}$/.test(entry.date)) {
+    const d = new Date(entry.date + 'T12:00:00Z');
+    if (!isNaN(d.getTime())) {
+      const dow = d.getUTCDay(); // 0=Sun, 1=Mon, ..., 6=Sat
+      const daysBack = dow === 0 ? 6 : dow - 1;
+      const monday = new Date(d);
+      monday.setUTCDate(d.getUTCDate() - daysBack);
+      const correctWeek = monday.toISOString().slice(0, 10);
+      if (entry.week !== correctWeek) {
+        console.log(`[publisher] Auto-fixed week: ${entry.week || 'missing'} → ${correctWeek}`);
+        entry.week = correctWeek;
+      }
+    }
+  }
+
+  // Auto-resolve logo if image_url is missing/invalid and a local logo exists
+  const needsLogo = !entry.image_url
+    || entry.image_url === 'null'
+    || (typeof entry.image_url === 'string' && entry.image_url.includes('unavatar.io'));
+  if (needsLogo && entry.company) {
+    const slug = entry.company.toLowerCase();
+    for (const ext of ['svg', 'png']) {
+      if (existsSync(join(LOGOS_DIR, `${slug}.${ext}`))) {
+        entry.image_url = `/logos/${slug}.${ext}`;
+        console.log(`[publisher] Auto-resolved logo: /logos/${slug}.${ext}`);
+        break;
+      }
+    }
+    if (needsLogo && (!entry.image_url || entry.image_url.includes('unavatar.io'))) {
+      entry.image_url = null; // clear unavatar.io if no local logo found
+    }
+  }
+
   const { _governance, ...publicFields } = entry;
   const entryToWrite = {
     ...publicFields,
@@ -118,14 +147,14 @@ export function publish({ entry, candidatePubDate, send }) {
 
 // ── commitInboxState ──────────────────────────────────────────────────────────
 // Commits .governance-pending.json + .governance-blocked.json + .pipeline-status.json
-// to the dev branch so the inbox survives Railway redeployments.
+// to the intake branch so the inbox survives Railway redeployments.
 // Non-fatal — a failure here does not affect the pipeline result.
 export function commitInboxState() {
   const gitToken = process.env.GIT_TOKEN;
   const repo     = process.env.GITHUB_REPO || 'CuriosityAIAgent/living-intelligence';
-  const branch   = 'dev';
+  const branch   = 'intake';
 
-  const defaultPortalDir  = join(__dirname, '..', '..');
+  const defaultPortalDir  = REPO_ROOT;
   const portalDir         = process.env.PORTAL_DIR || defaultPortalDir;
   const hasGitRepo        = existsSync(join(portalDir, '.git'));
 
@@ -199,12 +228,12 @@ export function commitInboxState() {
   }
 }
 
-export function commitAndPush({ ids, send, branch = 'dev' }) {
+export function commitAndPush({ ids, send, branch = 'main' }) {
   const gitToken = process.env.GIT_TOKEN;
   const repo    = process.env.GITHUB_REPO || 'CuriosityAIAgent/living-intelligence';
 
   // ── Local mode: PORTAL_DIR is set or a .git repo exists two levels up ────────
-  const defaultPortalDir = join(__dirname, '..', '..');
+  const defaultPortalDir = REPO_ROOT;
   const explicitPortalDir = process.env.PORTAL_DIR;
   const portalDir = explicitPortalDir || defaultPortalDir;
   const hasGitRepo = existsSync(join(portalDir, '.git'));

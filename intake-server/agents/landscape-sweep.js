@@ -10,16 +10,13 @@
  */
 
 import { readFileSync, writeFileSync, existsSync, readdirSync } from 'fs';
-import { join, dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { join } from 'path';
 import Anthropic from '@anthropic-ai/sdk';
+import { COMPETITORS_DIR, STATE_DIR, THRESHOLDS } from './config.js';
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
-const DATA_ROOT       = process.env.DATA_DIR || join(__dirname, '..', '..');
-const COMPETITORS_DIR = join(DATA_ROOT, 'data', 'competitors');
-const SUGGESTIONS_FILE = join(DATA_ROOT, 'data', '.landscape-suggestions.json');
+const SUGGESTIONS_FILE = join(STATE_DIR, '.landscape-suggestions.json');
 
-const STALE_DAYS = 45;
+const STALE_DAYS = THRESHOLDS.STALENESS_DAYS;
 const MATURITY_ORDER = ['no_activity', 'announced', 'piloting', 'deployed', 'scaled'];
 
 // ── Suggestion store (shared with landscape-trigger.js) ──────────────────────

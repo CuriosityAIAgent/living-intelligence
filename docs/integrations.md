@@ -263,9 +263,9 @@ All company queries are batched into a single API call (50 per batch) for effici
 ### Full pipeline flow
 
 ```
-Layer 1 News (8 DFS News)  Layer 1 Caps (7 DFS News)  Layer 2 Companies (N DFS Content Analysis)
-         │                          │                             │
-         └──────────────────────────┴──────────────────────────── ┘
+Layer 1 News (8 DFS News)  Layer 1 Caps (7 DFS News)  Layer 2 Companies (N DFS Content Analysis)  Layer 3 NewsAPI (4 queries)
+         │                          │                             │                                         │
+         └──────────────────────────┴─────────────────────────────┴─────────────────────────────────────────┘
                         ↓ URL dedup vs existing entries
                Deduplicate against source_url fields
                         ↓ Rule-based scoring + HN gravity decay → top 40
@@ -275,6 +275,7 @@ Layer 1 News (8 DFS News)  Layer 1 Caps (7 DFS News)  Layer 2 Companies (N DFS C
                +4 each  tracked company mention (max +10, dynamic from landscape)
                +1 each  AI keyword density (max 4)
                +5–7     Layer 2 Companies bonus (base +5, +quality_score up to +2)
+               +4       Layer 3 NewsAPI bonus
                +4       Layer 1 Capabilities bonus
                +3       Layer 1 News
                         ↓ Stage 2b: Semantic dedup (Jina Embeddings)
@@ -321,17 +322,60 @@ This two-call pattern (structure → verify) is the primary anti-hallucination m
 
 ---
 
+## NewsAPI.ai (Event Registry)
+
+**Used for:** Layer 3 discovery — catches industry trade press (ThinkAdvisor, RIABiz, Financial Planning, WealthManagement.com) that Google News editorial selection misses. 80,000+ sources indexed.
+
+**API endpoint:** `https://eventregistry.org/api/v1/article/getArticles` (POST)
+
+```javascript
+// agents/auto-discover.js — discoverFromNewsAPI()
+const res = await fetch('https://eventregistry.org/api/v1/article/getArticles', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({
+    action: 'getArticles',
+    keyword: 'AI wealth management advisor',
+    keywordOper: 'and',
+    lang: 'eng',
+    dateStart: '2026-03-24',   // 7-day rolling window
+    dateEnd: '2026-03-31',
+    isDuplicateFilter: 'skipDuplicates',
+    resultType: 'articles',
+    articlesSortBy: 'date',
+    articlesCount: 30,
+    apiKey: process.env.NEWSAPI_KEY,
+  }),
+});
+// Returns: { articles: { results: [{ title, url, body, date, source: { title } }] } }
+```
+
+**Standing queries (4):**
+- `'AI wealth management advisor'`
+- `'financial advisor artificial intelligence platform'`
+- `'wealthtech AI fintech'`
+- `'private banking AI deployment'`
+
+**Scoring:** +4 bonus for `layer3_newsapi` candidates (same as L1 Capabilities).
+
+**Graceful degradation:** If `NEWSAPI_KEY` env var is not set, the layer returns empty results and the pipeline continues with L1+L2 layers only.
+
+**Env var:** `NEWSAPI_KEY`
+
+---
+
 ## What Each Integration Solves
 
 | Problem | Solution |
 |---------|----------|
 | Finding new stories + new entrants | Layer 1: 8 broad DFS News queries — catches any company, not just tracked ones |
 | Deep per-company coverage | Layer 2: DFS Content Analysis query per company in landscape — auto-expands as landscape grows |
+| Industry trade press coverage | Layer 3: NewsAPI.ai (80K+ sources) — catches ThinkAdvisor, RIABiz, etc. that Google News misses |
 | Extracting clean article content | Jina r.jina.ai (handles paywalls, strips noise) |
 | Paywalled articles | DataForSEO Google News + Organic in parallel → finds open alternative sources |
 | Structuring articles into typed JSON | Anthropic Claude — strict grounding rules, no inference |
 | Verifying claims aren't fabricated | Anthropic Claude governance check (second call) |
-| Auto-publishing vs human review | scorer.js — 4-dimension scoring (A: Source 0–25, B: Claims 0–25, C: Fresh 0–10, D: Impact 0–40). PUBLISH ≥75 / REVIEW 60–74 / BLOCK <60 |
+| Auto-publishing vs human review | scorer.js — 4-dimension scoring (A: Source 0–25, B: Claims 0–25, C: Fresh 0–10, D: Impact 0–40). PUBLISH ≥75 / REVIEW 45–74 / BLOCK <45 |
 | Source authority verification | DataForSEO Backlinks API — live domain_rank per source domain |
 | Detecting spam/low-quality sources | Backlinks API spam_score ≥ 40 → auto-flag regardless of domain rank |
 | Reliable company logos | DataForSEO Google Images → downloaded to disk as local files |

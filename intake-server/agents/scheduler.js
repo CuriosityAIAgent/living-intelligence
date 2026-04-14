@@ -13,24 +13,24 @@
  */
 
 import { readFileSync, readdirSync } from 'fs';
-import { join, dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { join } from 'path';
 import { autoDiscover } from './auto-discover.js';
 import { processUrl } from './intake.js';
+import { enrichContext } from './context-enricher.js';
 import { verify } from './governance.js';
+import { checkFabrication } from './fabrication-strict.js';
+import { validateFormat } from './format-validator.js';
 import { scoreEntry, formatScoreBreakdown } from './scorer.js';
 import { addPending, addBlocked, isBlocked, isTopicSuppressed, writePipelineStatus } from './gov-store.js';
 import { commitInboxState } from './publisher.js';
 import { sendDigest } from './notifier.js';
-
-const __dirname = dirname(fileURLToPath(import.meta.url));
-const DATA_ROOT = join(process.env.DATA_DIR || join(__dirname, '..', '..'), 'data');
-const INTEL_DIR = join(DATA_ROOT, 'intelligence');
+import { INTEL_DIR, THRESHOLDS } from './config.js';
+import { logPipelineRun, logPipelineEvent, storeBrief, upsertSource } from './kb-client.js';
 
 // ── Review threshold ───────────────────────────────────────────────────────────
 // PUBLISH ≥ 75  |  REVIEW 60–74  |  BLOCK < 60
 // Full score breakdown: A: Source (0-25) + B: Claims (0-25) + C: Fresh (0-10) + D: Impact (0-40)
-const REVIEW_THRESHOLD = 60;
+const REVIEW_THRESHOLD = THRESHOLDS.REVIEW;
 
 // ── Entity+event dedup ────────────────────────────────────────────────────────
 // Prevents the same funding round / acquisition / event type from re-surfacing
@@ -82,6 +82,12 @@ export async function runDailyPipeline() {
   const startedAt = new Date().toISOString();
   console.log(`[scheduler] Daily pipeline started at ${startedAt}`);
 
+  // PRINCIPLE 8: Log pipeline run to KB
+  const runId = await logPipelineRun({
+    tier: 'tier1_auto',
+    started_at: startedAt,
+  });
+
   const published    = []; // always empty — nothing auto-publishes
   const pending      = [];
   const blocked      = [];
@@ -93,6 +99,7 @@ export async function runDailyPipeline() {
   let tlCandidates    = [];
   let knownCompanyIds   = new Set(); // landscape IDs e.g. "jump-ai"
   let knownCompanyNames = new Set(); // landscape display names lowercased e.g. "jump", "lpl financial"
+  let discoverySources  = {};        // layer breakdown for pipeline status
 
   try {
     const { send, logs } = makeSink();
@@ -104,8 +111,8 @@ export async function runDailyPipeline() {
     knownCompanyIds   = doneEvent?.data?.knownCompanyIds   || new Set();
     knownCompanyNames = doneEvent?.data?.knownCompanyNames || new Set();
 
-    const sources = doneEvent?.data?.sources || {};
-    console.log(`[scheduler] Discovery: L1 news=${sources.layer1_news} L1 caps=${sources.layer1_capabilities} (${sources.capabilities_queried} dims) L2 cos=${sources.layer2_companies} (${sources.companies_queried} cos) L1 TL=${sources.layer1_tl} L2 auth=${sources.layer2_authors}`);
+    discoverySources = doneEvent?.data?.sources || {};
+    console.log(`[scheduler] Discovery: L1 news=${discoverySources.layer1_news} L1 caps=${discoverySources.layer1_capabilities} (${discoverySources.capabilities_queried} dims) L2 cos=${discoverySources.layer2_companies} (${discoverySources.companies_queried} cos) L3 newsapi=${discoverySources.layer3_newsapi || 0} L1 TL=${discoverySources.layer1_tl} L2 auth=${discoverySources.layer2_authors}`);
   } catch (err) {
     console.error('[scheduler] autoDiscover failed:', err.message);
     errors.push({ stage: 'discover', message: err.message });
@@ -133,6 +140,7 @@ export async function runDailyPipeline() {
       const { send } = makeSink();
 
       // Step 1: fetch + structure
+      let intakeStart = Date.now();
       const intakeResult = await processUrl({
         url,
         source_name: candidate.source_name || 'Unknown',
@@ -140,12 +148,14 @@ export async function runDailyPipeline() {
       });
 
       if (!intakeResult) {
+        await logPipelineEvent({ run_id: runId, agent: 'intake', latency_ms: Date.now() - intakeStart, error: 'processUrl returned null' });
         errors.push({ url, stage: 'intake', message: 'processUrl returned null' });
         continue;
       }
+      await logPipelineEvent({ run_id: runId, agent: 'intake', entry_id: intakeResult.entry?.id, latency_ms: Date.now() - intakeStart });
 
       // Topic suppression — company+type rejected 2+ times with same reason → skip
-      const entryCompanyId = intakeResult.entry.company;
+      const entryCompanyId = (intakeResult.entry.company || '').toLowerCase().replace(/[^a-z0-9-]/g, '-');
       const entryType = intakeResult.entry.type;
       if (entryCompanyId && entryType && isTopicSuppressed(entryCompanyId, entryType)) {
         console.log(`[scheduler] Skipping suppressed topic ${entryCompanyId}:${entryType}`);
@@ -184,13 +194,43 @@ export async function runDailyPipeline() {
         continue;
       }
 
-      // Step 2: governance verification
+      // Step 1b: context enrichment — regenerate the_so_what with landscape context
+      try {
+        const enriched = await enrichContext({
+          entry: intakeResult.entry,
+          articleMarkdown: intakeResult.markdown,
+        });
+        // Replace blind the_so_what with context-aware version
+        intakeResult.entry.the_so_what = enriched.the_so_what;
+        intakeResult.entry._enrichment = {
+          what_changed: enriched.what_changed,
+          landscape_context: enriched.landscape_context,
+          confidence: enriched.enrichment_confidence,
+          notes: enriched.enrichment_notes,
+        };
+        console.log(`[scheduler] Context enriched (${enriched.enrichment_confidence}): ${intakeResult.entry.id}`);
+      } catch (enrichErr) {
+        console.error(`[scheduler] Context enrichment failed: ${enrichErr.message}`);
+        // Non-fatal — continue with original the_so_what
+      }
+
+      // Step 2a: format validation (pure rules, no API cost)
+      const formatResult = validateFormat(intakeResult.entry);
+      if (!formatResult.valid) {
+        console.log(`[scheduler] Format issues for ${intakeResult.entry.id}: ${formatResult.errors.join(', ')}`);
+        // Don't block — format errors route to REVIEW with annotation
+        intakeResult.entry._format_errors = formatResult.errors;
+      }
+
+      // Step 2b: governance verification (6k→12k window)
+      const govStart = Date.now();
       const { send: govSend } = makeSink();
       const govResult = await verify({
         entry: intakeResult.entry,
         sourceMarkdown: intakeResult.markdown,
         send: govSend,
       });
+      await logPipelineEvent({ run_id: runId, agent: 'governance', entry_id: intakeResult.entry.id, latency_ms: Date.now() - govStart, score: { verdict: govResult.verdict, confidence: govResult.confidence } });
 
       const govAudit = {
         verdict:            govResult.verdict,
@@ -206,12 +246,40 @@ export async function runDailyPipeline() {
 
       intakeResult.entry._governance = govAudit;
 
+      // Step 2c: fabrication-strict check (12k window, dedicated pass)
+      const fabStart = Date.now();
+      let fabricationResult = { verdict: 'SUSPECT', issues: ['Not checked'], checked_at: new Date().toISOString() };
+      try {
+        fabricationResult = await checkFabrication({
+          entry: intakeResult.entry,
+          sourceMarkdown: intakeResult.markdown,
+        });
+        console.log(`[scheduler] Fabrication check: ${fabricationResult.verdict} for ${intakeResult.entry.id}`);
+        await logPipelineEvent({ run_id: runId, agent: 'fabrication', entry_id: intakeResult.entry.id, latency_ms: Date.now() - fabStart, score: { verdict: fabricationResult.verdict } });
+      } catch (fabErr) {
+        console.error(`[scheduler] Fabrication check failed: ${fabErr.message}`);
+        await logPipelineEvent({ run_id: runId, agent: 'fabrication', entry_id: intakeResult.entry.id, latency_ms: Date.now() - fabStart, error: fabErr.message });
+      }
+      intakeResult.entry._fabrication = fabricationResult;
+
+      // Hard block on FAIL fabrication verdict
+      if (fabricationResult.verdict === 'FAIL') {
+        const reason = `Fabrication detected: ${fabricationResult.issues.join('; ')}`;
+        const title = intakeResult.entry.headline || candidate.title;
+        addBlocked(url, intakeResult.entry.id, reason, { title, score: 0 });
+        blocked.push({ url, title, reason, score: 0 });
+        console.log(`[scheduler] FABRICATION FAIL → BLOCK: ${url}`);
+        continue;
+      }
+
       // Step 3: score
+      const scoreStart = Date.now();
       const scored = await scoreEntry({
         entry:      intakeResult.entry,
         governance: govAudit,
         sourceUrl:  url,
       });
+      await logPipelineEvent({ run_id: runId, agent: 'scorer', entry_id: intakeResult.entry.id, latency_ms: Date.now() - scoreStart, score: { score: scored.score, action: scored.action } });
 
       // Override action with raised REVIEW threshold (65 instead of default 50)
       if (scored.action !== 'BLOCK') {
@@ -224,7 +292,6 @@ export async function runDailyPipeline() {
 
       // ── New company detection ──────────────────────────────────────────────
       // If the entry references a company not in our landscape, flag it.
-      const entryCompanyId   = (intakeResult.entry.company      || '').toLowerCase().replace(/[^a-z0-9-]/g, '-');
       const entryCompanyName = (intakeResult.entry.company_name || '').toLowerCase();
       // Match by ID, by name, or by partial ID (e.g. "jump" matches "jump-ai")
       const isKnown = knownCompanyIds.has(entryCompanyId)
@@ -249,7 +316,7 @@ export async function runDailyPipeline() {
       // ── BLOCK ──────────────────────────────────────────────────────────────
       if (scored.action === 'BLOCK') {
         const reason = scored.reason || `Score ${scored.score}/100 — below ${REVIEW_THRESHOLD} review threshold`;
-        addBlocked(url, intakeResult.entry.id, reason);
+        addBlocked(url, intakeResult.entry.id, reason, { title: intakeResult.entry.headline, score: scored.score });
         blocked.push({
           url,
           title:  intakeResult.entry.headline || candidate.title,
@@ -264,14 +331,18 @@ export async function runDailyPipeline() {
       if (scored.action === 'REVIEW') {
         addPending(intakeResult.entry, govAudit);
         pending.push({
-          id:                intakeResult.entry.id,
-          title:             intakeResult.entry.headline || candidate.title,
-          company_name:      intakeResult.entry.company_name,
-          score:             scored.score,
-          score_breakdown:   formatScoreBreakdown(scored),
-          unverified_claims: govResult.unverified_claims || [],
-          paywall_caveat:    govAudit.paywall_caveat,
-          notes:             govResult.notes || '',
+          id:                  intakeResult.entry.id,
+          title:               intakeResult.entry.headline || candidate.title,
+          company_name:        intakeResult.entry.company_name,
+          score:               scored.score,
+          score_breakdown:     formatScoreBreakdown(scored),
+          unverified_claims:   govResult.unverified_claims || [],
+          paywall_caveat:      govAudit.paywall_caveat,
+          notes:               govResult.notes || '',
+          fabrication_verdict: fabricationResult.verdict,
+          fabrication_issues:  fabricationResult.issues,
+          format_errors:       intakeResult.entry._format_errors || [],
+          enrichment:          intakeResult.entry._enrichment || null,
         });
         console.log(`[scheduler] REVIEW → pending: ${intakeResult.entry.id}`);
         continue;
@@ -285,17 +356,48 @@ export async function runDailyPipeline() {
         score_breakdown: formatScoreBreakdown(scored),
       });
       pending.push({
-        id:                intakeResult.entry.id,
-        title:             intakeResult.entry.headline || candidate.title,
-        company_name:      intakeResult.entry.company_name,
-        score:             scored.score,
-        score_breakdown:   formatScoreBreakdown(scored),
-        unverified_claims: govResult.unverified_claims || [],
-        paywall_caveat:    govAudit.paywall_caveat,
-        notes:             govResult.notes || '',
-        governance_verdict: govAudit.verdict,
+        id:                  intakeResult.entry.id,
+        title:               intakeResult.entry.headline || candidate.title,
+        company_name:        intakeResult.entry.company_name,
+        score:               scored.score,
+        score_breakdown:     formatScoreBreakdown(scored),
+        unverified_claims:   govResult.unverified_claims || [],
+        paywall_caveat:      govAudit.paywall_caveat,
+        notes:               govResult.notes || '',
+        governance_verdict:  govAudit.verdict,
+        fabrication_verdict: fabricationResult.verdict,
+        fabrication_issues:  fabricationResult.issues,
+        format_errors:       intakeResult.entry._format_errors || [],
+        enrichment:          intakeResult.entry._enrichment || null,
       });
       console.log(`[scheduler] INBOX → queued for editorial review (score ${scored.score}): ${intakeResult.entry.id}`);
+
+      // Store research brief in KB for v2 pipeline — ALL candidates, no score gate.
+      // The v2 pipeline (Remote Trigger) processes all 'ready' briefs with full
+      // multi-source research, writing, evaluation. Triage score is informational only.
+      setImmediate(async () => {
+        try {
+          const primarySourceId = intakeResult.entry._kb_source_id || null;
+          const isTracked = knownCompanyIds.has(entryCompanyId) || [...knownCompanyIds].some(id => id.length >= 3 && (id.startsWith(entryCompanyId) || entryCompanyId.startsWith(id)));
+          await storeBrief({
+            candidate_url: url,
+            company_id: isTracked ? entryCompanyId : null,
+            vertical_id: 'wealth',
+            entities: {
+              company_name: intakeResult.entry.company_name,
+              company_slug: entryCompanyId,
+              capability_area: intakeResult.entry.capability_evidence?.capability || null,
+              key_topic: intakeResult.entry.headline?.slice(0, 80),
+              event_type: intakeResult.entry.type,
+            },
+            primary_source_id: primarySourceId,
+            triage_score: scored.score,
+            source_count: (intakeResult.entry.sources || []).length || 1,
+            status: 'ready',
+          });
+          console.log(`[scheduler] KB brief stored (triage ${scored.score}): ${intakeResult.entry.id}`);
+        } catch (_) { /* non-blocking */ }
+      });
 
     } catch (err) {
       console.error(`[scheduler] Error processing ${url}:`, err.message);
@@ -310,6 +412,8 @@ export async function runDailyPipeline() {
     queued:            pending.length,
     blocked:           blocked.length,
     errors:            errors.length,
+    error_details:     errors.slice(0, 10),
+    discovery_sources: discoverySources,
     tl_candidates:     tlCandidates.length,
     tl_items:          tlCandidates.slice(0, 15),
     blocked_items:     blocked,
@@ -327,6 +431,19 @@ export async function runDailyPipeline() {
   } catch (err) {
     console.error('[scheduler] Failed to send digest:', err.message);
     errors.push({ stage: 'email', message: err.message });
+  }
+
+  // PRINCIPLE 8: Update pipeline run with final counts
+  if (runId) {
+    const supabase = (await import('./kb-client.js')).getSupabaseClient();
+    if (supabase) {
+      await supabase.from('pipeline_runs').update({
+        completed_at: new Date().toISOString(),
+        candidates_found: top15.length,
+        entries_produced: pending.length,
+        errors: errors.slice(0, 20),
+      }).eq('id', runId);
+    }
   }
 
   console.log(`[scheduler] Done. published=${published.length} pending=${pending.length} blocked=${blocked.length} new_cos=${newCompanies.length} tl=${tlCandidates.length} errors=${errors.length}`);

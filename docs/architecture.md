@@ -119,7 +119,15 @@
 | `/api/pending/:id/approve` | POST | Legacy approve |
 | `/api/pending/:id/reject` | POST | Legacy reject |
 | `/api/blocked` | GET | View all permanently blocked URLs |
+| `/api/blocked/unblock` | POST | Unblock URL and reprocess through full pipeline (fetch → governance → score → inbox) |
 | `/api/health` | GET | Server health + queue counts |
+| **v2 Pipeline Routes** | | |
+| `/api/v2/trigger-batch` | POST | Bearer token auth — Remote Trigger calls this to run batch processing |
+| `/api/v2/produce-batch` | POST | SSE stream — run batch processing from Editorial Studio |
+| `/api/v2/inbox` | GET | Produced briefs awaiting editorial review |
+| `/api/v2/held` | GET | Held briefs (low score or suspect fabrication) |
+| `/api/v2/decide/:briefId` | POST | Approve/reject/hold/retry a brief — logs to editorial_decisions |
+| `/api/v2/history` | GET | Decision audit trail with optional filters (limit, decision, company_id) |
 
 ---
 
