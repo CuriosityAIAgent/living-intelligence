@@ -1,7 +1,7 @@
 {
-  "started_at": "2026-04-13T04:00:00.370Z",
+  "started_at": "2026-04-14T04:00:00.008Z",
   "candidates_found": 15,
-  "queued": 0,
+  "queued": 1,
   "blocked": 2,
   "errors": 0,
   "error_details": [],
@@ -10,13 +10,13 @@
     "layer1_capabilities": 0,
     "layer2_companies": 0,
     "layer3_newsapi": 4,
-    "layer1_tl": 32,
-    "layer2_authors": 7,
+    "layer1_tl": 25,
+    "layer2_authors": 0,
     "companies_queried": 0,
     "capabilities_queried": 0,
     "raw_intel_total": 42
   },
-  "tl_candidates": 38,
+  "tl_candidates": 25,
   "tl_items": [
     {
       "id": "aHR0cHM6Ly93",
@@ -25,15 +25,6 @@
       "source_name": "linkedin.com",
       "pub_date": "3 months ago",
       "snippet": "Our ten ideas for Wealth Management are back and we're excited to share what we see as being in store for 2026 later in the month 📣\n\nSharing some spoilers ahead of that below with our first idea, on the topic of the moment: AI.\n\nThe AI-Augmented Last Mile Human 🤖\n\nThe role of the advisor is being ",
-      "via": "layer1_tl"
-    },
-    {
-      "id": "aHR0cHM6Ly9t",
-      "title": "AI-Powered Wealth: What the Future Holds in 2026",
-      "url": "https://medium.com/@kevin.nyny.25/ai-powered-wealth-what-the-future-holds-in-2026-424889ffe304",
-      "source_name": "medium.com",
-      "pub_date": null,
-      "snippet": "AI-Powered Wealth: What the Future Holds in 2026 It’s 2026, and the world of artificial intelligence is no longer a distant dream. It has evolved from a mere tool into a powerful force reshaping …",
       "via": "layer1_tl"
     },
     {
@@ -46,24 +37,6 @@
       "via": "layer1_tl"
     },
     {
-      "id": "aHR0cHM6Ly9r",
-      "title": "AI in 2026: What's Next?",
-      "url": "https://knowledge.wharton.upenn.edu/podcast/this-week-in-business/where-artificial-intelligence-stands-heading-into-2026/",
-      "source_name": "knowledge.wharton.upenn.edu",
-      "pub_date": null,
-      "snippet": "Wharton's Ethan Mollick discusses the current state of AI and the key implications for business, labor, and society in the year ahead.",
-      "via": "layer1_tl"
-    },
-    {
-      "id": "aHR0cHM6Ly93",
-      "title": "AI is set to play a bigger role in wealth management in 2026—but questions remain.",
-      "url": "https://www.linkedin.com/posts/next-level-recruiting-llc_ai-2026-increased-adoption-new-use-cases-activity-7420485172136984576-MxYJ",
-      "source_name": "linkedin.com",
-      "pub_date": "2 months ago",
-      "snippet": "AI is set to play a bigger role in wealth management in 2026—but questions remain.\n\nThis Family Wealth Report article explores how advisors are beginning to adopt AI, the new use cases gaining traction, and why regulation and trust still slow broader uptake. It also highlights a new Financial Planni",
-      "via": "layer1_tl"
-    },
-    {
       "id": "aHR0cHM6Ly93",
       "title": "10 Wealth Management Trends For 2026",
       "url": "https://www.oliverwyman.com/our-expertise/insights/2025/dec/wealth-management-trends-2026.html",
@@ -73,12 +46,39 @@
       "via": "layer1_tl"
     },
     {
-      "id": "aHR0cHM6Ly93",
-      "title": "Facebook",
-      "url": "https://www.facebook.com/29NewsWVIR/posts/more-americans-turning-to-ai-for-financial-advice-httpswww29newscom20260223more-/1677229030346805/",
-      "source_name": "facebook.com",
+      "id": "aHR0cHM6Ly9t",
+      "title": "AI-Powered Wealth: What the Future Holds in 2026",
+      "url": "https://medium.com/@kevin.nyny.25/ai-powered-wealth-what-the-future-holds-in-2026-424889ffe304",
+      "source_name": "medium.com",
       "pub_date": null,
-      "snippet": "# Facebook\n\nExplore the things you love.\n\n![Image 1](https://static.xx.fbcdn.net/rsrc.php/yb/r/HpEiFYDux5j.webp)\n\nLog into Facebook\n\nEmail or mobile number \n\nPassword \n\nLog in\n\n[Forgot password?](https://www.facebook.com/recover/initiate/?privacy_mutation_token=eyJ0eXBlIjo1LCJjcmVhdGlvbl90aW1lIjoxNz",
+      "snippet": "AI-Powered Wealth: What the Future Holds in 2026 It’s 2026, and the world of artificial intelligence is no longer a distant dream. It has evolved from a mere tool into a powerful force reshaping …",
+      "via": "layer1_tl"
+    },
+    {
+      "id": "aHR0cHM6Ly9j",
+      "title": "How Boards Can Lead in a World Remade by AI",
+      "url": "https://corpgov.law.harvard.edu/2026/02/19/how-boards-can-lead-in-a-world-remade-by-ai/",
+      "source_name": "corpgov.law.harvard.edu",
+      "pub_date": "Feb 19, 2026",
+      "snippet": "In brief AI’s impacts on strategy, talent, and risk make it essential for boards to adapt their oversight approaches. The board’s guidance is key to helping companies harness AI for growth, maintain needed skills, and drive accountability for AI’s uses and outputs. Leading boards can fulfill this re",
+      "via": "layer1_tl"
+    },
+    {
+      "id": "aHR0cHM6Ly93",
+      "title": "AI in Wealth Management: 2026 Trends and Challenges | Next Level Recruiting, LLC posted on the topic | LinkedIn",
+      "url": "https://www.linkedin.com/posts/next-level-recruiting-llc_ai-2026-increased-adoption-new-use-cases-activity-7420485172136984576-MxYJ",
+      "source_name": "linkedin.com",
+      "pub_date": "2 months ago",
+      "snippet": "AI is set to play a bigger role in wealth management in 2026—but questions remain.\n\nThis Family Wealth Report article explores how advisors are beginning to adopt AI, the new use cases gaining traction, and why regulation and trust still slow broader uptake. It also highlights a new Financial Planni",
+      "via": "layer1_tl"
+    },
+    {
+      "id": "aHR0cHM6Ly9r",
+      "title": "AI in 2026: What's Next?",
+      "url": "https://knowledge.wharton.upenn.edu/podcast/this-week-in-business/where-artificial-intelligence-stands-heading-into-2026/",
+      "source_name": "knowledge.wharton.upenn.edu",
+      "pub_date": null,
+      "snippet": "Wharton's Ethan Mollick discusses the current state of AI and the key implications for business, labor, and society in the year ahead.",
       "via": "layer1_tl"
     },
     {
@@ -96,77 +96,77 @@
       "url": "https://www.researchgate.net/publication/381277119_Artificial_Intelligence_as_Personal_Financial_Advisor_in_the_Future_-_A_Case_Study_Based_on_Algorithmic_Innovation_Strategies",
       "source_name": "researchgate.net",
       "pub_date": null,
-      "snippet": "## Security check required\n\nWe've detected unusual activity from your network. To continue, complete the security check below.\n\nRay ID: 9eb78fba68edb35f\n\nClient IP: 2600:1900:0:4003::1000\n\n© 2008-2026 ResearchGate GmbH. All rights reserved.",
+      "snippet": "## Security check required\n\nWe've detected unusual activity from your network. To continue, complete the security check below.\n\nRay ID: 9ebfcd15ddc775f7\n\nClient IP: 2600:1900:0:4006::401\n\n© 2008-2026 ResearchGate GmbH. All rights reserved.",
       "via": "layer1_tl"
     },
     {
       "id": "aHR0cHM6Ly93",
-      "title": "Impact of Artificial Intelligence (AI) in Financial Advisory Industry",
-      "url": "https://www.theamericancollege.edu/knowledge-hub/insights/impact-of-artificial-intelligence-ai-in-financial-advisory-industry",
-      "source_name": "theamericancollege.edu",
+      "title": "2026 Perspectives on the Financial Industry | Fintech Americas",
+      "url": "https://www.fintechamericas.co/en/2026-perspectives-on-the-financial-industry",
+      "source_name": "fintechamericas.co",
       "pub_date": null,
-      "snippet": "Center for Ethics Webcast explores artificial intelligence in the financial services industry.",
+      "snippet": "Discover insights from 88 financial leaders on the trends shaping the industry by 2026, focusing on AI, blockchain, digital payments, and more. Download the exclusive report now.",
       "via": "layer1_tl"
     },
     {
       "id": "aHR0cHM6Ly93",
-      "title": "AI Market Trends 2026: Global Investment, Risks, and Buildout | Morgan Stanley",
-      "url": "https://www.morganstanley.com/insights/articles/ai-market-trends-institute-2026",
-      "source_name": "morganstanley.com",
-      "pub_date": "Mar 9, 2026",
-      "snippet": "Discover key market trends as AI becomes the central force influencing growth, earnings, geopolitics, and investment strategy across global markets in 2026.",
+      "title": "FIN-2026-Industry-Predictions-Report.pdf",
+      "url": "https://www.bdo.com/getmedia/2db1671f-0450-418e-898d-56800d4d5609/FIN-2026-Industry-Predictions-Report.pdf?ext=.pdf",
+      "source_name": "bdo.com",
+      "pub_date": null,
+      "snippet": "# 2026 Fintech Industry Predictions 2026 is set to be a pivotal year for fintech. After years of uncertainty, the industry is showing signs of clarity and confidence from regulators, consumers, and business partners. Regulatory frameworks have strengthened, markets have stabilized, and bold ideas ar",
       "via": "layer1_tl"
     },
     {
-      "id": "aHR0cHM6Ly93",
-      "title": "Access Denied",
-      "url": "https://www.spglobal.com/market-intelligence/en/news-insights/research/2026/01/10-ai-trends-to-shape-your-2026-strategy",
-      "source_name": "spglobal.com",
-      "pub_date": "Jan 30, 2026",
-      "snippet": "You don't have permission to access \"http://www.spglobal.com/market-intelligence/en/news-insights/research/2026/01/10-ai-trends-to-shape-your-2026-strategy\" on this server.\nReference #18.1a7b3517.1776052804.1dacde27\n\nhttps://errors.edgesuite.net/18.1a7b3517.1776052804.1dacde27",
-      "via": "layer1_tl"
-    },
-    {
-      "id": "aHR0cHM6Ly93",
-      "title": "Algorithmic Revolution: AI Leads Investment Strategies in 2026",
-      "url": "https://www.linkedin.com/pulse/algorithmic-revolution-ai-leads-investment-mif9c",
-      "source_name": "linkedin.com",
-      "pub_date": "Jan 21, 2026",
-      "snippet": "Industry leaders predict AI will revolutionize business by 2026. IBM believes quantum computers will surpass classical computers that year, which could lead to breakthroughs in many industries.",
+      "id": "aHR0cDovL3d3",
+      "title": "2026 AI Whitepaper Bibliography",
+      "url": "http://www.sustainablefinance.ch/en/resources/artificial-intelligence/artificial-intelligence-whitepaper/2026-ai-whitepaper-bibliography.html",
+      "source_name": "sustainablefinance.ch",
+      "pub_date": null,
+      "snippet": "# 2026 AI Whitepaper Bibliography\n\nThis website uses cookies. We use cookies to personalise content and ads, to provide social media features and to analyse our traffic. We also share information about your use of our site with our social media, advertising and analytics partners who may combine it ",
       "via": "layer1_tl"
     },
     {
       "id": "aHR0cHM6Ly9w",
-      "title": "GenAI Strategy & Investment Management | Portal26 Platform Feature",
-      "url": "https://portal26.ai/genai-strategy/",
-      "source_name": "portal26.ai",
+      "title": "Fintech Predictions 2026 Report - Read now | Plaid",
+      "url": "https://plaid.com/fintech-predictions-2026-report/",
+      "source_name": "plaid.com",
       "pub_date": null,
-      "snippet": "Balance GenAI investments across private, public, and licensed AI with Portal26's strategy management. Optimize ROI, manage risk, and align with enterprise objectives and policies.",
+      "snippet": "Explore Plaid’s 2026 Fintech Predictions report. CEO Zach Perret and product leaders share insights on AI, fraud, credit, and what’s coming next.",
       "via": "layer1_tl"
     },
     {
-      "id": "aHR0cHM6Ly9u",
-      "title": "How Generative AI is Reshaping Investment Strategies | The AI Summit New York",
-      "url": "https://newyork.theaisummit.com/latest-news/how-generative-ai-is-reshaping-investment-strategies/",
-      "source_name": "newyork.theaisummit.com",
+      "id": "aHR0cHM6Ly93",
+      "title": "2026 AI Business Predictions",
+      "url": "https://www.pwc.com/us/en/tech-effect/ai-analytics/ai-predictions.html",
+      "source_name": "pwc.com",
       "pub_date": null,
-      "snippet": "How Generative AI is Reshaping Investment Strategies. The investment landscape is undergoing a profound transformation as generative AI technologies redefine traditional approaches to market analysis, risk assessment, and portfolio management. Read the full article.",
+      "snippet": "Explore PwC’s 2026 AI predictions and learn how focused strategies, agentic workflows, and responsible innovation drive transformative business value.",
+      "via": "layer1_tl"
+    },
+    {
+      "id": "aHR0cHM6Ly9m",
+      "title": "The State of Fintech in 2026",
+      "url": "https://fintechprimetime.substack.com/p/the-state-of-fintech-in-2026",
+      "source_name": "fintechprimetime.substack.com",
+      "pub_date": "Feb 10, 2026",
+      "snippet": "It’s here!",
       "via": "layer1_tl"
     }
   ],
   "blocked_items": [
     {
-      "url": "https://hubbis.com/article/damien-piper-of-unique-ai-turning-artificial-intelligence-into-a-practical-tool-for-wealth-management",
-      "title": "Unique AI Positions Proprietary Knowledge Layer as the Core Differentiator in Wealth Management AI Deployment",
-      "reason": "the_so_what flagged as weak CXO relevance (4/10) — review before publishing",
-      "score": 45
+      "url": "https://hubbis.com/article/ai-in-private-wealth-management-from-experimentation-to-agentic-transformation",
+      "title": "Private Wealth Management Shifts from AI Experimentation to Agentic Autonomous Systems",
+      "reason": "the_so_what flagged as weak CXO relevance (2/10) — review before publishing",
+      "score": 42
     },
     {
-      "url": "https://hubbis.com/article/ai-in-private-wealth-management-from-experimentation-to-agentic-transformation",
-      "title": "Agentic AI Moves from Pilot to Autonomous Execution Across Private Wealth Client Lifecycle",
-      "reason": "the_so_what flagged as weak CXO relevance (2/10) — review before publishing",
+      "url": "https://hubbis.com/article/damien-piper-of-unique-ai-turning-artificial-intelligence-into-a-practical-tool-for-wealth-management",
+      "title": "Unique AI Positions Wealth-Native LLM Deployment as Answer to Generic AI Adoption Failure",
+      "reason": "Score 45/100 — below 45 review threshold",
       "score": 45
     }
   ],
-  "written_at": "2026-04-13T04:02:07.547Z"
+  "written_at": "2026-04-14T04:03:50.068Z"
 }

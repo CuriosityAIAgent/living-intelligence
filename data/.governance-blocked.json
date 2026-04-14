@@ -276,18 +276,18 @@
     "title": "Ten Wealthtech Experts Converge on Agentic AI and Hyper-Personalization as 2026's Defining Capability Shifts",
     "score": 0
   },
-  "https://hubbis.com/article/damien-piper-of-unique-ai-turning-artificial-intelligence-into-a-practical-tool-for-wealth-management": {
-    "id": "unique-ai-damien-piper-wealth-management-practical-tool",
-    "reason": "the_so_what flagged as weak CXO relevance (4/10) — review before publishing",
-    "blocked_at": "2026-04-13T04:01:13.187Z",
-    "title": "Unique AI Positions Proprietary Knowledge Layer as the Core Differentiator in Wealth Management AI Deployment",
-    "score": 45
-  },
   "https://hubbis.com/article/ai-in-private-wealth-management-from-experimentation-to-agentic-transformation": {
-    "id": "ai-private-wealth-experimentation-to-agentic-transformation",
+    "id": "agentic-ai-private-wealth-management-transformation-2026",
     "reason": "the_so_what flagged as weak CXO relevance (2/10) — review before publishing",
-    "blocked_at": "2026-04-13T04:02:07.546Z",
-    "title": "Agentic AI Moves from Pilot to Autonomous Execution Across Private Wealth Client Lifecycle",
+    "blocked_at": "2026-04-14T04:02:47.989Z",
+    "title": "Private Wealth Management Shifts from AI Experimentation to Agentic Autonomous Systems",
+    "score": 42
+  },
+  "https://hubbis.com/article/damien-piper-of-unique-ai-turning-artificial-intelligence-into-a-practical-tool-for-wealth-management": {
+    "id": "unique-ai-damien-piper-practical-wealth-management",
+    "reason": "Score 45/100 — below 45 review threshold",
+    "blocked_at": "2026-04-14T04:03:50.066Z",
+    "title": "Unique AI Positions Wealth-Native LLM Deployment as Answer to Generic AI Adoption Failure",
     "score": 45
   }
 }
