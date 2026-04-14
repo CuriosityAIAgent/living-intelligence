@@ -1,15 +1,13 @@
 import { useState, createContext, useContext } from 'react';
-import Header from './components/Header';
-import IntelligenceTab from './pages/IntelligenceTab';
-import ThoughtLeadershipTab from './pages/ThoughtLeadershipTab';
-import LandscapeTab from './pages/LandscapeTab';
-import AuditTab from './pages/AuditTab';
-
-type Tab = 'intelligence' | 'thought-leadership' | 'landscape' | 'audit';
+import Header, { type Tab } from './components/Header';
+import InboxTab from './pages/InboxTab';
+import PipelineTab from './pages/PipelineTab';
+import HeldTab from './pages/HeldTab';
+import HistoryTab from './pages/HistoryTab';
 
 // Global process tracker — survives tab switches
 interface ProcessState {
-  active: Record<string, string>; // key → label (e.g. 'tl-discover' → 'Discovering TL…')
+  active: Record<string, string>; // key → label (e.g. 'v2-batch' → 'Processing briefs…')
   start: (key: string, label: string) => void;
   stop: (key: string) => void;
 }
@@ -23,7 +21,7 @@ const ProcessContext = createContext<ProcessState>({
 export const useProcessTracker = () => useContext(ProcessContext);
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState<Tab>('intelligence');
+  const [activeTab, setActiveTab] = useState<Tab>('inbox');
   const [active, setActive] = useState<Record<string, string>>({});
 
   const processState: ProcessState = {
@@ -34,22 +32,22 @@ export default function App() {
 
   return (
     <ProcessContext.Provider value={processState}>
-      <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+      <div className="min-h-screen flex flex-col" style={{ background: '#FDF8F2' }}>
         <Header activeTab={activeTab} onTabChange={setActiveTab} />
 
         {/* Use display:none instead of unmount — preserves state across tab switches */}
-        <main style={{ flex: 1 }}>
-          <div style={{ display: activeTab === 'intelligence' ? 'block' : 'none' }}>
-            <IntelligenceTab />
+        <main className="flex-1">
+          <div style={{ display: activeTab === 'inbox' ? 'block' : 'none' }}>
+            <InboxTab />
           </div>
-          <div style={{ display: activeTab === 'thought-leadership' ? 'block' : 'none' }}>
-            <ThoughtLeadershipTab />
+          <div style={{ display: activeTab === 'pipeline' ? 'block' : 'none' }}>
+            <PipelineTab />
           </div>
-          <div style={{ display: activeTab === 'landscape' ? 'block' : 'none' }}>
-            <LandscapeTab />
+          <div style={{ display: activeTab === 'held' ? 'block' : 'none' }}>
+            <HeldTab />
           </div>
-          <div style={{ display: activeTab === 'audit' ? 'block' : 'none' }}>
-            <AuditTab />
+          <div style={{ display: activeTab === 'history' ? 'block' : 'none' }}>
+            <HistoryTab />
           </div>
         </main>
       </div>

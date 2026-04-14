@@ -1,336 +1,257 @@
 {
-  "unique-ai-damien-piper-wealth-management-practical-tool": {
+  "jump-perennial-ai-operating-system-firmwide-2026-04": {
     "entry": {
-      "id": "unique-ai-damien-piper-wealth-management-practical-tool",
-      "type": "strategy_move",
-      "headline": "Unique AI Positions Proprietary Knowledge Capture as the Core Barrier to Scaling Wealth Management AI",
-      "the_so_what": "The emerging constraint in wealth management AI is not model quality but institutional knowledge encoding — firms that systematically convert advisor expertise into structured, queryable data assets will compound a durable advantage over peers still deploying generic LLMs against unstructured content, following the same differentiation pattern that separated Bloomberg terminal adopters from Reuters in the 1990s.",
-      "company": "unique-ai",
-      "company_name": "Unique AI",
+      "id": "jump-perennial-ai-operating-system-firmwide-2026-04",
+      "type": "partnership",
+      "headline": "Jump Deploys AI Intake, Document Intelligence and Meeting Automation Firmwide Across Perennial RIA Platform",
+      "the_so_what": "Perennial's firmwide deployment — using Jump's AI infrastructure explicitly as a recruiting weapon against legacy firms — confirms that at 27,000 advisors and with agentic execution already live, Jump has crossed the point where operational AI is no longer a workflow tool but a talent acquisition moat, a structural advantage Zocks at 5,000+ firms and Holistiplan (tax-focused, non-agentic) have no current architecture to replicate.",
+      "company": "jump-ai",
+      "company_name": "Jump",
       "date": "2026-04-13",
-      "source_name": "Hubbis",
-      "source_url": "https://hubbis.com/article/damien-piper-of-unique-ai-turning-artificial-intelligence-into-a-practical-tool-for-wealth-management",
+      "source_name": "Business Wire",
+      "source_url": "https://www.businesswire.com/news/home/20260413492419/en/Jump-Expands-Partnership-With-Perennial-Financial-Services-to-Deploy-AI-Operating-System-Firmwide",
       "source_verified": true,
       "image_url": null,
-      "summary": "Unique AI, led by Damien Piper, is advancing AI deployment in wealth management by focusing on translating institutional and advisor knowledge into structured data that AI can act on — arguing that the bottleneck to practical AI adoption is not the underlying model but the quality and accessibility of proprietary knowledge inputs. The platform targets wealth managers and private banks seeking to operationalise AI across client advisory workflows rather than deploying off-the-shelf generalist tools. Piper's approach frames knowledge capture and curation as the foundational infrastructure layer that determines whether AI produces reliable, compliant, and contextually appropriate outputs for wealth professionals. The strategy reflects a broader pattern identified across professional services — including legal — where generic AI capability has outpaced firms' ability to feed it domain-specific, governed knowledge. No specific user counts, AUM figures, or quantified productivity metrics were disclosed in the source article.",
-      "key_stat": null,
-      "capability_evidence": {
-        "capability": "advisor_productivity",
-        "stage": "deployed",
-        "evidence": "Unique AI is actively positioning its platform for wealth managers and private banks as a practical, deployed tool that converts institutional knowledge into structured AI-ready inputs to support client advisory workflows.",
-        "metric": null
-      },
-      "tags": {
-        "capability": "advisor_productivity",
-        "region": "asia",
-        "segment": "ai_native",
-        "theme": [
-          "knowledge_management",
-          "ai_deployment",
-          "institutional_knowledge",
-          "wealth_advisory"
-        ]
-      },
-      "week": "2026-04-13",
-      "featured": false,
-      "sources": [
-        {
-          "name": "linkedin.com",
-          "url": "https://www.linkedin.com/posts/damienbuchs_yesterday-i-joined-the-ordre-des-avocats-activity-7441421759658033152-qEFN",
-          "type": "coverage"
-        },
-        {
-          "name": "dlapiper.com",
-          "url": "https://www.dlapiper.com/insights/topics/algorithm-to-advantage",
-          "type": "coverage"
-        },
-        {
-          "name": "insidepractice.com",
-          "url": "https://www.insidepractice.com/when-ai-isnt-the-bottleneck-knowledge-is",
-          "type": "coverage"
-        },
-        {
-          "name": "Unblocked",
-          "url": "https://hubbis.com/article/damien-piper-of-unique-ai-turning-artificial-intelligence-into-a-practical-tool-for-wealth-management",
-          "type": "discovery"
-        }
-      ],
-      "source_count": 4,
-      "_governance": {
-        "verdict": "REVIEW",
-        "confidence": 52,
-        "verified_claims": [
-          "The company is named Unique AI",
-          "The individual featured is named Damien Piper",
-          "The article concerns AI deployment in wealth management"
-        ],
-        "unverified_claims": [
-          "Unique AI frames proprietary knowledge capture as the core barrier to scaling AI in wealth management",
-          "The platform targets wealth managers and private banks",
-          "Piper argues the bottleneck is not the underlying model but the quality and accessibility of proprietary knowledge inputs",
-          "Piper's approach frames knowledge capture and curation as foundational infrastructure for reliable, compliant, and contextually appropriate outputs",
-          "The platform aims to operationalise AI across client advisory workflows rather than deploying generalist tools",
-          "The strategy reflects a broader pattern across professional services including legal where generic AI capability has outpaced firms' ability to feed it domain-specific governed knowledge",
-          "No specific user counts, AUM figures, or quantified productivity metrics were disclosed in the source article"
-        ],
-        "fabricated_claims": [],
-        "notes": "The primary source is paywalled and truncated, providing only the article title and navigation elements with no substantive article content; all detailed claims about Unique AI's positioning, Piper's arguments, and platform strategy cannot be verified or contradicted from the available text, warranting a REVIEW verdict.",
-        "paywall_caveat": true,
-        "verified_at": "2026-04-13T04:09:49.502Z",
-        "human_approved": false
-      },
-      "_score": 45,
-      "_score_breakdown": {
-        "action": "BLOCK",
-        "score": 45,
-        "breakdown": {
-          "source": {
-            "points": 9,
-            "label": "General press (hubbis.com)",
-            "tier": "general"
-          },
-          "claims": {
-            "points": 0,
-            "label": "7 unverified claims",
-            "fabricated": false
-          },
-          "freshness": {
-            "points": 10,
-            "label": "4h old"
-          },
-          "impact": {
-            "points": 21,
-            "label": "capability clear: advisor_productivity (+10), deployed (+10), general industry (+1)",
-            "tracked": false
-          },
-          "cxo": {
-            "points": 5,
-            "label": "company name absent (-2), contains specific metric (+2)",
-            "weak": false
-          }
-        },
-        "reason": null
-      }
-    },
-    "queued_at": "2026-04-13T04:09:50.060Z",
-    "discovered_at": "2026-04-13T04:09:50.060Z",
-    "score": null,
-    "score_breakdown": null
-  },
-  "agentic-ai-private-wealth-management-experimentation-transformation": {
-    "entry": {
-      "id": "agentic-ai-private-wealth-management-experimentation-transformation",
-      "type": "market_signal",
-      "headline": "Agentic AI Moves From Pilots to Autonomous Workflow Execution Across Private Wealth Management",
-      "the_so_what": "Agentic AI in wealth management is following the same infrastructure adoption curve as Bloomberg terminals in the 1990s — early adopters are building compounding data and workflow advantages that make the cost-to-serve gap between AI-native and traditional firms structurally difficult to close once embedded at scale.",
-      "company": "hubbis",
-      "company_name": "Hubbis",
-      "date": "2026-04-13",
-      "source_name": "Hubbis",
-      "source_url": "https://hubbis.com/article/ai-in-private-wealth-management-from-experimentation-to-agentic-transformation",
-      "source_verified": true,
-      "image_url": null,
-      "summary": "Private wealth management is transitioning from generative AI experimentation — primarily document summarisation and content generation — toward agentic AI systems capable of executing multi-step workflows autonomously, including portfolio rebalancing triggers, compliance checks, and client communication sequencing. The shift is documented across Asian and global private banking, where firms that began with narrow GenAI pilots are now deploying agent architectures that coordinate across internal systems without human intervention at each step. Enrichment sources from UST, Publicis Sapient, and the CFA Institute's Automation Ahead series corroborate that agentic AI for finance is progressing from proof-of-concept to live deployment, with use cases spanning advisor productivity, client personalisation, and operations compliance. The article frames this as a structural inflection point rather than incremental tooling, with firms in Asia-Pacific private banking among those accelerating the transition.",
-      "key_stat": null,
-      "capability_evidence": {
-        "capability": "operations_compliance",
-        "stage": "piloting",
-        "evidence": "Private wealth firms are deploying agentic AI systems that execute multi-step workflows autonomously — including compliance checks and client communication sequencing — moving beyond single-task generative AI tools.",
-        "metric": null
-      },
-      "tags": {
-        "capability": "operations_compliance",
-        "region": "asia",
-        "segment": "global_private_bank",
-        "theme": [
-          "agentic_ai",
-          "workflow_automation",
-          "advisor_productivity",
-          "ai_adoption_curve"
-        ]
-      },
-      "week": "2026-04-13",
-      "featured": false,
-      "sources": [
-        {
-          "name": "ust.com",
-          "url": "https://www.ust.com/en/insights/the-rise-of-agentic-ai-in-wealth-management-unlocking-value-and-fueling-growth",
-          "type": "coverage"
-        },
-        {
-          "name": "publicissapient.com",
-          "url": "https://www.publicissapient.com/resources/blog/reinventing-wam-with-gen-ai",
-          "type": "coverage"
-        },
-        {
-          "name": "rpc.cfainstitute.org",
-          "url": "https://rpc.cfainstitute.org/research/the-automation-ahead-content-series/agentic-ai-for-finance",
-          "type": "coverage"
-        },
-        {
-          "name": "Unblocked",
-          "url": "https://hubbis.com/article/ai-in-private-wealth-management-from-experimentation-to-agentic-transformation",
-          "type": "discovery"
-        }
-      ],
-      "source_count": 4,
-      "_governance": {
-        "verdict": "REVIEW",
-        "confidence": 62,
-        "verified_claims": [
-          "Private wealth management is transitioning from generative AI experimentation toward agentic AI systems (supported by the Hubbis article title 'From Experimentation to Agentic Transformation')",
-          "Early GenAI use cases included document summarisation and content generation (consistent with the general framing of the Hubbis article and Publicis Sapient source on GenAI use cases in wealth/asset management)",
-          "Agentic AI involves executing multi-step workflows (supported by CFA Institute 'Agentic AI for Finance: Workflows, Tips, and Case Studies' title)",
-          "UST, Publicis Sapient, and CFA Institute's Automation Ahead series are cited as enrichment sources on agentic AI for finance (all three supplementary sources are present and titled consistently with these attributions)",
-          "The article is focused on Asian and global private banking (Hubbis is an Asian wealth management publication and the article appears in that context)",
-          "The CFA Institute source is part of the 'Automation Ahead' series (confirmed by URL and title: 'the-automation-ahead-content-series')"
-        ],
-        "unverified_claims": [
-          "Firms that began with narrow GenAI pilots are now deploying agent architectures that coordinate across internal systems without human intervention at each step — specific claim about deployment stage not confirmed due to paywall/truncation",
-          "Specific use cases of portfolio rebalancing triggers, compliance checks, and client communication sequencing being autonomously executed — not explicitly confirmed in the visible source text",
-          "Firms in Asia-Pacific private banking are among those accelerating the transition — directionally consistent with Hubbis focus but not explicitly stated in visible text",
-          "The article frames this as a structural inflection point rather than incremental tooling — not confirmed in visible text due to truncation",
-          "Enrichment sources corroborate that agentic AI is progressing from proof-of-concept to live deployment — source titles are consistent but article body content is largely paywalled/truncated"
-        ],
-        "fabricated_claims": [],
-        "notes": "No claims directly contradict the sources, but the primary and supplementary sources are heavily truncated or paywalled, meaning most specific substantive claims in the summary cannot be verified from visible text; verdict is REVIEW due to multiple unverified (not contradicted) claims.",
-        "paywall_caveat": true,
-        "verified_at": "2026-04-13T04:09:58.181Z",
-        "human_approved": false
-      },
-      "_score": 45,
-      "_score_breakdown": {
-        "action": "BLOCK",
-        "score": 45,
-        "breakdown": {
-          "source": {
-            "points": 9,
-            "label": "General press (hubbis.com)",
-            "tier": "general"
-          },
-          "claims": {
-            "points": 0,
-            "label": "5 unverified claims",
-            "fabricated": false
-          },
-          "freshness": {
-            "points": 10,
-            "label": "4h old"
-          },
-          "impact": {
-            "points": 21,
-            "label": "capability clear: operations_compliance (+10), deployed (+10), general industry (+1)",
-            "tracked": false
-          },
-          "cxo": {
-            "points": 7,
-            "label": "company name absent (-2), contains specific metric (+2), comparative positioning (+2)",
-            "weak": false
-          }
-        },
-        "reason": null
-      }
-    },
-    "queued_at": "2026-04-13T04:09:58.182Z",
-    "discovered_at": "2026-04-13T04:09:58.182Z",
-    "score": null,
-    "score_breakdown": null
-  },
-  "citi-wealth-4-ai-tools-advisor-productivity-2026": {
-    "entry": {
-      "id": "citi-wealth-4-ai-tools-advisor-productivity-2026",
-      "type": "product_launch",
-      "headline": "Citi Wealth Deploys 4 AI Tools Across Advisor Workflow to Eliminate Administrative Busywork",
-      "the_so_what": "Citi Wealth's simultaneous live deployment of four workflow tools — spanning the full advisor day from client prep through task automation — establishes a horizontally integrated AI layer that independent point solutions like Jump or Zocks cannot replicate without deep CRM and custodial data access, giving Citi a structural cost-to-serve advantage that widens with every advisor interaction logged inside its own ecosystem.",
-      "company": "citi-private-bank",
-      "company_name": "Citi Wealth",
-      "date": "2026-04-09",
-      "source_name": "PYMNTS",
-      "source_url": "https://www.pymnts.com/artificial-intelligence-2/2026/citi-arms-wealth-advisors-with-4-ai-tools-to-cut-busywork/",
-      "source_verified": true,
-      "image_url": null,
-      "summary": "Citi Wealth has deployed four AI-powered tools designed to reduce administrative burden on wealth advisors, advancing advisor productivity capability across the full client-service workflow. The tools address distinct friction points in the advisor day — client preparation, content creation, research summarization, and routine task automation — and are live with Citi's wealth advisor population. The deployment was announced via an official Citi press release dated April 9, 2026, and corroborated by coverage in both PYMNTS and Wealth Management. The move extends Citi's previously reported AI infrastructure buildout, which included generative AI and ML-powered banking platforms rolled out in mid-2025.",
+      "summary": "Jump's AI operating system now automates the full advisor workflow at Perennial Financial Services — spanning AI Intake Forms, Document Intelligence, CRM automation and pre- and post-meeting preparation — deployed firmwide after an initial partnership dating to 2024. The platform converts unstructured client conversation data into structured, actionable follow-through without manual advisor intervention, addressing the documented gap between capturing AI insights and operationalizing them at scale. Perennial is explicitly using Jump's AI infrastructure as a differentiator in recruiting advisors away from legacy firms, citing elimination of administrative burden as the value proposition. Jump reports 27,000+ advisors on its platform and holds the top ranking in advisor satisfaction and adoption in the 2025 T3/Inside Information Software Survey. The expanded deployment follows Jump's recent launch of its 'Operate' product line, designed to move firms from AI-generated insight to automated execution.",
       "key_stat": {
-        "number": "4",
-        "label": "distinct AI tools deployed simultaneously across Citi Wealth advisor workflows"
+        "number": "27,000+",
+        "label": "advisors on Jump's platform across the industry"
       },
       "capability_evidence": {
         "capability": "advisor_productivity",
         "stage": "deployed",
-        "evidence": "Citi Wealth confirmed live deployment of four AI tools designed to eliminate busywork across advisor workflows, including client preparation, content generation, and research summarization, per the official April 9, 2026 press release.",
-        "metric": null
+        "evidence": "Perennial has adopted Jump's Operate solution firmwide, with AI Intake Forms delivering structured client data via secure branded email, combined with Document Intelligence and CRM automation to automate follow-through across the full client lifecycle.",
+        "metric": "27,000+ advisors on the Jump platform; firmwide deployment at Perennial"
       },
       "tags": {
         "capability": "advisor_productivity",
         "region": "us",
-        "segment": "global_private_bank",
+        "segment": "ria_independent",
         "theme": [
-          "advisor_workflow_automation",
-          "generative_ai",
-          "client_experience",
-          "institutional_ai_deployment"
+          "workflow_automation",
+          "advisor_recruitment",
+          "ai_operating_system",
+          "client_lifecycle"
+        ]
+      },
+      "week": "2026-04-13",
+      "featured": false,
+      "sources": [
+        {
+          "name": "finance.yahoo.com",
+          "url": "https://finance.yahoo.com/sectors/technology/articles/jump-expands-partnership-perennial-financial-130800758.html",
+          "type": "coverage"
+        },
+        {
+          "name": "jump.ai",
+          "url": "https://jump.ai/press/jump-launches-ai-associate-an-intelligent",
+          "type": "coverage"
+        },
+        {
+          "name": "linkedin.com",
+          "url": "https://www.linkedin.com/posts/activity-7449505475483566081-NFq-",
+          "type": "coverage"
+        },
+        {
+          "name": "jump.ai",
+          "url": "https://jump.ai/products/operate/document-intelligence",
+          "type": "coverage"
+        },
+        {
+          "name": "businesswire.com",
+          "url": "https://www.businesswire.com/news/home/20260413492419/en/Jump-Expands-Partnership-With-Perennial-Financial-Services-to-Deploy-AI-Operating-System-Firmwide",
+          "type": "discovery"
+        }
+      ],
+      "source_count": 5,
+      "_enrichment": {
+        "what_changed": "Prior coverage established Jump's agentic execution launch and distribution scale as competitive benchmarks; this entry shows the business model consequence — that scale is now being monetized as a recruiting differentiator by RIA platforms, moving Jump's value proposition upstream from advisor productivity into firm-level growth strategy.",
+        "landscape_context": {
+          "current_maturity": "SCALED",
+          "maturity_direction": "up",
+          "competitor_gap": "Zocks ~5x behind on advisor distribution; neither Zocks nor Holistiplan have matched agentic execution capability"
+        },
+        "confidence": "high",
+        "notes": null
+      },
+      "_format_errors": [
+        "the_so_what sentence 1 is 64 words — max 50 per sentence (split or tighten)"
+      ],
+      "_governance": {
+        "verdict": "REVIEW",
+        "confidence": 82,
+        "verified_claims": [
+          "Jump's AI operating system is deployed firmwide at Perennial Financial Services",
+          "The deployment spans AI Intake Forms, Document Intelligence, and CRM automation",
+          "The deployment includes pre- and post-meeting preparation capabilities",
+          "Perennial has been a Jump customer since 2024",
+          "Perennial is using Jump's AI infrastructure as a differentiator in recruiting advisors away from legacy/larger firms",
+          "The platform addresses the gap between capturing AI insights and operationalizing them at scale",
+          "Jump reports 27,000+ advisors on its platform",
+          "Jump holds the top ranking in advisor satisfaction and adoption in the 2025 T3/Inside Information Software Survey",
+          "The expanded deployment follows Jump's recent launch of its 'Operate' product line",
+          "Jump's 'Operate' product is designed to move firms from AI-generated insight to automated execution",
+          "Perennial is described as a next-generation RIA platform built to attract top independent advisors",
+          "AI Intake Forms allow advisors to gather structured client information through a secure, branded experience delivered via email",
+          "The platform converts client conversation data into actionable follow-through"
+        ],
+        "unverified_claims": [
+          "The summary states the platform operates 'without manual advisor intervention' — the source implies significant automation but does not explicitly use this phrasing or confirm zero manual intervention",
+          "The headline and summary describe this as 'meeting automation' firmwide — the source mentions pre-meeting preparation and post-meeting follow-up but does not use the specific term 'meeting automation' as a product category"
+        ],
+        "fabricated_claims": [],
+        "notes": "The entry is well-supported by the source overall, with two minor unverified phrasings that are reasonable paraphrases but not explicitly stated; no direct contradictions were found.",
+        "paywall_caveat": false,
+        "verified_at": "2026-04-14T04:03:43.958Z",
+        "human_approved": false
+      },
+      "_fabrication": {
+        "verdict": "CLEAN",
+        "issues": [],
+        "check_details": {
+          "numbers_in_headline": "none",
+          "company_name": "pass",
+          "date_year": "pass",
+          "key_stat": "pass",
+          "quoted_phrases": "pass"
+        },
+        "checked_at": "2026-04-14T04:03:45.669Z"
+      }
+    },
+    "governance": {
+      "verdict": "REVIEW",
+      "confidence": 82,
+      "verified_claims": [
+        "Jump's AI operating system is deployed firmwide at Perennial Financial Services",
+        "The deployment spans AI Intake Forms, Document Intelligence, and CRM automation",
+        "The deployment includes pre- and post-meeting preparation capabilities",
+        "Perennial has been a Jump customer since 2024",
+        "Perennial is using Jump's AI infrastructure as a differentiator in recruiting advisors away from legacy/larger firms",
+        "The platform addresses the gap between capturing AI insights and operationalizing them at scale",
+        "Jump reports 27,000+ advisors on its platform",
+        "Jump holds the top ranking in advisor satisfaction and adoption in the 2025 T3/Inside Information Software Survey",
+        "The expanded deployment follows Jump's recent launch of its 'Operate' product line",
+        "Jump's 'Operate' product is designed to move firms from AI-generated insight to automated execution",
+        "Perennial is described as a next-generation RIA platform built to attract top independent advisors",
+        "AI Intake Forms allow advisors to gather structured client information through a secure, branded experience delivered via email",
+        "The platform converts client conversation data into actionable follow-through"
+      ],
+      "unverified_claims": [
+        "The summary states the platform operates 'without manual advisor intervention' — the source implies significant automation but does not explicitly use this phrasing or confirm zero manual intervention",
+        "The headline and summary describe this as 'meeting automation' firmwide — the source mentions pre-meeting preparation and post-meeting follow-up but does not use the specific term 'meeting automation' as a product category"
+      ],
+      "fabricated_claims": [],
+      "notes": "The entry is well-supported by the source overall, with two minor unverified phrasings that are reasonable paraphrases but not explicitly stated; no direct contradictions were found.",
+      "paywall_caveat": false,
+      "verified_at": "2026-04-14T04:03:43.958Z",
+      "human_approved": false
+    },
+    "queued_at": "2026-04-14T04:03:45.969Z",
+    "discovered_at": "2026-04-14T04:03:45.969Z",
+    "score": 76,
+    "score_breakdown": "Score: 76/100 · Source: Press release wire (businesswire.com) (25) · Claims: 2 unverified claims (+6) · Fresh: 1d old (8) · Impact: capability clear: advisor_productivity (+10), deployed+quantified (+15), tracked company (+2), central tracked company (+5) (32) · CXO: too long (64 words) (-1), contains specific metric (+2), decision language (+2) (8/10)"
+  },
+  "finny-osaic-ai-prospecting-11000-advisors": {
+    "entry": {
+      "id": "finny-osaic-ai-prospecting-11000-advisors",
+      "type": "partnership",
+      "headline": "Finny's AI Prospecting Engine Reaches 11,000 Advisors via Osaic Distribution Deal",
+      "the_so_what": "By distributing through Osaic's network rather than selling seat-by-seat, Finny has effectively outsourced advisor acquisition to a single aggregator relationship — a go-to-market architecture that lets a startup with 1.8 billion daily intent signals reach 11,000 advisors and $700 billion in AUA overnight, compressing the adoption curve that took CRM incumbents like Salesforce years to replicate across comparable distribution footprints.",
+      "company": "finny",
+      "company_name": "Finny",
+      "date": "2026-01-29",
+      "source_name": "InvestmentNews",
+      "source_url": "https://www.investmentnews.com/fintech/finny-lands-osaic-deal-to-put-ai-prospecting-in-front-of-11000-advisors/265053",
+      "source_verified": true,
+      "image_url": null,
+      "summary": "Finny's AI prospecting platform automates outbound client acquisition by tracking life events, segmenting prospects by intent, and running multi-channel campaigns across LinkedIn, email, voicemail, and direct mail — powered by a proprietary F-Score matching engine drawing on 1.8 billion daily intent signals. The platform is now available to 11,000 financial professionals across Osaic's network of more than 270 financial institutions, which oversees more than $700 billion in assets under administration. The distribution deal was announced January 29, 2026, with Osaic making Finny available as a platform-level resource rather than requiring individual advisor adoption. The stated goal is to reduce the time advisors spend manually researching and chasing leads, positioning prospecting as a minutes-level task rather than an hours-level one.",
+      "key_stat": {
+        "number": "11,000",
+        "label": "financial professionals with access to Finny's AI prospecting platform via Osaic's network"
+      },
+      "capability_evidence": {
+        "capability": "client_acquisition",
+        "stage": "deployed",
+        "evidence": "Finny's platform is live and available to Osaic's 11,000 advisors, enabling automated multi-step outreach campaigns using 1.8 billion daily intent signals to identify and engage prospects across multiple channels.",
+        "metric": "1.8 billion daily intent signals ingested; 11,000 advisors reached across 270+ institutions"
+      },
+      "tags": {
+        "capability": "client_acquisition",
+        "region": "us",
+        "segment": "ria_independent",
+        "theme": [
+          "ai_prospecting",
+          "organic_growth",
+          "advisor_automation",
+          "intent_data"
         ]
       },
       "week": "2026-04-14",
       "featured": false,
       "sources": [
         {
-          "name": "Citi Wealth Newsroom",
-          "url": "https://www.citigroup.com/global/news/press-release/2026/citi-wealth-deploys-ai-powered-technology-to-enhance-client-experience",
-          "type": "primary"
-        },
-        {
-          "name": "wealthmanagement.com",
-          "url": "https://www.wealthmanagement.com/artificial-intelligence/insightx-and-ai-lab-transform-wealth-management",
+          "name": "finny.com",
+          "url": "https://finny.com/",
           "type": "coverage"
         },
         {
-          "name": "bankingdive.com",
-          "url": "https://www.bankingdive.com/news/citi-wealth-generative-ai-ml-banking-platforms/758847/",
+          "name": "finny.com",
+          "url": "https://finny.com/about-us/",
           "type": "coverage"
         },
         {
-          "name": "pymnts.com",
-          "url": "https://www.pymnts.com/artificial-intelligence-2/2026/citi-arms-wealth-advisors-with-4-ai-tools-to-cut-busywork/",
+          "name": "youtube.com",
+          "url": "https://www.youtube.com/watch?v=zO4f2SWugqs",
+          "type": "coverage"
+        },
+        {
+          "name": "kitces.com",
+          "url": "https://www.kitces.com/blog/the-latest-in-financial-advisortech-january-2026-finny-ai-prospecting-tools-charles-schwab-zeplyn-nevis-chatgpt/",
+          "type": "coverage"
+        },
+        {
+          "name": "investmentnews.com",
+          "url": "https://www.investmentnews.com/fintech/finny-lands-osaic-deal-to-put-ai-prospecting-in-front-of-11000-advisors/265053",
           "type": "discovery"
         }
       ],
-      "source_count": 4,
+      "source_count": 5,
       "_enrichment": {
         "what_changed": "First coverage of this company.",
         "landscape_context": {
-          "current_maturity": "scaling",
-          "maturity_direction": "up",
-          "competitor_gap": "No peers at this maturity level yet — insufficient comparative data"
+          "current_maturity": null,
+          "maturity_direction": "unknown",
+          "competitor_gap": "No peers at this maturity level yet"
         },
-        "confidence": "medium",
-        "notes": "Company not previously in landscape; no peer comparison data available for advisor_productivity segment; maturity assessment based solely on this single deployment event and referenced mid-2025 infrastructure buildout."
+        "confidence": "low",
+        "notes": "No prior coverage of Finny and no peer comparison data available for the client_acquisition segment; competitive positioning and maturity assessment are based solely on this single article."
       },
       "_format_errors": [
-        "the_so_what sentence 1 is 62 words — max 50 per sentence (split or tighten)",
-        "week \"2026-04-14\" is not the Monday of date \"2026-04-09\" (expected \"2026-04-06\")"
+        "the_so_what sentence 1 is 60 words — max 50 per sentence (split or tighten)",
+        "week \"2026-04-14\" is not the Monday of date \"2026-01-29\" (expected \"2026-01-26\")"
       ],
       "_governance": {
-        "verdict": "REVIEW",
-        "confidence": 72,
+        "verdict": "PASS",
+        "confidence": 97,
         "verified_claims": [
-          "Citi Wealth deployed four AI-powered tools for wealth advisors",
-          "The tools are designed to reduce administrative burden / cut busywork for advisors",
-          "The deployment was announced via an official Citi press release dated April 9, 2026",
-          "Coverage was corroborated by both PYMNTS and Wealth Management",
-          "Key stat: 4 distinct AI tools deployed across Citi Wealth advisor workflows",
-          "Citi previously rolled out generative AI and ML-powered banking platforms (reported August 2025 via Banking Dive)"
+          "Finny's AI prospecting platform automates outbound client acquisition by tracking life events, segmenting prospects by intent, and running multi-channel campaigns across LinkedIn, email, voicemail, and direct mail",
+          "The platform is powered by a proprietary F-Score matching engine drawing on 1.8 billion daily intent signals",
+          "The platform is now available to 11,000 financial professionals across Osaic's network",
+          "Osaic's network includes more than 270 financial institutions",
+          "Osaic oversees more than $700 billion in assets under administration",
+          "The distribution deal was announced January 29, 2026",
+          "Osaic made Finny available as a platform-level resource (described as making it available to its network broadly, not requiring individual advisor adoption)",
+          "The stated goal is to reduce the time advisors spend manually researching and chasing leads",
+          "Prospecting should take minutes, not hours — attributed to Eden Ovadia, co-founder and CEO of Finny",
+          "11,000 financial professionals with access to Finny's AI prospecting platform via Osaic's network"
         ],
         "unverified_claims": [
-          "The four tools address these specific distinct friction points: client preparation, content creation, research summarization, and routine task automation — these specific categories are not confirmed in the visible source text",
-          "The tools are described as 'live with Citi's wealth advisor population' — deployment status as 'live' vs. announced is not explicitly confirmed in the truncated source",
-          "The tools span 'the full client-service workflow' — the breadth claim is not explicitly confirmed in visible source text",
-          "The mid-2025 AI infrastructure buildout is described as 'previously reported' and connected to this deployment as a continuous buildout — the link between the two initiatives is inferred, not stated"
+          "The characterization of Osaic making Finny available 'as a platform-level resource rather than requiring individual advisor adoption' — the source implies broad availability but does not explicitly contrast it with individual adoption requirements"
         ],
         "fabricated_claims": [],
-        "notes": "No claims are directly contradicted by the sources; the headline, press release date, outlet corroboration, and key stat of 4 tools are all supported, but the specific workflow categories attributed to each tool and the 'live' deployment status cannot be confirmed from the truncated/paywalled source text, warranting a REVIEW verdict.",
-        "paywall_caveat": true,
-        "verified_at": "2026-04-14T04:01:34.877Z",
+        "notes": "All core factual claims in the headline, summary, and key stat are directly supported by the source article with no contradictions found; one minor framing claim is a reasonable inference but not explicitly stated.",
+        "paywall_caveat": false,
+        "verified_at": "2026-04-14T04:06:11.972Z",
         "human_approved": false
       },
       "_fabrication": {
@@ -341,36 +262,37 @@
           "company_name": "pass",
           "date_year": "pass",
           "key_stat": "pass",
-          "quoted_phrases": "none"
+          "quoted_phrases": "pass"
         },
-        "checked_at": "2026-04-14T04:01:36.228Z"
+        "checked_at": "2026-04-14T04:06:13.938Z"
       }
     },
     "governance": {
-      "verdict": "REVIEW",
-      "confidence": 72,
+      "verdict": "PASS",
+      "confidence": 97,
       "verified_claims": [
-        "Citi Wealth deployed four AI-powered tools for wealth advisors",
-        "The tools are designed to reduce administrative burden / cut busywork for advisors",
-        "The deployment was announced via an official Citi press release dated April 9, 2026",
-        "Coverage was corroborated by both PYMNTS and Wealth Management",
-        "Key stat: 4 distinct AI tools deployed across Citi Wealth advisor workflows",
-        "Citi previously rolled out generative AI and ML-powered banking platforms (reported August 2025 via Banking Dive)"
+        "Finny's AI prospecting platform automates outbound client acquisition by tracking life events, segmenting prospects by intent, and running multi-channel campaigns across LinkedIn, email, voicemail, and direct mail",
+        "The platform is powered by a proprietary F-Score matching engine drawing on 1.8 billion daily intent signals",
+        "The platform is now available to 11,000 financial professionals across Osaic's network",
+        "Osaic's network includes more than 270 financial institutions",
+        "Osaic oversees more than $700 billion in assets under administration",
+        "The distribution deal was announced January 29, 2026",
+        "Osaic made Finny available as a platform-level resource (described as making it available to its network broadly, not requiring individual advisor adoption)",
+        "The stated goal is to reduce the time advisors spend manually researching and chasing leads",
+        "Prospecting should take minutes, not hours — attributed to Eden Ovadia, co-founder and CEO of Finny",
+        "11,000 financial professionals with access to Finny's AI prospecting platform via Osaic's network"
       ],
       "unverified_claims": [
-        "The four tools address these specific distinct friction points: client preparation, content creation, research summarization, and routine task automation — these specific categories are not confirmed in the visible source text",
-        "The tools are described as 'live with Citi's wealth advisor population' — deployment status as 'live' vs. announced is not explicitly confirmed in the truncated source",
-        "The tools span 'the full client-service workflow' — the breadth claim is not explicitly confirmed in visible source text",
-        "The mid-2025 AI infrastructure buildout is described as 'previously reported' and connected to this deployment as a continuous buildout — the link between the two initiatives is inferred, not stated"
+        "The characterization of Osaic making Finny available 'as a platform-level resource rather than requiring individual advisor adoption' — the source implies broad availability but does not explicitly contrast it with individual adoption requirements"
       ],
       "fabricated_claims": [],
-      "notes": "No claims are directly contradicted by the sources; the headline, press release date, outlet corroboration, and key stat of 4 tools are all supported, but the specific workflow categories attributed to each tool and the 'live' deployment status cannot be confirmed from the truncated/paywalled source text, warranting a REVIEW verdict.",
-      "paywall_caveat": true,
-      "verified_at": "2026-04-14T04:01:34.877Z",
+      "notes": "All core factual claims in the headline, summary, and key stat are directly supported by the source article with no contradictions found; one minor framing claim is a reasonable inference but not explicitly stated.",
+      "paywall_caveat": false,
+      "verified_at": "2026-04-14T04:06:11.972Z",
       "human_approved": false
     },
-    "queued_at": "2026-04-14T04:01:36.763Z",
-    "discovered_at": "2026-04-14T04:01:36.763Z",
+    "queued_at": "2026-04-14T04:06:14.613Z",
+    "discovered_at": "2026-04-14T04:06:14.613Z",
     "score": null,
     "score_breakdown": null
   }

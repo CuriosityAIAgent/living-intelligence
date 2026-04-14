@@ -3,9 +3,9 @@
 Premium executive intelligence platform ($4,500-$5,000/year) tracking AI adoption across 37+ wealth management firms.
 Two systems: **Portal** (this repo, Next.js) + **Intake Server** (`../intake-server`, Node.js port 3003).
 
-**v2 Content Pipeline (Sessions 14-28):** Research Agent → Writer Agent (Opus) → Evaluator Agent (McKinsey 6-check test) → Fabrication Agent (multi-source, drift detection, full raw source text) → Content Producer orchestrator. All 43 intelligence entries upgraded to consulting quality with multi-source verification.
+**v2 Content Pipeline (Sessions 14-34):** Research Agent → Writer Agent (Opus) → Evaluator Agent (McKinsey 6-check test) → Fabrication Agent (multi-source, drift detection, full raw source text) → Content Producer orchestrator. All 43 intelligence entries upgraded to consulting quality with multi-source verification. **Session 34: Fully automated.** Railway triage (5am) → Remote Trigger batch processing (5:27am, $0 Max tokens) → Editorial Studio review. Brief lifecycle: ready → processing → produced/held/duplicate/development → approved/rejected. Every action logged to `editorial_decisions` in Supabase.
 
-**Knowledge Base (Sessions 22-28):** Supabase (PostgreSQL + pgvector). 265 sources embedded (Jina v3, 512 dims). All 5 KB phases complete. 10 platform engineering principles enforced in code. Prompts versioned in `intake-server/prompts/`. Hybrid execution: Railway (discovery/triage) + Claude Code Max (writing/evaluation, free).
+**Knowledge Base (Sessions 22-28):** Supabase (PostgreSQL + pgvector). 265 sources embedded (Jina v3, 512 dims). All 5 KB phases complete. 10 platform engineering principles enforced in code. Prompts versioned in `intake-server/prompts/`. Automated execution: Railway (discovery/triage) + Remote Trigger (writing/evaluation, Max tokens, $0).
 
 **Key principle:** All fabrication checks and writing use full raw Jina markdown from KB — never truncated, never summarized. Opus handles 200K context.
 
@@ -189,8 +189,10 @@ git push origin main --force
 | Section label | `text-[11px] font-semibold uppercase tracking-widest text-[#990F3D]` |
 
 **Header structure (two-tier):**
-- Top tier (56px, `#1C1C2E`): wordmark "AI in Wealth Management" left; "LIVING INTELLIGENCE" bold right (15px, font-bold, uppercase, tracking-widest, white) — no subtitle
-- Bottom tier (40px, `#141420`): nav tabs left-flush (`pl-0 pr-6`) with `border-b-2` active underline
+- Top tier (56px, `#1C1C2E`): wordmark "AI in Wealth Management" left (22px); "LIVING INTELLIGENCE" bold right (15px, font-bold, uppercase, tracking-widest, white) — no subtitle
+- Bottom tier (44px, `#141420`): nav tabs left-flush (`pl-0 pr-6`) with `border-b-2` active underline
+- Both tiers constrained to `max-w: 1152px` (matches `max-w-6xl`) with `margin: 0 auto; padding: 0 24px`
+- **Editorial Studio** uses identical header structure with "Editorial Studio" as secondary label on masthead
 
 ---
 
@@ -275,7 +277,12 @@ Every intelligence entry that goes through the intake pipeline receives a `_gove
 - **REVIEW** (score 45–74) → queued in Universal Inbox, flagged for closer review
 - **FAIL** (score < 45 or fabricated) → URL permanently blocked in `.governance-blocked.json`
 
-**Nothing auto-publishes.** All stories require Haresh's approval in the Editorial Studio (`localhost:3003`) before going live. Approve → `POST /api/inbox/:id/approve-and-publish` (SSE, git push included). Reject → reason logged to `.rejection-log.json`.
+**v2 Pipeline (Session 34):** ALL candidates that pass triage get a research brief stored with status `ready`. Remote Trigger runs batch processing daily at 5:27 AM. Brief lifecycle: `ready` → `processing` → `produced`/`held`/`duplicate`/`development` → `approved`/`rejected`. Score ≥ 75 + CLEAN fabrication = `produced` (inbox). Score < 75 or SUSPECT = `held` (retryable). Every action logged to `editorial_decisions` in Supabase.
+
+**Nothing auto-publishes.** All stories require Haresh's approval in the Editorial Studio (`localhost:3003`) before going live.
+
+**v1 flow:** Approve → `POST /api/inbox/:id/approve-and-publish` (SSE, git push included). Reject → reason logged to `.rejection-log.json`.
+**v2 flow:** Approve/Reject/Retry → `POST /api/v2/decide/:briefId` → logged to `editorial_decisions`.
 
 `source_verified` on every entry always reflects the actual governance outcome — never hardcoded.
 

@@ -13,6 +13,9 @@ import type {
   StaleEntry,
   AuditReport,
   BlockedUrl,
+  V2InboxResponse,
+  V2HeldResponse,
+  V2HistoryResponse,
 } from './types';
 
 async function apiFetch<T>(path: string, options?: RequestInit): Promise<T> {
@@ -129,3 +132,25 @@ export const unblockUrl = (url: string): Promise<{ ok: boolean }> =>
 
 export const fetchHealth = (): Promise<{ status: string; queue: number; blocked: number }> =>
   apiFetch('/api/health');
+
+// ── V2 Pipeline ──────────────────────────────────────────────────────────────
+
+export const fetchV2Inbox = (): Promise<V2InboxResponse> =>
+  apiFetch('/api/v2/inbox');
+
+export const fetchV2Held = (): Promise<V2HeldResponse> =>
+  apiFetch('/api/v2/held');
+
+export const fetchV2History = (params?: { limit?: number; decision?: string }): Promise<V2HistoryResponse> => {
+  const qs = new URLSearchParams();
+  if (params?.limit) qs.set('limit', String(params.limit));
+  if (params?.decision) qs.set('decision', params.decision);
+  const query = qs.toString();
+  return apiFetch(`/api/v2/history${query ? `?${query}` : ''}`);
+};
+
+export const decideBrief = (briefId: string, decision: string, reason?: string): Promise<{ ok: boolean }> =>
+  apiFetch(`/api/v2/decide/${briefId}`, {
+    method: 'POST',
+    body: JSON.stringify({ decision, reason, decided_by: 'editor' }),
+  });

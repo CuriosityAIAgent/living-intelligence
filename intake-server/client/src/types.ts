@@ -217,3 +217,106 @@ export interface BlockedUrl {
   reason: string;
   blocked_at?: string;
 }
+
+// ── V2 Pipeline Types ────────────────────────────────────────────────────────
+
+export interface V2Source {
+  url: string;
+  name?: string;
+  type?: 'primary' | 'coverage' | 'discovery';
+  key_facts?: string[];
+}
+
+export interface V2Evaluation {
+  checks?: Record<string, { pass: boolean; feedback?: string }>;
+  overall?: string;
+  score?: number;
+}
+
+export interface V2Entry {
+  headline: string;
+  summary: string;
+  the_so_what: string;
+  key_stat?: KeyStat;
+  company: string;
+  company_name: string;
+  date: string;
+  type: string;
+  source_url?: string;
+  source_name?: string;
+  sources?: V2Source[];
+  _research?: {
+    source_count?: number;
+    research_confidence?: string;
+    whats_new?: string;
+    peer_context?: Array<{ company: string; capability: string; maturity: string }>;
+  };
+  _iterations?: Array<{ version: number; score?: number; feedback?: string }>;
+  _fabrication?: {
+    verdict: string;
+    claims_checked?: number;
+    claims_verified?: number;
+    claims_fabricated?: number;
+    details?: Array<{ claim: string; source?: string; status: string }>;
+  };
+}
+
+export interface V2Brief {
+  id: string;
+  headline: string;
+  source_url: string;
+  source_name?: string;
+  company_name?: string;
+  company_id?: string;
+  status: 'ready' | 'processing' | 'produced' | 'held' | 'duplicate' | 'development' | 'approved' | 'rejected';
+  created_at: string;
+  processed_at?: string;
+  v2_entry?: V2Entry;
+  v2_score?: number;
+  v2_fabrication_verdict?: string;
+  v2_evaluation?: V2Evaluation;
+  decision?: string;
+  decision_reason?: string;
+  decided_by?: string;
+  decided_at?: string;
+  similarity_match?: { type: string; match_id?: string; similarity?: number };
+}
+
+export interface V2InboxResponse {
+  entries: V2Brief[];
+  count: number;
+}
+
+export interface V2HeldResponse {
+  entries: V2Brief[];
+  count: number;
+}
+
+export interface EditorialDecision {
+  id: string;
+  brief_id?: string;
+  entry_id?: string;
+  decision: string;
+  reason?: string;
+  editor_notes?: string;
+  decided_by?: string;
+  decided_at: string;
+  pipeline_score?: number;
+  evaluator_score?: number;
+  capability?: string;
+  entry_type?: string;
+  draft_snapshot?: V2Entry;
+}
+
+export interface V2HistoryResponse {
+  decisions: EditorialDecision[];
+  count: number;
+}
+
+export interface V2BatchResult {
+  produced: number;
+  held: number;
+  duplicates: number;
+  developments: number;
+  errors: number;
+}

@@ -1,8 +1,8 @@
 import { useQuery } from '@tanstack/react-query';
-import { fetchInbox } from '../api';
+import { fetchV2Inbox, fetchV2Held } from '../api';
 import { useProcessTracker } from '../App';
 
-type Tab = 'intelligence' | 'thought-leadership' | 'landscape' | 'audit';
+export type Tab = 'inbox' | 'pipeline' | 'held' | 'history';
 
 interface HeaderProps {
   activeTab: Tab;
@@ -11,130 +11,114 @@ interface HeaderProps {
 
 export default function Header({ activeTab, onTabChange }: HeaderProps) {
   const { data: inbox } = useQuery({
-    queryKey: ['inbox'],
-    queryFn: fetchInbox,
+    queryKey: ['v2-inbox'],
+    queryFn: fetchV2Inbox,
     refetchInterval: 30_000,
+  });
+
+  const { data: held } = useQuery({
+    queryKey: ['v2-held'],
+    queryFn: fetchV2Held,
+    refetchInterval: 60_000,
   });
 
   const { active: activeProcesses } = useProcessTracker();
   const processLabels = Object.values(activeProcesses);
 
-  const pendingCount = inbox?.count ?? 0;
+  const inboxCount = inbox?.count ?? inbox?.entries?.length ?? 0;
+  const heldCount = held?.count ?? held?.entries?.length ?? 0;
 
-  const tabs: { id: Tab; label: string }[] = [
-    { id: 'intelligence', label: 'Intelligence' },
-    { id: 'thought-leadership', label: 'Thought Leadership' },
-    { id: 'landscape', label: 'Landscape' },
-    { id: 'audit', label: 'Data Audit' },
+  const tabs: { id: Tab; label: string; count?: number; countColor?: string }[] = [
+    { id: 'inbox', label: 'Inbox', count: inboxCount || undefined, countColor: '#990F3D' },
+    { id: 'pipeline', label: 'Pipeline' },
+    { id: 'held', label: 'Held', count: heldCount || undefined, countColor: '#B45309' },
+    { id: 'history', label: 'History' },
   ];
 
   return (
-    <header style={{ position: 'sticky', top: 0, zIndex: 100 }}>
-      {/* Masthead */}
-      <div
-        style={{
-          background: '#1C1C2E',
-          height: 52,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          padding: '0 24px',
-        }}
-      >
-        <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-          <span style={{ fontSize: 14, fontWeight: 700, color: '#fff' }}>
-            AI in Wealth Management
-          </span>
-          <span style={{ fontSize: 12, color: '#6B7280' }}>Editorial Studio</span>
-        </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-          {processLabels.length > 0 && (
+    <header className="sticky top-0 z-50">
+      {/* Masthead — portal-matching top tier */}
+      <div style={{ background: '#1C1C2E', height: 56 }}>
+        <div
+          className="flex items-center justify-between h-full"
+          style={{ maxWidth: 1152, margin: '0 auto', padding: '0 24px' }}
+        >
+          <div className="flex items-center gap-4">
             <span
-              style={{
-                fontSize: 10,
-                fontWeight: 600,
-                padding: '3px 10px',
-                borderRadius: 3,
-                background: '#1E3A5F',
-                color: '#93C5FD',
-                display: 'flex',
-                alignItems: 'center',
-                gap: 6,
-                animation: 'pulse 2s infinite',
-              }}
+              className="font-bold text-white uppercase"
+              style={{ fontSize: 22, letterSpacing: '0.01em' }}
             >
-              <span style={{
-                width: 6, height: 6, borderRadius: '50%',
-                background: '#60A5FA', display: 'inline-block',
-              }} />
-              {processLabels[0]}
+              Living Intelligence
             </span>
-          )}
-          <span
-            style={{
-              fontSize: 10,
-              fontWeight: 700,
-              letterSpacing: '0.08em',
-              textTransform: 'uppercase',
-              padding: '3px 8px',
-              borderRadius: 3,
-              background: '#990F3D',
-              color: '#fff',
-            }}
-          >
-            Editorial
-          </span>
+            <span
+              className="text-white uppercase font-semibold hidden md:inline"
+              style={{ fontSize: 12, letterSpacing: '0.14em', opacity: 0.45 }}
+            >
+              Editorial Studio
+            </span>
+          </div>
+
+          <div className="flex items-center gap-4">
+            {processLabels.length > 0 && (
+              <span
+                className="text-[11px] font-semibold px-3 py-1 rounded flex items-center gap-2"
+                style={{ background: '#1E3A5F', color: '#93C5FD' }}
+              >
+                <span
+                  className="w-1.5 h-1.5 rounded-full inline-block"
+                  style={{ background: '#60A5FA', animation: 'pulse 2s infinite' }}
+                />
+                {processLabels[0]}
+              </span>
+            )}
+            <span
+              className="font-medium text-white uppercase hidden md:inline"
+              style={{ fontSize: 13, letterSpacing: '0.14em', opacity: 0.6 }}
+            >
+              AI in Wealth Management
+            </span>
+          </div>
         </div>
       </div>
 
-      {/* Nav bar */}
-      <div
-        style={{
-          background: '#141420',
-          height: 40,
-          display: 'flex',
-          alignItems: 'stretch',
-          padding: '0 24px',
-          borderBottom: '1px solid #2D2D44',
-        }}
-      >
-        {tabs.map((tab) => (
-          <button
-            key={tab.id}
-            onClick={() => onTabChange(tab.id)}
-            style={{
-              background: 'none',
-              border: 'none',
-              borderBottom: activeTab === tab.id ? '2px solid #990F3D' : '2px solid transparent',
-              color: activeTab === tab.id ? '#fff' : '#9CA3AF',
-              fontSize: 13,
-              fontWeight: activeTab === tab.id ? 600 : 500,
-              padding: '0 16px',
-              cursor: 'pointer',
-              display: 'flex',
-              alignItems: 'center',
-              gap: 6,
-              whiteSpace: 'nowrap',
-              transition: 'color .15s',
-            }}
-          >
-            {tab.label}
-            {tab.id === 'intelligence' && pendingCount > 0 && (
-              <span
+      {/* Nav bar — portal-matching bottom tier */}
+      <div style={{ background: '#141420', borderBottom: '1px solid #2D2D44' }}>
+        <div
+          className="flex items-stretch"
+          style={{ maxWidth: 1152, margin: '0 auto', padding: '0 24px', height: 44 }}
+        >
+          {tabs.map((tab) => {
+            const isActive = activeTab === tab.id;
+            return (
+              <button
+                key={tab.id}
+                onClick={() => onTabChange(tab.id)}
+                className="bg-transparent border-none cursor-pointer flex items-center gap-2 transition-colors duration-150"
                 style={{
-                  background: '#990F3D',
-                  color: '#fff',
-                  fontSize: 9,
-                  fontWeight: 700,
-                  padding: '1px 5px',
-                  borderRadius: 8,
+                  padding: '0 0',
+                  paddingRight: 24,
+                  borderBottom: isActive ? '2px solid #990F3D' : '2px solid transparent',
+                  color: isActive ? '#fff' : '#9999BB',
+                  fontWeight: isActive ? 700 : 500,
+                  fontSize: 13,
                 }}
               >
-                {pendingCount}
-              </span>
-            )}
-          </button>
-        ))}
+                {tab.label}
+                {tab.count != null && tab.count > 0 && (
+                  <span
+                    className="text-[10px] font-bold text-white rounded-full"
+                    style={{
+                      background: tab.countColor ?? '#990F3D',
+                      padding: '2px 8px',
+                    }}
+                  >
+                    {tab.count}
+                  </span>
+                )}
+              </button>
+            );
+          })}
+        </div>
       </div>
     </header>
   );

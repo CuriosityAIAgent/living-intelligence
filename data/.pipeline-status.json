@@ -1,32 +1,23 @@
 {
-  "started_at": "2026-04-14T04:00:00.008Z",
+  "started_at": "2026-04-14T04:00:00.143Z",
   "candidates_found": 15,
-  "queued": 1,
+  "queued": 2,
   "blocked": 2,
   "errors": 0,
   "error_details": [],
   "discovery_sources": {
-    "layer1_news": 39,
-    "layer1_capabilities": 0,
+    "layer1_news": 40,
+    "layer1_capabilities": 17,
     "layer2_companies": 0,
     "layer3_newsapi": 4,
-    "layer1_tl": 25,
-    "layer2_authors": 0,
-    "companies_queried": 0,
-    "capabilities_queried": 0,
-    "raw_intel_total": 42
+    "layer1_tl": 31,
+    "layer2_authors": 22,
+    "companies_queried": 37,
+    "capabilities_queried": 7,
+    "raw_intel_total": 55
   },
-  "tl_candidates": 25,
+  "tl_candidates": 51,
   "tl_items": [
-    {
-      "id": "aHR0cHM6Ly93",
-      "title": "AI-Augmented Wealth Management: Advisor's Role Evolves in 2026 | Chris DeBrusk posted on the topic | LinkedIn",
-      "url": "https://www.linkedin.com/posts/chrisdebrusk_our-ten-ideas-for-wealth-management-are-back-activity-7409270111049805826-ZGL6",
-      "source_name": "linkedin.com",
-      "pub_date": "3 months ago",
-      "snippet": "Our ten ideas for Wealth Management are back and we're excited to share what we see as being in store for 2026 later in the month 📣\n\nSharing some spoilers ahead of that below with our first idea, on the topic of the moment: AI.\n\nThe AI-Augmented Last Mile Human 🤖\n\nThe role of the advisor is being ",
-      "via": "layer1_tl"
-    },
     {
       "id": "aHR0cHM6Ly93",
       "title": "As AI Investments Surge, CEOs Take the Lead",
@@ -46,15 +37,6 @@
       "via": "layer1_tl"
     },
     {
-      "id": "aHR0cHM6Ly9t",
-      "title": "AI-Powered Wealth: What the Future Holds in 2026",
-      "url": "https://medium.com/@kevin.nyny.25/ai-powered-wealth-what-the-future-holds-in-2026-424889ffe304",
-      "source_name": "medium.com",
-      "pub_date": null,
-      "snippet": "AI-Powered Wealth: What the Future Holds in 2026 It’s 2026, and the world of artificial intelligence is no longer a distant dream. It has evolved from a mere tool into a powerful force reshaping …",
-      "via": "layer1_tl"
-    },
-    {
       "id": "aHR0cHM6Ly9j",
       "title": "How Boards Can Lead in a World Remade by AI",
       "url": "https://corpgov.law.harvard.edu/2026/02/19/how-boards-can-lead-in-a-world-remade-by-ai/",
@@ -68,7 +50,7 @@
       "title": "AI in Wealth Management: 2026 Trends and Challenges | Next Level Recruiting, LLC posted on the topic | LinkedIn",
       "url": "https://www.linkedin.com/posts/next-level-recruiting-llc_ai-2026-increased-adoption-new-use-cases-activity-7420485172136984576-MxYJ",
       "source_name": "linkedin.com",
-      "pub_date": "2 months ago",
+      "pub_date": "Jan 23, 2026",
       "snippet": "AI is set to play a bigger role in wealth management in 2026—but questions remain.\n\nThis Family Wealth Report article explores how advisors are beginning to adopt AI, the new use cases gaining traction, and why regulation and trust still slow broader uptake. It also highlights a new Financial Planni",
       "via": "layer1_tl"
     },
@@ -83,90 +65,108 @@
     },
     {
       "id": "aHR0cHM6Ly93",
-      "title": "How artificial intelligence is reshaping the financial services industry",
-      "url": "https://www.ey.com/en_gr/insights/financial-services/how-artificial-intelligence-is-reshaping-the-financial-services-industry",
-      "source_name": "ey.com",
+      "title": "The Impact of Artificial Intelligence on Financial Decisions for",
+      "url": "https://www.soa.org/globalassets/assets/files/resources/research-report/2024/ai-retirement-risk-essays/ai-retirement-risks-essays-6-dennis.pdf",
+      "source_name": "soa.org",
       "pub_date": null,
-      "snippet": "AI is reshaping the financial services industry, making it more efficient, effective and innovative. Read more.",
+      "snippet": "Copyright © 20 24 Society of Actuaries Research Institute \n\n# The Impact of Artificial Intelligence on Financial Decisions for Retirees \n\n# Mark Dennis , DBA, CFP ®\n\nAny views and ideas expressed in the essay are the author ’s alone and may not reflect th e views and ideas of the \n\nSociety of Actuar",
+      "via": "layer1_tl"
+    },
+    {
+      "id": "aHR0cHM6Ly9z",
+      "title": "Regulating Robo-Advisors in an Age of Generative Artificial Intelligence",
+      "url": "https://scholarlycommons.law.wlu.edu/cgi/viewcontent.cgi?article=4914&context=wlulr",
+      "source_name": "scholarlycommons.law.wlu.edu",
+      "pub_date": null,
+      "snippet": "Washington and Lee Law Review Washington and Lee Law Review \n\nVolume 82  Issue 2  Article 7 \n\nSpring 2025 \n\n# Regulating Robo-Advisors in an Age of Generative Artificial Regulating Robo-Advisors in an Age of Generative Artificial \n\n# Intelligence Intelligence \n\nDaniel Schwarcz University of Minnesot",
+      "via": "layer1_tl"
+    },
+    {
+      "id": "aHR0cHM6Ly9y",
+      "title": "WEF_Artificial_Intelligence_in_Financial_Services_2025.pdf",
+      "url": "https://reports.weforum.org/docs/WEF_Artificial_Intelligence_in_Financial_Services_2025.pdf",
+      "source_name": "reports.weforum.org",
+      "pub_date": null,
+      "snippet": "# Artificial Intelligence in Financial Services W H I T E P A P E R \n\nJ A N U A R Y 2 0 2 5 \n\nIn collaboration with Accenture \n\nTransformation of Industries in the Age of AI AI Governance Alliance Images: Getty Images, Unsplash \n\nDisclaimer \n\nThis document is published by the World Economic Forum as",
+      "via": "layer1_tl"
+    },
+    {
+      "id": "aHR0cHM6Ly93",
+      "title": "AI Rewires Brains: Tom Slater's Insightful Essay | Pete Matthew posted on the topic | LinkedIn",
+      "url": "https://www.linkedin.com/posts/petematthew_ai-isnt-coming-for-your-job-its-coming-activity-7435469981045116928-CCkQ",
+      "source_name": "linkedin.com",
+      "pub_date": "Mar 5, 2026",
+      "snippet": "This is the best thing I’ve read on AI in ages - a brilliant essay by Tom Slater of Scottish Mortgage Investment Trust (whom I’m unable to tag) about how AI is physically rewiring our brains. It is immaculately written, very easy to digest and might be the most important thing you read this year. \n\n",
       "via": "layer1_tl"
     },
     {
       "id": "aHR0cHM6Ly93",
       "title": "Just a moment...",
-      "url": "https://www.researchgate.net/publication/381277119_Artificial_Intelligence_as_Personal_Financial_Advisor_in_the_Future_-_A_Case_Study_Based_on_Algorithmic_Innovation_Strategies",
+      "url": "https://www.researchgate.net/publication/399586100_Exploring_the_potential_of_AI_in_personal_financial_planning_and_advisory_services",
       "source_name": "researchgate.net",
-      "pub_date": null,
-      "snippet": "## Security check required\n\nWe've detected unusual activity from your network. To continue, complete the security check below.\n\nRay ID: 9ebfcd15ddc775f7\n\nClient IP: 2600:1900:0:4006::401\n\n© 2008-2026 ResearchGate GmbH. All rights reserved.",
+      "pub_date": "Mar 4, 2026",
+      "snippet": "## Security check required\n\nWe've detected unusual activity from your network. To continue, complete the security check below.\n\nRay ID: 9ebfcd2528b4c98c\n\nClient IP: 2600:1900:0:2106::1f00\n\n© 2008-2026 ResearchGate GmbH. All rights reserved.",
       "via": "layer1_tl"
     },
     {
       "id": "aHR0cHM6Ly93",
-      "title": "2026 Perspectives on the Financial Industry | Fintech Americas",
-      "url": "https://www.fintechamericas.co/en/2026-perspectives-on-the-financial-industry",
-      "source_name": "fintechamericas.co",
-      "pub_date": null,
-      "snippet": "Discover insights from 88 financial leaders on the trends shaping the industry by 2026, focusing on AI, blockchain, digital payments, and more. Download the exclusive report now.",
+      "title": "AI Market Trends 2026: Global Investment, Risks, and Buildout | Morgan Stanley",
+      "url": "https://www.morganstanley.com/insights/articles/ai-market-trends-institute-2026",
+      "source_name": "morganstanley.com",
+      "pub_date": "Mar 9, 2026",
+      "snippet": "Discover key market trends as AI becomes the central force influencing growth, earnings, geopolitics, and investment strategy across global markets in 2026.",
       "via": "layer1_tl"
     },
     {
       "id": "aHR0cHM6Ly93",
-      "title": "FIN-2026-Industry-Predictions-Report.pdf",
-      "url": "https://www.bdo.com/getmedia/2db1671f-0450-418e-898d-56800d4d5609/FIN-2026-Industry-Predictions-Report.pdf?ext=.pdf",
-      "source_name": "bdo.com",
-      "pub_date": null,
-      "snippet": "# 2026 Fintech Industry Predictions 2026 is set to be a pivotal year for fintech. After years of uncertainty, the industry is showing signs of clarity and confidence from regulators, consumers, and business partners. Regulatory frameworks have strengthened, markets have stabilized, and bold ideas ar",
+      "title": "Access Denied",
+      "url": "https://www.spglobal.com/market-intelligence/en/news-insights/research/2026/01/10-ai-trends-to-shape-your-2026-strategy",
+      "source_name": "spglobal.com",
+      "pub_date": "Jan 30, 2026",
+      "snippet": "You don't have permission to access \"http://www.spglobal.com/market-intelligence/en/news-insights/research/2026/01/10-ai-trends-to-shape-your-2026-strategy\" on this server.\nReference #18.51dfda17.1776139203.25fadd89\n\nhttps://errors.edgesuite.net/18.51dfda17.1776139203.25fadd89",
       "via": "layer1_tl"
     },
     {
-      "id": "aHR0cDovL3d3",
-      "title": "2026 AI Whitepaper Bibliography",
-      "url": "http://www.sustainablefinance.ch/en/resources/artificial-intelligence/artificial-intelligence-whitepaper/2026-ai-whitepaper-bibliography.html",
-      "source_name": "sustainablefinance.ch",
-      "pub_date": null,
-      "snippet": "# 2026 AI Whitepaper Bibliography\n\nThis website uses cookies. We use cookies to personalise content and ads, to provide social media features and to analyse our traffic. We also share information about your use of our site with our social media, advertising and analytics partners who may combine it ",
+      "id": "aHR0cHM6Ly93",
+      "title": "Algorithmic Revolution: AI Leads Investment Strategies in 2026",
+      "url": "https://www.linkedin.com/pulse/algorithmic-revolution-ai-leads-investment-mif9c",
+      "source_name": "linkedin.com",
+      "pub_date": "Jan 21, 2026",
+      "snippet": "Industry leaders predict AI will revolutionize business by 2026. IBM believes quantum computers will surpass classical computers that year, which could lead to breakthroughs in many industries.",
+      "via": "layer1_tl"
+    },
+    {
+      "id": "aHR0cHM6Ly93",
+      "title": "Q4 2025 Investment AI Trends: Traditional AI Leads Adoption, But GenAI to Reshape the Status Quo in 2026",
+      "url": "https://www.scnsoft.com/investment/investment-ai-trends",
+      "source_name": "scnsoft.com",
+      "pub_date": "Jan 30, 2026",
+      "snippet": "Investment firms moved past pilots in generative AI, but trust and privacy concerns restrain live rollouts. Agentic AI remains in exploration mode.",
       "via": "layer1_tl"
     },
     {
       "id": "aHR0cHM6Ly9w",
-      "title": "Fintech Predictions 2026 Report - Read now | Plaid",
-      "url": "https://plaid.com/fintech-predictions-2026-report/",
-      "source_name": "plaid.com",
+      "title": "GenAI Strategy & Investment Management | Portal26 Platform Feature",
+      "url": "https://portal26.ai/genai-strategy/",
+      "source_name": "portal26.ai",
       "pub_date": null,
-      "snippet": "Explore Plaid’s 2026 Fintech Predictions report. CEO Zach Perret and product leaders share insights on AI, fraud, credit, and what’s coming next.",
-      "via": "layer1_tl"
-    },
-    {
-      "id": "aHR0cHM6Ly93",
-      "title": "2026 AI Business Predictions",
-      "url": "https://www.pwc.com/us/en/tech-effect/ai-analytics/ai-predictions.html",
-      "source_name": "pwc.com",
-      "pub_date": null,
-      "snippet": "Explore PwC’s 2026 AI predictions and learn how focused strategies, agentic workflows, and responsible innovation drive transformative business value.",
-      "via": "layer1_tl"
-    },
-    {
-      "id": "aHR0cHM6Ly9m",
-      "title": "The State of Fintech in 2026",
-      "url": "https://fintechprimetime.substack.com/p/the-state-of-fintech-in-2026",
-      "source_name": "fintechprimetime.substack.com",
-      "pub_date": "Feb 10, 2026",
-      "snippet": "It’s here!",
+      "snippet": "Balance GenAI investments across private, public, and licensed AI with Portal26's strategy management. Optimize ROI, manage risk, and align with enterprise objectives and policies.",
       "via": "layer1_tl"
     }
   ],
   "blocked_items": [
     {
-      "url": "https://hubbis.com/article/ai-in-private-wealth-management-from-experimentation-to-agentic-transformation",
-      "title": "Private Wealth Management Shifts from AI Experimentation to Agentic Autonomous Systems",
-      "reason": "the_so_what flagged as weak CXO relevance (2/10) — review before publishing",
-      "score": 42
+      "url": "https://www.pymnts.com/artificial-intelligence-2/2026/citi-arms-wealth-advisors-with-4-ai-tools-to-cut-busywork/",
+      "title": "Citi Deploys 4 AI Tools Across Wealth Division, Automating Notes, Research Queries and Client 360 Views",
+      "reason": "Fabrication detected: Client 360 rollout timeline contradiction: Entry states 'full rollout planned for April 2026', but source states full rollout to Citi Private Bank and Wealth at Work is planned for 'this month' (April 2026) with ALL Wealth colleagues gaining access in Q2 2026 — the entry omits the Q2 2026 phase and mischaracterizes the rollout scope.; Portfolio Intelligence global rollout: Entry states 'global rollout through year-end', but source specifies expanding to Private Bank clients globally in Q2 first, then all Wealth clients by year-end — the entry collapses these two phases into one.; CitiScribe description: Entry states it 'automates meeting note-taking', but source describes it as 'automates note-taking, summarizing client discussions' — minor but the entry's characterization is consistent enough to not be a hard fail.; Citi Stylus Workspaces launch: Entry states 'launched in September 2025' which is consistent with source reference to 'Last September' (published April 2026).",
+      "score": 0
     },
     {
-      "url": "https://hubbis.com/article/damien-piper-of-unique-ai-turning-artificial-intelligence-into-a-practical-tool-for-wealth-management",
-      "title": "Unique AI Positions Wealth-Native LLM Deployment as Answer to Generic AI Adoption Failure",
-      "reason": "Score 45/100 — below 45 review threshold",
+      "url": "https://hubbis.com/article/ai-in-private-wealth-management-from-experimentation-to-agentic-transformation",
+      "title": "Agentic AI Moves From Pilot to Autonomous Execution Across Private Wealth Client Lifecycle",
+      "reason": "the_so_what flagged as weak CXO relevance (3/10) — review before publishing",
       "score": 45
     }
   ],
-  "written_at": "2026-04-14T04:03:50.068Z"
+  "written_at": "2026-04-14T04:06:14.620Z"
 }

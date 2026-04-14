@@ -24,7 +24,8 @@ import { PRESS_RELEASE_DOMAINS, TIER1_MEDIA } from './config.js';
 import { addPending } from './gov-store.js';
 import {
   logPipelineEvent, logPipelineRun, getReadyBriefs,
-  hydrateBrief, storePublishedEntry,
+  hydrateBrief, storePublishedEntry, updateBriefStatus,
+  decideBrief, logDecision, searchSimilar, getCompanyEntries,
 } from './kb-client.js';
 
 // ── Verification Retry — search for unverified claims before blocking ────────
@@ -125,6 +126,95 @@ function getMondayOf(dateStr) {
   const monday = new Date(d);
   monday.setUTCDate(d.getUTCDate() - daysBack);
   return monday.toISOString().slice(0, 10);
+}
+
+// ── Dedup & Development Detection ───────────────────────────────────────────
+
+/**
+ * Check if a candidate is a duplicate of an existing entry, a development
+ * (same company, new facts), or a genuinely new story.
+ *
+ * @param {Object} brief - Research brief with entities, company_id
+ * @param {Object} hydrated - Hydrated brief with _primary_source
+ * @returns {{ type: 'duplicate'|'development'|'new', match?: Object }}
+ */
+async function detectDuplicateOrDevelopment(brief, hydrated) {
+  const headline = hydrated._primary_source?.title || brief.entities?.key_topic || '';
+  const companyId = brief.company_id || brief.entities?.company_slug;
+
+  if (!headline) return { type: 'new' };
+
+  // 1. Semantic search against existing sources in KB
+  const similar = await searchSimilar(headline, {
+    company_id: companyId || null,
+    threshold: 0.70,
+    limit: 5,
+  });
+
+  if (!similar || similar.length === 0) return { type: 'new' };
+
+  // 2. Check similarity scores
+  const topMatch = similar[0];
+
+  // High similarity (>0.85) + same company + within 14 days = likely DUPLICATE
+  if (topMatch.similarity >= 0.85 && companyId) {
+    const matchDate = topMatch.published_at || topMatch.fetched_at;
+    const briefDate = brief.created_at || new Date().toISOString();
+    const daysDiff = matchDate
+      ? Math.abs(Date.now() - new Date(matchDate).getTime()) / 86400000
+      : 999;
+
+    if (daysDiff <= 14) {
+      return {
+        type: 'duplicate',
+        match: {
+          matched_source_id: topMatch.id,
+          matched_url: topMatch.url,
+          matched_title: topMatch.title,
+          similarity_score: topMatch.similarity,
+          days_apart: Math.round(daysDiff),
+        },
+      };
+    }
+  }
+
+  // Medium similarity (>0.70) + same company = check for DEVELOPMENT
+  if (topMatch.similarity >= 0.70 && companyId) {
+    // Load existing entries for this company to check for new facts
+    const existingEntries = await getCompanyEntries(companyId, 5);
+
+    if (existingEntries.length > 0) {
+      // Check if the new article has different key facts
+      // (different key_stat, different capability stage, new metrics)
+      const primaryContent = hydrated._primary_source?.content_md || '';
+      const existingHeadlines = existingEntries.map(e => e.headline).join(' | ');
+
+      // Simple heuristic: if the headline is very similar to an existing entry's headline,
+      // but the content mentions new metrics/dates/stages, it's a development
+      const hasNewNumbers = /\$[\d,.]+\s*(billion|million|B|M)/i.test(primaryContent);
+      const hasNewStage = /(launch|deploy|scale|expand|pilot|partner)/i.test(headline);
+      const headlineSimilarToExisting = existingEntries.some(e => {
+        const words1 = new Set(headline.toLowerCase().split(/\s+/));
+        const words2 = new Set(e.headline.toLowerCase().split(/\s+/));
+        const overlap = [...words1].filter(w => words2.has(w) && w.length > 3).length;
+        return overlap / Math.min(words1.size, words2.size) > 0.5;
+      });
+
+      if (headlineSimilarToExisting && (hasNewNumbers || hasNewStage)) {
+        return {
+          type: 'development',
+          match: {
+            matched_entry_id: existingEntries[0].id,
+            matched_headline: existingEntries[0].headline,
+            similarity_score: topMatch.similarity,
+            reason: 'Same company, overlapping topic, but new facts detected',
+          },
+        };
+      }
+    }
+  }
+
+  return { type: 'new' };
 }
 
 // ── Main: Produce Entry ──────────────────────────────────────────────────────
@@ -449,38 +539,158 @@ export async function reworkEntry({ entry, editorNotes, researchBrief, send }) {
   return entry;
 }
 
-// ── Batch Production ────────────────────────────────────────────────────────
+// ── Batch Production (v2 lifecycle) ─────────────────────────────────────────
 
 /**
  * Produce entries for the top N ready briefs from KB.
+ * Full lifecycle: ready → processing → dedup check → v2 pipeline → produced/held/duplicate
+ * Every step logged to editorial_decisions in Supabase.
  */
 export async function produceBatch({ limit = 5, send }) {
   const briefs = await getReadyBriefs(limit);
   if (briefs.length === 0) {
     send('pipeline_stage', { stage: 'batch', message: 'No ready briefs in KB.' });
-    return [];
+    return { produced: 0, held: 0, duplicates: 0, developments: 0, errors: 0, results: [] };
   }
 
   send('pipeline_stage', { stage: 'batch', message: `Processing ${briefs.length} ready briefs...` });
-  const results = [];
+  const summary = { produced: 0, held: 0, duplicates: 0, developments: 0, errors: 0, results: [] };
 
   for (const brief of briefs) {
-    const hydrated = await hydrateBrief(brief.id);
-    if (!hydrated) {
-      results.push({ aborted: true, reason: `Failed to hydrate brief ${brief.id}` });
-      continue;
-    }
+    try {
+      // Mark as processing
+      await updateBriefStatus(brief.id, 'processing');
 
-    const result = await produceEntry({
-      url: brief.candidate_url,
-      title: hydrated._primary_source?.title || '',
-      source_name: brief.candidate_source || '',
-      send,
-    });
-    results.push(result);
+      const hydrated = await hydrateBrief(brief.id);
+      if (!hydrated) {
+        summary.errors++;
+        summary.results.push({ briefId: brief.id, aborted: true, reason: 'Failed to hydrate' });
+        await updateBriefStatus(brief.id, 'ready'); // re-queue for next run
+        continue;
+      }
+
+      // ── Dedup check ──────────────────────────────────────────────────────
+      send('pipeline_stage', { stage: 'dedup', message: `Checking dedup for: ${brief.entities?.key_topic || brief.candidate_url}` });
+      const dedup = await detectDuplicateOrDevelopment(brief, hydrated);
+
+      if (dedup.type === 'duplicate') {
+        send('pipeline_stage', { stage: 'dedup_skip', message: `DUPLICATE — matches: ${dedup.match.matched_title} (sim: ${dedup.match.similarity_score.toFixed(2)})` });
+        await updateBriefStatus(brief.id, 'duplicate', {
+          similarity_match: dedup.match,
+          decision: 'DUPLICATE',
+          decision_reason: `Duplicate of ${dedup.match.matched_url} (similarity: ${dedup.match.similarity_score.toFixed(2)})`,
+          decided_by: 'pipeline',
+          decided_at: new Date().toISOString(),
+        });
+        await logDecision({
+          entry_id: brief.entities?.company_slug || brief.id,
+          brief_id: brief.id,
+          decision: 'DUPLICATE',
+          reason: `Matched ${dedup.match.matched_title} (sim: ${dedup.match.similarity_score.toFixed(2)}, ${dedup.match.days_apart}d apart)`,
+          company_id: brief.company_id,
+          decided_by: 'pipeline',
+        });
+        summary.duplicates++;
+        summary.results.push({ briefId: brief.id, type: 'duplicate', match: dedup.match });
+        continue;
+      }
+
+      if (dedup.type === 'development') {
+        send('pipeline_stage', { stage: 'dedup_development', message: `DEVELOPMENT — same company, new facts. Processing through v2 to enrich.` });
+        // Developments still go through the full v2 pipeline — they just get flagged
+        // so the Editorial Studio can show "updates existing entry: X"
+        await updateBriefStatus(brief.id, 'processing', {
+          similarity_match: dedup.match,
+        });
+      }
+
+      // ── Full v2 pipeline ─────────────────────────────────────────────────
+      const result = await produceEntry({
+        url: brief.candidate_url,
+        title: hydrated._primary_source?.title || '',
+        source_name: brief.entities?.company_name || '',
+        triage_score: brief.triage_score,
+        send,
+      });
+
+      if (result.aborted) {
+        await updateBriefStatus(brief.id, 'held', {
+          decision: 'HELD',
+          decision_reason: result.reason,
+          decided_by: 'pipeline',
+          decided_at: new Date().toISOString(),
+        });
+        await logDecision({
+          entry_id: brief.entities?.company_slug || brief.id,
+          brief_id: brief.id,
+          decision: 'HELD',
+          reason: result.reason,
+          company_id: brief.company_id,
+          decided_by: 'pipeline',
+        });
+        summary.held++;
+        summary.results.push({ briefId: brief.id, type: 'held', reason: result.reason });
+        continue;
+      }
+
+      // Store v2 output in the brief
+      const status = (result.entry._final_score >= 75 && result.entry._fabrication.verdict === 'CLEAN')
+        ? 'produced'
+        : 'held';
+
+      await updateBriefStatus(brief.id, status, {
+        v2_entry: result.entry,
+        v2_score: result.entry._final_score,
+        v2_fabrication_verdict: result.entry._fabrication.verdict,
+        v2_evaluation: result.entry._iterations?.[result.entry._iterations.length - 1]?.evaluation || null,
+        similarity_match: dedup.type === 'development' ? dedup.match : null,
+      });
+
+      await logDecision({
+        entry_id: result.entry.id,
+        brief_id: brief.id,
+        decision: status === 'produced' ? 'PRODUCED' : 'HELD',
+        reason: status === 'produced'
+          ? `Score ${result.entry._final_score}/100, fabrication ${result.entry._fabrication.verdict}, ${result.entry.source_count} sources`
+          : `Score ${result.entry._final_score}/100 (< 75) or fabrication ${result.entry._fabrication.verdict}`,
+        draft_snapshot: result.entry,
+        evaluator_score: result.entry._iterations?.[result.entry._iterations.length - 1]?.evaluation,
+        pipeline_score: result.entry._final_score,
+        company_id: brief.company_id,
+        capability: result.entry.capability_evidence?.capability,
+        entry_type: result.entry.type,
+        decided_by: 'pipeline',
+      });
+
+      if (status === 'produced') {
+        summary.produced++;
+        if (dedup.type === 'development') summary.developments++;
+      } else {
+        summary.held++;
+      }
+      summary.results.push({
+        briefId: brief.id,
+        type: status,
+        entryId: result.entry.id,
+        score: result.entry._final_score,
+        fabrication: result.entry._fabrication.verdict,
+        isDevelopment: dedup.type === 'development',
+      });
+
+    } catch (err) {
+      console.error(`[content-producer] Error processing brief ${brief.id}:`, err.message);
+      await updateBriefStatus(brief.id, 'ready'); // re-queue
+      summary.errors++;
+      summary.results.push({ briefId: brief.id, aborted: true, reason: err.message });
+    }
   }
 
-  return results;
+  send('pipeline_stage', {
+    stage: 'batch_complete',
+    message: `Batch done: ${summary.produced} produced, ${summary.held} held, ${summary.duplicates} duplicates, ${summary.developments} developments, ${summary.errors} errors`,
+  });
+
+  return summary;
 }
 
 // ── CLI Entrypoint ──────────────────────────────────────────────────────────

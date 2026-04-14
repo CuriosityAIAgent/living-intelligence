@@ -167,6 +167,142 @@ export async function getReadyBriefs(limit = 10) {
   }
 }
 
+// ── Brief Lifecycle (v2 pipeline) ────────────────────────────────────────────
+
+export async function updateBriefStatus(id, status, updates = {}) {
+  try {
+    const supabase = getSupabaseClient();
+    if (!supabase) return null;
+
+    const payload = { status, ...updates };
+    if (status === 'produced' || status === 'held') {
+      payload.processed_at = payload.processed_at || new Date().toISOString();
+    }
+
+    const { data, error } = await supabase
+      .from('research_briefs')
+      .update(payload)
+      .eq('id', id)
+      .select('id')
+      .single();
+
+    if (error) { console.warn('[kb-client] updateBriefStatus error:', error.message); return null; }
+    return data.id;
+  } catch (err) {
+    console.warn('[kb-client] updateBriefStatus exception:', err.message);
+    return null;
+  }
+}
+
+export async function getProducedBriefs(limit = 20) {
+  try {
+    const supabase = getSupabaseClient();
+    if (!supabase) return [];
+
+    const { data, error } = await supabase
+      .from('research_briefs')
+      .select('*')
+      .eq('status', 'produced')
+      .order('processed_at', { ascending: false })
+      .limit(limit);
+
+    if (error) { console.warn('[kb-client] getProducedBriefs error:', error.message); return []; }
+    return data || [];
+  } catch (err) {
+    console.warn('[kb-client] getProducedBriefs exception:', err.message);
+    return [];
+  }
+}
+
+export async function getHeldBriefs(limit = 20) {
+  try {
+    const supabase = getSupabaseClient();
+    if (!supabase) return [];
+
+    const { data, error } = await supabase
+      .from('research_briefs')
+      .select('*')
+      .eq('status', 'held')
+      .order('processed_at', { ascending: false })
+      .limit(limit);
+
+    if (error) { console.warn('[kb-client] getHeldBriefs error:', error.message); return []; }
+    return data || [];
+  } catch (err) {
+    console.warn('[kb-client] getHeldBriefs exception:', err.message);
+    return [];
+  }
+}
+
+export async function decideBrief(id, { decision, reason = null, decided_by = 'haresh' }) {
+  try {
+    const supabase = getSupabaseClient();
+    if (!supabase) return null;
+
+    const brief = await getBrief(id);
+    if (!brief) return null;
+
+    // Update the brief with the decision
+    const statusMap = {
+      APPROVED: 'approved',
+      REJECTED: 'rejected',
+      HELD: 'held',
+      RETRY: 'ready',  // re-queue for processing
+    };
+
+    await updateBriefStatus(id, statusMap[decision] || brief.status, {
+      decision,
+      decision_reason: reason,
+      decided_by,
+      decided_at: new Date().toISOString(),
+    });
+
+    // Log to editorial_decisions for audit trail
+    await logDecision({
+      entry_id: brief.v2_entry?.id || brief.entities?.company_slug || id,
+      brief_id: id,
+      decision,
+      reason,
+      draft_snapshot: brief.v2_entry,
+      evaluator_score: brief.v2_evaluation,
+      pipeline_score: brief.v2_score,
+      company_id: brief.company_id,
+      capability: brief.entities?.capability_area,
+      entry_type: brief.v2_entry?.type || 'intelligence',
+      decided_by,
+    });
+
+    return id;
+  } catch (err) {
+    console.warn('[kb-client] decideBrief exception:', err.message);
+    return null;
+  }
+}
+
+export async function getDecisionHistory({ limit = 50, company_id = null, decision = null } = {}) {
+  try {
+    const supabase = getSupabaseClient();
+    if (!supabase) return [];
+
+    let query = supabase
+      .from('editorial_decisions')
+      .select('*')
+      .order('decided_at', { ascending: false })
+      .limit(limit);
+
+    if (company_id) query = query.eq('company_id', company_id);
+    if (decision) query = query.eq('decision', decision);
+
+    const { data, error } = await query;
+
+    if (error) { console.warn('[kb-client] getDecisionHistory error:', error.message); return []; }
+    return data || [];
+  } catch (err) {
+    console.warn('[kb-client] getDecisionHistory exception:', err.message);
+    return [];
+  }
+}
+
 // ── Editorial Decisions ──────────────────────────────────────────────────────
 
 export async function logDecision({

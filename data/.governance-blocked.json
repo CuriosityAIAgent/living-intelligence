@@ -255,6 +255,13 @@
     "title": "Altruist's Hazel AI Aggregates CRM, Comms and Market Data to Automate Advisor Workflows Across Sowell Network",
     "score": 45
   },
+  "https://finance.yahoo.com/news/openai-releases-financial-services-tools-190124457.html": {
+    "id": "openai-financial-services-tools-march-2026",
+    "reason": "Score 42/100 — below 45 review threshold",
+    "blocked_at": "2026-04-11T04:03:08.222Z",
+    "title": "OpenAI Launches Dedicated Financial-Services AI Tools, Entering Direct Competition with Anthropic",
+    "score": 42
+  },
   "https://citywire.com/ria/news/altruist-saw-record-traffic-after-launching-ai-tax-tool-coo-says/a2483745": {
     "id": "altruist-ai-tax-tool-record-traffic-2026-02",
     "reason": "Score 50/100 — below 45 review threshold",
@@ -276,18 +283,18 @@
     "title": "Ten Wealthtech Experts Converge on Agentic AI and Hyper-Personalization as 2026's Defining Capability Shifts",
     "score": 0
   },
-  "https://hubbis.com/article/ai-in-private-wealth-management-from-experimentation-to-agentic-transformation": {
-    "id": "agentic-ai-private-wealth-management-transformation-2026",
-    "reason": "the_so_what flagged as weak CXO relevance (2/10) — review before publishing",
-    "blocked_at": "2026-04-14T04:02:47.989Z",
-    "title": "Private Wealth Management Shifts from AI Experimentation to Agentic Autonomous Systems",
-    "score": 42
+  "https://www.pymnts.com/artificial-intelligence-2/2026/citi-arms-wealth-advisors-with-4-ai-tools-to-cut-busywork/": {
+    "id": "citi-wealth-ai-tools-advisor-productivity-2026-04",
+    "reason": "Fabrication detected: Client 360 rollout timeline contradiction: Entry states 'full rollout planned for April 2026', but source states full rollout to Citi Private Bank and Wealth at Work is planned for 'this month' (April 2026) with ALL Wealth colleagues gaining access in Q2 2026 — the entry omits the Q2 2026 phase and mischaracterizes the rollout scope.; Portfolio Intelligence global rollout: Entry states 'global rollout through year-end', but source specifies expanding to Private Bank clients globally in Q2 first, then all Wealth clients by year-end — the entry collapses these two phases into one.; CitiScribe description: Entry states it 'automates meeting note-taking', but source describes it as 'automates note-taking, summarizing client discussions' — minor but the entry's characterization is consistent enough to not be a hard fail.; Citi Stylus Workspaces launch: Entry states 'launched in September 2025' which is consistent with source reference to 'Last September' (published April 2026).",
+    "blocked_at": "2026-04-14T04:02:22.294Z",
+    "title": "Citi Deploys 4 AI Tools Across Wealth Division, Automating Notes, Research Queries and Client 360 Views",
+    "score": 0
   },
-  "https://hubbis.com/article/damien-piper-of-unique-ai-turning-artificial-intelligence-into-a-practical-tool-for-wealth-management": {
-    "id": "unique-ai-damien-piper-practical-wealth-management",
-    "reason": "Score 45/100 — below 45 review threshold",
-    "blocked_at": "2026-04-14T04:03:50.066Z",
-    "title": "Unique AI Positions Wealth-Native LLM Deployment as Answer to Generic AI Adoption Failure",
+  "https://hubbis.com/article/ai-in-private-wealth-management-from-experimentation-to-agentic-transformation": {
+    "id": "ai-private-wealth-agentic-transformation-hubbis-2026",
+    "reason": "the_so_what flagged as weak CXO relevance (3/10) — review before publishing",
+    "blocked_at": "2026-04-14T04:04:42.454Z",
+    "title": "Agentic AI Moves From Pilot to Autonomous Execution Across Private Wealth Client Lifecycle",
     "score": 45
   }
 }

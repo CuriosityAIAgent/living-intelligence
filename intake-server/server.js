@@ -28,8 +28,8 @@ import {
   checkLandscapeImpact, getLandscapeSuggestions,
   applyLandscapeSuggestion, dismissLandscapeSuggestion,
 } from './agents/landscape-trigger.js';
-import { logDecision, storePublishedEntry, getReadyBriefs, getSupabaseClient } from './agents/kb-client.js';
-import { produceEntry } from './agents/content-producer.js';
+import { logDecision, storePublishedEntry, getReadyBriefs, getProducedBriefs, getHeldBriefs, decideBrief, getDecisionHistory, getSupabaseClient } from './agents/kb-client.js';
+import { produceEntry, produceBatch } from './agents/content-producer.js';
 import { runLandscapeSweep, getStaleList } from './agents/landscape-sweep.js';
 import { publishTlEntry } from './agents/tl-publisher.js';
 import { runTLDiscover, getTLCandidates, dismissTLCandidate } from './agents/tl-discover.js';
@@ -966,6 +966,96 @@ app.get('/api/v2/kb/stats', async (req, res) => {
       editorial_decisions: decisions.count || 0,
       pipeline_events: events.count || 0,
     });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// POST /api/v2/trigger-batch — Dedicated endpoint for Remote Trigger (bearer token auth, JSON response)
+const TRIGGER_SECRET = process.env.TRIGGER_SECRET;
+app.post('/api/v2/trigger-batch', async (req, res) => {
+  // Bearer token auth — bypasses Basic Auth for automated triggers
+  const auth = req.headers.authorization;
+  if (!TRIGGER_SECRET || !auth || auth !== `Bearer ${TRIGGER_SECRET}`) {
+    return res.status(401).json({ error: 'Invalid or missing trigger token' });
+  }
+
+  const limit = parseInt(req.body?.limit, 10) || 10;
+  const logs = [];
+  const send = (type, data) => logs.push({ type, ...data, timestamp: new Date().toISOString() });
+
+  try {
+    const summary = await produceBatch({ limit, send });
+    res.json({ ok: true, summary, logs });
+  } catch (err) {
+    res.status(500).json({ error: err.message, logs });
+  }
+});
+
+// POST /api/v2/produce-batch — Run v2 pipeline on all ready briefs (SSE stream for Editorial Studio)
+app.post('/api/v2/produce-batch', (req, res) => {
+  const limit = parseInt(req.body?.limit, 10) || 10;
+
+  res.writeHead(200, { 'Content-Type': 'text/event-stream', 'Cache-Control': 'no-cache', Connection: 'keep-alive' });
+  const send = (type, data) => res.write(`data: ${JSON.stringify({ type, ...data })}\n\n`);
+
+  produceBatch({ limit, send })
+    .then(summary => {
+      send('batch_complete', summary);
+      res.end();
+    })
+    .catch(err => {
+      send('error', { message: err.message });
+      res.end();
+    });
+});
+
+// GET /api/v2/inbox — Produced entries awaiting editorial review
+app.get('/api/v2/inbox', async (req, res) => {
+  try {
+    const limit = parseInt(req.query.limit, 10) || 20;
+    const briefs = await getProducedBriefs(limit);
+    res.json({ entries: briefs, count: briefs.length });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// GET /api/v2/held — Held entries (low score or suspect fabrication)
+app.get('/api/v2/held', async (req, res) => {
+  try {
+    const limit = parseInt(req.query.limit, 10) || 20;
+    const briefs = await getHeldBriefs(limit);
+    res.json({ entries: briefs, count: briefs.length });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// POST /api/v2/decide/:briefId — Approve, reject, hold, or retry a brief
+app.post('/api/v2/decide/:briefId', async (req, res) => {
+  try {
+    const { briefId } = req.params;
+    const { decision, reason } = req.body;
+    if (!decision || !['APPROVED', 'REJECTED', 'HELD', 'RETRY'].includes(decision)) {
+      return res.status(400).json({ error: 'decision must be APPROVED, REJECTED, HELD, or RETRY' });
+    }
+    const id = await decideBrief(briefId, { decision, reason, decided_by: 'haresh' });
+    if (!id) return res.status(404).json({ error: 'Brief not found' });
+    res.json({ ok: true, briefId: id, decision });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// GET /api/v2/history — Decision audit trail
+app.get('/api/v2/history', async (req, res) => {
+  try {
+    const limit = parseInt(req.query.limit, 10) || 50;
+    const company_id = req.query.company_id || null;
+    const decision = req.query.decision || null;
+    const history = await getDecisionHistory({ limit, company_id, decision });
+    res.json({ decisions: history, count: history.length });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
