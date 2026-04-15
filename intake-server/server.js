@@ -992,44 +992,14 @@ app.post('/api/v2/trigger-batch', async (req, res) => {
   }
 });
 
-// GET /api/v2/briefs-for-processing — Returns ready briefs hydrated with full source text (for Remote Trigger)
-// Single brief: /api/v2/briefs-for-processing/:id — Returns one fully hydrated brief
-app.get('/api/v2/briefs-for-processing/:id?', async (req, res) => {
+// GET /api/v2/briefs-for-processing — Returns ready briefs (metadata only, for Remote Trigger)
+app.get('/api/v2/briefs-for-processing', async (req, res) => {
   const auth = req.headers.authorization;
   if (!TRIGGER_SECRET || !auth || auth !== `Bearer ${TRIGGER_SECRET}`) {
     return res.status(401).json({ error: 'Invalid or missing trigger token' });
   }
 
   try {
-    if (req.params.id) {
-      // Single brief — fully hydrated with source text
-      const hydrated = await hydrateBrief(req.params.id);
-      if (!hydrated) return res.status(404).json({ error: 'Brief not found or failed to hydrate' });
-
-      // Build the response with source text inline
-      const brief = {
-        id: hydrated.id,
-        status: hydrated.status,
-        candidate_url: hydrated.candidate_url,
-        candidate_source: hydrated.candidate_source,
-        company_id: hydrated.company_id,
-        triage_score: hydrated.triage_score,
-        source_count: hydrated.source_count,
-        entities: hydrated.entities,
-        created_at: hydrated.created_at,
-        // Full source text for writing/fabrication
-        primary_source: hydrated._primary_source || null,
-        additional_sources: hydrated._additional_sources || [],
-        // Landscape + research context (stored by research-agent)
-        landscape: hydrated.landscape || null,
-        whats_new: hydrated.whats_new || null,
-        research_confidence: hydrated.research_confidence || null,
-      };
-
-      return res.json({ brief });
-    }
-
-    // List mode — metadata only, no source text
     const limit = parseInt(req.query.limit, 10) || 10;
     const briefs = await getReadyBriefs(limit);
     const summaries = briefs.map(b => ({
@@ -1043,6 +1013,42 @@ app.get('/api/v2/briefs-for-processing/:id?', async (req, res) => {
       created_at: b.created_at,
     }));
     res.json({ briefs: summaries, count: summaries.length });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// GET /api/v2/briefs-for-processing/:id — Returns one fully hydrated brief with source text (for Remote Trigger)
+app.get('/api/v2/briefs-for-processing/:id', async (req, res) => {
+  const auth = req.headers.authorization;
+  if (!TRIGGER_SECRET || !auth || auth !== `Bearer ${TRIGGER_SECRET}`) {
+    return res.status(401).json({ error: 'Invalid or missing trigger token' });
+  }
+
+  try {
+    const hydrated = await hydrateBrief(req.params.id);
+    if (!hydrated) return res.status(404).json({ error: 'Brief not found or failed to hydrate' });
+
+    const brief = {
+      id: hydrated.id,
+      status: hydrated.status,
+      candidate_url: hydrated.candidate_url,
+      candidate_source: hydrated.candidate_source,
+      company_id: hydrated.company_id,
+      triage_score: hydrated.triage_score,
+      source_count: hydrated.source_count,
+      entities: hydrated.entities,
+      created_at: hydrated.created_at,
+      // Full source text for writing/fabrication
+      primary_source: hydrated._primary_source || null,
+      additional_sources: hydrated._additional_sources || [],
+      // Landscape + research context (stored by research-agent)
+      landscape: hydrated.landscape || null,
+      whats_new: hydrated.whats_new || null,
+      research_confidence: hydrated.research_confidence || null,
+    };
+
+    return res.json({ brief });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
