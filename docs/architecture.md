@@ -151,22 +151,25 @@
 Phase 1 — Railway (5am daily, API tokens ~$5/month):
   Auto-discover → triage → research agent → briefs stored in Supabase KB (status: ready)
 
-Phase 2 — Remote Trigger (5:27am daily, Claude Opus, Max tokens = $0):
-  1. GET /api/v2/briefs-for-processing → list of ready briefs
-  2. For each brief: GET /api/v2/briefs-for-processing/:id → hydrated with full source text
+Phase 2 — Routine/Remote Trigger (5:27am daily, Claude Opus, Max tokens = $0):
+  Uses Supabase REST API directly (requires Custom network access environment).
+  1. GET supabase/research_briefs?status=eq.ready → list of ready briefs
+  2. For each brief: GET supabase/sources?id=eq.{primary_source_id} → full source text
   3. Claude writes consulting-quality entry (McKinsey voice, peer context)
   4. Claude evaluates against 6-point McKinsey test
   5. If NEEDS_WORK → Claude refines with own feedback → re-evaluates (max 2 iterations)
   6. Claude checks fabrication against source text
   7. Final scoring: 5 dimensions computed from finished entry
-  8. POST /api/v2/store-produced → entry stored on brief (status: produced or held)
+  8. PATCH supabase/research_briefs → entry stored on brief (status: produced or held)
 
 Phase 3 — Editorial Studio (Haresh reviews):
-  Editorial review → Approve → git push main → portal rebuilds
+  Editorial review → Approve → publisher.js → git push → portal rebuilds
 ```
 
 Note: Claude IS the writer, evaluator, and fabrication checker in Phase 2.
-No `new Anthropic()` API calls — the Remote Trigger session is the model.
+No `new Anthropic()` API calls — the Routine session is the model ($0 via Max).
+Routine environment must have Custom network access with *.supabase.co in allowlist.
+Railway API routes (briefs-for-processing, store-produced) work for Editorial Studio.
 Fallback: content-producer.js still works for manual CLI use (uses API credits).
 
 ### Publish Flow

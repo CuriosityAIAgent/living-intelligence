@@ -1077,6 +1077,7 @@ app.post('/api/v2/store-produced', async (req, res) => {
       v2_score: final_score,
       v2_fabrication_verdict: fabrication?.verdict || 'SUSPECT',
       v2_evaluation: evaluation || null,
+      v2_iterations: iterations || [],
     });
 
     await logDecision({

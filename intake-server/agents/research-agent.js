@@ -633,7 +633,14 @@ export async function research({ url, title, source_name, send }) {
       is_tracked: landscapeContext.is_tracked,
       company_summary: landscapeContext.company?.ai_strategy_summary || null,
       past_entries: landscapeContext.past_entries.map(e => e.headline),
-      peers: landscapeContext.peers.map(p => p.name),
+      peers: landscapeContext.peers.map(p => ({
+        name: p.name,
+        segment: p.segment,
+        overall_maturity: p.overall_maturity,
+        capabilities: Object.fromEntries(
+          Object.entries(p.capabilities || {}).map(([k, v]) => [k, { maturity: v.maturity, headline: v.headline }])
+        ),
+      })),
     },
     whats_new,
     source_count: totalSources,
