@@ -49,54 +49,49 @@ export default function V2Card({ brief, onApprove, onReject, onRetry, approving 
   return (
     <div className="rounded mb-6" style={{ background: '#FFFCF8', border: '1px solid #E5E7EB' }}>
       {/* ── Confidence bar ── */}
-      <div className="px-6 py-4 border-b border-gray-100 flex items-center gap-4 flex-wrap">
-        {/* Score — large and prominent */}
-        <div className="flex items-baseline gap-1">
-          <span className="text-2xl font-extrabold" style={{ color: scoreColor }}>
-            {score ?? '—'}
-          </span>
-          <span className="text-[10px] text-gray-400 font-medium">/100</span>
+      <div className="px-6 py-3 border-b border-gray-100 flex items-center justify-between">
+        <div className="flex items-center gap-4">
+          {/* Score */}
+          <div className="flex items-baseline gap-1">
+            <span className="text-2xl font-extrabold" style={{ color: scoreColor }}>
+              {score ?? '—'}
+            </span>
+            <span className="text-[10px] text-gray-400 font-medium">/100</span>
+          </div>
+
+          <div className="w-px h-6 bg-gray-200" />
+
+          {/* Fabrication */}
+          {fabVerdict && (
+            <span
+              className="text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded"
+              style={{ background: fabBg, color: fabColor }}
+            >
+              {fabVerdict}
+            </span>
+          )}
+
+          {/* Source count */}
+          {sources.length > 0 && (
+            <span className="text-xs text-gray-500 font-medium">
+              {sources.length} source{sources.length !== 1 ? 's' : ''}
+            </span>
+          )}
         </div>
 
-        <div className="w-px h-6 bg-gray-200" />
-
-        {/* Fabrication */}
-        {fabVerdict && (
-          <span
-            className="text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded"
-            style={{ background: fabBg, color: fabColor }}
-          >
-            {fabVerdict}
+        {/* Right side: type + date */}
+        <div className="flex items-center gap-3">
+          <span className="text-[10px] font-semibold uppercase tracking-wider px-2.5 py-0.5 rounded bg-indigo-50 text-indigo-700">
+            {entry.type?.replace(/_/g, ' ') || 'intelligence'}
           </span>
-        )}
-
-        {/* Source count */}
-        {sources.length > 0 && (
-          <span className="text-xs text-gray-500 font-medium">
-            {sources.length} source{sources.length !== 1 ? 's' : ''}
-          </span>
-        )}
-
-        {/* Content type */}
-        <span className="text-[10px] font-semibold uppercase tracking-wider px-2.5 py-0.5 rounded bg-indigo-50 text-indigo-700">
-          {entry.type?.replace(/_/g, ' ') || 'intelligence'}
-        </span>
-
-        {/* Eval score */}
-        {evaluation?.score != null && (
-          <span className="text-xs text-gray-400">
-            eval {evaluation.score}/10
-          </span>
-        )}
-
-        {/* Date — right aligned */}
-        {brief.processed_at && (
-          <span className="text-xs text-gray-400 ml-auto">
-            {new Date(brief.processed_at).toLocaleDateString('en-GB', {
-              day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit',
-            })}
-          </span>
-        )}
+          {brief.processed_at && (
+            <span className="text-xs text-gray-400">
+              {new Date(brief.processed_at).toLocaleDateString('en-GB', {
+                day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit',
+              })}
+            </span>
+          )}
+        </div>
       </div>
 
       {/* ── Card body ── */}
@@ -280,34 +275,39 @@ export default function V2Card({ brief, onApprove, onReject, onRetry, approving 
         )}
 
         {/* ── Actions ── */}
-        <div className="flex gap-3 items-start pt-5 mt-2 border-t border-gray-100 flex-wrap">
-          <button
-            onClick={() => onApprove(brief.id)}
-            disabled={approving}
-            className="text-white border-none rounded px-6 py-2.5 text-sm font-bold cursor-pointer disabled:opacity-60 disabled:cursor-wait transition-opacity"
-            style={{ background: '#15803D' }}
-          >
-            {approving ? 'Approving…' : 'Approve'}
-          </button>
-
-          <button
-            onClick={() => onRetry(brief.id)}
-            className="bg-white rounded px-5 py-2.5 text-sm font-semibold cursor-pointer transition-colors"
-            style={{ border: '1px solid #BFDBFE', color: '#1D4ED8' }}
-          >
-            Re-research
-          </button>
-
+        <div className="pt-5 mt-2 border-t border-gray-100">
           {!rejecting ? (
-            <button
-              onClick={() => setRejecting(true)}
-              className="bg-white rounded px-5 py-2.5 text-sm font-semibold cursor-pointer"
-              style={{ border: '1px solid #FECACA', color: '#B91C1C' }}
-            >
-              Reject
-            </button>
+            <div className="flex items-center justify-between">
+              {/* Primary action */}
+              <button
+                onClick={() => onApprove(brief.id)}
+                disabled={approving}
+                className="text-white border-none rounded px-8 py-2.5 text-sm font-bold cursor-pointer disabled:opacity-60 disabled:cursor-wait transition-opacity"
+                style={{ background: '#15803D' }}
+              >
+                {approving ? 'Publishing…' : 'Approve & Publish'}
+              </button>
+
+              {/* Secondary actions — right side, text-style */}
+              <div className="flex items-center gap-6">
+                <button
+                  onClick={() => onRetry(brief.id)}
+                  className="bg-transparent border-none text-sm font-medium cursor-pointer p-0"
+                  style={{ color: '#1D4ED8' }}
+                >
+                  Re-research
+                </button>
+                <button
+                  onClick={() => setRejecting(true)}
+                  className="bg-transparent border-none text-sm font-medium cursor-pointer p-0"
+                  style={{ color: '#B91C1C' }}
+                >
+                  Reject
+                </button>
+              </div>
+            </div>
           ) : (
-            <div className="flex-1 min-w-[300px] flex flex-col gap-3 rounded-md p-4" style={{ background: '#FFF8F8', border: '1px solid #FECACA' }}>
+            <div className="flex flex-col gap-3 rounded-md p-4" style={{ background: '#FFF8F8', border: '1px solid #FECACA' }}>
               <div className="flex gap-2 flex-wrap">
                 {REJECT_REASONS.map((r) => (
                   <button
@@ -341,7 +341,7 @@ export default function V2Card({ brief, onApprove, onReject, onRetry, approving 
                 </button>
                 <button
                   onClick={() => { setRejecting(false); setRejectReason(''); setRejectNotes(''); }}
-                  className="bg-white text-gray-500 border border-gray-300 rounded px-4 py-2 text-sm cursor-pointer"
+                  className="bg-transparent text-gray-500 border-none text-sm cursor-pointer p-0"
                 >
                   Cancel
                 </button>
