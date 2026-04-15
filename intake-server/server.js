@@ -1100,6 +1100,107 @@ app.post('/api/v2/store-produced', async (req, res) => {
   }
 });
 
+// POST /api/v2/research-enrich — On-demand targeted research (called by Remote Trigger mid-writing)
+// Takes search queries, does Jina searches, stores results in KB, returns enriched source text
+app.post('/api/v2/research-enrich', async (req, res) => {
+  const auth = req.headers.authorization;
+  if (!TRIGGER_SECRET || !auth || auth !== `Bearer ${TRIGGER_SECRET}`) {
+    return res.status(401).json({ error: 'Invalid or missing trigger token' });
+  }
+
+  const { brief_id, queries, company_id } = req.body;
+  if (!queries || !Array.isArray(queries) || queries.length === 0) {
+    return res.status(400).json({ error: 'queries array is required' });
+  }
+
+  try {
+    const results = [];
+    const seen = new Set();
+    const JINA_KEY = process.env.JINA_API_KEY;
+
+    // Search via Jina for each query (max 5 queries)
+    for (const query of queries.slice(0, 5)) {
+      try {
+        const searchRes = await fetch(`https://s.jina.ai/${encodeURIComponent(query)}`, {
+          headers: {
+            'Accept': 'application/json',
+            ...(JINA_KEY ? { 'Authorization': `Bearer ${JINA_KEY}` } : {}),
+          },
+          signal: AbortSignal.timeout(20000),
+        });
+        if (!searchRes.ok) continue;
+        const data = await searchRes.json();
+
+        for (const r of (data.data || []).slice(0, 3)) {
+          if (!r.url || seen.has(r.url)) continue;
+          seen.add(r.url);
+
+          // Fetch full content via Jina
+          try {
+            const fetchRes = await fetch(`https://r.jina.ai/${r.url}`, {
+              headers: {
+                'Accept': 'text/markdown',
+                'X-Return-Format': 'markdown',
+                ...(JINA_KEY ? { 'Authorization': `Bearer ${JINA_KEY}` } : {}),
+              },
+              signal: AbortSignal.timeout(20000),
+            });
+            if (!fetchRes.ok) continue;
+            const markdown = await fetchRes.text();
+            if (markdown.length < 200) continue;
+
+            // Store in KB
+            const { upsertSource: upsert } = await import('./agents/kb-client.js');
+            const hostname = (() => { try { return new URL(r.url).hostname.replace(/^www\./, ''); } catch (_) { return ''; } })();
+            const srcId = await upsert({
+              url: r.url,
+              title: r.title || null,
+              source_name: hostname,
+              content_md: markdown,
+              company_id: company_id || null,
+              fetched_by: 'research-enrich',
+            });
+
+            results.push({
+              url: r.url,
+              title: r.title || '',
+              source_name: hostname,
+              content_md: markdown,
+              word_count: markdown.split(/\s+/).length,
+              source_id: srcId,
+              query,
+            });
+          } catch (_) { continue; }
+        }
+      } catch (_) { continue; }
+
+      if (results.length >= 5) break; // cap at 5 enrichment sources
+    }
+
+    // If brief_id provided, update the brief's additional_source_ids
+    if (brief_id && results.length > 0) {
+      const { getBrief, updateBriefStatus: updateBrief } = await import('./agents/kb-client.js');
+      const brief = await getBrief(brief_id);
+      if (brief) {
+        const existingIds = brief.additional_source_ids || [];
+        const newIds = results.filter(r => r.source_id).map(r => r.source_id);
+        await updateBrief(brief_id, brief.status, {
+          additional_source_ids: [...existingIds, ...newIds],
+          source_count: (brief.source_count || 1) + newIds.length,
+        });
+      }
+    }
+
+    res.json({
+      ok: true,
+      sources_found: results.length,
+      sources: results,
+    });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 // POST /api/v2/produce-batch — Run v2 pipeline on all ready briefs (SSE stream for Editorial Studio)
 app.post('/api/v2/produce-batch', (req, res) => {
   const limit = parseInt(req.body?.limit, 10) || 10;

@@ -126,6 +126,7 @@
 | `/api/v2/briefs-for-processing` | GET | Bearer token auth — List ready briefs (metadata only) for Remote Trigger |
 | `/api/v2/briefs-for-processing/:id` | GET | Bearer token auth — Single hydrated brief with full source text from KB |
 | `/api/v2/store-produced` | POST | Bearer token auth — Store finished entry on brief (from Remote Trigger) |
+| `/api/v2/research-enrich` | POST | Bearer token auth — On-demand targeted research (Jina search + fetch + KB store) |
 | `/api/v2/produce-batch` | POST | SSE stream — run batch processing from Editorial Studio |
 | `/api/v2/inbox` | GET | Produced briefs awaiting editorial review |
 | `/api/v2/held` | GET | Held briefs (low score or suspect fabrication) |

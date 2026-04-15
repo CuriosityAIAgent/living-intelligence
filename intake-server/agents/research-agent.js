@@ -202,6 +202,69 @@ async function findSources(entities, originalUrl) {
   return scored.slice(0, 10);
 }
 
+// ── Second-pass deep research (entity-aware targeted searches) ───────────────
+
+async function deepResearch(entities, existingUrls) {
+  const seen = new Set(existingUrls);
+  const candidates = [];
+
+  const queries = [];
+
+  // Search for specific tool/product names
+  if (entities.tool_names?.length > 0 && entities.company_name) {
+    for (const tool of entities.tool_names.slice(0, 3)) {
+      queries.push(`${entities.company_name} ${tool} AI`);
+    }
+  }
+
+  // Search for awards/accolades
+  if (entities.awards?.length > 0 && entities.company_name) {
+    for (const award of entities.awards.slice(0, 2)) {
+      queries.push(`${entities.company_name} ${award}`);
+    }
+  }
+
+  // Search for technology partnerships
+  if (entities.partners?.length > 0 && entities.company_name) {
+    for (const partner of entities.partners.slice(0, 2)) {
+      queries.push(`${entities.company_name} ${partner} partnership`);
+    }
+  }
+
+  // Search for specific people (interviews, quotes)
+  if (entities.people?.length > 0) {
+    const topPerson = entities.people[0].split('—')[0].trim();
+    if (topPerson.split(' ').length >= 2) {
+      queries.push(`"${topPerson}" ${entities.company_name || ''} AI`);
+    }
+  }
+
+  if (queries.length === 0) return [];
+
+  for (const q of queries) {
+    const results = await searchJina(q);
+    for (const r of results) {
+      if (!r.url || seen.has(r.url)) continue;
+      let hostname = '';
+      try { hostname = new URL(r.url).hostname.replace(/^www\./, ''); } catch (_) { continue; }
+      if (PAYWALLED_DOMAINS.has(hostname)) continue;
+      seen.add(r.url);
+      candidates.push({ ...r, hostname, via: 'deep-research' });
+    }
+  }
+
+  // Score and sort
+  const scored = candidates.map(c => ({
+    ...c,
+    score: PRESS_RELEASE_DOMAINS.has(c.hostname) ? 3
+      : TIER1_MEDIA.has(c.hostname) ? 2
+      : 1,
+  }));
+  scored.sort((a, b) => b.score - a.score);
+
+  return scored.slice(0, 5);
+}
+
 // ── Source classification ─────────────────────────────────────────────────────
 
 function classifySourceType(url) {
@@ -374,8 +437,56 @@ export async function research({ url, title, source_name, send }) {
   }
 
   send('research_status', {
-    message: `${fetchedSources.length} sources fetched successfully: ${fetchedSources.map(s => s.name).join(', ')}`,
+    message: `Pass 1: ${fetchedSources.length} sources fetched: ${fetchedSources.map(s => s.name).join(', ')}`,
   });
+
+  // 4b. PASS 2: Deep research — targeted searches based on extracted entities
+  const hasDeepEntities = (entities.tool_names?.length > 0) ||
+    (entities.awards?.length > 0) ||
+    (entities.partners?.length > 0);
+
+  if (hasDeepEntities) {
+    send('research_status', {
+      message: `Pass 2: deep research for ${[
+        ...(entities.tool_names || []).slice(0, 2),
+        ...(entities.awards || []).slice(0, 1),
+        ...(entities.partners || []).slice(0, 1),
+      ].join(', ')}`,
+    });
+
+    const existingUrls = [url, ...fetchedSources.map(s => s.url)];
+    const deepCandidates = await deepResearch(entities, existingUrls);
+
+    for (const candidate of deepCandidates) {
+      const fetched = await fetchSourceSafe(candidate.url);
+      if (fetched) {
+        const srcId = await upsertSource({
+          url: candidate.url,
+          title: candidate.title || null,
+          source_name: candidate.hostname,
+          content_md: fetched.markdown,
+          word_count: fetched.word_count,
+          fetched_by: 'research-agent-deep',
+        });
+        if (srcId) additionalSourceIds.push(srcId);
+
+        fetchedSources.push({
+          url: candidate.url,
+          name: candidate.hostname,
+          title: candidate.title,
+          type: classifySourceType(candidate.url),
+          content: fetched.markdown,
+          word_count: fetched.word_count,
+          via: candidate.via,
+        });
+      }
+      if (fetchedSources.length >= 8) break; // cap total at 8
+    }
+
+    send('research_status', {
+      message: `Pass 2 complete: ${fetchedSources.length} total sources`,
+    });
+  }
 
   // 5. Load landscape context (flat files + KB for institutional memory)
   send('research_status', { message: 'Loading landscape context...' });

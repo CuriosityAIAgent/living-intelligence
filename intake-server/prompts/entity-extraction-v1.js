@@ -5,21 +5,24 @@
  * Extracts companies, people, metrics, and capability classification from article text.
  */
 
-export const VERSION = 'entity-extraction-v1';
+export const VERSION = 'entity-extraction-v2';
 
 export function build({ url, markdown }) {
-  return `Extract key entities from this article. Be thorough — every person quoted and every number mentioned matters.
+  return `Extract key entities from this article. Be thorough — every person, product, tool, award, and number matters.
 
 ARTICLE URL: ${url}
 ARTICLE TEXT (first 5000 chars):
 ${markdown.slice(0, 5000)}
 
-Return JSON only. Do NOT leave arrays empty — if people are quoted or named, list them. If numbers appear, list them:
+Return JSON only. Do NOT leave arrays empty — if people are quoted, list them. If product names appear, list them:
 {
   "company_name": "Full company name mentioned most prominently",
   "company_slug": "lowercase-hyphenated (e.g. bank-of-america, morgan-stanley, bofa-merrill)",
   "people": ["Full Name — Title, Organization (e.g. 'Jed Finn — Head of Wealth Management, Morgan Stanley')"],
-  "metrics": ["Every number: $80M, 15,000 advisors, 98% adoption, 4 hours saved, 30 billion interactions — list ALL numbers from the article"],
+  "metrics": ["Every number: $80M, 15,000 advisors, 98% adoption, 4 hours saved — list ALL numbers"],
+  "tool_names": ["Internal product/tool names: JAI, AskWealth, CitiScribe, Copilot, Erica — named AI tools, platforms, or products mentioned"],
+  "awards": ["Any awards, accolades, or rankings: Google AI Trailblazers Award, Euromoney Best Digital Bank"],
+  "partners": ["Technology partners or vendors: Anthropic, Salesforce, Google Cloud, Zoom — companies providing tech to the main company"],
   "capability_area": "advisor_productivity | client_personalization | investment_portfolio | research_content | client_acquisition | operations_compliance | new_business_models | unknown",
   "key_topic": "2-5 word description of what happened (e.g. 'AI meeting automation rollout')",
   "event_type": "funding | acquisition | regulatory | partnership | product_launch | milestone | strategy_move | market_signal"
