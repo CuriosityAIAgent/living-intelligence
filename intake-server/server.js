@@ -28,7 +28,7 @@ import {
   checkLandscapeImpact, getLandscapeSuggestions,
   applyLandscapeSuggestion, dismissLandscapeSuggestion,
 } from './agents/landscape-trigger.js';
-import { logDecision, storePublishedEntry, getReadyBriefs, getProducedBriefs, getHeldBriefs, decideBrief, getDecisionHistory, getSupabaseClient } from './agents/kb-client.js';
+import { logDecision, storePublishedEntry, getReadyBriefs, getProducedBriefs, getHeldBriefs, decideBrief, getDecisionHistory, getSupabaseClient, hydrateBrief, updateBriefStatus } from './agents/kb-client.js';
 import { produceEntry, produceBatch } from './agents/content-producer.js';
 import { runLandscapeSweep, getStaleList } from './agents/landscape-sweep.js';
 import { publishTlEntry } from './agents/tl-publisher.js';
@@ -989,6 +989,114 @@ app.post('/api/v2/trigger-batch', async (req, res) => {
     res.json({ ok: true, summary, logs });
   } catch (err) {
     res.status(500).json({ error: err.message, logs });
+  }
+});
+
+// GET /api/v2/briefs-for-processing — Returns ready briefs hydrated with full source text (for Remote Trigger)
+// Single brief: /api/v2/briefs-for-processing/:id — Returns one fully hydrated brief
+app.get('/api/v2/briefs-for-processing/:id?', async (req, res) => {
+  const auth = req.headers.authorization;
+  if (!TRIGGER_SECRET || !auth || auth !== `Bearer ${TRIGGER_SECRET}`) {
+    return res.status(401).json({ error: 'Invalid or missing trigger token' });
+  }
+
+  try {
+    if (req.params.id) {
+      // Single brief — fully hydrated with source text
+      const hydrated = await hydrateBrief(req.params.id);
+      if (!hydrated) return res.status(404).json({ error: 'Brief not found or failed to hydrate' });
+
+      // Build the response with source text inline
+      const brief = {
+        id: hydrated.id,
+        status: hydrated.status,
+        candidate_url: hydrated.candidate_url,
+        candidate_source: hydrated.candidate_source,
+        company_id: hydrated.company_id,
+        triage_score: hydrated.triage_score,
+        source_count: hydrated.source_count,
+        entities: hydrated.entities,
+        created_at: hydrated.created_at,
+        // Full source text for writing/fabrication
+        primary_source: hydrated._primary_source || null,
+        additional_sources: hydrated._additional_sources || [],
+        // Landscape + research context (stored by research-agent)
+        landscape: hydrated.landscape || null,
+        whats_new: hydrated.whats_new || null,
+        research_confidence: hydrated.research_confidence || null,
+      };
+
+      return res.json({ brief });
+    }
+
+    // List mode — metadata only, no source text
+    const limit = parseInt(req.query.limit, 10) || 10;
+    const briefs = await getReadyBriefs(limit);
+    const summaries = briefs.map(b => ({
+      id: b.id,
+      candidate_url: b.candidate_url,
+      candidate_source: b.candidate_source,
+      company_id: b.company_id,
+      triage_score: b.triage_score,
+      source_count: b.source_count,
+      entities: b.entities,
+      created_at: b.created_at,
+    }));
+    res.json({ briefs: summaries, count: summaries.length });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// POST /api/v2/store-produced — Store a finished entry on a brief (from Remote Trigger)
+app.post('/api/v2/store-produced', async (req, res) => {
+  const auth = req.headers.authorization;
+  if (!TRIGGER_SECRET || !auth || auth !== `Bearer ${TRIGGER_SECRET}`) {
+    return res.status(401).json({ error: 'Invalid or missing trigger token' });
+  }
+
+  const { brief_id, entry, fabrication, evaluation, iterations, final_score } = req.body;
+  if (!brief_id || !entry) {
+    return res.status(400).json({ error: 'brief_id and entry are required' });
+  }
+
+  try {
+    const isClean = fabrication?.verdict === 'CLEAN';
+    const status = (final_score >= 75 && isClean) ? 'produced' : 'held';
+
+    await updateBriefStatus(brief_id, status, {
+      v2_entry: entry,
+      v2_score: final_score,
+      v2_fabrication_verdict: fabrication?.verdict || 'SUSPECT',
+      v2_evaluation: evaluation || null,
+    });
+
+    await logDecision({
+      entry_id: entry.id || brief_id,
+      brief_id,
+      decision: status === 'produced' ? 'PRODUCED' : 'HELD',
+      reason: status === 'produced'
+        ? `Score ${final_score}/100, fabrication ${fabrication?.verdict}, ${entry.source_count || 1} sources (via Remote Trigger)`
+        : `Score ${final_score}/100 or fabrication ${fabrication?.verdict} (via Remote Trigger)`,
+      draft_snapshot: entry,
+      evaluator_score: evaluation,
+      pipeline_score: final_score,
+      company_id: entry.company || null,
+      capability: entry.capability_evidence?.capability,
+      entry_type: entry.type || 'intelligence',
+      decided_by: 'remote-trigger',
+    });
+
+    res.json({
+      ok: true,
+      brief_id,
+      status,
+      entry_id: entry.id,
+      score: final_score,
+      fabrication_verdict: fabrication?.verdict,
+    });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
   }
 });
 

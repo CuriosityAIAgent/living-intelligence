@@ -122,7 +122,10 @@
 | `/api/blocked/unblock` | POST | Unblock URL and reprocess through full pipeline (fetch → governance → score → inbox) |
 | `/api/health` | GET | Server health + queue counts |
 | **v2 Pipeline Routes** | | |
-| `/api/v2/trigger-batch` | POST | Bearer token auth — Remote Trigger calls this to run batch processing |
+| `/api/v2/trigger-batch` | POST | Bearer token auth — Legacy: server-side batch processing (burns API credits) |
+| `/api/v2/briefs-for-processing` | GET | Bearer token auth — List ready briefs (metadata only) for Remote Trigger |
+| `/api/v2/briefs-for-processing/:id` | GET | Bearer token auth — Single hydrated brief with full source text from KB |
+| `/api/v2/store-produced` | POST | Bearer token auth — Store finished entry on brief (from Remote Trigger) |
 | `/api/v2/produce-batch` | POST | SSE stream — run batch processing from Editorial Studio |
 | `/api/v2/inbox` | GET | Produced briefs awaiting editorial review |
 | `/api/v2/held` | GET | Held briefs (low score or suspect fabrication) |
@@ -142,17 +145,28 @@
 5. UNIVERSAL INBOX: nothing auto-publishes. Editorial review required.
 ```
 
-### v2 Pipeline (consulting-quality, interactive or scheduled)
+### v2 Pipeline (consulting-quality, Option A architecture)
 ```
-1. Research Agent: fetch primary + search 5-10 additional sources + landscape context
-2. Writer Agent (Opus): consulting-quality entry (McKinsey voice, peer context)
-3. Fabrication Agent: verify ALL claims against ALL sources, drift detection
-4. Evaluator Agent (Opus): 6-point McKinsey test (specificity, so-what, source, substance, stat, competitor)
-5. If NEEDS_WORK → Writer refines with evaluator feedback → Fabrication re-checks
-6. Final scoring: 5 dimensions computed from finished entry
-7. Entry stored with _research, _fabrication, _iterations, _final_score metadata
-8. Editorial review → Approve → git push main → portal rebuilds
+Phase 1 — Railway (5am daily, API tokens ~$5/month):
+  Auto-discover → triage → research agent → briefs stored in Supabase KB (status: ready)
+
+Phase 2 — Remote Trigger (5:27am daily, Claude Opus, Max tokens = $0):
+  1. GET /api/v2/briefs-for-processing → list of ready briefs
+  2. For each brief: GET /api/v2/briefs-for-processing/:id → hydrated with full source text
+  3. Claude writes consulting-quality entry (McKinsey voice, peer context)
+  4. Claude evaluates against 6-point McKinsey test
+  5. If NEEDS_WORK → Claude refines with own feedback → re-evaluates (max 2 iterations)
+  6. Claude checks fabrication against source text
+  7. Final scoring: 5 dimensions computed from finished entry
+  8. POST /api/v2/store-produced → entry stored on brief (status: produced or held)
+
+Phase 3 — Editorial Studio (Haresh reviews):
+  Editorial review → Approve → git push main → portal rebuilds
 ```
+
+Note: Claude IS the writer, evaluator, and fabrication checker in Phase 2.
+No `new Anthropic()` API calls — the Remote Trigger session is the model.
+Fallback: content-producer.js still works for manual CLI use (uses API credits).
 
 ### Publish Flow
 ```
