@@ -44,7 +44,9 @@ const STUDIO_USER = process.env.STUDIO_USER;
 const STUDIO_PASS = process.env.STUDIO_PASS;
 if (STUDIO_USER && STUDIO_PASS) {
   app.use((req, res, next) => {
+    // Skip Basic Auth for bearer-token API routes (Remote Trigger, health checks)
     const auth = req.headers.authorization;
+    if (auth && auth.startsWith('Bearer ')) return next();
     if (!auth || !auth.startsWith('Basic ')) {
       res.set('WWW-Authenticate', 'Basic realm="Editorial Studio"');
       return res.status(401).send('Authentication required');
