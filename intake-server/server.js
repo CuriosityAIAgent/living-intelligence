@@ -28,7 +28,7 @@ import {
   checkLandscapeImpact, getLandscapeSuggestions,
   applyLandscapeSuggestion, dismissLandscapeSuggestion,
 } from './agents/landscape-trigger.js';
-import { logDecision, storePublishedEntry, getReadyBriefs, getProducedBriefs, getHeldBriefs, decideBrief, getDecisionHistory, getSupabaseClient, hydrateBrief, updateBriefStatus } from './agents/kb-client.js';
+import { logDecision, storePublishedEntry, getReadyBriefs, getProducedBriefs, getHeldBriefs, getBrief, decideBrief, getDecisionHistory, getSupabaseClient, hydrateBrief, updateBriefStatus } from './agents/kb-client.js';
 import { produceEntry, produceBatch } from './agents/content-producer.js';
 import { runLandscapeSweep, getStaleList } from './agents/landscape-sweep.js';
 import { publishTlEntry } from './agents/tl-publisher.js';
@@ -1257,8 +1257,49 @@ app.post('/api/v2/decide/:briefId', async (req, res) => {
     if (!decision || !['APPROVED', 'REJECTED', 'HELD', 'RETRY'].includes(decision)) {
       return res.status(400).json({ error: 'decision must be APPROVED, REJECTED, HELD, or RETRY' });
     }
+
+    // For APPROVED: fetch the brief first so we can publish the v2_entry
+    let brief = null;
+    if (decision === 'APPROVED') {
+      brief = await getBrief(briefId);
+      if (!brief?.v2_entry) {
+        return res.status(400).json({ error: 'Brief has no v2_entry to publish — cannot approve' });
+      }
+    }
+
     const id = await decideBrief(briefId, { decision, reason, decided_by: 'haresh' });
     if (!id) return res.status(404).json({ error: 'Brief not found' });
+
+    // If approved, publish the entry to the portal
+    if (decision === 'APPROVED' && brief?.v2_entry) {
+      const entry = brief.v2_entry;
+      const noop = () => {};
+
+      // Add governance block from v2 fabrication data
+      entry._governance = {
+        verdict: brief.v2_fabrication_verdict === 'CLEAN' ? 'PASS' : 'REVIEW',
+        confidence: brief.v2_score || 0,
+        verified_claims: [],
+        unverified_claims: [],
+        fabricated_claims: [],
+        notes: `v2 pipeline — fabrication: ${brief.v2_fabrication_verdict || 'unknown'}, score: ${brief.v2_score || 'n/a'}`,
+        paywall_caveat: false,
+        verified_at: new Date().toISOString(),
+        human_approved: true,
+        approved_at: new Date().toISOString(),
+      };
+
+      try {
+        const publishedId = publish({ entry, send: noop });
+        commitAndPush({ ids: [publishedId], send: noop });
+        // Landscape impact check (non-blocking)
+        setImmediate(() => checkLandscapeImpact({ ...entry, id: publishedId }).catch(() => {}));
+        return res.json({ ok: true, briefId: id, decision, published: publishedId });
+      } catch (pubErr) {
+        return res.status(500).json({ error: `Decision recorded but publish failed: ${pubErr.message}`, briefId: id, decision });
+      }
+    }
+
     res.json({ ok: true, briefId: id, decision });
   } catch (err) {
     res.status(500).json({ error: err.message });
