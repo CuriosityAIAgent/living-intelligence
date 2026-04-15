@@ -296,5 +296,19 @@
     "blocked_at": "2026-04-14T04:04:42.454Z",
     "title": "Agentic AI Moves From Pilot to Autonomous Execution Across Private Wealth Client Lifecycle",
     "score": 45
+  },
+  "https://fintech.global/2026/04/14/how-ai-is-reshaping-wealth-management-advisory/": {
+    "id": "ai-reshaping-wealth-management-advisory-apr2026",
+    "reason": "Paywalled source — claims unverifiable, not fabricated. Human review required.",
+    "blocked_at": "2026-04-15T04:01:51.986Z",
+    "title": "AI Advisory Capabilities Reshaping Wealth Management Across Personalization, Productivity and Compliance",
+    "score": 40
+  },
+  "https://www.planadviser.com/ai-product-service-launches-4-13-2026/": {
+    "id": "betanxt-insightx-advisor360-parrot-jump-perennial-navatar-ma-crm-ai-launches-2026-04-13",
+    "reason": "the_so_what flagged as weak CXO relevance (4/10) — review before publishing",
+    "blocked_at": "2026-04-15T04:05:31.884Z",
+    "title": "Four AI Platforms Embed Into Adviser Workflows Across Deal Origination, Meeting Lifecycle, and Operations",
+    "score": 43
   }
 }

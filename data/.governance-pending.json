@@ -3,8 +3,8 @@
     "entry": {
       "id": "jump-perennial-ai-operating-system-firmwide-2026-04",
       "type": "partnership",
-      "headline": "Jump Deploys AI Intake, Document Intelligence and Meeting Automation Firmwide Across Perennial RIA Platform",
-      "the_so_what": "Perennial's firmwide deployment — using Jump's AI infrastructure explicitly as a recruiting weapon against legacy firms — confirms that at 27,000 advisors and with agentic execution already live, Jump has crossed the point where operational AI is no longer a workflow tool but a talent acquisition moat, a structural advantage Zocks at 5,000+ firms and Holistiplan (tax-focused, non-agentic) have no current architecture to replicate.",
+      "headline": "Jump Deploys AI Operating System Firmwide at Perennial, Automating Full Client Lifecycle Workflows",
+      "the_so_what": "Perennial's firmwide deployment confirms that Jump's 'Operate' layer is being embedded as the operational backbone of next-generation RIA platforms — not just a productivity add-on — meaning Jump's data compounding advantage over Zocks (27,000 advisors vs. 5,000+ firms) now extends into full client lifecycle automation that neither Zocks nor Holistiplan has publicly matched.",
       "company": "jump-ai",
       "company_name": "Jump",
       "date": "2026-04-13",
@@ -12,16 +12,13 @@
       "source_url": "https://www.businesswire.com/news/home/20260413492419/en/Jump-Expands-Partnership-With-Perennial-Financial-Services-to-Deploy-AI-Operating-System-Firmwide",
       "source_verified": true,
       "image_url": null,
-      "summary": "Jump's AI operating system now automates the full advisor workflow at Perennial Financial Services — spanning AI Intake Forms, Document Intelligence, CRM automation and pre- and post-meeting preparation — deployed firmwide after an initial partnership dating to 2024. The platform converts unstructured client conversation data into structured, actionable follow-through without manual advisor intervention, addressing the documented gap between capturing AI insights and operationalizing them at scale. Perennial is explicitly using Jump's AI infrastructure as a differentiator in recruiting advisors away from legacy firms, citing elimination of administrative burden as the value proposition. Jump reports 27,000+ advisors on its platform and holds the top ranking in advisor satisfaction and adoption in the 2025 T3/Inside Information Software Survey. The expanded deployment follows Jump's recent launch of its 'Operate' product line, designed to move firms from AI-generated insight to automated execution.",
-      "key_stat": {
-        "number": "27,000+",
-        "label": "advisors on Jump's platform across the industry"
-      },
+      "summary": "Jump's AI operating system automates key workflows across the full client lifecycle — including AI Intake Forms, Document Intelligence, and pre-meeting preparation — enabling advisors to eliminate manual operational tasks at scale. Perennial Financial Services has adopted Jump's 'Operate' solution firmwide, expanding a relationship that began in 2024. Perennial, a next-generation RIA platform focused on attracting top independent advisors, is explicitly using AI-powered workflows as a differentiator in recruiting advisors away from larger firms. The expansion reflects a broader industry shift from AI-powered insights to fully integrated operational automation across the advisor workflow.",
+      "key_stat": null,
       "capability_evidence": {
         "capability": "advisor_productivity",
         "stage": "deployed",
-        "evidence": "Perennial has adopted Jump's Operate solution firmwide, with AI Intake Forms delivering structured client data via secure branded email, combined with Document Intelligence and CRM automation to automate follow-through across the full client lifecycle.",
-        "metric": "27,000+ advisors on the Jump platform; firmwide deployment at Perennial"
+        "evidence": "Perennial has adopted Jump's Operate solution firmwide, with live deployment covering AI Intake Forms, Document Intelligence, and pre-meeting preparation as core components of its advisor value proposition since 2024.",
+        "metric": null
       },
       "tags": {
         "capability": "advisor_productivity",
@@ -29,9 +26,9 @@
         "segment": "ria_independent",
         "theme": [
           "workflow_automation",
-          "advisor_recruitment",
-          "ai_operating_system",
-          "client_lifecycle"
+          "advisor_recruiting",
+          "client_lifecycle",
+          "operational_ai"
         ]
       },
       "week": "2026-04-13",
@@ -43,18 +40,8 @@
           "type": "coverage"
         },
         {
-          "name": "jump.ai",
-          "url": "https://jump.ai/press/jump-launches-ai-associate-an-intelligent",
-          "type": "coverage"
-        },
-        {
           "name": "linkedin.com",
           "url": "https://www.linkedin.com/posts/activity-7449505475483566081-NFq-",
-          "type": "coverage"
-        },
-        {
-          "name": "jump.ai",
-          "url": "https://jump.ai/products/operate/document-intelligence",
           "type": "coverage"
         },
         {
@@ -63,46 +50,36 @@
           "type": "discovery"
         }
       ],
-      "source_count": 5,
+      "source_count": 3,
       "_enrichment": {
-        "what_changed": "Prior coverage established Jump's agentic execution launch and distribution scale as competitive benchmarks; this entry shows the business model consequence — that scale is now being monetized as a recruiting differentiator by RIA platforms, moving Jump's value proposition upstream from advisor productivity into firm-level growth strategy.",
+        "what_changed": "Previous coverage established Jump's agentic execution capability and distribution scale; this entry shows that capability is now being adopted as firmwide infrastructure by growth-oriented RIAs using it as a recruiting differentiator, accelerating Jump's penetration beyond individual advisor adoption into platform-level lock-in.",
         "landscape_context": {
           "current_maturity": "SCALED",
           "maturity_direction": "up",
-          "competitor_gap": "Zocks ~5x behind on advisor distribution; neither Zocks nor Holistiplan have matched agentic execution capability"
+          "competitor_gap": "Zocks and Holistiplan at SCALED but limited to meeting transcription and tax analysis respectively — neither has publicly matched full client lifecycle workflow automation"
         },
         "confidence": "high",
         "notes": null
       },
-      "_format_errors": [
-        "the_so_what sentence 1 is 64 words — max 50 per sentence (split or tighten)"
-      ],
       "_governance": {
-        "verdict": "REVIEW",
-        "confidence": 82,
+        "verdict": "PASS",
+        "confidence": 95,
         "verified_claims": [
-          "Jump's AI operating system is deployed firmwide at Perennial Financial Services",
-          "The deployment spans AI Intake Forms, Document Intelligence, and CRM automation",
-          "The deployment includes pre- and post-meeting preparation capabilities",
+          "Jump's AI operating system automates key workflows across the full client lifecycle",
+          "The solution includes AI Intake Forms, Document Intelligence, and pre-meeting preparation capabilities",
+          "Perennial Financial Services has adopted Jump's 'Operate' solution firmwide",
           "Perennial has been a Jump customer since 2024",
-          "Perennial is using Jump's AI infrastructure as a differentiator in recruiting advisors away from legacy/larger firms",
-          "The platform addresses the gap between capturing AI insights and operationalizing them at scale",
-          "Jump reports 27,000+ advisors on its platform",
-          "Jump holds the top ranking in advisor satisfaction and adoption in the 2025 T3/Inside Information Software Survey",
-          "The expanded deployment follows Jump's recent launch of its 'Operate' product line",
-          "Jump's 'Operate' product is designed to move firms from AI-generated insight to automated execution",
-          "Perennial is described as a next-generation RIA platform built to attract top independent advisors",
-          "AI Intake Forms allow advisors to gather structured client information through a secure, branded experience delivered via email",
-          "The platform converts client conversation data into actionable follow-through"
+          "Perennial is described as a next-generation RIA platform built to attract and empower top independent advisors",
+          "Perennial is explicitly using AI-powered workflows as a differentiator in recruiting advisors from larger firms",
+          "The expansion reflects a broader industry shift from AI-powered insights to fully integrated operational automation across the advisor workflow"
         ],
         "unverified_claims": [
-          "The summary states the platform operates 'without manual advisor intervention' — the source implies significant automation but does not explicitly use this phrasing or confirm zero manual intervention",
-          "The headline and summary describe this as 'meeting automation' firmwide — the source mentions pre-meeting preparation and post-meeting follow-up but does not use the specific term 'meeting automation' as a product category"
+          "The entry characterizes the automation as enabling advisors to 'eliminate manual operational tasks at scale' — the source supports automation of workflows but uses slightly different framing"
         ],
         "fabricated_claims": [],
-        "notes": "The entry is well-supported by the source overall, with two minor unverified phrasings that are reasonable paraphrases but not explicitly stated; no direct contradictions were found.",
+        "notes": "All substantive factual claims in the headline and summary are directly supported by the source article with no contradictions found.",
         "paywall_caveat": false,
-        "verified_at": "2026-04-14T04:03:43.958Z",
+        "verified_at": "2026-04-15T04:02:39.572Z",
         "human_approved": false
       },
       "_fabrication": {
@@ -112,44 +89,37 @@
           "numbers_in_headline": "none",
           "company_name": "pass",
           "date_year": "pass",
-          "key_stat": "pass",
+          "key_stat": "no_stat",
           "quoted_phrases": "pass"
         },
-        "checked_at": "2026-04-14T04:03:45.669Z"
+        "checked_at": "2026-04-15T04:02:41.565Z"
       }
     },
     "governance": {
-      "verdict": "REVIEW",
-      "confidence": 82,
+      "verdict": "PASS",
+      "confidence": 95,
       "verified_claims": [
-        "Jump's AI operating system is deployed firmwide at Perennial Financial Services",
-        "The deployment spans AI Intake Forms, Document Intelligence, and CRM automation",
-        "The deployment includes pre- and post-meeting preparation capabilities",
+        "Jump's AI operating system automates key workflows across the full client lifecycle",
+        "The solution includes AI Intake Forms, Document Intelligence, and pre-meeting preparation capabilities",
+        "Perennial Financial Services has adopted Jump's 'Operate' solution firmwide",
         "Perennial has been a Jump customer since 2024",
-        "Perennial is using Jump's AI infrastructure as a differentiator in recruiting advisors away from legacy/larger firms",
-        "The platform addresses the gap between capturing AI insights and operationalizing them at scale",
-        "Jump reports 27,000+ advisors on its platform",
-        "Jump holds the top ranking in advisor satisfaction and adoption in the 2025 T3/Inside Information Software Survey",
-        "The expanded deployment follows Jump's recent launch of its 'Operate' product line",
-        "Jump's 'Operate' product is designed to move firms from AI-generated insight to automated execution",
-        "Perennial is described as a next-generation RIA platform built to attract top independent advisors",
-        "AI Intake Forms allow advisors to gather structured client information through a secure, branded experience delivered via email",
-        "The platform converts client conversation data into actionable follow-through"
+        "Perennial is described as a next-generation RIA platform built to attract and empower top independent advisors",
+        "Perennial is explicitly using AI-powered workflows as a differentiator in recruiting advisors from larger firms",
+        "The expansion reflects a broader industry shift from AI-powered insights to fully integrated operational automation across the advisor workflow"
       ],
       "unverified_claims": [
-        "The summary states the platform operates 'without manual advisor intervention' — the source implies significant automation but does not explicitly use this phrasing or confirm zero manual intervention",
-        "The headline and summary describe this as 'meeting automation' firmwide — the source mentions pre-meeting preparation and post-meeting follow-up but does not use the specific term 'meeting automation' as a product category"
+        "The entry characterizes the automation as enabling advisors to 'eliminate manual operational tasks at scale' — the source supports automation of workflows but uses slightly different framing"
       ],
       "fabricated_claims": [],
-      "notes": "The entry is well-supported by the source overall, with two minor unverified phrasings that are reasonable paraphrases but not explicitly stated; no direct contradictions were found.",
+      "notes": "All substantive factual claims in the headline and summary are directly supported by the source article with no contradictions found.",
       "paywall_caveat": false,
-      "verified_at": "2026-04-14T04:03:43.958Z",
+      "verified_at": "2026-04-15T04:02:39.572Z",
       "human_approved": false
     },
-    "queued_at": "2026-04-14T04:03:45.969Z",
-    "discovered_at": "2026-04-14T04:03:45.969Z",
-    "score": 76,
-    "score_breakdown": "Score: 76/100 · Source: Press release wire (businesswire.com) (25) · Claims: 2 unverified claims (+6) · Fresh: 1d old (8) · Impact: capability clear: advisor_productivity (+10), deployed+quantified (+15), tracked company (+2), central tracked company (+5) (32) · CXO: too long (64 words) (-1), contains specific metric (+2), decision language (+2) (8/10)"
+    "queued_at": "2026-04-15T04:02:41.685Z",
+    "discovered_at": "2026-04-15T04:02:41.685Z",
+    "score": 80,
+    "score_breakdown": "Score: 80/100 · Source: Press release wire (businesswire.com) (25) · Claims: 1 unverified claim (+15) · Fresh: 2d old (8) · Impact: capability clear: advisor_productivity (+10), deployed (+10), tracked company (+2), central tracked company (+5) (27) · CXO: contains specific metric (+2) (7/10)"
   },
   "finny-osaic-ai-prospecting-11000-advisors": {
     "entry": {
@@ -293,6 +263,1433 @@
     },
     "queued_at": "2026-04-14T04:06:14.613Z",
     "discovered_at": "2026-04-14T04:06:14.613Z",
+    "score": null,
+    "score_breakdown": null
+  },
+  "lpl-anthropic-wealth-plugins-30000-advisors": {
+    "entry": {
+      "id": "lpl-anthropic-wealth-plugins-30000-advisors",
+      "type": "partnership",
+      "headline": "LPL Taps Anthropic's New Wealth-Specific Claude Plugins for 30,000+ Advisors",
+      "summary": "LPL Financial expanded its partnership with Anthropic to build Claude-powered AI tools for its 30,000+ financial advisors, per a ThinkAdvisor report on February 24, 2026. The announcement coincided with what Anthropic described as its first wealth management-specific plugins for Claude, which provide RIAs, broker-dealers, custodians, and TAMPs with building blocks to create private, compliance-controlled AI tools customized to their advisors and powered by their own data, per Anthropic's Head of Asset and Wealth Management Peter Nolan's LinkedIn post cited by ThinkAdvisor. LPL stated it has been 'intentionally building advisor-centric AI for years' and is now leveraging Anthropic to 'shape the next generation of AI that helps inform decisions.' Orion simultaneously announced a broadened partnership with Anthropic on the same plugin architecture, per the same ThinkAdvisor report.",
+      "the_so_what": "Anthropic's simultaneous plugin deals with both LPL and Orion signal a platform-layer strategy to become the default AI infrastructure across the independent channel — compressing the window for competitors like Altruist's Hazel to lock in distribution before compliance-approved, enterprise-grade alternatives reach scale.",
+      "company": "lpl-financial",
+      "company_name": "LPL Financial",
+      "date": "2026-02-24",
+      "week": "2026-02-23",
+      "source_name": "ThinkAdvisor",
+      "source_url": "https://www.thinkadvisor.com/2026/02/24/lpl-expands-partnership-with-anthropic/",
+      "source_verified": true,
+      "image_url": null,
+      "key_stat": {
+        "number": "30,000+",
+        "label": "financial advisors gaining access to Claude-powered AI tools"
+      },
+      "capability_evidence": {
+        "capability": "advisor_productivity",
+        "stage": "announced",
+        "evidence": "LPL announced an expanded partnership with Anthropic to build Claude-powered AI tools for advisors, with Anthropic providing wealth management-specific plugin building blocks — per ThinkAdvisor, no live deployment confirmed yet.",
+        "metric": "30,000+ advisors in scope"
+      },
+      "tags": {
+        "capability": "advisor_productivity",
+        "region": "us",
+        "segment": "ria_independent",
+        "theme": [
+          "anthropic-partnership",
+          "wealth-ai-plugins",
+          "compliance-controlled-ai",
+          "platform-strategy"
+        ]
+      },
+      "sources": [
+        {
+          "name": "ThinkAdvisor",
+          "url": "https://www.thinkadvisor.com/2026/02/24/lpl-expands-partnership-with-anthropic/",
+          "type": "discovery"
+        }
+      ],
+      "source_count": 1,
+      "featured": false,
+      "_triage_score": 60,
+      "_final_score": 62,
+      "_research": {
+        "entities": {
+          "company_name": "LPL Financial",
+          "company_slug": "lpl-financial",
+          "people": [],
+          "metrics": [],
+          "capability_area": "unknown",
+          "key_topic": "LPL Anthropic partnership expansion",
+          "event_type": "partnership"
+        },
+        "source_count": 1,
+        "sources_found": 1,
+        "landscape_context": {
+          "is_tracked": true,
+          "current_maturity": "piloting",
+          "peer_comparison": ""
+        },
+        "past_entries_count": 1,
+        "whats_new": "Company has 1 past entries. Most recent: \"Anthropic Launches Wealth-Specific Plugin Architecture; LPL Deploys to 30,000+ Advisors\" (2026-02-24). Current unknown maturity: no_activity. Current headline: \"\". Compare against this story to identify what is genuinely new.",
+        "confidence": "low",
+        "researched_at": "2026-04-14T04:28:59.218Z"
+      },
+      "_fabrication": {
+        "verdict": "CLEAN",
+        "claims_checked": 18,
+        "claims_verified": 16,
+        "claims_unverified": 0,
+        "claims_fabricated": 0,
+        "details": [
+          {
+            "claim": "LPL Financial expanded its partnership with Anthropic",
+            "source": "ThinkAdvisor",
+            "status": "verified"
+          },
+          {
+            "claim": "To build Claude-powered AI tools for its 30,000+ financial advisors",
+            "source": "ThinkAdvisor",
+            "status": "verified"
+          },
+          {
+            "claim": "Per a ThinkAdvisor report on February 24, 2026",
+            "source": "ThinkAdvisor",
+            "status": "verified"
+          },
+          {
+            "claim": "Anthropic described these as its first wealth management-specific plugins for Claude",
+            "source": "ThinkAdvisor",
+            "status": "verified"
+          },
+          {
+            "claim": "Plugins provide RIAs, broker-dealers, custodians, and TAMPs with building blocks to create private, compliance-controlled AI tools",
+            "source": "ThinkAdvisor",
+            "status": "verified"
+          },
+          {
+            "claim": "Tools customized to their advisors and powered by their own data",
+            "source": "ThinkAdvisor",
+            "status": "verified"
+          },
+          {
+            "claim": "Peter Nolan is Anthropic's Head of Asset and Wealth Management",
+            "source": "ThinkAdvisor",
+            "status": "verified"
+          },
+          {
+            "claim": "Peter Nolan's LinkedIn post cited by ThinkAdvisor",
+            "source": "ThinkAdvisor",
+            "status": "verified"
+          },
+          {
+            "claim": "LPL stated it has been 'intentionally building advisor-centric AI for years'",
+            "source": "ThinkAdvisor",
+            "status": "verified"
+          },
+          {
+            "claim": "LPL is now leveraging Anthropic to 'shape the next generation of AI that helps inform decisions'",
+            "source": "ThinkAdvisor",
+            "status": "verified"
+          },
+          {
+            "claim": "Orion simultaneously announced a broadened partnership with Anthropic on the same plugin architecture",
+            "source": "ThinkAdvisor",
+            "status": "verified"
+          },
+          {
+            "claim": "Per the same ThinkAdvisor report",
+            "source": "ThinkAdvisor",
+            "status": "verified"
+          },
+          {
+            "claim": "Key stat: 30,000+ financial advisors gaining access to Claude-powered AI tools",
+            "source": "ThinkAdvisor",
+            "status": "verified"
+          },
+          {
+            "claim": "Anthropic's simultaneous plugin deals with both LPL and Orion (the_so_what factual basis)",
+            "source": "ThinkAdvisor",
+            "status": "verified"
+          },
+          {
+            "claim": "Platform-layer strategy to become default AI infrastructure across the independent channel",
+            "source": "NONE",
+            "status": "editorial"
+          },
+          {
+            "claim": "Compressing the window for competitors like Altruist's Hazel to lock in distribution before compliance-approved, enterprise-grade alternatives reach scale",
+            "source": "NONE",
+            "status": "editorial"
+          },
+          {
+            "claim": "Headline uses 'Taps' and 'New Wealth-Specific Claude Plugins' — aligned with source describing expanded partnership and first wealth-specific plugins",
+            "source": "ThinkAdvisor",
+            "status": "verified"
+          },
+          {
+            "claim": "Plugins are described as 'for 30,000+ Advisors' in headline",
+            "source": "ThinkAdvisor",
+            "status": "verified"
+          }
+        ],
+        "cross_source_conflicts": [],
+        "drift_from_previous": [
+          {
+            "claim": "Headline changed from 'LPL Deploys Anthropic's First Wealth-Specific Claude Plugins Across 30,000+ Advisors' to 'LPL Taps Anthropic's New Wealth-Specific Claude Plugins for 30,000+ Advisors'",
+            "in_previous": false,
+            "in_sources": true,
+            "note": "Positive drift: 'Deploys...Across' in previous headline overstated the action (source says 'expanding partnership' and 'will build' tools — future-oriented), while 'Taps' in current headline is more accurate. 'New' is editorially neutral and consistent with source describing first-ever wealth plugins. No fabrication introduced."
+          },
+          {
+            "claim": "Addition of 'per Anthropic's Head of Asset and Wealth Management Peter Nolan's LinkedIn post cited by ThinkAdvisor' attribution in summary",
+            "in_previous": false,
+            "in_sources": true,
+            "note": "New attribution added in current draft; fully supported by source. Not a fabrication."
+          },
+          {
+            "claim": "the_so_what changed 'rivals' to 'competitors' and added 'enterprise-grade'",
+            "in_previous": false,
+            "in_sources": false,
+            "note": "'Enterprise-grade' is editorial characterization not in source, but is an interpretive descriptor rather than a specific factual claim. Acceptable under editorial rules."
+          }
+        ],
+        "checked_at": "2026-04-14T04:30:12.591Z"
+      },
+      "_iterations": [
+        {
+          "version": 1,
+          "headline": "LPL Deploys Anthropic's First Wealth-Specific Claude Plugins Across 30,000+ Advisors",
+          "the_so_what": "Anthropic's simultaneous plugin deals with both LPL and Orion signal a platform-layer strategy to become the default AI infrastructure across the independent channel — compressing the window for rivals like Altruist's Hazel to lock in distribution before compliance-approved alternatives reach scale.",
+          "evaluation": {
+            "checks": {
+              "specificity": {
+                "pass": true,
+                "feedback": "Headline names a specific capability (wealth-specific Claude plugins), a named AI partner (Anthropic), and scale (30,000+ advisors). Clear and concrete."
+              },
+              "so_what": {
+                "pass": true,
+                "feedback": "Falsifiable competitive claim: Anthropic is pursuing a platform-layer strategy to become default AI infrastructure in the independent channel, compressing the window for rivals like Altruist's Hazel. Survives removing the company name and connects to landscape dynamics."
+              },
+              "source": {
+                "pass": false,
+                "feedback": "Only 1 source used, and that source is never named in the summary. The 30,000+ figure and direct quotes ('intentionally building advisor-centric AI for years') are unattributed. Name the source explicitly (e.g., 'per LPL's press release' or 'per Anthropic's announcement'). Additionally, verify whether 'Anthropic's first wealth management-specific plugins' is sourced language or editorial inference — this is a strong factual claim that needs clear attribution."
+              },
+              "substance": {
+                "pass": true,
+                "feedback": "Summary adds analytical layers beyond the headline: explains the plugin architecture concept (building blocks for RIAs, BDs, custodians, TAMPs), notes the simultaneous Orion deal as evidence of a multi-partner platform strategy, and contextualizes the compliance-controlled design. A CXO learns about the broader architecture play, not just the LPL deal."
+              },
+              "stat": {
+                "pass": true,
+                "feedback": "30,000+ advisors is decision-grade scale — it quantifies the distribution footprint and is citable in a board context when discussing AI adoption across the independent channel."
+              },
+              "competitor": {
+                "pass": true,
+                "feedback": "References both Orion (as a simultaneous Anthropic partner) and Altruist's Hazel (as a rival facing compressed timelines). Positions the entry within the competitive landscape of AI infrastructure for independents."
+              }
+            },
+            "overall": "NEEDS_WORK",
+            "quality_score": 7,
+            "priority_fix": "Name the source explicitly in the summary (e.g., 'per LPL's May 2025 press release' or 'per Anthropic's blog post') and confirm whether the claim that these are Anthropic's 'first wealth management-specific plugins' is directly sourced or inferred — this is the entry's most differentiating claim and needs airtight attribution.",
+            "_prompt_version": "evaluator-v1"
+          },
+          "fabrication_verdict": "SUSPECT",
+          "timestamp": "2026-04-14T04:29:45.452Z"
+        },
+        {
+          "version": 2,
+          "headline": "LPL Taps Anthropic's New Wealth-Specific Claude Plugins for 30,000+ Advisors",
+          "the_so_what": "Anthropic's simultaneous plugin deals with both LPL and Orion signal a platform-layer strategy to become the default AI infrastructure across the independent channel — compressing the window for competitors like Altruist's Hazel to lock in distribution before compliance-approved, enterprise-grade alternatives reach scale.",
+          "evaluation": {
+            "checks": {
+              "specificity": {
+                "pass": true,
+                "feedback": "Headline names the specific capability (wealth-specific Claude plugins), the partner (Anthropic), and the scale (30,000+ advisors). Solid."
+              },
+              "so_what": {
+                "pass": true,
+                "feedback": "Falsifiable competitive claim: Anthropic is pursuing a platform-layer strategy to become default AI infrastructure in the independent channel, compressing the window for competitors like Altruist's Hazel. This survives removing the company name and connects to the broader landscape. Strong."
+              },
+              "source": {
+                "pass": false,
+                "feedback": "All claims trace to a single ThinkAdvisor report and a LinkedIn post — but only 1 source was found/used. Key claims like 'first wealth management-specific plugins' and the Orion deal both rest on that one article. The Peter Nolan LinkedIn post is cited secondhand through ThinkAdvisor, not directly verified. For a premium platform, corroborate the Orion partnership and the 'first wealth-specific plugins' claim with at least one additional source (e.g., Orion's own announcement, Anthropic's blog, or an SEC filing)."
+              },
+              "substance": {
+                "pass": true,
+                "feedback": "The summary adds meaningful context beyond the headline: it explains the plugin architecture concept (building blocks for RIAs, broker-dealers, custodians, TAMPs), notes the simultaneous Orion deal as evidence of a broader strategy, and quotes LPL's positioning language. A CXO would learn about the multi-firm, multi-channel nature of Anthropic's approach."
+              },
+              "stat": {
+                "pass": true,
+                "feedback": "30,000+ advisors is a scale metric that a CXO would cite — it represents one of the largest single-firm deployments of AI tooling in the independent channel. Decision-grade."
+              },
+              "competitor": {
+                "pass": true,
+                "feedback": "References both Orion (as a simultaneous partner, implying Anthropic's breadth strategy) and Altruist's Hazel (as the competitive alternative facing a compressed adoption window). Well-connected to the landscape."
+              }
+            },
+            "overall": "PASS",
+            "quality_score": 8,
+            "priority_fix": "Corroborate with at least one additional source (Orion's own announcement or Anthropic's blog) to move beyond single-source dependency — especially for the 'first wealth-specific plugins' claim, which is a significant market-positioning assertion resting on one article.",
+            "_prompt_version": "evaluator-v1"
+          },
+          "fabrication_verdict": "CLEAN",
+          "timestamp": "2026-04-14T04:30:26.658Z"
+        }
+      ],
+      "_editor_notes": []
+    },
+    "governance": {
+      "verdict": "PASS",
+      "confidence": 90,
+      "verified_claims": [
+        "LPL Financial expanded its partnership with Anthropic",
+        "To build Claude-powered AI tools for its 30,000+ financial advisors",
+        "Per a ThinkAdvisor report on February 24, 2026",
+        "Anthropic described these as its first wealth management-specific plugins for Claude",
+        "Plugins provide RIAs, broker-dealers, custodians, and TAMPs with building blocks to create private, compliance-controlled AI tools",
+        "Tools customized to their advisors and powered by their own data",
+        "Peter Nolan is Anthropic's Head of Asset and Wealth Management",
+        "Peter Nolan's LinkedIn post cited by ThinkAdvisor",
+        "LPL stated it has been 'intentionally building advisor-centric AI for years'",
+        "LPL is now leveraging Anthropic to 'shape the next generation of AI that helps inform decisions'",
+        "Orion simultaneously announced a broadened partnership with Anthropic on the same plugin architecture",
+        "Per the same ThinkAdvisor report",
+        "Key stat: 30,000+ financial advisors gaining access to Claude-powered AI tools",
+        "Anthropic's simultaneous plugin deals with both LPL and Orion (the_so_what factual basis)",
+        "Headline uses 'Taps' and 'New Wealth-Specific Claude Plugins' — aligned with source describing expanded partnership and first wealth-specific plugins",
+        "Plugins are described as 'for 30,000+ Advisors' in headline"
+      ],
+      "unverified_claims": [],
+      "fabricated_claims": [],
+      "notes": "v2 pipeline — 2 iteration(s), fabrication: CLEAN",
+      "paywall_caveat": false,
+      "verified_at": "2026-04-14T04:30:26.674Z",
+      "human_approved": false
+    },
+    "queued_at": "2026-04-14T04:30:26.677Z",
+    "discovered_at": "2026-04-14T04:30:26.677Z",
+    "score": 62,
+    "score_breakdown": "v2 pipeline (2 iterations)"
+  },
+  "julius-baer-data-innovation-unit-predictive-analytics-2026": {
+    "entry": {
+      "id": "julius-baer-data-innovation-unit-predictive-analytics-2026",
+      "type": "strategy_move",
+      "headline": "Julius Baer Builds Data & Innovation Unit in Singapore-Zurich, Pivots JAI Toward Predictive Advisor Analytics",
+      "summary": "Julius Baer established a Data & Innovation Unit anchored in Singapore and Zurich in 2025, delivering automated transcription workflows, advanced client engagement analytics, and real-time risk modelling for portfolio oversight, per Asia region head Jimmy Lee's year-end interview with Asian Private Banker. The bank's JAI GenAI platform, launched late 2024, maintains over 4,000 weekly active users globally — unchanged from prior reporting — automating documentation, meeting summaries, and multilingual communications. For 2026, Julius Baer is expanding JAI into AI-assisted predictive insights, scenario planning, and customised client dashboards, with all recommendations subject to mandatory human review, according to the same interview. Group AUM reached a record CHF 520 billion by 31 October 2025 on CHF 11.7 billion in net new money, with Hong Kong and Singapore now representing more than a quarter of Group AUM, per Lee's remarks. Jimmy Lee's CV on juliusbaer.com confirms he became a member of the newly created Global Wealth Management Committee in February 2025, formalising Asia's strategic weight in group-level AI and growth decisions.",
+      "the_so_what": "JAI's user base plateauing at 4,000 while Julius Baer redirects investment toward predictive advisor dashboards mirrors the pivot UBS and Morgan Stanley have made from back-office GenAI efficiency toward front-office advisory augmentation — where differentiation hinges on whether AI-surfaced insights actually change portfolio construction, not just save documentation time.",
+      "company": "julius-baer",
+      "company_name": "Julius Baer",
+      "date": "2025-12-15",
+      "week": "2025-12-15",
+      "source_name": "Asian Private Banker",
+      "source_url": "https://asianprivatebanker.com/final-word-2025/jimmy-lee-julius-baer/",
+      "source_verified": false,
+      "image_url": null,
+      "key_stat": {
+        "number": "CHF 520 billion",
+        "label": "Record Group AUM as of 31 October 2025, per Jimmy Lee interview in Asian Private Banker"
+      },
+      "capability_evidence": {
+        "capability": "advisor_productivity",
+        "stage": "deployed",
+        "evidence": "JAI GenAI platform has 4,000+ weekly active users globally automating documentation, meeting summaries, and multilingual communications; Data & Innovation Unit delivered automated transcription workflows and real-time risk modelling, per Jimmy Lee's Asian Private Banker interview.",
+        "metric": "4,000+ weekly active users; thousands of hours saved annually on transcription workflows"
+      },
+      "tags": {
+        "capability": "advisor_productivity",
+        "region": "global",
+        "segment": "global_private_bank",
+        "theme": [
+          "genai_platform",
+          "predictive_analytics",
+          "asia_expansion",
+          "advisor_augmentation"
+        ]
+      },
+      "sources": [
+        {
+          "name": "juliusbaer.com",
+          "url": "https://www.juliusbaer.com/index.php?eID=dumpFile&t=f&f=2131&token=9af6ab143c8b0327193c200fcd6fb277308d0ba7",
+          "type": "coverage"
+        },
+        {
+          "name": "juliusbaer.com",
+          "url": "https://www.juliusbaer.com/index.php?eID=dumpFile&t=f&f=3753&token=e3d01e84d0082468df1b54191710b93d668b31cc",
+          "type": "coverage"
+        },
+        {
+          "name": "sg.linkedin.com",
+          "url": "https://sg.linkedin.com/in/jimmy-lee-37981097",
+          "type": "coverage"
+        },
+        {
+          "name": "facebook.com",
+          "url": "https://www.facebook.com/asianprivatebanker/photos/congratulations-to-jimmy-lee-of-julius-baer-for-winning-private-banker-of-the-ye/1367144938757899/",
+          "type": "coverage"
+        },
+        {
+          "name": "caproasia.com",
+          "url": "https://www.caproasia.com/julius-baer-jimmy-lee/",
+          "type": "coverage"
+        },
+        {
+          "name": "Asian Private Banker",
+          "url": "https://asianprivatebanker.com/final-word-2025/jimmy-lee-julius-baer/",
+          "type": "discovery"
+        }
+      ],
+      "source_count": 6,
+      "featured": false,
+      "_triage_score": 64,
+      "_final_score": 58,
+      "_research": {
+        "entities": {
+          "company_name": "Julius Baer",
+          "company_slug": "julius-baer",
+          "people": [
+            "Jimmy Lee — Representative/Executive, Julius Baer",
+            "Evonne Tan — Private Bank Chief (Singapore), Barclays",
+            "Jed Finn — unknown role, unknown organization"
+          ],
+          "metrics": [
+            "2025 (Final Word series year)",
+            "2026 (article publication context dates: 8 April 2026, 2 April 2026, 27 March 2026, 31 March 2026)",
+            "1 (rank of SEA market head article in most popular)",
+            "2 (rank of Barclays Singapore article)",
+            "3 (rank of Bank of Singapore private markets article)",
+            "4 (rank of ex-UOB PB article)",
+            "5 (rank of Bank of Singapore funds article)"
+          ],
+          "capability_area": "unknown",
+          "key_topic": "Julius Baer Final Word 2025",
+          "event_type": "strategy_move"
+        },
+        "source_count": 6,
+        "sources_found": 6,
+        "landscape_context": {
+          "is_tracked": true,
+          "current_maturity": "deployed",
+          "peer_comparison": ""
+        },
+        "past_entries_count": 1,
+        "whats_new": "Company has 1 past entries. Most recent: \"Julius Baer Creates Global Wealth Management Committee, Centralizing Strategy as JAI AI Rollout Stalls at 4,000 Users\" (2025-12-01). Current unknown maturity: no_activity. Current headline: \"\". Compare against this story to identify what is genuinely new.",
+        "confidence": "medium",
+        "researched_at": "2026-04-14T04:32:21.185Z"
+      },
+      "_fabrication": {
+        "verdict": "SUSPECT",
+        "claims_checked": 0,
+        "claims_verified": 0,
+        "claims_unverified": 0,
+        "claims_fabricated": 0,
+        "details": [],
+        "cross_source_conflicts": [],
+        "drift_from_previous": [],
+        "checked_at": "2026-04-14T04:34:10.289Z"
+      },
+      "_iterations": [
+        {
+          "version": 1,
+          "headline": "Julius Baer Launches Data & Innovation Unit, Expands JAI Beyond Documentation to Predictive Advisor Analytics",
+          "the_so_what": "While JAI's user base has plateaued at 4,000 since late 2024, the pivot toward predictive analytics and advisor dashboards signals Julius Baer is following the same trajectory as UBS and other global private banks in shifting AI from back-office efficiency to front-office advisory augmentation — where the competitive differentiation (and client willingness to pay) actually resides.",
+          "evaluation": {
+            "checks": {
+              "specificity": {
+                "pass": true,
+                "feedback": "Headline names the specific capability (JAI platform), the new organizational unit (Data & Innovation Unit), and the directional shift (predictive advisor analytics). Could be stronger with a hard metric in the headline (e.g., '4,000 weekly active users'), but the specificity is above threshold."
+              },
+              "so_what": {
+                "pass": true,
+                "feedback": "The claim that JAI's user base has 'plateaued' is a falsifiable analytical assertion, and the framing that competitive differentiation resides in front-office advisory augmentation rather than back-office efficiency is a genuine strategic insight that survives removing the company name. Strong."
+              },
+              "source": {
+                "pass": false,
+                "feedback": "Only 2 of 6 available sources were used. More critically, no specific sources are named anywhere in the summary — the CHF 520 billion AUM figure, the 4,000 weekly active users, the 'thousands of hours saved' claim, and the 2026 roadmap details all appear without attribution. State which source each key number comes from (e.g., 'per Julius Baer's October 2025 interim results' or 'per CTO remarks at Singapore FinTech Festival 2025')."
+              },
+              "substance": {
+                "pass": true,
+                "feedback": "The summary adds genuine analytical layers beyond the headline: the plateauing user base observation, the back-office-to-front-office trajectory framing, the Asia AUM share detail (>25%), and the mandatory human review governance point. A CXO would learn something new."
+              },
+              "stat": {
+                "pass": true,
+                "feedback": "CHF 520 billion record AUM is board-presentation grade — it contextualizes the scale of the institution making this AI investment. The 4,000 weekly active users figure in the body is equally decision-grade and could arguably be the key stat if the entry's angle were purely about AI adoption rather than strategic positioning."
+              },
+              "competitor": {
+                "pass": true,
+                "feedback": "UBS is explicitly named as a peer following a similar trajectory. The framing of 'global private banks shifting AI from back-office to front-office' provides landscape context. Would be even stronger with a specific UBS data point (e.g., UBS's reported advisor AI adoption rate or a named tool), but the connection is substantive enough to pass."
+              }
+            },
+            "overall": "NEEDS_WORK",
+            "quality_score": 7,
+            "priority_fix": "Attribute every key number to a named source — e.g., 'CHF 520 billion AUM per Julius Baer's October 2025 interim management statement', '4,000 weekly active users per CTO interview at [event/publication]'. Also explain why only 2 of 6 available sources were used; incorporating additional sources would strengthen credibility and may surface corroborating or contradicting data points.",
+            "_prompt_version": "evaluator-v1"
+          },
+          "fabrication_verdict": "SUSPECT",
+          "timestamp": "2026-04-14T04:33:20.393Z"
+        },
+        {
+          "version": 2,
+          "headline": "Julius Baer Builds Data & Innovation Unit in Singapore-Zurich, Pivots JAI Toward Predictive Advisor Analytics",
+          "the_so_what": "JAI's user base plateauing at 4,000 while Julius Baer redirects investment toward predictive advisor dashboards mirrors the pivot UBS and Morgan Stanley have made from back-office GenAI efficiency toward front-office advisory augmentation — where differentiation hinges on whether AI-surfaced insights actually change portfolio construction, not just save documentation time.",
+          "evaluation": {
+            "checks": {
+              "specificity": {
+                "pass": true,
+                "feedback": "Headline names a specific capability (Data & Innovation Unit), geography (Singapore-Zurich), and directional pivot (predictive advisor analytics). The inclusion of 'Predictive Advisor Analytics' gives it clear specificity beyond generic 'AI expansion.' Could be stronger with a metric in the headline (e.g., '4,000 Weekly Active Users'), but passes the bar."
+              },
+              "so_what": {
+                "pass": true,
+                "feedback": "The so_what is falsifiable — it claims JAI's user base is plateauing and that the pivot from back-office GenAI to front-office advisory augmentation mirrors UBS and Morgan Stanley. It survives removing the company name and makes a testable competitive claim: differentiation hinges on whether AI insights change portfolio construction, not just documentation. Strong."
+              },
+              "source": {
+                "pass": true,
+                "feedback": "Key claims are attributed: Jimmy Lee's year-end interview with Asian Private Banker (AUM, net new money, JAI user stats, 2026 roadmap), juliusbaer.com CV page (Global Wealth Management Committee appointment). The 4,000 weekly active users figure is noted as 'unchanged from prior reporting,' which is transparent. All major numbers are traceable."
+              },
+              "substance": {
+                "pass": true,
+                "feedback": "The summary adds meaningful layers beyond the headline: the specific 2026 roadmap (predictive insights, scenario planning, customised dashboards), the mandatory human review guardrail, the CHF 11.7B net new money figure, the structural detail that Asia now represents >25% of Group AUM, and Lee's elevation to the Global Wealth Management Committee formalising Asia's strategic weight. A CXO would learn actionable details about both the technology trajectory and the organisational signal."
+              },
+              "stat": {
+                "pass": true,
+                "feedback": "CHF 520 billion record AUM is board-presentation grade — it captures scale and is properly sourced and dated (31 October 2025). One could argue the 4,000 weekly active users or the >25% Asia AUM share would be equally or more decision-relevant for a technology-focused audience, but the chosen stat passes."
+              },
+              "competitor": {
+                "pass": true,
+                "feedback": "The so_what explicitly benchmarks against UBS and Morgan Stanley's similar pivot from back-office GenAI to front-office advisory augmentation. This positions Julius Baer within a clear competitive landscape trend."
+              }
+            },
+            "overall": "PASS",
+            "quality_score": 8,
+            "priority_fix": null,
+            "_prompt_version": "evaluator-v1"
+          },
+          "fabrication_verdict": "SUSPECT",
+          "timestamp": "2026-04-14T04:34:24.146Z"
+        }
+      ],
+      "_editor_notes": []
+    },
+    "governance": {
+      "verdict": "REVIEW",
+      "confidence": 60,
+      "verified_claims": [],
+      "unverified_claims": [],
+      "fabricated_claims": [],
+      "notes": "v2 pipeline — 2 iteration(s), fabrication: SUSPECT",
+      "paywall_caveat": false,
+      "verified_at": "2026-04-14T04:34:24.157Z",
+      "human_approved": false
+    },
+    "queued_at": "2026-04-14T04:34:24.159Z",
+    "discovered_at": "2026-04-14T04:34:24.159Z",
+    "score": 58,
+    "score_breakdown": "v2 pipeline (2 iterations)"
+  },
+  "citi-wealth-advisor-insights-push-dashboard-pilot-askwealth-global": {
+    "entry": {
+      "id": "citi-wealth-advisor-insights-push-dashboard-pilot-askwealth-global",
+      "type": "product_launch",
+      "headline": "Citi Wealth Launches Advisor Insights Push Dashboard, Completes AskWealth Global Rollout",
+      "summary": "Citi Wealth has launched Advisor Insights, an AI-powered push dashboard delivering tailored market commentary, portfolio alerts, and Chief Investment Office research directly to advisors — currently piloting with Citigold and Citi Private Client advisors in North America, with expansion to North America Private Bankers in Q4 2025 and international colleagues in Q1 2026 (per Citi press release, 25 Aug 2025). Simultaneously, AskWealth — the GenAI conversational assistant first launched in Asia — has completed deployment to Citi Wealth colleagues globally, serving service teams, advisors, and managers with instant answers across the Wealth ecosystem (per Citi press release). Together the two tools formalize a dual push-pull AI architecture: Advisor Insights proactively surfaces time-sensitive content while AskWealth handles on-demand queries spanning research, client portfolios, and operations. Head of Data, Analytics & Innovation Joe Bonanno stated the platforms 'will save hours of time for our advisors, bankers and service teams,' though no specific time-savings figure or user count was disclosed — a notable data gap given the global deployment claim (per Citi press release). Head of Wealth Andy Sieg called the tools 'gamechangers' for speed and precision in client service (per Citi press release).",
+      "the_so_what": "Citi's dual push-pull AI architecture — proactive alerts paired with conversational retrieval — mirrors JPMorgan's stated ambition for a 'fully AI-connected enterprise' but takes a narrower, advisor-workflow-first approach that may yield faster front-line adoption at the cost of slower enterprise-wide integration, while peers like Morgan Stanley, UBS, and Goldman Sachs are deploying comparable advisor AI platforms, compressing the window for any single firm to claim a durable productivity edge.",
+      "company": "citi-private-bank",
+      "company_name": "Citi Private Bank",
+      "date": "2025-08-25",
+      "week": "2025-08-25",
+      "source_name": "Citigroup",
+      "source_url": "https://www.citigroup.com/global/news/press-release/2025/citi-wealth-launches-advisor-insights-askwealth",
+      "source_verified": false,
+      "image_url": null,
+      "key_stat": null,
+      "capability_evidence": {
+        "capability": "advisor_productivity",
+        "stage": "deployed",
+        "evidence": "AskWealth is now available to Citi Wealth colleagues around the globe following a successful launch in Asia, per Citi press release dated 25 Aug 2025.",
+        "metric": null
+      },
+      "tags": {
+        "capability": "advisor_productivity",
+        "region": "global",
+        "segment": "global_private_bank",
+        "theme": [
+          "genai_assistant",
+          "push_pull_architecture",
+          "advisor_workflow",
+          "client_communications"
+        ]
+      },
+      "sources": [
+        {
+          "name": "Citigroup",
+          "url": "https://www.citigroup.com/global/news/press-release/2025/citi-wealth-launches-advisor-insights-askwealth",
+          "type": "primary"
+        },
+        {
+          "name": "ffnews.com",
+          "url": "https://ffnews.com/fintech-tv/how-citi-is-using-ai-to-supercharge-client-experience/",
+          "type": "coverage"
+        },
+        {
+          "name": "facebook.com",
+          "url": "https://www.facebook.com/pulse2news/posts/citigroup-ai-powered-citi-wealth-tools-launch-to-enhance-client-experience-citig/1631831505610539/",
+          "type": "coverage"
+        },
+        {
+          "name": "financialadvisoriq.com",
+          "url": "https://www.financialadvisoriq.com/c/4961814/680004/citi_launches_powered_tools_advisors",
+          "type": "coverage"
+        },
+        {
+          "name": "fintechmagazine.com",
+          "url": "https://fintechmagazine.com/news/citi-wealth-rolls-out-ai-tools-for-advisers-and-client-teams",
+          "type": "coverage"
+        },
+        {
+          "name": "linkedin.com",
+          "url": "https://www.linkedin.com/posts/bryanpcarroll_citi-wealth-rolls-out-ai-tools-for-advisers-activity-7366790650748362752-ZQAl",
+          "type": "coverage"
+        }
+      ],
+      "source_count": 6,
+      "featured": false,
+      "_triage_score": 70,
+      "_final_score": 64,
+      "_research": {
+        "entities": {
+          "company_name": "Citigroup Inc.",
+          "company_slug": "citi-wealth",
+          "people": [
+            "Joe Bonanno — Head of Data, Analytics & Innovation, Citi Wealth",
+            "Andy Sieg — Head of Wealth, Citi Wealth"
+          ],
+          "metrics": [
+            "Q4 2025 — planned expansion to North America Citi Private Bankers",
+            "Q1 2026 — planned expansion to international colleagues"
+          ],
+          "capability_area": "advisor_productivity",
+          "key_topic": "AI advisor tools launch",
+          "event_type": "product_launch"
+        },
+        "source_count": 6,
+        "sources_found": 6,
+        "landscape_context": {
+          "is_tracked": true,
+          "current_maturity": "deployed",
+          "peer_comparison": "BNP Paribas Wealth (deployed), Goldman Sachs (deployed), HSBC Private Banking (deployed)"
+        },
+        "past_entries_count": 1,
+        "whats_new": "Company has 1 past entries. Most recent: \"Citi Wealth Deploys AskWealth GenAI Globally, Pilots Dual Push-Pull AI Architecture for Advisors\" (2025-08-25). Current advisor_productivity maturity: deployed. Current headline: \"AskWealth deployed to advisors globally as of Q1 2026\". Compare against this story to identify what is genuinely new.",
+        "confidence": "high",
+        "researched_at": "2026-04-14T04:35:49.345Z"
+      },
+      "_fabrication": {
+        "verdict": "SUSPECT",
+        "claims_checked": 0,
+        "claims_verified": 0,
+        "claims_unverified": 0,
+        "claims_fabricated": 0,
+        "details": [],
+        "cross_source_conflicts": [],
+        "drift_from_previous": [],
+        "checked_at": "2026-04-14T04:37:38.955Z"
+      },
+      "_iterations": [
+        {
+          "version": 1,
+          "headline": "Citi Wealth Launches Advisor Insights Push Dashboard Pilot Alongside Globally Deployed AskWealth GenAI",
+          "the_so_what": "Citi's dual push-pull AI architecture — proactive alerts paired with conversational retrieval — mirrors JPMorgan's ambition for a 'fully AI-connected enterprise' but takes a narrower, advisor-workflow-first approach that may yield faster adoption metrics at the cost of slower enterprise-wide integration.",
+          "evaluation": {
+            "checks": {
+              "specificity": {
+                "pass": true,
+                "feedback": "Headline names both specific tools (Advisor Insights push dashboard, AskWealth GenAI), their stage (pilot vs. globally deployed), and the target user group. Sufficiently specific."
+              },
+              "so_what": {
+                "pass": true,
+                "feedback": "The claim that a 'narrower, advisor-workflow-first approach may yield faster adoption metrics at the cost of slower enterprise-wide integration' relative to JPMorgan's strategy is falsifiable and survives removing the company name. Could be strengthened by citing a concrete JPMorgan metric or timeline, but passes the bar."
+              },
+              "source": {
+                "pass": false,
+                "feedback": "The summary attributes quotes to Andy Sieg and Joe Bonanno but does not name the source publication or document for any claim. 'Hours of time savings' is attributed to Bonanno but no specific source (e.g., 'per a Citi internal memo reported by American Banker on [date]') is cited. With 5 sources used, at least the primary source should be named inline so readers can verify."
+              },
+              "substance": {
+                "pass": true,
+                "feedback": "The dual push-pull architecture framing, the rollout timeline (Q4 2025 Private Bankers, Q1 2026 international), and the distinction between proactive alerts vs. on-demand queries add analytical layers beyond the headline. A CXO would learn something about the phased deployment strategy."
+              },
+              "stat": {
+                "pass": false,
+                "feedback": "Key stat is 'none'. Bonanno's 'hours of time savings' is vague and unquantified. The entry should surface a decision-grade number — e.g., number of advisors in the pilot, number of AskWealth queries processed since global deployment, or a specific time-savings figure. If sources don't contain one, flag this explicitly as a data gap rather than leaving it blank."
+              },
+              "competitor": {
+                "pass": true,
+                "feedback": "The so_what directly benchmarks against JPMorgan's 'fully AI-connected enterprise' ambition. Could be further strengthened by referencing Morgan Stanley's Next Best Action system or Goldman's internal AI assistant, but the JPMorgan comparison is sufficient."
+              }
+            },
+            "overall": "NEEDS_WORK",
+            "quality_score": 6,
+            "priority_fix": "Extract or estimate a decision-grade stat — number of advisors in the Advisor Insights pilot, total AskWealth users post-global deployment, or a specific time-savings metric from Bonanno's quote — and name the primary source publication inline (e.g., 'per Financial Planning, June 2025') so all claims are traceable.",
+            "_prompt_version": "evaluator-v1"
+          },
+          "fabrication_verdict": "SUSPECT",
+          "timestamp": "2026-04-14T04:36:55.027Z"
+        },
+        {
+          "version": 2,
+          "headline": "Citi Wealth Launches Advisor Insights Push Dashboard, Completes AskWealth Global Rollout",
+          "the_so_what": "Citi's dual push-pull AI architecture — proactive alerts paired with conversational retrieval — mirrors JPMorgan's stated ambition for a 'fully AI-connected enterprise' but takes a narrower, advisor-workflow-first approach that may yield faster front-line adoption at the cost of slower enterprise-wide integration, while peers like Morgan Stanley, UBS, and Goldman Sachs are deploying comparable advisor AI platforms, compressing the window for any single firm to claim a durable productivity edge.",
+          "evaluation": {
+            "checks": {
+              "specificity": {
+                "pass": true,
+                "feedback": "Headline names two specific capabilities (Advisor Insights push dashboard, AskWealth global rollout) and distinguishes them clearly. Could be stronger with a scale metric (e.g., number of advisors reached), but the dual-product specificity is sufficient."
+              },
+              "so_what": {
+                "pass": true,
+                "feedback": "The 'push-pull architecture' framing is a falsifiable competitive claim. It names JPMorgan, Morgan Stanley, UBS, and Goldman Sachs as comparators and articulates a specific trade-off (faster front-line adoption vs. slower enterprise integration). Survives removing the company name."
+              },
+              "source": {
+                "pass": true,
+                "feedback": "All claims are attributed to 'Citi press release, 25 Aug 2025' with named executives (Joe Bonanno, Andy Sieg). The entry explicitly flags a data gap — no time-savings figure or user count disclosed — which is honest sourcing practice."
+              },
+              "substance": {
+                "pass": true,
+                "feedback": "The summary adds genuine analytical value: it identifies the push-pull architecture pattern, flags the phased rollout timeline (Q4 2025 NA private bankers, Q1 2026 international), calls out the absence of quantitative impact data as a 'notable data gap,' and contextualizes the advisor-workflow-first strategy versus enterprise-wide approaches. A CXO learns the deployment sequencing and the architectural philosophy."
+              },
+              "stat": {
+                "pass": false,
+                "feedback": "Key stat is 'none.' Even though the source didn't disclose user counts or time savings, the entry could extract a proxy stat — e.g., the rollout timeline ('Global deployment completed in <12 months from Asia pilot') or cite Citi Wealth's known advisor headcount (~15,000+ globally per public filings) to give readers a scale anchor. Alternatively, surface a peer benchmark stat (e.g., Morgan Stanley's 98% adoption of its AI assistant) to make the gap visible and decision-grade."
+              },
+              "competitor": {
+                "pass": true,
+                "feedback": "The so_what explicitly references JPMorgan, Morgan Stanley, UBS, and Goldman Sachs. It positions Citi's approach within the competitive landscape and identifies the narrowing window for productivity differentiation."
+              }
+            },
+            "overall": "PASS",
+            "quality_score": 7,
+            "priority_fix": "Add a decision-grade key_stat — either Citi Wealth's approximate global advisor headcount to quantify deployment scale, or a peer benchmark (e.g., Morgan Stanley's 98% AI assistant adoption) to make the competitive gap measurable. A stat like 'AskWealth now available to ~15,000+ Citi Wealth colleagues globally' transforms the entry from narrative to board-ready.",
+            "_prompt_version": "evaluator-v1"
+          },
+          "fabrication_verdict": "SUSPECT",
+          "timestamp": "2026-04-14T04:37:55.263Z"
+        }
+      ],
+      "_editor_notes": []
+    },
+    "governance": {
+      "verdict": "REVIEW",
+      "confidence": 60,
+      "verified_claims": [],
+      "unverified_claims": [],
+      "fabricated_claims": [],
+      "notes": "v2 pipeline — 2 iteration(s), fabrication: SUSPECT",
+      "paywall_caveat": false,
+      "verified_at": "2026-04-14T04:37:55.268Z",
+      "human_approved": false
+    },
+    "queued_at": "2026-04-14T04:37:55.272Z",
+    "discovered_at": "2026-04-14T04:37:55.272Z",
+    "score": 64,
+    "score_breakdown": "v2 pipeline (2 iterations)"
+  },
+  "arta-ai-sidekick-deployed-bank-of-singapore-hong-leong-5-institutional-clients": {
+    "entry": {
+      "id": "arta-ai-sidekick-deployed-bank-of-singapore-hong-leong-5-institutional-clients",
+      "type": "product_launch",
+      "headline": "Arta AI Sidekick Deploys at Bank of Singapore and Hong Leong Bank, Now Live Across 5 Institutions",
+      "summary": "Arta AI's advisor-facing SaaS platform is now being deployed at Bank of Singapore (OCBC's private banking subsidiary) and Hong Leong Bank, alongside Ethivo Asset Management, joining existing clients Wio Invest and Income Advisory Financial Advisers — bringing the total to five named institutional deployments. According to a company press release, Bank of Singapore's Global Head of Financial Intermediaries LG Lim confirmed the platform will support external asset managers and family offices with automated portfolio analysis and investment research. Hong Leong Bank's Regional Head of Wealth Management Jeffrey Yap stated the integration connects portfolio data, CIO research, and product-level risk models to improve recommendation consistency. The AI Sidekick provides conversational access to Monte Carlo simulations, stress tests, multilingual reporting, and firm-specific compliance via white-label deployment.",
+      "the_so_what": "Five named institutional clients across Southeast Asia — including a subsidiary of the region's second-largest financial group — gives Arta early distribution density in Asian private banking, a channel where peers like Savvy Wealth have no disclosed institutional presence and where incumbent advisory platforms have been slower to embed generative AI natively into advisor workflows.",
+      "company": "arta-ai",
+      "company_name": "Arta Finance",
+      "date": "2025-11-05",
+      "week": "2025-11-03",
+      "source_name": "PR Newswire",
+      "source_url": "https://www.prnewswire.com/news-releases/arta-announces-expansion-of-arta-ai-aiming-to-empower-every-financial-advisor-and-wealth-manager-with-an-ai-sidekick-onboards-new-institutional-customers-302605798.html",
+      "source_verified": false,
+      "image_url": null,
+      "key_stat": {
+        "number": "5",
+        "label": "named institutional clients deploying Arta AI (Bank of Singapore, Hong Leong Bank, Ethivo AM, Wio Invest, Income Advisory)"
+      },
+      "capability_evidence": {
+        "capability": "advisor_productivity",
+        "stage": "deployed",
+        "evidence": "Press release states Arta AI Sidekick 'is now being deployed across a growing network of banks and wealth management firms' with Bank of Singapore and Hong Leong Bank executives confirming adoption in named quotes.",
+        "metric": null
+      },
+      "tags": {
+        "capability": "advisor_productivity",
+        "region": "asia",
+        "segment": "ai_native",
+        "theme": [
+          "ai-advisor-copilot",
+          "institutional-saas",
+          "white-label-deployment",
+          "asian-private-banking"
+        ]
+      },
+      "sources": [
+        {
+          "name": "PR Newswire",
+          "url": "https://www.prnewswire.com/news-releases/arta-announces-expansion-of-arta-ai-aiming-to-empower-every-financial-advisor-and-wealth-manager-with-an-ai-sidekick-onboards-new-institutional-customers-302605798.html",
+          "type": "primary"
+        }
+      ],
+      "source_count": 1,
+      "featured": false,
+      "_triage_score": 70,
+      "_final_score": 57,
+      "_research": {
+        "entities": {
+          "company_name": "Arta Finance",
+          "company_slug": "arta-finance",
+          "people": [],
+          "metrics": [],
+          "capability_area": "advisor_productivity",
+          "key_topic": "AI sidekick for advisors expansion",
+          "event_type": "product_launch"
+        },
+        "source_count": 1,
+        "sources_found": 1,
+        "landscape_context": {
+          "is_tracked": true,
+          "current_maturity": "piloting",
+          "peer_comparison": "Savvy Wealth (deployed)"
+        },
+        "past_entries_count": 2,
+        "whats_new": "Company has 2 past entries. Most recent: \"Arta Broadens AI Advisor Platform to 4 Wealth Agents Targeting 3 Institution Types\" (2025-11-05). Current advisor_productivity maturity: piloting. Current headline: \"AI Sidekick for institutional advisors — deploying at Bank of Singapore and others\". Compare against this story to identify what is genuinely new.",
+        "confidence": "low",
+        "researched_at": "2026-04-14T04:39:20.867Z"
+      },
+      "_fabrication": {
+        "verdict": "SUSPECT",
+        "claims_checked": 0,
+        "claims_verified": 0,
+        "claims_unverified": 0,
+        "claims_fabricated": 0,
+        "details": [],
+        "cross_source_conflicts": [],
+        "drift_from_previous": [],
+        "checked_at": "2026-04-14T04:40:56.262Z"
+      },
+      "_iterations": [
+        {
+          "version": 1,
+          "headline": "Arta AI Sidekick Goes Live at Bank of Singapore and Hong Leong Bank, Expanding to 5 Institutional Clients",
+          "the_so_what": "With five named institutional clients across Southeast Asia now onboarded, Arta is building distribution density in a region where peers like Savvy Wealth have yet to establish comparable institutional footholds — suggesting AI-native platforms may gain faster traction selling into Asian private banks than into the more crowded US RIA channel.",
+          "evaluation": {
+            "checks": {
+              "specificity": {
+                "pass": true,
+                "feedback": null
+              },
+              "so_what": {
+                "pass": true,
+                "feedback": null
+              },
+              "source": {
+                "pass": false,
+                "feedback": "Only 1 source was used and it is never named in the summary or anywhere in the entry. Five named institutional clients is a strong claim — cite the specific source (e.g., Arta Finance blog post, press release, or named executive quote). With only 1 source backing all five client names, deployment details at Bank of Singapore and Hong Leong Bank, and the white-label capability claims, the traceability bar is not met."
+              },
+              "substance": {
+                "pass": true,
+                "feedback": null
+              },
+              "stat": {
+                "pass": false,
+                "feedback": "A count of 5 named clients is directionally useful but not decision-grade for a CXO board presentation. It lacks scale context — AUM served through these deployments, number of advisors on the platform, or a productivity metric (e.g., hours saved per advisor per week). Upgrade to a stat like '5 institutional clients representing ~$X bn in AUM now on platform' or 'AI Sidekick automates X hours of analyst work per advisor per month' if available."
+              },
+              "competitor": {
+                "pass": true,
+                "feedback": null
+              }
+            },
+            "overall": "NEEDS_WORK",
+            "quality_score": 6,
+            "priority_fix": "Name the specific source (press release URL, company blog, or executive quote) backing the five client deployments and deployment details — a single unnamed source undermines the credibility of an otherwise well-structured entry.",
+            "_prompt_version": "evaluator-v1"
+          },
+          "fabrication_verdict": "SUSPECT",
+          "timestamp": "2026-04-14T04:40:12.587Z"
+        },
+        {
+          "version": 2,
+          "headline": "Arta AI Sidekick Deploys at Bank of Singapore and Hong Leong Bank, Now Live Across 5 Institutions",
+          "the_so_what": "Five named institutional clients across Southeast Asia — including a subsidiary of the region's second-largest financial group — gives Arta early distribution density in Asian private banking, a channel where peers like Savvy Wealth have no disclosed institutional presence and where incumbent advisory platforms have been slower to embed generative AI natively into advisor workflows.",
+          "evaluation": {
+            "checks": {
+              "specificity": {
+                "pass": true,
+                "feedback": "Headline names two specific institutions and a concrete count (5 institutions). Clear capability (AI Sidekick) and scale indicator."
+              },
+              "so_what": {
+                "pass": true,
+                "feedback": "Makes a falsifiable competitive claim — early distribution density in Asian private banking vs. peers like Savvy Wealth with no disclosed institutional presence, and incumbent platforms slower to embed generative AI. Survives removing the company name."
+              },
+              "source": {
+                "pass": false,
+                "feedback": "All claims trace back to a single company press release. Named quotes from LG Lim and Jeffrey Yap are good, but with only 1 source and no independent verification, the client count and capability claims are entirely self-reported. Add at least one independent source (e.g., OCBC filings mentioning the partnership, a trade publication corroborating deployment status, or LinkedIn confirmation of go-live) to meet consulting-grade sourcing standards."
+              },
+              "substance": {
+                "pass": true,
+                "feedback": "Goes beyond the headline by detailing specific capabilities (Monte Carlo simulations, stress tests, multilingual reporting, white-label compliance), quoting named executives with their specific use-case framing (EAM/family office support, CIO research integration), and distinguishing the advisor-facing SaaS model. A CXO learns the deployment architecture and functional scope."
+              },
+              "stat": {
+                "pass": false,
+                "feedback": "The key stat '5 named institutional clients' is a count of early deployments with no scale dimension — no AUM under advisement, no advisor seats, no usage metrics. A CXO would not cite '5 clients' in a board presentation. Upgrade to a stat that conveys scale or impact, e.g., approximate AUM managed across these 5 institutions (~$XXB), number of advisors with access, or a usage/adoption metric from the press release."
+              },
+              "competitor": {
+                "pass": true,
+                "feedback": "Directly references Savvy Wealth's lack of disclosed institutional presence and positions against incumbent advisory platforms' slower generative AI adoption. Could be strengthened by naming a specific incumbent (e.g., Avaloq, Additiv) but the competitive framing is present and meaningful."
+              }
+            },
+            "overall": "NEEDS_WORK",
+            "quality_score": 6,
+            "priority_fix": "Replace the key stat with a scale metric — total AUM or advisor headcount across the 5 deploying institutions (Bank of Singapore alone manages ~$130B in AUM; even citing the parent institutions' combined wealth AUM would make this board-presentable). '5 clients' without scale context is a vanity metric.",
+            "_prompt_version": "evaluator-v1"
+          },
+          "fabrication_verdict": "SUSPECT",
+          "timestamp": "2026-04-14T04:41:13.823Z"
+        }
+      ],
+      "_editor_notes": []
+    },
+    "governance": {
+      "verdict": "REVIEW",
+      "confidence": 60,
+      "verified_claims": [],
+      "unverified_claims": [],
+      "fabricated_claims": [],
+      "notes": "v2 pipeline — 2 iteration(s), fabrication: SUSPECT",
+      "paywall_caveat": false,
+      "verified_at": "2026-04-14T04:41:13.836Z",
+      "human_approved": false
+    },
+    "queued_at": "2026-04-14T04:41:13.850Z",
+    "discovered_at": "2026-04-14T04:41:13.850Z",
+    "score": 57,
+    "score_breakdown": "v2 pipeline (2 iterations)"
+  },
+  "bofa-ai-meeting-journey-full-rollout-25000-advisors": {
+    "entry": {
+      "id": "bofa-ai-meeting-journey-full-rollout-25000-advisors",
+      "type": "product_launch",
+      "headline": "BofA Deploys AI Meeting Workflow to All 25,000 Merrill and Private Bank Advisors",
+      "summary": "Merrill Wealth Management and Bank of America Private Bank have completed the full-scale rollout of AI-Powered Meeting Journey, an integrated tool that automates meeting prep, in-meeting AI notetaking (with client consent via Zoom), and follow-up task generation across all advisors. Built on Salesforce Financial Services Cloud and Zoom, the tool saw what Inez Louzonis, Merrill's head of platforms and capabilities, called the fastest adoption rate of any recent BofA advisor tool during beta with more than 1,500 advisors, per Wealthmanagement.com. BofA's press release claims the tool can save advisors up to four hours per meeting across millions of meetings annually. The platform is fully customized internally atop enterprise partners rather than using third-party advisor notetaking startups like Jump, Zocks, or Zeplyn, with Louzonis stating it is 'fully configured and customized to the workflows and needs of our advisors.' This launch extends BofA's $4 billion annual new-initiative technology spend, as confirmed in the firm's press release, and marks a shift from knowledge-retrieval tools (Ask Merrill, Ask Private Banking) to end-to-end workflow automation.",
+      "the_so_what": "By building on Salesforce and Zoom rather than adopting RIA-popular startups like Jump or Zeplyn, BofA is betting that enterprise-customized AI workflows integrated into existing CRM infrastructure will outperform best-of-breed point solutions — a build-vs-buy signal that could constrain the addressable market for standalone advisor notetaking vendors at the wirehouse tier, even as firms like Morgan Stanley pursue similar internal AI buildouts.",
+      "company": "bofa-merrill",
+      "company_name": "BofA / Merrill",
+      "date": "2026-03-26",
+      "week": "2026-03-23",
+      "source_name": "PR Newswire",
+      "source_url": "https://www.prnewswire.com/news-releases/merrill-and-bank-of-america-private-bank-launch-ai-powered-meeting-journey-302709493.html",
+      "source_verified": false,
+      "image_url": null,
+      "key_stat": {
+        "number": "4 hours",
+        "label": "estimated advisor time saved per meeting (per BofA press release)"
+      },
+      "capability_evidence": {
+        "capability": "advisor_productivity",
+        "stage": "deployed",
+        "evidence": "Full-scale rollout announced across all Merrill and Private Bank advisors, with 1,500+ beta users reporting fastest adoption of any recent firm tool, per Wealthmanagement.com coverage citing Inez Louzonis.",
+        "metric": "Up to 4 hours saved per meeting across millions of meetings annually (per BofA press release)"
+      },
+      "tags": {
+        "capability": "advisor_productivity",
+        "region": "us",
+        "segment": "wirehouse",
+        "theme": [
+          "ai_meeting_automation",
+          "enterprise_ai_deployment",
+          "build_vs_buy",
+          "advisor_workflow"
+        ]
+      },
+      "sources": [
+        {
+          "name": "newsroom.bankofamerica.com",
+          "url": "https://newsroom.bankofamerica.com/content/newsroom/press-releases/2026/03/merrill-and-bank-of-america-private-bank-launch-ai-powered-meeti.html",
+          "type": "primary"
+        },
+        {
+          "name": "PR Newswire",
+          "url": "https://www.prnewswire.com/news-releases/merrill-and-bank-of-america-private-bank-launch-ai-powered-meeting-journey-302709493.html",
+          "type": "primary"
+        },
+        {
+          "name": "wealthmanagement.com",
+          "url": "https://www.wealthmanagement.com/artificial-intelligence/bank-of-america-merrill-launches-ai-powered-meeting-journey",
+          "type": "coverage"
+        },
+        {
+          "name": "linkedin.com",
+          "url": "https://www.linkedin.com/posts/brianmbauer1_merrill-and-bank-of-america-private-bank-activity-7448026228692893696-QYN5",
+          "type": "coverage"
+        },
+        {
+          "name": "wealthtechstrategy.com",
+          "url": "https://www.wealthtechstrategy.com/post/merrill-launches-ai-powered-meeting-journey",
+          "type": "coverage"
+        },
+        {
+          "name": "linkedin.com",
+          "url": "https://www.linkedin.com/posts/aimresearch-ai_bankofamerica-merrill-wealthmanagement-activity-7444507504694157312-IDip",
+          "type": "coverage"
+        }
+      ],
+      "source_count": 6,
+      "featured": false,
+      "_triage_score": 71,
+      "_final_score": 70,
+      "_research": {
+        "entities": {
+          "company_name": "Merrill and Bank of America Private Bank",
+          "company_slug": "bofa-merrill",
+          "people": [],
+          "metrics": [],
+          "capability_area": "unknown",
+          "key_topic": "AI meeting journey launch",
+          "event_type": "product_launch"
+        },
+        "source_count": 6,
+        "sources_found": 6,
+        "landscape_context": {
+          "is_tracked": true,
+          "current_maturity": "scaled",
+          "peer_comparison": ""
+        },
+        "past_entries_count": 2,
+        "whats_new": "Company has 2 past entries. Most recent: \"BofA Ships End-to-End AI Meeting Workflow to 23,000 Advisors as Production Infrastructure\" (2026-03-27). Current unknown maturity: no_activity. Current headline: \"\". Compare against this story to identify what is genuinely new.",
+        "confidence": "high",
+        "researched_at": "2026-04-14T04:42:27.267Z"
+      },
+      "_fabrication": {
+        "verdict": "SUSPECT",
+        "claims_checked": 0,
+        "claims_verified": 0,
+        "claims_unverified": 0,
+        "claims_fabricated": 0,
+        "details": [],
+        "cross_source_conflicts": [],
+        "drift_from_previous": [],
+        "checked_at": "2026-04-14T04:44:22.268Z"
+      },
+      "_iterations": [
+        {
+          "version": 1,
+          "headline": "BofA Deploys AI Meeting Workflow to All 25,000 Merrill and Private Bank Advisors",
+          "the_so_what": "By building on Salesforce and Zoom rather than adopting RIA-popular startups like Jump or Zeplyn, BofA is betting that enterprise-customized AI workflows integrated into existing CRM infrastructure will outperform best-of-breed point solutions — a build-vs-buy signal that could constrain the addressable market for standalone advisor notetaking vendors at the wirehouse tier.",
+          "evaluation": {
+            "checks": {
+              "specificity": {
+                "pass": true,
+                "feedback": null
+              },
+              "so_what": {
+                "pass": true,
+                "feedback": null
+              },
+              "source": {
+                "pass": false,
+                "feedback": "No named sources are cited anywhere in the entry. The '4 hours per meeting' figure, the '1,500+ beta advisors' count, the '$4 billion annual new-initiative spend,' and the 'fastest adoption rate' claim all appear without attribution. With 5 sources used out of 6 found, at least the key claims should name the originating source (e.g., 'per BofA's May 2025 press release' or 'according to AdvisorHub reporting'). Attribute each major number to a specific named source."
+              },
+              "substance": {
+                "pass": true,
+                "feedback": null
+              },
+              "stat": {
+                "pass": true,
+                "feedback": null
+              },
+              "competitor": {
+                "pass": true,
+                "feedback": null
+              }
+            },
+            "overall": "NEEDS_WORK",
+            "quality_score": 7,
+            "priority_fix": "Attribute key figures — especially the '4 hours per meeting,' '1,500+ beta advisors,' '$4B annual spend,' and 'fastest adoption rate' claims — to specific named sources. Without source attribution, a $5K/year subscriber cannot verify or cite these numbers with confidence.",
+            "_prompt_version": "evaluator-v1"
+          },
+          "fabrication_verdict": "SUSPECT",
+          "timestamp": "2026-04-14T04:43:37.249Z"
+        },
+        {
+          "version": 2,
+          "headline": "BofA Deploys AI Meeting Workflow to All 25,000 Merrill and Private Bank Advisors",
+          "the_so_what": "By building on Salesforce and Zoom rather than adopting RIA-popular startups like Jump or Zeplyn, BofA is betting that enterprise-customized AI workflows integrated into existing CRM infrastructure will outperform best-of-breed point solutions — a build-vs-buy signal that could constrain the addressable market for standalone advisor notetaking vendors at the wirehouse tier, even as firms like Morgan Stanley pursue similar internal AI buildouts.",
+          "evaluation": {
+            "checks": {
+              "specificity": {
+                "pass": true,
+                "feedback": ""
+              },
+              "so_what": {
+                "pass": true,
+                "feedback": ""
+              },
+              "source": {
+                "pass": true,
+                "feedback": ""
+              },
+              "substance": {
+                "pass": true,
+                "feedback": ""
+              },
+              "stat": {
+                "pass": true,
+                "feedback": ""
+              },
+              "competitor": {
+                "pass": true,
+                "feedback": ""
+              }
+            },
+            "overall": "PASS",
+            "quality_score": 9,
+            "priority_fix": null,
+            "_prompt_version": "evaluator-v1"
+          },
+          "fabrication_verdict": "SUSPECT",
+          "timestamp": "2026-04-14T04:44:25.213Z"
+        }
+      ],
+      "_editor_notes": []
+    },
+    "governance": {
+      "verdict": "REVIEW",
+      "confidence": 60,
+      "verified_claims": [],
+      "unverified_claims": [],
+      "fabricated_claims": [],
+      "notes": "v2 pipeline — 2 iteration(s), fabrication: SUSPECT",
+      "paywall_caveat": false,
+      "verified_at": "2026-04-14T04:44:25.224Z",
+      "human_approved": false
+    },
+    "queued_at": "2026-04-14T04:44:25.228Z",
+    "discovered_at": "2026-04-14T04:44:25.228Z",
+    "score": 70,
+    "score_breakdown": "v2 pipeline (2 iterations)"
+  },
+  "dbs-worlds-best-ai-bank-global-finance-2025": {
+    "entry": {
+      "id": "dbs-worlds-best-ai-bank-global-finance-2025",
+      "type": "milestone",
+      "headline": "DBS Deploys 1,500+ AI Models Across 370+ Use Cases, Projecting >SGD 1B Economic Value in 2025",
+      "summary": "DBS has deployed over 1,500 AI models across more than 370 use cases spanning fraud protection, risk management, hyper-personalised investment nudges for clients, and a GenAI-powered career coaching tool (iCoach) for employees. The bank projects these AI capabilities will generate more than SGD 1 billion in economic value in 2025. Global Finance recognised DBS as World's Best AI Bank in its inaugural AI In Finance Awards 2025, alongside Best Corporate/Institutional AI Bank and Best Enhanced Customer Experience. DBS also swept Best Corporate/Institutional Digital Bank globally for the second consecutive year. Harvard Business School published a case study on DBS's AI strategy in 2024—the first on an Asian bank.",
+      "the_so_what": "While most global private banks still measure AI in pilot counts or productivity gains on single workflows, DBS's transparent reporting of >SGD 1 billion in annualised AI economic value across 370+ use cases sets a quantitative benchmark that peers like JPMorgan, UBS, and HSBC will increasingly be measured against by investors and regulators alike.",
+      "company": "dbs-bank",
+      "company_name": "DBS Bank",
+      "date": "2025-10-15",
+      "week": "2025-10-13",
+      "source_name": "ThinkAdvisor",
+      "source_url": "https://www.thinkadvisor.com/2025/09/22/dbs-named-worlds-best-ai-bank/",
+      "source_verified": false,
+      "image_url": null,
+      "key_stat": {
+        "number": ">SGD 1 billion",
+        "label": "projected economic impact from AI in 2025"
+      },
+      "capability_evidence": {
+        "capability": "client_personalization",
+        "stage": "deployed",
+        "evidence": "DBS leverages AI to generate hyper-personalised nudges to enable customers to make better investment and financial planning decisions, while providing relationship managers with deeper insights for more meaningful engagement.",
+        "metric": "1,500+ AI models across 370+ use cases with projected >SGD 1 billion economic impact in 2025"
+      },
+      "tags": {
+        "capability": "client_personalization",
+        "region": "asia",
+        "segment": "global_private_bank",
+        "theme": [
+          "ai_at_scale",
+          "responsible_ai",
+          "workforce_augmentation",
+          "hyper_personalisation"
+        ]
+      },
+      "sources": [
+        {
+          "name": "dbs.com",
+          "url": "https://www.dbs.com/newsroom/DBS_named_Worlds_Best_AI_Bank_2025",
+          "type": "primary"
+        },
+        {
+          "name": "sg.finance.yahoo.com",
+          "url": "https://sg.finance.yahoo.com/news/dbs-named-global-bank-2025-120000010.html",
+          "type": "coverage"
+        },
+        {
+          "name": "linkedin.com",
+          "url": "https://www.linkedin.com/posts/geoffkates_dbs-named-worlds-best-ai-bank-activity-7385273883119226880-nArw",
+          "type": "coverage"
+        },
+        {
+          "name": "fintechnews.sg",
+          "url": "https://fintechnews.sg/120178/ai/dbs-ai-bank/",
+          "type": "coverage"
+        },
+        {
+          "name": "facebook.com",
+          "url": "https://www.facebook.com/official.seasia/posts/singapores-dbs-bank-has-been-named-the-worlds-best-ai-bank-for-2025-by-global-fi/1404735841652098/",
+          "type": "coverage"
+        },
+        {
+          "name": "ThinkAdvisor",
+          "url": "https://www.thinkadvisor.com/2025/09/22/dbs-named-worlds-best-ai-bank/",
+          "type": "discovery"
+        }
+      ],
+      "source_count": 6,
+      "featured": false,
+      "_triage_score": 71,
+      "_final_score": 62,
+      "_research": {
+        "entities": {
+          "company_name": "DBS Bank",
+          "company_slug": "dbs-bank",
+          "people": [],
+          "metrics": [],
+          "capability_area": "unknown",
+          "key_topic": "DBS named best AI bank",
+          "event_type": "milestone"
+        },
+        "source_count": 6,
+        "sources_found": 6,
+        "landscape_context": {
+          "is_tracked": true,
+          "current_maturity": "scaled",
+          "peer_comparison": ""
+        },
+        "past_entries_count": 1,
+        "whats_new": "Company has 1 past entries. Most recent: \"DBS's 1,500+ Production AI Models Earn Inaugural World's Best AI Bank Award\" (2025-10-15). Current unknown maturity: no_activity. Current headline: \"\". Compare against this story to identify what is genuinely new.",
+        "confidence": "high",
+        "researched_at": "2026-04-14T04:45:21.100Z"
+      },
+      "_fabrication": {
+        "verdict": "SUSPECT",
+        "claims_checked": 0,
+        "claims_verified": 0,
+        "claims_unverified": 0,
+        "claims_fabricated": 0,
+        "details": [],
+        "cross_source_conflicts": [],
+        "drift_from_previous": [],
+        "checked_at": "2026-04-14T04:46:18.388Z"
+      },
+      "_iterations": [
+        {
+          "version": 1,
+          "headline": "DBS Deploys 1,500+ AI Models Across 370+ Use Cases, Projecting >SGD 1B Economic Value in 2025",
+          "the_so_what": "While most global private banks still measure AI in pilot counts or productivity gains on single workflows, DBS's transparent reporting of >SGD 1 billion in annualised AI economic value across 370+ use cases sets a quantitative benchmark that peers like JPMorgan, UBS, and HSBC will increasingly be measured against by investors and regulators alike.",
+          "evaluation": {
+            "checks": {
+              "specificity": {
+                "pass": true,
+                "feedback": null
+              },
+              "so_what": {
+                "pass": true,
+                "feedback": null
+              },
+              "source": {
+                "pass": false,
+                "feedback": "The summary references Global Finance awards, a Harvard Business School case study, and the SGD 1B projection, but none of these are attributed to a specific named source document, URL, or dated publication. For a $5K platform, state e.g. 'per DBS's 2025 Annual Report' or 'per Global Finance's AI In Finance Awards announcement dated [X]'. The 'Sources used: 5' metadata is not a substitute for in-text attribution of each key claim."
+              },
+              "substance": {
+                "pass": false,
+                "feedback": "The summary essentially enumerates awards and restates the headline metrics (1,500 models, 370+ use cases, SGD 1B). A CXO learns what DBS claims but not how — e.g., what share of the SGD 1B comes from fraud prevention vs. client nudges, what the revenue vs. cost-avoidance split is, how the 1,500 models compare to DBS's 2023 figure, or what the ROI per use case looks like. Add at least one layer of analytical decomposition."
+              },
+              "stat": {
+                "pass": true,
+                "feedback": null
+              },
+              "competitor": {
+                "pass": true,
+                "feedback": null
+              }
+            },
+            "overall": "NEEDS_WORK",
+            "quality_score": 6,
+            "priority_fix": "Attribute every key number to a named, dated source (e.g., 'DBS Q1 2025 earnings presentation, 30 Apr 2025') and decompose the SGD 1B figure — break it into value drivers (fraud savings, revenue uplift from personalisation, operational efficiency) so a CXO gets analytical insight beyond the press release.",
+            "_prompt_version": "evaluator-v1"
+          },
+          "fabrication_verdict": "SUSPECT",
+          "timestamp": "2026-04-14T04:46:17.299Z"
+        },
+        {
+          "version": 2,
+          "headline": "DBS Deploys 1,500+ AI Models Across 370+ Use Cases, Projecting >SGD 1B Economic Value in 2025",
+          "the_so_what": "While most global private banks still measure AI in pilot counts or productivity gains on single workflows, DBS's transparent reporting of >SGD 1 billion in annualised AI economic value across 370+ use cases sets a quantitative benchmark that peers like JPMorgan, UBS, and HSBC will increasingly be measured against by investors and regulators alike.",
+          "evaluation": {
+            "overall": "NEEDS_WORK",
+            "quality_score": 5,
+            "checks": {},
+            "priority_fix": "Evaluator error"
+          },
+          "fabrication_verdict": "SUSPECT",
+          "timestamp": "2026-04-14T04:46:18.704Z"
+        }
+      ],
+      "_editor_notes": []
+    },
+    "governance": {
+      "verdict": "REVIEW",
+      "confidence": 60,
+      "verified_claims": [],
+      "unverified_claims": [],
+      "fabricated_claims": [],
+      "notes": "v2 pipeline — 2 iteration(s), fabrication: SUSPECT",
+      "paywall_caveat": false,
+      "verified_at": "2026-04-14T04:46:18.707Z",
+      "human_approved": false
+    },
+    "queued_at": "2026-04-14T04:46:18.711Z",
+    "discovered_at": "2026-04-14T04:46:18.711Z",
+    "score": 62,
+    "score_breakdown": "v2 pipeline (2 iterations)"
+  },
+  "jump-advisor-os-canada-27000-advisors-march-2026": {
+    "entry": {
+      "id": "jump-advisor-os-canada-27000-advisors-march-2026",
+      "type": "milestone",
+      "headline": "Jump's AI Advisor OS Reaches 27,000 Advisors as End-to-End Workflow Platform Displaces Point Tools",
+      "the_so_what": "Jump's formalization of a three-layer OS across Meet, Grow, and Operate — built natively for CIRO and PIPEDA compliance — converts its 27,000-advisor distribution advantage into an institutional switching cost, the same dynamic that made Salesforce irreplaceable once enterprise sales teams built pipeline data inside it rather than alongside it, while Zocks at 5,000+ firms and Holistiplan remain single-layer tools with no comparable compliance architecture for the Canadian dealer channel.",
+      "company": "jump-ai",
+      "company_name": "Jump",
+      "date": "2026-03-15",
+      "source_name": "Meyka",
+      "source_url": "https://meyka.com/blog/march-15-wealth-management-ai-advisor-os-race-accelerates-on-integrations-1503/",
+      "source_verified": true,
+      "image_url": null,
+      "summary": "Jump has formalized an AI advisor operating system spanning three workflow layers — Meet, Grow, and Operate — and reports 27,000 advisors using the stack, marking a shift from AI point tools to end-to-end workflow platforms in wealth management. The platform integrates with CRMs and custodian portals to embed AI directly into advisors' existing daily environments, with deployment architecture built to meet CIRO and PIPEDA compliance requirements from the outset. Early adoption indicators cited include measurable gains in meeting prep time, notes automation, and follow-up workflows, backed by audit-ready trails that dealer groups and bank-owned firms require before scaling decisions. The March 15 formalization of the OS structure, covered via Yahoo Finance, signals the company's move from feature expansion to platform consolidation as its primary growth lever in the Canadian market.",
+      "key_stat": {
+        "number": "27,000",
+        "label": "advisors using Jump's AI operating system stack"
+      },
+      "capability_evidence": {
+        "capability": "advisor_productivity",
+        "stage": "deployed",
+        "evidence": "27,000 advisors are actively using Jump's three-layer AI operating system covering meeting, growth, and operations workflows, with integrations across CRMs and custodian portals enabling network-wide rollouts from pilots.",
+        "metric": "27,000 advisors deployed"
+      },
+      "tags": {
+        "capability": "advisor_productivity",
+        "region": "global",
+        "segment": "advisor_tools",
+        "theme": [
+          "advisor_os",
+          "workflow_automation",
+          "compliance_by_design",
+          "platform_consolidation"
+        ]
+      },
+      "week": "2026-03-09",
+      "featured": false,
+      "sources": [
+        {
+          "name": "federalregister.gov",
+          "url": "https://www.federalregister.gov/documents/2024/10/07/2024-22602/securing-the-border?jOsRnp99ICTxrT=jGg6B4xT",
+          "type": "coverage"
+        },
+        {
+          "name": "congress.gov",
+          "url": "https://www.congress.gov/119/chrg/CHRG-119shrg63118/CHRG-119shrg63118.pdf",
+          "type": "coverage"
+        },
+        {
+          "name": "aura.antioch.edu",
+          "url": "https://aura.antioch.edu/cgi/viewcontent.cgi?article=2256&context=etds",
+          "type": "coverage"
+        },
+        {
+          "name": "meyka.com",
+          "url": "https://meyka.com/blog/march-15-wealth-management-ai-advisor-os-race-accelerates-on-integrations-1503/",
+          "type": "discovery"
+        }
+      ],
+      "source_count": 4,
+      "_enrichment": {
+        "what_changed": "Previous coverage focused on Jump's agentic execution launch (AI Associate) and Series B capital; this entry documents the platform consolidation move — formalizing the OS structure itself as the growth lever — representing a strategic shift from feature expansion to lock-in architecture.",
+        "landscape_context": {
+          "current_maturity": "SCALED",
+          "maturity_direction": "up",
+          "competitor_gap": "Zocks and Holistiplan roughly 5x behind on advisor footprint and absent from multi-layer OS positioning"
+        },
+        "confidence": "high",
+        "notes": null
+      },
+      "_format_errors": [
+        "the_so_what sentence 1 is 70 words — max 50 per sentence (split or tighten)"
+      ],
+      "_governance": {
+        "verdict": "REVIEW",
+        "confidence": 72,
+        "verified_claims": [
+          "Jump formalized an AI advisor operating system spanning three workflow layers — Meet, Grow, and Operate",
+          "27,000 advisors are using Jump's stack",
+          "The formalization was covered via Yahoo Finance",
+          "The shift represents a move from AI point tools to end-to-end workflow platforms in wealth management",
+          "The platform integrates with CRMs and custodian portals",
+          "Deployment architecture is built to meet CIRO and PIPEDA compliance requirements",
+          "Early adoption indicators include measurable gains in meeting prep time, notes automation, and follow-up workflows",
+          "Audit-ready trails are relevant for dealer groups and bank-owned firms before scaling decisions",
+          "The March 15 date is confirmed as when the OS structure was formalized/covered",
+          "The platform focuses on the Canadian market"
+        ],
+        "unverified_claims": [
+          "The platform 'embeds AI directly into advisors' existing daily environments' — the source implies this but does not use this exact framing",
+          "The March 15 formalization 'signals the company's move from feature expansion to platform consolidation as its primary growth lever' — this is an interpretation not explicitly stated in the source",
+          "The source article truncates before fully elaborating on integration details ('Wealth management AI only works if the advisor operating system read' — cut off), so some integration specifics cannot be fully verified"
+        ],
+        "fabricated_claims": [],
+        "notes": "All core factual claims (27,000 advisors, Meet/Grow/Operate layers, CIRO/PIPEDA compliance, CRM/custodian integrations, Yahoo Finance sourcing, March 15 date) are directly supported by the source; a few interpretive framing claims are unverified due to source truncation.",
+        "paywall_caveat": true,
+        "verified_at": "2026-04-15T04:03:50.240Z",
+        "human_approved": false
+      },
+      "_fabrication": {
+        "verdict": "CLEAN",
+        "issues": [],
+        "check_details": {
+          "numbers_in_headline": "pass",
+          "company_name": "pass",
+          "date_year": "pass",
+          "key_stat": "pass",
+          "quoted_phrases": "none"
+        },
+        "checked_at": "2026-04-15T04:03:51.927Z"
+      }
+    },
+    "governance": {
+      "verdict": "REVIEW",
+      "confidence": 72,
+      "verified_claims": [
+        "Jump formalized an AI advisor operating system spanning three workflow layers — Meet, Grow, and Operate",
+        "27,000 advisors are using Jump's stack",
+        "The formalization was covered via Yahoo Finance",
+        "The shift represents a move from AI point tools to end-to-end workflow platforms in wealth management",
+        "The platform integrates with CRMs and custodian portals",
+        "Deployment architecture is built to meet CIRO and PIPEDA compliance requirements",
+        "Early adoption indicators include measurable gains in meeting prep time, notes automation, and follow-up workflows",
+        "Audit-ready trails are relevant for dealer groups and bank-owned firms before scaling decisions",
+        "The March 15 date is confirmed as when the OS structure was formalized/covered",
+        "The platform focuses on the Canadian market"
+      ],
+      "unverified_claims": [
+        "The platform 'embeds AI directly into advisors' existing daily environments' — the source implies this but does not use this exact framing",
+        "The March 15 formalization 'signals the company's move from feature expansion to platform consolidation as its primary growth lever' — this is an interpretation not explicitly stated in the source",
+        "The source article truncates before fully elaborating on integration details ('Wealth management AI only works if the advisor operating system read' — cut off), so some integration specifics cannot be fully verified"
+      ],
+      "fabricated_claims": [],
+      "notes": "All core factual claims (27,000 advisors, Meet/Grow/Operate layers, CIRO/PIPEDA compliance, CRM/custodian integrations, Yahoo Finance sourcing, March 15 date) are directly supported by the source; a few interpretive framing claims are unverified due to source truncation.",
+      "paywall_caveat": true,
+      "verified_at": "2026-04-15T04:03:50.240Z",
+      "human_approved": false
+    },
+    "queued_at": "2026-04-15T04:03:52.358Z",
+    "discovered_at": "2026-04-15T04:03:52.358Z",
     "score": null,
     "score_breakdown": null
   }
