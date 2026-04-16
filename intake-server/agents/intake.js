@@ -632,6 +632,7 @@ export async function processUrl({ url, source_name, send }) {
 
   entry.sources = sources;
   entry.source_count = sources.length;
+  entry._kb_source_id = primarySourceId || null;
 
   send('structured', {
     entry,
