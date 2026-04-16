@@ -314,7 +314,7 @@ function loadLandscapeContext(companySlug, capabilityId) {
     })),
     peers: peers.map(p => ({
       name: p.name,
-      maturity: p.maturity,
+      maturity: p.overall_maturity || p.maturity,
       headline: p.headline,
     })),
     is_tracked: !!companyData,

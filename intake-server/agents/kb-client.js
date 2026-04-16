@@ -579,7 +579,7 @@ export async function hydrateBrief(briefId) {
     if (brief.primary_source_id) {
       const { data } = await supabase
         .from('sources')
-        .select('url, title, source_name, content_md, word_count')
+        .select('url, title, source_name, source_type, content_md, word_count')
         .eq('id', brief.primary_source_id)
         .single();
       if (data) brief._primary_source = data;
@@ -589,7 +589,7 @@ export async function hydrateBrief(briefId) {
     if (brief.additional_source_ids?.length > 0) {
       const { data } = await supabase
         .from('sources')
-        .select('id, url, title, source_name, content_md, word_count')
+        .select('id, url, title, source_name, source_type, content_md, word_count')
         .in('id', brief.additional_source_ids);
       if (data) brief._additional_sources = data;
     }

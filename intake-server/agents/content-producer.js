@@ -255,7 +255,7 @@ export async function produceEntry({ url, title, source_name, triage_score, send
         url: s.url,
         name: s.source_name || s.title || new URL(s.url).hostname,
         title: s.title || '',
-        type: s.type || 'coverage',
+        type: s.source_type || s.type || 'coverage',
         content: s.content_md || '',
         word_count: s.word_count || 0,
       })),
@@ -472,7 +472,7 @@ export async function produceEntry({ url, title, source_name, triage_score, send
       landscape_context: {
         is_tracked: researchBrief.landscape?.is_tracked || false,
         current_maturity: researchBrief.landscape?.company?.overall_maturity || null,
-        peer_comparison: (researchBrief.landscape?.peers || []).map(p => `${p.name} (${p.maturity})`).join(', '),
+        peer_comparison: (researchBrief.landscape?.peers || []).map(p => `${p.name} (${p.overall_maturity || p.maturity || 'unknown'})`).join(', '),
       },
       past_entries_count: researchBrief.landscape?.past_entries?.length || 0,
       whats_new: researchBrief.whats_new,
