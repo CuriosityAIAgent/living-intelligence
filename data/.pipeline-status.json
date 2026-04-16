@@ -1,8 +1,8 @@
 {
-  "started_at": "2026-04-16T04:00:00.345Z",
+  "started_at": "2026-04-16T04:00:00.344Z",
   "candidates_found": 15,
-  "queued": 0,
-  "blocked": 2,
+  "queued": 4,
+  "blocked": 1,
   "errors": 1,
   "error_details": [
     {
@@ -12,17 +12,17 @@
     }
   ],
   "discovery_sources": {
-    "layer1_news": 43,
-    "layer1_capabilities": 0,
+    "layer1_news": 32,
+    "layer1_capabilities": 15,
     "layer2_companies": 0,
     "layer3_newsapi": 6,
-    "layer1_tl": 21,
-    "layer2_authors": 7,
-    "companies_queried": 0,
-    "capabilities_queried": 0,
-    "raw_intel_total": 47
+    "layer1_tl": 16,
+    "layer2_authors": 32,
+    "companies_queried": 37,
+    "capabilities_queried": 7,
+    "raw_intel_total": 48
   },
-  "tl_candidates": 28,
+  "tl_candidates": 47,
   "tl_items": [
     {
       "id": "aHR0cHM6Ly93",
@@ -62,11 +62,11 @@
     },
     {
       "id": "aHR0cHM6Ly93",
-      "title": "Facebook",
+      "title": "29News WVIR",
       "url": "https://www.facebook.com/29NewsWVIR/posts/more-americans-turning-to-ai-for-financial-advice-httpswww29newscom20260223more-/1677229030346805/",
       "source_name": "facebook.com",
       "pub_date": "Feb 24, 2026",
-      "snippet": "# Facebook\n\nExplore the things you love.\n\nLog into Facebook\n\nEmail or mobile number \n\nPassword \n\n- [x] \n\nLog in\n\n \n\n[Forgot password?](https://www.facebook.com/recover/initiate/?privacy_mutation_token=eyJ0eXBlIjo1LCJjcmVhdGlvbl90aW1lIjoxNzc2MzEyMDA1fQ%3D%3D&ars=facebook_login&next=https%3A%2F%2Fwww.",
+      "snippet": "More Americans turning to AI for financial advice >>> \nhttps://www.29news.com/2026/02/23/more-americans-turning-ai-financial-advice/",
       "via": "layer1_tl"
     },
     {
@@ -84,95 +84,89 @@
       "url": "https://www.researchgate.net/publication/381277119_Artificial_Intelligence_as_Personal_Financial_Advisor_in_the_Future_-_A_Case_Study_Based_on_Algorithmic_Innovation_Strategies",
       "source_name": "researchgate.net",
       "pub_date": null,
-      "snippet": "## Security check required\n\nWe've detected unusual activity from your network. To continue, complete the security check below.\n\nRay ID: 9ed047df99bf174f\n\nClient IP: 2600:1900:0:4003::300\n\n© 2008-2026 ResearchGate GmbH. All rights reserved.",
+      "snippet": "## Security check required\n\nWe've detected unusual activity from your network. To continue, complete the security check below.\n\nRay ID: 9ed04814bbb720ca\n\nClient IP: 2600:1900:0:2103::401\n\n© 2008-2026 ResearchGate GmbH. All rights reserved.",
       "via": "layer1_tl"
     },
     {
       "id": "aHR0cHM6Ly93",
-      "title": "AI Market Trends 2026: Global Investment, Risks, and Buildout | Morgan Stanley",
-      "url": "https://www.morganstanley.com/insights/articles/ai-market-trends-institute-2026",
-      "source_name": "morganstanley.com",
-      "pub_date": "Mar 9, 2026",
-      "snippet": "Discover key market trends as AI becomes the central force influencing growth, earnings, geopolitics, and investment strategy across global markets in 2026.",
-      "via": "layer1_tl"
-    },
-    {
-      "id": "aHR0cHM6Ly9o",
-      "title": "7 Factors That Drive Returns on AI Investments, According to a New Survey",
-      "url": "https://hbr.org/2026/03/7-factors-that-drive-returns-on-ai-investments-according-to-a-new-survey",
-      "source_name": "hbr.org",
-      "pub_date": "Mar 17, 2026",
-      "snippet": "Leaders are facing tremendous pressure to deliver on AI. To understand how they are navigating this, researchers surveyed 1,006 global senior executives who had close familiarity with their organizations’ AI initiatives, and interviewed 12 technology, data, and AI leaders at enterprise organizations",
+      "title": "2026 Perspectives on the Financial Industry | Fintech Americas",
+      "url": "https://www.fintechamericas.co/en/2026-perspectives-on-the-financial-industry",
+      "source_name": "fintechamericas.co",
+      "pub_date": null,
+      "snippet": "Discover insights from 88 financial leaders on the trends shaping the industry by 2026, focusing on AI, blockchain, digital payments, and more. Download the exclusive report now.",
       "via": "layer1_tl"
     },
     {
       "id": "aHR0cHM6Ly93",
-      "title": "Algorithmic Revolution: AI Leads Investment Strategies in 2026",
-      "url": "https://www.linkedin.com/pulse/algorithmic-revolution-ai-leads-investment-mif9c",
-      "source_name": "linkedin.com",
-      "pub_date": "Jan 21, 2026",
-      "snippet": "Industry leaders predict AI will revolutionize business by 2026. IBM believes quantum computers will surpass classical computers that year, which could lead to breakthroughs in many industries.",
+      "title": "FIN-2026-Industry-Predictions-Report.pdf",
+      "url": "https://www.bdo.com/getmedia/2db1671f-0450-418e-898d-56800d4d5609/FIN-2026-Industry-Predictions-Report.pdf?ext=.pdf",
+      "source_name": "bdo.com",
+      "pub_date": null,
+      "snippet": "# 2026 Fintech Industry Predictions 2026 is set to be a pivotal year for fintech. After years of uncertainty, the industry is showing signs of clarity and confidence from regulators, consumers, and business partners. Regulatory frameworks have strengthened, markets have stabilized, and bold ideas ar",
+      "via": "layer1_tl"
+    },
+    {
+      "id": "aHR0cDovL3d3",
+      "title": "2026 AI Whitepaper Bibliography",
+      "url": "http://www.sustainablefinance.ch/en/resources/artificial-intelligence/artificial-intelligence-whitepaper/2026-ai-whitepaper-bibliography.html",
+      "source_name": "sustainablefinance.ch",
+      "pub_date": null,
+      "snippet": "# 2026 AI Whitepaper Bibliography\n\nThis website uses cookies. We use cookies to personalise content and ads, to provide social media features and to analyse our traffic. We also share information about your use of our site with our social media, advertising and analytics partners who may combine it ",
       "via": "layer1_tl"
     },
     {
       "id": "aHR0cHM6Ly9w",
-      "title": "GenAI Strategy & Investment Management | Portal26 Platform Feature",
-      "url": "https://portal26.ai/genai-strategy/",
-      "source_name": "portal26.ai",
+      "title": "Fintech Predictions 2026 Report - Read now | Plaid",
+      "url": "https://plaid.com/fintech-predictions-2026-report/",
+      "source_name": "plaid.com",
       "pub_date": null,
-      "snippet": "Balance GenAI investments across private, public, and licensed AI with Portal26's strategy management. Optimize ROI, manage risk, and align with enterprise objectives and policies.",
+      "snippet": "Explore Plaid’s 2026 Fintech Predictions report. CEO Zach Perret and product leaders share insights on AI, fraud, credit, and what’s coming next.",
       "via": "layer1_tl"
     },
     {
       "id": "aHR0cHM6Ly93",
-      "title": "Q4 2025 Investment AI Trends: Traditional AI Leads Adoption, But GenAI to Reshape the Status Quo in 2026",
-      "url": "https://www.scnsoft.com/investment/investment-ai-trends",
-      "source_name": "scnsoft.com",
-      "pub_date": "Jan 30, 2026",
-      "snippet": "Investment firms moved past pilots in generative AI, but trust and privacy concerns restrain live rollouts. Agentic AI remains in exploration mode.",
+      "title": "2026 AI Business Predictions",
+      "url": "https://www.pwc.com/us/en/tech-effect/ai-analytics/ai-predictions.html",
+      "source_name": "pwc.com",
+      "pub_date": null,
+      "snippet": "Explore PwC’s 2026 AI predictions and learn how focused strategies, agentic workflows, and responsible innovation drive transformative business value.",
+      "via": "layer1_tl"
+    },
+    {
+      "id": "aHR0cHM6Ly9m",
+      "title": "The State of Fintech in 2026",
+      "url": "https://fintechprimetime.substack.com/p/the-state-of-fintech-in-2026",
+      "source_name": "fintechprimetime.substack.com",
+      "pub_date": "Feb 10, 2026",
+      "snippet": "It’s here!",
       "via": "layer1_tl"
     },
     {
       "id": "aHR0cHM6Ly9i",
-      "title": "The State of AI Adoption in Investment Management and What’s Next",
-      "url": "https://blueflame.ai/blog/the-state-of-ai-adoption-in-investment-management",
-      "source_name": "blueflame.ai",
-      "pub_date": "1 day ago",
-      "snippet": "Explore how AI is reshaping investment management workflows—from deal sourcing to diligence—and where adoption is headed next as firms move from prompts to integrated AI systems.",
-      "via": "layer1_tl"
-    },
-    {
-      "id": "aHR0cHM6Ly9u",
-      "title": "How Generative AI is Reshaping Investment Strategies | The AI Summit New York",
-      "url": "https://newyork.theaisummit.com/latest-news/how-generative-ai-is-reshaping-investment-strategies/",
-      "source_name": "newyork.theaisummit.com",
+      "title": "AI Whitepapers for Fintech",
+      "url": "https://byword.ai/for/fintech/whitepapers",
+      "source_name": "byword.ai",
       "pub_date": null,
-      "snippet": "How Generative AI is Reshaping Investment Strategies. The investment landscape is undergoing a profound transformation as generative AI technologies redefine traditional approaches to market analysis, risk assessment, and portfolio management. Read the full article.",
+      "snippet": "Generate SEO-optimized articles in under 2 minutes. Byword researches keywords, writes in your brand voice using GPT-5.4, Claude Opus 4.6, and Gemini 3.1 Pro, and publishes to WordPress, Webflow, and 4 more CMSs. Trusted by 85,000+ content teams. Start free with 5 articles.",
       "via": "layer1_tl"
     },
     {
       "id": "aHR0cHM6Ly93",
-      "title": "Finance 2026: A preview of the year AI transformation gets real",
-      "url": "https://www.cio.com/article/4142306/finance-2026-a-preview-of-the-year-ai-transformation-gets-real.html",
-      "source_name": "cio.com",
-      "pub_date": "Mar 12, 2026",
-      "snippet": "From disconnected projects to a unified operating system",
+      "title": "AI and the Future of Digital Transformation | Future of Finance 2026",
+      "url": "https://www.youtube.com/watch?v=9OtiUWQetOc",
+      "source_name": "youtube.com",
+      "pub_date": "Mar 7, 2026",
+      "snippet": "Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.",
       "via": "layer1_tl"
     }
   ],
   "blocked_items": [
     {
-      "url": "https://www.investmentnews.com/fintech/fintech-bytes-wealthcom-declares-new-era-for-ester-ai/266158",
-      "title": "Wealth.com Advances Ester AI Into Multi-Agent Estate Planning Intelligence",
-      "reason": "Score 54/100 — below 45 review threshold",
-      "score": 54
-    },
-    {
-      "url": "https://fintech.global/2026/04/14/how-ai-is-reshaping-wealth-management-advisory/",
-      "title": "AI Capability Adoption Accelerates Across Wealth Advisory as Personalization and Productivity Converge",
-      "reason": "the_so_what flagged as weak CXO relevance (3/10) — review before publishing",
-      "score": 51
+      "url": "https://www.investmentnews.com/fintech/finny-lands-osaic-deal-to-put-ai-prospecting-in-front-of-11000-advisors/265053",
+      "title": "Finny Deploys AI Prospecting Platform Across Osaic's 10,000+ Advisor Network",
+      "reason": "Fabrication detected: Headline states '10,000+' advisors but the primary source (InvestmentNews) headline explicitly states '11,000 advisors' — a different specific number for the same metric. The Osaic press release uses 'over 10,000' which is consistent with the entry, but the primary source contradicts with 11,000.",
+      "score": 0
     }
   ],
-  "written_at": "2026-04-16T04:03:09.950Z"
+  "written_at": "2026-04-16T04:07:29.596Z"
 }
