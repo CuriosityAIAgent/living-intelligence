@@ -99,7 +99,7 @@
 | `agents/evaluator-agent.js` | McKinsey 6-check test (Opus 4.6): specificity, so-what, source, substance, stat, competitor |
 | `agents/content-producer.js` | v2 orchestrator: Research → Write → Fabrication → Evaluate → Refine → Score. 2 iterations + early exit. |
 | `agents/gov-store.js` | File-backed pending queue + blocked URL list |
-| `agents/scheduler.js` | Daily pipeline orchestrator. Discovery → triage → intake → governance → scoring → inbox. |
+| `agents/scheduler.js` | v2 unified: discovery → Supabase dedup → freshness (7d/30d) → research-agent → rich brief to KB. |
 | `client/` | Editorial Studio UI — React (Vite + TS + Tailwind v4), builds to `intake-server/public/` |
 
 ### Intake Server API Routes
@@ -137,19 +137,14 @@
 
 ## Data Flow: New Intelligence Entry
 
-### v1 Pipeline (automated daily at 5am via scheduler.js)
-```
-1. Auto-Discover (4-layer: L1 News + L1 Caps + L2 Companies + L3 NewsAPI.ai)
-2. Triage scoring: recency + source quality + tracked company + AI keywords
-3. Semantic dedup (Jina Embeddings ≥0.90) + reranking (Jina Reranker) → top 15
-4. Each candidate: fetch → structure → governance → fabrication → score → inbox
-5. UNIVERSAL INBOX: nothing auto-publishes. Editorial review required.
-```
+### v1 Pipeline — REMOVED (session 39)
+v1 pipeline (scheduler ran 4 Claude calls per candidate: processUrl → enrichContext → governance → fabrication → scoring → addPending) has been replaced by the unified v2 pipeline below.
 
-### v2 Pipeline (consulting-quality, Option A architecture)
+### v2 Pipeline (unified, session 39)
 ```
 Phase 1 — Railway (5am daily, API tokens ~$5/month):
-  Auto-discover → triage → research agent → briefs stored in Supabase KB (status: ready)
+  Auto-discover → Supabase dedup (briefExistsForUrl) → freshness filter (7d news, 30d strategic)
+  → research-agent (1 Claude call) → rich brief stored in Supabase KB (status: ready)
 
 Phase 2 — Routine/Remote Trigger (5:27am daily, Claude Opus, Max tokens = $0):
   Uses Supabase REST API directly (requires Custom network access environment).

@@ -19,7 +19,7 @@ import { research } from './research-agent.js';
 import { addBlocked, isBlocked, isTopicSuppressed, writePipelineStatus } from './gov-store.js';
 import { commitInboxState } from './publisher.js';
 import { sendDigest } from './notifier.js';
-import { THRESHOLDS, PRESS_RELEASE_DOMAINS } from './config.js';
+// THRESHOLDS and PRESS_RELEASE_DOMAINS removed — no longer used in v2 scheduler
 import { logPipelineRun, logPipelineEvent, briefExistsForUrl, updateBriefStatus } from './kb-client.js';
 
 // ── Freshness thresholds ──────────────────────────────────────────────────────

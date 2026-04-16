@@ -92,7 +92,7 @@ publisher.js  ─────────┤
                        ├──► JSON file + git commit + push
 notifier.js  ──────────┤
                        └──► Telegram digest (score + unverified claims per item)
-scheduler.js  ─────────── orchestrates daily pipeline + stores briefs to KB
+scheduler.js  ─────────── v2 unified: discovery → dedup → freshness → research-agent → Supabase briefs
 auditor.js  ───────────── standalone audit engine (fast + deep modes)
 kb-client.js  ─────────── Supabase singleton + KB helpers (store/query/embed/search)
 
@@ -256,26 +256,25 @@ Message sections: Published (✅) / Needs Review (⚠️) / Blocked (🚫) / New
 
 Review links use HMAC-SHA256 token signing (`REVIEW_SECRET`) — one-tap approve/reject from Telegram.
 
-### `scheduler.js` — Daily Pipeline Orchestration
+### `scheduler.js` — Daily Pipeline Orchestration (v2 unified, session 39)
 
-Runs at 5am Europe/London:
+Runs at 5am Europe/London. Single path: discovery → dedup → freshness → research → Supabase.
+
 1. `autoDiscover()` → find new candidates (intelCandidates + tlCandidates + knownCompanyIds)
-2. Build entity+event dedup map (same company + same type within 14 days → REVIEW with note)
-3. For each of top 15 candidates:
-   - **Step 1:** `processUrl()` → structured entry
-   - **Step 1b:** `enrichContext()` → regenerate the_so_what with landscape context (non-fatal)
-   - **Step 2:** `validateFormat()` → 9 schema rules (non-fatal, annotates `_format_errors`)
-   - **Step 2b:** `verify()` → governance claim check (12k window)
-   - **Step 2c:** `checkFabrication()` → dedicated fabrication pass (12k window)
-     - Fabrication FAIL → **HARD BLOCK** regardless of governance verdict
-4. `scoreEntry()` → 4-dimension scoring
-5. **ROUTING (Universal Inbox — nothing auto-publishes):**
-   - Score ≥ 75 → `addPending(entry, govAudit, { score, score_breakdown, fabrication_verdict, format_errors, enrichment })` → INBOX (high confidence)
-   - Score 45–74 → `addPending(...)` → INBOX (REVIEW)
-   - Score < 45 or fabricated → `addBlocked()` → permanently blocked
-6. New company detection: entry.company not in knownCompanyIds → flagged in digest
-7. `writePipelineStatus()` → `.pipeline-status.json`
-8. `sendDigest()` → Telegram (trigger-only: "N stories need review → [link to studio]")
+2. For each of top 15 candidates:
+   - **Check 1:** `isBlocked(url)` → skip permanently blocked URLs
+   - **Check 2:** `briefExistsForUrl(url)` → Supabase dedup (skip if brief already exists)
+   - **Check 3:** Freshness filter — 7 days for news, 30 days for strategic content (reports, white papers)
+   - **Step 4:** `research({ url, title, source_name, send })` → full multi-source research via research-agent.js → rich brief stored to Supabase KB (status: `ready`)
+   - **Check 5:** Topic suppression (post-hoc, uses research entities) → marks brief as `blocked` if suppressed
+   - **Step 6:** New company detection using brief.entities.company_slug vs knownCompanyIds
+3. `writePipelineStatus()` → `.pipeline-status.json`
+4. `commitInboxState()` → persist pipeline state to git
+5. `sendDigest()` → Telegram with source_count + confidence per brief
+
+**Phase 2** (Remote Trigger at 5:27am, Claude Opus, $0) picks up `ready` briefs from Supabase and runs writer → evaluator → fabrication → scoring. See `content-producer.js`.
+
+**Key change (session 39):** Removed v1 pipeline (4 Claude calls per candidate: processUrl → enrichContext → governance → fabrication → scoring → addPending). Now 1 research-agent call per candidate (~$0.01). No governance, scoring, or fabrication at discovery stage — Phase 2 handles all quality checks.
 
 ### `auditor.js` — Data Quality Audit Engine *(new)*
 

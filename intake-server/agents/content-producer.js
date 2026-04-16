@@ -268,7 +268,18 @@ export async function produceEntry({ url, title, source_name, triage_score, send
       whats_new: h.whats_new || '',
       research_confidence: h.research_confidence || 'medium',
       landscape_snapshot: h.landscape_snapshot || {},
-      landscape: h.landscape || h.landscape_snapshot || {},
+      landscape: h.landscape || (h.landscape_snapshot ? {
+        is_tracked: h.landscape_snapshot.is_tracked || false,
+        company: {
+          name: h.entities?.company_name || '',
+          overall_maturity: null,
+          ai_strategy_summary: h.landscape_snapshot.company_summary || '',
+        },
+        past_entries: (h.landscape_snapshot.past_entries || []).map(headline =>
+          typeof headline === 'string' ? { headline, date: '' } : headline
+        ),
+        peers: h.landscape_snapshot.peers || [],
+      } : {}),
     };
   } else {
     send('pipeline_stage', { stage: 'research', message: 'Starting deep research...' });
@@ -767,8 +778,8 @@ async function cli() {
   if (args.includes('--top')) {
     const limit = parseInt(args[args.indexOf('--top') + 1], 10) || 5;
     console.log(`\nProducing top ${limit} ready briefs...\n`);
-    const results = await produceBatch({ limit, send });
-    console.log(`\nDone. ${results.filter(r => !r.aborted).length}/${results.length} produced.`);
+    const batch = await produceBatch({ limit, send });
+    console.log(`\nDone. ${batch.produced}/${batch.results.length} produced, ${batch.held} held, ${batch.duplicates} duplicates, ${batch.errors} errors.`);
     return;
   }
 
@@ -783,6 +794,7 @@ async function cli() {
       title: hydrated._primary_source?.title || '',
       source_name: hydrated.candidate_source || '',
       send,
+      existingResearchBrief: hydrated,
     });
     if (result.aborted) {
       console.error(`\nAborted: ${result.reason}`);
