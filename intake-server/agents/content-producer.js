@@ -230,25 +230,32 @@ async function detectDuplicateOrDevelopment(brief, hydrated) {
  * @param {function} params.send - SSE event emitter
  * @returns {Object} { entry, aborted, reason }
  */
-export async function produceEntry({ url, title, source_name, triage_score, send }) {
+export async function produceEntry({ url, title, source_name, triage_score, send, existingResearchBrief }) {
   const iterations = [];
   const runId = await logPipelineRun({ tier: 'tier2_cli', started_at: new Date().toISOString() });
 
   // ── Stage 2: Research ─────────────────────────────────────────────────────
-  send('pipeline_stage', { stage: 'research', message: 'Starting deep research...' });
-
-  let researchStart = Date.now();
   let researchBrief;
-  try {
-    researchBrief = await research({ url, title, source_name, send });
-    await logPipelineEvent({ run_id: runId, agent: 'research', latency_ms: Date.now() - researchStart });
-  } catch (err) {
-    await logPipelineEvent({ run_id: runId, agent: 'research', latency_ms: Date.now() - researchStart, error: err.message });
-    return { aborted: true, reason: `Research failed: ${err.message}` };
-  }
 
-  if (researchBrief.aborted) {
-    return { aborted: true, reason: researchBrief.reason };
+  if (existingResearchBrief) {
+    // Brief already researched (scheduler ran research-agent) — skip duplicate research
+    send('pipeline_stage', { stage: 'research', message: 'Using existing research brief — skipping duplicate research.' });
+    researchBrief = existingResearchBrief;
+  } else {
+    send('pipeline_stage', { stage: 'research', message: 'Starting deep research...' });
+
+    let researchStart = Date.now();
+    try {
+      researchBrief = await research({ url, title, source_name, send });
+      await logPipelineEvent({ run_id: runId, agent: 'research', latency_ms: Date.now() - researchStart });
+    } catch (err) {
+      await logPipelineEvent({ run_id: runId, agent: 'research', latency_ms: Date.now() - researchStart, error: err.message });
+      return { aborted: true, reason: `Research failed: ${err.message}` };
+    }
+
+    if (researchBrief.aborted) {
+      return { aborted: true, reason: researchBrief.reason };
+    }
   }
 
   // ── Stage 3, Iteration 1: Write → Fabrication → Evaluate ──────────────────
@@ -605,12 +612,14 @@ export async function produceBatch({ limit = 5, send }) {
       }
 
       // ── Full v2 pipeline ─────────────────────────────────────────────────
+      // Pass hydrated brief as existingResearchBrief to skip duplicate research
       const result = await produceEntry({
         url: brief.candidate_url,
         title: hydrated._primary_source?.title || '',
         source_name: brief.entities?.company_name || '',
         triage_score: brief.triage_score,
         send,
+        existingResearchBrief: hydrated,
       });
 
       if (result.aborted) {

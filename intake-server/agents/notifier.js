@@ -100,16 +100,23 @@ function buildMessage({ published, pending, blocked, errors, newCompanies, tlCan
 
       lines.push(`  → <b>${p.title}</b>${p.company_name ? ` <i>${p.company_name}</i>` : ''}`);
 
+      // v2 brief metadata
+      if (p.source_count || p.confidence) {
+        const parts = [];
+        if (p.source_count) parts.push(`${p.source_count} sources`);
+        if (p.confidence) parts.push(`confidence: ${p.confidence}`);
+        lines.push(`    <code>${parts.join(' · ')}</code>`);
+      }
+
+      // v1 fallback fields (legacy inbox items)
       if (p.score_breakdown) {
         lines.push(`    <code>${p.score_breakdown}</code>`);
       }
-
       if (p.unverified_claims && p.unverified_claims.length > 0) {
         p.unverified_claims.forEach(claim => {
           lines.push(`    ⚠ <i>${claim}</i>`);
         });
       }
-
       if (p.paywall_caveat) {
         lines.push(`    ℹ Paywall caveat — limited source content`);
       }

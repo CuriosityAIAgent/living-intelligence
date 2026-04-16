@@ -120,10 +120,33 @@ export async function storeBrief(brief) {
       .select('id')
       .single();
 
-    if (error) { console.warn('[kb-client] storeBrief error:', error.message); return null; }
+    if (error) {
+      if (error.code === '23505') return null; // duplicate candidate_url — already exists
+      console.warn('[kb-client] storeBrief error:', error.message);
+      return null;
+    }
     return data.id;
   } catch (err) {
     console.warn('[kb-client] storeBrief exception:', err.message);
+    return null;
+  }
+}
+
+export async function briefExistsForUrl(url) {
+  try {
+    const supabase = getSupabaseClient();
+    if (!supabase) return null;
+
+    const { data, error } = await supabase
+      .from('research_briefs')
+      .select('id, status, created_at')
+      .eq('candidate_url', url)
+      .limit(1);
+
+    if (error) { console.warn('[kb-client] briefExistsForUrl error:', error.message); return null; }
+    return (data && data.length > 0) ? data[0] : null;
+  } catch (err) {
+    console.warn('[kb-client] briefExistsForUrl exception:', err.message);
     return null;
   }
 }
@@ -156,7 +179,7 @@ export async function getReadyBriefs(limit = 10) {
       .from('research_briefs')
       .select('*')
       .eq('status', 'ready')
-      .order('created_at', { ascending: false })
+      .order('created_at', { ascending: true })
       .limit(limit);
 
     if (error) { console.warn('[kb-client] getReadyBriefs error:', error.message); return []; }
