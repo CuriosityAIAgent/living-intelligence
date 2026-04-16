@@ -239,8 +239,37 @@ export async function produceEntry({ url, title, source_name, triage_score, send
 
   if (existingResearchBrief) {
     // Brief already researched (scheduler ran research-agent) — skip duplicate research
+    // Normalize hydrated brief shape to match what research() returns, since
+    // hydrateBrief() uses _primary_source/content_md vs primary_source/content
     send('pipeline_stage', { stage: 'research', message: 'Using existing research brief — skipping duplicate research.' });
-    researchBrief = existingResearchBrief;
+    const h = existingResearchBrief;
+    researchBrief = {
+      ...h,
+      primary_source: h.primary_source || {
+        url: h._primary_source?.url || h.candidate_url,
+        name: h._primary_source?.source_name || h._primary_source?.title || 'Unknown',
+        content: h._primary_source?.content_md || '',
+        word_count: h._primary_source?.word_count || 0,
+      },
+      additional_sources: h.additional_sources || (h._additional_sources || []).map(s => ({
+        url: s.url,
+        name: s.source_name || s.title || new URL(s.url).hostname,
+        title: s.title || '',
+        type: s.type || 'coverage',
+        content: s.content_md || '',
+        word_count: s.word_count || 0,
+      })),
+      sources: h.sources || [
+        { url: h._primary_source?.url || h.candidate_url, name: h._primary_source?.source_name || 'Primary', type: 'primary' },
+        ...(h._additional_sources || []).map(s => ({ url: s.url, name: s.source_name || s.title, type: 'coverage' })),
+      ],
+      source_count: h.source_count || (1 + (h._additional_sources || []).length),
+      entities: h.entities || {},
+      whats_new: h.whats_new || '',
+      research_confidence: h.research_confidence || 'medium',
+      landscape_snapshot: h.landscape_snapshot || {},
+      landscape: h.landscape || h.landscape_snapshot || {},
+    };
   } else {
     send('pipeline_stage', { stage: 'research', message: 'Starting deep research...' });
 
