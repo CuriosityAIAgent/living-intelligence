@@ -1,22 +1,28 @@
 {
-  "started_at": "2026-04-17T04:00:00.046Z",
+  "started_at": "2026-04-17T04:00:00.239Z",
   "candidates_found": 15,
-  "queued": 2,
-  "blocked": 0,
-  "errors": 0,
-  "error_details": [],
+  "queued": 3,
+  "blocked": 1,
+  "errors": 1,
+  "error_details": [
+    {
+      "url": "https://www.finextra.com/pressarticle/109471/wealtharc-boards-the-ai-agent-train",
+      "stage": "intake",
+      "message": "processUrl returned null"
+    }
+  ],
   "discovery_sources": {
-    "layer1_news": 39,
-    "layer1_capabilities": 0,
+    "layer1_news": 40,
+    "layer1_capabilities": 20,
     "layer2_companies": 0,
     "layer3_newsapi": 5,
-    "layer1_tl": 22,
-    "layer2_authors": 8,
-    "companies_queried": 0,
-    "capabilities_queried": 0,
-    "raw_intel_total": 41
+    "layer1_tl": 17,
+    "layer2_authors": 26,
+    "companies_queried": 37,
+    "capabilities_queried": 7,
+    "raw_intel_total": 58
   },
-  "tl_candidates": 30,
+  "tl_candidates": 42,
   "tl_items": [
     {
       "id": "aHR0cHM6Ly9w",
@@ -28,21 +34,12 @@
       "via": "layer1_tl"
     },
     {
-      "id": "aHR0cHM6Ly93",
-      "title": "Wealth Management in 2026: AI Is Rising, But the Foundations Still Matter",
-      "url": "https://www.linkedin.com/pulse/wealth-management-2026-ai-rising-foundations-still-matter-rory-galvin-fdvqe",
-      "source_name": "linkedin.com",
-      "pub_date": "Mar 4, 2026",
-      "snippet": "The wealth management industry continues to evolve rapidly in 2026. While headlines over the past few years have focused heavily on artificial intelligence, the reality for RIAs and wealth managers is that many of the core operational challenges remain unchanged.",
-      "via": "layer1_tl"
-    },
-    {
-      "id": "aHR0cHM6Ly93",
-      "title": "10 Wealth Management Trends For 2026",
-      "url": "https://www.oliverwyman.com/our-expertise/insights/2025/dec/wealth-management-trends-2026.html",
-      "source_name": "oliverwyman.com",
+      "id": "aHR0cHM6Ly9j",
+      "title": "Wealth management trends for 2026: Six questions driven by a wave of change",
+      "url": "https://clearingcustody.fidelity.com/insights/topics/running-your-business/wealth-management-trends-for-2026",
+      "source_name": "clearingcustody.fidelity.com",
       "pub_date": null,
-      "snippet": "A forward look at key 2026 wealth management trends, including AI-driven advice, tokenized cash, private markets, embedded wealth, and downturn readiness.",
+      "snippet": "Explore six questions driven by what may impact wealth managers and their clients in the coming year, including AI, asset classes, M&A activity, and more.",
       "via": "layer1_tl"
     },
     {
@@ -56,47 +53,11 @@
     },
     {
       "id": "aHR0cHM6Ly93",
-      "title": "How artificial intelligence is reshaping the financial services industry",
-      "url": "https://www.ey.com/en_gr/insights/financial-services/how-artificial-intelligence-is-reshaping-the-financial-services-industry",
-      "source_name": "ey.com",
-      "pub_date": null,
-      "snippet": "AI is reshaping the financial services industry, making it more efficient, effective and innovative. Read more.",
-      "via": "layer1_tl"
-    },
-    {
-      "id": "aHR0cHM6Ly93",
-      "title": "Just a moment...",
-      "url": "https://www.researchgate.net/publication/381277119_Artificial_Intelligence_as_Personal_Financial_Advisor_in_the_Future_-_A_Case_Study_Based_on_Algorithmic_Innovation_Strategies",
-      "source_name": "researchgate.net",
-      "pub_date": null,
-      "snippet": "## Security check required\n\nWe've detected unusual activity from your network. To continue, complete the security check below.\n\nRay ID: 9ed8853bafe8b091\n\nClient IP: 2600:1900:0:4003::600\n\n© 2008-2026 ResearchGate GmbH. All rights reserved.",
-      "via": "layer1_tl"
-    },
-    {
-      "id": "aHR0cHM6Ly9h",
-      "title": "The State of Generative Media 2026",
-      "url": "https://a16z.com/the-state-of-generative-media-2026/",
-      "source_name": "a16z.com",
-      "pub_date": "Feb 19, 2026",
-      "snippet": "Today, our friends at fal released the State of Generative Media Report, a deep-dive into the remarkable progress we’re seeing in generative media. fal has a particularly  privileged vantage point: their inference engine serves over 600 models to millions of hobbyists, developers, and enterprises wh",
-      "via": "layer1_tl"
-    },
-    {
-      "id": "aHR0cHM6Ly93",
-      "title": "8 AI and data trends shaping financial services in 2026",
-      "url": "https://www.databricks.com/blog/8-ai-and-data-trends-shaping-financial-services-2026",
-      "source_name": "databricks.com",
-      "pub_date": "2 days ago",
-      "snippet": "Discover 8 AI and data trends reshaping financial services in 2026 and learn how to turn them into measurable business outcomes.",
-      "via": "layer1_tl"
-    },
-    {
-      "id": "aHR0cHM6Ly9t",
-      "title": "Action items for AI decision makers in 2026",
-      "url": "https://mitsloan.mit.edu/ideas-made-to-matter/action-items-ai-decision-makers-2026",
-      "source_name": "mitsloan.mit.edu",
-      "pub_date": "Mar 3, 2026",
-      "snippet": "AI industry watchers Thomas Davenport and Randy Bean expect the AI hype cycle to slow as organizations focus on infrastructure and strategy.",
+      "title": "AI in Wealth Management: 2026 Trends and Challenges | Next Level Recruiting, LLC posted on the topic | LinkedIn",
+      "url": "https://www.linkedin.com/posts/next-level-recruiting-llc_ai-2026-increased-adoption-new-use-cases-activity-7420485172136984576-MxYJ",
+      "source_name": "linkedin.com",
+      "pub_date": "Jan 23, 2026",
+      "snippet": "AI is set to play a bigger role in wealth management in 2026—but questions remain.\n\nThis Family Wealth Report article explores how advisors are beginning to adopt AI, the new use cases gaining traction, and why regulation and trust still slow broader uptake. It also highlights a new Financial Planni",
       "via": "layer1_tl"
     },
     {
@@ -109,12 +70,12 @@
       "via": "layer1_tl"
     },
     {
-      "id": "aHR0cHM6Ly93",
-      "title": "AI ROI",
-      "url": "https://www.ibm.com/think/insights/ai-roi",
-      "source_name": "ibm.com",
-      "pub_date": null,
-      "snippet": "Understanding the ROI of AI initiatives is essential for successful AI transformation. Organizations can achieve measurable ROI gains when implementing AI systems correctly—by letting strong data and AI strategy take the lead.",
+      "id": "aHR0cHM6Ly9o",
+      "title": "7 Factors That Drive Returns on AI Investments, According to a New Survey",
+      "url": "https://hbr.org/2026/03/7-factors-that-drive-returns-on-ai-investments-according-to-a-new-survey",
+      "source_name": "hbr.org",
+      "pub_date": "Mar 17, 2026",
+      "snippet": "Leaders are facing tremendous pressure to deliver on AI. To understand how they are navigating this, researchers surveyed 1,006 global senior executives who had close familiarity with their organizations’ AI initiatives, and interviewed 12 technology, data, and AI leaders at enterprise organizations",
       "via": "layer1_tl"
     },
     {
@@ -127,12 +88,12 @@
       "via": "layer1_tl"
     },
     {
-      "id": "aHR0cHM6Ly9i",
-      "title": "How AI Is Driving Revenue, Cutting Costs and Boosting Productivity for Every Industry in 2026",
-      "url": "https://blogs.nvidia.com/blog/state-of-ai-report-2026/",
-      "source_name": "blogs.nvidia.com",
-      "pub_date": "Mar 9, 2026",
-      "snippet": "NVIDIA’s annual “State of AI” reports show how AI is being adopted across industries, what it’s being used for and how companies are achieving ROI, as well as their challenges and goals with the technology.",
+      "id": "aHR0cHM6Ly9w",
+      "title": "GenAI Strategy & Investment Management | Portal26 Platform Feature",
+      "url": "https://portal26.ai/genai-strategy/",
+      "source_name": "portal26.ai",
+      "pub_date": null,
+      "snippet": "Balance GenAI investments across private, public, and licensed AI with Portal26's strategy management. Optimize ROI, manage risk, and align with enterprise objectives and policies.",
       "via": "layer1_tl"
     },
     {
@@ -145,15 +106,67 @@
       "via": "layer1_tl"
     },
     {
-      "id": "aHR0cHM6Ly9w",
-      "title": "GenAI Strategy & Investment Management | Portal26 Platform Feature",
-      "url": "https://portal26.ai/genai-strategy/",
-      "source_name": "portal26.ai",
+      "id": "aHR0cHM6Ly9i",
+      "title": "The State of AI Adoption in Investment Management and What’s Next",
+      "url": "https://blueflame.ai/blog/the-state-of-ai-adoption-in-investment-management",
+      "source_name": "blueflame.ai",
+      "pub_date": "2 days ago",
+      "snippet": "Explore how AI is reshaping investment management workflows—from deal sourcing to diligence—and where adoption is headed next as firms move from prompts to integrated AI systems.",
+      "via": "layer1_tl"
+    },
+    {
+      "id": "aHR0cHM6Ly93",
+      "title": "Finance leaders are heading into 2026 with ambitious artificial intelligence (AI) goals, but many don’t feel prepared to execute.",
+      "url": "https://www.linkedin.com/posts/scottbrezler_key-insights-from-the-2026-financial-executives-activity-7430704345962147840-Chli",
+      "source_name": "linkedin.com",
+      "pub_date": "Feb 20, 2026",
+      "snippet": "Finance leaders are heading into 2026 with ambitious artificial intelligence (AI) goals, but many don’t feel prepared to execute.\n\nOur new research reveals a growing gap between where organizations are investing and what they’re actually ready to implement.\n\nCurious as to what’s causing the disconne",
+      "via": "layer1_tl"
+    },
+    {
+      "id": "aHR0cHM6Ly93",
+      "title": "Finance 2026: A preview of the year AI transformation gets real",
+      "url": "https://www.cio.com/article/4142306/finance-2026-a-preview-of-the-year-ai-transformation-gets-real.html",
+      "source_name": "cio.com",
+      "pub_date": "Mar 12, 2026",
+      "snippet": "From disconnected projects to a unified operating system",
+      "via": "layer1_tl"
+    },
+    {
+      "id": "aHR0cHM6Ly9i",
+      "title": "State of AI in Finance in 2026",
+      "url": "https://bigdata.com/resources/ai-in-finance-2026-industry-report-powered-by-bigdata-com",
+      "source_name": "bigdata.com",
       "pub_date": null,
-      "snippet": "Balance GenAI investments across private, public, and licensed AI with Portal26's strategy management. Optimize ROI, manage risk, and align with enterprise objectives and policies.",
+      "snippet": "AI in finance is moving from assistance to autonomy. By the end of 2026, Gartner predicts that 40% of business software will include AI capable of completing end-to-end tasks independently- such as fraud detection, loan processing, customer onboarding, or reporting - without human intervention at ev",
+      "via": "layer1_tl"
+    },
+    {
+      "id": "aHR0cHM6Ly93",
+      "title": "AI and the Future of Digital Transformation | Future of Finance 2026",
+      "url": "https://www.youtube.com/watch?v=9OtiUWQetOc",
+      "source_name": "youtube.com",
+      "pub_date": "Mar 7, 2026",
+      "snippet": "Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.",
+      "via": "layer1_tl"
+    },
+    {
+      "id": "aHR0cHM6Ly93",
+      "title": "AI Agents in Finance 2026: A CFO Guide to Reality vs Hype",
+      "url": "https://www.houseblend.io/articles/ai-agents-finance-cfo-guide-2026",
+      "source_name": "houseblend.io",
+      "pub_date": "Feb 20, 2026",
+      "snippet": "Explore the 2026 landscape of AI agents in finance. This guide for CFOs examines agentic AI capabilities, investment trends, ROI realities, and risk management.",
       "via": "layer1_tl"
     }
   ],
-  "blocked_items": [],
-  "written_at": "2026-04-17T04:03:08.956Z"
+  "blocked_items": [
+    {
+      "url": "https://fintech.global/2026/04/16/wealth-com-raises-65m-series-b-for-ai-wealth-planning/",
+      "title": "Wealth.com Raises $65M Series B to Scale AI-Driven Wealth Planning Platform",
+      "reason": "Score 44/100 — below 45 review threshold",
+      "score": 44
+    }
+  ],
+  "written_at": "2026-04-17T04:05:55.049Z"
 }
