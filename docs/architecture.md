@@ -85,8 +85,8 @@
 | `server.js` | Express server, all API routes. Uses CONTENT_DIR/INTEL_DIR/TL_DIR from config.js. |
 | `agents/config.js` | Single source of truth for all paths, thresholds, constants. All agents import from here. |
 | `agents/auto-discover.js` | Multi-layer discovery: L1 News (8 DFS) + L1 Caps (7 DFS) + L2 Companies (37 DFS Content Analysis) + L3 NewsAPI.ai (4 queries, 80K+ sources) + TL via Jina |
-| `agents/intake.js` | Fetch article (with paywall fallback) + Claude structuring + post-structuring enrichment |
-| `agents/governance.js` | Verify all claims against source → PASS/REVIEW/FAIL |
+| `agents/intake.js` | Fetch article (with paywall fallback) + Claude structuring + post-structuring enrichment. **Legacy — no longer imported by server.js (session 41).** |
+| `agents/governance.js` | Verify all claims against source → PASS/REVIEW/FAIL. **Legacy — no longer imported by server.js (session 41).** |
 | `agents/scorer.js` | 5-dimension scoring (Source 0-25, Claims 0-25, Freshness 0-10, Impact 0-40, CXO 0-10) + multi-source bonus |
 | `agents/fabrication-strict.js` | Exact-text verification. v2: multi-source, drift detection, the_so_what handling |
 | `agents/context-enricher.js` | Landscape-aware the_so_what regeneration with peer comparison |
@@ -108,7 +108,7 @@
 |-------|--------|-------------|
 | `/api/auto-discover` | POST | Three-layer discovery: L1 News + L1 Caps + L2 Companies |
 | `/api/search` | POST | Jina s.jina.ai search (body: `{query}`) |
-| `/api/process-url` | POST | Fetch + structure + governance for one URL → queues to inbox |
+| `/api/process-url` | POST | v2: runs research-agent → creates brief in Supabase (status: ready). Phase 2 handles writing/eval. |
 | `/api/publish` | POST | Write JSON + git commit + push (called by approve-and-publish) |
 | `/api/inbox` | GET | All queued stories, REVIEW-first then score desc |
 | `/api/inbox/:id/approve-and-publish` | POST | SSE: approve → publish → git push (rollback on failure) |

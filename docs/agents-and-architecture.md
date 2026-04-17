@@ -316,7 +316,7 @@ Run: `node --env-file=.env scripts/run-tests.js`
 |---|---|---|
 | POST | `/api/auto-discover` | Parallel L1 News + L1 Caps + L2 Companies discovery |
 | POST | `/api/search` | Jina web search |
-| POST | `/api/process-url` | Fetch + structure + governance for one URL → queues to inbox |
+| POST | `/api/process-url` | v2: runs research-agent → creates brief in Supabase (status: ready) |
 | POST | `/api/publish` | Write entry JSON + git commit + push (called by approve-and-publish) |
 | GET | `/api/pending` | Legacy: list pending entries (use `/api/inbox` instead) |
 | POST | `/api/pending/:id/approve` | Legacy approve (use `/api/inbox/:id/approve-and-publish` instead) |
@@ -424,7 +424,7 @@ data/
 ## Key Design Decisions
 
 1. **No database** — all data is flat JSON in git. Portal is static. Zero runtime dependencies.
-2. **Two-call AI pattern** — structure first (intake.js), verify second (governance.js). Separate calls prevent self-serving verification.
+2. **Multi-stage AI pattern** — v2 pipeline: research → write → evaluate → fabricate → score. Each stage is a separate agent/prompt. v1 two-call pattern (intake.js → governance.js) removed from server.js in session 41.
 3. **Telegram over SMTP** — Railway blocks all SMTP ports (25, 465, 587). Telegram Bot API uses HTTPS only.
 4. **HMAC-signed review links** — one-tap approve/reject from Telegram without login. Signed with `REVIEW_SECRET`.
 5. **Git as publish mechanism** — publisher.js commits and pushes directly. Railway redeploys on push. No separate deploy step.
