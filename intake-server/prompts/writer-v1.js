@@ -104,6 +104,17 @@ RULES:
 
 9. date: use the article publication date, NOT today's date. If unclear, use the most recent date mentioned.
 
+ANTI-AI WRITING RULES (MANDATORY — applies to headline, summary, and the_so_what):
+10. NEVER use em dashes (—). Use commas, periods, or semicolons instead. Zero tolerance.
+11. NEVER use: "Additionally", "underscores", "highlights", "showcases", "leverages", "utilizing", "delve", "tapestry", "landscape" (as abstract noun), "pivotal", "testament", "fostering", "garner", "interplay", "intricate", "vibrant", "crucial" (except in direct quotes).
+12. NEVER use significance inflation: "stands as", "serves as", "marks a pivotal moment", "represents a shift", "signals a broader trend".
+13. NEVER use negative parallelisms: "not just X, but Y", "it's not merely X, it's Y".
+14. NEVER use copula avoidance: "serves as" (use "is"), "functions as" (use "is"), "stands as" (use "is").
+15. Vary sentence length. Mix short and long. Do not write 4 sentences of identical rhythm.
+16. Use "is", "are", "has" freely. Simple verbs are human. Elaborate substitutes are AI.
+17. Maximum 1 hyphenated compound modifier per sentence. Do not stack them.
+18. the_so_what must read like a person with an opinion wrote it, not like a language model assembling tokens.
+
 OUTPUT: Return only valid JSON matching this schema:
 ${schema}`;
 }

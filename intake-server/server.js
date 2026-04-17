@@ -11,8 +11,7 @@ import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 import cron from 'node-cron';
 import { autoDiscover } from './agents/auto-discover.js';
-import { processUrl } from './agents/intake.js';
-import { verify } from './agents/governance.js';
+import { research } from './agents/research-agent.js';
 import { publish, commitAndPush } from './agents/publisher.js';
 import {
   getPending, addPending, approvePending, rejectPending,
@@ -21,6 +20,7 @@ import {
   getArchive, archiveStaleItems,
   isTopicSuppressed, suppressTopic, getSuppressedTopics,
 } from './agents/gov-store.js';
+import { briefExistsForUrl } from './agents/kb-client.js';
 import { runDailyPipeline } from './agents/scheduler.js';
 import { signToken, verifyToken } from './agents/notifier.js';
 import { runFastAudit, runDeepAudit } from './agents/auditor.js';
@@ -182,7 +182,15 @@ app.post('/api/process-url', async (req, res) => {
     return;
   }
 
-  // Dedup: check if this URL is already published
+  // Dedup: check if this URL already has a brief in Supabase
+  const existingBrief = await briefExistsForUrl(url);
+  if (existingBrief) {
+    send('blocked', { message: `Brief already exists (status: ${existingBrief.status}): ${url}` });
+    done();
+    return;
+  }
+
+  // Dedup: check if this URL is already published as a JSON file
   {
     const { INTEL_DIR } = await import('./agents/config.js');
     const { readdirSync, readFileSync } = await import('fs');
@@ -200,94 +208,30 @@ app.post('/api/process-url', async (req, res) => {
   }
 
   try {
-    // Step 1: fetch + structure
-    const intakeResult = await processUrl({ url, source_name: source_name || 'Unknown', send });
-    if (!intakeResult) { done(); return; }
+    // v2 pipeline: research agent → brief stored to Supabase (status: ready)
+    // Remote Trigger or content-producer handles writing/eval/fabrication/scoring
+    send('status', { message: 'Running v2 research agent (multi-source)...' });
 
-    // Step 2: governance verification
-    send('status', { message: 'Running governance check...' });
-    const govResult = await verify({
-      entry: intakeResult.entry,
-      sourceMarkdown: intakeResult.markdown,
+    const brief = await research({
+      url,
+      title: source_name || '',
+      source_name: source_name || 'Manual',
       send,
     });
 
-    // Fix 2: Build governance audit record (will be stored inside the JSON file)
-    const govAudit = {
-      verdict: govResult.verdict,
-      confidence: govResult.confidence,
-      verified_claims: govResult.verified_claims || [],
-      unverified_claims: govResult.unverified_claims || [],
-      fabricated_claims: govResult.fabricated_claims || [],
-      notes: govResult.notes || '',
-      paywall_caveat: govResult.paywall_caveat || false,
-      verified_at: new Date().toISOString(),
-      human_approved: false,
-    };
-
-    // Fix 4: FAIL → permanently block this URL
-    if (govResult.verdict === 'FAIL') {
-      addBlocked(url, intakeResult.entry.id, govResult.notes || 'Governance FAIL verdict');
+    if (brief.aborted) {
       send('blocked', {
-        message: 'Entry failed governance — URL permanently blocked. Fabricated or contradicted claims detected.',
-        fabricated_claims: govResult.fabricated_claims,
-        notes: govResult.notes,
+        message: `Research aborted: ${brief.reason}`,
       });
       done();
       return;
     }
 
-    // Attach governance audit to the entry object
-    intakeResult.entry._governance = govAudit;
-
-    // Step 3: Score the entry (same as scheduler — no bypass)
-    send('status', { message: 'Scoring entry...' });
-    const { scoreEntry, formatScoreBreakdown } = await import('./agents/scorer.js');
-    const scored = await scoreEntry({
-      entry: intakeResult.entry,
-      governance: govAudit,
-      sourceUrl: url,
-    });
-
-    send('status', {
-      message: `Score: ${scored.score}/100 → ${scored.action}. ${formatScoreBreakdown(scored)}`,
-    });
-
-    // Block low-scoring entries (same threshold as scheduler)
-    if (scored.action === 'BLOCK') {
-      const reason = scored.reason || `Score ${scored.score}/100 — below review threshold`;
-      addBlocked(url, intakeResult.entry.id, reason, { title: intakeResult.entry.headline, score: scored.score });
-      send('blocked', {
-        message: `Entry scored ${scored.score}/100 — blocked. ${reason}`,
-        score: scored.score,
-      });
-      done();
-      return;
-    }
-
-    // Paywall caveat: downgrade PUBLISH to REVIEW
-    if (scored.action === 'PUBLISH' && govAudit.paywall_caveat) scored.action = 'REVIEW';
-
-    // All PASS and REVIEW stories go to inbox
-    addPending(intakeResult.entry, govAudit, { score: scored.score, score_breakdown: formatScoreBreakdown(scored) });
     send('review_queued', {
-      message: scored.action === 'PUBLISH'
-        ? `Score ${scored.score}/100 — queued for editorial sign-off.`
-        : `Score ${scored.score}/100 (${scored.action}) — queued in inbox for review.`,
-      entry_id: intakeResult.entry.id,
-      score: scored.score,
-      governance_verdict: govResult.verdict,
-      unverified_claims: govResult.unverified_claims,
-      notes: govResult.notes,
-    });
-    done();
-    return;
-
-    // FAIL — already blocked above; this is a safety fallback
-    send('complete', {
-      entry: intakeResult.entry,
-      governance: govAudit,
-      can_publish: false,
+      message: `Research complete — brief created with ${brief.source_count} sources (confidence: ${brief.research_confidence}). Awaiting Phase 2 processing (writing + evaluation).`,
+      brief_id: brief.brief_id || null,
+      source_count: brief.source_count,
+      confidence: brief.research_confidence,
     });
   } catch (err) {
     send('error', { message: err.message });
@@ -845,56 +789,26 @@ app.post('/api/blocked/unblock', async (req, res) => {
   // Step 1: Remove from blocked list
   removeBlocked(url);
 
-  // Step 2: Re-process through the full pipeline (fetch → structure → governance → score → inbox)
-  // This runs in the background — the UI gets an immediate response
-  res.json({ ok: true, url, message: 'Unblocked and reprocessing through pipeline' });
+  // Step 2: Re-process through v2 pipeline (research → brief to Supabase)
+  res.json({ ok: true, url, message: 'Unblocked and reprocessing through v2 pipeline' });
 
-  // Fire-and-forget: re-process the URL
+  // Fire-and-forget: research the URL
   try {
     const noopSend = () => {};
-    const intakeResult = await processUrl({ url, source_name: 'Unblocked', send: noopSend });
-    if (!intakeResult) return;
-
-    const govResult = await verify({
-      entry: intakeResult.entry,
-      sourceMarkdown: intakeResult.markdown,
+    const brief = await research({
+      url,
+      title: '',
+      source_name: 'Unblocked',
       send: noopSend,
     });
 
-    // If it fails governance again, re-block it
-    if (govResult.verdict === 'FAIL') {
-      addBlocked(url, intakeResult.entry.id, govResult.notes || 'Governance FAIL on re-process');
+    if (brief.aborted) {
+      addBlocked(url, url, `Research aborted on re-process: ${brief.reason}`);
+      console.log(`[unblock] ${url} → research aborted: ${brief.reason}, re-blocked`);
       return;
     }
 
-    const govAudit = {
-      verdict: govResult.verdict,
-      confidence: govResult.confidence,
-      verified_claims: govResult.verified_claims || [],
-      unverified_claims: govResult.unverified_claims || [],
-      fabricated_claims: govResult.fabricated_claims || [],
-      notes: govResult.notes || '',
-      paywall_caveat: govResult.paywall_caveat || false,
-      verified_at: new Date().toISOString(),
-      human_approved: false,
-    };
-
-    intakeResult.entry._governance = govAudit;
-
-    // Score the entry
-    const { scoreEntry } = await import('./agents/scorer.js');
-    const scored = await scoreEntry({
-      entry: intakeResult.entry,
-      governance: govAudit,
-      sourceUrl: url,
-    });
-
-    intakeResult.entry._score = scored.score;
-    intakeResult.entry._score_breakdown = scored;
-
-    // Add to inbox for editorial review
-    addPending(intakeResult.entry);
-    console.log(`[unblock] ${url} → reprocessed, score ${scored.score}, queued in inbox`);
+    console.log(`[unblock] ${url} → v2 brief created (${brief.brief_id}), ${brief.source_count} sources, awaiting Phase 2`);
   } catch (err) {
     console.error(`[unblock] Failed to reprocess ${url}:`, err.message);
   }

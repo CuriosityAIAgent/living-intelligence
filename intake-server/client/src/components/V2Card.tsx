@@ -17,6 +17,18 @@ const REJECT_REASONS = [
   'Other',
 ];
 
+function formatDate(dateStr?: string): string {
+  if (!dateStr) return '';
+  try {
+    const d = new Date(dateStr);
+    if (isNaN(d.getTime())) return dateStr;
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    return `${d.getUTCDate()} ${months[d.getUTCMonth()]} ${d.getUTCFullYear()}`;
+  } catch {
+    return dateStr;
+  }
+}
+
 export default function V2Card({ brief, onApprove, onReject, onRetry, approving }: V2CardProps) {
   const [expanded, setExpanded] = useState(false);
   const [rejecting, setRejecting] = useState(false);
@@ -30,7 +42,7 @@ export default function V2Card({ brief, onApprove, onReject, onRetry, approving 
   const fabVerdict = brief.v2_fabrication_verdict;
   const evaluation = brief.v2_evaluation;
   const research = entry._research;
-  const iterations = entry._iterations;
+  const iterations = brief.v2_iterations ?? entry._iterations;
   const fabrication = entry._fabrication;
   const sources = entry.sources ?? [];
 
@@ -43,6 +55,9 @@ export default function V2Card({ brief, onApprove, onReject, onRetry, approving 
   const checkCount = checks ? Object.keys(checks).length : 0;
   const passCount = checks ? Object.values(checks).filter((c: { pass: boolean }) => c.pass).length : 0;
 
+  const articleDate = formatDate(entry.date);
+  const processedDate = formatDate(brief.processed_at);
+
   const handleReject = () => {
     if (!rejectReason) return;
     onReject(brief.id, rejectReason + (rejectNotes ? ` — ${rejectNotes}` : ''));
@@ -52,9 +67,9 @@ export default function V2Card({ brief, onApprove, onReject, onRetry, approving 
   };
 
   return (
-    <div className="rounded-lg mb-8" style={{ background: '#FFFFFF', border: '1px solid #E5E7EB', boxShadow: '0 1px 3px rgba(0,0,0,0.04)' }}>
+    <div className="rounded-lg mb-8" style={{ background: '#FFFFFF', border: '1px solid #E5E7EB', boxShadow: '0 1px 3px rgba(0,0,0,0.06), 0 6px 16px rgba(0,0,0,0.03)' }}>
 
-      {/* ── Top bar: company + type + date ── */}
+      {/* ── Top bar: company + type + dates ── */}
       <div className="px-8 pt-6 pb-0 flex items-center justify-between">
         <div className="flex items-center gap-3">
           <span className="text-[11px] font-bold uppercase tracking-widest" style={{ color: '#990F3D' }}>
@@ -64,7 +79,16 @@ export default function V2Card({ brief, onApprove, onReject, onRetry, approving 
             {entry.type?.replace(/_/g, ' ') || 'intelligence'}
           </span>
         </div>
-        <span className="text-xs text-gray-400">{entry.date}</span>
+        <div className="flex flex-col items-end gap-0.5">
+          <span className="text-xs font-medium text-gray-600">
+            Article: {articleDate}
+          </span>
+          {processedDate && (
+            <span className="text-[11px] text-gray-400">
+              Processed: {processedDate}
+            </span>
+          )}
+        </div>
       </div>
 
       {/* ── Headline ── */}
@@ -287,37 +311,32 @@ export default function V2Card({ brief, onApprove, onReject, onRetry, approving 
         </div>
       )}
 
-      {/* ── Actions — prominent, well-spaced ── */}
-      <div className="px-8 py-6 mt-2" style={{ background: '#FAFAFA', borderTop: '1px solid #F0F0F0', borderRadius: '0 0 8px 8px' }}>
+      {/* ── Actions ── */}
+      <div className="px-8 py-5 mt-2" style={{ background: '#FAFAFA', borderTop: '2px solid #F0F0F0', borderRadius: '0 0 8px 8px' }}>
         {!rejecting ? (
-          <div className="flex items-center justify-between">
-            {/* Primary action — large green button */}
+          <div className="flex items-center gap-4">
             <button
               onClick={() => onApprove(brief.id)}
               disabled={approving}
-              className="text-white border-none rounded-lg px-10 py-3 text-[15px] font-bold cursor-pointer disabled:opacity-60 disabled:cursor-wait transition-all"
-              style={{ background: approving ? '#86EFAC' : '#15803D', letterSpacing: '0.02em' }}
+              className="text-white border-none rounded px-8 py-3 text-sm font-bold cursor-pointer disabled:opacity-60 disabled:cursor-wait"
+              style={{ background: approving ? '#86EFAC' : '#15803D', letterSpacing: '0.03em' }}
             >
               {approving ? 'Publishing…' : 'Approve & Publish'}
             </button>
-
-            {/* Secondary actions — outlined buttons, clear visual weight */}
-            <div className="flex items-center gap-4">
-              <button
-                onClick={() => onRetry(brief.id)}
-                className="rounded-lg px-6 py-2.5 text-sm font-semibold cursor-pointer transition-colors"
-                style={{ border: '1px solid #BFDBFE', color: '#1D4ED8', background: 'white' }}
-              >
-                Re-research
-              </button>
-              <button
-                onClick={() => setRejecting(true)}
-                className="rounded-lg px-6 py-2.5 text-sm font-semibold cursor-pointer transition-colors"
-                style={{ border: '1px solid #FECACA', color: '#B91C1C', background: 'white' }}
-              >
-                Reject
-              </button>
-            </div>
+            <button
+              onClick={() => onRetry(brief.id)}
+              className="rounded px-6 py-3 text-sm font-bold cursor-pointer"
+              style={{ border: '1px solid #990F3D', color: '#990F3D', background: 'transparent' }}
+            >
+              Re-research
+            </button>
+            <button
+              onClick={() => setRejecting(true)}
+              className="rounded px-6 py-3 text-sm font-bold cursor-pointer"
+              style={{ border: '1px solid #D1D5DB', color: '#6B7280', background: 'transparent' }}
+            >
+              Reject
+            </button>
           </div>
         ) : (
           <div className="flex flex-col gap-4 rounded-lg p-5" style={{ background: '#FFFFFF', border: '1px solid #FECACA' }}>

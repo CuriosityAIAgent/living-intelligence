@@ -280,6 +280,7 @@ export interface V2Brief {
   decided_by?: string;
   decided_at?: string;
   similarity_match?: { type: string; match_id?: string; similarity?: number };
+  v2_iterations?: Array<{ version: number; score?: number; feedback?: string }>;
 }
 
 export interface V2InboxResponse {
