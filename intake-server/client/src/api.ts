@@ -6,7 +6,7 @@ import type {
   InboxResponse,
   PipelineStatus,
   PipelineRun,
-  ActivityLogResponse,
+
   TLCandidate,
   TLPublishedEntry,
   LandscapeSuggestion,
@@ -58,11 +58,6 @@ export const fetchPipelineHistory = (): Promise<{ runs: PipelineRun[] }> =>
 
 export const runPipeline = (): Promise<void> =>
   apiFetch('/api/run-pipeline', { method: 'POST' });
-
-// ── Activity log ──────────────────────────────────────────────────────────────
-
-export const fetchActivityLog = (): Promise<ActivityLogResponse> =>
-  apiFetch('/api/activity-log');
 
 // ── Discover (manual URL processing) ─────────────────────────────────────────
 

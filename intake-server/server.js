@@ -790,9 +790,6 @@ app.post('/api/blocked/unblock', async (req, res) => {
   removeBlocked(url);
 
   // Step 2: Re-process through v2 pipeline (research → brief to Supabase)
-  res.json({ ok: true, url, message: 'Unblocked and reprocessing through v2 pipeline' });
-
-  // Fire-and-forget: research the URL
   try {
     const noopSend = () => {};
     const brief = await research({
@@ -805,12 +802,14 @@ app.post('/api/blocked/unblock', async (req, res) => {
     if (brief.aborted) {
       addBlocked(url, url, `Research aborted on re-process: ${brief.reason}`);
       console.log(`[unblock] ${url} → research aborted: ${brief.reason}, re-blocked`);
-      return;
+      return res.json({ ok: false, url, message: `Research aborted: ${brief.reason}. URL re-blocked.` });
     }
 
     console.log(`[unblock] ${url} → v2 brief created (${brief.brief_id}), ${brief.source_count} sources, awaiting Phase 2`);
+    res.json({ ok: true, url, message: `Unblocked and brief created (${brief.source_count} sources). Awaiting Phase 2 processing.`, brief_id: brief.brief_id });
   } catch (err) {
     console.error(`[unblock] Failed to reprocess ${url}:`, err.message);
+    res.status(500).json({ ok: false, url, error: `Reprocessing failed: ${err.message}` });
   }
 });
 
@@ -983,6 +982,19 @@ app.post('/api/v2/store-produced', async (req, res) => {
   }
 
   try {
+    // Guard: only overwrite briefs that are still processing (or ready)
+    const currentBrief = await getBrief(brief_id);
+    if (!currentBrief) {
+      return res.status(404).json({ error: `Brief ${brief_id} not found` });
+    }
+    const allowedStatuses = ['processing', 'ready'];
+    if (!allowedStatuses.includes(currentBrief.status)) {
+      return res.status(409).json({
+        error: `Brief ${brief_id} status is already '${currentBrief.status}' — refusing to overwrite`,
+        current_status: currentBrief.status,
+      });
+    }
+
     const isClean = fabrication?.verdict === 'CLEAN';
     const status = (final_score >= 75 && isClean) ? 'produced' : 'held';
 

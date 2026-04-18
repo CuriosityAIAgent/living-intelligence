@@ -211,7 +211,7 @@ Sits between governance output and publish/review/block routing. Scores each ent
 
 | Dimension | Max | Method |
 |---|---|---|
-| **A: Source Quality** | 25 | DataForSEO Backlinks API — live `domain_rank` (0–100). `spam_score ≥ 40` → 2pts regardless. Falls back to manual tier list if API unavailable. Press releases / strong newsrooms = 25. Tier 1 media = 22. Tier 2 industry press = 17. Weak newsroom (`/news/`, `/blog/`) = 20 — only applied AFTER checking TIER1/TIER2 to prevent false positives. General = 9. |
+| **A: Source Quality** | 25 | DataForSEO Backlinks API — live `domain_rank` (0–100). `spam_score ≥ 40` → 2pts regardless. Falls back to manual tier list if API unavailable. Press releases / strong newsrooms = 25. Tier 1 media = 22. Tier 2 industry press = 17. Weak newsroom (`/news/`, `/blog/`) = 15 — only applied AFTER checking TIER1/TIER2 to prevent false positives. General = 9. |
 | **B: Claim Verification** | 25 | From governance output: 0 unverified = 25, 1 = 15, 2 = 6, 3+ = 0, any fabricated = −100 (auto-block) |
 | **C: Freshness** | 10 | ≤1d = 10, ≤3d = 8, ≤7d = 6, ≤14d = 4, ≤30d = 2, ≤90d = 1, older = hard BLOCK |
 | **D: Capability Impact** | 40 | Which of 7 capability dimensions is advancing, what evidence, at what scale. `capability_evidence` populated → 15–40pts. Tracked company without capability_evidence → floor at 20pts. |

@@ -193,13 +193,13 @@ await test('thinkadvisor.com/news/ → 17pts (TIER2 wins over weak newsroom)', a
   eq(result.breakdown.source.tier, 'tier2', 'tier');
 });
 
-await test('altruist.com/news/ → 20pts (company news page, newsroom_weak)', async () => {
+await test('altruist.com/news/ → 15pts (company news page, newsroom_weak)', async () => {
   const result = await scoreEntry({
     entry: entry(),
     governance: gov(),
     sourceUrl: 'https://altruist.com/news/hazel-ai-tax-planning/',
   });
-  eq(result.breakdown.source.points, 20, 'source points');
+  eq(result.breakdown.source.points, 15, 'source points');
   eq(result.breakdown.source.tier, 'newsroom_weak', 'tier');
 });
 

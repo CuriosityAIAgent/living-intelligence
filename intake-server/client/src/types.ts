@@ -145,22 +145,6 @@ export interface PipelineRun {
   tl_candidates: number;
 }
 
-// ── Activity log ──────────────────────────────────────────────────────────────
-
-export interface ActivityLogEntry {
-  action: 'approved' | 'rejected';
-  id: string;
-  headline: string;
-  company_name?: string;
-  reason?: string;
-  notes?: string;
-  timestamp: string;
-}
-
-export interface ActivityLogResponse {
-  log: ActivityLogEntry[];
-}
-
 // ── TL candidates and published ───────────────────────────────────────────────
 
 export interface TLPublishedEntry {

@@ -9,6 +9,14 @@ Run the full v2 pipeline: read ready briefs from KB → write consulting-quality
 
 **This runs inside Claude Code — all writing and evaluation uses your Max tokens (free). No API costs.**
 
+## How briefs get created (upstream)
+
+Briefs arrive in the KB via two paths:
+1. **Automated (5am daily):** `scheduler.js` runs discovery → Supabase dedup → freshness filter → `research-agent.js` → brief stored in Supabase KB with status `ready`.
+2. **Manual:** `POST /api/process-url` with a URL → `research-agent.js` creates a v2 brief in Supabase (status `ready`). This replaced the old v1 `processUrl` (intake.js) flow in session 41.
+
+You can also trigger batch processing from the Editorial Studio Pipeline tab.
+
 ## Steps
 
 ### 1. Fetch ready briefs from KB
@@ -76,15 +84,18 @@ Verify every factual claim in the entry against the source material:
 
 ### 5. Save to editorial inbox
 
-Use the intake server API to add the entry to the inbox:
+Store the produced entry back on the brief via the v2 API:
 
 ```bash
-curl -X POST http://localhost:3003/api/process-url \
+curl -X POST http://localhost:3003/api/v2/store-produced \
   -H "Content-Type: application/json" \
-  -d '{"url": "<source_url>", "entry": <the_entry_json>}'
+  -H "Authorization: Bearer $PIPELINE_BEARER_TOKEN" \
+  -d '{"briefId": "<brief_id>", "entry": <the_entry_json>, "score": 85, "fabrication": {"verdict": "CLEAN", "claims_checked": N, "claims_verified": N}}'
 ```
 
-Or write the entry JSON directly to the pending queue by calling:
+This updates the brief status to `produced` (score >= 75) or `held` (score < 75) in Supabase. The entry then appears in the Editorial Studio for Haresh to review.
+
+Alternatively, write directly to the v1 pending queue (legacy fallback):
 ```bash
 node --env-file=.env -e "
 import { addPending } from './agents/gov-store.js';
@@ -109,3 +120,6 @@ After processing all briefs, report:
 - **Read the landscape file** for the company (`data/competitors/{slug}.json`) to get peer context
 - **the_so_what must reference a competitor** or landscape trend
 - **date is the article's publication date**, NOT today
+- **Brief lifecycle:** `ready` → `processing` → `produced`/`held`/`duplicate`/`development` → `approved`/`rejected`
+- **Automated production:** The Remote Trigger (5:27am daily) handles routine production via Supabase REST API. This skill is for manual/on-demand production runs.
+- **CLI alternative:** `node --env-file=.env agents/content-producer.js --top 5` processes briefs using API credits (fallback when Max tokens unavailable)

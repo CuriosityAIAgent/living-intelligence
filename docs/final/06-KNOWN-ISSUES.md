@@ -44,10 +44,10 @@
 - **Impact:** If Remote Trigger retries or is called twice, second call overwrites first entry
 - **Fix:** Check brief status before update, reject if already produced/held
 
-### 7. Scorer Tier Inconsistency
-- **What:** `scorer.js` — weak newsroom patterns (/news/, /blog/) score 20 points, but Tier 2 industry press scores only 17
-- **Impact:** A company blog post outscores ThinkAdvisor or RIABiz
-- **Fix:** Adjust weak newsroom to 15 or Tier 2 to 20
+### 7. Scorer Tier Inconsistency — FIXED
+- **What:** `scorer.js` — weak newsroom patterns (/news/, /blog/) scored 20 points, but Tier 2 industry press scored only 17
+- **Impact:** A company blog post outscored ThinkAdvisor or RIABiz
+- **Fix:** Weak newsroom lowered from 20 to 15 (below Tier 2's 17). Professional trade press now correctly outscores company news pages.
 
 ### 8. `/api/blocked/unblock` Fires Async Without Feedback
 - **What:** Returns `{ ok: true }` immediately, research runs in background with fire-and-forget

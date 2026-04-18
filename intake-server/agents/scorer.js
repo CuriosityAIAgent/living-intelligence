@@ -91,7 +91,7 @@ function fallbackSourceScore(hostname, fullUrl) {
   if (TIER1_MEDIA.has(hostname)) return { points: 22, label: `Tier 1 media (${hostname})`, tier: 'tier1' };
   if (TIER2_MEDIA.has(hostname)) return { points: 17, label: `Industry press (${hostname})`, tier: 'tier2' };
   // Weak newsroom signals checked AFTER known outlets — prevents thinkadvisor.com/news/ from scoring as newsroom
-  if (NEWSROOM_PATTERNS_WEAK.some(p => fullUrl.includes(p))) return { points: 20, label: `Company news page (${hostname})`, tier: 'newsroom_weak' };
+  if (NEWSROOM_PATTERNS_WEAK.some(p => fullUrl.includes(p))) return { points: 15, label: `Company news page (${hostname})`, tier: 'newsroom_weak' };
   return { points: 9, label: `General press (${hostname})`, tier: 'general' };
 }
 

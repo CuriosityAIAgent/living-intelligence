@@ -92,7 +92,99 @@ Read all files in `data/thought-leadership/`. For each entry:
 
 ---
 
-## Step 5 — Data Counts Reconciliation
+## Step 5 — v2 Pipeline Health (Knowledge Base)
+
+Check the Supabase KB for pipeline health issues. Requires `SUPABASE_URL` and `SUPABASE_SERVICE_KEY` env vars.
+
+### 5a — Stuck briefs
+
+Query `research_briefs` for any briefs stuck in `processing` status for more than 1 hour. These indicate a failed or hung pipeline run.
+
+```bash
+export PATH="$HOME/.fnm/node-versions/v20.20.0/installation/bin:$PATH"
+cd /Users/haresh/Desktop/Living\ Intelligence/living-intelligence/intake-server
+node --env-file=.env -e "
+import { createClient } from '@supabase/supabase-js';
+const sb = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_KEY);
+const oneHourAgo = new Date(Date.now() - 60*60*1000).toISOString();
+const { data, error } = await sb.from('research_briefs').select('id, company_id, headline, status, updated_at').eq('status', 'processing').lt('updated_at', oneHourAgo);
+if (error) { console.error('ERROR:', error.message); process.exit(1); }
+if (data.length === 0) { console.log('No stuck briefs.'); } else { console.log('STUCK BRIEFS (' + data.length + '):'); data.forEach(b => console.log('  -', b.id, b.company_id, b.headline, '(stuck since', b.updated_at + ')')); }
+"
+```
+
+If stuck briefs are found, they likely need to be reset to `ready` status so the next pipeline run picks them up:
+
+```bash
+# To reset a stuck brief (replace BRIEF_ID):
+node --env-file=.env -e "
+import { createClient } from '@supabase/supabase-js';
+const sb = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_KEY);
+const { error } = await sb.from('research_briefs').update({ status: 'ready' }).eq('id', process.argv[1]);
+if (error) console.error(error.message); else console.log('Reset to ready.');
+" BRIEF_ID
+```
+
+### 5b — Brief status distribution
+
+Get a count of briefs by status to understand pipeline throughput:
+
+```bash
+node --env-file=.env -e "
+import { createClient } from '@supabase/supabase-js';
+const sb = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_KEY);
+const statuses = ['ready', 'processing', 'produced', 'held', 'approved', 'rejected', 'duplicate', 'development'];
+for (const s of statuses) {
+  const { count } = await sb.from('research_briefs').select('*', { count: 'exact', head: true }).eq('status', s);
+  if (count > 0) console.log(s.padEnd(14), count);
+}
+"
+```
+
+Flag any anomalies:
+- Large number of `ready` briefs = pipeline not running (check Remote Trigger / cron)
+- Large number of `held` briefs = quality issues or thresholds too strict
+- `processing` count > 0 outside of pipeline run window = stuck briefs (see 5a)
+
+### 5c — Recent editorial decisions
+
+Check the `editorial_decisions` table for recent activity:
+
+```bash
+node --env-file=.env -e "
+import { createClient } from '@supabase/supabase-js';
+const sb = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_KEY);
+const { data, error } = await sb.from('editorial_decisions').select('id, brief_id, decision, reason, decided_at').order('decided_at', { ascending: false }).limit(10);
+if (error) { console.error('ERROR:', error.message); process.exit(1); }
+if (!data.length) { console.log('No editorial decisions found.'); } else { data.forEach(d => console.log(d.decided_at?.slice(0,10), d.decision.padEnd(10), d.reason || '(no reason)', '— brief:', d.brief_id?.slice(0,8))); }
+"
+```
+
+### 5d — Source coverage
+
+Check the `sources` table for recent source ingestion:
+
+```bash
+node --env-file=.env -e "
+import { createClient } from '@supabase/supabase-js';
+const sb = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_KEY);
+const sevenDaysAgo = new Date(Date.now() - 7*24*60*60*1000).toISOString();
+const { count } = await sb.from('sources').select('*', { count: 'exact', head: true }).gte('fetched_at', sevenDaysAgo);
+console.log('Sources ingested (last 7 days):', count);
+const { count: total } = await sb.from('sources').select('*', { count: 'exact', head: true });
+console.log('Total sources in KB:', total);
+const { count: embedded } = await sb.from('sources').select('*', { count: 'exact', head: true }).not('embedding', 'is', null);
+console.log('Sources with embeddings:', embedded);
+"
+```
+
+Flag if:
+- Zero sources in last 7 days = discovery pipeline not running
+- Embedded count much lower than total = embedding backfill needed
+
+---
+
+## Step 6 — Data Counts Reconciliation
 
 Count actual files and confirm they match memory:
 
@@ -107,7 +199,7 @@ If counts differ from `project_living_intelligence.md`, update the memory file w
 
 ---
 
-## Step 6 — Audit Report
+## Step 7 — Audit Report
 
 Output a clean summary:
 
@@ -129,6 +221,12 @@ Thought leadership: [N] total
 
 Broken URLs: [N] (auto-fixed: [N], needs manual: [N])
 
+v2 Pipeline (KB):
+  Stuck briefs: [N]
+  Brief distribution: [ready: N, processing: N, produced: N, held: N, approved: N, rejected: N]
+  Sources ingested (7d): [N] / Total: [N] / Embedded: [N]
+  Recent decisions: [N] (last 7 days)
+
 RECOMMENDED ACTIONS:
 1. [highest priority fix]
 2. [next fix]
@@ -136,7 +234,7 @@ RECOMMENDED ACTIONS:
 
 ---
 
-## Step 7 — Fix What Can Be Fixed Now
+## Step 8 — Fix What Can Be Fixed Now
 
 For each flagged issue, decide with Haresh:
 - Fix now (rewrite the_so_what, update maturity, fix URL)

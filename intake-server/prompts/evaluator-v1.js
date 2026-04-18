@@ -1,8 +1,8 @@
 /**
- * evaluator-v1.js — McKinsey 6-check quality test
- * Version: evaluator-v1 (2026-04-06)
+ * evaluator-v1.js — McKinsey 7-check quality test
+ * Version: evaluator-v1.1 (2026-04-18)
  *
- * Rates a draft entry against 6 quality dimensions.
+ * Rates a draft entry against 7 quality dimensions.
  * Returns PASS / NEEDS_WORK with specific feedback per check.
  */
 
@@ -17,7 +17,7 @@ export function build({ draft, researchBrief }) {
     ? `${draft.key_stat.number} — ${draft.key_stat.label}`
     : 'none';
 
-  return `You are a quality evaluator for a premium wealth management intelligence platform ($5,000/year). You apply the McKinsey Test — six checks that separate consulting-grade intelligence from commodity news summaries.
+  return `You are a quality evaluator for a premium wealth management intelligence platform ($5,000/year). You apply the McKinsey Test — seven checks that separate consulting-grade intelligence from commodity news summaries.
 
 DRAFT ENTRY TO EVALUATE:
 ---
@@ -37,7 +37,7 @@ CONTEXT:
 - Prior entries about this company: ${(landscape.past_entries || []).length}
 - Research found ${researchBrief.source_count || 1} sources total
 
-THE 6 CHECKS:
+THE 7 CHECKS:
 
 1. SPECIFICITY — Does the headline contain a specific capability or metric? Not just "Company Does AI" but what exactly, at what scale.
    FAIL example: "Morgan Stanley Expands AI Initiatives"
@@ -61,6 +61,18 @@ THE 6 CHECKS:
    FAIL if: entry exists in isolation with no competitive context.
    PASS if: the_so_what or summary references what peers are doing, or positions this within the broader landscape.
 
+7. WRITING_QUALITY — Is the writing free of AI-generated patterns? Scan the headline, summary, the_so_what, and key_stat label for these anti-patterns:
+
+   Banned words: "delves", "underscores", "landscape", "paradigm", "ecosystem", "leveraging", "utilizing", "tapestry", "multifaceted", "comprehensive", "robust"
+   Banned phrases: "It's worth noting", "It remains to be seen", "In an era of", "game-changing", "poised to"
+   Banned punctuation: em dashes (—) used as dramatic pauses (e.g. "a bold move — one that could reshape...")
+   Generic filler: sentences that add no information and could be deleted without losing meaning (e.g. "This development is significant because it highlights the importance of...")
+
+   FAIL if: 2 or more anti-AI patterns found anywhere in the entry. List every instance found.
+   PASS if: 0 or 1 anti-AI patterns found. If 1 found, still note it in feedback so the writer can fix it.
+
+   Note: "landscape" is acceptable ONLY when referring to our platform's competitive landscape feature or data (e.g. "landscape matrix", "landscape coverage"). It fails when used as generic filler (e.g. "the evolving landscape of wealth management").
+
 Return ONLY valid JSON:
 {
   "checks": {
@@ -69,7 +81,8 @@ Return ONLY valid JSON:
     "source": { "pass": true|false, "feedback": "..." },
     "substance": { "pass": true|false, "feedback": "..." },
     "stat": { "pass": true|false, "feedback": "..." },
-    "competitor": { "pass": true|false, "feedback": "..." }
+    "competitor": { "pass": true|false, "feedback": "..." },
+    "writing_quality": { "pass": true|false, "feedback": "list each anti-AI pattern found with the exact text" }
   },
   "overall": "PASS" | "NEEDS_WORK",
   "quality_score": 1-10,
@@ -77,8 +90,8 @@ Return ONLY valid JSON:
 }
 
 Rules:
-- PASS overall: all 6 checks pass, or at most 1 minor check fails with a trivial fix.
-- NEEDS_WORK: 2+ checks fail, or any critical check (so_what, source, competitor) fails.
+- PASS overall: all 7 checks pass, or at most 1 minor check fails with a trivial fix.
+- NEEDS_WORK: 2+ checks fail, or any critical check (so_what, source, competitor, writing_quality) fails.
 - quality_score: 9-10 = exceptional, 7-8 = solid, 5-6 = needs work, 1-4 = major rewrite needed.
 - Be specific in feedback — don't say "improve the so_what", say "connect to Morgan Stanley's 98% adoption as a benchmark".`;
 }

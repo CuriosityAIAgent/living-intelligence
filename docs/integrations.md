@@ -167,7 +167,7 @@ const res = await fetch('https://api.dataforseo.com/v3/backlinks/summary/live', 
 // Returns: rank (0-100), spam_score (0-100), referring_domains
 ```
 
-**Scoring map (Dim A, max 25):** `rank ≥ 70` → 23 pts · `≥ 50` → 18 pts · `≥ 30` → 12 pts · `< 30` → 5 pts · `spam_score ≥ 40` → 2 pts (flagged regardless of rank). Falls back to manual tier list if API unavailable: press release wire/strong newsroom = 25, Tier 1 media = 22, Tier 2 industry press = 17, weak newsroom (/news/, /blog/) = 20 (only after TIER1/TIER2 check), general = 9.
+**Scoring map (Dim A, max 25):** `rank ≥ 70` → 23 pts · `≥ 50` → 18 pts · `≥ 30` → 12 pts · `< 30` → 5 pts · `spam_score ≥ 40` → 2 pts (flagged regardless of rank). Falls back to manual tier list if API unavailable: press release wire/strong newsroom = 25, Tier 1 media = 22, Tier 2 industry press = 17, weak newsroom (/news/, /blog/) = 15 (only after TIER1/TIER2 check), general = 9.
 **Cache:** Results stored in `domainAuthorityCache` (Map) for duration of pipeline run — one API call per domain.
 
 **Env vars:** `DATAFORSEO_LOGIN`, `DATAFORSEO_PASSWORD`
