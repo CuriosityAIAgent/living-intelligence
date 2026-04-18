@@ -1,0 +1,82 @@
+{
+  "id": "wealth-com-65m-series-b-ai-estate-tax-planning",
+  "date": "2026-04-16",
+  "tags": {
+    "theme": [
+      "ai_native_planning",
+      "estate_planning",
+      "multi_agent_ai",
+      "enterprise_wealth"
+    ],
+    "region": "us",
+    "segment": "advisor_tools",
+    "capability": "advisor_productivity"
+  },
+  "type": "funding",
+  "week": "2026-04-13",
+  "company": "wealth-com",
+  "sources": [
+    {
+      "url": "https://fintech.global/2026/04/16/wealth-com-raises-65m-series-b-for-ai-wealth-planning/",
+      "name": "FinTech Global",
+      "type": "primary"
+    },
+    {
+      "url": "https://www.wealth.com/resources/press/wealth-coms-proprietary-ai-ester-intelligence-enters-a-new-era/",
+      "name": "Wealth.com Press Release",
+      "type": "coverage"
+    },
+    {
+      "url": "https://www.investmentnews.com/fintech/fintech-bytes-wealthcom-declares-new-era-for-ester-ai/266158",
+      "name": "InvestmentNews",
+      "type": "coverage"
+    },
+    {
+      "url": "https://www.wealth.com/",
+      "name": "Wealth.com Homepage",
+      "type": "discovery"
+    },
+    {
+      "url": "https://www.wealth.com/ester/",
+      "name": "Wealth.com Ester AI Page",
+      "type": "discovery"
+    },
+    {
+      "url": "https://www.wealth.com/resources/articles/ai-wont-replace-financial-advisors-it-will-redefine-the-job/",
+      "name": "Wealth.com AI Article",
+      "type": "discovery"
+    }
+  ],
+  "summary": "Wealth.com's Ester Intelligence is a multi-agent AI system that synthesizes estate documents, tax returns, and balance sheets into auditable, advisor-ready outputs, processing over 100,000 estate documents and running 1,000+ deterministic calculations per distribution in 2025. AI-powered workflows on the platform grew 664% year over year as the company won approvals from the three largest US broker-dealers, unlocking access to 50,000+ advisors and firms managing over $15 trillion in client assets. Revenue has compounded at 3x annually for four consecutive years. The oversubscribed $65M Series B attracted Titanium Ventures, Pruven Capital, and Dynasty Financial Partners alongside existing backers Charles Schwab, GV, and Citi Ventures.",
+  "featured": false,
+  "headline": "Wealth.com's deterministic AI estate engine serves $15T in advisor assets, closes $65M Series B",
+  "key_stat": {
+    "label": "year-over-year growth in AI-powered workflows",
+    "number": "664%"
+  },
+  "image_url": null,
+  "source_url": "https://fintech.global/2026/04/16/wealth-com-raises-65m-series-b-for-ai-wealth-planning/",
+  "source_name": "FinTech Global",
+  "the_so_what": "With Dynasty Financial already embedding Ester into its advisor desktop and the three largest US broker-dealers now approved, Wealth.com is assembling the distribution footprint to displace fragmented legacy planning tools like Envestnet's MoneyGuide before incumbents ship comparable AI-native estate capabilities.",
+  "company_name": "Wealth.com",
+  "source_count": 6,
+  "source_verified": true,
+  "capability_evidence": {
+    "stage": "deployed",
+    "metric": "100,000+ estate documents processed; 664% YoY AI workflow growth; $15T+ AUM served",
+    "evidence": "Ester Intelligence processed over 100,000 estate documents in 2025, executes 1,000+ deterministic calculations per estate distribution, and is now embedded in Dynasty Financial's advisor desktop.",
+    "capability": "advisor_productivity"
+  },
+  "published_at": "2026-04-16T00:00:00.000Z",
+  "_governance": {
+    "verdict": "PASS",
+    "confidence": 99,
+    "verified_claims": [],
+    "unverified_claims": [],
+    "notes": "v2 pipeline — fabrication: CLEAN, score: 99",
+    "paywall_caveat": false,
+    "verified_at": "2026-04-18T06:20:33.469Z",
+    "human_approved": true,
+    "approved_at": "2026-04-18T06:20:33.469Z"
+  }
+}
