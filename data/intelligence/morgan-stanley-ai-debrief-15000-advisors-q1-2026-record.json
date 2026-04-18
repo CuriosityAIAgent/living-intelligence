@@ -1,0 +1,77 @@
+{
+  "id": "morgan-stanley-ai-debrief-15000-advisors-q1-2026-record",
+  "date": "2026-04-15",
+  "tags": {
+    "theme": [
+      "generative_ai_deployment",
+      "asset_gathering",
+      "wealth_management_scale",
+      "integrated_firm_model"
+    ],
+    "region": "us",
+    "segment": "wirehouse",
+    "capability": "advisor_productivity"
+  },
+  "type": "milestone",
+  "week": "2026-04-13",
+  "company": "morgan-stanley",
+  "sources": [
+    {
+      "url": "https://markets.financialcontent.com/stocks/article/marketminute-2026-4-15-morgan-stanley-shatters-records-in-q1-2026-wealth-management-surge-and-ai-innovation-fuel-54-stock-leap",
+      "name": "MarketMinute via FinancialContent",
+      "type": "primary"
+    },
+    {
+      "url": "https://www.morganstanley.com/press-releases/ai-at-morgan-stanley-debrief-launch",
+      "name": "Morgan Stanley Newsroom",
+      "type": "primary"
+    },
+    {
+      "url": "https://www.cdomagazine.tech/aiml/98-of-morgan-stanley-wealth-management-advisors-use-its-ai-chatbot-with-improved-productivity-cao-explains-how",
+      "name": "CDO Magazine",
+      "type": "coverage"
+    },
+    {
+      "url": "https://openai.com/index/morgan-stanley/",
+      "name": "OpenAI",
+      "type": "coverage"
+    },
+    {
+      "url": "https://www.investmentnews.com/fintech/morgan-stanleys-open-ai-powered-solution-for-advisors-has-expanded/254880",
+      "name": "InvestmentNews",
+      "type": "coverage"
+    }
+  ],
+  "summary": "Morgan Stanley has fully deployed 'AI @ Morgan Stanley Debrief,' a generative AI tool automating administrative and compliance tasks, across all 15,000 financial advisors. The deployment coincides with a record Q1 2026 in which the Wealth Management division gathered $118.4 billion in net new assets, pushing total client assets above $9 trillion and generating $8.5 billion in segment revenue. The firm's 27.1% return on tangible common equity, seven points above its own 20% target, outpaces Goldman Sachs, which despite a 19% quarterly profit jump remains more exposed to cyclical capital markets without a comparable fee-based asset base. CEO Ted Pick's 'Integrated Firm 2.0' model routes institutional deal flow directly into advisory accounts: investment banking surged 36% year over year to $2.12 billion as the post-2024 M&A backlog unlocked, feeding the wealth engine that now manages assets at nearly twice Goldman's scale.",
+  "featured": false,
+  "headline": "Morgan Stanley deploys AI Debrief across 15,000 advisors as wealth unit posts record $118B asset surge",
+  "key_stat": {
+    "label": "net new assets in Wealth Management in Q1 2026",
+    "number": "$118.4B"
+  },
+  "image_url": null,
+  "source_url": "https://markets.financialcontent.com/stocks/article/marketminute-2026-4-15-morgan-stanley-shatters-records-in-q1-2026-wealth-management-surge-and-ai-innovation-fuel-54-stock-leap",
+  "source_name": "MarketMinute via FinancialContent",
+  "the_so_what": "With 15,000 advisors now on AI-assisted workflows and $118B in quarterly net new assets pushing past $9 trillion, Morgan Stanley is converting AI-augmented advisor productivity directly into asset capture velocity. Goldman Sachs cannot match this without building a comparable fee-based wealth platform, and its capital-markets-heavy model makes that unlikely within this cycle.",
+  "company_name": "Morgan Stanley",
+  "source_count": 5,
+  "source_verified": true,
+  "capability_evidence": {
+    "stage": "deployed",
+    "metric": "15,000 advisors using the tool firm-wide",
+    "evidence": "Morgan Stanley fully deployed 'AI @ Morgan Stanley Debrief,' a generative AI tool automating administrative and compliance tasks for all 15,000 advisors.",
+    "capability": "advisor_productivity"
+  },
+  "published_at": "2026-04-15T00:00:00.000Z",
+  "_governance": {
+    "verdict": "PASS",
+    "confidence": 86,
+    "verified_claims": [],
+    "unverified_claims": [],
+    "notes": "v2 pipeline — fabrication: CLEAN, score: 86",
+    "paywall_caveat": false,
+    "verified_at": "2026-04-18T06:20:41.100Z",
+    "human_approved": true,
+    "approved_at": "2026-04-18T06:20:41.100Z"
+  }
+}
