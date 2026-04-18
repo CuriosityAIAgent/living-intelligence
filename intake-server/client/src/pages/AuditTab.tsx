@@ -34,7 +34,7 @@ export default function AuditTab() {
               const data = JSON.parse(line.slice(6));
               if (data.message) setLog((prev) => [...prev, data.message]);
               if (data.done) refetch();
-            } catch {}
+            } catch { /* skip */ }
           }
         }
       }
@@ -51,169 +51,121 @@ export default function AuditTab() {
 
   return (
     <div>
-      {/* Header */}
-      <div
-        style={{
-          background: '#fff',
-          borderBottom: '1px solid #E5E7EB',
-          padding: '14px 24px',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-        }}
-      >
-        <div>
-          <span style={{ fontSize: 13, fontWeight: 600, color: '#111827' }}>Data Audit</span>
-          {report && (
-            <span style={{ fontSize: 11, color: '#9CA3AF', marginLeft: 12 }}>
-              {report.total} entries checked · {errors.length} errors · {warnings.length} warnings
-            </span>
-          )}
-        </div>
-        <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
-          <div
-            style={{
-              display: 'flex',
-              border: '1px solid #E5E7EB',
-              borderRadius: 4,
-              overflow: 'hidden',
-            }}
-          >
-            {(['fast', 'deep'] as const).map((m) => (
-              <button
-                key={m}
-                onClick={() => setMode(m)}
-                style={{
-                  padding: '5px 12px',
-                  fontSize: 11,
-                  fontWeight: 600,
-                  border: 'none',
-                  background: mode === m ? '#1C1C2E' : '#fff',
-                  color: mode === m ? '#fff' : '#6B7280',
-                  cursor: 'pointer',
-                  textTransform: 'capitalize',
-                }}
-              >
-                {m}
-              </button>
-            ))}
+      {/* ── Toolbar ── */}
+      <div style={{ maxWidth: 1280, margin: '0 auto', padding: '32px 40px 0' }}>
+        <div className="flex justify-between items-center mb-6 pb-5" style={{ borderBottom: '1px solid #E4DFD4' }}>
+          <div style={{ fontFamily: 'ui-monospace, monospace', fontSize: 11, letterSpacing: '0.16em', textTransform: 'uppercase' as const, color: '#6B7280' }}>
+            <strong style={{ color: '#0E1116', fontWeight: 600 }}>Data Audit</strong>
+            {report && (
+              <span> · {report.total} entries · {errors.length} errors · {warnings.length} warnings</span>
+            )}
           </div>
-          <button
-            onClick={handleRun}
-            disabled={running}
-            style={{
-              background: running ? '#9CA3AF' : '#990F3D',
-              color: '#fff',
-              border: 'none',
-              borderRadius: 4,
-              padding: '7px 14px',
-              fontSize: 12,
-              fontWeight: 600,
-              cursor: running ? 'not-allowed' : 'pointer',
-            }}
-          >
-            {running ? 'Running…' : '▶ Run Audit'}
-          </button>
+          <div className="flex items-center gap-3">
+            <div className="flex overflow-hidden" style={{ border: '1px solid #E4DFD4' }}>
+              {(['fast', 'deep'] as const).map((m) => (
+                <button
+                  key={m}
+                  onClick={() => setMode(m)}
+                  className="cursor-pointer capitalize"
+                  style={{
+                    padding: '5px 14px',
+                    fontSize: 11,
+                    fontWeight: 600,
+                    border: 'none',
+                    background: mode === m ? '#0E1116' : '#fff',
+                    color: mode === m ? '#F7F2E8' : '#6B7280',
+                    fontFamily: 'ui-monospace, monospace',
+                    letterSpacing: '0.08em',
+                    textTransform: 'uppercase' as const,
+                  }}
+                >
+                  {m}
+                </button>
+              ))}
+            </div>
+            <button
+              onClick={handleRun}
+              disabled={running}
+              className="cursor-pointer disabled:cursor-not-allowed disabled:opacity-50"
+              style={{
+                fontFamily: 'ui-monospace, monospace',
+                fontSize: 11,
+                letterSpacing: '0.1em',
+                textTransform: 'uppercase' as const,
+                padding: '6px 14px',
+                border: '1px solid #990F3D',
+                background: running ? '#9CA3AF' : '#990F3D',
+                color: '#F7F2E8',
+                fontWeight: 600,
+              }}
+            >
+              {running ? 'Running...' : 'Run Audit'}
+            </button>
+          </div>
         </div>
       </div>
 
-      <div style={{ padding: 24, maxWidth: 900 }}>
+      <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 40px 48px' }}>
         {/* Log */}
         {log.length > 0 && (
           <div
-            style={{
-              background: '#111827',
-              color: '#D1FAE5',
-              borderRadius: 6,
-              padding: 14,
-              fontFamily: 'monospace',
-              fontSize: 12,
-              marginBottom: 20,
-            }}
+            className="font-mono text-xs max-h-56 overflow-y-auto leading-relaxed mb-8"
+            style={{ background: '#1C1C2E', color: '#86EFAC', padding: '16px 20px' }}
           >
             {log.map((line, i) => (
-              <div key={i} style={{ marginBottom: 3 }}>
-                {line}
-              </div>
+              <div key={i} className="mb-1">{line}</div>
             ))}
           </div>
         )}
 
-        {/* Summary */}
+        {/* Summary pills */}
         {report && (
           <>
-            <div style={{ display: 'flex', gap: 8, marginBottom: 20, flexWrap: 'wrap' }}>
+            <div className="flex gap-3 mb-8 flex-wrap">
               <SummaryPill
                 count={report.total - errors.length - warnings.length}
                 label="Clean"
                 color="#15803D"
-                bg="#DCFCE7"
+                bg="#F0FDF4"
                 border="#BBF7D0"
               />
               {warnings.length > 0 && (
-                <SummaryPill
-                  count={warnings.length}
-                  label="Warnings"
-                  color="#B45309"
-                  bg="#FEF3C7"
-                  border="#FDE68A"
-                />
+                <SummaryPill count={warnings.length} label="Warnings" color="#B45309" bg="#FFFBEB" border="#FDE68A" />
               )}
               {errors.length > 0 && (
-                <SummaryPill
-                  count={errors.length}
-                  label="Errors"
-                  color="#B91C1C"
-                  bg="#FEE2E2"
-                  border="#FECACA"
-                />
+                <SummaryPill count={errors.length} label="Errors" color="#B91C1C" bg="#FEF2F2" border="#FECACA" />
               )}
             </div>
 
             {/* Issues list */}
             {issues.length > 0 && (
-              <div>
+              <div className="space-y-2">
                 {issues.map((issue, i) => (
                   <div
                     key={i}
                     style={{
                       border: '1px solid',
-                      borderColor:
-                        issue.severity === 'error' ? '#FECACA' : '#FDE68A',
-                      borderRadius: 6,
-                      marginBottom: 6,
-                      background:
-                        issue.severity === 'error' ? '#FFF8F8' : '#FFFDF0',
-                      padding: '10px 14px',
+                      borderColor: issue.severity === 'error' ? '#FECACA' : '#FDE68A',
+                      background: issue.severity === 'error' ? '#FFF8F8' : '#FFFDF0',
+                      padding: '12px 18px',
                     }}
                   >
-                    <div
-                      style={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: 10,
-                        marginBottom: 4,
-                      }}
-                    >
+                    <div className="flex items-center gap-3 mb-1.5">
                       <span
+                        className="text-[9px] font-bold uppercase px-2 py-0.5"
                         style={{
-                          fontSize: 9,
-                          fontWeight: 800,
-                          textTransform: 'uppercase',
                           letterSpacing: '0.08em',
-                          padding: '2px 7px',
-                          borderRadius: 3,
                           background: issue.severity === 'error' ? '#FEE2E2' : '#FEF3C7',
                           color: issue.severity === 'error' ? '#B91C1C' : '#B45309',
                         }}
                       >
                         {issue.severity}
                       </span>
-                      <span style={{ fontSize: 12, fontWeight: 600, color: '#111827' }}>
+                      <span className="text-xs font-semibold" style={{ color: '#0E1116' }}>
                         {issue.id}
                       </span>
                     </div>
-                    <div style={{ fontSize: 12, color: '#374151' }}>
+                    <div className="text-xs" style={{ color: '#374151' }}>
                       <strong>{issue.field}:</strong> {issue.issue}
                     </div>
                   </div>
@@ -222,23 +174,22 @@ export default function AuditTab() {
             )}
 
             {issues.length === 0 && (
-              <div
-                style={{
-                  textAlign: 'center',
-                  padding: '40px 20px',
-                  color: '#15803D',
-                }}
-              >
-                <div style={{ fontSize: 32, marginBottom: 8 }}>✓</div>
-                <div style={{ fontSize: 14, fontWeight: 600 }}>All {report.total} entries clean</div>
+              <div className="text-center py-12">
+                <div style={{ fontSize: 32, marginBottom: 8, color: '#15803D' }}>✓</div>
+                <div className="text-sm font-semibold" style={{ color: '#15803D' }}>
+                  All {report.total} entries clean
+                </div>
               </div>
             )}
           </>
         )}
 
         {!report && !running && log.length === 0 && (
-          <div style={{ color: '#9CA3AF', fontSize: 13 }}>
-            Run an audit to check all published entries for data quality issues.
+          <div style={{ padding: '80px 24px', textAlign: 'center' }}>
+            <h3 style={{ fontSize: 20, fontWeight: 700, color: '#111827', marginBottom: 12 }}>No audit results</h3>
+            <p style={{ fontSize: 14, color: '#6B7280', maxWidth: 448, margin: '0 auto', lineHeight: 1.6 }}>
+              Run a fast or deep audit to check all published entries for data quality issues.
+            </p>
           </div>
         )}
       </div>
@@ -246,35 +197,15 @@ export default function AuditTab() {
   );
 }
 
-function SummaryPill({
-  count,
-  label,
-  color,
-  bg,
-  border,
-}: {
-  count: number;
-  label: string;
-  color: string;
-  bg: string;
-  border: string;
+function SummaryPill({ count, label, color, bg, border }: {
+  count: number; label: string; color: string; bg: string; border: string;
 }) {
   return (
     <div
-      style={{
-        display: 'flex',
-        alignItems: 'center',
-        gap: 6,
-        padding: '8px 14px',
-        borderRadius: 6,
-        fontSize: 13,
-        fontWeight: 600,
-        background: bg,
-        color,
-        border: `1px solid ${border}`,
-      }}
+      className="flex items-center gap-2"
+      style={{ padding: '10px 16px', background: bg, color, border: `1px solid ${border}`, fontSize: 13, fontWeight: 600 }}
     >
-      <span style={{ fontSize: 18, fontWeight: 800 }}>{count}</span>
+      <span style={{ fontSize: 20, fontWeight: 800 }}>{count}</span>
       <span>{label}</span>
     </div>
   );

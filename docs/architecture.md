@@ -100,7 +100,7 @@
 | `agents/content-producer.js` | v2 orchestrator: Research → Write → Fabrication → Evaluate → Refine → Score. 2 iterations + early exit. |
 | `agents/gov-store.js` | File-backed pending queue + blocked URL list |
 | `agents/scheduler.js` | v2 unified: discovery → Supabase dedup → freshness (7d/30d) → research-agent → rich brief to KB. |
-| `client/` | Editorial Studio UI — React (Vite + TS + Tailwind v4), builds to `intake-server/public/` |
+| `client/` | Editorial Studio UI v5 — React (Vite + TS + Tailwind v4), builds to `intake-server/public/`. 7 tabs (Inbox/Pipeline/Held/History/TL/Landscape/Audit). ArticleCard.tsx: 2-col grid (content+sidebar). FEATURE_MANIFEST.md for regression prevention. |
 
 ### Intake Server API Routes
 

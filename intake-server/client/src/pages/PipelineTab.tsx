@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
-import { fetchPipelineStatus, fetchPipelineHistory } from '../api';
+import { fetchPipelineStatus, fetchPipelineHistory, fetchBlocked, unblockUrl } from '../api';
 import { useProcessTracker } from '../App';
+import type { BlockedUrl } from '../types';
 
 export default function PipelineTab() {
   const [running, setPipelineRunning] = useState(false);
@@ -31,7 +32,7 @@ export default function PipelineTab() {
   const handleRunPipeline = async () => {
     setPipelineRunning(true);
     setPipelineLog([]);
-    startProcess('pipeline', 'Pipeline running…');
+    startProcess('pipeline', 'Pipeline running...');
 
     try {
       const res = await fetch('/api/run-pipeline', { method: 'POST' });
@@ -57,7 +58,7 @@ export default function PipelineTab() {
                 queryClient.invalidateQueries({ queryKey: ['pipeline-status'] });
                 queryClient.invalidateQueries({ queryKey: ['pipeline-history'] });
               }
-            } catch {}
+            } catch { /* skip */ }
           }
         }
       }
@@ -79,84 +80,56 @@ export default function PipelineTab() {
 
   return (
     <div>
-      {/* ── Page header ── */}
-      <div style={{ borderBottom: '1px solid #E5E7EB', background: '#FFFCF8' }}>
-        <div
-          className="flex items-center justify-between"
-          style={{ maxWidth: 1152, margin: '0 auto', padding: '20px 24px' }}
-        >
-          <div>
-            <div
-              className="text-[11px] font-bold uppercase mb-2"
-              style={{ color: '#990F3D', letterSpacing: '0.14em' }}
-            >
-              Pipeline Control
-            </div>
-            <h2 className="text-xl font-bold text-gray-900 mb-1">Discovery Pipeline</h2>
-            <p className="text-sm text-gray-400">
-              Last run: {lastRun}
-            </p>
+      {/* ── Toolbar ── */}
+      <div style={{ maxWidth: 1280, margin: '0 auto', padding: '32px 40px 0' }}>
+        <div className="flex justify-between items-center mb-6 pb-5" style={{ borderBottom: '1px solid #E4DFD4' }}>
+          <div style={{ fontFamily: 'ui-monospace, monospace', fontSize: 11, letterSpacing: '0.16em', textTransform: 'uppercase' as const, color: '#6B7280' }}>
+            <strong style={{ color: '#0E1116', fontWeight: 600 }}>Discovery Pipeline</strong> · last run: {lastRun}
           </div>
           <button
             onClick={handleRunPipeline}
             disabled={running}
-            className="text-white border-none rounded px-7 py-3 text-sm font-bold cursor-pointer disabled:cursor-not-allowed disabled:opacity-50 whitespace-nowrap transition-opacity"
-            style={{ background: running ? '#9CA3AF' : '#990F3D' }}
+            className="cursor-pointer disabled:cursor-not-allowed disabled:opacity-50"
+            style={{
+              fontFamily: 'ui-monospace, monospace',
+              fontSize: 11,
+              letterSpacing: '0.1em',
+              textTransform: 'uppercase' as const,
+              padding: '6px 14px',
+              border: '1px solid #990F3D',
+              background: running ? '#9CA3AF' : '#990F3D',
+              color: '#F7F2E8',
+              fontWeight: 600,
+            }}
           >
-            {running ? 'Running…' : 'Run Pipeline'}
+            {running ? 'Running...' : 'Run Pipeline'}
           </button>
         </div>
       </div>
 
-      {/* ── Content ── */}
-      <div style={{ maxWidth: 1152, margin: '0 auto', padding: '32px 24px' }}>
+      <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 40px 48px' }}>
 
-        {/* Pipeline stages */}
-        <div className="mb-10">
-          <div
-            className="text-[11px] font-bold uppercase mb-4"
-            style={{ color: '#990F3D', letterSpacing: '0.14em', borderTop: '2px solid #990F3D', paddingTop: 12 }}
-          >
-            Pipeline Stages
-          </div>
-          <div className="flex items-center gap-3 flex-wrap">
-            {['Discovery', 'Triage', 'Dedup', 'Research', 'Produce', 'Review'].map((stage, i) => (
-              <div key={stage} className="flex items-center gap-3">
-                <div
-                  className="text-sm font-medium px-5 py-2.5 rounded"
-                  style={{ background: '#FFFCF8', border: '1px solid #E5E7EB', color: '#374151' }}
-                >
-                  {stage}
-                </div>
-                {i < 5 && <span className="text-gray-300 text-lg">→</span>}
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Schedule + last run stats side by side */}
+        {/* Schedule + last run stats */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
-          {/* Schedule */}
-          <div className="rounded" style={{ background: '#FFFCF8', border: '1px solid #E5E7EB', padding: '24px' }}>
-            <div className="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-4">
+          <div style={{ background: '#FFFFFF', border: '1px solid #E4DFD4', padding: 28 }}>
+            <div style={{ fontFamily: 'ui-monospace, monospace', fontSize: 10, letterSpacing: '0.2em', textTransform: 'uppercase' as const, color: '#9CA3AF', fontWeight: 600, marginBottom: 20 }}>
               Daily Schedule
             </div>
-            <div className="space-y-3">
-              <div className="flex items-baseline gap-3">
-                <span className="text-lg font-extrabold text-gray-900">5:00 AM</span>
+            <div className="space-y-4">
+              <div className="flex items-baseline gap-4">
+                <span style={{ fontSize: 18, fontWeight: 800, color: '#0E1116' }}>5:00 AM</span>
                 <span className="text-sm text-gray-500">Discovery + triage (Railway)</span>
               </div>
-              <div className="flex items-baseline gap-3">
-                <span className="text-lg font-extrabold text-gray-900">5:27 AM</span>
+              <div className="flex items-baseline gap-4">
+                <span style={{ fontSize: 18, fontWeight: 800, color: '#0E1116' }}>5:27 AM</span>
                 <span className="text-sm text-gray-500">Research + write + verify (Remote Trigger)</span>
               </div>
             </div>
           </div>
 
-          {/* Last run stats */}
           {pipelineStatus && (
-            <div className="rounded" style={{ background: '#FFFCF8', border: '1px solid #E5E7EB', padding: '24px' }}>
-              <div className="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-4">
+            <div style={{ background: '#FFFFFF', border: '1px solid #E4DFD4', padding: 28 }}>
+              <div style={{ fontFamily: 'ui-monospace, monospace', fontSize: 10, letterSpacing: '0.2em', textTransform: 'uppercase' as const, color: '#9CA3AF', fontWeight: 600, marginBottom: 20 }}>
                 Last Run
               </div>
               <div className="grid grid-cols-4 gap-4">
@@ -180,14 +153,13 @@ export default function PipelineTab() {
                 />
               )}
               <span
-                className="text-[11px] font-bold uppercase"
-                style={{ color: running ? '#15803D' : '#9CA3AF', letterSpacing: '0.14em' }}
+                style={{ fontFamily: 'ui-monospace, monospace', fontSize: 10, letterSpacing: '0.2em', textTransform: 'uppercase' as const, fontWeight: 600, color: running ? '#15803D' : '#9CA3AF' }}
               >
                 {running ? 'Pipeline Running' : 'Last Run Log'}
               </span>
             </div>
             <div
-              className="rounded font-mono text-xs max-h-80 overflow-y-auto leading-relaxed"
+              className="font-mono text-xs max-h-80 overflow-y-auto leading-relaxed"
               style={{ background: '#1C1C2E', color: '#86EFAC', padding: '20px 24px' }}
             >
               {pipelineLog.map((line, i) => (
@@ -198,28 +170,24 @@ export default function PipelineTab() {
         )}
 
         {/* Run history */}
-        <div>
-          <div
-            className="text-[11px] font-bold uppercase mb-4"
-            style={{ color: '#990F3D', letterSpacing: '0.14em', borderTop: '2px solid #990F3D', paddingTop: 12 }}
-          >
+        <div className="mb-10">
+          <div style={{ fontFamily: 'ui-monospace, monospace', fontSize: 10, letterSpacing: '0.2em', textTransform: 'uppercase' as const, color: '#990F3D', fontWeight: 600, marginBottom: 12, borderTop: '2px solid #990F3D', paddingTop: 12 }}>
             Run History
           </div>
 
-          {historyLoading && <div className="text-gray-400 text-sm py-12 text-center">Loading…</div>}
+          {historyLoading && <div className="text-gray-400 text-sm py-12 text-center">Loading...</div>}
 
           {runs.length === 0 && !historyLoading && (
             <div className="text-gray-400 text-sm py-12 text-center">
-              No pipeline runs recorded yet. History accumulates from the next run.
+              No pipeline runs recorded yet.
             </div>
           )}
 
           {runs.length > 0 && (
-            <div className="rounded overflow-hidden" style={{ border: '1px solid #E5E7EB', background: '#FFFCF8' }}>
-              {/* Table header */}
+            <div className="overflow-hidden" style={{ border: '1px solid #E4DFD4', background: '#FFFFFF' }}>
               <div
-                className="grid px-6 py-3 text-[10px] font-bold text-gray-400 uppercase tracking-widest"
-                style={{ gridTemplateColumns: '1fr 90px 90px 90px 90px', borderBottom: '1px solid #E5E7EB' }}
+                className="grid px-6 py-4"
+                style={{ gridTemplateColumns: '1fr 100px 100px 100px 100px', borderBottom: '1px solid #E4DFD4', fontFamily: 'ui-monospace, monospace', fontSize: 10, letterSpacing: '0.16em', textTransform: 'uppercase' as const, color: '#9CA3AF', fontWeight: 600 }}
               >
                 <span>Date</span>
                 <span className="text-center">Found</span>
@@ -230,11 +198,11 @@ export default function PipelineTab() {
               {runs.map((run, i) => (
                 <div
                   key={i}
-                  className="grid px-6 py-4 text-sm text-gray-700"
+                  className="grid px-6 py-5 text-sm text-gray-700"
                   style={{
-                    gridTemplateColumns: '1fr 90px 90px 90px 90px',
-                    borderBottom: i < runs.length - 1 ? '1px solid #F3F4F6' : 'none',
-                    background: i === 0 ? '#FFFDF7' : 'transparent',
+                    gridTemplateColumns: '1fr 100px 100px 100px 100px',
+                    borderBottom: i < runs.length - 1 ? '1px solid #EFEAE0' : 'none',
+                    background: i === 0 ? '#FAF7F2' : 'transparent',
                   }}
                 >
                   <span style={{ fontWeight: i === 0 ? 600 : 400 }}>
@@ -258,6 +226,9 @@ export default function PipelineTab() {
             </div>
           )}
         </div>
+
+        {/* ── Blocked URLs ── */}
+        <BlockedPanel />
       </div>
     </div>
   );
@@ -266,12 +237,142 @@ export default function PipelineTab() {
 function StatCell({ label, value, color }: { label: string; value: number; color?: string }) {
   return (
     <div className="text-center">
-      <div className="text-2xl font-extrabold mb-0.5" style={{ color: color || (value > 0 ? '#1C1C2E' : '#D1D5DB') }}>
+      <div style={{ fontSize: 32, fontWeight: 800, marginBottom: 4, color: color || (value > 0 ? '#0E1116' : '#D1D5DB'), lineHeight: 1 }}>
         {value}
       </div>
-      <div className="text-[10px] font-bold uppercase tracking-widest text-gray-400">
+      <div style={{ fontFamily: 'ui-monospace, monospace', fontSize: 10, letterSpacing: '0.2em', textTransform: 'uppercase' as const, color: '#9CA3AF', fontWeight: 600 }}>
         {label}
       </div>
+    </div>
+  );
+}
+
+function BlockedPanel() {
+  const queryClient = useQueryClient();
+  const [search, setSearch] = useState('');
+  const [unblocking, setUnblocking] = useState<string | null>(null);
+
+  const { data: blockedData } = useQuery({
+    queryKey: ['blocked'],
+    queryFn: fetchBlocked,
+    refetchInterval: 120_000,
+  });
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const rawBlocked: any = blockedData?.blocked ?? [];
+  // Normalize: API returns either an array or a Record<string, BlockedUrl>
+  const blocked: BlockedUrl[] = Array.isArray(rawBlocked)
+    ? rawBlocked.map((item: BlockedUrl) => ({ ...item, reason: item.reason ?? 'Blocked' }))
+    : Object.entries(rawBlocked as Record<string, unknown>).map(([url, item]) => ({
+        url,
+        reason: 'Blocked',
+        ...(typeof item === 'object' && item !== null ? item : { reason: String(item) }),
+      } as BlockedUrl));
+
+  const filtered = search
+    ? blocked.filter(b =>
+        b.url.toLowerCase().includes(search.toLowerCase()) ||
+        (b.title ?? '').toLowerCase().includes(search.toLowerCase()) ||
+        b.reason.toLowerCase().includes(search.toLowerCase())
+      )
+    : blocked;
+
+  const handleUnblock = async (url: string) => {
+    setUnblocking(url);
+    try {
+      await unblockUrl(url);
+      queryClient.invalidateQueries({ queryKey: ['blocked'] });
+      queryClient.invalidateQueries({ queryKey: ['v2-inbox'] });
+    } finally {
+      setUnblocking(null);
+    }
+  };
+
+  return (
+    <div>
+      <div className="flex items-center justify-between mb-5" style={{ borderTop: '2px solid #990F3D', paddingTop: 14 }}>
+        <div style={{ fontFamily: 'ui-monospace, monospace', fontSize: 10, letterSpacing: '0.2em', textTransform: 'uppercase' as const, color: '#990F3D', fontWeight: 600 }}>
+          Blocked URLs ({blocked.length})
+        </div>
+        {blocked.length > 3 && (
+          <input
+            type="text"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            placeholder="Search URL or reason..."
+            className="text-xs outline-none"
+            style={{ border: '1px solid #E4DFD4', padding: '8px 14px', width: 240, background: '#fff' }}
+          />
+        )}
+      </div>
+
+      {filtered.length === 0 && (
+        <div className="text-sm text-gray-400 py-6 text-center">
+          {blocked.length === 0 ? 'No blocked URLs' : 'No matches'}
+        </div>
+      )}
+
+      {filtered.length > 0 && (
+        <div className="space-y-2">
+          {filtered.slice(0, 20).map((b) => {
+            const isNearMiss = b.score != null && b.score >= 35 && b.score < 45;
+            const isFab = b.reason?.toLowerCase().includes('fabricat');
+            let domain = '';
+            try { domain = new URL(b.url).hostname.replace('www.', ''); } catch { domain = b.url; }
+
+            return (
+              <div
+                key={b.url}
+                className="flex items-start gap-4"
+                style={{
+                  background: '#FFFFFF',
+                  border: '1px solid #E4DFD4',
+                  padding: '16px 24px',
+                  borderLeft: `3px solid ${isFab ? '#B91C1C' : isNearMiss ? '#D97706' : '#E4DFD4'}`,
+                }}
+              >
+                <div style={{ flex: 1, minWidth: 0 }}>
+                  <div className="flex items-center gap-2 mb-1 flex-wrap">
+                    {b.score != null && (
+                      <span className="text-xs font-bold" style={{ color: b.score >= 45 ? '#15803D' : b.score >= 35 ? '#B45309' : '#B91C1C' }}>
+                        {b.score}
+                      </span>
+                    )}
+                    {b.title && (
+                      <span className="text-xs font-medium text-gray-800 truncate">{b.title}</span>
+                    )}
+                    {isNearMiss && (
+                      <span className="text-[9px] font-bold uppercase px-2 py-0.5" style={{ background: '#FFFBEB', color: '#B45309', letterSpacing: '0.06em' }}>
+                        Near miss
+                      </span>
+                    )}
+                    {isFab && (
+                      <span className="text-[9px] font-bold uppercase px-2 py-0.5" style={{ background: '#FEF2F2', color: '#B91C1C', letterSpacing: '0.06em' }}>
+                        Fabrication
+                      </span>
+                    )}
+                  </div>
+                  <div className="text-xs text-gray-500 truncate mb-1">{domain}</div>
+                  <div className="text-xs text-gray-400 truncate">{b.reason}</div>
+                </div>
+                <button
+                  onClick={() => handleUnblock(b.url)}
+                  disabled={unblocking === b.url}
+                  className="text-xs font-semibold px-3 py-1.5 cursor-pointer disabled:opacity-50 flex-shrink-0"
+                  style={{ border: '1px solid #E4DFD4', color: '#990F3D', background: 'transparent' }}
+                >
+                  {unblocking === b.url ? '...' : 'Unblock'}
+                </button>
+              </div>
+            );
+          })}
+          {filtered.length > 20 && (
+            <div className="text-xs text-gray-400 text-center py-2">
+              Showing 20 of {filtered.length} — use search to filter
+            </div>
+          )}
+        </div>
+      )}
     </div>
   );
 }

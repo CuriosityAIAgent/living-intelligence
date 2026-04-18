@@ -4,6 +4,9 @@ import InboxTab from './pages/InboxTab';
 import PipelineTab from './pages/PipelineTab';
 import HeldTab from './pages/HeldTab';
 import HistoryTab from './pages/HistoryTab';
+import ThoughtLeadershipTab from './pages/ThoughtLeadershipTab';
+import LandscapeTab from './pages/LandscapeTab';
+import AuditTab from './pages/AuditTab';
 
 // Global process tracker — survives tab switches
 interface ProcessState {
@@ -32,7 +35,7 @@ export default function App() {
 
   return (
     <ProcessContext.Provider value={processState}>
-      <div className="min-h-screen flex flex-col" style={{ background: '#FDF8F2' }}>
+      <div className="min-h-screen flex flex-col" style={{ background: '#F7F2E8' }}>
         <Header activeTab={activeTab} onTabChange={setActiveTab} />
 
         {/* Use display:none instead of unmount — preserves state across tab switches */}
@@ -48,6 +51,15 @@ export default function App() {
           </div>
           <div style={{ display: activeTab === 'history' ? 'block' : 'none' }}>
             <HistoryTab />
+          </div>
+          <div style={{ display: activeTab === 'tl' ? 'block' : 'none' }}>
+            <ThoughtLeadershipTab />
+          </div>
+          <div style={{ display: activeTab === 'landscape' ? 'block' : 'none' }}>
+            <LandscapeTab />
+          </div>
+          <div style={{ display: activeTab === 'audit' ? 'block' : 'none' }}>
+            <AuditTab />
           </div>
         </main>
       </div>

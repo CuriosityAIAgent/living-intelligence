@@ -7,7 +7,7 @@ const MATURITY_COLORS: Record<string, string> = {
   scaled: '#15803D',
   deployed: '#1D4ED8',
   piloting: '#B45309',
-  announced: '#B45309',
+  announced: '#D97706',
   no_activity: '#9CA3AF',
 };
 
@@ -33,7 +33,7 @@ export default function LandscapeTab() {
   const handleSweep = async () => {
     setSweeping(true);
     setSweepLog([]);
-    startProcess('landscape-sweep', 'Landscape sweep…');
+    startProcess('landscape-sweep', 'Landscape sweep...');
     try {
       const res = await fetch('/api/landscape-sweep', { method: 'POST' });
       if (!res.body) throw new Error('No stream');
@@ -55,7 +55,7 @@ export default function LandscapeTab() {
                 queryClient.invalidateQueries({ queryKey: ['landscape-suggestions'] });
                 queryClient.invalidateQueries({ queryKey: ['landscape-stale'] });
               }
-            } catch {}
+            } catch { /* skip */ }
           }
         }
       }
@@ -79,182 +79,122 @@ export default function LandscapeTab() {
 
   return (
     <div>
-      {/* Header */}
-      <div
-        style={{
-          background: '#fff',
-          borderBottom: '1px solid #E5E7EB',
-          padding: '14px 24px',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-        }}
-      >
-        <div>
-          <span style={{ fontSize: 13, fontWeight: 600, color: '#111827' }}>Landscape</span>
-          <span style={{ fontSize: 11, color: '#9CA3AF', marginLeft: 12 }}>
-            {suggestions.length} suggestions · {stale.length} stale entries
-          </span>
+      {/* ── Toolbar ── */}
+      <div style={{ maxWidth: 1280, margin: '0 auto', padding: '32px 40px 0' }}>
+        <div className="flex justify-between items-center mb-6 pb-5" style={{ borderBottom: '1px solid #E4DFD4' }}>
+          <div style={{ fontFamily: 'ui-monospace, monospace', fontSize: 11, letterSpacing: '0.16em', textTransform: 'uppercase' as const, color: '#6B7280' }}>
+            <strong style={{ color: '#0E1116', fontWeight: 600 }}>{suggestions.length} suggestions</strong> · {stale.length} stale entries
+          </div>
+          <button
+            onClick={handleSweep}
+            disabled={sweeping}
+            className="cursor-pointer disabled:cursor-not-allowed disabled:opacity-50"
+            style={{
+              fontFamily: 'ui-monospace, monospace',
+              fontSize: 11,
+              letterSpacing: '0.1em',
+              textTransform: 'uppercase' as const,
+              padding: '6px 14px',
+              border: '1px solid #990F3D',
+              background: sweeping ? '#9CA3AF' : '#990F3D',
+              color: '#F7F2E8',
+              fontWeight: 600,
+            }}
+          >
+            {sweeping ? 'Sweeping...' : 'Run Sweep'}
+          </button>
         </div>
-        <button
-          onClick={handleSweep}
-          disabled={sweeping}
-          style={{
-            background: sweeping ? '#9CA3AF' : '#990F3D',
-            color: '#fff',
-            border: 'none',
-            borderRadius: 4,
-            padding: '7px 14px',
-            fontSize: 12,
-            fontWeight: 600,
-            cursor: sweeping ? 'not-allowed' : 'pointer',
-          }}
-        >
-          {sweeping ? 'Sweeping…' : '▶ Run Sweep'}
-        </button>
       </div>
 
-      <div style={{ padding: 24, maxWidth: 900 }}>
+      <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 40px 48px' }}>
         {/* Sweep log */}
         {sweepLog.length > 0 && (
-          <div style={{
-            background: '#111827', color: '#D1FAE5', borderRadius: 6,
-            padding: 14, fontFamily: 'monospace', fontSize: 11,
-            marginBottom: 20, maxHeight: 200, overflowY: 'auto', lineHeight: 1.6,
-          }}>
+          <div
+            className="font-mono text-xs max-h-48 overflow-y-auto leading-relaxed mb-8"
+            style={{ background: '#1C1C2E', color: '#86EFAC', padding: '16px 20px' }}
+          >
             {sweepLog.map((line, i) => (
-              <div key={i} style={{ marginBottom: 2 }}>{line}</div>
+              <div key={i} className="mb-1">{line}</div>
             ))}
           </div>
         )}
 
         {/* Suggestions */}
         {suggestions.length > 0 && (
-          <div style={{ marginBottom: 32 }}>
-            <div
-              style={{
-                fontSize: 10,
-                fontWeight: 700,
-                letterSpacing: '0.1em',
-                textTransform: 'uppercase',
-                color: '#990F3D',
-                marginBottom: 12,
-              }}
-            >
+          <div className="mb-10">
+            <div style={{ fontFamily: 'ui-monospace, monospace', fontSize: 10, letterSpacing: '0.2em', textTransform: 'uppercase' as const, color: '#990F3D', fontWeight: 600, marginBottom: 12, borderTop: '2px solid #990F3D', paddingTop: 12 }}>
               Maturity Suggestions ({suggestions.length})
             </div>
-            {suggestions.map((s) => (
-              <div
-                key={s.id}
-                style={{
-                  background: '#fff',
-                  border: '1px solid #E5E7EB',
-                  borderRadius: 6,
-                  padding: '12px 16px',
-                  marginBottom: 8,
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: 12,
-                }}
-              >
-                <div style={{ flex: 1 }}>
-                  <span style={{ fontWeight: 600, color: '#111827', fontSize: 13 }}>
-                    {s.company}
-                  </span>
-                  <span style={{ color: '#9CA3AF', margin: '0 6px', fontSize: 12 }}>·</span>
-                  <span style={{ color: '#6B7280', fontSize: 12 }}>{s.capability}</span>
-                  <span style={{ color: '#9CA3AF', margin: '0 6px', fontSize: 12 }}>→</span>
-                  <span
-                    style={{
-                      fontWeight: 700,
-                      fontSize: 12,
-                      color: MATURITY_COLORS[s.suggested_maturity] ?? '#374151',
-                    }}
-                  >
-                    {s.suggested_maturity}
-                  </span>
-                  {s.reason && (
-                    <div style={{ fontSize: 11, color: '#6B7280', marginTop: 3 }}>{s.reason}</div>
-                  )}
+            <div className="space-y-3">
+              {suggestions.map((s) => (
+                <div
+                  key={s.id}
+                  className="flex items-center gap-4"
+                  style={{ background: '#FFFFFF', border: '1px solid #E4DFD4', padding: '16px 24px' }}
+                >
+                  <div style={{ flex: 1 }}>
+                    <div className="flex items-center gap-2 flex-wrap">
+                      <span className="text-sm font-semibold" style={{ color: '#0E1116' }}>{s.company}</span>
+                      <span style={{ width: 3, height: 3, background: '#D1D5DB', borderRadius: '50%', display: 'inline-block' }} />
+                      <span className="text-xs" style={{ color: '#6B7280' }}>{s.capability.replace(/_/g, ' ')}</span>
+                      <span className="text-gray-300">→</span>
+                      <span
+                        className="text-xs font-bold uppercase"
+                        style={{ color: MATURITY_COLORS[s.suggested_maturity] ?? '#374151' }}
+                      >
+                        {s.suggested_maturity.replace(/_/g, ' ')}
+                      </span>
+                    </div>
+                    {s.reason && (
+                      <p className="text-xs text-gray-500 mt-1.5 m-0 leading-relaxed">{s.reason}</p>
+                    )}
+                  </div>
+                  <div className="flex gap-2 flex-shrink-0">
+                    <button
+                      onClick={() => handleApply(s.id)}
+                      className="text-white border-none px-4 py-2 text-xs font-bold cursor-pointer"
+                      style={{ background: '#15803D' }}
+                    >
+                      Apply
+                    </button>
+                    <button
+                      onClick={() => handleDismiss(s.id)}
+                      className="px-3 py-2 text-xs cursor-pointer"
+                      style={{ background: 'transparent', color: '#6B7280', border: '1px solid #E4DFD4' }}
+                    >
+                      Dismiss
+                    </button>
+                  </div>
                 </div>
-                <div style={{ display: 'flex', gap: 6 }}>
-                  <button
-                    onClick={() => handleApply(s.id)}
-                    style={{
-                      background: '#15803D',
-                      color: '#fff',
-                      border: 'none',
-                      borderRadius: 4,
-                      padding: '5px 12px',
-                      fontSize: 11,
-                      fontWeight: 700,
-                      cursor: 'pointer',
-                    }}
-                  >
-                    Apply
-                  </button>
-                  <button
-                    onClick={() => handleDismiss(s.id)}
-                    style={{
-                      background: '#fff',
-                      color: '#6B7280',
-                      border: '1px solid #D1D5DB',
-                      borderRadius: 4,
-                      padding: '5px 10px',
-                      fontSize: 11,
-                      cursor: 'pointer',
-                    }}
-                  >
-                    Dismiss
-                  </button>
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         )}
 
         {/* Stale entries */}
         {stale.length > 0 && (
           <div>
-            <div
-              style={{
-                fontSize: 10,
-                fontWeight: 700,
-                letterSpacing: '0.1em',
-                textTransform: 'uppercase',
-                color: '#9CA3AF',
-                marginBottom: 12,
-              }}
-            >
+            <div style={{ fontFamily: 'ui-monospace, monospace', fontSize: 10, letterSpacing: '0.2em', textTransform: 'uppercase' as const, color: '#9CA3AF', fontWeight: 600, marginBottom: 12, borderTop: '1px solid #E4DFD4', paddingTop: 12 }}>
               Stale Entries ({stale.length})
             </div>
             {stale.map((s) => (
               <div
                 key={s.id}
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                  padding: '9px 0',
-                  borderBottom: '1px solid #F3F4F6',
-                  fontSize: 12,
-                }}
+                className="flex items-center justify-between"
+                style={{ padding: '14px 0', borderBottom: '1px solid #EFEAE0', fontSize: 13 }}
               >
-                <div>
-                  <span style={{ fontWeight: 600, color: '#111827' }}>{s.company}</span>
-                  <span style={{ color: '#9CA3AF', margin: '0 6px' }}>·</span>
-                  <span style={{ color: '#6B7280' }}>{s.capability}</span>
+                <div className="flex items-center gap-3">
+                  <span style={{ fontWeight: 600, color: '#0E1116' }}>{s.company}</span>
+                  <span style={{ width: 3, height: 3, background: '#D1D5DB', borderRadius: '50%', display: 'inline-block' }} />
+                  <span style={{ color: '#6B7280' }}>{s.capability.replace(/_/g, ' ')}</span>
                   <span
-                    style={{
-                      marginLeft: 8,
-                      fontWeight: 700,
-                      color: MATURITY_COLORS[s.current_maturity] ?? '#374151',
-                    }}
+                    className="font-bold uppercase ml-1"
+                    style={{ color: MATURITY_COLORS[s.current_maturity] ?? '#374151', fontSize: 11, letterSpacing: '0.06em' }}
                   >
-                    {s.current_maturity}
+                    {s.current_maturity.replace(/_/g, ' ')}
                   </span>
                 </div>
-                <span style={{ fontSize: 11, color: '#9CA3AF' }}>
+                <span style={{ color: '#9CA3AF', fontSize: 12, fontFamily: 'ui-monospace, monospace', letterSpacing: '0.06em' }}>
                   Last assessed: {s.last_assessed}
                 </span>
               </div>
@@ -263,8 +203,11 @@ export default function LandscapeTab() {
         )}
 
         {suggestions.length === 0 && stale.length === 0 && (
-          <div style={{ color: '#9CA3AF', fontSize: 13 }}>
-            No pending landscape updates. Run sweep to check for changes.
+          <div style={{ padding: '80px 24px', textAlign: 'center' }}>
+            <h3 style={{ fontSize: 20, fontWeight: 700, color: '#111827', marginBottom: 12 }}>Landscape up to date</h3>
+            <p style={{ fontSize: 14, color: '#6B7280', maxWidth: 448, margin: '0 auto', lineHeight: 1.6 }}>
+              Run a sweep to check all 37 companies for capability changes and stale assessments.
+            </p>
           </div>
         )}
       </div>

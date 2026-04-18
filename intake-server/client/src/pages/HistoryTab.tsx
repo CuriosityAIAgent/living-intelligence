@@ -8,9 +8,9 @@ const DECISION_FILTERS = [
   { value: 'APPROVED', label: 'Approved' },
   { value: 'REJECTED', label: 'Rejected' },
   { value: 'HELD', label: 'Held' },
-  { value: 'RETRY', label: 'Retried' },
-  { value: 'PRODUCED', label: 'Produced' },
-  { value: 'DUPLICATE', label: 'Duplicate' },
+  { value: 'RETRY', label: 'Re-researched' },
+  { value: 'PRODUCED', label: 'Pipeline Output' },
+  { value: 'DUPLICATE', label: 'Duplicates' },
 ];
 
 const DECISION_STYLES: Record<string, { bg: string; text: string }> = {
@@ -49,24 +49,16 @@ export default function HistoryTab() {
 
   return (
     <div>
-      {/* ── Page header ── */}
-      <div style={{ borderBottom: '1px solid #E5E7EB', background: '#FFFCF8' }}>
-        <div style={{ maxWidth: 1152, margin: '0 auto', padding: '20px 24px' }}>
-          <div
-            className="text-[11px] font-bold uppercase mb-2"
-            style={{ color: '#990F3D', letterSpacing: '0.14em' }}
-          >
-            Audit Trail
+      {/* ── Toolbar ── */}
+      <div style={{ maxWidth: 1280, margin: '0 auto', padding: '32px 40px 0' }}>
+        <div className="flex justify-between items-center mb-6 pb-5" style={{ borderBottom: '1px solid #E4DFD4' }}>
+          <div style={{ fontFamily: 'ui-monospace, monospace', fontSize: 11, letterSpacing: '0.16em', textTransform: 'uppercase' as const, color: '#6B7280' }}>
+            <strong style={{ color: '#0E1116', fontWeight: 600 }}>{decisions.length} decisions</strong> · audit trail
           </div>
-          <h2 className="text-xl font-bold text-gray-900 mb-1">Decision History</h2>
-          <p className="text-sm text-gray-400">
-            Every pipeline and editorial action is logged. Use this to spot patterns and calibrate the pipeline.
-          </p>
         </div>
       </div>
 
-      {/* ── Content ── */}
-      <div style={{ maxWidth: 1152, margin: '0 auto', padding: '32px 24px' }}>
+      <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 40px 48px' }}>
 
         {/* Stats bar */}
         {decisions.length > 0 && (
@@ -78,14 +70,18 @@ export default function HistoryTab() {
                 <button
                   key={decision}
                   onClick={() => setFilter(isActive ? '' : decision)}
-                  className="flex items-baseline gap-2 px-5 py-3 rounded cursor-pointer transition-colors"
+                  className="flex items-center gap-3 cursor-pointer"
                   style={{
-                    background: isActive ? style.bg : '#FFFCF8',
-                    border: `1px solid ${isActive ? style.text : '#E5E7EB'}`,
+                    padding: '12px 20px',
+                    background: isActive ? style.bg : '#fff',
+                    border: `1px solid ${isActive ? style.text : '#E4DFD4'}`,
+                    fontSize: 13,
+                    fontWeight: 600,
+                    color: style.text,
                   }}
                 >
-                  <span className="text-xl font-extrabold" style={{ color: style.text }}>{count}</span>
-                  <span className="text-[10px] font-bold uppercase tracking-widest" style={{ color: style.text }}>
+                  <span style={{ fontSize: 24, fontWeight: 800 }}>{count}</span>
+                  <span style={{ fontFamily: 'ui-monospace, monospace', fontSize: 10, letterSpacing: '0.12em', textTransform: 'uppercase' as const }}>
                     {decision}
                   </span>
                 </button>
@@ -100,11 +96,17 @@ export default function HistoryTab() {
             <button
               key={f.value}
               onClick={() => setFilter(f.value)}
-              className="text-xs font-semibold px-4 py-2 rounded-full cursor-pointer transition-colors"
+              className="cursor-pointer"
               style={{
-                border: `1px solid ${filter === f.value ? '#990F3D' : '#E5E7EB'}`,
-                background: filter === f.value ? '#990F3D' : 'transparent',
-                color: filter === f.value ? '#fff' : '#6B7280',
+                fontFamily: 'ui-monospace, monospace',
+                fontSize: 11,
+                letterSpacing: '0.08em',
+                textTransform: 'uppercase' as const,
+                padding: '5px 14px',
+                border: `1px solid ${filter === f.value ? '#0E1116' : '#E4DFD4'}`,
+                background: filter === f.value ? '#0E1116' : '#fff',
+                color: filter === f.value ? '#F7F2E8' : '#6B7280',
+                fontWeight: 600,
               }}
             >
               {f.label}
@@ -114,11 +116,11 @@ export default function HistoryTab() {
 
         {/* Content */}
         {isLoading ? (
-          <div className="text-gray-400 text-sm py-20 text-center">Loading…</div>
+          <div className="text-gray-400 text-sm py-20 text-center">Loading...</div>
         ) : decisions.length === 0 ? (
-          <div className="text-center" style={{ padding: '80px 24px' }}>
-            <h3 className="text-2xl font-bold text-gray-900 mb-3">No decisions yet</h3>
-            <p className="text-[15px] text-gray-500 leading-relaxed max-w-md mx-auto">
+          <div style={{ padding: '80px 24px', textAlign: 'center' }}>
+            <h3 style={{ fontSize: 20, fontWeight: 700, color: '#111827', marginBottom: 12 }}>No decisions yet</h3>
+            <p style={{ fontSize: 14, color: '#6B7280', maxWidth: 448, margin: '0 auto', lineHeight: 1.6 }}>
               Pipeline and editorial decisions will appear here once the v2 pipeline runs
               and entries are reviewed.
             </p>
@@ -128,10 +130,14 @@ export default function HistoryTab() {
             {Object.entries(grouped).map(([dateLabel, items]) => (
               <div key={dateLabel}>
                 <div
-                  className="text-[11px] font-bold uppercase mb-4"
                   style={{
+                    fontFamily: 'ui-monospace, monospace',
+                    fontSize: 10,
+                    letterSpacing: '0.2em',
+                    textTransform: 'uppercase' as const,
                     color: '#990F3D',
-                    letterSpacing: '0.14em',
+                    fontWeight: 600,
+                    marginBottom: 12,
                     borderTop: '2px solid #990F3D',
                     paddingTop: 12,
                   }}
@@ -160,56 +166,56 @@ function DecisionRow({ decision }: { decision: EditorialDecision }) {
 
   return (
     <div
-      className="rounded overflow-hidden cursor-pointer transition-colors"
+      className="overflow-hidden cursor-pointer"
       style={{
-        background: '#FFFCF8',
-        border: '1px solid #E5E7EB',
+        background: '#FFFFFF',
+        border: '1px solid #E4DFD4',
       }}
       onClick={() => setExpanded(!expanded)}
     >
-      <div className="px-6 py-4 flex items-center gap-4">
+      <div style={{ padding: '16px 24px' }} className="flex items-center gap-4">
         {/* Badge */}
         <span
-          className="text-[9px] font-bold uppercase tracking-wider px-3 py-1 rounded flex-shrink-0"
-          style={{ background: style.bg, color: style.text }}
+          className="text-[9px] font-bold uppercase flex-shrink-0"
+          style={{ background: style.bg, color: style.text, padding: '3px 10px', letterSpacing: '0.08em' }}
         >
           {decision.decision}
         </span>
 
         {/* Headline */}
-        <span className="text-sm text-gray-800 font-medium truncate flex-1">
+        <span className="text-sm font-medium truncate flex-1" style={{ color: '#0E1116' }}>
           {headline}
         </span>
 
         {/* Score */}
         {decision.pipeline_score != null && (
-          <span className="text-xs font-bold text-gray-400 flex-shrink-0">
+          <span className="text-xs font-bold flex-shrink-0" style={{ color: '#9CA3AF', fontFamily: 'ui-monospace, monospace' }}>
             {decision.pipeline_score}
           </span>
         )}
 
         {/* Time */}
-        <span className="text-xs text-gray-400 flex-shrink-0">{time}</span>
+        <span className="text-xs flex-shrink-0" style={{ color: '#9CA3AF', fontFamily: 'ui-monospace, monospace' }}>{time}</span>
 
         {/* Expand */}
-        <span className="text-gray-300 text-xs flex-shrink-0">{expanded ? '▾' : '▸'}</span>
+        <span className="text-xs flex-shrink-0" style={{ color: '#D1D5DB' }}>{expanded ? '▾' : '▸'}</span>
       </div>
 
       {expanded && (
-        <div className="px-6 py-5 space-y-3" style={{ borderTop: '1px solid #F3F4F6', background: '#FAFAF8' }}>
+        <div className="space-y-3" style={{ padding: '20px 24px', borderTop: '1px solid #EFEAE0', background: '#FAF7F2' }}>
           {decision.reason && (
-            <div className="text-sm text-gray-600">
-              <span className="font-semibold text-gray-400 text-[10px] uppercase tracking-widest mr-2">Reason</span>
+            <div className="text-sm" style={{ color: '#374151' }}>
+              <span style={{ fontFamily: 'ui-monospace, monospace', fontSize: 10, letterSpacing: '0.14em', textTransform: 'uppercase' as const, fontWeight: 600, color: '#9CA3AF', marginRight: 8 }}>Reason</span>
               {decision.reason}
             </div>
           )}
           {decision.editor_notes && (
-            <div className="text-sm text-gray-600">
-              <span className="font-semibold text-gray-400 text-[10px] uppercase tracking-widest mr-2">Notes</span>
+            <div className="text-sm" style={{ color: '#374151' }}>
+              <span style={{ fontFamily: 'ui-monospace, monospace', fontSize: 10, letterSpacing: '0.14em', textTransform: 'uppercase' as const, fontWeight: 600, color: '#9CA3AF', marginRight: 8 }}>Notes</span>
               {decision.editor_notes}
             </div>
           )}
-          <div className="flex gap-8 text-xs text-gray-400 pt-1">
+          <div className="flex gap-8 text-xs pt-1" style={{ color: '#9CA3AF' }}>
             {decision.decided_by && <span>By: {decision.decided_by}</span>}
             {decision.evaluator_score != null && <span>Evaluator: {decision.evaluator_score}/10</span>}
             {decision.capability && <span>Capability: {decision.capability}</span>}
@@ -218,18 +224,15 @@ function DecisionRow({ decision }: { decision: EditorialDecision }) {
 
           {/* Snapshot */}
           {decision.draft_snapshot && (
-            <div className="mt-4 rounded p-5" style={{ border: '1px solid #E5E7EB', background: '#FFFCF8' }}>
-              <div
-                className="text-[10px] font-bold uppercase mb-2"
-                style={{ color: '#990F3D', letterSpacing: '0.14em' }}
-              >
+            <div className="mt-4" style={{ border: '1px solid #E4DFD4', padding: '16px 20px', background: '#FFFFFF' }}>
+              <div style={{ fontFamily: 'ui-monospace, monospace', fontSize: 10, letterSpacing: '0.2em', textTransform: 'uppercase' as const, fontWeight: 600, color: '#990F3D', marginBottom: 8 }}>
                 Entry Snapshot
               </div>
-              <div className="text-sm font-bold text-gray-900 mb-1">
+              <div className="text-sm font-bold mb-1" style={{ color: '#0E1116' }}>
                 {decision.draft_snapshot.headline}
               </div>
               {decision.draft_snapshot.the_so_what && (
-                <p className="text-sm text-gray-500 leading-relaxed" style={{ fontStyle: 'italic' }}>
+                <p className="text-sm leading-relaxed m-0" style={{ color: '#6B7280', fontStyle: 'italic' }}>
                   {decision.draft_snapshot.the_so_what}
                 </p>
               )}

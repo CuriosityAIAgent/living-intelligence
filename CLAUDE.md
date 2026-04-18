@@ -25,7 +25,7 @@ Not from memory. Not from a previous session. Not from the landscape competitor 
 
 ### Track 2 Entry Rules (direct JSON writes — no pipeline)
 
-Track 2 entries bypass governance.js and scorer.js entirely. That makes the human writing them the only check. These rules are therefore absolute:
+Track 2 entries bypass the automated pipeline entirely (no research-agent, no evaluator, no fabrication check). That makes the human writing them the only check. These rules are therefore absolute:
 
 1. **WebFetch the source URL before writing a single claim.** If the URL is a PDF, fetch it. If it 404s, find the correct URL before proceeding. If it's paywalled, note it explicitly and find an open alternative. There are no exceptions.
 
@@ -203,6 +203,38 @@ git push origin main --force
 - Server Components by default; `'use client'` only when hooks are needed (Header, interactive components)
 - `async/await` — no `.then()` chains
 - Prefer editing existing files over creating new ones
+- **Editorial Studio UI regression prevention:** Before any UI deploy to `intake`, check `intake-server/client/FEATURE_MANIFEST.md` — every listed feature must be present in the deployed UI. Features silently disappeared in v4; this manifest prevents recurrence.
+- **Editorial Studio design consistency:** When restyling any tab, apply the same spacing, typography, and padding rules across ALL tabs in the same pass. Never restyle one tab and leave others with old tokens. Reference: generous padding (48px card, 32px sidebar, 28px between sections), large score numbers (56px), monospace labels (10-11px, 0.2em tracking), consistent border color `#E4DFD4`.
+
+---
+
+## Claude Code Hooks — Automated Quality Gates
+
+These hooks fire automatically during Claude Code sessions. They are configured in `~/.claude/settings.json`.
+
+**PreToolUse (fires before tool execution):**
+| Hook | Fires on | What it does |
+|------|----------|--------------|
+| `check-push-main.sh` | `git push` to main | Blocks direct pushes to main (must merge from intake) |
+| `pre-commit-checks.sh` | `git commit` | Syntax + type checks on staged files |
+| `enforce-doc-updates.sh` | `git commit` | Blocks if agent code changed but no docs/ files staged |
+| `pre-push-tests.sh` | `git push` | Runs smoke tests (intake) or build (main). Also checks `.evaluator-pass` stamp. |
+| `enforce-memory-on-push.sh` | `git push` | Blocks if memory files not updated since last commit |
+| `code-evaluator.sh` | `git commit` | **Sonnet code review gate.** Sends staged diff to Sonnet via API. FAIL = commit blocked. PASS = writes `.evaluator-pass` stamp file. |
+
+**PostToolUse (fires after tool execution):**
+| Hook | Fires on | What it does |
+|------|----------|--------------|
+| `check-banned-urls.sh` | Write/Edit | Blocks clearbit/unavatar URLs in data files |
+| `compact-reminder.sh` | Write/Edit | Tracks edit count, reminds to compact at 280+ |
+| `check-ai-patterns.sh` | Write/Edit | Flags AI writing patterns (leverage, utilize, etc.) |
+| `post-commit-memory-reminder.sh` | Bash (git commit) | Reminds to update memory files after commit |
+
+**Code evaluator enforcement chain:**
+1. `git add` → stage files
+2. `git commit` → `code-evaluator.sh` fires → Sonnet reviews diff → PASS writes `.evaluator-pass`
+3. `git push` → `pre-push-tests.sh` checks `.evaluator-pass` exists for code changes
+4. For multi-file architecture changes: also run Opus deep review agent manually
 
 ---
 
@@ -277,7 +309,7 @@ Every intelligence entry that goes through the intake pipeline receives a `_gove
 - **REVIEW** (score 45–74) → queued in Universal Inbox, flagged for closer review
 - **FAIL** (score < 45 or fabricated) → URL permanently blocked in `.governance-blocked.json`
 
-**v2 Pipeline (Sessions 37-39):** Phase 1 (Railway, 5am): Discovery → Supabase dedup → freshness filter (7d news, 30d strategic) → research-agent.js → rich brief to Supabase KB. Phase 2 (Remote Trigger, 5:27am, Claude Opus, $0): reads briefs + sources from Supabase REST API. Eval loop: Write v1 → Evaluate (McKinsey 6-check) → Refine to v2 → Re-evaluate → Fabrication → Score. Custom network access environment with `*.supabase.co`. Brief lifecycle: `ready` → `produced`/`held` → `approved`/`rejected`. Score ≥ 75 + CLEAN = `produced`. **Session 39: Unified pipeline IMPLEMENTED.** Scheduler.js rewritten — v1 pipeline removed (governance/fabrication/scoring/addPending). Single path: discovery → briefExistsForUrl dedup → freshness → research-agent → topic suppression → Supabase. content-producer.js skips duplicate research when brief already hydrated. **⚠ BLOCKED:** Supabase UNIQUE constraint on candidate_url not yet run. Not yet committed/pushed.
+**v2 Pipeline (Sessions 37-41):** Phase 1 (Railway, 5am): Discovery → Supabase dedup → freshness filter (7d news, 30d strategic) → research-agent.js → rich brief to Supabase KB. Phase 2 (Remote Trigger, 5:27am, Claude Opus, $0): reads briefs + sources from Supabase REST API. Eval loop: Write v1 → Evaluate (McKinsey 6-check) → Refine to v2 → Re-evaluate → Fabrication → Score. Custom network access environment with `*.supabase.co`. Brief lifecycle: `ready` → `produced`/`held` → `approved`/`rejected`. Score ≥ 75 + CLEAN = `produced`. **Session 39:** Scheduler.js rewritten — v1 loop removed. Single path: discovery → briefExistsForUrl dedup → freshness → research-agent → Supabase. **Session 41:** v1 fully removed from server.js — `processUrl` (intake.js) and `verify` (governance.js) imports deleted. `/api/process-url` and `/api/blocked/unblock` now use `research()` from research-agent.js → create v2 briefs. Anti-AI writing rules (18 rules) added to writer-v1.js prompt. intake.js and governance.js still exist as files but are no longer imported anywhere in the active pipeline.
 
 **Nothing auto-publishes.** All stories require Haresh's approval in the Editorial Studio (`localhost:3003`) before going live.
 
@@ -298,5 +330,6 @@ Every intelligence entry that goes through the intake pipeline receives a `_gove
 | `reprocess-failed.js` | Re-fetch + re-structure + re-verify all FAIL entries | `node --env-file=.env scripts/reprocess-failed.js` |
 | `test-portal.js` | Health check all URLs + portal pages, auto-fix broken links | `node scripts/test-portal.js --fast` |
 | `smoke-test.js` | Quick data integrity check (JSON validity, required fields, slug consistency, banned URLs). Run before pushing. | `node scripts/smoke-test.js` |
+| `e2e-test.cjs` | Playwright browser tests — landing page, auth gate, authenticated portal, editorial studio, performance. Uses Supabase admin API for auth (no Google/magic link). | `node scripts/e2e-test.cjs --auth --screenshots` |
 
 Run `test-portal.js` after any batch data change to catch broken `document_url`, `image_url`, or `author.photo_url` fields before they reach production.
