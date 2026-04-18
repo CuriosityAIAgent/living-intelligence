@@ -1,35 +1,29 @@
 {
-  "started_at": "2026-04-17T04:00:00.239Z",
+  "started_at": "2026-04-18T04:00:00.720Z",
   "candidates_found": 15,
-  "queued": 3,
-  "blocked": 1,
-  "errors": 1,
-  "error_details": [
-    {
-      "url": "https://www.finextra.com/pressarticle/109471/wealtharc-boards-the-ai-agent-train",
-      "stage": "intake",
-      "message": "processUrl returned null"
-    }
-  ],
+  "queued": 2,
+  "blocked": 0,
+  "errors": 0,
+  "error_details": [],
   "discovery_sources": {
-    "layer1_news": 40,
-    "layer1_capabilities": 20,
+    "layer1_news": 42,
+    "layer1_capabilities": 0,
     "layer2_companies": 0,
-    "layer3_newsapi": 5,
-    "layer1_tl": 17,
-    "layer2_authors": 26,
-    "companies_queried": 37,
-    "capabilities_queried": 7,
-    "raw_intel_total": 58
+    "layer3_newsapi": 3,
+    "layer1_tl": 30,
+    "layer2_authors": 8,
+    "companies_queried": 0,
+    "capabilities_queried": 0,
+    "raw_intel_total": 42
   },
-  "tl_candidates": 42,
+  "tl_candidates": 37,
   "tl_items": [
     {
       "id": "aHR0cHM6Ly9w",
       "title": "Wealth Management AI News in 2026: Sid Bindra’s Preservation Playbook",
       "url": "https://percepture.com/wealth-management/wealth-management-ai-news/",
       "source_name": "percepture.com",
-      "pub_date": "2 days ago",
+      "pub_date": "3 days ago",
       "snippet": "Get wealth management AI news for 2026. Advisor Sid Bindra explains why AI preservation and human ethics are the future of financial planning.",
       "via": "layer1_tl"
     },
@@ -62,29 +56,38 @@
     },
     {
       "id": "aHR0cHM6Ly93",
+      "title": "How artificial intelligence is reshaping the financial services industry",
+      "url": "https://www.ey.com/en_gr/insights/financial-services/how-artificial-intelligence-is-reshaping-the-financial-services-industry",
+      "source_name": "ey.com",
+      "pub_date": null,
+      "snippet": "AI is reshaping the financial services industry, making it more efficient, effective and innovative. Read more.",
+      "via": "layer1_tl"
+    },
+    {
+      "id": "aHR0cHM6Ly93",
+      "title": "Just a moment...",
+      "url": "https://www.researchgate.net/publication/381277119_Artificial_Intelligence_as_Personal_Financial_Advisor_in_the_Future_-_A_Case_Study_Based_on_Algorithmic_Innovation_Strategies",
+      "source_name": "researchgate.net",
+      "pub_date": null,
+      "snippet": "## Security check required\n\nWe've detected unusual activity from your network. To continue, complete the security check below.\n\nRay ID: 9ee0c2a41d0be945\n\nClient IP: 2600:1900:0:4001::1401\n\n© 2008-2026 ResearchGate GmbH. All rights reserved.",
+      "via": "layer1_tl"
+    },
+    {
+      "id": "aHR0cHM6Ly93",
+      "title": "Impact of Artificial Intelligence (AI) in Financial Advisory Industry",
+      "url": "https://www.theamericancollege.edu/knowledge-hub/insights/impact-of-artificial-intelligence-ai-in-financial-advisory-industry",
+      "source_name": "theamericancollege.edu",
+      "pub_date": null,
+      "snippet": "Center for Ethics Webcast explores artificial intelligence in the financial services industry.",
+      "via": "layer1_tl"
+    },
+    {
+      "id": "aHR0cHM6Ly93",
       "title": "AI Market Trends 2026: Global Investment, Risks, and Buildout | Morgan Stanley",
       "url": "https://www.morganstanley.com/insights/articles/ai-market-trends-institute-2026",
       "source_name": "morganstanley.com",
       "pub_date": "Mar 9, 2026",
       "snippet": "Discover key market trends as AI becomes the central force influencing growth, earnings, geopolitics, and investment strategy across global markets in 2026.",
-      "via": "layer1_tl"
-    },
-    {
-      "id": "aHR0cHM6Ly9o",
-      "title": "7 Factors That Drive Returns on AI Investments, According to a New Survey",
-      "url": "https://hbr.org/2026/03/7-factors-that-drive-returns-on-ai-investments-according-to-a-new-survey",
-      "source_name": "hbr.org",
-      "pub_date": "Mar 17, 2026",
-      "snippet": "Leaders are facing tremendous pressure to deliver on AI. To understand how they are navigating this, researchers surveyed 1,006 global senior executives who had close familiarity with their organizations’ AI initiatives, and interviewed 12 technology, data, and AI leaders at enterprise organizations",
-      "via": "layer1_tl"
-    },
-    {
-      "id": "aHR0cHM6Ly93",
-      "title": "Algorithmic Revolution: AI Leads Investment Strategies in 2026",
-      "url": "https://www.linkedin.com/pulse/algorithmic-revolution-ai-leads-investment-mif9c",
-      "source_name": "linkedin.com",
-      "pub_date": "Jan 21, 2026",
-      "snippet": "Industry leaders predict AI will revolutionize business by 2026. IBM believes quantum computers will surpass classical computers that year, which could lead to breakthroughs in many industries.",
       "via": "layer1_tl"
     },
     {
@@ -98,6 +101,24 @@
     },
     {
       "id": "aHR0cHM6Ly93",
+      "title": "Algorithmic Revolution: AI Leads Investment Strategies in 2026",
+      "url": "https://www.linkedin.com/pulse/algorithmic-revolution-ai-leads-investment-mif9c",
+      "source_name": "linkedin.com",
+      "pub_date": "Jan 21, 2026",
+      "snippet": "Industry leaders predict AI will revolutionize business by 2026. IBM believes quantum computers will surpass classical computers that year, which could lead to breakthroughs in many industries.",
+      "via": "layer1_tl"
+    },
+    {
+      "id": "aHR0cHM6Ly9w",
+      "title": "Generative AI Business Use Cases Reshaping Enterprises in 2026 - Profit Minds",
+      "url": "https://profitminds.net/generative-ai-business-use-cases-reshaping-enterprises-in-2026/",
+      "source_name": "profitminds.net",
+      "pub_date": "Apr 1, 2026",
+      "snippet": "Generative AI business use cases in 2026: Mistral Forge, Perplexity's agent, NVIDIA's 88% ROI, Morgan Stanley's warning, and the Salesforce crisis.",
+      "via": "layer1_tl"
+    },
+    {
+      "id": "aHR0cHM6Ly93",
       "title": "Q1 2026 Investment AI Trends: GenAI Leads Adoption, Investment Firms Double Down on AI Despite Risks",
       "url": "https://www.scnsoft.com/investment/investment-ai-trends",
       "source_name": "scnsoft.com",
@@ -106,67 +127,33 @@
       "via": "layer1_tl"
     },
     {
-      "id": "aHR0cHM6Ly9i",
-      "title": "The State of AI Adoption in Investment Management and What’s Next",
-      "url": "https://blueflame.ai/blog/the-state-of-ai-adoption-in-investment-management",
-      "source_name": "blueflame.ai",
-      "pub_date": "2 days ago",
-      "snippet": "Explore how AI is reshaping investment management workflows—from deal sourcing to diligence—and where adoption is headed next as firms move from prompts to integrated AI systems.",
+      "id": "aHR0cHM6Ly9o",
+      "title": "7 Factors That Drive Returns on AI Investments, According to a New Survey",
+      "url": "https://hbr.org/2026/03/7-factors-that-drive-returns-on-ai-investments-according-to-a-new-survey",
+      "source_name": "hbr.org",
+      "pub_date": "Mar 17, 2026",
+      "snippet": "Leaders are facing tremendous pressure to deliver on AI. To understand how they are navigating this, researchers surveyed 1,006 global senior executives who had close familiarity with their organizations’ AI initiatives, and interviewed 12 technology, data, and AI leaders at enterprise organizations",
       "via": "layer1_tl"
     },
     {
       "id": "aHR0cHM6Ly93",
-      "title": "Finance leaders are heading into 2026 with ambitious artificial intelligence (AI) goals, but many don’t feel prepared to execute.",
-      "url": "https://www.linkedin.com/posts/scottbrezler_key-insights-from-the-2026-financial-executives-activity-7430704345962147840-Chli",
-      "source_name": "linkedin.com",
-      "pub_date": "Feb 20, 2026",
-      "snippet": "Finance leaders are heading into 2026 with ambitious artificial intelligence (AI) goals, but many don’t feel prepared to execute.\n\nOur new research reveals a growing gap between where organizations are investing and what they’re actually ready to implement.\n\nCurious as to what’s causing the disconne",
-      "via": "layer1_tl"
-    },
-    {
-      "id": "aHR0cHM6Ly93",
-      "title": "Finance 2026: A preview of the year AI transformation gets real",
-      "url": "https://www.cio.com/article/4142306/finance-2026-a-preview-of-the-year-ai-transformation-gets-real.html",
-      "source_name": "cio.com",
-      "pub_date": "Mar 12, 2026",
-      "snippet": "From disconnected projects to a unified operating system",
-      "via": "layer1_tl"
-    },
-    {
-      "id": "aHR0cHM6Ly9i",
-      "title": "State of AI in Finance in 2026",
-      "url": "https://bigdata.com/resources/ai-in-finance-2026-industry-report-powered-by-bigdata-com",
-      "source_name": "bigdata.com",
+      "title": "2026 Perspectives on the Financial Industry | Fintech Americas",
+      "url": "https://www.fintechamericas.co/en/2026-perspectives-on-the-financial-industry",
+      "source_name": "fintechamericas.co",
       "pub_date": null,
-      "snippet": "AI in finance is moving from assistance to autonomy. By the end of 2026, Gartner predicts that 40% of business software will include AI capable of completing end-to-end tasks independently- such as fraud detection, loan processing, customer onboarding, or reporting - without human intervention at ev",
+      "snippet": "Discover insights from 88 financial leaders on the trends shaping the industry by 2026, focusing on AI, blockchain, digital payments, and more. Download the exclusive report now.",
       "via": "layer1_tl"
     },
     {
-      "id": "aHR0cHM6Ly93",
-      "title": "AI and the Future of Digital Transformation | Future of Finance 2026",
-      "url": "https://www.youtube.com/watch?v=9OtiUWQetOc",
-      "source_name": "youtube.com",
-      "pub_date": "Mar 7, 2026",
-      "snippet": "Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.",
-      "via": "layer1_tl"
-    },
-    {
-      "id": "aHR0cHM6Ly93",
-      "title": "AI Agents in Finance 2026: A CFO Guide to Reality vs Hype",
-      "url": "https://www.houseblend.io/articles/ai-agents-finance-cfo-guide-2026",
-      "source_name": "houseblend.io",
-      "pub_date": "Feb 20, 2026",
-      "snippet": "Explore the 2026 landscape of AI agents in finance. This guide for CFOs examines agentic AI capabilities, investment trends, ROI realities, and risk management.",
+      "id": "aHR0cHM6Ly9w",
+      "title": "Fintech Predictions 2026 Report - Read now | Plaid",
+      "url": "https://plaid.com/fintech-predictions-2026-report/",
+      "source_name": "plaid.com",
+      "pub_date": null,
+      "snippet": "Explore Plaid’s 2026 Fintech Predictions report. CEO Zach Perret and product leaders share insights on AI, fraud, credit, and what’s coming next.",
       "via": "layer1_tl"
     }
   ],
-  "blocked_items": [
-    {
-      "url": "https://fintech.global/2026/04/16/wealth-com-raises-65m-series-b-for-ai-wealth-planning/",
-      "title": "Wealth.com Raises $65M Series B to Scale AI-Driven Wealth Planning Platform",
-      "reason": "Score 44/100 — below 45 review threshold",
-      "score": 44
-    }
-  ],
-  "written_at": "2026-04-17T04:05:55.049Z"
+  "blocked_items": [],
+  "written_at": "2026-04-18T04:05:14.071Z"
 }

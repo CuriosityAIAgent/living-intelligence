@@ -255,13 +255,6 @@
     "title": "Altruist's Hazel AI Aggregates CRM, Comms and Market Data to Automate Advisor Workflows Across Sowell Network",
     "score": 45
   },
-  "https://finance.yahoo.com/news/openai-releases-financial-services-tools-190124457.html": {
-    "id": "openai-financial-services-tools-march-2026",
-    "reason": "Score 42/100 — below 45 review threshold",
-    "blocked_at": "2026-04-11T04:03:08.222Z",
-    "title": "OpenAI Launches Dedicated Financial-Services AI Tools, Entering Direct Competition with Anthropic",
-    "score": 42
-  },
   "https://citywire.com/ria/news/altruist-saw-record-traffic-after-launching-ai-tax-tool-coo-says/a2483745": {
     "id": "altruist-ai-tax-tool-record-traffic-2026-02",
     "reason": "Score 50/100 — below 45 review threshold",
@@ -283,46 +276,32 @@
     "title": "Ten Wealthtech Experts Converge on Agentic AI and Hyper-Personalization as 2026's Defining Capability Shifts",
     "score": 0
   },
-  "https://www.pymnts.com/artificial-intelligence-2/2026/citi-arms-wealth-advisors-with-4-ai-tools-to-cut-busywork/": {
-    "id": "citi-wealth-ai-tools-advisor-productivity-2026-04",
-    "reason": "Fabrication detected: Client 360 rollout timeline contradiction: Entry states 'full rollout planned for April 2026', but source states full rollout to Citi Private Bank and Wealth at Work is planned for 'this month' (April 2026) with ALL Wealth colleagues gaining access in Q2 2026 — the entry omits the Q2 2026 phase and mischaracterizes the rollout scope.; Portfolio Intelligence global rollout: Entry states 'global rollout through year-end', but source specifies expanding to Private Bank clients globally in Q2 first, then all Wealth clients by year-end — the entry collapses these two phases into one.; CitiScribe description: Entry states it 'automates meeting note-taking', but source describes it as 'automates note-taking, summarizing client discussions' — minor but the entry's characterization is consistent enough to not be a hard fail.; Citi Stylus Workspaces launch: Entry states 'launched in September 2025' which is consistent with source reference to 'Last September' (published April 2026).",
-    "blocked_at": "2026-04-14T04:02:22.294Z",
-    "title": "Citi Deploys 4 AI Tools Across Wealth Division, Automating Notes, Research Queries and Client 360 Views",
-    "score": 0
-  },
   "https://hubbis.com/article/ai-in-private-wealth-management-from-experimentation-to-agentic-transformation": {
-    "id": "ai-private-wealth-agentic-transformation-hubbis-2026",
-    "reason": "the_so_what flagged as weak CXO relevance (3/10) — review before publishing",
-    "blocked_at": "2026-04-14T04:04:42.454Z",
-    "title": "Agentic AI Moves From Pilot to Autonomous Execution Across Private Wealth Client Lifecycle",
+    "id": "agentic-ai-private-wealth-management-transformation-2026",
+    "reason": "the_so_what flagged as weak CXO relevance (2/10) — review before publishing",
+    "blocked_at": "2026-04-14T04:02:47.989Z",
+    "title": "Private Wealth Management Shifts from AI Experimentation to Agentic Autonomous Systems",
+    "score": 42
+  },
+  "https://hubbis.com/article/damien-piper-of-unique-ai-turning-artificial-intelligence-into-a-practical-tool-for-wealth-management": {
+    "id": "unique-ai-damien-piper-practical-wealth-management",
+    "reason": "Score 45/100 — below 45 review threshold",
+    "blocked_at": "2026-04-14T04:03:50.066Z",
+    "title": "Unique AI Positions Wealth-Native LLM Deployment as Answer to Generic AI Adoption Failure",
     "score": 45
   },
+  "https://www.investmentnews.com/fintech/fintech-bytes-wealthcom-declares-new-era-for-ester-ai/266158": {
+    "id": "wealthcom-ester-intelligence-new-era-2026-04",
+    "reason": "Score 54/100 — below 45 review threshold",
+    "blocked_at": "2026-04-16T04:02:11.929Z",
+    "title": "Wealth.com Advances Ester AI Into Multi-Agent Estate Planning Intelligence",
+    "score": 54
+  },
   "https://fintech.global/2026/04/14/how-ai-is-reshaping-wealth-management-advisory/": {
-    "id": "ai-reshaping-wealth-management-advisory-apr2026",
-    "reason": "Paywalled source — claims unverifiable, not fabricated. Human review required.",
-    "blocked_at": "2026-04-15T04:01:51.986Z",
-    "title": "AI Advisory Capabilities Reshaping Wealth Management Across Personalization, Productivity and Compliance",
-    "score": 40
-  },
-  "https://www.planadviser.com/ai-product-service-launches-4-13-2026/": {
-    "id": "betanxt-insightx-advisor360-parrot-jump-perennial-navatar-ma-crm-ai-launches-2026-04-13",
-    "reason": "the_so_what flagged as weak CXO relevance (4/10) — review before publishing",
-    "blocked_at": "2026-04-15T04:05:31.884Z",
-    "title": "Four AI Platforms Embed Into Adviser Workflows Across Deal Origination, Meeting Lifecycle, and Operations",
-    "score": 43
-  },
-  "https://www.investmentnews.com/fintech/finny-lands-osaic-deal-to-put-ai-prospecting-in-front-of-11000-advisors/265053": {
-    "id": "finny-osaic-ai-prospecting-11000-advisors",
-    "reason": "Fabrication detected: Headline states '10,000+' advisors but the primary source (InvestmentNews) headline explicitly states '11,000 advisors' — a different specific number for the same metric. The Osaic press release uses 'over 10,000' which is consistent with the entry, but the primary source contradicts with 11,000.",
-    "blocked_at": "2026-04-16T04:05:44.270Z",
-    "title": "Finny Deploys AI Prospecting Platform Across Osaic's 10,000+ Advisor Network",
-    "score": 0
-  },
-  "https://fintech.global/2026/04/16/wealth-com-raises-65m-series-b-for-ai-wealth-planning/": {
-    "id": "wealth-com-65m-series-b-ai-wealth-planning-2026-04",
-    "reason": "Score 44/100 — below 45 review threshold",
-    "blocked_at": "2026-04-17T04:02:20.599Z",
-    "title": "Wealth.com Raises $65M Series B to Scale AI-Driven Wealth Planning Platform",
-    "score": 44
+    "id": "ai-reshaping-wealth-management-advisory-2026-04",
+    "reason": "the_so_what flagged as weak CXO relevance (3/10) — review before publishing",
+    "blocked_at": "2026-04-16T04:03:09.948Z",
+    "title": "AI Capability Adoption Accelerates Across Wealth Advisory as Personalization and Productivity Converge",
+    "score": 51
   }
 }
