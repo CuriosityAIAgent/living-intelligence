@@ -36,10 +36,8 @@
 - **Effort:** Small — wire existing API into a simple list component
 - **Source:** FEATURE_MANIFEST.md (marked TODO)
 
-### 5. Auditor Hardcoded Reference Date
-- **What:** `auditor.js` line 18: `const TODAY = new Date('2026-03-19')`
-- **Impact:** Freshness checks use March 19 as reference, not actual current date. All entries >90 days from March 19 get flagged incorrectly.
-- **Fix:** Change to `const TODAY = new Date()`
+### ~~5. Auditor Hardcoded Reference Date~~ — FIXED (session 44)
+- **Fixed:** `auditor.js` line 18 changed from `new Date('2026-03-19')` to `new Date()`
 
 ### 6. Race Condition on `/api/v2/store-produced`
 - **What:** No check if brief is already in `produced` or `held` status before overwriting

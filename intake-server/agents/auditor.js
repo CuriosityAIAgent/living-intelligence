@@ -15,7 +15,7 @@ import Anthropic from '@anthropic-ai/sdk';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const DATA_DIR   = join(__dirname, '..', '..', 'data');
-const TODAY      = new Date('2026-03-19');
+const TODAY      = new Date();
 
 // ─── Maturity ordering ────────────────────────────────────────────────────────
 
