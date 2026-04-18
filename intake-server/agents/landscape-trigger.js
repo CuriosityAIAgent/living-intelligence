@@ -255,7 +255,7 @@ function _commitCompetitorUpdate({ filepath, message }) {
       `git -C "${portalDir}" commit -m "${message}\n\nCo-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>"`,
       { stdio: 'pipe' }
     );
-    execSync(`git -C "${portalDir}" push origin main`, { stdio: 'pipe' });
+    execSync(`git -C "${portalDir}" push origin feature/landing-page`, { stdio: 'pipe' });
     console.log(`[landscape-trigger] Committed + pushed: ${message}`);
   } catch (err) {
     console.warn('[landscape-trigger] git commit failed (non-fatal):', err.message);

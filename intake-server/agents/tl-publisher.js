@@ -250,7 +250,7 @@ function _commitAndPush({ filepath, slug, send }) {
   try {
     const cloneUrl = `https://${gitToken}@github.com/${repo}.git`;
 
-    send('status', { message: 'Cloning portal repo (main)...' });
+    send('status', { message: 'Cloning portal repo...' });
     execSync(`git clone --depth=1 -b ${branch} "${cloneUrl}" "${tempDir}"`, { stdio: 'pipe' });
 
     execSync(`git -C "${tempDir}" config user.email "intake-bot@portal.ai"`, { stdio: 'pipe' });

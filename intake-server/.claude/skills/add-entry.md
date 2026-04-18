@@ -119,15 +119,15 @@ Once confirmed:
 
 1. Save the file to `data/intelligence/{id}.json`
 2. Check the file was written correctly: read it back
-3. Stage and commit to `intake` branch:
+3. Stage and commit to `feature/landing-page` (the primary platform at livingintel.ai):
    ```bash
    git add data/intelligence/{id}.json
    git commit -m "Add intelligence entry: {title}"
    ```
    The pre-commit hook will run `node --check` — fix any issues before pushing.
-4. Push to `intake` (never `main` directly):
+4. Push to `feature/landing-page`:
    ```bash
-   git push origin intake
+   git push origin feature/landing-page
    ```
 
 ---

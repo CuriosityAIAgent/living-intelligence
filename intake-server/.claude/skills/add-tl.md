@@ -119,13 +119,13 @@ Thought leadership entries go directly to `main` (they update the portal immedia
 
 1. Save to `data/thought-leadership/{id}.json`
 2. Read it back to verify structure
-3. Commit and push to `main`:
+3. Commit and push to `feature/landing-page` (the primary platform at livingintel.ai):
    ```bash
    git add data/thought-leadership/{id}.json
    git commit -m "Add thought leadership: {author} — {title}"
-   git push origin main
+   git push origin feature/landing-page
    ```
-   Portal redeploys automatically on Railway.
+   livingintel.ai redeploys automatically on Railway.
 
 ---
 

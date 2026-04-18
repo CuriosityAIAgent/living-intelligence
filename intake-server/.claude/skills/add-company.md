@@ -138,7 +138,7 @@ Logo: ✅ found / ⚠️ missing
    git add data/competitors/{id}.json
    git add data/logos/{id}.svg  # if logo was added
    git commit -m "Add landscape company: {name}"
-   git push origin intake
+   git push origin feature/landing-page
    ```
 
 ---
