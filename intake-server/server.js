@@ -454,7 +454,7 @@ app.post('/api/inbox/:id/approve-and-publish', (req, res) => {
 
   // 4. Git commit + push
   try {
-    commitAndPush({ ids: [entryId], send, branch: 'main' });
+    commitAndPush({ ids: [entryId], send });
   } catch (gitErr) {
     send('error', { message: `Published but git push failed: ${gitErr.message}` });
   }
@@ -1270,7 +1270,7 @@ h2{color:#27ae60}</style></head>
       try {
         const dummySend = () => {};
         const id = publish({ entry, send: dummySend });
-        commitAndPush({ ids: [id], send: dummySend, branch: 'main' });
+        commitAndPush({ ids: [id], send: dummySend });
         // Landscape impact check (non-blocking)
         setImmediate(() => checkLandscapeImpact({ ...entry, id }).catch(() => {}));
       } catch (err) {
@@ -1371,10 +1371,10 @@ app.post('/review/:token/approve', (req, res) => {
   try {
     const dummySend = () => {};
     const id = publish({ entry, send: dummySend });
-    commitAndPush({ ids: [id], send: dummySend, branch: 'main' });
+    commitAndPush({ ids: [id], send: dummySend });
     // Landscape impact check (non-blocking)
     setImmediate(() => checkLandscapeImpact({ ...entry, id }).catch(() => {}));
-    res.json({ ok: true, message: 'Entry approved, published, and pushed to main', id });
+    res.json({ ok: true, message: 'Entry approved, published, and pushed to livingintel.ai', id });
   } catch (err) {
     res.status(500).json({ error: `Publish failed: ${err.message}` });
   }

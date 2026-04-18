@@ -125,9 +125,9 @@ node --env-file=.env server.js   # localhost:3003
 
 | Branch | Purpose | Railway deploys? |
 |--------|---------|-----------------|
-| `main` | Stable production — what subscribers and CXOs see | ✅ Portal (`living-intelligence` service) auto-deploys on push |
+| `feature/landing-page` | **PRIMARY PLATFORM** — `livingintel.ai`, what subscribers and CXOs see. All content publishes go here. | ✅ `profound-wonder` service auto-deploys on push |
 | `intake` | Active development — all code changes go here first (renamed from `dev` 2026-03-23) | ✅ Intake server (`proud-reflection`) deploys from `intake` |
-| `feature/landing-page` | Public landing page `livingintel.ai` (`profound-wonder` service) | ✅ Separate Railway service |
+| `main` | JPM demo only — `wealth.tigerai.tech`, frozen, email gate `jpm2026`. Update only when specifically asked. | ✅ Portal (`living-intelligence` service) |
 
 **Version tags (semantic versioning — major milestones only):**
 | Tag | What it is |
@@ -151,16 +151,15 @@ git push origin main --force
 ```
 
 **Rules:**
-1. **Never push untested code directly to `main`** — it immediately redeploys the public portal
+1. **Never push untested code directly to `feature/landing-page`** — it immediately redeploys the primary platform at livingintel.ai
 2. **All code changes start on `intake`**: `git checkout intake` → develop → commit → push → test on Railway intake server
-3. **Merge to `main` only when tested**: `git checkout main && git merge intake && git push origin main`
-4. **Content publishing (approved stories)** always pushes to `main` directly — this is intentional, it triggers portal rebuild with new content
-5. **`feature/landing-page`** is independent — developed separately, merged to `main` when landing page is ready to go live
+3. **Content publishing (approved stories)** pushes to `feature/landing-page` directly — this triggers livingintel.ai rebuild with new content
+4. **`main` is frozen** — JPM demo only at `wealth.tigerai.tech`. Do not push content here routinely.
 
 **Railway deployment config (all confirmed):**
-- Portal service (`living-intelligence`): deploys from `main` ✓
+- Primary platform (`profound-wonder`): deploys from `feature/landing-page` → `livingintel.ai` ✓
 - Intake server (`proud-reflection`): deploys from `intake` ✓
-- Landing page (`profound-wonder`): deploys from `feature/landing-page` ✓
+- JPM demo (`living-intelligence`): deploys from `main` → `wealth.tigerai.tech` (frozen) ✓
 
 ---
 

@@ -228,7 +228,7 @@ export function commitInboxState() {
   }
 }
 
-export function commitAndPush({ ids, send, branch = 'main' }) {
+export function commitAndPush({ ids, send, branch = 'feature/landing-page' }) {
   const gitToken = process.env.GIT_TOKEN;
   const repo    = process.env.GITHUB_REPO || 'CuriosityAIAgent/living-intelligence';
 

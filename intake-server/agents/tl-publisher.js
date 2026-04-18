@@ -210,7 +210,7 @@ function _commitAndPush({ filepath, slug, send }) {
   const gitToken  = process.env.GIT_TOKEN;
   const repo      = process.env.GITHUB_REPO || 'CuriosityAIAgent/living-intelligence';
   const portalDir = process.env.PORTAL_DIR  || REPO_ROOT;
-  const branch    = 'main';
+  const branch    = 'feature/landing-page';
   const hasGitRepo = existsSync(join(portalDir, '.git'));
 
   // ── Local mode: git repo exists, push directly ────────────────────────────
@@ -240,7 +240,7 @@ function _commitAndPush({ filepath, slug, send }) {
     return;
   }
 
-  // ── Railway mode: clone main into temp dir, copy file, commit, push ───────
+  // ── Railway mode: clone into temp dir, copy file, commit, push ───────
   if (!gitToken) {
     send('error', { message: 'GIT_TOKEN is required on Railway to push TL entries to GitHub' });
     return;

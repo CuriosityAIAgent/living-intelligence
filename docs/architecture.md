@@ -170,7 +170,7 @@ Fallback: content-producer.js still works for manual CLI use (uses API credits).
 ### Publish Flow
 ```
 Approve → publisher.js: auto-correct week, auto-resolve logo, write JSON
-       → commitAndPush: git add + commit + push origin main
+       → commitAndPush: git add + commit + push origin feature/landing-page
        → landscape-trigger.js: check if entry warrants landscape update
        → Railway auto-deploys portal
 ```
@@ -276,7 +276,7 @@ Three independent Railway services, each deploying from a different git branch:
 
 - **Portal UI changes** (pages, components, styles, CTA buttons, data files) → commit and push to `main` → `living-intelligence` service rebuilds → live on `wealth.tigerai.tech`
 - **Intake server changes** (agents, pipeline code, Editorial Studio UI) → commit and push to `intake` → `proud-reflection` service rebuilds
-- **Content publishing** (approved stories via Editorial Studio) → publisher.js pushes directly to `main` → portal rebuilds with new content
+- **Content publishing** (approved stories via Editorial Studio) → publisher.js pushes to `feature/landing-page` → livingintel.ai rebuilds with new content
 
 ### Common mistake
 
