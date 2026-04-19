@@ -1,29 +1,38 @@
 {
-  "started_at": "2026-04-18T04:00:00.822Z",
+  "started_at": "2026-04-19T04:00:00.812Z",
   "candidates_found": 15,
-  "queued": 4,
+  "queued": 1,
   "blocked": 0,
   "errors": 0,
   "error_details": [],
   "discovery_sources": {
-    "layer1_news": 43,
-    "layer1_capabilities": 19,
+    "layer1_news": 46,
+    "layer1_capabilities": 0,
     "layer2_companies": 0,
-    "layer3_newsapi": 0,
-    "layer1_tl": 30,
-    "layer2_authors": 36,
-    "companies_queried": 37,
-    "capabilities_queried": 7,
-    "raw_intel_total": 56
+    "layer3_newsapi": 3,
+    "layer1_tl": 28,
+    "layer2_authors": 9,
+    "companies_queried": 0,
+    "capabilities_queried": 0,
+    "raw_intel_total": 47
   },
-  "tl_candidates": 64,
+  "tl_candidates": 36,
   "tl_items": [
+    {
+      "id": "aHR0cHM6Ly93",
+      "title": "AI in WealthTech for the Middle and Back Office: Our Top Three Predictions for 2026",
+      "url": "https://www.wealthmanagement.com/artificial-intelligence/ai-trends-reshaping-wealth-management-in-2026",
+      "source_name": "wealthmanagement.com",
+      "pub_date": "2 days ago",
+      "snippet": "AI is changing wealth management with conversational input, scalable back-office roles, and improved APIs for autonomous agents",
+      "via": "layer1_tl"
+    },
     {
       "id": "aHR0cHM6Ly9w",
       "title": "Wealth Management AI News in 2026: Sid Bindra’s Preservation Playbook",
       "url": "https://percepture.com/wealth-management/wealth-management-ai-news/",
       "source_name": "percepture.com",
-      "pub_date": "3 days ago",
+      "pub_date": "4 days ago",
       "snippet": "Get wealth management AI news for 2026. Advisor Sid Bindra explains why AI preservation and human ethics are the future of financial planning.",
       "via": "layer1_tl"
     },
@@ -38,11 +47,11 @@
     },
     {
       "id": "aHR0cHM6Ly93",
-      "title": "29News WVIR",
-      "url": "https://www.facebook.com/29NewsWVIR/posts/more-americans-turning-to-ai-for-financial-advice-httpswww29newscom20260223more-/1677229030346805/",
-      "source_name": "facebook.com",
-      "pub_date": "Feb 24, 2026",
-      "snippet": "More Americans turning to AI for financial advice >>> \nhttps://www.29news.com/2026/02/23/more-americans-turning-ai-financial-advice/",
+      "title": "AI in Wealth Management: 2026 Trends and Challenges | Next Level Recruiting, LLC posted on the topic | LinkedIn",
+      "url": "https://www.linkedin.com/posts/next-level-recruiting-llc_ai-2026-increased-adoption-new-use-cases-activity-7420485172136984576-MxYJ",
+      "source_name": "linkedin.com",
+      "pub_date": "Jan 23, 2026",
+      "snippet": "AI is set to play a bigger role in wealth management in 2026—but questions remain.\n\nThis Family Wealth Report article explores how advisors are beginning to adopt AI, the new use cases gaining traction, and why regulation and trust still slow broader uptake. It also highlights a new Financial Planni",
       "via": "layer1_tl"
     },
     {
@@ -56,29 +65,11 @@
     },
     {
       "id": "aHR0cHM6Ly93",
-      "title": "AI in Wealth Management: 2026 Trends and Challenges | Next Level Recruiting, LLC posted on the topic | LinkedIn",
-      "url": "https://www.linkedin.com/posts/next-level-recruiting-llc_ai-2026-increased-adoption-new-use-cases-activity-7420485172136984576-MxYJ",
-      "source_name": "linkedin.com",
-      "pub_date": "Jan 23, 2026",
-      "snippet": "AI is set to play a bigger role in wealth management in 2026—but questions remain.\n\nThis Family Wealth Report article explores how advisors are beginning to adopt AI, the new use cases gaining traction, and why regulation and trust still slow broader uptake. It also highlights a new Financial Planni",
-      "via": "layer1_tl"
-    },
-    {
-      "id": "aHR0cHM6Ly93",
-      "title": "How artificial intelligence is reshaping the financial services industry",
-      "url": "https://www.ey.com/en_gr/insights/financial-services/how-artificial-intelligence-is-reshaping-the-financial-services-industry",
-      "source_name": "ey.com",
-      "pub_date": null,
-      "snippet": "AI is reshaping the financial services industry, making it more efficient, effective and innovative. Read more.",
-      "via": "layer1_tl"
-    },
-    {
-      "id": "aHR0cHM6Ly93",
       "title": "Just a moment...",
       "url": "https://www.researchgate.net/publication/381277119_Artificial_Intelligence_as_Personal_Financial_Advisor_in_the_Future_-_A_Case_Study_Based_on_Algorithmic_Innovation_Strategies",
       "source_name": "researchgate.net",
       "pub_date": null,
-      "snippet": "## Security check required\n\nWe've detected unusual activity from your network. To continue, complete the security check below.\n\nRay ID: 9ee0c2a79eadd667\n\nClient IP: 2600:1900:0:2100::1300\n\n© 2008-2026 ResearchGate GmbH. All rights reserved.",
+      "snippet": "## Security check required\n\nWe've detected unusual activity from your network. To continue, complete the security check below.\n\nRay ID: 9ee9000e18d67621\n\nClient IP: 2600:1900:0:4003::1401\n\n© 2008-2026 ResearchGate GmbH. All rights reserved.",
       "via": "layer1_tl"
     },
     {
@@ -101,11 +92,11 @@
     },
     {
       "id": "aHR0cHM6Ly9w",
-      "title": "Generative AI Business Use Cases Reshaping Enterprises in 2026 - Profit Minds",
-      "url": "https://profitminds.net/generative-ai-business-use-cases-reshaping-enterprises-in-2026/",
-      "source_name": "profitminds.net",
-      "pub_date": "Apr 1, 2026",
-      "snippet": "Generative AI business use cases in 2026: Mistral Forge, Perplexity's agent, NVIDIA's 88% ROI, Morgan Stanley's warning, and the Salesforce crisis.",
+      "title": "GenAI Strategy & Investment Management | Portal26 Platform Feature",
+      "url": "https://portal26.ai/genai-strategy/",
+      "source_name": "portal26.ai",
+      "pub_date": null,
+      "snippet": "Balance GenAI investments across private, public, and licensed AI with Portal26's strategy management. Optimize ROI, manage risk, and align with enterprise objectives and policies.",
       "via": "layer1_tl"
     },
     {
@@ -119,11 +110,11 @@
     },
     {
       "id": "aHR0cHM6Ly9w",
-      "title": "GenAI Strategy & Investment Management | Portal26 Platform Feature",
-      "url": "https://portal26.ai/genai-strategy/",
-      "source_name": "portal26.ai",
-      "pub_date": null,
-      "snippet": "Balance GenAI investments across private, public, and licensed AI with Portal26's strategy management. Optimize ROI, manage risk, and align with enterprise objectives and policies.",
+      "title": "Generative AI Business Use Cases Reshaping Enterprises in 2026 - Profit Minds",
+      "url": "https://profitminds.net/generative-ai-business-use-cases-reshaping-enterprises-in-2026/",
+      "source_name": "profitminds.net",
+      "pub_date": "Apr 1, 2026",
+      "snippet": "Generative AI business use cases in 2026: Mistral Forge, Perplexity's agent, NVIDIA's 88% ROI, Morgan Stanley's warning, and the Salesforce crisis.",
       "via": "layer1_tl"
     },
     {
@@ -152,8 +143,17 @@
       "pub_date": null,
       "snippet": "Discover insights from 88 financial leaders on the trends shaping the industry by 2026, focusing on AI, blockchain, digital payments, and more. Download the exclusive report now.",
       "via": "layer1_tl"
+    },
+    {
+      "id": "aHR0cHM6Ly93",
+      "title": "FIN-2026-Industry-Predictions-Report.pdf",
+      "url": "https://www.bdo.com/getmedia/2db1671f-0450-418e-898d-56800d4d5609/FIN-2026-Industry-Predictions-Report.pdf?ext=.pdf",
+      "source_name": "bdo.com",
+      "pub_date": null,
+      "snippet": "# 2026 Fintech Industry Predictions 2026 is set to be a pivotal year for fintech. After years of uncertainty, the industry is showing signs of clarity and confidence from regulators, consumers, and business partners. Regulatory frameworks have strengthened, markets have stabilized, and bold ideas ar",
+      "via": "layer1_tl"
     }
   ],
   "blocked_items": [],
-  "written_at": "2026-04-18T04:05:40.297Z"
+  "written_at": "2026-04-19T04:01:38.898Z"
 }
